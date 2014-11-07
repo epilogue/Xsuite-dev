@@ -1,0 +1,15 @@
+<?php
+$this->title = 'Accueil';
+$this->headTitle($this->title);
+?>
+<div id="accueil">
+    <img src="/images/accueilxsuite.png" alt="" usemap="#Map" style="padding-left: 50px;" />
+    <map name="Map" id="Map">
+        <area alt="xprice" title="xprice" <a href="<?php echo $this->url(array('controller' => 'xprice', 'action' => 'index'), null, true); ?>" shape="rect" coords="161,51,260,147" />
+        <area alt="" title="" href="#" shape="rect" coords="18,173,111,274" />
+        <area alt="" title="" href="#" shape="rect" coords="155,192,257,290" />
+        <area alt="" title="" href="#" shape="rect" coords="418,12,529,111" />
+        <area alt="" title="" href="#" shape="rect" coords="452,156,574,259" />
+        <area alt="" title="" href="#" shape="rect" coords="570,23,682,140" />
+    </map>
+</div>

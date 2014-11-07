@@ -1,0 +1,5 @@
+vhost.conf
+nbproject/
+/application/configs/mail.ini
+/application/configs/application.ini
+/application/configs/movexConnect.ini

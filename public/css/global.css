@@ -1,0 +1,427 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/*
+    Created on : 5 juin 2014, 11:37:28
+    Author     : mag
+*/
+
+#header{
+    width: 1024px;
+    height: 150px;
+    background-color: white;
+}
+
+#header_left{
+    float: left;
+    width: 250px;
+    height: 80px;
+    padding-top:30px;
+}
+
+#header_center{
+    float:left;
+    margin-left: 30px;
+    width: 450px;
+    height:150px;
+    background-color: white;
+}
+
+#header_right{
+    float:right;
+    width: 250px;
+    height: 150px;
+}
+
+#header_site{
+    width:250px;
+    height: 100px;
+    float: right;
+    background-image: -moz-linear-gradient(top, #8F8B8B 33%, #C4BDBD 66%);
+    border-radius: 10px;
+    padding-top:15px;
+    padding-left:15px;
+    text-align:center;
+}
+
+#header_site a:hover,a:visited, a:link{
+    color:white !important;
+    padding: 15px 10px 0 5px;
+    margin-top:10px;
+    text-align:center;
+    text-decoration: none;
+}
+/* fin header */
+
+/*corps de page*/
+#accueil{
+    /* background-image:url('/images/smc_logo_2013.png');*/
+}
+
+
+#accueil_centre{
+    /* background-image:url("/images/smc_logo_2013.png");*/
+    background-repeat:no-repeat;
+    /*background-position: center;*/
+    width: 300px;
+    float:left;
+    padding-left: 100px;
+    padding-top: 30px;
+}
+
+#centre{
+    width: 1024px;
+    height: auto;
+}
+
+#sidebar_left{
+    float: left;
+    width: 175px;
+    height: 310px;
+    background-color: #C4BDBD;
+    /* border-radius: 10px; */
+    border-bottom-right-radius:15px;
+    border-top-left-radius:15px;
+
+}
+
+#Content{
+    width:1024px;
+    height:900px;
+    background-color:white;
+}
+
+#center{
+    float:right;
+    /*margin-left: 245px;*/
+    width: 800px;
+    height: auto;
+    background-color:white;
+    border-radius:10px;
+    border: medium solid #C4BDBD;
+}
+
+/*fin  corps de page */
+
+/*footer*/
+#footer{
+    height: 200px;
+    width: 1024px;
+}
+
+#logo img{
+    float: left;
+    margin-left:400px;
+
+}
+/*fin footer*/
+h1{
+    font-weight: bold;
+    font-size: 48px;
+    color: #A0A1A1;
+    text-align: center;
+}
+
+h2{
+    font-weight:bold;
+    font-size:34px;
+    color:#A0A1A1;
+    text-align:center;
+}
+h3{
+    font-weight: bold;
+    font-size: 20px;
+    color:#A0A1A1;
+    text-align: center;
+}
+/* éléments du menu déroulant*/
+#menu,#menu ul{
+    line-height: 21px;
+    text-align: center;
+    padding:10px 0 0;
+    margin:15px;
+    list-style: none;
+
+}
+
+#menu{
+    font-weight: bold;
+    font-family: arial;
+    font-size:10px;
+}
+
+#menu a {
+    padding:0;
+    display:block;
+    width: 144px;
+    text-decoration :none;
+}
+
+#menu li {
+    float:left;
+    background-image: -moz-linear-gradient(top, #8F8B8B 33%, #C4BDBD 66%);
+    border-radius: 10px;
+    color:white;
+    height: 50px;
+}
+/*sous liste*/
+#menu li ul{
+    position:absolute;
+    width:144px;
+    left:-999em;
+    padding-top:0px;
+    margin:0;
+    z-index:1;
+}
+
+/* au passage de la souris */
+#menu a:hover{
+    color:black;
+    background-color:transparent;
+}
+/*deroule fait référence à la fonction js */
+#menu li:hover ul ul ,#menu li.deroule ul ul{
+    left:-999em;
+}
+
+#menu li:hover ul,#menu li li:hover ul,#menu li.deroule ul,#menu li li.deroule ul {
+    left:auto;
+    min-height: 0;
+}
+
+/*fin du menu*/
+
+/**les tableaux
+/*div entourant les tableaux pour les centrer
+/*tableau du module user**/
+#tableIndex{
+    float:left;
+    margin-left:10px;
+    margin-right:10px;
+    margin-bottom:10px;
+}
+
+#userIndex{
+    border: medium solid grey;
+    border-collapse: collapse;
+}
+
+#userIndex td,#userIndex th{
+    border: thin solid grey;
+    text-align:center;
+    width: 150px;
+}
+
+#userIndex a:hover, a:visited, a:link{
+    color: black;
+}
+
+#workplace{
+    float:left;
+    width: 755px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    margin-left:25px;
+    border: none;
+}
+
+#fieldset wp{
+    width: 725px;
+    float:left;
+    margin-bottom:25px;
+    margin-left:25px;
+}
+
+#information{
+    width: 100%;
+    height: auto;
+    margin-bottom : 20px;
+}
+
+#info_user{
+    width: 300px;
+    float: left;
+    margin-left: 25px;
+}
+
+#info_client{
+    width: 300px;
+    float:left;
+    margin-left: 75px;
+}
+
+#information table{
+    width: 315px;
+    height: 200px;
+}
+
+#information input{
+    width: 150px;
+}
+
+#information td{
+    width: 200px;
+}
+
+#submit-element{
+    /* float:left;*/
+    width: 125px;
+    margin-top: 30px;
+    /* margin-left:315px;*/
+    margin-bottom: 30px;
+    height: 50px;
+    border: none;
+
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#submit{
+    height: 50px;
+    background-color:#268bd9;
+    color:white;
+}
+
+#fieldset-commentaires{
+    width: 725px;
+    float:left;
+    margin-bottom:25px;
+    margin-left:25px;
+}
+
+#demandeArticle{
+    width: 750px;
+    float:left;
+    margin-top:30px;
+    margin-bottom:25px;
+    margin-left:25px;
+}
+
+#article table,#article th,#article tr,#article td{
+    border-style:solid;
+    border-color:black;
+    border-width: thin;
+}
+
+fieldset legend{
+    font-weight: bold;
+    font-style: italic;
+    font-size: 20px;
+    font-family: verdana;
+}
+
+#confirmcreate{
+    width: 350px;
+    border-style:solid;
+    border-color: black;
+    padding-left: 10px;
+    padding-right:10px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 30px;
+    border-radius:7px;
+}
+
+#fielset-justificatif{
+    width: 750px;
+    float:left;
+    margin-bottom:25px;
+    margin-left:25px;
+}
+
+
+#formcreate{
+    width: 750px;
+    float:left;
+    margin-bottom:25px;
+    margin-left:25px;
+}
+
+#faible-label,
+#mini_demande_article-label,
+#part_demande_article-label,
+#concurrent_demande_article-label{
+    float: left;
+    width : 360px;
+    height: 70px;
+    margin-left: 10px;
+    padding-top: 20px;
+}
+
+#faible-element,
+#mini_demande_article-element,
+#part_demande_article-element,
+#concurrent_demande_article-element{
+    float: right;
+    width : 200px;
+    height: 55px;
+    margin-right: 100px;
+    padding-top: 10px;
+    margin-top: 10px;
+}
+#form_prixfob{
+
+    width: 700px;
+    float:left;
+    margin-bottom:25px;
+    margin-left:25px;
+}
+
+#commentaire_fobfr-label{
+
+    font-weight: bold;
+    font-style: italic;
+    font-size: 20px;
+    font-family: verdana;
+}
+span {
+    /*border-radius: 5px;
+    border-color:grey;
+    border-style:solid;
+    border-width: 1px;*/
+    width: 700px;
+    float:left;
+    text-align: center;
+    margin-bottom:25px;
+    margin-left:25px;
+}
+#prixcif, #prixfob {
+    width: 60px !important;
+}
+
+#formlogin{
+    width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+#formindex{
+    /*width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+     float:left;
+    margin-left:10px;
+    margin-right:10px;
+    margin-bottom:10px;*/
+    width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+}
+#view-content{
+    width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#num_offre_worplace-label{
+    padding-left: 45px;
+    padding-bottom: 20px;
+    width: 250px;
+}
+#tracking_number-label{
+    padding-bottom: 15px;
+}

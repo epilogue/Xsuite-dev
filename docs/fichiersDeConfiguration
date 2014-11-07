@@ -1,0 +1,8 @@
+1°) déplacer le fichier application.ini en application-dist.ini :
+copiez le fichier application/configs/application.ini vers un backup externe à l'application
+
+par exemple : 
+
+mkdir -p ../Xsuite-dev_backups/application/configs && cp application/configs/application.ini ../Xsuite-dev_backups/application/configs/application.ini
+
+Git est configuré pour déplacer le fichier de conf originel si ça ne se produit pas supprimer le fichier application/configs/application.ini

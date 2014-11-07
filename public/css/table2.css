@@ -1,0 +1,24 @@
+/* 
+    Document   : table2
+    Created on : 7 nov. 2014, 09:50:14
+    Author     : FRKeoheuaJ
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+#objet table  {
+	width: 300px;
+        margin: 0 auto;
+	padding: 3px; 
+	border-spacing: 0px;
+	border:solid 1px black; 
+	background-color:lightgrey; 
+	text-align:center;
+        visibility: hidden;
+}
+
+#objet th {
+  width: 140px;
+
+ }
+

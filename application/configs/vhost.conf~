@@ -1,0 +1,44 @@
+########
+# Configuration type
+# changez :
+#   - <local_dir>
+#
+# Utilisez :
+#   - copiez ce ficher vers vhost.conf
+#   - personalisez la configuration
+#   - sudo ln -s /<local_dir>/application/configs/vhost.conf /etc/apache2/sites-available/xsuite
+#   - sudo a2ensite xsuite
+#   - sudo service apache2 reload
+########
+# Apache2
+<VirtualHost *:80>
+    ServerAdmin webmaster@localhost
+    ServerName xsuite
+    ServerAlias xsuite-dev
+
+    ErrorDocument 404 /404-not-found
+
+    DocumentRoot /<local_dir>/Xsuite-dev/public
+    <Directory />
+        Options Indexes FollowSymLinks MultiViews
+        AllowOverride all
+        ## 2.2 config
+        Order allow,deny
+        allow from all
+        ## 2.4 config
+        #Require all granted
+    </Directory>
+    <Directory /<local_dir>/Xsuite-dev/public/>
+        Options Indexes FollowSymLinks MultiViews
+        AllowOverride all
+        ## 2.2 config
+        Order allow,deny
+        allow from all
+        ## 2.4 config
+        #Require all granted
+    </Directory>
+
+    ErrorLog "/var/log/apache2/xsuite-errorlog"
+    CustomLog "/var/log/apache2/xsuite-accesslog" common
+
+</VirtualHost>

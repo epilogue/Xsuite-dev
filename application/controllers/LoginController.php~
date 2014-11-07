@@ -1,0 +1,69 @@
+<?php
+
+class LoginController extends Zend_Controller_Action {
+
+    public function indexAction() {
+        $loginForm = new Application_Form_Login();
+        $request = $this->getRequest();
+
+        if ($request->isPost()) {
+            if ($loginForm->isValid($request->getPost())) {
+                if ($this->_process($loginForm->getValues())) {
+                    $this->_helper->redirector('index', 'index');
+                }
+            }
+        }
+        /* @todo commentaire franck
+         * Il serait bien qu'un utilisateur déjà connecté ne puisse pas se connecter à nouveau
+         * pour cela voir Zend_Auth->getIdentity qui renvoit soit une identité soit un null
+         * et donc en cas d'utilisateur déjà connecté il serait de bon ton de renvoyer à l'index.
+         * Enfin, et pour compléter ce fonctionnement, il te manque une action "logOut" avec un lien
+         * "se connecter/se déconnecter" conditionnel à l'existance d'une session dans ton layout
+         */
+
+        $this->view->form = $loginForm;
+        /* @todo commentaire franck
+         * Exemple de récupération de l'utilisateur en cours
+         */
+        $auth = Zend_Auth::getInstance();
+        $user = $auth->getIdentity();
+        $this->view->user = $user;
+    }
+
+    /* @todo commentaire franck
+     * /!\ attention /!\
+     * par convention les méthodes préfixés par "_" doivent êtres "protected" et non "public"
+     */
+
+    protected function _process($values) {
+        $adapter = $this->_getAuthAdapter();
+        $adapter->setIdentity($values['nom_user']);
+        $adapter->setCredential($values['password_user']);
+
+        $auth = Zend_Auth::getInstance();
+        $result = $auth->authenticate($adapter);
+        if ($result->isValid()) {
+            $user = $adapter->getResultRowObject();
+            $auth->getStorage()->write($user);
+            return true;
+        }
+        return false;
+    }
+
+    protected function _getAuthAdapter() {
+
+        $dbAdapter = Zend_Db_Table::getDefaultAdapter();
+        $authAdapter = new Zend_Auth_Adapter_DbTable($dbAdapter);
+
+        $authAdapter->setTableName('users')
+                ->setIdentityColumn('nom_user')
+                ->setCredentialColumn('password_user');
+
+        return $authAdapter;
+    }
+
+    /* @todo commentaire franck
+     * Il faut une méthode "logoutAction"
+     */
+}
+

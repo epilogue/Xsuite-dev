@@ -1,0 +1,79 @@
+****************************
+*****Xprice controller******
+****************************
+
+public $dsn="DRIVER=Client Acess ODBC Driver(32-bit);UID=EU65535;PWD=CCS65535;SYSTEM=10.105.80.32;DBQ=CVXCDTA";
+
+###########################
+######numwp action#########
+###########################
+
+/* on vérifie que le numéro existe bien dans la base movex
+                 * $dsn="DRIVER=Client Acess ODBC Driver(32-bit);UID=EU65535;PWD=CCS65535;SYSTEM=10.105.80.32;DBQ=CVXCDTA";
+                 * $mmcono = "100";
+                 * $division = "FR0;
+                 * $facility = "I01";
+                 * $type = "3";
+                 * $warehouse = "I02";
+                 * $supplier = "I990001";
+                 * $agreement1 = "I000001";
+                 * $agreement2 = "I000002";
+                 * $agreement3 = "I000003";
+                 *
+                 * $conn = odbc_connect($dsn,"","");
+                 * if(!$conn2){
+                 * echo "pas d'accès à la base de données";
+                 * }
+                 * $query = "select COUNT(*) FROM EIT.CVXCDTA.OOLINE OOLINE WHERE OOLINE.OBORNO ='$_POST['num_offre_workplace']' AND OOLINE.OBDIVI='FR0' and OOLINE.OBCONO='100'";
+                 * $results=odbc_Exec($conn,$query);
+                 * if($results ==null){$this->_helper->redirector->gotoSimple('create', 'xprice', null, array('numwp' => $_POST['num_offre_worplace']));}
+                 * else{
+                 * $flashMessenger = $this->_helper->Flashmessenger;
+                 * $message = "ce numéro d'offre n'a pas de concordance dans la base MOVEX";
+                 * $flashMessenger->addMessage($message);
+                 * $form->populate($this->getRequest()->getPost());}
+                 */
+
+
+##########################
+######create action#######
+##########################
+
+
+                    
+            /*
+             * $dsn2="DRIVER=Client Acess ODBC Driver(32-bit);UID=EU65535;PWD=CCS65535;SYSTEM=10.105.80.32;DBQ=CVXCDTA";
+             * $mmcono = "100";
+             * $division = "FR0;
+             * $facility = "I01";
+             * $type = "3";
+             * $warehouse = "I02";
+             * $supplier = "I990001";
+             * $agreement1 = "I000001";
+             * $agreement2 = "I000002";
+             * $agreement3 = "I000003";
+             *
+             * $conn2 = odbc_connect($dsn2,"","");
+             * if(!$conn2){
+             * echo "pas d'accès à la base de données";
+             * }
+             * $query = "SELECT
+             * OOLINE.OBORNO,
+             * ccccccccccccccc,
+             * OOLINE.OBITNO,
+             * OOLINE.OBITDS,
+             * OOLINE.OBORQT,
+             * OOLINE.OBLNA2,
+             * OOLINE.OBLNAM,
+             * OOLINE.OBNEPR,
+             * OOLINE.OBSAPR,
+             * OOLINE.OBELNO,
+             * OOLINE.OBRGTD,
+             * OOLINE.OBLMDT,
+             * OOLINE.OBSMCD
+             * FROM EIT.CVXCDTA.OOLINE OOLINE WHERE OOLINE.OBORNO ='$numwp' AND OOLINE.OBDIVI='FR0' and OOLINE.OBCONO='100'";
+             * $resultats=odbc_Exec($conn2,$query);
+             * while($resultat=odbc_fetch_object($resultats){
+             *
+             * }
+             */

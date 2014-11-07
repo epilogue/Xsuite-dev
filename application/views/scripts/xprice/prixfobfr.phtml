@@ -1,0 +1,119 @@
+<?php
+$this->title = 'Xprice/fobfr';
+$this->headTitle($this->title);
+?>
+<h2>V&eacute;rification de prix fob prix cif de l'offre n=°<?php echo $this->info_demande_xprice['tracking_number_demande_xprice'] ?></h2>
+<div id='workplace'>
+    <fieldset id="wp">
+        <legend>Informations offre</legend>
+        <table>
+            <tr>
+                <td>Numéro workplace de l'offre :</td>
+                <td><?php echo $this->numwp; ?></td>
+            </tr>
+            <tr>
+                <td>Date de l'offre workplace :</td>
+                <td><?php echo str_replace("-", "/", $this->info_demande_xprice['date_demande_xprice']); ?></td>
+            </tr>
+            <tr>
+                <td>Tracking number :</td>
+                <td><?php echo $this->info_demande_xprice['tracking_number_demande_xprice']; ?></td>
+            </tr>
+        </table>
+    </fieldset>
+</div>
+<div id="information">
+    <fieldset id="info_user">
+        <legend>Informations Commercial</legend>
+        <table>
+            <tr>
+                <td>Nom:</td>
+                <td><?php echo $this->info_user['nom_user']; ?></td>
+            </tr>
+            <tr>
+                <td>Prénom:</td>
+                <td><?php echo $this->info_user['prenom_user']; ?></td>
+            </tr>
+            <tr>
+                <td>Email:</td>
+                <td><?php echo $this->info_user['email_user']; ?></td>
+            </tr>
+            <tr>
+                <td>Téléphone:</td>
+                <td><?php echo $this->info_user['tel_user']; ?></td>
+            </tr>
+            <tr>
+                <td>Holon:</td>
+                <td><?php echo $this->holon; ?></td>
+            </tr>
+            <tr>
+                <td>User workplace:</td>
+                <td><?php echo $this->info_user['numwp_user']; ?></td>
+            </tr>
+        </table>
+    </fieldset>
+    <fieldset id="info_client">
+        <legend>Informations Client</legend>
+        <table>
+            <tr>
+                <td>Nom:</td>
+                <td><?php echo $this->info_client['nom_client']; ?></td>
+            </tr>
+            <tr>
+                <td>User Workplace:</td>
+                <td><?php echo $this->info_client['numwp_client']; ?></td>
+            </tr>
+            <tr>
+                <td>Projet industrie:</td>
+                <td><?php echo $this->info_client['id_industry'] ?></td>
+            </tr>
+            <tr>
+                <td>Potentiel:</td>
+                <td><?php echo 'plop'; ?></td>
+            </tr>
+        </table>
+    </fieldset>
+</div>
+<fielset id='comm_user'><legend>Commentaire commercial</legend>
+    <span><?php echo $this->info_demande_xprice['commentaire_demande_xprice'] ?></span>
+</fielset>
+<form method="post">
+    <div id="demandeArticle">
+        <fieldset ><legend>Articles </legend>
+            <table id="article">
+                <tr>
+                    <th>code article</th>
+                    <th>référence article</th>
+                    <th>quantité</th>
+                    <th>prix workplace</th>
+                    <th>prix demandé</th>
+                    <th>remise demandée</th>
+                    <th>prix fob</th>
+                    <th>prix cif</th>
+                </tr>
+                <?php foreach ($this->info_demande_article_xprice as $result) { ?>
+                    <tr>
+                        <td><input readonly="readonly" value="<?php echo $result['code_article'] ?>"  name="<?php echo 'code_article[]'; ?>"></td>
+                        <td><?php echo $result['reference_article']; ?></td>
+                        <td><?php echo $result['quantite_demande_article']; ?></td>
+                        <td><?php echo $result['prixwplace_demande_article']; ?></td>
+                        <td><?php echo $result['prix_demande_article']; ?></td>
+                        <td><?php $margedemande = ((($result['prix_demande_article'] / $result['quantite_demande_article']) * 100) / $result['prixwplace_demande_article']);
+                $margedef = 100 - $margedemande;
+                echo round($margedef, 2) . "%"; ?></td>
+                        <td><input id="prixfob" style="background-color: #74aaca;" type="text" name="prix_fob[]" value="<?php echo $result['prix_fob_demande_article']; ?>"></td>
+                        <td><input id="prixcif" style="background-color: #74aaca;" type="text" name="prix_cif[]" value="<?php echo $result['prix_cif_demande_article']; ?>"></td>
+
+                    </tr>
+<?php } ?>
+            </table>
+            <input type="text" hidden="hidden" value="<?php echo $this->info_demande_xprice['tracking_number_demande_xprice']; ?>" name="tracking_number">
+        </fieldset>
+    </div>
+    <div id='formprixfob'>
+        <fieldset id='form_prixfob'><legend>Commentaire Fobfr</legend>
+            <textarea name="commentaire_fobfr" cols="75" rows="20"></textarea>
+        </fieldset>
+    </div>
+    <input type="submit" value="enregistrer">
+</form>

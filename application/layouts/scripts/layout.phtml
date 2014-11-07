@@ -1,0 +1,81 @@
+<?php
+$this->headMeta()->appendHttpEquiv('Content-Type', 'text/html;charset=utf-8');
+echo $this->doctype();
+?>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+    <head>
+        <?php
+        echo $this->headMeta();
+        echo $this->headLink()->prependStylesheet($this->baseUrl() . '/css/global.css');
+        echo $this->headTitle();
+        ?>
+        <script type="text/javascript" src="js/menu.js"></script>
+
+    </head>
+    <body>
+        <div id="header">
+            <div id="header_left"><img  src="/images/smc_logo_2013.jpg" alt="" usemap="#Map2"/>
+                <map name="Map2" id="Map2">
+                    <area alt="accueil" title="accueil" href="<?php echo $this->url(array('controller' => 'index', 'action' => 'index'), null, true); ?>" shape="rect" coords="11,10,223,50" />
+                </map>
+            </div>
+            <div id="header_center"> <H1>Xsuite</H1></div>
+            <div id="header_right">
+                <div id="header_site">
+                    <a href="">retour au site intranet</a>
+                    <div id="logged-in-as"><?php echo $this->loggedInAs(); ?></div>
+                </div>
+            </div>
+        </div>
+        <div id="Content">
+            <div id="sidebar_left">
+                <ul id="menu">
+                    <li><a href="<?php echo $this->url(array('controller' => 'xprice', 'action' => 'index'), null, true); ?>">Xprice</a>
+                        <ul>
+                            <li><a href="<?php echo $this->url(array('controller' => 'xprice', 'action' => 'numwp'), null, true); ?>">Cr&eacute;ation</a></li>
+                            <li><a href="<?php echo $this->url(array('controller' => 'xprice', 'action' => 'update'), null, true); ?>">Modification</a></li>
+                            <li><a href="<?php echo $this->url(array('controller' => 'xprice', 'action' => 'list'), null, true); ?>">Consultation</a></li>
+                        </ul>
+                    </li>
+
+                    <li><a href="<?php echo $this->url(array('controller' => 'user', 'action' => 'index'), null, true); ?>">Annuaire utilisateur</a>
+                        <ul>
+                            <li><a href="<?php echo $this->url(array('controller' => 'user', 'action' => 'create'), null, true); ?>">Cr&eacute;ation</a></li>
+                            <?php /* @todo commentaire franck
+                             * Si tu met un lien "modifier" ici il te faut une étape de sélection de l'entité à modifier
+                             * sinon tu arrive sur un formulaire de modification vide.
+                             */ ?>
+                            <li><a href="<?php echo $this->url(array('controller' => 'user', 'action' => 'update'), null, true); ?>">Modification</a></li>
+                            <?php /* @todo commentaire franck
+                             * Même remarque que ci dessus, hormis le fait que tu ne peux pas supprimer un élément non sélectionné.
+                             */ ?>
+                            <li><a href="<?php echo $this->url(array('controller' => 'user', 'action' => 'delete'), null, true); ?>">Suppression</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div id="center">
+                <?php if (count($this->messages)) : ?>
+                    <ul id="messages">
+                        <?php foreach ($this->messages as $message) : ?>
+                            <li><?php echo $message; ?></li>
+                        <?php endforeach; ?>
+                    </ul>
+                <?php endif; ?>
+                <?php echo $this->layout()->content; ?>
+            </div>
+        </div>
+        <div id="footer">
+            <div id="logo">
+                <?php /* @todo commentaire franck
+                 * Oulla ! attention au url relatives ça peut ne pas fonctionner partout !
+                 * 2 solutions :
+                 *  - utiliser une url absolue pour ce logo (src="/images/...)
+                 *  - placer l'image en background css
+                 */ ?>
+            </div>
+        </div>
+
+    </body>
+</html>
