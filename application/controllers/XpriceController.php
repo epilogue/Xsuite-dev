@@ -234,6 +234,7 @@ echo 'plop1';
                     $insertprix = new Application_Model_DbTable_DemandeArticlexprices();
                     $inserprix = $insertprix->InserPrixFob($value->KOCSU3, $value->KOITNO, $numwp);
                 }
+                echo "tagada";
                 /*
                  * ici, envoi des mails
                  */
