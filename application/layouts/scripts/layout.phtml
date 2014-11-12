@@ -42,12 +42,12 @@ echo $this->doctype();
                     <li><a href="<?php echo $this->url(array('controller' => 'user', 'action' => 'index'), null, true); ?>">Annuaire utilisateur</a>
                         <ul>
                             <li><a href="<?php echo $this->url(array('controller' => 'user', 'action' => 'create'), null, true); ?>">Cr&eacute;ation</a></li>
-                            <?php /* @todo commentaire franck
+                            <?php /*
                              * Si tu met un lien "modifier" ici il te faut une étape de sélection de l'entité à modifier
                              * sinon tu arrive sur un formulaire de modification vide.
                              */ ?>
                             <li><a href="<?php echo $this->url(array('controller' => 'user', 'action' => 'update'), null, true); ?>">Modification</a></li>
-                            <?php /* @todo commentaire franck
+                            <?php /* 
                              * Même remarque que ci dessus, hormis le fait que tu ne peux pas supprimer un élément non sélectionné.
                              */ ?>
                             <li><a href="<?php echo $this->url(array('controller' => 'user', 'action' => 'delete'), null, true); ?>">Suppression</a></li>

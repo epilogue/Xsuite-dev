@@ -139,7 +139,7 @@ class XpriceController extends Zend_Controller_Action {
             //requete 1 pour remplir  les données du commercial à partir du numwp
             $query1 = "SELECT OOLINE.OBSMCD  as userwp FROM EIT.CVXCDTA.OOLINE OOLINE WHERE OOLINE.OBORNO='{$numwp}'";
             $numwp_user = odbc_fetch_array(odbc_exec($this->odbc_conn, $query1));
-             echo '<pre>', var_export($numwp_user['USERWP'], false), '</pre>';
+            // echo '<pre>', var_export($numwp_user['USERWP'], false), '</pre>';
             $usertest = new Application_Model_DbTable_Users();
             $user_info = $usertest->getMovexUser($numwp_user['USERWP']);
             $this->view->user_info = $user_info;
@@ -188,7 +188,7 @@ class XpriceController extends Zend_Controller_Action {
            // $info_industry = $industry->getMovexIndustry($infos_client['OKCUCL']);
            // $this->view->info_industry = $info_industry;
         }
-
+echo 'plop1';
         $form = new Application_Form_CreationDemande();
         if ($this->getRequest()->isPost()) {
             $formData = $this->getRequest()->getPost();
@@ -237,8 +237,31 @@ class XpriceController extends Zend_Controller_Action {
                 /*
                  * ici, envoi des mails
                  */
+                
+                /* si la zone indiqué dans le tracking_number SP-FR-QA =>
+                 * si le tracking _number est de la forme sp-fr-qc ou sp-fr-qf => CDRNORD
+                 * si le tracking _number est de la forme sp-fr-qe ou sp-fr-qh => CDREST
+                 * si le tracking _number est de la forme sp-fr-qi ou sp-fr-qk => CDROUEST
+                 * email.vars.listes.CDREST   = "lploton@smc-france.fr"
+                 *email.vars.listes.CDROUEST = "dmezange@smc-france.fr"
+                 *email.vars.listes.CDRNORD  = "vroyal@smc-france.fr"
+                 */
+                
+                $zonetracking=substr($trackingNumber,5,2);
+                echo "<pre>",var_export($trackingNumber,true),"</pre>";
                 $emailVars = Zend_Registry::get('emailVars');
-                $fobfrMail = $emailVars->listes->fobfr;
+             if($zonetracking ==="QA"){        
+                }
+                elseif($zonetracking ==="QC" or $zonetracking ==="QF") {
+                    $destinatairemail = $emailVars->listes->CDRNORD;
+                }
+                elseif($zonetracking ==="QE" or $zonetracking ==="QH") {
+                    $destinatairemail = $emailVars->listes->CDREST;
+                }
+                elseif($zonetracking ==="QI" or $zonetracking ==="QK") {
+                    $destinatairemail = $emailVars->listes->CDROUEST;
+                }
+                //$fobfrMail = $emailVars->listes->fobfr;
                 $url = "http://{$_SERVER['SERVER_NAME']}/xprice/prixfobfr/numwp/{$numwp}";
                 $corpsMail = "Bonjour,\n"
                         . "\n"
@@ -251,9 +274,9 @@ class XpriceController extends Zend_Controller_Action {
                         . "--\n"
                         . "Le service info.";
                 $mail = new Xsuite_Mail();
-                $mail->setSubject("XPrice : Nouvelle demande à valider.")
+                $mail->setSubject("XPrice : Nouvelle Offre à valider de '{$user_info['nom']}' pour '{$infos_client['nom_client']}'")
                         ->setBodyText(sprintf($corpsMail, $url))
-                        ->addTo($fobfrMail)
+                        ->addTo($destinatairemail)
                         ->send();
                 /*
                  * Fin du traitement
@@ -269,7 +292,13 @@ class XpriceController extends Zend_Controller_Action {
         }
         $this->view->form = $form;
     }
-
+    public function consultleaderAction(){
+        
+    }
+    public function validatechefregionAction(){
+        
+    }
+    
     public function prixfobfrAction() {
         $user = $this->_auth->getStorage()->read();
         // var_dump($user);
@@ -299,11 +328,10 @@ class XpriceController extends Zend_Controller_Action {
         $info_demande_article_xprice = $infos_demande_article_xprice->getDemandeArticlexprice($numwp);
         //echo '<pre>',  var_export($info_demande_article_xprice,true),'</pre>';
         $this->view->info_demande_article_xprice = $info_demande_article_xprice;
-        foreach ($info_demande_article_xprice as $value) {
-
-
-            $query = "select *  from 
-                    EIT.MVXCDTA.MCHEAD MCHEAD WHERE MCHEAD.KOITNO = '{$value['code_article']}' order by KOPCDT desc limit 1";
+        $anneecourante=date('Y');
+        foreach ($info_demande_article_xprice as $value) { $query = "select *  from 
+                    EIT.MVXCDTA.MCHEAD MCHEAD WHERE MCHEAD.KOITNO = '{$value['code_article']}'and substring(MCHEAD.KOPCDT,1,4) like '$anneecourante%'";
+                                      
             $infos_prixfobfr = odbc_exec($this->odbc_conn2, $query);
             while ($info_prixfobfr = odbc_fetch_array($infos_prixfobfr)) {
                 $date1 = substr($info_prixfobfr['KOPCDT'], 0, -4);
@@ -434,27 +462,31 @@ class XpriceController extends Zend_Controller_Action {
             }
         }
     }
+    
+    public function validatedbdAction(){
+    
+    }
+    public function validatedircoAction(){
+    
+    }
 
     public function updateAction() {
 
     }
-
+    
     public function listAction() {
         $tracking = $this->getRequest()->getParam('tracking_number', null);
         $tracking_number = 'SP-FR-' . $tracking;
         $this->view->tracking_number = $tracking_number;
         $infos = new Application_Model_DbTable_DemandeArticlexprices();
         $info = $infos->listtracking($tracking_number);
-        echo '<pre>', var_export($info, true), '</pre>';
-        
-        
-        
+        //echo '<pre>', var_export($info, true), '</pre>';
         $num_workplace_demande_xprice= "$num_workplace_demande_xprice" ;
         $this->view->num_workplace_demande_xprice=$num_workplace_demande_xprice;
         
         $tests = new Application_Model_DbTable_DemandeArticlexprices();
         $test = $tests->sommePrixDemandeArticle($num_workplace_demande_xprice);
-        echo '<pre>', var_export($test, true), '</pre>';         
+       // echo '<pre>', var_export($test, true), '</pre>';         
         
     }
 
