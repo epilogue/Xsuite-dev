@@ -246,17 +246,17 @@ class XpriceController extends Zend_Controller_Action {
                 //$fonctioncreateur= $user_info['id_fonction'];
                 //$zonetracking=substr($trackingNumber,6,2);
                 //echo "<pre>",var_export($zonetracking,true),"</pre>";
-                if($fonctioncreateur =='1' or $fonctioncreateur =='2' or $fonctioncreateur=='3'){
+                if($fonctioncreateur =='1' || $fonctioncreateur =='2' || $fonctioncreateur=='3'){
                     if($zonetracking =="QA"){     
                         $destinataireMail = $emailVars->listes->qa;
                     }
-                    elseif($zonetracking =="QC" or $zonetracking =="QF") {
+                    elseif($zonetracking =="QC" || $zonetracking =="QF") {
                         $destinataireMail = $emailVars->listes->CDRNORD;
                     }
-                    elseif($zonetracking =="QE" or $zonetracking =="QH") {
+                    elseif($zonetracking =="QE" || $zonetracking =="QH") {
                         $destinataireMail = $emailVars->listes->CDREST;
                     }
-                    elseif($zonetracking =="QI" or $zonetracking =="QK") {
+                    elseif($zonetracking =="QI" || $zonetracking =="QK") {
                         $destinataireMail = $emailVars->listes->CDROUEST;
                     }
                     $url1 = "http://{$_SERVER['SERVER_NAME']}/xprice/validatechefregion/numwp/{$numwp}";
