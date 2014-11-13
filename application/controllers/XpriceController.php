@@ -247,7 +247,7 @@ class XpriceController extends Zend_Controller_Action {
                  *email.vars.listes.CDRNORD  = "vroyal@smc-france.fr"
                  */
                 
-                $zonetracking=substr($trackingNumber,5,2);
+              /*  $zonetracking=substr($trackingNumber,5,2);
                 echo "<pre>",var_export($trackingNumber,true),"</pre>";
                 $emailVars = Zend_Registry::get('emailVars');
              if($zonetracking ==="QA"){     
@@ -261,8 +261,8 @@ class XpriceController extends Zend_Controller_Action {
                 }
                 elseif($zonetracking ==="QI" or $zonetracking ==="QK") {
                     $destinatairemail = $emailVars->listes->CDROUEST;
-                }
-                //$fobfrMail = $emailVars->listes->fobfr;
+                }*/
+                $fobfrMail = $emailVars->listes->fobfr;
                 $url = "http://{$_SERVER['SERVER_NAME']}/xprice/prixfobfr/numwp/{$numwp}";
                 $corpsMail = "Bonjour,\n"
                         . "\n"
@@ -277,7 +277,7 @@ class XpriceController extends Zend_Controller_Action {
                 $mail = new Xsuite_Mail();
                 $mail->setSubject("XPrice : Nouvelle Offre à valider de '{$user_info['nom']}' pour '{$infos_client['nom_client']}'")
                         ->setBodyText(sprintf($corpsMail, $url))
-                        ->addTo($destinatairemail)
+                        ->addTo($fobfrMail)
                         ->send();
                 /*
                  * Fin du traitement
