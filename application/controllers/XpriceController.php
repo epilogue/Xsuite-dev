@@ -188,7 +188,6 @@ class XpriceController extends Zend_Controller_Action {
            // $info_industry = $industry->getMovexIndustry($infos_client['OKCUCL']);
            // $this->view->info_industry = $info_industry;
         }
-echo 'plop1';
         $form = new Application_Form_CreationDemande();
         if ($this->getRequest()->isPost()) {
             $formData = $this->getRequest()->getPost();
@@ -211,7 +210,7 @@ echo 'plop1';
                     $demande_xprice = $demandes_xprice->createXprice(
                             $numwp, $trackingNumber, $formData['commentaire_demande_article'], $infos_offres->OBRGDT, $formData['mini_demande_article'], $user_info['id_user'], null, $infos_client['OKCUNO']);
                 }
-                echo "<pre>",var_export($demande_xprice),"</pre>"; exit();
+               // echo "<pre>",var_export($demande_xprice),"</pre>"; exit();
                 /*
                  * ici insertion dans les tables articles et demande_article_xprices
                  * à partir d'un foreach sur $resultat
@@ -228,13 +227,13 @@ echo 'plop1';
                     }
                     $demande_xprice = $demandes_xprice->createDemandeArticlexprice($resultarticle['OBNEPR'], $resultarticle['OBSAPR'], $resultarticle['OBORQT'], round($resultarticle['OBNEPR'] * 100 / $resultarticle['OBSAPR'], 2), $infos_offres->OBRGDT, null, null, null, null, null, $trackingNumber, $resultarticle['OBITNO'], $resultarticle['OBITDS'], $numwp);
                 }
-                //echo "<pre>",var_export($prixciffob,true),"</pre>";
+                echo "<pre>",var_export($prixciffob,true),"</pre>";
                 foreach ($prixciffob as $value) {
                     //echo"<pre>", var_export($value->KOCSU3, true), "</pre>";
                     $insertprix = new Application_Model_DbTable_DemandeArticlexprices();
                     $inserprix = $insertprix->InserPrixFob($value->KOCSU3, $value->KOITNO, $numwp);
                 }
-                echo 'tagada tsouin tsouin';
+                echo '<pre>',  var_export($inserprix,true),'<pre>';
                 /*
                  * ici, envoi des mails
                  */
