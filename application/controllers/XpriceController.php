@@ -149,7 +149,7 @@ class XpriceController extends Zend_Controller_Action {
             $nom_holon = $holonuser1['nom_holon'];
             $this->view->holon = $nom_holon;
             $fonctioncreateur= $user_info['id_fonction'];
-                $zonetracking=substr($trackingNumber,5,2);
+                $zonetracking=substr($trackingNumber,6,2);
                 var_dump($zonetracking);
                 var_dump($fonctioncreateur);
             /*
