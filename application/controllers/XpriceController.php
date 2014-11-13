@@ -196,6 +196,8 @@ class XpriceController extends Zend_Controller_Action {
         if ($this->getRequest()->isPost()) {
             $formData = $this->getRequest()->getPost();
             if ($form->isValid($formData)) {
+                $emailVars = Zend_Registry::get('emailVars');
+                var_dump($emailVars);
                 //alors si le client n'existe pas ' on insert d'abord dans la table client
                 //"select id_client from clients where id_client = {$infos_client['OKCUNO']}";
                 $clients = new Application_Model_DbTable_Clients();
@@ -244,7 +246,7 @@ class XpriceController extends Zend_Controller_Action {
                 $fonctioncreateur= $user_info['id_fonction'];
                 $zonetracking=substr($trackingNumber,5,2);
                 //echo "<pre>",var_export($zonetracking,true),"</pre>";
-                if($fonctioncreateur ==='1'or $fonctioncreateur ==='2' or $fonctioncreateur==='3'){
+                if($fonctioncreateur ===1or $fonctioncreateur ===2 or $fonctioncreateur===3){
                     if($zonetracking ==="QA"){     
                         $destinataireMail = $emailVars->listes->qa;
                     }
