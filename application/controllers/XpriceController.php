@@ -221,10 +221,6 @@ class XpriceController extends Zend_Controller_Action {
                  * donc pour chaque ligne du tableau $resultat  on insert d'abord dans la table articles
                  *  puis dans la table demande_article_xprices
                  */
-                $fonctioncreateur= $user_info['id_fonction'];
-                $zonetracking=substr($trackingNumber,5,2);
-                var_dump($zonetracking);
-                var_dump($fonctioncreateur);
                 $articles_xprice = new Application_Model_DbTable_Articles();
                 $demandes_xprice = new Application_Model_DbTable_DemandeArticlexprices();
                 foreach ($this->view->resultat as $resultarticle) {
@@ -248,7 +244,7 @@ class XpriceController extends Zend_Controller_Action {
                 $fonctioncreateur= $user_info['id_fonction'];
                 $zonetracking=substr($trackingNumber,5,2);
                 //echo "<pre>",var_export($zonetracking,true),"</pre>";
-                if($fonctioncreateur =='1'or $fonctioncreateur =='2' or $fonctioncreateur=='3'){
+                if($fonctioncreateur ==='1'or $fonctioncreateur ==='2' or $fonctioncreateur==='3'){
                     if($zonetracking ==="QA"){     
                         $destinataireMail = $emailVars->listes->qa;
                     }
