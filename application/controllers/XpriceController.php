@@ -217,6 +217,10 @@ class XpriceController extends Zend_Controller_Action {
                  * donc pour chaque ligne du tableau $resultat  on insert d'abord dans la table articles
                  *  puis dans la table demande_article_xprices
                  */
+                $fonctioncreateur= $user_info['id_fonction'];
+                $zonetracking=substr($trackingNumber,5,2);
+                var_dump($zonetracking);
+                var_dump($fonctioncreateur);
                 $articles_xprice = new Application_Model_DbTable_Articles();
                 $demandes_xprice = new Application_Model_DbTable_DemandeArticlexprices();
                 foreach ($this->view->resultat as $resultarticle) {
@@ -270,6 +274,15 @@ class XpriceController extends Zend_Controller_Action {
                         ->addTo($destinataireMail)
                         ->send();
                 }
+                 else{
+                     $corpsMail="tagada";
+                     $mailto="mhuby@smc-france.fr";
+                     $mail=new Xsuite_Mail;
+                     $mail->setSubject("plop")
+                 ->setBodyText(sprintf($corpsMail))
+                             ->addTo($mailto)
+                             ->send();}
+                             
                  
                  /* 
                  * 
