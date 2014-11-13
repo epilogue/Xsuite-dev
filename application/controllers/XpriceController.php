@@ -148,6 +148,10 @@ class XpriceController extends Zend_Controller_Action {
             $holonuser1 = $holonuser->getHolon($id_holon);
             $nom_holon = $holonuser1['nom_holon'];
             $this->view->holon = $nom_holon;
+            $fonctioncreateur= $user_info['id_fonction'];
+                $zonetracking=substr($trackingNumber,5,2);
+                var_dump($zonetracking);
+                var_dump($fonctioncreateur);
             /*
              * on va chercher les informations concernant les articles dans la table ooline à partir du numwp
              * pour pouvoir ensuite les afficher dans la vue à l'aide d'un foreach
