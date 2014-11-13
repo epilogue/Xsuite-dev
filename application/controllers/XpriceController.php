@@ -211,7 +211,7 @@ echo 'plop1';
                     $demande_xprice = $demandes_xprice->createXprice(
                             $numwp, $trackingNumber, $formData['commentaire_demande_article'], $infos_offres->OBRGDT, $formData['mini_demande_article'], $user_info['id_user'], null, $infos_client['OKCUNO']);
                 }
-                //echo "<pre>",var_export($demande_xprice),"</pre>"; //exit();
+                echo "<pre>",var_export($demande_xprice),"</pre>"; exit();
                 /*
                  * ici insertion dans les tables articles et demande_article_xprices
                  * à partir d'un foreach sur $resultat
