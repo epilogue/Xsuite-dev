@@ -276,6 +276,9 @@ class XpriceController extends Zend_Controller_Action {
                         ->addTo($destinataireMail)
                         ->send();
                 }
+                /*
+                 * faire les elseif pour les autres idfonctions 
+                 */
                  else{
                      $corpsMail="tagada";
                      $mailto="mhuby@smc-france.fr";
