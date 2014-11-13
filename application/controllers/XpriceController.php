@@ -243,10 +243,10 @@ class XpriceController extends Zend_Controller_Action {
                 /*Dans un premier lieu on vérifie la fonction du créateur de la demande  : 
                  */
                 $emailVars = Zend_Registry::get('emailVars');
-                //$fonctioncreateur= $user_info['id_fonction'];
-                //$zonetracking=substr($trackingNumber,6,2);
+                $fonctioncreateur= $user_info['id_fonction'];
+                $zonetracking=substr($trackingNumber,6,2);
                 //echo "<pre>",var_export($zonetracking,true),"</pre>";
-                if($fonctioncreateur =='1' || $fonctioncreateur =='2' || $fonctioncreateur=='3'){
+                if($fonctioncreateur =="2"){
                     if($zonetracking =="QA"){     
                         $destinataireMail = $emailVars->listes->qa;
                     }
