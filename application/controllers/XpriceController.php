@@ -318,7 +318,7 @@ class XpriceController extends Zend_Controller_Action {
                  * Fin du traitement
                  */
                 $flashMessenger = $this->_helper->getHelper('FlashMessenger');
-                $message = "Votre demande à bien été enregistrée.";
+                $message = "Votre demande à bien été enregistrée .'{$destinataireMail}'.'{$fonctioncreateur}'";
                 $flashMessenger->addMessage($message);
                 $redirector = $this->_helper->getHelper('Redirector');
                 $redirector->gotoSimple('index', 'xprice');
