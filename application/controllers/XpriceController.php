@@ -234,7 +234,7 @@ echo 'plop1';
                     $insertprix = new Application_Model_DbTable_DemandeArticlexprices();
                     $inserprix = $insertprix->InserPrixFob($value->KOCSU3, $value->KOITNO, $numwp);
                 }
-                echo "tagada";
+                echo 'tagada tsouin tsouin';
                 /*
                  * ici, envoi des mails
                  */
@@ -251,7 +251,8 @@ echo 'plop1';
                 $zonetracking=substr($trackingNumber,5,2);
                 echo "<pre>",var_export($trackingNumber,true),"</pre>";
                 $emailVars = Zend_Registry::get('emailVars');
-             if($zonetracking ==="QA"){        
+             if($zonetracking ==="QA"){     
+                  $destinatairemail = $emailVars->listes->qa;
                 }
                 elseif($zonetracking ==="QC" or $zonetracking ==="QF") {
                     $destinatairemail = $emailVars->listes->CDRNORD;
