@@ -236,7 +236,40 @@ class XpriceController extends Zend_Controller_Action {
                 
                 /*Dans un premier lieu on vérifie la fonction du créateur de la demande  : 
                  */
+                $emailVars = Zend_Registry::get('emailVars');
                 $fonctioncreateur= $user_info['id_fonction'];
+                $zonetracking=substr($trackingNumber,5,2);
+                //echo "<pre>",var_export($zonetracking,true),"</pre>";
+                if($fonctioncreateur =='1'or $fonctioncreateur =='2' or $fonctioncreateur=='3'){
+                    if($zonetracking ==="QA"){     
+                        $destinataireMail = $emailVars->listes->qa;
+                    }
+                    elseif($zonetracking ==="QC" or $zonetracking ==="QF") {
+                        $destinataireMail = $emailVars->listes->CDRNORD;
+                    }
+                    elseif($zonetracking ==="QE" or $zonetracking ==="QH") {
+                        $destinataireMail = $emailVars->listes->CDREST;
+                    }
+                    elseif($zonetracking ==="QI" or $zonetracking ==="QK") {
+                        $destinataireMail = $emailVars->listes->CDROUEST;
+                    }
+                    $url1 = "http://{$_SERVER['SERVER_NAME']}/xprice/validatechefregion/numwp/{$numwp}";
+                    $corpsMail1 = "Bonjour,\n"
+                        . "\n"
+                        . "Vous avez une nouvelle demande XPrice à valider.\n"
+                        . "Veuillez vous rendre à l'adresse url : \n"
+                        . "%s"
+                        . "\n\n"
+                        . "Cordialement,\n"
+                        . "\n"
+                        . "--\n"
+                        . "Xsuite";
+                    $mail1 = new Xsuite_Mail();
+                    $mail1->setSubject("XPrice : Nouvelle Offre à valider de '{$user_info['nom']}' pour '{$infos_client['nom_client']}'")
+                        ->setBodyText(sprintf($corpsMail1, $url1))
+                        ->addTo($destinataireMail)
+                        ->send();
+                }
                  
                  /* 
                  * 
@@ -248,40 +281,24 @@ class XpriceController extends Zend_Controller_Action {
                  *email.vars.listes.CDROUEST = "dmezange@smc-france.fr"
                  *email.vars.listes.CDRNORD  = "vroyal@smc-france.fr"
                  */
-                
-                $zonetracking=substr($trackingNumber,5,2);
-                echo "<pre>",var_export($trackingNumber,true),"</pre>";
-                $emailVars = Zend_Registry::get('emailVars');
-             if($zonetracking ==="QA"){     
-                  $destinatairemail = $emailVars->listes->qa;
-                }
-                elseif($zonetracking ==="QC" or $zonetracking ==="QF") {
-                    $destinatairemail = $emailVars->listes->CDRNORD;
-                }
-                elseif($zonetracking ==="QE" or $zonetracking ==="QH") {
-                    $destinatairemail = $emailVars->listes->CDREST;
-                }
-                elseif($zonetracking ==="QI" or $zonetracking ==="QK") {
-                    $destinatairemail = $emailVars->listes->CDROUEST;
-                }
-                $emailVars = Zend_Registry::get('emailVars');
-                $fobfrMail = $emailVars->listes->fobfr;
-                $url = "http://{$_SERVER['SERVER_NAME']}/xprice/prixfobfr/numwp/{$numwp}";
-                $corpsMail = "Bonjour,\n"
-                        . "\n"
-                        . "Vous avez une nouvelle demande XPrice à valider.\n"
-                        . "Veuillez vous rendre à l'adresse url : \n"
-                        . "%s"
-                        . "\n\n"
-                        . "Cordialement,\n"
-                        . "\n"
-                        . "--\n"
-                        . "Le service info.";
-                $mail = new Xsuite_Mail();
-                $mail->setSubject("XPrice : Nouvelle Offre à valider de '{$user_info['nom']}' pour '{$infos_client['nom_client']}'")
-                        ->setBodyText(sprintf($corpsMail, $url))
-                        ->addTo($fobfrMail)
-                        ->send();
+//                $emailVars = Zend_Registry::get('emailVars');
+//                $fobfrMail = $emailVars->listes->fobfr;
+//                $url = "http://{$_SERVER['SERVER_NAME']}/xprice/prixfobfr/numwp/{$numwp}";
+//                $corpsMail = "Bonjour,\n"
+//                        . "\n"
+//                        . "Vous avez une nouvelle demande XPrice à valider.\n"
+//                        . "Veuillez vous rendre à l'adresse url : \n"
+//                        . "%s"
+//                        . "\n\n"
+//                        . "Cordialement,\n"
+//                        . "\n"
+//                        . "--\n"
+//                        . "Le service info.";
+//                $mail = new Xsuite_Mail();
+//                $mail->setSubject("XPrice : Nouvelle Offre à valider de '{$user_info['nom']}' pour '{$infos_client['nom_client']}'")
+//                        ->setBodyText(sprintf($corpsMail, $url))
+//                        ->addTo($fobfrMail)
+//                        ->send();
                 /*
                  * Fin du traitement
                  */
