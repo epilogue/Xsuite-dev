@@ -210,7 +210,6 @@ class XpriceController extends Zend_Controller_Action {
                     $demande_xprice = $demandes_xprice->createXprice(
                             $numwp, $trackingNumber, $formData['commentaire_demande_article'], $infos_offres->OBRGDT, $formData['mini_demande_article'], $user_info['id_user'], null, $infos_client['OKCUNO']);
                 }
-               // echo "<pre>",var_export($demande_xprice),"</pre>"; exit();
                 /*
                  * ici insertion dans les tables articles et demande_article_xprices
                  * à partir d'un foreach sur $resultat
@@ -227,18 +226,21 @@ class XpriceController extends Zend_Controller_Action {
                     }
                     $demande_xprice = $demandes_xprice->createDemandeArticlexprice($resultarticle['OBNEPR'], $resultarticle['OBSAPR'], $resultarticle['OBORQT'], round($resultarticle['OBNEPR'] * 100 / $resultarticle['OBSAPR'], 2), $infos_offres->OBRGDT, null, null, null, null, null, $trackingNumber, $resultarticle['OBITNO'], $resultarticle['OBITDS'], $numwp);
                 }
-                echo "<pre>",var_export($prixciffob,true),"</pre>";
                 foreach ($prixciffob as $value) {
-                    //echo"<pre>", var_export($value->KOCSU3, true), "</pre>";
                     $insertprix = new Application_Model_DbTable_DemandeArticlexprices();
                     $inserprix = $insertprix->InserPrixFob($value->KOCSU3, $value->KOITNO, $numwp);
                 }
-                echo '<pre>',  var_export($inserprix,true),'<pre>';
                 /*
                  * ici, envoi des mails
                  */
                 
-                /* si la zone indiqué dans le tracking_number SP-FR-QA =>
+                /*Dans un premier lieu on vérifie la fonction du créateur de la demande  : 
+                 */
+                $fonctioncreateur= $user_info['id_fonction'];
+                 
+                 /* 
+                 * 
+                 *  si la zone indiqué dans le tracking_number SP-FR-QA =>
                  * si le tracking _number est de la forme sp-fr-qc ou sp-fr-qf => CDRNORD
                  * si le tracking _number est de la forme sp-fr-qe ou sp-fr-qh => CDREST
                  * si le tracking _number est de la forme sp-fr-qi ou sp-fr-qk => CDROUEST
