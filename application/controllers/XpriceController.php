@@ -276,6 +276,11 @@ class XpriceController extends Zend_Controller_Action {
                         ->addTo($destinataireMail)
                         ->send();
                 }
+                elseif ($fonctioncreateur==10 || $fonctioncreateur==6) {
+                    if($zonetracking=="QA"){
+                        $destinataireMail2 = $emailVars->listes->DBD;
+                    }
+            }
                 /*
                  * faire les elseif pour les autres idfonctions 
                  */
