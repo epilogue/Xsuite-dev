@@ -245,15 +245,15 @@ class XpriceController extends Zend_Controller_Action {
                 $emailVars = Zend_Registry::get('emailVars');
                 $fonctioncreateur= $user_info['id_fonction'];
                 $holoncreateur= $user_info['id_holon'];
-                /*
-                 * if($fonctioncreateur==1 || $fonctioncreateur ==2 ){
-                 * if($holoncreateur ==5 ||$holoncreateur ==6 ||$holoncreateur ==7 ||$holoncreateur ==11 ||$holoncreateur ==12 ||$holoncreateur ==13){
-                 * $destinataireMail2=$emailVars->listes->leader->is00;}
-                 * elseif($holoncreateur ==8 ||$holoncreateur ==9 ||$holoncreateur ==10 ||$holoncreateur ==14 ||$holoncreateur ==15 ||$holoncreateur ==16 ||$holoncreateur ==17){
-                 *  $destinataireMail2=$emailVars->listes->leader->iw00;}
-                 * elseif($holoncreateur ==18 ||$holoncreateur ==19 ||$holoncreateur ==20 ||$holoncreateur ==21 ||$holoncreateur ==22 ||$holoncreateur ==23 ){
-                 *  $destinataireMail2=$emailVars->listes->leader->in00;}
-                 * $url2 = "http://{$_SERVER['SERVER_NAME']}/xprice/consultleader/numwp/{$numwp}";
+                
+                  if($fonctioncreateur==1 || $fonctioncreateur ==2 ){
+                  if($holoncreateur ==5 ||$holoncreateur ==6 ||$holoncreateur ==7 ||$holoncreateur ==11 ||$holoncreateur ==12 ||$holoncreateur ==13){
+                  $destinataireMail2=$emailVars->listes->leader->is00;}
+                  elseif($holoncreateur ==8 ||$holoncreateur ==9 ||$holoncreateur ==10 ||$holoncreateur ==14 ||$holoncreateur ==15 ||$holoncreateur ==16 ||$holoncreateur ==17){
+                   $destinataireMail2=$emailVars->listes->leader->iw00;}
+                  elseif($holoncreateur ==18 ||$holoncreateur ==19 ||$holoncreateur ==20 ||$holoncreateur ==21 ||$holoncreateur ==22 ||$holoncreateur ==23 ){
+                  $destinataireMail2=$emailVars->listes->leader->in00;}
+                  $url2 = "http://{$_SERVER['SERVER_NAME']}/xprice/consultleader/numwp/{$numwp}";
                     $corpsMail2 = "Bonjour,\n"
                         . "\n"
                         . "Vous avez une nouvelle demande XPrice à consulter.\n"
@@ -269,8 +269,8 @@ class XpriceController extends Zend_Controller_Action {
                         ->setBodyText(sprintf($corpsMail2, $url2))
                         ->addTo($destinataireMail2)
                         ->send();
-                 *  }
-                 */
+                  }
+                 
                 $zonetracking=substr($trackingNumber,6,2);
                 //echo "<pre>",var_export($zonetracking,true),"</pre>";
                 if( $fonctioncreateur==1 || $fonctioncreateur ==2 ||  $fonctioncreateur==3){
