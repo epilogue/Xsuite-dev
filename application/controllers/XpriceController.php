@@ -139,7 +139,6 @@ class XpriceController extends Zend_Controller_Action {
             //requete 1 pour remplir  les données du commercial à partir du numwp
             $query1 = "SELECT OOLINE.OBSMCD  as userwp FROM EIT.CVXCDTA.OOLINE OOLINE WHERE OOLINE.OBORNO='{$numwp}'";
             $numwp_user = odbc_fetch_array(odbc_exec($this->odbc_conn, $query1));
-            // echo '<pre>', var_export($numwp_user['USERWP'], false), '</pre>';
             $usertest = new Application_Model_DbTable_Users();
             $user_info = $usertest->getMovexUser($numwp_user['USERWP']);
             $this->view->user_info = $user_info;
@@ -150,8 +149,6 @@ class XpriceController extends Zend_Controller_Action {
             $this->view->holon = $nom_holon;
             $fonctioncreateur= $user_info['id_fonction'];
                 $zonetracking=substr($trackingNumber,6,2);
-                //var_dump($zonetracking);
-                //var_dump($fonctioncreateur);
             /*
              * on va chercher les informations concernant les articles dans la table ooline à partir du numwp
              * pour pouvoir ensuite les afficher dans la vue à l'aide d'un foreach
@@ -173,7 +170,7 @@ class XpriceController extends Zend_Controller_Action {
 
                 $resultats3 = odbc_Exec($this->odbc_conn2, $query3);
                 $prixciffob[] = odbc_fetch_object($resultats3);
-            }//echo "<pre>",var_export($prixciffob),"</pre>"; //exit();
+            }
             $this->view->prixciffob = $prixciffob;
 
             /*
@@ -188,16 +185,15 @@ class XpriceController extends Zend_Controller_Action {
              *    donc à partir du code movex industry on va chercher dans la base xsuite
              *  le nom de l'industrie auquel le client appartient pour ensuite l'afficher dans la vue
              */
-           // $industry = new Application_Model_DbTable_Industry();
-           // $info_industry = $industry->getMovexIndustry($infos_client['OKCUCL']);
-           // $this->view->info_industry = $info_industry;
+            $industry = new Application_Model_DbTable_Industry();
+            $info_industry = $industry->getMovexIndustry($infos_client['OKCUCL']);
+            $this->view->info_industry = $info_industry;
         }
         $form = new Application_Form_CreationDemande();
         if ($this->getRequest()->isPost()) {
             $formData = $this->getRequest()->getPost();
             if ($form->isValid($formData)) {
                 $emailVars = Zend_Registry::get('emailVars');
-                //var_dump($emailVars);
                 //alors si le client n'existe pas ' on insert d'abord dans la table client
                 //"select id_client from clients where id_client = {$infos_client['OKCUNO']}";
                 $clients = new Application_Model_DbTable_Clients();
@@ -237,22 +233,82 @@ class XpriceController extends Zend_Controller_Action {
                     $inserprix = $insertprix->InserPrixFob($value->KOCSU3, $value->KOITNO, $numwp);
                 }
                 /*
-                 * ici, envoi des mails
+                 * ici, envoi des mails 
+                 * NE PAS TOUCHER SOUS PEINE D'EFFONDREMENT DE L'APPLI
+                 *  à partir de la ligne 244 à la ligne 393
                  */
                 
                 /*Dans un premier lieu on vérifie la fonction du créateur de la demande  : 
+                 * en fonction de sa fonction envoie de mail à un ou des destinataires : 
+                 * si ITC ou KAM alors envoie mail pour consultation au leader et au chef de région
+                 * si leader  et dd envoie mail au chef de région.
                  */
                 $emailVars = Zend_Registry::get('emailVars');
                 $fonctioncreateur= $user_info['id_fonction'];
                 $holoncreateur= $user_info['id_holon'];
-                
+                /*
+                 * ici si itc ou kam envoie mail au leader en fonction du holon pour consultation
+                 */
                   if($fonctioncreateur==1 || $fonctioncreateur ==2 ){
-                  if($holoncreateur ==5 ||$holoncreateur ==6 ||$holoncreateur ==7 ||$holoncreateur ==11 ||$holoncreateur ==12 ||$holoncreateur ==13){
-                  $destinataireMail2=$emailVars->listes->leader->is00;}
-                  elseif($holoncreateur ==8 ||$holoncreateur ==9 ||$holoncreateur ==10 ||$holoncreateur ==14 ||$holoncreateur ==15 ||$holoncreateur ==16 ||$holoncreateur ==17){
-                   $destinataireMail2=$emailVars->listes->leader->iw00;}
-                  elseif($holoncreateur ==18 ||$holoncreateur ==19 ||$holoncreateur ==20 ||$holoncreateur ==21 ||$holoncreateur ==22 ||$holoncreateur ==23 ){
-                  $destinataireMail2=$emailVars->listes->leader->in00;}
+                    switch($holoncreateur){
+                        case 5:
+                        $destinataireMail2=$emailVars->listes->leaderis01;
+                        break;
+                        case 6:
+                        $destinataireMail2=$emailVars->listes->leaderis03;
+                        break;
+                        case 7:
+                        $destinataireMail2=$emailVars->listes->leaderis06;
+                        break;
+                        case 8:
+                        $destinataireMail2=$emailVars->listes->leaderiw01;
+                        break;
+                        case 9:
+                        $destinataireMail2=$emailVars->listes->leaderiw02;
+                        break;
+                        case 10:
+                        $destinataireMail2=$emailVars->listes->leaderiw03;
+                        break;
+                        case 11:
+                        $destinataireMail2=$emailVars->listes->leaderis02;
+                        break;
+                        case 12:
+                        $destinataireMail2=$emailVars->listes->leaderis05;
+                        break;
+                        case 13:
+                        $destinataireMail2=$emailVars->listes->leaderis04;
+                        break;
+                        case 14:
+                        $destinataireMail2=$emailVars->listes->leaderiw04;
+                        break;
+                        case 15:
+                        $destinataireMail2=$emailVars->listes->leaderiw05;
+                        break;
+                        case 16:
+                        $destinataireMail2=$emailVars->listes->leaderiw06;
+                        break;
+                        case 17:
+                        $destinataireMail2=$emailVars->listes->leaderiw07;
+                        break;
+                        case 18:
+                        $destinataireMail2=$emailVars->listes->leaderin01;
+                        break;
+                        case 19:
+                        $destinataireMail2=$emailVars->listes->leaderin02;
+                        break;
+                        case 20:
+                        $destinataireMail2=$emailVars->listes->leaderin03;
+                        break;
+                        case 21:
+                        $destinataireMail2=$emailVars->listes->leaderin04;
+                        break;
+                        case 22:
+                        $destinataireMail2=$emailVars->listes->leaderin05;
+                        break;
+                        case 23:
+                        $destinataireMail2=$emailVars->listes->leaderin06;
+                        break;
+            }
                   $url2 = "http://{$_SERVER['SERVER_NAME']}/xprice/consultleader/numwp/{$numwp}";
                     $corpsMail2 = "Bonjour,\n"
                         . "\n"
@@ -265,14 +321,15 @@ class XpriceController extends Zend_Controller_Action {
                         . "--\n"
                         . "Xsuite";
                     $mail2 = new Xsuite_Mail();
-                    $mail2->setSubject("XPrice : Nouvelle Offre à consulter de" .$user_info['nom']. "pour". $infos_client['nom_client'])
+                    $mail2->setSubject("XPrice : Nouvelle Offre à consulter de {$user_info['nom']} pour {$infos_client['nom_client']}")
                         ->setBodyText(sprintf($corpsMail2, $url2))
                         ->addTo($destinataireMail2)
                         ->send();
                   }
-                 
+                 /*
+                  * ici si fonction itc kam ou leader  envoie de mail au chef de region pour validation
+                  */
                 $zonetracking=substr($trackingNumber,6,2);
-                //echo "<pre>",var_export($zonetracking,true),"</pre>";
                 if( $fonctioncreateur==1 || $fonctioncreateur ==2 ||  $fonctioncreateur==3){
                     if($zonetracking =="QA"){     
                         $destinataireMail1 = $emailVars->listes->qa;
@@ -298,19 +355,35 @@ class XpriceController extends Zend_Controller_Action {
                         . "--\n"
                         . "Xsuite";
                     $mail1 = new Xsuite_Mail();
-                    $mail1->setSubject("XPrice : Nouvelle Offre à valider de" .$user_info['nom']. "pour". $infos_client['nom_client'])
+                    $mail1->setSubject("XPrice : Nouvelle Offre à valider de {$user_info['nom']} pour {$infos_client['nom_client']}")
                         ->setBodyText(sprintf($corpsMail1, $url1))
                         ->addTo($destinataireMail1)
                         ->send();
                 }
-                elseif ($fonctioncreateur==10 || $fonctioncreateur==6) {
+                /*
+                 * ici si le createur de la demande est un dd un cdr ou un dm alors envoie de mail au chef de marché
+                 */
+                elseif ($fonctioncreateur==7 || $fonctioncreateur==6 || $fonctioncreateur ==11) {
                     if($zonetracking=="QA"){
-                        $destinataireMail2 = $emailVars->listes->DBD;
+                        $destinataireMail3 = $emailVars->listes->CM;
+                        $url3 = "http://{$_SERVER['SERVER_NAME']}/xprice/validatechefmarche/numwp/{$numwp}";
+                    $corpsMail3 = "Bonjour,\n"
+                        . "\n"
+                        . "Vous avez une nouvelle demande XPrice à valider.\n"
+                        . "Veuillez vous rendre à l'adresse url : \n"
+                        . "%s"
+                        . "\n\n"
+                        . "Cordialement,\n"
+                        . "\n"
+                        . "--\n"
+                        . "Xsuite";
+                    $mail3 = new Xsuite_Mail();
+                    $mail3->setSubject("XPrice : Nouvelle Offre à valider de {$user_info['nom']} pour {$infos_client['nom_client']}")
+                        ->setBodyText(sprintf($corpsMail3, $url3))
+                        ->addTo($destinataireMail3)
+                        ->send();
                     }
             }
-                /*
-                 * faire les elseif pour les autres idfonctions 
-                 */
                  else{
                      $corpsMail="tagada";
                      $mailto="mhuby@smc-france.fr";
@@ -319,37 +392,8 @@ class XpriceController extends Zend_Controller_Action {
                  ->setBodyText(sprintf($corpsMail))
                              ->addTo($mailto)
                              ->send();}
-                             
-                 
-                 /* 
-                 * 
-                 *  si la zone indiqué dans le tracking_number SP-FR-QA =>
-                 * si le tracking _number est de la forme sp-fr-qc ou sp-fr-qf => CDRNORD
-                 * si le tracking _number est de la forme sp-fr-qe ou sp-fr-qh => CDREST
-                 * si le tracking _number est de la forme sp-fr-qi ou sp-fr-qk => CDROUEST
-                 * email.vars.listes.CDREST   = "lploton@smc-france.fr"
-                 *email.vars.listes.CDROUEST = "dmezange@smc-france.fr"
-                 *email.vars.listes.CDRNORD  = "vroyal@smc-france.fr"
-                 */
-//                $emailVars = Zend_Registry::get('emailVars');
-//                $fobfrMail = $emailVars->listes->fobfr;
-//                $url = "http://{$_SERVER['SERVER_NAME']}/xprice/prixfobfr/numwp/{$numwp}";
-//                $corpsMail = "Bonjour,\n"
-//                        . "\n"
-//                        . "Vous avez une nouvelle demande XPrice à valider.\n"
-//                        . "Veuillez vous rendre à l'adresse url : \n"
-//                        . "%s"
-//                        . "\n\n"
-//                        . "Cordialement,\n"
-//                        . "\n"
-//                        . "--\n"
-//                        . "Le service info.";
-//                $mail = new Xsuite_Mail();
-//                $mail->setSubject("XPrice : Nouvelle Offre à valider de '{$user_info['nom']}' pour '{$infos_client['nom_client']}'")
-//                        ->setBodyText(sprintf($corpsMail, $url))
-//                        ->addTo($fobfrMail)
-//                        ->send();
                 /*
+                 * FIN DE PAS TOUCHER
                  * Fin du traitement
                  */
                 $flashMessenger = $this->_helper->getHelper('FlashMessenger');
