@@ -415,7 +415,7 @@ class XpriceController extends Zend_Controller_Action {
         // var_dump($user);
 
         $numwp = $this->getRequest()->getParam('numwp', null);
-        //var_dump($numwp);
+        var_dump($numwp);
         $this->view->numwp = $numwp;
         /*
          * on va rechercher les informations concernant la demande _xprice
