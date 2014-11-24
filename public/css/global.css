@@ -425,3 +425,27 @@ span {
 #tracking_number-label{
     padding-bottom: 15px;
 }
+
+#just_demande 
+{ width: 750px;
+    float:left;
+    margin-top:30px;
+    margin-bottom:25px;
+    margin-left:25px
+        ;}
+
+#comm_demande
+{ width: 750px;
+    float:left;
+    margin-top:30px;
+    margin-bottom:25px;
+    margin-left:25px;
+}
+
+#cdr
+{ width: 750px;
+    float:left;
+    margin-top:30px;
+    margin-bottom:25px;
+    margin-left:25px;
+}
