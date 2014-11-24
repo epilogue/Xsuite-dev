@@ -450,3 +450,12 @@ span {
     margin-left:25px;
     height: 130px;
 }
+
+#valid_cdr
+{ width: 750px;
+    float:left;
+    margin-top:30px;
+    margin-bottom:25px;
+    margin-left:25px;
+    height: 130px;
+}
