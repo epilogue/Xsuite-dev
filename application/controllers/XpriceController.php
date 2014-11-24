@@ -365,7 +365,7 @@ class XpriceController extends Zend_Controller_Action {
                  */
                 elseif ($fonctioncreateur==7 || $fonctioncreateur==6 || $fonctioncreateur ==11) {
                     if($zonetracking=="QA"){
-                        $destinataireMail3 = $emailVars->listes->CM;
+                        $destinataireMail3 = $emailVars->listes->cm;
                         $url3 = "http://{$_SERVER['SERVER_NAME']}/xprice/validatechefmarche/numwp/{$numwp}";
                     $corpsMail3 = "Bonjour,\n"
                         . "\n"
