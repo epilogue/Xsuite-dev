@@ -443,8 +443,33 @@ class XpriceController extends Zend_Controller_Action {
          if ($this->getRequest()->isPost()) {
             $date_validationcdr = date("d-m-Y"); 
             $nom_validationcdr = "cdr";
-         $formData[] = $this->getRequest()->getPost();
-          echo "<pre>", var_export($formData),"</pre>";exit();
+         $formData= $this->getRequest()->getPost();
+          //echo "<pre>", var_export($formData),"</pre>";
+         /*
+          * si la variable $validation existe et qu'elle est égale à "validee"
+          *  alors on insert dans la table validation:  la date de validation ,
+          *  le nom de la validation , le numwp,l'id_user du cdr,
+          * on envoi un email au tc qui a créer la demande , et on envoi un mail au cm pour qu'il la valide également
+          */
+          if (isset($formData['validation'])&& $formData['validation'] == "validee" ){
+              
+          }
+          /*
+           * si la variable $validation existe et qu'elle est égale à "nonValide"
+           * alors envoi mail tc et insertion dans la table validation
+           * 
+           */
+          elseif (isset($formData['validation'])&& $formData['validation'] == "nonValide" ) {
+          
+          }
+          /*
+           * si la variable $validation existe et est égale à enAttente,
+           * envoi de mail au tc pour qu'il réponde à la question posé dans le commentaire,
+           * et enregistrement dans la table validation  et historique commentaire.
+           */
+          elseif (isset($formData['validation'])&& $formData['validation'] == "enAtttente" ) {
+          
+          }
          
          }
     }
