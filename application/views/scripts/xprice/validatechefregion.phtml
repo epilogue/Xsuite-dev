@@ -110,11 +110,17 @@ $this->headTitle($this->title);
 <form>
     <div id='cdr'>
         <fieldset>
-            <legend>commentaire chef de région</legend>
+            <legend>Commentaire chef de région</legend>
             <textarea name="commentaire_chefregion" cols="75" rows="20"></textarea>
         </fieldset>
     </div>
-    
-    
+    <div id="valid_cdr">
+        <input type="radio" name="validation" value="nonValide"> La demande n'est pas validée <br>
+        <input type="radio" name="validation" value="validee"> La demande est validée <br>
+        <input type="radio" name="validation" value="enAttente">  en attente de réponse  <br> 
+        
+   </div>
+        
+    <input type="submit" value="enregistrer">
         
 </form>
