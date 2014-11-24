@@ -15,12 +15,13 @@ class Application_Model_DbTable_Clients extends Zend_Db_Table_Abstract {
         }
     }
 
-    public function createClient($nom_client, $numwp_client, $adresse_client, $id_industry) {
+    public function createClient($nom_client, $numwp_client, $adresse_client, $id_industry,$potentiel) {
         $data = array(
             'nom_client' => $nom_client,
             'numwp_client' => $numwp_client,
             'adresse_client' => $adresse_client,
-            'id_industry' => $id_industry
+            'id_industry' => $id_industry,
+            'potentiel' =>$potentiel
         );
         $this->insert($data);
         return $this;
