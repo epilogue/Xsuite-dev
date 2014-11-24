@@ -439,6 +439,14 @@ class XpriceController extends Zend_Controller_Action {
         $info_demande_article_xprice = $infos_demande_article_xprice->getDemandeArticlexprice($numwp);
         //echo '<pre>',  var_export($info_demande_article_xprice,true),'</pre>';
         $this->view->info_demande_article_xprice = $info_demande_article_xprice;
+        
+         if ($this->getRequest()->isPost()) {
+            $date_validationcdr = date("d-m-Y"); 
+            $nom_validationcdr = "cdr";
+         $formData[] = $this->getRequest()->getPost();
+          echo "<pre>", var_export($formData),"</pre>";exit();
+         
+         }
     }
     
     public function prixfobfrAction() {
