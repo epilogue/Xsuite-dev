@@ -27,19 +27,19 @@ $this->headTitle($this->title);
         <table>
             <tr>
                 <td>Nom:</td>
-                <td><?php echo $this->user_info['nom_user'];?></td>
+                <td><?php echo $this->user_info->nom_user;?></td>
             </tr>
             <tr>
                 <td>Prénom:</td>
-                <td><?php echo $this->user_info['prenom_user'];?></td>
+                <td><?php echo $this->user_info->prenom_user;?></td>
             </tr>
             <tr>
                 <td>Email:</td>
-                <td><?php echo $this->user_info['email_user'];?></td>
+                <td><?php echo $this->user_info->email_user;?></td>
             </tr>
             <tr>
                 <td>Téléphone:</td>
-                <td><?php echo $this->user_info['tel_user'];?></td>
+                <td><?php echo $this->user_info->tel_user;?></td>
             </tr>
             <tr>
                 <td>Holon:</td>
@@ -47,7 +47,7 @@ $this->headTitle($this->title);
             </tr>
             <tr>
                 <td>User workplace:</td>
-                <td><?php echo $this->user_info['numwp_user'];?></td>
+                <td><?php echo $this->user_info->numwp_user;?></td>
             </tr>
         </table>
     </fieldset>
