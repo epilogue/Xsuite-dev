@@ -9,6 +9,7 @@ class XpriceController extends Zend_Controller_Action {
     //public $dsn2 = "";
     public $odbc_conn = null;
     public $odbc_conn2 = null;
+    public $odbc_conn3 = null;
 
     //  public $odbc_conn3= null;
 
@@ -27,10 +28,11 @@ class XpriceController extends Zend_Controller_Action {
         if (!$this->odbc_conn2) {
             echo "pas d'accès à la base de données MVXCDTA";
         }
-        // $this->odbc_conn3 = odbc_connect($this->dsn3,"","");
-        //if(!$this->odbc_conn3){
-        //    print odbc_errormsg();
-        //}
+        // $this->dsn3,"","");
+         $this->odbc_conn3 = odbc_connect('Movex3', "EU65535", "CCS65535");
+        if (!$this->odbc_conn3) {
+            echo "pas d'accès à la base de données SMCCDTA";
+        }
     }
 
     public function indexAction() {
@@ -182,8 +184,10 @@ class XpriceController extends Zend_Controller_Action {
             $this->view->infos_client = $infos_client;
             $query1ter ="select OOHEAD.OACHL1 from EIT.MVXCDTA.OOHEAD OOHEAD where OOHEAD.OACUNO = '{$resultat[0]['OBCUNO']}'";
             $numclientwp= odbc_fetch_array(odbc_exec($this->odbc_conn2, $query1ter));
-            echo '<pre>', var_export($numclientwp),'<pre>';
             $this->view->numclientwp = $numclientwp['OACHL1'];
+            $query1quart = "select ZMCPJO.Z2MCL1 from EIT.SMCCDTA.ZMCPJO  ZMCPJO where ZMCPJO.Z2CUNO= '{$resultat[0]['OBCUNO']}' ";
+            $industriewp= odbc_fetch_array(odbc_exec($this->odbc_conn3, $query1quart));
+             $this->view->industriewp = $industriewp['Z2MCL1'];
             /*
              * information concernant  le projet industry auquel appartient le client
              *    donc à partir du code movex industry on va chercher dans la base xsuite
