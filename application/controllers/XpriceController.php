@@ -452,7 +452,61 @@ class XpriceController extends Zend_Controller_Action {
           * on envoi un email au tc qui a créer la demande , et on envoi un mail au cm pour qu'il la valide également
           */
           if (isset($formData['validation'])&& $formData['validation'] == "validee" ){
-              
+            $emailVars = Zend_Registry::get('emailVars');
+            $destinataireMail1 ="mhuby@smc-france.fr"/*$info_user['mail_user']*/;
+            $url1 = "http://{$_SERVER['SERVER_NAME']}/xprice/list/numwp/{$numwp}";
+            $corpsMail1 = "Bonjour,\n"
+                    . "\n"
+                    . "Votre demande XPrice a été validée par .\n"
+                    . "Vous pouvez la consulter à cette adresse url : \n"
+                    . "%s"
+                    . "\n\n"
+                    . "Cordialement,\n"
+                    . "\n"
+                    . "--\n"
+                    . "Prix fobfr.";
+            $mail1 = new Xsuite_Mail();
+            $mail1->setSubject("XPrice :demande $numwp validée par votre chef de région.")
+                    ->setBodyText(sprintf($corpsMail1, $url1))
+                    ->addTo($destinataireMail1)
+                    ->send();
+            /*
+             * on recherche le chef de marche correspondant auquel la demande s'adresse 
+             */
+            $destIndustry=$info_client['id_industry'];
+            switch($destIndustry){
+                case ($destIndustry >0 && $destIndustry<77 ):
+                    $destinataireMail2=$emailVars->listes->carindustries1;
+                    break;
+                case ($destIndustry >76 && $destIndustry<138 ):
+                    $destinataireMail2=$emailVars->listes->lifeandscience;
+                    break;
+                case ($destIndustry >137 && $destIndustry<272 ):
+                    $destinataireMail2=$emailVars->listes->electronique;
+                    break;
+                case ($destIndustry >271 && $destIndustry<314 ):
+                    $destinataireMail2=$emailVars->listes->foodindustries;
+                    break;
+                case ($destIndustry >313 && $destIndustry<=415 ):
+                    $destinataireMail2=$emailVars->listes->environnementenergie;
+                    break;
+            }
+            $url2 = "http://{$_SERVER['SERVER_NAME']}/xprice/validatechefmarche/numwp/{$numwp}";
+            $corpsMail2 = "Bonjour,\n"
+                    . "\n"
+                    . "Vous avez une nouvelle demande XPrice à valider.\n"
+                    . "Veuillez vous rendre à l'adresse url : \n"
+                    . "%s"
+                    . "\n\n"
+                    . "Cordialement,\n"
+                    . "\n"
+                    . "--\n"
+                    . "Xprice";
+            $mail2 = new Xsuite_Mail();
+            $mail2->setSubject("XPrice : Nouvelle demande à valider.")
+                    ->setBodyText(sprintf($corpsMail2, $url2))
+                    ->addTo($destinataireMail2)
+                    ->send(); 
           }
           /*
            * si la variable $validation existe et qu'elle est égale à "nonValide"
@@ -467,13 +521,15 @@ class XpriceController extends Zend_Controller_Action {
            * envoi de mail au tc pour qu'il réponde à la question posé dans le commentaire,
            * et enregistrement dans la table validation  et historique commentaire.
            */
-          elseif (isset($formData['validation'])&& $formData['validation'] == "enAtttente" ) {
+          elseif (isset($formData['validation'])&& $formData['validation'] == "enAttente" ) {
           
           }
          
          }
     }
-    
+    public function validatechefmarcheAction(){
+        
+    }
     public function prixfobfrAction() {
         $user = $this->_auth->getStorage()->read();
         // var_dump($user);
