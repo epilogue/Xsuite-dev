@@ -182,6 +182,7 @@ class XpriceController extends Zend_Controller_Action {
             $this->view->infos_client = $infos_client;
             $query1ter ="select OOHEAD.OACHL1 from EIT.MVXCDTA.OOHEAD OOHEAD where OOHEAD.OACUNO = '{$resultat[0]['OBCUNO']}'";
             $numclientwp= odbc_fetch_array(odbc_exec($this->odbc_conn2, $query1ter));
+            echo '<pre>', var_export($numclientwp),'<pre>';
             $this->view->numclientwp = $numclientwp[0];
             /*
              * information concernant  le projet industry auquel appartient le client
