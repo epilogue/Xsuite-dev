@@ -180,6 +180,9 @@ class XpriceController extends Zend_Controller_Action {
             $query1bis = "select * from EIT.MVXCDTA.OCUSMA OCUSMA where OCUSMA.OKCUNO = '{$resultat[0]['OBCUNO']}'";
             $infos_client = odbc_fetch_array(odbc_exec($this->odbc_conn2, $query1bis));
             $this->view->infos_client = $infos_client;
+            $query1ter ="select OOHEAD.OACHL1 from EIT.MVXCDTA.OOHEAD OOHEAD where OOHEAD.OACUNO = '{$resultat[0]['OBCUNO']}'";
+            $numclientwp= odbc_fetch_array(odbc_exec($this->odbc_conn2, $query1ter));
+            $this->view->numclientwp = $numclientwp;
             /*
              * information concernant  le projet industry auquel appartient le client
              *    donc à partir du code movex industry on va chercher dans la base xsuite
@@ -378,7 +381,7 @@ class XpriceController extends Zend_Controller_Action {
                         . "--\n"
                         . "Xsuite";
                     $mail3 = new Xsuite_Mail();
-                    $mail3->setSubject("XPrice : Nouvelle Offre à valider de .'{$user_info['nom']}'. pour.' {$infos_client['nom_client']}'")
+                    $mail3->setSubject("XPrice : Nouvelle Offre à valider de {$user_info['nom']} pour {$infos_client['nom_client']}")
                         ->setBodyText(sprintf($corpsMail3, $url3))
                         ->addTo($destinataireMail3)
                         ->send();
@@ -397,7 +400,7 @@ class XpriceController extends Zend_Controller_Action {
                  * Fin du traitement
                  */
                 $flashMessenger = $this->_helper->getHelper('FlashMessenger');
-                $message = "Votre demande à bien été enregistrée .'{$zonetracking}'.'{$fonctioncreateur}'";
+                $message = "Votre demande à bien été enregistrée.";
                 $flashMessenger->addMessage($message);
                 $redirector = $this->_helper->getHelper('Redirector');
                 $redirector->gotoSimple('index', 'xprice');
