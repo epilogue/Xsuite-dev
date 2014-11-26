@@ -224,7 +224,7 @@ class XpriceController extends Zend_Controller_Action {
                 $numwpexist = $demandes_xprice->getNumwp($numwp);
                 if (is_null($numwpexist)) {
                     $demande_xprice = $demandes_xprice->createXprice(
-                            $numwp, $trackingNumber, $formData['commentaire_demande_article'], $infos_offres->OBRGDT, $formData['mini_demande_article'], $user_info['id_user'], null, $infos_client['OKCUNO']);
+                            $numwp, $trackingNumber, $formData['commentaire_demande_article'], $infos_offres->OBRGDT, $formData['mini_demande_article'], $user_info['id_user'], null, $numclientwp['OACHL1']);
                 }
                 /*
                  * ici insertion dans les tables articles et demande_article_xprices
