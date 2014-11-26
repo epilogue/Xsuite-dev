@@ -529,10 +529,24 @@ class XpriceController extends Zend_Controller_Action {
           /*
            * si la variable $validation existe et qu'elle est égale à "nonValide"
            * alors envoi mail tc et insertion dans la table validation
-           * 
            */
           elseif (isset($formData['validation'])&& $formData['validation'] == "nonValide" ) {
-          
+          $destinataireMail3 ="mhuby@smc-france.fr"/*$info_user['mail_user']*/;
+           // $url1 = "http://{$_SERVER['SERVER_NAME']}/xprice/list/numwp/{$numwp}";
+            $corpsMail3 = "Bonjour,\n"
+                    . "\n"
+                    . "Votre demande XPrice a été refusée par .\n"
+                    . "%s"
+                    . "\n\n"
+                    . "Cordialement,\n"
+                    . "\n"
+                    . "--\n"
+                    . "Prix fobfr.";
+            $mail3 = new Xsuite_Mail();
+            $mail3->setSubject("XPrice :demande $numwp refusée par votre chef de région.")
+                    ->setBodyText(sprintf($corpsMail3))
+                    ->addTo($destinataireMail3)
+                    ->send();
           }
           /*
            * si la variable $validation existe et est égale à enAttente,
@@ -540,7 +554,23 @@ class XpriceController extends Zend_Controller_Action {
            * et enregistrement dans la table validation  et historique commentaire.
            */
           elseif (isset($formData['validation'])&& $formData['validation'] == "enAttente" ) {
-          
+           $destinataireMail3 ="mhuby@smc-france.fr"/*$info_user['mail_user']*/;
+           $url4 = "http://{$_SERVER['SERVER_NAME']}/xprice/update/numwp/{$numwp}";
+            $corpsMail4 = "Bonjour,\n"
+                    . "\n"
+                    . "Votre demande XPrice est en attente d'une réponse de votre part.\n"
+                    . "Veuillez vous rendre à l'adresse url : \n"
+                    . "%s"
+                    . "\n\n"
+                    . "Cordialement,\n"
+                    . "\n"
+                    . "--\n"
+                    . "Prix fobfr.";
+            $mail4 = new Xsuite_Mail();
+            $mail4->setSubject("XPrice :demande $numwp en attente de réponse.")
+                    ->setBodyText(sprintf($corpsMail4, $url4))
+                    ->addTo($destinataireMail4)
+                    ->send();
           }
          
          }
