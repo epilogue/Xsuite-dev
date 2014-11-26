@@ -185,7 +185,7 @@ class XpriceController extends Zend_Controller_Action {
             $query1ter ="select OOHEAD.OACHL1 from EIT.MVXCDTA.OOHEAD OOHEAD where OOHEAD.OACUNO = '{$resultat[0]['OBCUNO']}'";
             $numclientwp= odbc_fetch_array(odbc_exec($this->odbc_conn2, $query1ter));
             $this->view->numclientwp = $numclientwp['OACHL1'];
-            $query1quart = "select ZMCPJO.Z2MCL1 ZMCPJO.OKCFC7 from EIT.SMCCDTA.ZMCPJO  ZMCPJO where ZMCPJO.Z2CUNO= '{$resultat[0]['OBCUNO']}' ";
+            $query1quart = "select ZMCPJO.Z2MCL1  from EIT.SMCCDTA.ZMCPJO  ZMCPJO where ZMCPJO.Z2CUNO= '{$resultat[0]['OBCUNO']}' ";
             $industriewp= odbc_fetch_array(odbc_exec($this->odbc_conn3, $query1quart));
              $this->view->industriewp = $industriewp;
             // var_dump($industriewp);
