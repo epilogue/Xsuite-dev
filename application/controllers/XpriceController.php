@@ -188,15 +188,16 @@ class XpriceController extends Zend_Controller_Action {
             $query1quart = "select ZMCPJO.Z2MCL1 from EIT.SMCCDTA.ZMCPJO  ZMCPJO where ZMCPJO.Z2CUNO= '{$resultat[0]['OBCUNO']}' ";
             $industriewp= odbc_fetch_array(odbc_exec($this->odbc_conn3, $query1quart));
              $this->view->industriewp = $industriewp;
-             var_dump($industriewp);
+            // var_dump($industriewp);
             /*
              * information concernant  le projet industry auquel appartient le client
              *    donc à partir du code movex industry on va chercher dans la base xsuite
              *  le nom de l'industrie auquel le client appartient pour ensuite l'afficher dans la vue
              */
-//            $industry = new Application_Model_DbTable_Industry();
-//            $info_industry = $industry->getMovexIndustry($infos_client['OKCUCL']);
-//            $this->view->info_industry = $info_industry;
+            $industry = new Application_Model_DbTable_Industry();
+           $info_industry = $industry->getMovexIndustry($industriewp);
+           $this->view->info_industry = $info_industry;
+           echo'<pre>',var_export($info_industry),'<pre>';
         }
         $form = new Application_Form_CreationDemande();
         if ($this->getRequest()->isPost()) {
@@ -211,7 +212,7 @@ class XpriceController extends Zend_Controller_Action {
                 $adresse_client = $infos_client['OKCUA1'] . $infos_client['OKCUA2'] . $infos_client['OKCUA3'] . $infos_client['OKCUA4'];
 
                 if (is_null($client)) {
-                    $newclient = $clients->createClient($infos_client['OKCUNM'], $infos_client['OKCUNO'], $adresse_client, $infos_client['OKCUCL'],$industriewp['Z2MCL1']);
+                    $newclient = $clients->createClient($infos_client['OKCUNM'], $infos_client['OKCUNO'], $adresse_client, $industriewp,$infos_client['OKCUCL']);
                 }
                 // et ensuite  on insert dans la table demande_xprices
                 //si le client existe  alors on insert immédiatement dans la table demande_xprices
