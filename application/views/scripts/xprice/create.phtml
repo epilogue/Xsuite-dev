@@ -84,10 +84,6 @@ $this->headTitle($this->title);
                 <th>prix workplace</th>
                 <th>prix demandé</th>
                 <th>remise demandée</th>
-                <th hidden="hidden">prix accordé</th>
-                <th hidden="hidden">remise accordée</th>
-                <th hidden="hidden">prix fob</th>
-                <th hidden="hidden">prix cif</th>
             </tr>
             <?php foreach ($this->resultat as $result) { ?>
                 <tr>
@@ -97,10 +93,6 @@ $this->headTitle($this->title);
                     <td><?php echo $result['OBNEPR'];?></td>
                     <td><?php echo $result['OBSAPR'];?></td>
                     <td><?php $margedemande= ((($result['OBSAPR']/$result['OBORQT'])*100)/$result['OBNEPR']); $margedef=100-$margedemande;echo round($margedef,2)."%"; ?></td>
-                    <td hidden="hidden"></td>
-                    <td hidden="hidden"></td>
-                    <td hidden="hidden"><?php echo $result['OBITNO'];?></td>
-                    <td hidden="hidden"><?php echo $result['OBITNO'];?></td>
                 </tr>
             <?php } ?>
         </table>

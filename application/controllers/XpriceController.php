@@ -185,7 +185,7 @@ class XpriceController extends Zend_Controller_Action {
             $query1ter ="select OOHEAD.OACHL1 from EIT.MVXCDTA.OOHEAD OOHEAD where OOHEAD.OACUNO = '{$resultat[0]['OBCUNO']}'";
             $numclientwp= odbc_fetch_array(odbc_exec($this->odbc_conn2, $query1ter));
             $this->view->numclientwp = $numclientwp['OACHL1'];
-            $query1quart = "select ZMCPJO.Z2MCL1 from EIT.SMCCDTA.ZMCPJO  ZMCPJO where ZMCPJO.Z2CUNO= '{$resultat[0]['OBCUNO']}' ";
+            $query1quart = "select ZMCPJO.Z2MCL1 ZMCPJO.OKCFC7 from EIT.SMCCDTA.ZMCPJO  ZMCPJO where ZMCPJO.Z2CUNO= '{$resultat[0]['OBCUNO']}' ";
             $industriewp= odbc_fetch_array(odbc_exec($this->odbc_conn3, $query1quart));
              $this->view->industriewp = $industriewp;
             // var_dump($industriewp);
@@ -197,7 +197,7 @@ class XpriceController extends Zend_Controller_Action {
             $industry = new Application_Model_DbTable_Industry();
            $info_industry = $industry->getMovexIndustry($industriewp['Z2MCL1']);
            $this->view->info_industry = $info_industry;
-           echo'<pre>',var_export($info_industry),'<pre>';
+           //echo'<pre>',var_export($info_industry),'<pre>';
         }
         $form = new Application_Form_CreationDemande();
         if ($this->getRequest()->isPost()) {
@@ -212,7 +212,7 @@ class XpriceController extends Zend_Controller_Action {
                 $adresse_client = $infos_client['OKCUA1'] . $infos_client['OKCUA2'] . $infos_client['OKCUA3'] . $infos_client['OKCUA4'];
 
                 if (is_null($client)) {
-                    $newclient = $clients->createClient($infos_client['OKCUNM'], $infos_client['OKCUNO'], $adresse_client, $info_industry['id_industry'],$infos_client['OKCUCL']);
+                    $newclient = $clients->createClient($infos_client['OKCUNM'], $infos_client['OKCUNO'], $adresse_client, $info_industry['id_industry'],$infos_client['OKCFC7']);
                 }
                 // et ensuite  on insert dans la table demande_xprices
                 //si le client existe  alors on insert immédiatement dans la table demande_xprices
