@@ -14,6 +14,13 @@ public function getMovexIndustry($industriewp) {
         }
         return $row->toArray();
     }
-
+public function getIndustry($id_industry) {
+        $row = $this->fetchRow("id_industry = '{$id_industry}'");
+        if (!$row) {
+            return null;
+        } else {
+            return $row->toArray();
+        }
+    }
 }
 
