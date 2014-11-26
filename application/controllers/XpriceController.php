@@ -541,7 +541,7 @@ class XpriceController extends Zend_Controller_Action {
                     . "Cordialement,\n"
                     . "\n"
                     . "--\n"
-                    . "Prix fobfr.";
+                    . "Xprice.";
             $mail3 = new Xsuite_Mail();
             $mail3->setSubject("XPrice :demande $numwp refusée par votre chef de région.")
                     ->setBodyText(sprintf($corpsMail3,$url3))
@@ -565,7 +565,7 @@ class XpriceController extends Zend_Controller_Action {
                     . "Cordialement,\n"
                     . "\n"
                     . "--\n"
-                    . "Prix fobfr.";
+                    . "Xprice.";
             $mail4 = new Xsuite_Mail();
             $mail4->setSubject("XPrice :demande $numwp en attente de réponse.")
                     ->setBodyText(sprintf($corpsMail4, $url4))
