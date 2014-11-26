@@ -212,7 +212,7 @@ class XpriceController extends Zend_Controller_Action {
                 $adresse_client = $infos_client['OKCUA1'] . $infos_client['OKCUA2'] . $infos_client['OKCUA3'] . $infos_client['OKCUA4'];
 
                 if (is_null($client)) {
-                    $newclient = $clients->createClient($infos_client['OKCUNM'], $infos_client['OKCUNO'], $adresse_client, $industriewp,$infos_client['OKCUCL']);
+                    $newclient = $clients->createClient($infos_client['OKCUNM'], $infos_client['OKCUNO'], $adresse_client, $industriewp['Z2MCL1'],$infos_client['OKCUCL']);
                 }
                 // et ensuite  on insert dans la table demande_xprices
                 //si le client existe  alors on insert immédiatement dans la table demande_xprices
