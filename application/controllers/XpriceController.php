@@ -532,7 +532,7 @@ class XpriceController extends Zend_Controller_Action {
            */
           elseif (isset($formData['validation'])&& $formData['validation'] == "nonValide" ) {
           $destinataireMail3 ="mhuby@smc-france.fr"/*$info_user['mail_user']*/;
-           // $url1 = "http://{$_SERVER['SERVER_NAME']}/xprice/list/numwp/{$numwp}";
+            $url3 = "http://{$_SERVER['SERVER_NAME']}/xprice/list/numwp/{$numwp}";
             $corpsMail3 = "Bonjour,\n"
                     . "\n"
                     . "Votre demande XPrice a été refusée par .\n"
@@ -544,7 +544,7 @@ class XpriceController extends Zend_Controller_Action {
                     . "Prix fobfr.";
             $mail3 = new Xsuite_Mail();
             $mail3->setSubject("XPrice :demande $numwp refusée par votre chef de région.")
-                    ->setBodyText(sprintf($corpsMail3))
+                    ->setBodyText(sprintf($corpsMail3,$url3))
                     ->addTo($destinataireMail3)
                     ->send();
           }
@@ -554,7 +554,7 @@ class XpriceController extends Zend_Controller_Action {
            * et enregistrement dans la table validation  et historique commentaire.
            */
           elseif (isset($formData['validation'])&& $formData['validation'] == "enAttente" ) {
-           $destinataireMail3 ="mhuby@smc-france.fr"/*$info_user['mail_user']*/;
+           $destinataireMail4 ="mhuby@smc-france.fr"/*$info_user['mail_user']*/;
            $url4 = "http://{$_SERVER['SERVER_NAME']}/xprice/update/numwp/{$numwp}";
             $corpsMail4 = "Bonjour,\n"
                     . "\n"
