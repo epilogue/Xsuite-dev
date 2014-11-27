@@ -459,7 +459,7 @@ class XpriceController extends Zend_Controller_Action {
         $this->view->info_demande_article_xprice = $info_demande_article_xprice;
         
          if ($this->getRequest()->isPost()) {
-            $date_validation = date("d-m-Y"); 
+            $date_validation = date("Y-m-d H:i:s"); 
             $this->view->date_validation=$date_validation;
             $nom_validation = "cdr";
          $formData= $this->getRequest()->getPost();
@@ -577,7 +577,7 @@ class XpriceController extends Zend_Controller_Action {
           elseif (isset($formData['validation'])&& $formData['validation'] == "enAttente" ) {
              
              echo '<pre>',var_export($formData),'<pre>';
-              $this->view->id_cdr=$user['id_user'];
+              //$this->view->id_cdr=$user['id_user'];
            $destinataireMail4 ="mhuby@smc-france.fr"/*$info_user['mail_user']*/;
            $url4 = "http://{$_SERVER['SERVER_NAME']}/xprice/update/numwp/{$numwp}";
             $corpsMail4 = "Bonjour,\n"
