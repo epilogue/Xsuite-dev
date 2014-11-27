@@ -599,7 +599,7 @@ class XpriceController extends Zend_Controller_Action {
              * 
              */
             $nouvelle_validation = new Application_Model_DbTable_Validationsxprice();
-            $nouv_validation = $nouvelle_validation->createValidation($formData['nom_validation'], $formData['date_validation'], $formData['validation'], $formData['commentaire_chefregion'], $id_cdr, $info_demande_xprice['`tracking_number_demande_xprice']);
+            $nouv_validation = $nouvelle_validation->createValidation($formData['nom_validation'], $formData['date_validation'], $formData['validation'], $formData['commentaire_chefregion'], $ $formData['cdr'], $info_demande_xprice['`tracking_number_demande_xprice']);
           }
          
          }
