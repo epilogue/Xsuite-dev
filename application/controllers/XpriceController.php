@@ -460,6 +460,7 @@ class XpriceController extends Zend_Controller_Action {
         
          if ($this->getRequest()->isPost()) {
             $date_validation = date("d-m-Y"); 
+            $this->view->date_validation=$date_validation;
             $nom_validation = "cdr";
          $formData= $this->getRequest()->getPost();
           //echo "<pre>", var_export($formData),"</pre>";

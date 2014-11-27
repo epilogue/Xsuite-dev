@@ -119,7 +119,7 @@ $this->headTitle($this->title);
         <input type="radio" name="validation" value="validee"> La demande est validée <br>
         <input type="radio" name="validation" value="enAttente">  en attente de réponse  <br> 
         <input hidden="hidden" name="nom_validation" value="validation_cdr">
-        <input hidden="hidden" name="date_validation" value="<?php echo date(dd/mm/YY); ?>">
+        <input hidden="hidden" name="date_validation" value="<?php echo $this->date_validation; ?>">
         <input hidden="hidden" name="cdr" value="<?php echo $this->id_cdr;?>">
         
    </div>
