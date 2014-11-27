@@ -211,7 +211,7 @@ class XpriceController extends Zend_Controller_Action {
                 //alors si le client n'existe pas ' on insert d'abord dans la table client
                 //"select id_client from clients where id_client = {$infos_client['OKCUNO']}";
                 $clients = new Application_Model_DbTable_Clients();
-                $client = $clients->getClientnumwp($infos_client['OKCUNO']);
+                $client = $clients->getClientnumwp($numclientwp['OACHL1']);
 
                 $adresse_client = $infos_client['OKCUA1'] . $infos_client['OKCUA2'] . $infos_client['OKCUA3'] . $infos_client['OKCUA4'];
 
@@ -426,7 +426,7 @@ class XpriceController extends Zend_Controller_Action {
     }
     public function validatechefregionAction(){
         $user = $this->_auth->getStorage()->read();
-         var_dump($user);
+         //var_dump($user);
 
         $numwp = $this->getRequest()->getParam('numwp', null);
         //var_dump($numwp);
@@ -576,7 +576,8 @@ class XpriceController extends Zend_Controller_Action {
            */
           elseif (isset($formData['validation'])&& $formData['validation'] == "enAttente" ) {
              $plop5= $user->toArray();
-              $this->view->id_cdr=$user['id_user'];
+             echo '<pre>',var_export($formData),'<pre>';
+              $this->view->id_cdr=$plop5['id_user'];
            $destinataireMail4 ="mhuby@smc-france.fr"/*$info_user['mail_user']*/;
            $url4 = "http://{$_SERVER['SERVER_NAME']}/xprice/update/numwp/{$numwp}";
             $corpsMail4 = "Bonjour,\n"
