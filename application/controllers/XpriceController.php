@@ -555,6 +555,7 @@ class XpriceController extends Zend_Controller_Action {
            * et enregistrement dans la table validation  et historique commentaire.
            */
           elseif (isset($formData['validation'])&& $formData['validation'] == "enAttente" ) {
+             $plop5= $user->toArray();
               $this->view->id_cdr=$user['id_user'];
            $destinataireMail4 ="mhuby@smc-france.fr"/*$info_user['mail_user']*/;
            $url4 = "http://{$_SERVER['SERVER_NAME']}/xprice/update/numwp/{$numwp}";
