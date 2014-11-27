@@ -460,7 +460,7 @@ class XpriceController extends Zend_Controller_Action {
         
          if ($this->getRequest()->isPost()) {
             $date_validation = date("d-m-Y"); 
-            $nom_validationcdr = "cdr";
+            $nom_validation = "cdr";
          $formData= $this->getRequest()->getPost();
           //echo "<pre>", var_export($formData),"</pre>";
          /*
@@ -576,7 +576,7 @@ class XpriceController extends Zend_Controller_Action {
              * 
              */
             $nouvelle_validation = new Application_Model_DbTable_Validationsxprice();
-            $nouv_validation = $nouvelle_validation->createValidation($nom_validation, $date_validation, $etat_validation, $formData['commentaire_chefregion'], $id_user, $info_demande_xprice['`tracking_number_demande_xprice']);
+            $nouv_validation = $nouvelle_validation->createValidation($formData['nom_validation'], $formData['date_validation'], $formData['validation'], $formData['commentaire_chefregion'], $id_user, $info_demande_xprice['`tracking_number_demande_xprice']);
           }
          
          }
