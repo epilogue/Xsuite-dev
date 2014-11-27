@@ -426,7 +426,7 @@ class XpriceController extends Zend_Controller_Action {
     }
     public function validatechefregionAction(){
         $user = $this->_auth->getStorage()->read();
-         var_dump($user->id_user); exit();
+       
 
         $numwp = $this->getRequest()->getParam('numwp', null);
         //var_dump($numwp);
@@ -577,7 +577,7 @@ class XpriceController extends Zend_Controller_Action {
           elseif (isset($formData['validation'])&& $formData['validation'] == "enAttente" ) {
              
              echo '<pre>',var_export($formData),'<pre>';
-              //$this->view->id_cdr=$user['id_user'];
+              $this->view->id_cdr=$user->id_user;
            $destinataireMail4 ="mhuby@smc-france.fr"/*$info_user['mail_user']*/;
            $url4 = "http://{$_SERVER['SERVER_NAME']}/xprice/update/numwp/{$numwp}";
             $corpsMail4 = "Bonjour,\n"
@@ -599,7 +599,7 @@ class XpriceController extends Zend_Controller_Action {
              * 
              */
             $nouvelle_validation = new Application_Model_DbTable_Validationsxprice();
-            $nouv_validation = $nouvelle_validation->createValidation($formData['nom_validation'], $formData['date_validation'], $formData['validation'], $formData['commentaire_chefregion'], $id_user, $info_demande_xprice['`tracking_number_demande_xprice']);
+            $nouv_validation = $nouvelle_validation->createValidation($formData['nom_validation'], $formData['date_validation'], $formData['validation'], $formData['commentaire_chefregion'], $id_cdr, $info_demande_xprice['`tracking_number_demande_xprice']);
           }
          
          }
