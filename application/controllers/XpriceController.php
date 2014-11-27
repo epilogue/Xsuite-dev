@@ -198,7 +198,7 @@ class XpriceController extends Zend_Controller_Action {
             $industry = new Application_Model_DbTable_Industry();
            $info_industry = $industry->getMovexIndustry($industriewp['Z2MCL1']);
              $this->view->info_industry = $info_industry;}
-             else {$info_industry == null;
+             else {$info_industry == 'SSC';
              $this->view->info_industry = $info_industry;
              }
            //echo'<pre>',var_export($info_industry),'<pre>';
@@ -492,7 +492,27 @@ class XpriceController extends Zend_Controller_Action {
             /*
              * on recherche le chef de marche correspondant auquel la demande s'adresse 
              */
+            
             $destIndustry=$info_client['id_industry'];
+            if($destIndustry==416){
+                 $destinataireMail2 ="fobfr@smc-france.fr";
+                $url2 = "http://{$_SERVER['SERVER_NAME']}/xprice/prixfobfr/numwp/{$numwp}";
+            $corpsMail2 = "Bonjour,\n"
+                    . "\n"
+                    . "Vous avez une nouvelle demande XPrice à valider.\n"
+                    . "Veuillez vous rendre à l'adresse url : \n"
+                    . "%s"
+                    . "\n\n"
+                    . "Cordialement,\n"
+                    . "\n"
+                    . "--\n"
+                    . "Xprice";
+            $mail2 = new Xsuite_Mail();
+            $mail2->setSubject("XPrice : Nouvelle demande à valider.")
+                    ->setBodyText(sprintf($corpsMail2, $url2))
+                    ->addTo($destinataireMail2)
+                    ->send(); 
+            }else{
             switch($destIndustry){
                 case ($destIndustry >0 && $destIndustry<77 ):
                     $destinataireMail2=$emailVars->listes->carindustries1;
@@ -525,7 +545,7 @@ class XpriceController extends Zend_Controller_Action {
             $mail2->setSubject("XPrice : Nouvelle demande à valider.")
                     ->setBodyText(sprintf($corpsMail2, $url2))
                     ->addTo($destinataireMail2)
-                    ->send(); 
+            ->send(); }
           }
           /*
            * si la variable $validation existe et qu'elle est égale à "nonValide"
