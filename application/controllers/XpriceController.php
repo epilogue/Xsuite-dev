@@ -452,7 +452,7 @@ class XpriceController extends Zend_Controller_Action {
         $noms_industrie= new Application_Model_DbTable_Industry();
         $nom_industrie= $noms_industrie->getIndustry($info_client['id_industry']);
         $this->view->nom_industrie = $nom_industrie;
-        var_dump($nom_industrie);
+        //var_dump($nom_industrie);
         $infos_demande_article_xprice = new Application_Model_DbTable_DemandeArticlexprices();
         $info_demande_article_xprice = $infos_demande_article_xprice->getDemandeArticlexprice($numwp);
         //echo '<pre>',  var_export($info_demande_article_xprice,true),'</pre>';
@@ -463,7 +463,7 @@ class XpriceController extends Zend_Controller_Action {
             $this->view->date_validation=$date_validation;
             $nom_validation = "cdr";
          $formData= $this->getRequest()->getPost();
-          //echo "<pre>", var_export($formData),"</pre>";
+          echo "<pre>", var_export($formData),"</pre>";
          /*
           * si la variable $validation existe et qu'elle est égale à "validee"
           *  alors on insert dans la table validation:  la date de validation ,
@@ -575,9 +575,9 @@ class XpriceController extends Zend_Controller_Action {
            * et enregistrement dans la table validation  et historique commentaire.
            */
           elseif (isset($formData['validation'])&& $formData['validation'] == "enAttente" ) {
-             $plop5= $user->toArray();
+             
              echo '<pre>',var_export($formData),'<pre>';
-              $this->view->id_cdr=$plop5['id_user'];
+              $this->view->id_cdr=$user['id_user'];
            $destinataireMail4 ="mhuby@smc-france.fr"/*$info_user['mail_user']*/;
            $url4 = "http://{$_SERVER['SERVER_NAME']}/xprice/update/numwp/{$numwp}";
             $corpsMail4 = "Bonjour,\n"
