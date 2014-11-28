@@ -201,7 +201,7 @@ class XpriceController extends Zend_Controller_Action {
              
              
         elseif(empty($industriewp['Z2MCL1'])){
-            $plop10 = "SSC";
+            $plop10 = "SCI";
             $industry = new Application_Model_DbTable_Industry();
             $info_industry = $industry->getMovexIndustry($plop10);
              $this->view->info_industry = $info_industry;}
