@@ -194,12 +194,19 @@ class XpriceController extends Zend_Controller_Action {
              *    donc à partir du code movex industry on va chercher dans la base xsuite
              *  le nom de l'industrie auquel le client appartient pour ensuite l'afficher dans la vue
              */
-             if(isset($industriewp['Z2MCL1'])){
+             if(isset($industriewp['Z2MCL1']) && $industriewp['Z2MCL1'] !=('')){
             $industry = new Application_Model_DbTable_Industry();
-           $info_industry = $industry->getMovexIndustry($industriewp['Z2MCL1']);
+            $info_industry = $industry->getMovexIndustry($industriewp['Z2MCL1']);
              $this->view->info_industry = $info_industry;}
              
-        }
+             
+        elseif(empty($industriewp['Z2MCL1'])){
+            $plop10 = "SSC";
+            $industry = new Application_Model_DbTable_Industry();
+            $info_industry = $industry->getMovexIndustry($plop10);
+             $this->view->info_industry = $info_industry;}
+            
+        
         $form = new Application_Form_CreationDemande();
         if ($this->getRequest()->isPost()) {
             $formData = $this->getRequest()->getPost();
@@ -417,6 +424,7 @@ class XpriceController extends Zend_Controller_Action {
             }
         }
         $this->view->form = $form;
+    }
     }
     public function consultleaderAction(){
         
