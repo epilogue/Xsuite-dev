@@ -201,7 +201,7 @@ class XpriceController extends Zend_Controller_Action {
              else {$info_industry['nom_industry'] == 'SSC';
              $this->view->info_industry = $info_industry['nom_industry'];
              }
-           echo'<pre>',var_export($info_industry),'<pre>';
+           echo'<pre>',var_export($info_industry['nom_idustry']),'<pre>';
         }
         $form = new Application_Form_CreationDemande();
         if ($this->getRequest()->isPost()) {
