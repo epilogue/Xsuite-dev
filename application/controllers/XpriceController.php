@@ -428,8 +428,8 @@ class XpriceController extends Zend_Controller_Action {
         $user = $this->_auth->getStorage()->read();
        $this->view->user=$user;
        $tiltop= $user->id_user;
-       var_dump($tiltop);
-
+      // var_dump($tiltop);
+$this->view->cdr=$tiltop;
         $numwp = $this->getRequest()->getParam('numwp', null);
         //var_dump($numwp);
         $this->view->numwp = $numwp;
