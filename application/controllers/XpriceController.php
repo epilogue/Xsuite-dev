@@ -427,6 +427,8 @@ class XpriceController extends Zend_Controller_Action {
     public function validatechefregionAction(){
         $user = $this->_auth->getStorage()->read();
        $this->view->user=$user;
+       $tiltop= $user->id_user;
+       var_dump($tiltop);
 
         $numwp = $this->getRequest()->getParam('numwp', null);
         //var_dump($numwp);
