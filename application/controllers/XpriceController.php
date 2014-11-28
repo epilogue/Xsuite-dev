@@ -168,7 +168,7 @@ class XpriceController extends Zend_Controller_Action {
              *
              */foreach ($this->view->resultat as $itnoarticle) {
                 var_dump($itnoarticle);
-                $query3 = "select MCHEAD.KOPCDT, MCHEAD.KOCSU3, MCHEAD.KOITNO from EIT.MVXCDTA.MCHEAD MCHEAD where MCHEAD.KOITNO = {$itnoarticle['OBITNO']}";
+                $query3 = "select MCHEAD.KOPCDT, MCHEAD.KOCSU3, MCHEAD.KOITNO from EIT.MVXCDTA.MCHEAD MCHEAD where MCHEAD.KOITNO = '{$itnoarticle['OBITNO']}'";
 echo $query3;
 
                 $resultats3 = odbc_Exec($this->odbc_conn2, $query3);
