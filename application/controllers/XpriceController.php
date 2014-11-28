@@ -493,7 +493,7 @@ class XpriceController extends Zend_Controller_Action {
             
             $destIndustry=$info_client['id_industry'];
             if($destIndustry==416){
-                 $destinataireMail2 ="fobfr@smc-france.fr";
+                 $destinataireMail2 =$emailVars->listes->fobfr;
                 $url2 = "http://{$_SERVER['SERVER_NAME']}/xprice/prixfobfr/numwp/{$numwp}";
             $corpsMail2 = "Bonjour,\n"
                     . "\n"
