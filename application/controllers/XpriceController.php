@@ -168,14 +168,14 @@ class XpriceController extends Zend_Controller_Action {
              *
              */foreach ($this->view->resultat as $itnoarticle) {
                 var_dump($itnoarticle);
-                $query3 = "select MCHEAD.KOPCDT, MCHEAD.KOCSU3, MCHEAD.KOITNO from EIT.MVXCDTA.MCHEAD MCHEAD where MCHEAD.KOITNO = '{$itnoarticle['OBITNO']}'";
-echo $query3;
+                $query3 = "select MCHEAD.KOPCDT, MCHEAD.KOCSU3, MCHEAD.KOITNO from EIT.MVXCDTA.MCHEAD MCHEAD where MCHEAD.KOITNO = '{$itnoarticle['OBITNO']}'//";
+//echo $query3;
 
                 $resultats3 = odbc_Exec($this->odbc_conn2, $query3);
                 $prixciffob[] = odbc_fetch_object($resultats3);
             }
             $this->view->prixciffob = $prixciffob;
-echo '<pre>',  var_export($prixciffob),'<pre>';
+//echo '<pre>',  var_export($prixciffob),'<pre>';
             /*
              * à partir du code client de la table ooline on va chercher dans la table ocusma
              * les informations concernant le client pour pouvoir les afficher dans la vue phtml
@@ -648,6 +648,7 @@ echo '<pre>',  var_export($prixciffob),'<pre>';
 
         if ($this->getRequest()->isPost()) {
             $date_validationfobfr = date("d-m-Y");
+           $this->view->date_validationfobfr =$date_validationfobfr;
             $etat = "validé";
             $nom_validationfobfr = "fobfr";
             $formData[] = $this->getRequest()->getPost();

@@ -108,11 +108,12 @@ $this->headTitle($this->title);
 <?php } ?>
             </table>
             <input type="text" hidden="hidden" value="<?php echo $this->info_demande_xprice['tracking_number_demande_xprice']; ?>" name="tracking_number">
+            <input type="text" hidden="hidden" value="<?php echo $this->date_validationfobfr; ?>">
         </fieldset>
     </div>
     <div id='formprixfob'>
         <fieldset id='form_prixfob'><legend>Commentaire Fobfr</legend>
-            <textarea name="commentaire_fobfr" cols="75" rows="20"></textarea>
+            <textarea name="commentaire_fobfr" cols="65" rows="10"></textarea>
         </fieldset>
     </div>
     <input type="submit" value="enregistrer">
