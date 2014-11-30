@@ -130,6 +130,13 @@ class XpriceController extends Zend_Controller_Action {
             $infos_offres = odbc_fetch_object($infos_offre);
             // echo '<pre>', var_export($infos_offres, false), '</pre>';
             $this->view->infos_offres = $infos_offres;
+            $dateinit=$infos_offres->OBRGDT;
+            $dateinit3=substr($dateinit,0,4);
+            $dateinit2=substr($dateinit,0,-2);
+            $dateinit1=substr($dateinit,2,-2);
+            $dateinitf=  array($dateinit1,$dateinit2,$dateinit3);
+            $datefinal=  explode('/', $dateinitf);
+            var_dump($datefinal);
             $user = $this->_auth->getStorage()->read();
             $zoneT = new Application_Model_DbTable_Zones();
             $zone = $zoneT->fetchRow(array('id_zone' => $user->id_zone));
