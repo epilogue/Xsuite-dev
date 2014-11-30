@@ -139,10 +139,10 @@ class XpriceController extends Zend_Controller_Action {
             //var_dump($datefinal);
             $this->view->datefinal=$datefinal;
             $user = $this->_auth->getStorage()->read();
-            var_dump ($user);
+            //var_dump ($user);
             $zoneT = new Application_Model_DbTable_Zones();
             $zone = $zoneT->fetchRow(array('id_zone' => $user->id_zone));
-            var_dump($zone);
+            var_dump($zone['id_zone']);
             $Xprices = new Application_Model_DbTable_Xprices();
             $trackingNumber = Application_Model_DbTable_Xprices::makeTrackingNumber($zone->nom_zone, $Xprices->lastId(true));
             // $this->view->trackingNumber = Application_Model_DbTable_Xprices::makeTrackingNumber($zone->nom_zone, $Xprices->lastId(true));
