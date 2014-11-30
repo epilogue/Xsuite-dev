@@ -93,7 +93,7 @@ $this->headTitle($this->title);
                 <tr>
                     <td><?php echo $result['OBITNO'];?></td>
                     <td><?php echo $result['OBITDS'];?></td>
-            <td><?php  $essai=int($result['OBORQT']);echo $essai;?></td>
+            <td><?php  $essai=(int)$result['OBORQT'];echo $essai;?></td>
                     <td><?php echo $result['OBNEPR'];?></td>
                     <td><?php echo $result['OBSAPR'];?></td>
                     <td><?php $margedemande= ((($result['OBSAPR']/$result['OBORQT'])*100)/$result['OBNEPR']); $margedef=100-$margedemande;echo round($margedef,2)."%"; ?></td>
