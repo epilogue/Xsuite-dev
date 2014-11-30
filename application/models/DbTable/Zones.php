@@ -5,7 +5,7 @@ class Application_Model_DbTable_Zones extends Zend_Db_Table_Abstract {
     protected $_name = 'zones';
 
     public function getZone($id_zone) {
-        $id_zone = (int) $id_zone;
+        $id_zone = intval($id_zone);
         $row = $this->fetchRow('id_zone=' . $id_zone);
         if (!$row) {
             throw new Exception("could not find row $id_zone");
