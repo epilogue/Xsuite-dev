@@ -144,7 +144,7 @@ class XpriceController extends Zend_Controller_Action {
             $zone = $zoneT->getZone($user->id_zone);
             var_dump($zone['id_zone']);
             $Xprices = new Application_Model_DbTable_Xprices();
-            $trackingNumber = Application_Model_DbTable_Xprices::makeTrackingNumber($zone->nom_zone, $Xprices->lastId(true));
+            $trackingNumber = Application_Model_DbTable_Xprices::makeTrackingNumber($zone['nom_zone'], $Xprices->lastId(true));
             // $this->view->trackingNumber = Application_Model_DbTable_Xprices::makeTrackingNumber($zone->nom_zone, $Xprices->lastId(true));
             $this->view->trackingNumber = $trackingNumber;
             // requetes pour remplir le phtml :
