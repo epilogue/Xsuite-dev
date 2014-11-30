@@ -132,8 +132,8 @@ class XpriceController extends Zend_Controller_Action {
             $this->view->infos_offres = $infos_offres;
             $dateinit=$infos_offres->OBRGDT;
             $dateinit3=substr($dateinit,0,4);
-            $dateinit2=substr($dateinit,0,-2);
-            $dateinit1=substr($dateinit,2,-2);
+            $dateinit2=substr($dateinit,4,2);
+            $dateinit1=substr($dateinit,6,2);
             $dateinitf= array($dateinit1,$dateinit2,$dateinit3);
             $datefinal=  implode('/', $dateinitf);
             var_dump($datefinal);
