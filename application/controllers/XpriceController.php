@@ -134,8 +134,8 @@ class XpriceController extends Zend_Controller_Action {
             $dateinit3=substr($dateinit,0,4);
             $dateinit2=substr($dateinit,0,-2);
             $dateinit1=substr($dateinit,2,-2);
-            $dateinitf=  array($dateinit1,$dateinit2,$dateinit3);
-            $datefinal=  explode('/', $dateinitf);
+            $dateinitf= array($dateinit1,$dateinit2,$dateinit3);
+            $datefinal=  implode('/', $dateinitf);
             var_dump($datefinal);
             $user = $this->_auth->getStorage()->read();
             $zoneT = new Application_Model_DbTable_Zones();
