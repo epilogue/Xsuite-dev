@@ -38,6 +38,7 @@ class Application_Model_DbTable_DemandeArticlexprices extends Zend_Db_Table_Abst
     public function InserPrixFob($prixciff, $code_article, $numwp) {
         $code_article = "$code_article";
         $numwp = "$numwp";
+        $prixciff = floatval($prixciff);
         $plop = $this->getAdapter();
         $datas = array('prix_fob_demande_article' => $prixciff, 'prix_cif_demande_article' => $prixciff);
         $where = $plop->quoteInto('code_article = ?', $code_article)
