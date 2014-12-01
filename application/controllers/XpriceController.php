@@ -273,8 +273,8 @@ class XpriceController extends Zend_Controller_Action {
                  * si leader  et dd envoie mail au chef de région.
                  */
                 $emailVars = Zend_Registry::get('emailVars');
-                $fonctioncreateur= $user_info['id_fonction'];
-                $holoncreateur= $user_info['id_holon'];
+                $fonctioncreateur= (int)$user_info['id_fonction'];
+                $holoncreateur= (int)$user_info['id_holon'];
                 var_dump($holoncreateur);
                 var_dump($fonctioncreateur); exit();
                 /*
