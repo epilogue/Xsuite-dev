@@ -280,7 +280,7 @@ class XpriceController extends Zend_Controller_Action {
                 /*
                  * ici si itc envoie mail au leader en fonction du holon pour consultation
                  */
-                  if($fonctioncreateur=="1" ){
+                  if($fonctioncreateur == "1" ){
                     switch($holoncreateur){
                         case "5":
                         $destinataireMail2=$emailVars->listes->leaderis01;
@@ -351,7 +351,7 @@ class XpriceController extends Zend_Controller_Action {
                         . "\n"
                         . "--\n"
                         . "Xsuite";
-                    var_dump($destinataireMail2);exit();
+                    var_dump($destinataireMail2);
                     $mail2 = new Xsuite_Mail();
                     $mail2->setSubject("XPrice : Nouvelle Offre à consulter de {$user_info['nom']} pour {$infos_client['nom_client']}")
                         ->setBodyText(sprintf($corpsMail2, $url2))
@@ -363,7 +363,7 @@ class XpriceController extends Zend_Controller_Action {
                   */
                 $zonetracking=substr($trackingNumber,6,2);
                 var_dump($zonetracking);
-                if( $fonctioncreateur==1 || $fonctioncreateur ==2 ||  $fonctioncreateur==3){
+                if( $fonctioncreateur== "1"|| $fonctioncreateur == "2" ||  $fonctioncreateur== "3"){
                     if($zonetracking =="QA"){     
                         $destinataireMail1 = $emailVars->listes->qa;
                     }
@@ -387,7 +387,7 @@ class XpriceController extends Zend_Controller_Action {
                         . "\n"
                         . "--\n"
                         . "Xsuite";
-                var_dump($destinataireMail1);exit();
+                var_dump($destinataireMail1);
                     $mail1 = new Xsuite_Mail();
                     $mail1->setSubject("XPrice : Nouvelle Offre à valider de {$user_info['nom']} pour {$infos_client['nom_client']}")
                         ->setBodyText(sprintf($corpsMail1, $url1))
