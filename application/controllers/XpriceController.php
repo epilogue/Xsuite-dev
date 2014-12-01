@@ -276,7 +276,7 @@ class XpriceController extends Zend_Controller_Action {
                 $fonctioncreateur= $user_info['id_fonction'];
                 $holoncreateur= $user_info['id_holon'];
                 var_dump($holoncreateur);
-                var_dump($fonctioncreateur);
+                var_dump($fonctioncreateur); exit();
                 /*
                  * ici si itc envoie mail au leader en fonction du holon pour consultation
                  */
