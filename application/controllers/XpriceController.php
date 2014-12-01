@@ -362,7 +362,7 @@ class XpriceController extends Zend_Controller_Action {
                   * ici si fonction itc kam ou leader  envoie de mail au chef de region pour validation
                   */
                 $zonetracking=substr($trackingNumber,6,2);
-                var_dump($zonetracking);
+                var_dump($zonetracking); exit();
                 if( $fonctioncreateur== "1"|| $fonctioncreateur == "2" ||  $fonctioncreateur== "3"){
                     if($zonetracking =="QA"){     
                         $destinataireMail1 = $emailVars->listes->qa;
@@ -397,7 +397,7 @@ class XpriceController extends Zend_Controller_Action {
                 /*
                  * ici si le createur de la demande est un dd un cdr ou un dm alors envoie de mail au chef de marché
                  */
-                elseif ($fonctioncreateur== "7" || $fonctioncreateur=="6" || $fonctioncreateur =="11") {
+                elseif ($fonctioncreateur == "7" || $fonctioncreateur =="6" || $fonctioncreateur == "11") {
                     if($zonetracking=="QA" || $zonetracking=="QF" ||$zonetracking=="QE" || $zonetracking=="QI" || $zonetracking=="QC" ||$zonetracking=="QH" ||$zonetracking=="QK"){
                         $destinataireMail3 = $emailVars->listes->cm;
                         $url3 = "http://{$_SERVER['SERVER_NAME']}/xprice/validatechefmarche/numwp/{$numwp}";
