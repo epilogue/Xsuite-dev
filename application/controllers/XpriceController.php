@@ -139,10 +139,10 @@ class XpriceController extends Zend_Controller_Action {
             //var_dump($datefinal);
             $this->view->datefinal=$datefinal;
             $user = $this->_auth->getStorage()->read();
-            var_dump ($user->id_zone);
+            //var_dump ($user->id_zone);
             $zoneT = new Application_Model_DbTable_Zones();
             $zone = $zoneT->getZone($user->id_zone);
-            var_dump($zone['id_zone']);
+            //var_dump($zone['id_zone']);
             $Xprices = new Application_Model_DbTable_Xprices();
             $trackingNumber = Application_Model_DbTable_Xprices::makeTrackingNumber($zone['nom_zone'], $Xprices->lastId(true));
             // $this->view->trackingNumber = Application_Model_DbTable_Xprices::makeTrackingNumber($zone->nom_zone, $Xprices->lastId(true));
@@ -275,6 +275,8 @@ class XpriceController extends Zend_Controller_Action {
                 $emailVars = Zend_Registry::get('emailVars');
                 $fonctioncreateur= $user_info['id_fonction'];
                 $holoncreateur= $user_info['id_holon'];
+                var_dump($holoncreateur);
+                var_dump($fonctioncreateur);
                 /*
                  * ici si itc envoie mail au leader en fonction du holon pour consultation
                  */
@@ -349,6 +351,7 @@ class XpriceController extends Zend_Controller_Action {
                         . "\n"
                         . "--\n"
                         . "Xsuite";
+                    var_dump($destinataireMail2);
                     $mail2 = new Xsuite_Mail();
                     $mail2->setSubject("XPrice : Nouvelle Offre à consulter de {$user_info['nom']} pour {$infos_client['nom_client']}")
                         ->setBodyText(sprintf($corpsMail2, $url2))
@@ -359,6 +362,7 @@ class XpriceController extends Zend_Controller_Action {
                   * ici si fonction itc kam ou leader  envoie de mail au chef de region pour validation
                   */
                 $zonetracking=substr($trackingNumber,6,2);
+                var_dump($zonetracking);
                 if( $fonctioncreateur==1 || $fonctioncreateur ==2 ||  $fonctioncreateur==3){
                     if($zonetracking =="QA"){     
                         $destinataireMail1 = $emailVars->listes->qa;
@@ -383,6 +387,7 @@ class XpriceController extends Zend_Controller_Action {
                         . "\n"
                         . "--\n"
                         . "Xsuite";
+                var_dump($destinataireMail1);
                     $mail1 = new Xsuite_Mail();
                     $mail1->setSubject("XPrice : Nouvelle Offre à valider de {$user_info['nom']} pour {$infos_client['nom_client']}")
                         ->setBodyText(sprintf($corpsMail1, $url1))
@@ -406,6 +411,7 @@ class XpriceController extends Zend_Controller_Action {
                         . "\n"
                         . "--\n"
                         . "Xsuite";
+                var_dump($destinataireMail3);
                     $mail3 = new Xsuite_Mail();
                     $mail3->setSubject("XPrice : Nouvelle Offre à valider de {$user_info['nom']} pour {$infos_client['nom_client']}")
                         ->setBodyText(sprintf($corpsMail3, $url3))
