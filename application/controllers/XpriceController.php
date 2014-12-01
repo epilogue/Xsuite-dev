@@ -534,8 +534,8 @@ class XpriceController extends Zend_Controller_Action {
              */
             
             $destIndustry=$info_client['id_industry'];
-            var_dump($destIndustry['id_industry']);
-            if($destIndustry==416){
+            //var_dump($destIndustry['id_industry']);
+            
                  $destinataireMail2 =$emailVars->listes->fobfr;
                 $url2 = "http://{$_SERVER['SERVER_NAME']}/xprice/prixfobfr/numwp/{$numwp}";
             $corpsMail2 = "Bonjour,\n"
@@ -553,7 +553,7 @@ class XpriceController extends Zend_Controller_Action {
                     ->setBodyText(sprintf($corpsMail2, $url2))
                     ->addTo($destinataireMail2)
                     ->send(); 
-            }else{
+            
                 
             switch($destIndustry){
                 case ($destIndustry >0 && $destIndustry<77 ):
@@ -592,7 +592,7 @@ class XpriceController extends Zend_Controller_Action {
             $message = "la demande a été validée.";
             $flashMessenger->addMessage($message);
             $redirector = $this->_helper->getHelper('Redirector');
-            $redirector->gotoSimple('index', 'xprice');}
+            $redirector->gotoSimple('index', 'xprice');
           }
           /*
            * si la variable $validation existe et qu'elle est égale à "nonValide"
