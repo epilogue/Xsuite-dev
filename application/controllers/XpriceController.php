@@ -588,6 +588,7 @@ class XpriceController extends Zend_Controller_Action {
                     ->setBodyText(sprintf($corpsMail2, $url2))
                     ->addTo($destinataireMail2)
             ->send();
+            $flashMessenger = $this->_helper->getHelper('FlashMessenger');
             $message = "la demande a été validée.";
             $flashMessenger->addMessage($message);
             $redirector = $this->_helper->getHelper('Redirector');
@@ -615,6 +616,7 @@ class XpriceController extends Zend_Controller_Action {
                     ->addTo($destinataireMail3)
                     ->send();
             $message = "la demande a été refusée.";
+            $flashMessenger = $this->_helper->getHelper('FlashMessenger');
             $flashMessenger->addMessage($message);
             $redirector = $this->_helper->getHelper('Redirector');
             $redirector->gotoSimple('index', 'xprice');
@@ -645,6 +647,7 @@ class XpriceController extends Zend_Controller_Action {
             /* ici insertion base de donnée table validation & table historique commentaire 
              * 
              */
+            $flashMessenger = $this->_helper->getHelper('FlashMessenger');
             $message = "la demande  est en attente de réponse du commercial.";
             $flashMessenger->addMessage($message);
             $redirector = $this->_helper->getHelper('Redirector');
@@ -653,7 +656,7 @@ class XpriceController extends Zend_Controller_Action {
           }
          $nouvelle_validation = new Application_Model_DbTable_Validationsxprice();
             $nouv_validation = $nouvelle_validation->createValidation($formData['nom_validation'], $formData['date_validation'], $formData['validation'], $formData['commentaire_chefregion'],$formData['cdr'], $formData['tracking']);
-             $flashMessenger = $this->_helper->getHelper('FlashMessenger');
+             
             
          }
     }
