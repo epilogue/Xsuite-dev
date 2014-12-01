@@ -728,9 +728,8 @@ class XpriceController extends Zend_Controller_Action {
                 $validations = new Application_Model_DbTable_Validationsxprice();
                 $validation = $validations->createValidation($nom_validationfobfr, $date_validationfobfr, $etat, $datas['commentaire_fobfr'], $user->id_user, $datas['tracking_number']);
             }
-            //changer l'adresse mail et faire en sorte que ce  soit le supply chain qui recoive le mail
             $emailVars = Zend_Registry::get('emailVars');
-            $fobfrMail = $emailVars->listes->fobfr;
+            $Mailsupply = $emailVars->listes->supplychain;
             $url = "http://{$_SERVER['SERVER_NAME']}/xprice/validatesupply/numwp/{$numwp}";
             $corpsMail = "Bonjour,\n"
                     . "\n"
@@ -745,7 +744,7 @@ class XpriceController extends Zend_Controller_Action {
             $mail = new Xsuite_Mail();
             $mail->setSubject("XPrice : Nouvelle demande à valider.")
                     ->setBodyText(sprintf($corpsMail, $url))
-                    ->addTo($fobfrMail)
+                    ->addTo($Mailsupply)
                     ->send();
             $flashMessenger = $this->_helper->getHelper('FlashMessenger');
             $message = "les prix fob et cif  ont bien été enregistrés.";
