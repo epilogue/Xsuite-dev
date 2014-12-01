@@ -203,7 +203,7 @@ class XpriceController extends Zend_Controller_Action {
              if($industriewp['Z2MCL1']=='' || $industriewp['Z2MCL1']==' '){
                               $industriewp['Z2MCL1']="SCI";
              }
-             var_dump(['Z2MCL1']);exit();
+             var_dump($industriewp['Z2MCL1']);exit();
             /*
              * information concernant  le projet industry auquel appartient le client
              *    donc à partir du code movex industry on va chercher dans la base xsuite
