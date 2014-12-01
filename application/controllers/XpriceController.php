@@ -587,7 +587,11 @@ class XpriceController extends Zend_Controller_Action {
             $mail2->setSubject("XPrice : Nouvelle demande à valider.")
                     ->setBodyText(sprintf($corpsMail2, $url2))
                     ->addTo($destinataireMail2)
-            ->send(); }
+            ->send();
+            $message = "la demande a été validée.";
+            $flashMessenger->addMessage($message);
+            $redirector = $this->_helper->getHelper('Redirector');
+            $redirector->gotoSimple('index', 'xprice');}
           }
           /*
            * si la variable $validation existe et qu'elle est égale à "nonValide"
@@ -610,6 +614,10 @@ class XpriceController extends Zend_Controller_Action {
                     ->setBodyText(sprintf($corpsMail3,$url3))
                     ->addTo($destinataireMail3)
                     ->send();
+            $message = "la demande a été refusée.";
+            $flashMessenger->addMessage($message);
+            $redirector = $this->_helper->getHelper('Redirector');
+            $redirector->gotoSimple('index', 'xprice');
           }
           /*
            * si la variable $validation existe et est égale à enAttente,
@@ -637,10 +645,16 @@ class XpriceController extends Zend_Controller_Action {
             /* ici insertion base de donnée table validation & table historique commentaire 
              * 
              */
+            $message = "la demande  est en attente de réponse du commercial.";
+            $flashMessenger->addMessage($message);
+            $redirector = $this->_helper->getHelper('Redirector');
+            $redirector->gotoSimple('index', 'xprice');
             
           }
          $nouvelle_validation = new Application_Model_DbTable_Validationsxprice();
             $nouv_validation = $nouvelle_validation->createValidation($formData['nom_validation'], $formData['date_validation'], $formData['validation'], $formData['commentaire_chefregion'],$formData['cdr'], $formData['tracking']);
+             $flashMessenger = $this->_helper->getHelper('FlashMessenger');
+            
          }
     }
     public function validatechefmarcheAction(){
