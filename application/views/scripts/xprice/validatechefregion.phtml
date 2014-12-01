@@ -89,9 +89,9 @@ $this->headTitle($this->title);
                     <td><?php echo $result['code_article'];?></td>
                     <td><?php echo $result['reference_article'];?></td>
                     <td><?php echo $result['quantite_demande_article'];?></td>
-                    <td><?php echo $result['prixwplace_demande_article'];?></td>
-                    <td><?php echo $result['prix_demande_article'];?></td>
-                    <td><?php echo $result['remise_demande_article']; ?></td>
+                    <td><?php echo $result['prixwplace_demande_article']."€";?></td>
+                    <td><?php echo $result['prix_demande_article']."€";?></td>
+                    <td><?php echo $result['remise_demande_article']."%"; ?></td>
                 </tr>
             <?php } ?>
         </table>
