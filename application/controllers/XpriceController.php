@@ -199,7 +199,7 @@ class XpriceController extends Zend_Controller_Action {
             $query1quart = "select ZMCPJO.Z2MCL1  from EIT.SMCCDTA.ZMCPJO  ZMCPJO where ZMCPJO.Z2CUNO= '{$resultat[0]['OBCUNO']}' ";
             $industriewp= odbc_fetch_array(odbc_exec($this->odbc_conn3, $query1quart));
              $this->view->industriewp = $industriewp;
-            // var_dump($industriewp);
+             var_dump($industriewp['Z2MCL1']);
             /*
              * information concernant  le projet industry auquel appartient le client
              *    donc à partir du code movex industry on va chercher dans la base xsuite
