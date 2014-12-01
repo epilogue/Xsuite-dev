@@ -280,63 +280,63 @@ class XpriceController extends Zend_Controller_Action {
                 /*
                  * ici si itc envoie mail au leader en fonction du holon pour consultation
                  */
-                  if($fonctioncreateur==1 ){
+                  if($fonctioncreateur=="1" ){
                     switch($holoncreateur){
-                        case 5:
+                        case "5":
                         $destinataireMail2=$emailVars->listes->leaderis01;
                         break;
-                        case 6:
+                        case "6":
                         $destinataireMail2=$emailVars->listes->leaderis03;
                         break;
-                        case 7:
+                        case "7":
                         $destinataireMail2=$emailVars->listes->leaderis06;
                         break;
-                        case 8:
+                        case "8":
                         $destinataireMail2=$emailVars->listes->leaderiw01;
                         break;
-                        case 9:
+                        case "9":
                         $destinataireMail2=$emailVars->listes->leaderiw02;
                         break;
-                        case 10:
+                        case "10":
                         $destinataireMail2=$emailVars->listes->leaderiw03;
                         break;
-                        case 11:
+                        case "11":
                         $destinataireMail2=$emailVars->listes->leaderis02;
                         break;
-                        case 12:
+                        case "12":
                         $destinataireMail2=$emailVars->listes->leaderis05;
                         break;
-                        case 13:
+                        case "13":
                         $destinataireMail2=$emailVars->listes->leaderis04;
                         break;
-                        case 14:
+                        case "14":
                         $destinataireMail2=$emailVars->listes->leaderiw04;
                         break;
-                        case 15:
+                        case "15":
                         $destinataireMail2=$emailVars->listes->leaderiw05;
                         break;
-                        case 16:
+                        case "16":
                         $destinataireMail2=$emailVars->listes->leaderiw06;
                         break;
-                        case 17:
+                        case "17":
                         $destinataireMail2=$emailVars->listes->leaderiw07;
                         break;
-                        case 18:
+                        case "18":
                         $destinataireMail2=$emailVars->listes->leaderin01;
                         break;
-                        case 19:
+                        case "19":
                         $destinataireMail2=$emailVars->listes->leaderin02;
                         break;
-                        case 20:
+                        case "20":
                         $destinataireMail2=$emailVars->listes->leaderin03;
                         break;
-                        case 21:
+                        case "21":
                         $destinataireMail2=$emailVars->listes->leaderin04;
                         break;
-                        case 22:
+                        case "22":
                         $destinataireMail2=$emailVars->listes->leaderin05;
                         break;
-                        case 23:
+                        case "23":
                         $destinataireMail2=$emailVars->listes->leaderin06;
                         break;
             }
