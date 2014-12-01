@@ -369,7 +369,7 @@ class XpriceController extends Zend_Controller_Action {
                 var_dump($zonetracking); 
                 var_dump($holoncreateur);
                 var_dump($fonctioncreateur);
-                if( $fonctioncreateur == "1" || $fonctioncreateur == "2" || $fonctioncreateur == "3"){
+                if( $fonctioncreateur == "1" || $fonctioncreateur == "2" || $fonctioncreateur == "3" ){
                     if($zonetracking =="QA"){     
                         $destinataireMail1 = $emailVars->listes->qa;
                     }
@@ -393,7 +393,7 @@ class XpriceController extends Zend_Controller_Action {
                         . "\n"
                         . "--\n"
                         . "Xsuite";
-                var_dump($destinataireMail1); exit();
+                var_dump($destinataireMail1);
                     $mail1 = new Xsuite_Mail();
                     $mail1->setSubject("XPrice : Nouvelle Offre à valider de {$user_info['nom_user']} pour {$infos_client['nom_client']}")
                         ->setBodyText(sprintf($corpsMail1, $url1))
@@ -432,7 +432,8 @@ class XpriceController extends Zend_Controller_Action {
                      $mail->setSubject("plop")
                  ->setBodyText(sprintf($corpsMail))
                              ->addTo($mailto)
-                             ->send();}
+                             ->send();    
+                 }
                 /*
                  * FIN DE PAS TOUCHER
                  * Fin du traitement
