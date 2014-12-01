@@ -408,7 +408,7 @@ class XpriceController extends Zend_Controller_Action {
                         . "--\n"
                         . "Xsuite";
                     $mail1 = new Xsuite_Mail();
-                    $mail1->setSubject("XPrice : Nouvelle Offre à valider de {$user_info['nom_user']} pour {$infos_client['nom_client']}")
+                    $mail1->setSubject("XPrice : Nouvelle Offre à valider de {$user_info['nom_user']} pour {$infos_client['OKCUNM']}")
                         ->setBodyText(sprintf($corpsMail1, $url1))
                         ->addTo($destinataireMail1)
                         ->send();
@@ -430,9 +430,9 @@ class XpriceController extends Zend_Controller_Action {
                         . "\n"
                         . "--\n"
                         . "Xsuite";
-                var_dump($destinataireMail3);
+                //var_dump($destinataireMail3);
                     $mail3 = new Xsuite_Mail();
-                    $mail3->setSubject("XPrice : Nouvelle Offre à valider de {$user_info['nom']} pour {$infos_client['nom_client']}")
+                    $mail3->setSubject("XPrice : Nouvelle Offre à valider de {$user_info['nom_user']} pour {$infos_client['OKCUNM']}")
                         ->setBodyText(sprintf($corpsMail3, $url3))
                         ->addTo($destinataireMail3)
                         ->send();
@@ -529,6 +529,7 @@ class XpriceController extends Zend_Controller_Action {
              */
             
             $destIndustry=$info_client['id_industry'];
+            var_dump($destIndustry['id_industry']);
             if($destIndustry==416){
                  $destinataireMail2 =$emailVars->listes->fobfr;
                 $url2 = "http://{$_SERVER['SERVER_NAME']}/xprice/prixfobfr/numwp/{$numwp}";
@@ -548,6 +549,7 @@ class XpriceController extends Zend_Controller_Action {
                     ->addTo($destinataireMail2)
                     ->send(); 
             }else{
+                
             switch($destIndustry){
                 case ($destIndustry >0 && $destIndustry<77 ):
                     $destinataireMail2=$emailVars->listes->carindustries1;
