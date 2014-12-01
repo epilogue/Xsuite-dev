@@ -200,7 +200,7 @@ class XpriceController extends Zend_Controller_Action {
             $industriewp= odbc_fetch_array(odbc_exec($this->odbc_conn3, $query1quart));
              $this->view->industriewp = $industriewp;
              var_dump($industriewp['Z2MCL1']);
-             if($industriewp['Z2MCL1']=='' || $industriewp['Z2MCL1']==' '){
+             if($industriewp['Z2MCL1']=="" || $industriewp['Z2MCL1']==" "){
                               $industriewp['Z2MCL1']="SCI";
              }
              var_dump($industriewp['Z2MCL1']);exit();
