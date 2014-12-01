@@ -479,6 +479,10 @@ class XpriceController extends Zend_Controller_Action {
         $info_demande_xprice = $infos_demande_xprice->getNumwp($numwp);
         $user_id = $info_demande_xprice['id_user'];
         $this->view->info_demande_xprice = $info_demande_xprice;
+        $date =  DateTime::createFromFormat('Y-m-d',$info_demande_xprice['date_demande_xprice']);
+        $dateplop=$date->format('d/m/Y');
+        $this->view->dateplop=$dateplop;
+        
         $infos_user = new Application_Model_DbTable_Users();
         $info_user = $infos_user->getUserDemande($user_id);
                 
@@ -493,6 +497,7 @@ class XpriceController extends Zend_Controller_Action {
         $infos_demande_article_xprice = new Application_Model_DbTable_DemandeArticlexprices();
         $info_demande_article_xprice = $infos_demande_article_xprice->getDemandeArticlexprice($numwp);
         $this->view->info_demande_article_xprice = $info_demande_article_xprice;
+        
         
          if ($this->getRequest()->isPost()) {
             $date_validation = date("Y-m-d H:i:s"); 
