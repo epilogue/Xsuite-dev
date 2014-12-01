@@ -375,25 +375,25 @@ class XpriceController extends Zend_Controller_Action {
                         $destinataireMail1 = $emailVars->listes->qa;
                         break;
                         case "QC":
-                        $destinataireMail1= $emailVars->listes->CDRNORD;
+                        $destinataireMail1= $emailVars->listes->cdrnord;
                         break;
                         case "QF":
-                        $destinataireMail1= $emailVars->listes->CDRNORD;
+                        $destinataireMail1= $emailVars->listes->cdrnord;
                         break;
                         case "QE":    
-                        $destinataireMail1 = $emailVars->listes->qCDREST;
+                        $destinataireMail1 = $emailVars->listes->cdrest;
                         break;
                         case "QH":
-                        $destinataireMail1= $emailVars->listes->CDREST;
+                        $destinataireMail1= $emailVars->listes->cdrest;
                         break;
                         case "QF":
-                        $destinataireMail1= $emailVars->listes->CDRNORD;
+                        $destinataireMail1= $emailVars->listes->cdrnord;
                         break;
                         case "QI":
-                        $destinataireMail1 = $emailVars->listes->CDROUEST;
+                        $destinataireMail1 = $emailVars->listes->cdrouest;
                         break;
                         case "QK":
-                        $destinataireMail1 = $emailVars->listes->CDROUEST;
+                        $destinataireMail1 = $emailVars->listes->cdrouest;
                         break;
                     }
                     $url1 = "http://{$_SERVER['SERVER_NAME']}/xprice/validatechefregion/numwp/{$numwp}";
