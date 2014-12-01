@@ -370,17 +370,31 @@ class XpriceController extends Zend_Controller_Action {
                 var_dump($holoncreateur);
                 var_dump($fonctioncreateur);
                 if( $fonctioncreateur == "1" or $fonctioncreateur == "2" or $fonctioncreateur == "3" ){
-                    if($zonetracking =="QA"){     
+                    switch ($zonetracking) {
+                        case "QA":    
                         $destinataireMail1 = $emailVars->listes->qa;
-                    }
-                    elseif($zonetracking =="QC" || $zonetracking =="QF") {
+                        break;
+                        case "QC":
                         $destinataireMail1= $emailVars->listes->CDRNORD;
-                    }
-                    elseif($zonetracking =="QE" || $zonetracking =="QH") {
-                        $destinataireMail1 = $emailVars->listes->CDREST;
-                    }
-                    elseif($zonetracking =="QI" || $zonetracking =="QK") {
+                        break;
+                        case "QF":
+                        $destinataireMail1= $emailVars->listes->CDRNORD;
+                        break;
+                        case "QE":    
+                        $destinataireMail1 = $emailVars->listes->qCDREST;
+                        break;
+                        case "QH":
+                        $destinataireMail1= $emailVars->listes->CDREST;
+                        break;
+                        case "QF":
+                        $destinataireMail1= $emailVars->listes->CDRNORD;
+                        break;
+                        case "QI":
                         $destinataireMail1 = $emailVars->listes->CDROUEST;
+                        break;
+                        case "QK":
+                        $destinataireMail1 = $emailVars->listes->CDROUEST;
+                        break;
                     }
                     $url1 = "http://{$_SERVER['SERVER_NAME']}/xprice/validatechefregion/numwp/{$numwp}";
                     $corpsMail1 = "Bonjour,\n"
