@@ -367,8 +367,8 @@ class XpriceController extends Zend_Controller_Action {
                   * ici si fonction itc kam ou leader  envoie de mail au chef de region pour validation
                   */
                 $zonetracking=substr($trackingNumber,6,2);
-                var_dump($zonetracking); exit();
-                if( $fonctioncreateur== "1"|| $fonctioncreateur == "2" ||  $fonctioncreateur== "3"){
+                var_dump($zonetracking); 
+                if( $fonctioncreateur== "1" || $fonctioncreateur == "2" ||  $fonctioncreateur== "3"){
                     if($zonetracking =="QA"){     
                         $destinataireMail1 = $emailVars->listes->qa;
                     }
@@ -392,7 +392,7 @@ class XpriceController extends Zend_Controller_Action {
                         . "\n"
                         . "--\n"
                         . "Xsuite";
-                var_dump($destinataireMail1);
+                var_dump($destinataireMail1);exit();
                     $mail1 = new Xsuite_Mail();
                     $mail1->setSubject("XPrice : Nouvelle Offre à valider de {$user_info['nom']} pour {$infos_client['nom_client']}")
                         ->setBodyText(sprintf($corpsMail1, $url1))
