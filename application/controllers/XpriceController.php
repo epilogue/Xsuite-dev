@@ -200,6 +200,7 @@ class XpriceController extends Zend_Controller_Action {
             $industriewp= odbc_fetch_array(odbc_exec($this->odbc_conn3, $query1quart));
              $this->view->industriewp = $industriewp;
              var_dump($industriewp['Z2MCL1']);
+             $industriewp['Z2MCL1']=trim($industriewp['Z2MCL1']);
              if($industriewp['Z2MCL1']=="" || $industriewp['Z2MCL1']==" "){
                               $industriewp['Z2MCL1']="SCI";
              }
@@ -209,6 +210,7 @@ class XpriceController extends Zend_Controller_Action {
              *    donc à partir du code movex industry on va chercher dans la base xsuite
              *  le nom de l'industrie auquel le client appartient pour ensuite l'afficher dans la vue
              */
+             
              if(isset($industriewp['Z2MCL1']) && $industriewp['Z2MCL1'] !='' && $industriewp['Z2MCL1'] !=' ' && $industriewp['Z2MCL1'] !='  '){
             $industry = new Application_Model_DbTable_Industry();
             $info_industry = $industry->getMovexIndustry($industriewp['Z2MCL1']);
