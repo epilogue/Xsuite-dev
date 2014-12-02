@@ -701,7 +701,9 @@ class XpriceController extends Zend_Controller_Action {
             if($infos_prixfobfr =""){
                 $anneecourante=date('Y')-1;
                 $query = "select *  from 
-                    EIT.MVXCDTA.MCHEAD MCHEAD WHERE MCHEAD.KOITNO = '{$value['code_article']}'and substring(MCHEAD.KOPCDT,1,4) like '$anneecourante%'";};
+                    EIT.MVXCDTA.MCHEAD MCHEAD WHERE MCHEAD.KOITNO = '{$value['code_article']}'and substring(MCHEAD.KOPCDT,1,4) like '$anneecourante%'";
+                    $infos_prixfobfr = odbc_exec($this->odbc_conn2, $query);
+                    }
             while ($info_prixfobfr = odbc_fetch_array($infos_prixfobfr)) {
                 $date1 = substr($info_prixfobfr['KOPCDT'], 0, -4);
                 $date2 = substr($info_prixfobfr['KOPCDT'], 4, -2);
