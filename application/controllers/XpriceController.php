@@ -491,7 +491,12 @@ class XpriceController extends Zend_Controller_Action {
         $tracking= $info_demande_xprice['tracking_number_demande_xprice'];
        $recherchevalidation = new Application_Model_DbTable_Validationsxprice();
        $recherchesvalidation = $recherchevalidation->getValidation($nomvalidationrecherche, $tracking);
-       echo '<pre>',  var_export($recherchesvalidation),'<pre>';exit();
+       echo '<pre>',  var_export($recherchesvalidation),'<pre>';
+       if ($recherchesvalidation== null){
+      echo "plop";
+       } else{
+           echo "tag    ada";
+       }exit();
         
         $infos_user = new Application_Model_DbTable_Users();
         $info_user = $infos_user->getUserDemande($user_id);
