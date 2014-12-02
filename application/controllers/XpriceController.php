@@ -819,8 +819,9 @@ class XpriceController extends Zend_Controller_Action {
             $etat = "validé";
             $nom_validationsupply = "supply";
             $formData[] = $this->getRequest()->getPost();
-            //echo '<pre>',var_export($formData),'<pre>';
+            echo '<pre>',var_export($formData),'<pre>';
             foreach ($formData as $datas) {
+                echo '<pre>',var_export($datas),'<pre>';
                 $fobs = array_combine($datas['code_article'], $datas['prix_fob']);
                 $cifs = array_combine($datas['code_article'], $datas['prix_cif']);
 
@@ -835,11 +836,11 @@ class XpriceController extends Zend_Controller_Action {
                 $validations = new Application_Model_DbTable_Validationsxprice();
                 $validation = $validations->createValidation($nom_validationsupply, $datas['date_validation_supply'], $etat, $datas['commentaire_supply'], $user->id_user, $datas['tracking_number']);
             }
-           $flashMessenger = $this->_helper->getHelper('FlashMessenger');
-            $message = "les prix fob et cif  sont bien validés.";
-            $flashMessenger->addMessage($message);
-            $redirector = $this->_helper->getHelper('Redirector');
-            $redirector->gotoSimple('index', 'xprice'); 
+//           $flashMessenger = $this->_helper->getHelper('FlashMessenger');
+//            $message = "les prix fob et cif  sont bien validés.";
+//            $flashMessenger->addMessage($message);
+//            $redirector = $this->_helper->getHelper('Redirector');
+//            $redirector->gotoSimple('index', 'xprice'); 
         }
     }
     
