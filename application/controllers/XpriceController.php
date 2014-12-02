@@ -715,7 +715,7 @@ class XpriceController extends Zend_Controller_Action {
         }
 
         if ($this->getRequest()->isPost()) {
-            $date_validationfobfr = date("d-m-Y");
+            $date_validationfobfr =date("Y-m-d H:i:s");
            $this->view->date_validationfobfr =$date_validationfobfr;
             $etat = "validé";
             $nom_validationfobfr = "fobfr";
@@ -814,7 +814,7 @@ class XpriceController extends Zend_Controller_Action {
             }
         }
         if ($this->getRequest()->isPost()) {
-            $date_validationsupply = date("d-m-Y");
+            $date_validationsupply =date("Y-m-d H:i:s");
             $this->view->date_validationsupply = $date_validationsupply;
             $etat = "validé";
             $nom_validationsupply = "supply";
