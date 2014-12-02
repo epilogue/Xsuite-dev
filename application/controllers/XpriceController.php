@@ -693,13 +693,13 @@ class XpriceController extends Zend_Controller_Action {
         //echo '<pre>',  var_export($info_demande_article_xprice,true),'</pre>';
         $this->view->info_demande_article_xprice = $info_demande_article_xprice;
         //$anneecourante=date('Y');
-        $anneecourante=2015;
+        $anneecourante=2018;
         foreach ($info_demande_article_xprice as $value) { $query = "select *  from 
                     EIT.MVXCDTA.MCHEAD MCHEAD WHERE MCHEAD.KOITNO = '{$value['code_article']}'and substring(MCHEAD.KOPCDT,1,4) like '$anneecourante%'";
                                       
             $infos_prixfobfr = odbc_exec($this->odbc_conn2, $query);
             if($infos_prixfobfr =""){
-                $anneecourante=date('Y')-1;
+                $anneecourante=date('Y')-4;
                 $query = "select *  from 
                     EIT.MVXCDTA.MCHEAD MCHEAD WHERE MCHEAD.KOITNO = '{$value['code_article']}'and substring(MCHEAD.KOPCDT,1,4) like '$anneecourante%'";
                     $infos_prixfobfr = odbc_exec($this->odbc_conn2, $query);
