@@ -483,6 +483,14 @@ class XpriceController extends Zend_Controller_Action {
         $date =  DateTime::createFromFormat('Y-m-d',$info_demande_xprice['date_demande_xprice']);
         $dateplop=$date->format('d/m/Y');
         $this->view->dateplop=$dateplop;
+        /*
+         * on recherche si la validation existe déjà ou si elle est en attente;
+         */
+        $nomvalidationrecherche="cdr";
+        $tracking= $info_demande_xprice['tracking_number_demande_xprice'];
+       $recherchevalidation = new Application_Model_DbTable_Validationsxprice();
+       $recherchesvalidation = $recherchevalidation->getValidation($nomvalidationrecherche, $tracking);
+       echo '<pre>',  var_export($recherchesvalidation),'<pre>';exit();
         
         $infos_user = new Application_Model_DbTable_Users();
         $info_user = $infos_user->getUserDemande($user_id);
@@ -837,11 +845,11 @@ class XpriceController extends Zend_Controller_Action {
                 $validations = new Application_Model_DbTable_Validationsxprice();
                 $validation = $validations->createValidation($nom_validationsupply, $date_validation_supply, $etat, $datas['commentaire_supply'], $user->id_user, $datas['tracking_number']);
             }
-//           $flashMessenger = $this->_helper->getHelper('FlashMessenger');
-//            $message = "les prix fob et cif  sont bien validés.";
-//            $flashMessenger->addMessage($message);
-//            $redirector = $this->_helper->getHelper('Redirector');
-//            $redirector->gotoSimple('index', 'xprice'); 
+           $flashMessenger = $this->_helper->getHelper('FlashMessenger');
+            $message = "les prix fob et cif  sont bien validés.";
+            $flashMessenger->addMessage($message);
+            $redirector = $this->_helper->getHelper('Redirector');
+            $redirector->gotoSimple('index', 'xprice'); 
         }
     }
     
