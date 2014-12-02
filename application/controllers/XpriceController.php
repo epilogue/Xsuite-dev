@@ -177,8 +177,17 @@ class XpriceController extends Zend_Controller_Action {
             /* aller chercher prix fob prix cif sur la base MVCDXTA en utilisant les tables KOPCDT(date) KOITNO ( code article) et KO ( prix cif)
              *
              */foreach ($this->view->resultat as $itnoarticle) {
+                 $mmcono = "100";
+		$division = "FR0";
+		$facility = "I01";
+		$type = "3";
+		$warehouse = "I02";
+		$supplier = "I990001";
+		$agreement1 = "I000001";
+		$agreement2 = "I000002";
+		$agreement3 = "I000003";
                // var_dump($itnoarticle);
-                $query3 = "select MCHEAD.KOPCDT, MCHEAD.KOCSU3, MCHEAD.KOITNO from EIT.MVXCDTA.MCHEAD MCHEAD where MCHEAD.KOITNO = '{$itnoarticle['OBITNO']}'";
+                $query3 = "select * from EIT.MVXCDTA.MPAGRP MPAGRP where MPAGRP.AJCONO = '$mmcono' AND MPAGRP.AJSUNO = '$supplier' AND (MPAGRP.AJAGNB = '$agreement3'  OR MPAGRP.AJAGNB = '$agreement2' OR MPAGRP.AJAGNB = '$agreement1') AND MPAGRP.AJOBV2 = '$itnoarticle' AND MPAGRP.AJOBV1 = '$division'  ORDER BY MPAGRP.AJAGNB";
 //echo $query3;
 //exit();
 
