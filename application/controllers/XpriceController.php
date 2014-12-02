@@ -802,7 +802,7 @@ class XpriceController extends Zend_Controller_Action {
         foreach ($info_demande_article_xprice as $value) {
 
 
-            $query = "select * from EIT.MVXCDTA.MCHEAD MCHEAD WHERE MCHEAD.KOITNO = '{$value['code_article']}' order by KOPCDT desc limit 1";
+            $query = "select * from EIT.MVXCDTA.MCHEAD MCHEAD WHERE MCHEAD.KOITNO = '{$value['code_article']}' order by KOPCDT desc";
             //echo $query ; 
             $infos_prixfobfr = odbc_exec($this->odbc_conn2, $query);
             while ($info_prixfobfr = odbc_fetch_array($infos_prixfobfr)) {
