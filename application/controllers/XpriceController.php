@@ -820,7 +820,7 @@ class XpriceController extends Zend_Controller_Action {
             $etat = "validé";
             $nom_validationsupply = "supply";
             $formData[] = $this->getRequest()->getPost();
-            echo '<pre>',var_export($formData),'<pre>';
+            //echo '<pre>',var_export($formData),'<pre>';
             foreach ($formData as $datas) {
                 echo '<pre>',var_export($datas),'<pre>';
                 $fobs = array_combine($datas['code_article'], $datas['prix_fob']);
@@ -835,7 +835,7 @@ class XpriceController extends Zend_Controller_Action {
                     $prixfob = $prixcifs->updatefob($value, $key, $datas['tracking_number']);
                 }
                 $validations = new Application_Model_DbTable_Validationsxprice();
-                $validation = $validations->createValidation($nom_validationsupply, $datas['date_validation_supply'], $etat, $datas['commentaire_supply'], $user->id_user, $datas['tracking_number']);
+                $validation = $validations->createValidation($nom_validationsupply, $date_validation_supply, $etat, $datas['commentaire_supply'], $user->id_user, $datas['tracking_number']);
             }
 //           $flashMessenger = $this->_helper->getHelper('FlashMessenger');
 //            $message = "les prix fob et cif  sont bien validés.";
