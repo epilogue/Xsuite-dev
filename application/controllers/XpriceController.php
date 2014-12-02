@@ -815,6 +815,7 @@ class XpriceController extends Zend_Controller_Action {
         }
         if ($this->getRequest()->isPost()) {
             $date_validationsupply = date("d-m-Y");
+            $this->view->date_validationsupply = $date_validationsupply;
             $etat = "validé";
             $nom_validationsupply = "supply";
             $formData[] = $this->getRequest()->getPost();
@@ -831,7 +832,7 @@ class XpriceController extends Zend_Controller_Action {
                     $prixfob = $prixcifs->updatefob($value, $key, $datas['tracking_number']);
                 }
                 $validations = new Application_Model_DbTable_Validationsxprice();
-                $validation = $validations->createValidation($nom_validationsupply, $date_validationsupply, $etat, $datas['commentaire_fobfr'], $user->id_user, $datas['tracking_number']);
+                $validation = $validations->createValidation($nom_validationsupply, $formData['date_validationsupply'], $etat, $formData['commentaire_fobfr'], $user->id_user, $datas['tracking_number']);
             }
         }
     }
