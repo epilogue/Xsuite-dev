@@ -803,6 +803,7 @@ exit();
 
 
             $query = "select * from EIT.MVXCDTA.MCHEAD MCHEAD WHERE MCHEAD.KOITNO = '{$value['code_article']}' order by KOPCDT desc limit 1";
+            echo $query ; exit();
             $infos_prixfobfr = odbc_exec($this->odbc_conn2, $query);
             while ($info_prixfobfr = odbc_fetch_array($infos_prixfobfr)) {
                 $date1 = substr($info_prixfobfr['KOPCDT'], 0, -4);
