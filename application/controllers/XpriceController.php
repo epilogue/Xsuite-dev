@@ -815,6 +815,7 @@ class XpriceController extends Zend_Controller_Action {
         }
         if ($this->getRequest()->isPost()) {
             $date_validation_supply =date("Y-m-d H:i:s");
+            echo $date_validation_supply;
             $this->view->date_validation_supply = $date_validation_supply;
             $etat = "validé";
             $nom_validationsupply = "supply";
