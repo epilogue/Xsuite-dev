@@ -106,7 +106,8 @@ $this->headTitle($this->title);
             <?php } ?>
                 <tr>
                 <td colspan="3">total</td>
-                <td><?php $total=($result['OBSAPR']*((int)$result['OBORQT']))?></td>
+                <td><?php $totalprixtarif=($result['OBSAPR']*((int)$result['OBORQT'])); echo $totalprixtarif;?></td>
+                <td><?php echo $result['OBLNA2'];?></td>
             </tr>
         </table>
     </fieldset>
