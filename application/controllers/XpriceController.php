@@ -270,7 +270,7 @@ echo $query3;
                     if (is_null($articleexist)) {
                         $articles_xprice = $articles_xprice->createArticle($resultarticle['OBITDS'], $resultarticle['OBITNO'], null);
                     }
-                    $demande_xprice = $demandes_xprice->createDemandeArticlexprice($resultarticle['OBNEPR'], $resultarticle['OBSAPR'], $resultarticle['OBORQT'], round($resultarticle['OBNEPR'] * 100 / $resultarticle['OBSAPR'], 2), $infos_offres->OBRGDT, null, null, null, null, null, $trackingNumber, $resultarticle['OBITNO'], $resultarticle['OBITDS'], $numwp);
+                    $demande_xprice = $demandes_xprice->createDemandeArticlexprice($resultarticle['OBSAPR'], $resultarticle['OBNEPR'], $resultarticle['OBORQT'], round($resultarticle['OBNEPR'] * 100 / $resultarticle['OBSAPR'], 2), $infos_offres->OBRGDT, null, null, null, null, null, $trackingNumber, $resultarticle['OBITNO'], $resultarticle['OBITDS'], $numwp);
                 }
                 foreach ($prixciffob as $value) {
                     $insertprix = new Application_Model_DbTable_DemandeArticlexprices();
