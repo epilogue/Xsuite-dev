@@ -274,7 +274,7 @@ echo $query3;
                 }
                 foreach ($prixciffob as $value) {
                     $insertprix = new Application_Model_DbTable_DemandeArticlexprices();
-                    $inserprix = $insertprix->InserPrixFob($value->KOCSU3, $value->KOITNO, $numwp);
+                    $inserprix = $insertprix->InserPrixFob($value->AJPUPR, $value->AJOBV2, $numwp);
                 }
                 /*
                  * ici, envoi des mails 
