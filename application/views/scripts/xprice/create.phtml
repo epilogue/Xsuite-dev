@@ -95,8 +95,8 @@ $this->headTitle($this->title);
                     <td><?php echo $result['OBITNO'];?></td>
                     <td><?php echo $result['OBITDS'];?></td>
             <td><?php echo (int)$result['OBORQT'];?></td>
-                    <td><?php echo round($result['OBSAPR'],2);?></td>
-                    <td><?php echo round($result['OBNEPR'],2);?></td>
+                    <td><?php echo round($result['OBSAPR'],2)."€";?></td>
+                    <td><?php echo round($result['OBNEPR'],2)."€";?></td>
                     <td><?php $margedemande=(($result['OBNEPR']*100)/$result['OBSAPR']); $margedef=100-$margedemande;echo round($margedef,2)."%"; ?></td>
                     <td hidden="hidden"></td>
                     <td hidden="hidden"></td>
@@ -106,8 +106,8 @@ $this->headTitle($this->title);
             <?php } ?>
                 <tr>
                 <td colspan="3">total</td>
-                <td><?php $totalprixtarif=($result['OBSAPR']*((int)$result['OBORQT'])); echo $totalprixtarif;?></td>
-                <td><?php echo $result['OBLNA2'];?></td>
+                <td><?php $totalprixtarif=($result['OBSAPR']*((int)$result['OBORQT'])); echo $totalprixtarif."€";?></td>
+                <td><?php echo $result['OBLNA2']."€";?></td>
             </tr>
         </table>
     </fieldset>
