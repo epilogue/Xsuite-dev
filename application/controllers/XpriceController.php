@@ -186,7 +186,7 @@ class XpriceController extends Zend_Controller_Action {
 		$agreement1 = "I000001";
 		$agreement2 = "I000002";
 		$agreement3 = "I000003";
-                var_dump($itnoarticle);
+                //var_dump($itnoarticle);
                 $query3 = "select * from EIT.MVXCDTA.MPAGRP MPAGRP where MPAGRP.AJCONO = '$mmcono' AND MPAGRP.AJSUNO = '$supplier' AND (MPAGRP.AJAGNB = '$agreement3'  OR MPAGRP.AJAGNB = '$agreement2' OR MPAGRP.AJAGNB = '$agreement1') AND MPAGRP.AJOBV2 = '{$itnoarticle['OBITNO']}' AND MPAGRP.AJOBV1 = '$division'  ORDER BY MPAGRP.AJAGNB";
  $resultats3 = odbc_Exec($this->odbc_conn2, $query3);
                 $prixciffob[] = odbc_fetch_object($resultats3);
@@ -269,7 +269,7 @@ class XpriceController extends Zend_Controller_Action {
                     $demande_xprice = $demandes_xprice->createDemandeArticlexprice($resultarticle['OBSAPR'], $resultarticle['OBNEPR'], $resultarticle['OBORQT'], round(100-($resultarticle['OBNEPR'] * 100 / $resultarticle['OBSAPR']), 2), $infos_offres->OBRGDT, null, null, null, null, null, $trackingNumber, $resultarticle['OBITNO'], $resultarticle['OBITDS'], $numwp);
                 }
                 foreach ($prixciffob as $value) {
-                    //echo '<pre>',var_export($value),'<pre>'; exit();
+                    echo '<pre>',var_export($value),'<pre>'; exit();
                     $insertprix = new Application_Model_DbTable_DemandeArticlexprices();
                     $inserprix = $insertprix->InserPrixFob($value->AJPUPR, $value->AJOBV2, $numwp);
                 }
