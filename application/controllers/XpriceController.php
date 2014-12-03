@@ -716,6 +716,7 @@ class XpriceController extends Zend_Controller_Action {
         $anneecourante=date('Y');
         //$anneecourante=2018;
         foreach ($info_demande_article_xprice as $value) { 
+            echo '<pre>',  var_export($value),'<pre>';
              $mmcono = "100";
 		$division = "FR0";
 		$facility = "I01";
