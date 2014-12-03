@@ -373,9 +373,9 @@ class XpriceController extends Zend_Controller_Action {
                   * ici si fonction itc kam ou leader  envoie de mail au chef de region pour validation
                   */
                 $zonetracking=substr($trackingNumber,6,2);
-                var_dump($zonetracking); 
-                var_dump($holoncreateur);
-                var_dump($fonctioncreateur);
+               // var_dump($zonetracking); 
+               // var_dump($holoncreateur);
+               // var_dump($fonctioncreateur);
                 if( $fonctioncreateur == "1" or $fonctioncreateur == "2" or $fonctioncreateur == "3" ){
                     switch ($zonetracking) {
                         case "QA":    
