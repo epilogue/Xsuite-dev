@@ -715,8 +715,8 @@ class XpriceController extends Zend_Controller_Action {
         $this->view->info_demande_article_xprice = $info_demande_article_xprice;
         $anneecourante=date('Y');
         //$anneecourante=2018;
-        foreach ($info_demande_article_xprice as $value) { $query = "select *  from 
-                    EIT.MVXCDTA.MCHEAD MCHEAD WHERE MCHEAD.KOITNO = '{$value['code_article']}'and substring(MCHEAD.KOPCDT,1,4) like '$anneecourante%'";
+        foreach ($info_demande_article_xprice as $value) { 
+                  $query =" select * from EIT.MVXCDTA.MPAGRP MPAGRP where MPAGRP.AJCONO = '$mmcono' AND MPAGRP.AJSUNO = '$supplier' AND (MPAGRP.AJAGNB = '$agreement3'  OR MPAGRP.AJAGNB = '$agreement2' OR MPAGRP.AJAGNB = '$agreement1') AND MPAGRP.AJOBV2 = '{$value['code_article']}' AND MPAGRP.AJOBV1 = '$division'  ORDER BY MPAGRP.AJAGNB";
                                       
             $infos_prixfobfr = odbc_exec($this->odbc_conn2, $query);
 //            if($infos_prixfobfr =""){
@@ -726,10 +726,6 @@ class XpriceController extends Zend_Controller_Action {
 //                    $infos_prixfobfr = odbc_exec($this->odbc_conn2, $query);
 //                    }
             while ($info_prixfobfr = odbc_fetch_array($infos_prixfobfr)) {
-                $date1 = substr($info_prixfobfr['KOPCDT'], 0, -4);
-                $date2 = substr($info_prixfobfr['KOPCDT'], 4, -2);
-                $date3 = substr($info_prixfobfr['KOPCDT'], 6, 2);
-                $date = implode('-', array($date1, $date2, $date3));
                 $this->view->info_prixfobfr = $info_prixfobfr;
             }
         }
