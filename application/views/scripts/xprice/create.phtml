@@ -107,7 +107,7 @@ $this->headTitle($this->title);
                 <tr>
                 <td colspan="3">total</td>
                 <td><?php $totalprixtarif=($result['OBSAPR']*((int)$result['OBORQT'])); echo $totalprixtarif."€";?></td>
-                <td><?php echo $result['OBLNA2']."€";?></td>
+                <td><?php echo round($result['OBLNA2'])."€";?></td>
             </tr>
         </table>
     </fieldset>
