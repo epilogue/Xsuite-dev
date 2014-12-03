@@ -89,9 +89,7 @@ $this->headTitle($this->title);
                 <th hidden="hidden">prix fob</th>
                 <th hidden="hidden">prix cif</th>
             </tr>
-            <tr>
-                <th colspan="3">total</th>
-            </tr>
+            
             <?php foreach ($this->resultat as $result) { ?>
                 <tr>
                     <td><?php echo $result['OBITNO'];?></td>
@@ -106,6 +104,10 @@ $this->headTitle($this->title);
                     <td hidden="hidden"><?php echo $result['OBITNO'];?></td>
                 </tr>
             <?php } ?>
+                <tr>
+                <td colspan="3">total</td>
+                <td><?php $total=($result['OBSAPR']*((int)$result['OBORQT']))?></td>
+            </tr>
         </table>
     </fieldset>
 </div>
