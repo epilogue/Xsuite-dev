@@ -727,17 +727,17 @@ class XpriceController extends Zend_Controller_Action {
 		$agreement3 = "I000003";
                   $query =" select * from EIT.MVXCDTA.MPAGRP MPAGRP where MPAGRP.AJCONO = '$mmcono' AND MPAGRP.AJSUNO = '$supplier' AND (MPAGRP.AJAGNB = '$agreement3'  OR MPAGRP.AJAGNB = '$agreement2' OR MPAGRP.AJAGNB = '$agreement1') AND MPAGRP.AJOBV2 = '{$value['code_article']}' AND MPAGRP.AJOBV1 = '$division'  ORDER BY MPAGRP.AJAGNB";
                                       
-            $infos_prixfobfr = odbc_exec($this->odbc_conn2, $query);
+            $infos_prixfobfr = odbc_fetch_array(odbc_exec($this->odbc_conn2, $query));
 //            if($infos_prixfobfr =""){
 //                $anneecourante=date('Y')-1;
 //                $query = "select *  from 
 //                    EIT.MVXCDTA.MCHEAD MCHEAD WHERE MCHEAD.KOITNO = '{$value['code_article']}'and substring(MCHEAD.KOPCDT,1,4) like '$anneecourante%'";
 //                    $infos_prixfobfr = odbc_exec($this->odbc_conn2, $query);
 //                    }
-            while ($info_prixfobfr = odbc_fetch_array($infos_prixfobfr)) {
-                $this->view->info_prixfobfr = $info_prixfobfr;
-                echo '<pre>',  var_export($info_prixfobfr),'<pre>';                exit();
-            }
+          
+                $this->view->infos_prixfobfr = $infos_prixfobfr;
+                echo '<pre>',  var_export($infos_prixfobfr),'<pre>';                exit();
+            
         }
 
         if ($this->getRequest()->isPost()) {
