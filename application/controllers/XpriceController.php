@@ -716,6 +716,15 @@ class XpriceController extends Zend_Controller_Action {
         $anneecourante=date('Y');
         //$anneecourante=2018;
         foreach ($info_demande_article_xprice as $value) { 
+             $mmcono = "100";
+		$division = "FR0";
+		$facility = "I01";
+		$type = "3";
+		$warehouse = "I02";
+		$supplier = "I990001";
+		$agreement1 = "I000001";
+		$agreement2 = "I000002";
+		$agreement3 = "I000003";
                   $query =" select * from EIT.MVXCDTA.MPAGRP MPAGRP where MPAGRP.AJCONO = '$mmcono' AND MPAGRP.AJSUNO = '$supplier' AND (MPAGRP.AJAGNB = '$agreement3'  OR MPAGRP.AJAGNB = '$agreement2' OR MPAGRP.AJAGNB = '$agreement1') AND MPAGRP.AJOBV2 = '{$value['code_article']}' AND MPAGRP.AJOBV1 = '$division'  ORDER BY MPAGRP.AJAGNB";
                                       
             $infos_prixfobfr = odbc_exec($this->odbc_conn2, $query);
