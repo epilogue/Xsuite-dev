@@ -727,6 +727,7 @@ class XpriceController extends Zend_Controller_Action {
 //                    }
             while ($info_prixfobfr = odbc_fetch_array($infos_prixfobfr)) {
                 $this->view->info_prixfobfr = $info_prixfobfr;
+                echo '<pre>',  var_export($info_prixfobfr),'<pre>';
             }
         }
 
