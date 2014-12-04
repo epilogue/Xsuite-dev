@@ -719,7 +719,7 @@ class XpriceController extends Zend_Controller_Action {
         $anneecourante=date('Y');
         //$anneecourante=2018;
         foreach ($info_demande_article_xprice as $value) { 
-            echo '<pre>',  var_export($value),'<pre>';
+            //echo '<pre>',  var_export($value),'<pre>';
              $mmcono = "100";
 		$division = "FR0";
 		$facility = "I01";
@@ -729,7 +729,7 @@ class XpriceController extends Zend_Controller_Action {
 		$agreement1 = "I000001";
 		$agreement2 = "I000002";
 		$agreement3 = "I000003";
-                var_dump($value->code_article);
+                //var_dump($value->code_article);
                   $query =" select * from EIT.MVXCDTA.MPAGRP MPAGRP where MPAGRP.AJCONO = '$mmcono' AND MPAGRP.AJSUNO = '$supplier' AND (MPAGRP.AJAGNB = '$agreement3'  OR MPAGRP.AJAGNB = '$agreement2' OR MPAGRP.AJAGNB = '$agreement1') AND MPAGRP.AJOBV2 = '{$value['code_article']}' AND MPAGRP.AJOBV1 = '$division'  ORDER BY MPAGRP.AJAGNB";
                                       
             $infos_prixfobfr = odbc_fetch_array(odbc_exec($this->odbc_conn2, $query));
@@ -741,7 +741,7 @@ class XpriceController extends Zend_Controller_Action {
 //                    }
           
                 $this->view->infos_prixfobfr = $infos_prixfobfr;
-                echo '<pre>',  var_export($infos_prixfobfr),'<pre>';                exit();
+               // echo '<pre>',  var_export($infos_prixfobfr),'<pre>';                exit();
             
         }
 
