@@ -189,10 +189,10 @@ class XpriceController extends Zend_Controller_Action {
                 //var_dump($itnoarticle);
                 $query3 = "select * from EIT.MVXCDTA.MPAGRP MPAGRP where MPAGRP.AJCONO = '$mmcono' AND MPAGRP.AJSUNO = '$supplier' AND (MPAGRP.AJAGNB = '$agreement3'  OR MPAGRP.AJAGNB = '$agreement2' OR MPAGRP.AJAGNB = '$agreement1') AND MPAGRP.AJOBV2 = '{$itnoarticle['OBITNO']}' AND MPAGRP.AJOBV1 = '$division'  ORDER BY MPAGRP.AJAGNB";
                 $resultats3 = odbc_Exec($this->odbc_conn2, $query3);
-                $prixciffob= odbc_fetch_array($resultats3);
+                $prixciffob= odbc_fetch_array($resultats3); echo '<pre>',var_export($prixciffob),'<pre>';            exit();
             }
             $this->view->prixciffob = $prixciffob;
-            echo '<pre>',var_export($prixciffob),'<pre>';            exit();
+           
             /*
              * à partir du code client de la table ooline on va chercher dans la table ocusma
              * les informations concernant le client pour pouvoir les afficher dans la vue phtml
