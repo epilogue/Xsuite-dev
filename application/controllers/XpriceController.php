@@ -192,7 +192,7 @@ class XpriceController extends Zend_Controller_Action {
                 $prixciffob[]= odbc_fetch_object($resultats3);
             }
             $this->view->prixciffob = $prixciffob;
-            echo '<pre>',var_export($prixciffob),'<pre>';            exit();
+           // echo '<pre>',var_export($prixciffob),'<pre>';            
             /*
              * à partir du code client de la table ooline on va chercher dans la table ocusma
              * les informations concernant le client pour pouvoir les afficher dans la vue phtml
