@@ -272,10 +272,10 @@ class XpriceController extends Zend_Controller_Action {
                 
                 $values[]=$prixciffob;
                 echo '<pre>',var_export($values),'<pre>'; 
-                foreach ($values as $value) {
+                foreach ($values as $key=>$value) {
                    
                     $insertprix = new Application_Model_DbTable_DemandeArticlexprices();
-                    $inserprix = $insertprix->InserPrixFob($value['AJPUPR'], $value['AJOBV2'], $numwp);
+                    $inserprix = $insertprix->InserPrixFob($AJPUPR, $AJOBV2, $numwp);
                 } 
                 echo '<pre>',var_export($value),'<pre>'; exit();
                 
