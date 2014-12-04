@@ -188,10 +188,11 @@ class XpriceController extends Zend_Controller_Action {
 		$agreement3 = "I000003";
                 //var_dump($itnoarticle);
                 $query3 = "select * from EIT.MVXCDTA.MPAGRP MPAGRP where MPAGRP.AJCONO = '$mmcono' AND MPAGRP.AJSUNO = '$supplier' AND (MPAGRP.AJAGNB = '$agreement3'  OR MPAGRP.AJAGNB = '$agreement2' OR MPAGRP.AJAGNB = '$agreement1') AND MPAGRP.AJOBV2 = '{$itnoarticle['OBITNO']}' AND MPAGRP.AJOBV1 = '$division'  ORDER BY MPAGRP.AJAGNB";
- $resultats3 = odbc_Exec($this->odbc_conn2, $query3);
-                $prixciffob[] = odbc_fetch_object($resultats3);
+                $resultats3 = odbc_Exec($this->odbc_conn2, $query3);
+                $prixciffob= odbc_fetch_array($resultats3);
             }
             $this->view->prixciffob = $prixciffob;
+            echo '<pre>',var_export($prixciffob),'<pre>';            exit();
             /*
              * à partir du code client de la table ooline on va chercher dans la table ocusma
              * les informations concernant le client pour pouvoir les afficher dans la vue phtml
@@ -726,6 +727,7 @@ class XpriceController extends Zend_Controller_Action {
 		$agreement1 = "I000001";
 		$agreement2 = "I000002";
 		$agreement3 = "I000003";
+                var_dump($value->code_article);
                   $query =" select * from EIT.MVXCDTA.MPAGRP MPAGRP where MPAGRP.AJCONO = '$mmcono' AND MPAGRP.AJSUNO = '$supplier' AND (MPAGRP.AJAGNB = '$agreement3'  OR MPAGRP.AJAGNB = '$agreement2' OR MPAGRP.AJAGNB = '$agreement1') AND MPAGRP.AJOBV2 = '{$value->code_article}' AND MPAGRP.AJOBV1 = '$division'  ORDER BY MPAGRP.AJAGNB";
                                       
             $infos_prixfobfr = odbc_fetch_array(odbc_exec($this->odbc_conn2, $query));
