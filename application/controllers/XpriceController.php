@@ -270,14 +270,11 @@ class XpriceController extends Zend_Controller_Action {
                     $demande_xprice = $demandes_xprice->createDemandeArticlexprice($resultarticle['OBSAPR'], $resultarticle['OBNEPR'], $resultarticle['OBORQT'], round(100-($resultarticle['OBNEPR'] * 100 / $resultarticle['OBSAPR']), 2), $infos_offres->OBRGDT, null, null, null, null, null, $trackingNumber, $resultarticle['OBITNO'], $resultarticle['OBITDS'], $numwp);
                 }
                 
-               $prixciffob;
-                echo '<pre>',var_export($values),'<pre>'; 
                 foreach ($prixciffob as $key=>$value) {
                    
                     $insertprix = new Application_Model_DbTable_DemandeArticlexprices();
                     $inserprix = $insertprix->InserPrixFob($value->AJPUPR, $value->AJOBV2, $numwp);
                 } 
-                echo '<pre>',var_export($value),'<pre>'; exit();
                 
                 /*
                  * ici, envoi des mails 
