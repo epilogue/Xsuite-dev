@@ -665,7 +665,6 @@ class XpriceController extends Zend_Controller_Action {
               $lastidhisto= new Application_Model_DbTable_HistoriqueCommentaire();
               $lasthisto = $lastidhisto->getHistorique($formData['tracking'], $lastidvalid[0]['id_validation']);
               
-              var_dump($lasthisto);exit();
            $destinataireMail4 ="mhuby@smc-france.fr"/*$info_user['mail_user']*/;
            $url4 = "http://{$_SERVER['SERVER_NAME']}/xprice/update/numwp/{$numwp}/histo/{$lasthisto[0]['id_histo_commentaire']}";
             $corpsMail4 = "Bonjour,\n"
