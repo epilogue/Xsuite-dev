@@ -10,21 +10,21 @@ class Application_Model_DbTable_HistoriqueCommentaire extends Zend_Db_Table_Abst
 
     protected $_name = 'historique_commentaire';
 
-public function createHistorique($id_validation,$id_user,$commentaire_reponse,$tracking_number){
-    $data =array(
+public function createHistorique($tracking_number,$id_validation,$id_user,$commentaire_reponse){
+    $data =array('tracking_number'=>$tracking_number,
         'id_validation'=>$nom_validation,
         'id_user'=>$id_user,
-        'commentaire_reponse'=>$commentaire_reponse,
-             'tracking_number'=>$tracking_number);
+        'commentaire_reponse'=>$commentaire_reponse
+             );
      $this->insert($data);
         return $this;
 }
-public function getHistorique($id_histo_commentaire,$id_validation,$tracking_number) {
+public function getHistorique($tracking_number,$id_validation) {
      
         $plop = $this->getAdapter();
        
-        $where = $plop->quoteInto()
-                . $plop->quoteInto();
+        $where = $plop->quoteInto('tracking_number =?',$tracking_number)
+                . $plop->quoteInto('id_validation = ?',$id_validation);
        $plop2= $this->fetchAll($where);
         return $plop2->toArray();
 }

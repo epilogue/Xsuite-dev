@@ -614,7 +614,7 @@ class XpriceController extends Zend_Controller_Action {
                     . "--\n"
                     . "Xprice";
             $mail2 = new Xsuite_Mail();
-            $mail2->setSubject("XPrice : Nouvelle demande à valider.")
+            $mail2->setSubject("XPrice : Nouvelle demande à consulter.")
                     ->setBodyText(sprintf($corpsMail2, $url2))
                     ->addTo($destinataireMail2)
             ->send();
@@ -657,8 +657,15 @@ class XpriceController extends Zend_Controller_Action {
            * et enregistrement dans la table validation 
            */
           elseif (isset($formData['validation'])&& $formData['validation'] == "enAttente" ) {
+              $idvalidhisto= new Application_Model_DbTable_Validationsxprice();
+              $lastidvalid=$idvalidhisto->getValidation($formData['nom_validation'], $formData['tracking_number']);
+              $newhistocomm = new Application_Model_DbTable_HistoriqueCommentaire();
+              $newhisto=$newhistocomm($formData['tracking_number'],$lastidvalid['id_validation'],$info_user['id_user']);
+              $lastidhisto= new Application_Model_DbTable_HistoriqueCommentaire();
+              $lasthisto = $lastidhisto->getHistorique($formData['tracking_number'], $lastidvalid['id_validation']);
+              
            $destinataireMail4 ="mhuby@smc-france.fr"/*$info_user['mail_user']*/;
-           $url4 = "http://{$_SERVER['SERVER_NAME']}/xprice/update/numwp/{$numwp}";
+           $url4 = "http://{$_SERVER['SERVER_NAME']}/xprice/update/numwp/{$numwp}/histo/{$lasthisto}";
             $corpsMail4 = "Bonjour,\n"
                     . "\n"
                     . "Votre demande XPrice est en attente d'une réponse de votre part.\n"
@@ -684,13 +691,6 @@ class XpriceController extends Zend_Controller_Action {
             $redirector->gotoSimple('index', 'xprice');
             
           }
-         $nouvelle_validation = new Application_Model_DbTable_Validationsxprice();
-         $nouv_validation = $nouvelle_validation->createValidation($formData['nom_validation'], $formData['date_validation'], $formData['validation'], $formData['commentaire_chefregion'],$formData['cdr'], $formData['tracking']);
-         $valid_id_valid= new Application_Model_DbTable_Validationsxprice();
-         $valid_id_valids=$valid_id_valid->getValidation($formData['nom_validation'],$formData['tracking']);
-         
-             $histocomm= new Application_Model_DbTable_HistoriqueCommentaire();
-             $newhistocomm=$histocomm($numwp);
             
          }
     }
