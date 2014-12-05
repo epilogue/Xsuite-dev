@@ -662,7 +662,7 @@ class XpriceController extends Zend_Controller_Action {
               $newhistocomm = new Application_Model_DbTable_HistoriqueCommentaire();
               $newhisto=$newhistocomm->createHistorique($formData['tracking'],$lastidvalid[0]['id_validation'],$info_user['id_user']);
               $lastidhisto= new Application_Model_DbTable_HistoriqueCommentaire();
-              $lasthisto = $lastidhisto->getHistorique($formData['tracking'], $lastidvalid['id_validation']);
+              $lasthisto = $lastidhisto->getHistorique($formData['tracking'], $lastidvalid[0]['id_validation']);
               
            $destinataireMail4 ="mhuby@smc-france.fr"/*$info_user['mail_user']*/;
            $url4 = "http://{$_SERVER['SERVER_NAME']}/xprice/update/numwp/{$numwp}/histo/{$lasthisto}";
