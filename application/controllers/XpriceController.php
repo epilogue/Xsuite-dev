@@ -528,6 +528,12 @@ class XpriceController extends Zend_Controller_Action {
             $this->view->date_validation=$date_validation;
             $nom_validation = "cdr";
          $formData= $this->getRequest()->getPost();
+         
+         $nouvelle_validation = new Application_Model_DbTable_Validationsxprice();
+         $nouv_validation = $nouvelle_validation->createValidation($formData['nom_validation'], $formData['date_validation'], $formData['validation'], $formData['commentaire_chefregion'],$formData['cdr'], $formData['tracking']);
+         $valid_id_valid= new Application_Model_DbTable_Validationsxprice();
+         $valid_id_valids=$valid_id_valid->getValidation($formData['nom_validation'],$formData['tracking']);
+         
          /*
           * si la variable $validation existe et qu'elle est égale à "validee"
           *  alors on insert dans la table validation:  la date de validation ,
@@ -599,7 +605,7 @@ class XpriceController extends Zend_Controller_Action {
             $url2 = "http://{$_SERVER['SERVER_NAME']}/xprice/validatechefmarche/numwp/{$numwp}";
             $corpsMail2 = "Bonjour,\n"
                     . "\n"
-                    . "Vous avez une nouvelle demande XPrice à valider.\n"
+                    . "Vous avez une nouvelle demande XPrice à consulter.\n"
                     . "Veuillez vous rendre à l'adresse url : \n"
                     . "%s"
                     . "\n\n"
@@ -648,7 +654,7 @@ class XpriceController extends Zend_Controller_Action {
           /*
            * si la variable $validation existe et est égale à enAttente,
            * envoi de mail au tc pour qu'il réponde à la question posé dans le commentaire,
-           * et enregistrement dans la table validation  et historique commentaire.
+           * et enregistrement dans la table validation 
            */
           elseif (isset($formData['validation'])&& $formData['validation'] == "enAttente" ) {
            $destinataireMail4 ="mhuby@smc-france.fr"/*$info_user['mail_user']*/;
@@ -668,7 +674,7 @@ class XpriceController extends Zend_Controller_Action {
                     ->setBodyText(sprintf($corpsMail4, $url4))
                     ->addTo($destinataireMail4)
                     ->send();
-            /* ici insertion base de donnée table validation & table historique commentaire 
+            /* ici insertion base de donnée table validation 
              * 
              */
             $flashMessenger = $this->_helper->getHelper('FlashMessenger');
@@ -679,8 +685,12 @@ class XpriceController extends Zend_Controller_Action {
             
           }
          $nouvelle_validation = new Application_Model_DbTable_Validationsxprice();
-            $nouv_validation = $nouvelle_validation->createValidation($formData['nom_validation'], $formData['date_validation'], $formData['validation'], $formData['commentaire_chefregion'],$formData['cdr'], $formData['tracking']);
-             
+         $nouv_validation = $nouvelle_validation->createValidation($formData['nom_validation'], $formData['date_validation'], $formData['validation'], $formData['commentaire_chefregion'],$formData['cdr'], $formData['tracking']);
+         $valid_id_valid= new Application_Model_DbTable_Validationsxprice();
+         $valid_id_valids=$valid_id_valid->getValidation($formData['nom_validation'],$formData['tracking']);
+         
+             $histocomm= new Application_Model_DbTable_HistoriqueCommentaire();
+             $newhistocomm=$histocomm($numwp);
             
          }
     }
