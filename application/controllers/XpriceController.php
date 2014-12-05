@@ -659,6 +659,7 @@ class XpriceController extends Zend_Controller_Action {
           elseif (isset($formData['validation'])&& $formData['validation'] == "enAttente" ) {
               $idvalidhisto= new Application_Model_DbTable_Validationsxprice();
               $lastidvalid=$idvalidhisto->getValidation($formData['nom_validation'], $formData['tracking']);
+              var_dump($lastidvalid[0]['id_validation']);
               $newhistocomm = new Application_Model_DbTable_HistoriqueCommentaire();
               $newhisto=$newhistocomm->createHistorique($formData['tracking'],$lastidvalid[0]['id_validation'],$info_user['id_user']);
               $lastidhisto= new Application_Model_DbTable_HistoriqueCommentaire();
