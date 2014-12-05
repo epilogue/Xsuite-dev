@@ -658,11 +658,11 @@ class XpriceController extends Zend_Controller_Action {
            */
           elseif (isset($formData['validation'])&& $formData['validation'] == "enAttente" ) {
               $idvalidhisto= new Application_Model_DbTable_Validationsxprice();
-              $lastidvalid=$idvalidhisto->getValidation($formData['nom_validation'], $formData['tracking_number']);
+              $lastidvalid=$idvalidhisto->getValidation($formData['nom_validation'], $formData['tracking']);
               $newhistocomm = new Application_Model_DbTable_HistoriqueCommentaire();
-              $newhisto=$newhistocomm->createHistorique($formData['tracking_number'],$lastidvalid['id_validation'],$info_user['id_user']);
+              $newhisto=$newhistocomm->createHistorique($formData['tracking'],$lastidvalid['id_validation'],$info_user['id_user']);
               $lastidhisto= new Application_Model_DbTable_HistoriqueCommentaire();
-              $lasthisto = $lastidhisto->getHistorique($formData['tracking_number'], $lastidvalid['id_validation']);
+              $lasthisto = $lastidhisto->getHistorique($formData['tracking'], $lastidvalid['id_validation']);
               
            $destinataireMail4 ="mhuby@smc-france.fr"/*$info_user['mail_user']*/;
            $url4 = "http://{$_SERVER['SERVER_NAME']}/xprice/update/numwp/{$numwp}/histo/{$lasthisto}";
