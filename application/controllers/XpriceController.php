@@ -667,7 +667,7 @@ class XpriceController extends Zend_Controller_Action {
               
               var_dump($lasthisto);exit();
            $destinataireMail4 ="mhuby@smc-france.fr"/*$info_user['mail_user']*/;
-           $url4 = "http://{$_SERVER['SERVER_NAME']}/xprice/update/numwp/{$numwp}/histo/{$lasthisto['id_histo_commentaire']}";
+           $url4 = "http://{$_SERVER['SERVER_NAME']}/xprice/update/numwp/{$numwp}/histo/{$lasthisto[0]['id_histo_commentaire']}";
             $corpsMail4 = "Bonjour,\n"
                     . "\n"
                     . "Votre demande XPrice est en attente d'une réponse de votre part.\n"
