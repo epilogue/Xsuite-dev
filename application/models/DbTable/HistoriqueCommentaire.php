@@ -12,7 +12,7 @@ class Application_Model_DbTable_HistoriqueCommentaire extends Zend_Db_Table_Abst
 
 public function createHistorique($tracking_number,$id_validation,$id_user,$commentaire_reponse){
     $data =array('tracking_number'=>$tracking_number,
-        'id_validation'=>$nom_validation,
+        'id_validation'=>$id_validation,
         'id_user'=>$id_user,
         'commentaire_reponse'=>$commentaire_reponse
              );
