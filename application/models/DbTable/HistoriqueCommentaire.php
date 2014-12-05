@@ -24,7 +24,7 @@ public function getHistorique($tracking_number,$id_validation) {
         $plop = $this->getAdapter();
        
         $where = $plop->quoteInto('tracking_number =?',$tracking_number)
-                . $plop->quoteInto('id_validation = ?',$id_validation);
+                . $plop->quoteInto('and id_validation = ?',$id_validation);
        $plop2= $this->fetchAll($where);
         return $plop2->toArray();
 }
