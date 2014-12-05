@@ -723,6 +723,9 @@ class XpriceController extends Zend_Controller_Action {
         $info_client = $infos_client->getClientnumwp($info_demande_xprice['numwp_client']);
         //echo '<pre>',var_export($info_client),'</pre>';
         $this->view->info_client = $info_client;
+         $noms_industrie= new Application_Model_DbTable_Industry();
+        $nom_industrie= $noms_industrie->getIndustry($info_client['id_industry']);
+        $this->view->nom_industrie = $nom_industrie;
         $infos_demande_article_xprice = new Application_Model_DbTable_DemandeArticlexprices();
         $info_demande_article_xprice = $infos_demande_article_xprice->getDemandeArticlexprice($numwp);
         //echo '<pre>',  var_export($info_demande_article_xprice,true),'</pre>';
@@ -833,6 +836,9 @@ class XpriceController extends Zend_Controller_Action {
         $info_client = $infos_client->getClientnumwp($info_demande_xprice['numwp_client']);
         //echo '<pre>',var_export($info_client),'</pre>';
         $this->view->info_client = $info_client;
+         $noms_industrie= new Application_Model_DbTable_Industry();
+        $nom_industrie= $noms_industrie->getIndustry($info_client['id_industry']);
+        $this->view->nom_industrie = $nom_industrie;
         $infos_validation = new Application_Model_DbTable_Validationsxprice();
         $info_validation = $infos_validation->getValidation($nom_validation, $info_demande_xprice['tracking_number_demande_xprice']);
         $this->view->info_validation = $info_validation;
@@ -879,7 +885,7 @@ class XpriceController extends Zend_Controller_Action {
                 $validations = new Application_Model_DbTable_Validationsxprice();
                 $validation = $validations->createValidation($nom_validationsupply, $date_validation_supply, $etat, $datas['commentaire_supply'], $user->id_user, $datas['tracking_number']);
             }
-            var_dump($datas);            exit();
+            //var_dump($datas); 
            $flashMessenger = $this->_helper->getHelper('FlashMessenger');
             $message = "les prix fob et cif  sont bien validés.";
             $flashMessenger->addMessage($message);
