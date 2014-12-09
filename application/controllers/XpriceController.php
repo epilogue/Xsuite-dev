@@ -885,7 +885,7 @@ class XpriceController extends Zend_Controller_Action {
                 $validations = new Application_Model_DbTable_Validationsxprice();
                 $validation = $validations->createValidation($nom_validationsupply, $date_validation_supply, $etat, $datas['commentaire_supply'], $user->id_user, $datas['tracking_number']);
             }
-            //var_dump($datas); 
+            var_dump($datas); 
            $flashMessenger = $this->_helper->getHelper('FlashMessenger');
             $message = "les prix fob et cif  sont bien validés.";
             $flashMessenger->addMessage($message);
