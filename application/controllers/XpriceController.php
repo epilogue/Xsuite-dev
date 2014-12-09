@@ -892,7 +892,11 @@ class XpriceController extends Zend_Controller_Action {
             }
             foreach ($marge as $key=>$value2){
                 $margesmc=100 - ((int)$value2) ;
-                                var_dump($margesmc); } exit();
+                if($margesmc >80){
+                var_dump($margesmc);}
+                else{
+                echo plop;}
+                } exit();
            $flashMessenger = $this->_helper->getHelper('FlashMessenger');
             $message = "les prix fob et cif  sont bien validés.";
             $flashMessenger->addMessage($message);
