@@ -886,6 +886,11 @@ class XpriceController extends Zend_Controller_Action {
                 $validation = $validations->createValidation($nom_validationsupply, $date_validation_supply, $etat, $datas['commentaire_supply'], $user->id_user, $datas['tracking_number']);
             }
             var_dump($datas); exit();
+            foreach($forData as $ploptitude){
+                
+                $marge = array_combine($ploptitude['code_article'],$ploptitude['remise_demande_article']);
+            }
+            if($marge >10){echo $marge;} exit();
            $flashMessenger = $this->_helper->getHelper('FlashMessenger');
             $message = "les prix fob et cif  sont bien validés.";
             $flashMessenger->addMessage($message);
