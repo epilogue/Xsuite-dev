@@ -870,7 +870,7 @@ class XpriceController extends Zend_Controller_Action {
             $formData[] = $this->getRequest()->getPost();
             //echo '<pre>',var_export($formData),'<pre>';
             foreach ($formData as $datas) {
-                echo '<pre>',var_export($datas),'<pre>';
+                //echo '<pre>',var_export($datas),'<pre>';
                 $fobs = array_combine($datas['code_article'], $datas['prix_fob']);
                 $cifs = array_combine($datas['code_article'], $datas['prix_cif']);
 
@@ -890,7 +890,8 @@ class XpriceController extends Zend_Controller_Action {
                 
                 $marge = array_combine($ploptitude['code_article'],$ploptitude['remise_demande_article']);
             }
-            if($marge >10){echo $marge;} exit();
+            if($marge >10){
+                                var_dump($marge) ;} exit();
            $flashMessenger = $this->_helper->getHelper('FlashMessenger');
             $message = "les prix fob et cif  sont bien validés.";
             $flashMessenger->addMessage($message);
