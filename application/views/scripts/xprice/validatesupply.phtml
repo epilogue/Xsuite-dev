@@ -106,7 +106,7 @@ $this->headTitle($this->title);
                     <td><?php echo $result['quantite_demande_article'];?></td>
                     <td><?php echo $result['prixwplace_demande_article'];?></td>
                     <td><?php echo $result['prix_demande_article']; ?></td>
-                    <td><?php echo $result['remise_demande_article'] . "%"; ?></td>
+                    <td><input readonly="readonly" value="<?php echo $result['remise_demande_article'] . "%"; ?>" name="<?php echo 'remise_demande_article[]'; ?>"</td>
                     <td><input id="prixfob" style="background-color: #74aaca;" type="text" name="prix_fob[]" value="<?php echo $result['prix_fob_demande_article']; ?>"></td>
                     <td><input id="prixcif" style="background-color: #74aaca;" type="text" name="prix_cif[]" value="<?php echo $result['prix_cif_demande_article']; ?>"></td>
                     
