@@ -890,7 +890,7 @@ class XpriceController extends Zend_Controller_Action {
                 
                 $marge = array_combine($ploptitude['code_article'],$ploptitude['remise_demande_article']);
             }
-            if($marge >10){
+            if($marge <10){
                                 var_dump($marge) ;} exit();
            $flashMessenger = $this->_helper->getHelper('FlashMessenger');
             $message = "les prix fob et cif  sont bien validés.";
