@@ -88,7 +88,7 @@ and open the template in the editor.
 }
 
 #Content{
-    width:1024px;
+    width:auto;
     height:auto;
     background-color:white;
 }
