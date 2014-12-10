@@ -896,9 +896,7 @@ class XpriceController extends Zend_Controller_Action {
                 $margesmc=100 - ((int)$value2) ;
                 if($margesmc <10 || $margesmc== 0){
                 $margemin=true;
-                break;
-                }
-                
+                }   
              }
              if($margemin == true){
                  $destinataireMail = $emailVars->listes->dirco; 
@@ -913,6 +911,7 @@ class XpriceController extends Zend_Controller_Action {
                     . "\n"
                     . "--\n"
                     . "Supply Chain Manager.";
+                 
              }
              else{
                  $destinatairemail=$emailVars->listes->dbd;
@@ -928,7 +927,7 @@ class XpriceController extends Zend_Controller_Action {
                     . "--\n"
                     . "Supply Chain Manager.";
              }
-           
+           echo $destinatairemail; exit();
             $emailVars = Zend_Registry::get('emailVars');
             $mail = new Xsuite_Mail();
             $mail->setSubject("XPrice : Nouvelle demande à valider.")
