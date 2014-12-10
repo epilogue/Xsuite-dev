@@ -74,7 +74,7 @@ $this->headTitle($this->title);
         </table>
     </fieldset>
 </div>
-    <div> 
+    <div id="commentaire"> 
         <table>
             <tr>
                 <td>Commmentaire Commercial</td>
@@ -84,6 +84,13 @@ $this->headTitle($this->title);
             <tr>
                 <td>Commentaire <?php if($value['nom_validation'] =="validation_cdr"){echo "chef de région";}?></td>
             </tr>
+                <tr>
+                <td>Commentaire <?php if($value['nom_validation'] =="fobfr"){echo "fobfr";}?></td>
+            </tr>
+            <tr>
+                <td>Commentaire <?php if($value['nom_validation'] =="supply"){echo "supply chain manager";}?></td>
+            </tr>
+                
                 
           <?php  } ?>
         </table>
