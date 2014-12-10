@@ -885,19 +885,45 @@ class XpriceController extends Zend_Controller_Action {
                 $validations = new Application_Model_DbTable_Validationsxprice();
                 $validation = $validations->createValidation($nom_validationsupply, $date_validation_supply, $etat, $datas['commentaire_supply'], $user->id_user, $datas['tracking_number']);
             }
+             $emailVars = Zend_Registry::get('emailVars');
            // var_dump($datas); exit();
             foreach($formData as $ploptitude){
                 
                 $marge = array_combine($ploptitude['code_article'],$ploptitude['remise_demande_article']);
             }
+            $margemin=false;
             foreach ($marge as $key=>$value2){
                 $margesmc=100 - ((int)$value2) ;
-                if($margesmc >80){
-                var_dump($margesmc);}
-                else{
-                    $plop1='plop';
-                echo $plop1;}
-                } exit();
+                if($margesmc <10 || $margesmc== 0){
+                $margemin=true;
+                break;
+                }
+                
+             }
+             if($margemin == true){
+                 $destinataireMail = $emailVars->listes->dirco; 
+                 $url = "http://{$_SERVER['SERVER_NAME']}/xprice/validatedirco/numwp/{$numwp}";
+             }
+             else{
+                 $destinatairemail=$emailVars->listes->dbd;
+                  $url = "http://{$_SERVER['SERVER_NAME']}/xprice/validatedbd/numwp/{$numwp}";
+             }
+           
+            $corpsMail = "Bonjour,\n"
+                    . "\n"
+                    . "Vous avez une nouvelle demande XPrice à valider.\n"
+                    . "Veuillez vous rendre à l'adresse url : \n"
+                    . "%s"
+                    . "\n\n"
+                    . "Cordialement,\n"
+                    . "\n"
+                    . "--\n"
+                    . "Supply Chain Manager.";
+            $mail = new Xsuite_Mail();
+            $mail->setSubject("XPrice : Nouvelle demande à valider.")
+                    ->setBodyText(sprintf($corpsMail, $url))
+                    ->addTo($destinatairemail)
+                    ->send();
            $flashMessenger = $this->_helper->getHelper('FlashMessenger');
             $message = "les prix fob et cif  sont bien validés.";
             $flashMessenger->addMessage($message);
