@@ -94,9 +94,9 @@ and open the template in the editor.
 }
 
 #center{
-    float:left;
+    float:right;
     /*margin-left: 245px;*/
-    width:auto;
+    width:900px;
     height: auto;
     background-color:white;
     border-radius:10px;
