@@ -975,8 +975,8 @@ class XpriceController extends Zend_Controller_Action {
         $info_validation = $infos_validation->getAllValidation( $info_demande_xprice['tracking_number_demande_xprice']);
         $this->view->info_validation = $info_validation;
         //echo '<pre>',var_export($info_validation,true),'</pre>';
-        foreach($info_validation as $validate){
-          echo '<pre>',var_export($validate['commentaire_validation'],true),'</pre>';
+        foreach($info_validation as $key=>$validate){
+         echo $validate['commentaire_validation'];
         }
         $infos_demande_article_xprice = new Application_Model_DbTable_DemandeArticlexprices();
         $info_demande_article_xprice = $infos_demande_article_xprice->getDemandeArticlexprice($numwp);
