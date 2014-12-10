@@ -94,7 +94,7 @@ and open the template in the editor.
 }
 
 #center{
-    float:right;
+    float:left;
     /*margin-left: 245px;*/
     width:auto;
     height: auto;
