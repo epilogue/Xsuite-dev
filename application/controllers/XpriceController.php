@@ -903,15 +903,9 @@ class XpriceController extends Zend_Controller_Action {
              if($margemin == true){
                  $destinataireMail = $emailVars->listes->dirco; 
                  $url = "http://{$_SERVER['SERVER_NAME']}/xprice/validatedirco/numwp/{$numwp}";
-             }
-             else{
-                 $destinatairemail=$emailVars->listes->dbd;
-                  $url = "http://{$_SERVER['SERVER_NAME']}/xprice/validatedbd/numwp/{$numwp}";
-             }
-           
-            $corpsMail = "Bonjour,\n"
+                 $corpsMail = "Bonjour,\n"
                     . "\n"
-                    . "Vous avez une nouvelle demande XPrice à valider.\n"
+                    . "Vous avez une nouvelle demande XPrice à valider. Dbd\n"
                     . "Veuillez vous rendre à l'adresse url : \n"
                     . "%s"
                     . "\n\n"
@@ -919,6 +913,23 @@ class XpriceController extends Zend_Controller_Action {
                     . "\n"
                     . "--\n"
                     . "Supply Chain Manager.";
+             }
+             else{
+                 $destinatairemail=$emailVars->listes->dbd;
+                  $url = "http://{$_SERVER['SERVER_NAME']}/xprice/validatedbd/numwp/{$numwp}";
+                   $corpsMail = "Bonjour,\n"
+                    . "\n"
+                    . "Vous avez une nouvelle demande XPrice à valider. Dirco\n"
+                    . "Veuillez vous rendre à l'adresse url : \n"
+                    . "%s"
+                    . "\n\n"
+                    . "Cordialement,\n"
+                    . "\n"
+                    . "--\n"
+                    . "Supply Chain Manager.";
+             }
+           
+            
             $mail = new Xsuite_Mail();
             $mail->setSubject("XPrice : Nouvelle demande à valider.")
                     ->setBodyText(sprintf($corpsMail, $url))
