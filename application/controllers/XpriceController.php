@@ -948,7 +948,7 @@ class XpriceController extends Zend_Controller_Action {
     
         $user = $this->_auth->getStorage()->read();
         // var_dump($user);
-        $nom_validation = "fobfr";
+        $nom_validation = "dirco";
         $numwp = $this->getRequest()->getParam('numwp', null);
         //var_dump($numwp);
         $this->view->numwp = $numwp;
@@ -972,9 +972,9 @@ class XpriceController extends Zend_Controller_Action {
         $nom_industrie= $noms_industrie->getIndustry($info_client['id_industry']);
         $this->view->nom_industrie = $nom_industrie;
         $infos_validation = new Application_Model_DbTable_Validationsxprice();
-        $info_validation = $infos_validation->getValidation($nom_validation, $info_demande_xprice['tracking_number_demande_xprice']);
+        $info_validation = $infos_validation->getAllValidation( $info_demande_xprice['tracking_number_demande_xprice']);
         $this->view->info_validation = $info_validation;
-        //echo '<pre>',var_export($info_validation,true),'</pre>';
+        echo '<pre>',var_export($info_validation,true),'</pre>';
         $infos_demande_article_xprice = new Application_Model_DbTable_DemandeArticlexprices();
         $info_demande_article_xprice = $infos_demande_article_xprice->getDemandeArticlexprice($numwp);
         //echo '<pre>',  var_export($info_demande_article_xprice,true),'</pre>';

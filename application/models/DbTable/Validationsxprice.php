@@ -26,5 +26,14 @@ public function getValidation($nom_validation,$tracking_number) {
        $plop2= $this->fetchAll($where);
         return $plop2->toArray();
 }
+public function getAllValidation($tracking_number){
+    $tracking_number="$tracking_number";
+     $rows = $this->fetchAll("tracking_number_demande_xprice = '{$tracking_number}'");
+        if (!$rows) {
+            return null;
+        } else {
+            return $rows->toArray();
+        }
+}
 }
 
