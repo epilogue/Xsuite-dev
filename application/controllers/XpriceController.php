@@ -899,7 +899,7 @@ class XpriceController extends Zend_Controller_Action {
                 }   
              }
              if($margemin == true){
-                 $destinataireMail = $emailVars->listes->dirco; 
+                 $destinatairemail = $emailVars->listes->dirco; 
                  $url = "http://{$_SERVER['SERVER_NAME']}/xprice/validatedirco/numwp/{$numwp}";
                  $corpsMail = "Bonjour,\n"
                     . "\n"
