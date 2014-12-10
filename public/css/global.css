@@ -299,7 +299,7 @@ h3{
     margin-left:25px;
 }
 
-#article table,#article th,#article tr,#article td{
+#demandeArticle table,#demandeArticle th,#demandeArticle tr,#demandeArticle td{
     border-style:solid;
     border-color:black;
     border-width: thin;
