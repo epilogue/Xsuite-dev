@@ -466,3 +466,11 @@ span {
     margin-bottom:25px;
     margin-left:25px;
 }
+#commentaire table,
+#commentaire tr,
+#commentaire td{
+    border-style:solid;
+    border-color:black;
+    border-width: thin;
+    
+}
