@@ -107,6 +107,8 @@ $this->headTitle($this->title);
                 <th>remise demandée</th>
                 <th>prix fob</th>
                 <th>prix cif</th>
+                <th>prix accordé</th>
+                <th>remise accordée</th>
             </tr>
             <?php foreach ($this->info_demande_article_xprice as $result) { ?>
                 <tr>
@@ -116,9 +118,10 @@ $this->headTitle($this->title);
                     <td><?php echo $result['prixwplace_demande_article'];?></td>
                     <td><?php echo $result['prix_demande_article']; ?></td>
                     <td><input readonly="readonly" value="<?php echo $result['remise_demande_article']; ?>" name="<?php echo 'remise_demande_article[]'; ?>" >% </td>
-                    <td><input id="prixfob" style="background-color: #74aaca;" type="text" name="prix_fob[]" value="<?php echo $result['prix_fob_demande_article']; ?>"></td>
-                    <td><input id="prixcif" style="background-color: #74aaca;" type="text" name="prix_cif[]" value="<?php echo $result['prix_cif_demande_article']; ?>"></td>
-                    
+                    <td><input readonly="readonly" style="background-color: #74aaca;" type="text" name="prix_fob[]" value="<?php echo $result['prix_fob_demande_article']; ?>"></td>
+                    <td><input readonly="readonly"  style="background-color: #74aaca;" type="text" name="prix_cif[]" value="<?php echo $result['prix_cif_demande_article']; ?>"></td>
+                    <td><input value="" name=""></td>
+                    <td><input value="" name=""></td>
                 </tr>
             <?php } ?>
         </table>
@@ -126,9 +129,9 @@ $this->headTitle($this->title);
         <input type="text" hidden="hidden" value="<?php echo  $this->date_validation_supply; ?>" name="date_validation_supply">
     </fieldset>  
 </div>
-<div id='formprixfob'>
-    <fieldset id='form_prixfob'><legend>Commentaire Supply chain Manager</legend>
-        <textarea name="commentaire_supply" cols="50" rows="20"></textarea>
+<div id='commentaire_dirco'>
+    <fieldset><legend>Commentaire Directeur Commercial</legend>
+        <textarea name="commentaire_dirco" cols="50" rows="20"></textarea>
     </fieldset>
 </div>
     <input type="submit" value="enregistrer">
