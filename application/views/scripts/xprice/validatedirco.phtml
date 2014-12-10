@@ -82,9 +82,10 @@ $this->headTitle($this->title);
             </tr>
             <?php foreach ($this->info_validation as $value) {?>
             <tr>
-                <td>Commentaire <?php if($value['nom_validation'] =="validation_cdr"){echo "chef de région";} elseif ($value['nom_validation'] =="fobfr"){echo "fobfr";}elseif($value['nom_validation'] =="supply"){echo "supply chain manager";}{
+                <td>Commentaire <?php if($value['nom_validation'] =="validation_cdr"){echo "chef de région";} elseif ($value['nom_validation'] =="fobfr"){echo "fobfr";}elseif($value['nom_validation'] =="supply"){echo "supply chain manager";}
                 
-            }  ?></td>
+              ?></td>
+                <td><?php if($value['nom_validation'] =="validation_cdr"){echo $value['commentaire_validation'];}elseif ($value['nom_validation'] =="fobfr"){echo $value['commentaire_validation'];}elseif($value['nom_validation'] =="supply"){echo $value['commentaire_validation'];}?></td>
             </tr>
                 
                 
