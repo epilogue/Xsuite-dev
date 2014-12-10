@@ -929,7 +929,7 @@ class XpriceController extends Zend_Controller_Action {
                     . "Supply Chain Manager.";
              }
            
-            
+            $emailVars = Zend_Registry::get('emailVars');
             $mail = new Xsuite_Mail();
             $mail->setSubject("XPrice : Nouvelle demande à valider.")
                     ->setBodyText(sprintf($corpsMail, $url))
