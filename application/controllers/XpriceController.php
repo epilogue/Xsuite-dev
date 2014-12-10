@@ -903,7 +903,7 @@ class XpriceController extends Zend_Controller_Action {
                  $url = "http://{$_SERVER['SERVER_NAME']}/xprice/validatedirco/numwp/{$numwp}";
                  $corpsMail = "Bonjour,\n"
                     . "\n"
-                    . "Vous avez une nouvelle demande XPrice à valider. Dbd\n"
+                    . "Vous avez une nouvelle demande XPrice à valider.\n"
                     . "Veuillez vous rendre à l'adresse url : \n"
                     . "%s"
                     . "\n\n"
@@ -918,7 +918,7 @@ class XpriceController extends Zend_Controller_Action {
                   $url = "http://{$_SERVER['SERVER_NAME']}/xprice/validatedbd/numwp/{$numwp}";
                    $corpsMail = "Bonjour,\n"
                     . "\n"
-                    . "Vous avez une nouvelle demande XPrice à valider. Dirco\n"
+                    . "Vous avez une nouvelle demande XPrice à valider.\n"
                     . "Veuillez vous rendre à l'adresse url : \n"
                     . "%s"
                     . "\n\n"
