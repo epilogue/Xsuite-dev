@@ -88,15 +88,15 @@ and open the template in the editor.
 }
 
 #Content{
-    width:900px;
+    width:1024px;
     height:auto;
     background-color:white;
 }
 
 #center{
     float:right;
-    margin-left: 245px;
-    width:900px;
+    /*margin-left: 245px;*/
+    width: 800px;
     height: auto;
     background-color:white;
     border-radius:10px;
