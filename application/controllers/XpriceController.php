@@ -946,6 +946,39 @@ class XpriceController extends Zend_Controller_Action {
     }
     public function validatedircoAction(){
     
+        $user = $this->_auth->getStorage()->read();
+        // var_dump($user);
+        $nom_validation = "fobfr";
+        $numwp = $this->getRequest()->getParam('numwp', null);
+        //var_dump($numwp);
+        $this->view->numwp = $numwp;
+        /*
+         * on va rechercher les informations concernant la demande _xprice
+         */
+        $infos_demande_xprice = new Application_Model_DbTable_Xprices();
+        $info_demande_xprice = $infos_demande_xprice->getNumwp($numwp);
+        //echo '<pre>', var_export($info_demande_xprice), '</pre>';
+        // var_dump( $info_demande_xprice['id_user']);
+        $this->view->info_demande_xprice = $info_demande_xprice;
+        $infos_user = new Application_Model_DbTable_Users();
+        $info_user = $infos_user->getUserDemande($info_demande_xprice['id_user']);
+        // echo '<pre>',var_export($info_user),'</pre>';
+        $this->view->info_user = $info_user;
+        $infos_client = new Application_Model_DbTable_Clients();
+        $info_client = $infos_client->getClientnumwp($info_demande_xprice['numwp_client']);
+        //echo '<pre>',var_export($info_client),'</pre>';
+        $this->view->info_client = $info_client;
+         $noms_industrie= new Application_Model_DbTable_Industry();
+        $nom_industrie= $noms_industrie->getIndustry($info_client['id_industry']);
+        $this->view->nom_industrie = $nom_industrie;
+        $infos_validation = new Application_Model_DbTable_Validationsxprice();
+        $info_validation = $infos_validation->getValidation($nom_validation, $info_demande_xprice['tracking_number_demande_xprice']);
+        $this->view->info_validation = $info_validation;
+        //echo '<pre>',var_export($info_validation,true),'</pre>';
+        $infos_demande_article_xprice = new Application_Model_DbTable_DemandeArticlexprices();
+        $info_demande_article_xprice = $infos_demande_article_xprice->getDemandeArticlexprice($numwp);
+        //echo '<pre>',  var_export($info_demande_article_xprice,true),'</pre>';
+        $this->view->info_demande_article_xprice = $info_demande_article_xprice;
     }
 
     public function updateAction() {
