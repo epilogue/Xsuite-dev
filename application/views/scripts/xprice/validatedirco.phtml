@@ -74,3 +74,56 @@ $this->headTitle($this->title);
         </table>
     </fieldset>
 </div>
+    <div> 
+        <table>
+            <tr>
+                <td>Commmentaire Commercial</td>
+                <td></td>
+            </tr>
+            <?php foreach ($this->info_validation as $key => $value) {?>
+            <tr>
+                <td>Commentaire <?php if($value['nom_validation'] =="validation_cdr"){echo "chef de région";}?></td>
+            </tr>
+                
+          <?php  } ?>
+        </table>
+    </div>
+    <form action="" method="post">
+<div id="demandeArticle">
+    <fieldset ><legend>Articles </legend>
+        <table id="article">
+            <tr>
+                <th>code article</th>
+                <th>référence article</th>
+                <th>quantité</th>
+                <th>prix workplace</th>
+                <th>prix demandé</th>
+                <th>remise demandée</th>
+                <th>prix fob</th>
+                <th>prix cif</th>
+            </tr>
+            <?php foreach ($this->info_demande_article_xprice as $result) { ?>
+                <tr>
+                    <td><input readonly="readonly" value="<?php echo $result['code_article'] ?>"  name="<?php echo 'code_article[]'; ?>"></td>
+                    <td><?php echo $result['reference_article'];?></td>
+                    <td><?php echo $result['quantite_demande_article'];?></td>
+                    <td><?php echo $result['prixwplace_demande_article'];?></td>
+                    <td><?php echo $result['prix_demande_article']; ?></td>
+                    <td><input readonly="readonly" value="<?php echo $result['remise_demande_article']; ?>" name="<?php echo 'remise_demande_article[]'; ?>" >% </td>
+                    <td><input id="prixfob" style="background-color: #74aaca;" type="text" name="prix_fob[]" value="<?php echo $result['prix_fob_demande_article']; ?>"></td>
+                    <td><input id="prixcif" style="background-color: #74aaca;" type="text" name="prix_cif[]" value="<?php echo $result['prix_cif_demande_article']; ?>"></td>
+                    
+                </tr>
+            <?php } ?>
+        </table>
+        <input type="text" hidden="hidden" value="<?php echo  $this->info_demande_xprice['tracking_number_demande_xprice']; ?>" name="tracking_number">
+        <input type="text" hidden="hidden" value="<?php echo  $this->date_validation_supply; ?>" name="date_validation_supply">
+    </fieldset>  
+</div>
+<div id='formprixfob'>
+    <fieldset id='form_prixfob'><legend>Commentaire Supply chain Manager</legend>
+        <textarea name="commentaire_supply" cols="50" rows="20"></textarea>
+    </fieldset>
+</div>
+    <input type="submit" value="enregistrer">
+</form>
