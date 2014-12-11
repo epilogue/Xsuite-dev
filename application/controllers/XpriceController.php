@@ -993,7 +993,20 @@ class XpriceController extends Zend_Controller_Action {
             $this->view->date_validation=$date_validation;
             $nom_validation = "dirco";
          $formData= $this->getRequest()->getPost();
-         
+          foreach ($formData as $datas) {
+                //echo '<pre>',var_export($datas),'<pre>';
+                $prix_accordes = array_combine($datas['code_article'], $datas['prix_accorde_article']);
+                $remise_accordes = array_combine($datas['code_article'], $datas['remise_accorde_article']);
+
+                foreach ($remise_accordes as $key => $value) {
+                    $remisesDirco = new Application_Model_DbTable_DemandeArticlexprices();
+                    $remiseDirco = $remiseDirco->insertRemiseAccorde($value, $key, $datas['tracking_number']);
+                }
+                foreach ($remise_accordes  as $key => $value) {
+                    $prixDirco = new Application_Model_DbTable_DemandeArticlexprices();
+                    $priDirco = $prixDirco->insertPrixAccorde($value, $key, $datas['tracking_number']);
+                }
+          }
          $nouvelle_validation = new Application_Model_DbTable_Validationsxprice();
          $nouv_validation = $nouvelle_validation->createValidation($formData['nom_validation'], $formData['date_validation'], $formData['validation'], $formData['commentaire_chefregion'],$formData['cdr'], $formData['tracking']);
          $valid_id_valid= new Application_Model_DbTable_Validationsxprice();

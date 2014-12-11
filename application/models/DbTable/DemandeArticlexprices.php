@@ -118,5 +118,30 @@ class Application_Model_DbTable_DemandeArticlexprices extends Zend_Db_Table_Abst
                      ->where($where);
        return $goto2;
     }
+   public function insertRemiseAccorde($remiseDirco,$code_article, $tracking_number) {
+     $code_article = "$code_article";
+        $tracking_number = "$tracking_number";
+        $remiseDirco=floatVal("$remiseDirco");
+        $plop = $this->getAdapter();
+        $datas = array('remise_accorde_demande_article' => $remiseDirco);
+        $where = $plop->quoteInto('code_article = ?', $code_article)
+                . $plop->quoteInto('And tracking_number_demande_xprice = ?', $tracking_number);
+        $plop2 = $this->update($datas, $where);
+   return $plop2;
+   
+   }
+   
+    public function insertPrixAccorde($prixDirco,$code_article, $tracking_number) {
+     $code_article = "$code_article";
+        $tracking_number = "$tracking_number";
+        $prixDirco=floatVal("$prixDirco");
+        $plop = $this->getAdapter();
+        $datas = array('prix_accorde_demande_article' => $prixDirco);
+        $where = $plop->quoteInto('code_article = ?', $code_article)
+                . $plop->quoteInto('And tracking_number_demande_xprice = ?', $tracking_number);
+        $plop2 = $this->update($datas, $where);
+   return $plop2;
+   
+   }
 }
 
