@@ -876,7 +876,7 @@ class XpriceController extends Zend_Controller_Action {
             $formData[] = $this->getRequest()->getPost();
             //echo '<pre>',var_export($formData),'<pre>';
             foreach ($formData as $datas) {
-                echo '<pre>',var_export($datas),'<pre>';exit();
+               
                 $fobs = array_combine($datas['code_article'], $datas['prix_fob']);
                 $cifs = array_combine($datas['code_article'], $datas['prix_cif']);
 
@@ -994,7 +994,7 @@ class XpriceController extends Zend_Controller_Action {
             $nom_validation = "dirco";
          $formData= $this->getRequest()->getPost(); 
           foreach ($formData as $datas) {
-               echo '<pre>',  var_export($datas,true),'</pre>';exit();
+              // echo '<pre>',  var_export($datas,true),'</pre>';exit();
                 $prix_accordes = array_combine($datas['code_article'], $datas['prix_accorde_article']);
                 $remise_accordes = array_combine($datas['code_article'], $datas['remise_accorde_article']);
 
