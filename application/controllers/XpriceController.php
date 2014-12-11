@@ -1053,6 +1053,26 @@ class XpriceController extends Zend_Controller_Action {
                     ->addTo($destinataireMail2)
           ->send();
           }
+          elseif(isset($formData[0]['validation']) && $formData[0]['validation'] == 'nonValide'){
+              $emailVars = Zend_Registry::get('emailVars');
+            $destinataireMail3 ="mhuby@smc-france.fr"/*$info_user['mail_user']*/;
+            $url3 = "http://{$_SERVER['SERVER_NAME']}/xprice/update/numwp/{$numwp}";
+            $corpsMail3 = "Bonjour,\n"
+                    . "\n"
+                    . "Votre demande XPrice estnon validée par DIRCO .\n"
+                    . "Vous pouvez la consulter à cette adresse url : \n"
+                    . "%s"
+                    . "\n\n"
+                    . "Cordialement,\n"
+                    . "\n"
+                    . "--\n"
+                    . "Dirco.";
+            $mail3 = new Xsuite_Mail();
+            $mail3->setSubject("XPrice :demande $numwp mise en attente par Dirco.")
+                    ->setBodyText(sprintf($corpsMail3, $url3))
+                    ->addTo($destinataireMail3)
+          ->send();
+          }
           
          }
     }
