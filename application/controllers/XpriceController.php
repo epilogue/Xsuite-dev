@@ -988,6 +988,17 @@ class XpriceController extends Zend_Controller_Action {
         $info_demande_article_xprice = $infos_demande_article_xprice->getDemandeArticlexprice($numwp);
         //echo '<pre>',  var_export($info_demande_article_xprice,true),'</pre>';
         $this->view->info_demande_article_xprice = $info_demande_article_xprice;
+         if ($this->getRequest()->isPost()) {
+            $date_validation = date("Y-m-d H:i:s"); 
+            $this->view->date_validation=$date_validation;
+            $nom_validation = "dirco";
+         $formData= $this->getRequest()->getPost();
+         
+         $nouvelle_validation = new Application_Model_DbTable_Validationsxprice();
+         $nouv_validation = $nouvelle_validation->createValidation($formData['nom_validation'], $formData['date_validation'], $formData['validation'], $formData['commentaire_chefregion'],$formData['cdr'], $formData['tracking']);
+         $valid_id_valid= new Application_Model_DbTable_Validationsxprice();
+         $valid_id_valids=$valid_id_valid->getValidation($formData['nom_validation'],$formData['tracking']);
+         }
     }
 
     public function updateAction() {
