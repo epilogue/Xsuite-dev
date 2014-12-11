@@ -286,9 +286,14 @@ h3{
 #plop{
     float:left;
     height: 50px;
-    background-color:#268bd9;
     color:white;
       width: 725px;
+       margin-top:30px;
+    margin-bottom:25px;
+    margin-left:25px;
+}
+.plop{
+    alignment-adjust: central;
 }
 #fieldset-commentaires{
     width: 725px;
