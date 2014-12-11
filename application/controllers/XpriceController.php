@@ -1049,7 +1049,7 @@ class XpriceController extends Zend_Controller_Action {
                     . "Dirco.";
             $mail2 = new Xsuite_Mail();
             $mail2->setSubject("XPrice :demande $numwp mise en attente par Dirco.")
-                    ->setBodyText(sprintf($corpsMail1, $url2))
+                    ->setBodyText(sprintf($corpsMail2, $url2))
                     ->addTo($destinataireMail2)
           ->send();
           }
