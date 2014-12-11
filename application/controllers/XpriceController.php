@@ -889,7 +889,7 @@ class XpriceController extends Zend_Controller_Action {
                     $prixfob = $prixcifs->updatefob($value, $key, $datas['tracking_number']);
                 }
                 $validations = new Application_Model_DbTable_Validationsxprice();
-                $validation = $validations->createValidation($nom_validationsupply, $date_validation_supply, $etat, $datas['commentaire_supply'], $user->id_user, $datas['tracking_number']);
+                $validation = $validations->createValidation($nom_validationsupply, $date_validation_supply, $datas['validation'], $datas['commentaire_supply'], $user->id_user, $datas['tracking_number']);
             }
              $emailVars = Zend_Registry::get('emailVars');
            // var_dump($datas); exit();
