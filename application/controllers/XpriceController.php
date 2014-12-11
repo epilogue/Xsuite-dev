@@ -1010,13 +1010,11 @@ class XpriceController extends Zend_Controller_Action {
                     $priDirco = $prixDirco->insertPrixAccorde($value, $key, $datas['tracking']);
                 }
                 $nouvelle_validation = new Application_Model_DbTable_Validationsxprice();
-         $nouv_validation = $nouvelle_validation->createValidation($nom_validation, $date_validation, $datas['validation'],  $datas['commentaire_dirco'], $user->id_user, $datas['tracking']);
+                $nouv_validation = $nouvelle_validation->createValidation($nom_validation, $date_validation, $datas['validation'],  $datas['commentaire_dirco'], $user->id_user, $datas['tracking']);
           }
           //echo '<pre>',var_export($formData['nom_validation']),'<pre>';
          
-         $valid_id_valid= new Application_Model_DbTable_Validationsxprice();
-         $valid_id_valids=$valid_id_valid->getValidation($formData[0]['nom_validation'],$formData[0]['tracking']);
-         var_dump($valid_id_valids);
+         
           if (isset($formData['validation'])&& $formData['validation'] == "validee" ){
             $emailVars = Zend_Registry::get('emailVars');
             $destinataireMail1 ="mhuby@smc-france.fr"/*$info_user['mail_user']*/;
