@@ -316,6 +316,9 @@ h3{
     border-color:black;
     border-width: thin;
 }
+#demandeArticle input{
+    width: 60px;
+}
 
 fieldset legend{
     font-weight: bold;
