@@ -293,7 +293,8 @@ h3{
     margin-left:25px;
 }
 .plop{
-    alignment-adjust: central;
+    float:left;
+    margin: auto;
 }
 #fieldset-commentaires{
     width: 725px;
