@@ -1033,8 +1033,25 @@ class XpriceController extends Zend_Controller_Action {
                     ->addTo($destinataireMail1)
           ->send();}
           
-          if(isset($formData[0]['validation']) && $formData[0]['validation'] == 'enAttente'){
-              
+          elseif(isset($formData[0]['validation']) && $formData[0]['validation'] == 'enAttente'){
+              $emailVars = Zend_Registry::get('emailVars');
+            $destinataireMail2 ="mhuby@smc-france.fr"/*$info_user['mail_user']*/;
+            $url2 = "http://{$_SERVER['SERVER_NAME']}/xprice/update/numwp/{$numwp}";
+            $corpsMail2 = "Bonjour,\n"
+                    . "\n"
+                    . "Votre demande XPrice est en attente de réponse à la question posée par DIRCO .\n"
+                    . "Vous pouvez la consulter à cette adresse url : \n"
+                    . "%s"
+                    . "\n\n"
+                    . "Cordialement,\n"
+                    . "\n"
+                    . "--\n"
+                    . "Dirco.";
+            $mail2 = new Xsuite_Mail();
+            $mail2->setSubject("XPrice :demande $numwp mise en attente par Dirco.")
+                    ->setBodyText(sprintf($corpsMail1, $url2))
+                    ->addTo($destinataireMail2)
+          ->send();
           }
           
          }
