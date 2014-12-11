@@ -948,7 +948,145 @@ class XpriceController extends Zend_Controller_Action {
     }
     
     public function validatedbdAction(){
-    
+     $user = $this->_auth->getStorage()->read();
+         $tiltop= $user->id_user;
+        $this->view->dbd=$tiltop;
+       $nom_validation = 'dbd';
+             $this->nom_validation=$nom_validation;
+        $numwp = $this->getRequest()->getParam('numwp', null);
+        //var_dump($numwp);
+        $this->view->numwp = $numwp;
+        /*
+         * on va rechercher les informations concernant la demande _xprice
+         */
+        $infos_demande_xprice = new Application_Model_DbTable_Xprices();
+        $info_demande_xprice = $infos_demande_xprice->getNumwp($numwp);
+        //echo '<pre>', var_export($info_demande_xprice), '</pre>';
+        // var_dump( $info_demande_xprice['id_user']);
+        $this->view->info_demande_xprice = $info_demande_xprice;
+         $date =DateTime::createFromFormat('Y-m-d',$info_demande_xprice['date_demande_xprice']);
+        $dateplop=$date->format('d/m/Y');
+        $this->view->dateplop=$dateplop;
+        $infos_user = new Application_Model_DbTable_Users();
+        $info_user = $infos_user->getUserDemande($info_demande_xprice['id_user']);
+        // echo '<pre>',var_export($info_user),'</pre>';
+        $this->view->info_user = $info_user;
+        $infos_client = new Application_Model_DbTable_Clients();
+        $info_client = $infos_client->getClientnumwp($info_demande_xprice['numwp_client']);
+        //echo '<pre>',var_export($info_client),'</pre>';
+        $this->view->info_client = $info_client;
+         $noms_industrie= new Application_Model_DbTable_Industry();
+        $nom_industrie= $noms_industrie->getIndustry($info_client['id_industry']);
+        $this->view->nom_industrie = $nom_industrie;
+        $infos_validation = new Application_Model_DbTable_Validationsxprice();
+        $info_validation = $infos_validation->getAllValidation( $info_demande_xprice['tracking_number_demande_xprice']);
+        $this->view->info_validation = $info_validation;
+        //echo '<pre>',var_export($info_validation,true),'</pre>';
+        $infos_demande_article_xprice = new Application_Model_DbTable_DemandeArticlexprices();
+        $info_demande_article_xprice = $infos_demande_article_xprice->getDemandeArticlexprice($numwp);
+        //echo '<pre>',  var_export($info_demande_article_xprice,true),'</pre>';
+        $this->view->info_demande_article_xprice = $info_demande_article_xprice;
+         if ($this->getRequest()->isPost()) {
+            $date_validation = date("Y-m-d H:i:s"); 
+            $this->view->date_validation=$date_validation;
+            $nom_validation = 'dbd';
+             $this->nom_validation=$nom_validation;
+         $formData[]= $this->getRequest()->getPost(); 
+          foreach ($formData as $datas) {
+              // echo '<pre>',  var_export($datas,true),'</pre>';exit();
+                $prix_accordes = array_combine($datas['code_article'], $datas['prix_accorde_article']);
+                $remise_accordes = array_combine($datas['code_article'], $datas['remise_accorde_article']);
+
+                foreach ($remise_accordes as $key => $value) {
+                    $remisesDirco = new Application_Model_DbTable_DemandeArticlexprices();
+                    $remiseDirco = $remisesDirco->insertRemiseAccorde($value, $key, $datas['tracking']);
+                }
+                foreach ($prix_accordes  as $key => $value) {
+                    $prixDirco = new Application_Model_DbTable_DemandeArticlexprices();
+                    $priDirco = $prixDirco->insertPrixAccorde($value, $key, $datas['tracking']);
+                }
+                $nouvelle_validation = new Application_Model_DbTable_Validationsxprice();
+                $nouv_validation = $nouvelle_validation->createValidation($nom_validation, $date_validation, $datas['validation'],  $datas['commentaire_dbd'], $user->id_user, $datas['tracking']);
+          }
+          
+          if (isset($formData[0]['validation'])&& $formData[0]['validation'] == "validee" ){
+            $emailVars = Zend_Registry::get('emailVars');
+            $destinataireMail1 ="mhuby@smc-france.fr"/*$info_user['mail_user']*/;
+            $url1 = "http://{$_SERVER['SERVER_NAME']}/xprice/list/numwp/{$numwp}";
+            $corpsMail1 = "Bonjour,\n"
+                    . "\n"
+                    . "Votre demande XPrice a été validée par .\n"
+                    . "Vous pouvez la consulter à cette adresse url : \n"
+                    . "%s"
+                    . "\n\n"
+                    . "Cordialement,\n"
+                    . "\n"
+                    . "--\n"
+                    . "dbd.";
+            $mail1 = new Xsuite_Mail();
+            $mail1->setSubject("XPrice :demande $numwp validée par dbd.")
+                    ->setBodyText(sprintf($corpsMail1, $url1))
+                    ->addTo($destinataireMail1)
+          ->send();
+            $flashMessenger = $this->_helper->getHelper('FlashMessenger');
+            $message = "l'offre $numwp a bien été validée.";
+            $flashMessenger->addMessage($message);
+            $redirector = $this->_helper->getHelper('Redirector');
+            $redirector->gotoSimple('index', 'xprice');
+            }
+          
+          elseif(isset($formData[0]['validation']) && $formData[0]['validation'] == 'enAttente'){
+              $emailVars = Zend_Registry::get('emailVars');
+            $destinataireMail2 ="mhuby@smc-france.fr"/*$info_user['mail_user']*/;
+            $url2 = "http://{$_SERVER['SERVER_NAME']}/xprice/update/numwp/{$numwp}";
+            $corpsMail2 = "Bonjour,\n"
+                    . "\n"
+                    . "Votre demande XPrice est en attente de réponse à la question posée par dbd .\n"
+                    . "Vous pouvez la consulter à cette adresse url : \n"
+                    . "%s"
+                    . "\n\n"
+                    . "Cordialement,\n"
+                    . "\n"
+                    . "--\n"
+                    . "dbd.";
+            $mail2 = new Xsuite_Mail();
+            $mail2->setSubject("XPrice :demande $numwp mise en attente par dbd.")
+                    ->setBodyText(sprintf($corpsMail2, $url2))
+                    ->addTo($destinataireMail2)
+          ->send();
+            $flashMessenger = $this->_helper->getHelper('FlashMessenger');
+            $message = "l'offre $numwp est en attente de réponse du commercial.";
+            $flashMessenger->addMessage($message);
+            $redirector = $this->_helper->getHelper('Redirector');
+            $redirector->gotoSimple('index', 'xprice');
+          }
+          elseif(isset($formData[0]['validation']) && $formData[0]['validation'] == 'nonValide'){
+              $emailVars = Zend_Registry::get('emailVars');
+            $destinataireMail3 ="mhuby@smc-france.fr"/*$info_user['mail_user']*/;
+            $url3 = "http://{$_SERVER['SERVER_NAME']}/xprice/list/numwp/{$numwp}";
+            $corpsMail3 = "Bonjour,\n"
+                    . "\n"
+                    . "Votre demande XPrice estnon validée par dbd .\n"
+                    . "Vous pouvez la consulter à cette adresse url : \n"
+                    . "%s"
+                    . "\n\n"
+                    . "Cordialement,\n"
+                    . "\n"
+                    . "--\n"
+                    . "dbd.";
+            $mail3 = new Xsuite_Mail();
+            $mail3->setSubject("XPrice :demande $numwp non validée par dbd.")
+                    ->setBodyText(sprintf($corpsMail3, $url3))
+                    ->addTo($destinataireMail3)
+          ->send();
+            $flashMessenger = $this->_helper->getHelper('FlashMessenger');
+            $message = "l'offre $numwp n'a pas été validée.";
+            $flashMessenger->addMessage($message);
+            $redirector = $this->_helper->getHelper('Redirector');
+            $redirector->gotoSimple('index', 'xprice');
+          }
+          
+         }
     }
     public function validatedircoAction(){
     
@@ -1067,7 +1205,7 @@ class XpriceController extends Zend_Controller_Action {
           elseif(isset($formData[0]['validation']) && $formData[0]['validation'] == 'nonValide'){
               $emailVars = Zend_Registry::get('emailVars');
             $destinataireMail3 ="mhuby@smc-france.fr"/*$info_user['mail_user']*/;
-            $url3 = "http://{$_SERVER['SERVER_NAME']}/xprice/update/numwp/{$numwp}";
+            $url3 = "http://{$_SERVER['SERVER_NAME']}/xprice/list/numwp/{$numwp}";
             $corpsMail3 = "Bonjour,\n"
                     . "\n"
                     . "Votre demande XPrice estnon validée par DIRCO .\n"
