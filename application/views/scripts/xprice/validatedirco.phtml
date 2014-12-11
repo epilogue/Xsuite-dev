@@ -126,8 +126,7 @@ $this->headTitle($this->title);
                 </tr>
             <?php } ?>
         </table>
-        <input type="text" hidden="hidden" value="<?php echo  $this->info_demande_xprice['tracking_number_demande_xprice']; ?>" name="tracking_number">
-        <input type="text" hidden="hidden" value="<?php echo  $this->date_validation_dirco; ?>" name="date_validation_dirco">
+        
     </fieldset>  
 </div>
 <div id='commentaire_dirco'>
@@ -139,7 +138,7 @@ $this->headTitle($this->title);
         <input type="radio" name="validation" value="nonValide"> La demande n'est pas validée <br>
         <input type="radio" name="validation" value="validee"> La demande est validée <br>
         <input type="radio" name="validation" value="enAttente">  en attente de réponse  <br> 
-        <input hidden="hidden" name="nom_validation" value="validation_dirco">
+        <input hidden="hidden" name="nom_validation" value="<?php echo $this->nom_validation ?>">
         <input hidden="hidden" name="date_validation" value="<?php echo date("Y-m-d H:i:s")?>">
         <input hidden="hidden" name="dirco" value="<?php echo $this->dirco;?>">
         <input hidden="hidden" name="tracking" value="<?php echo $this->info_demande_xprice['tracking_number_demande_xprice'] ;?>"> 
