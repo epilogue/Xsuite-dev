@@ -1010,7 +1010,7 @@ class XpriceController extends Zend_Controller_Action {
                     $priDirco = $prixDirco->insertPrixAccorde($value, $key, $datas['tracking_number']);
                 }
                 $nouvelle_validation = new Application_Model_DbTable_Validationsxprice();
-         $nouv_validation = $nouvelle_validation->createValidation($nom_validation, $date_validation, $datas['validation'],  $datas['commentaire_dirco'], $user->id_user, $datas['tracking_number']);
+         $nouv_validation = $nouvelle_validation->createValidation($nom_validation, $date_validation, $datas['validation'],  $datas['commentaire_dirco'], $user->id_user, $datas['tracking']);
           }
           //echo '<pre>',var_export($formData['nom_validation']),'<pre>';
          
