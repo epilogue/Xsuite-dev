@@ -889,7 +889,7 @@ class XpriceController extends Zend_Controller_Action {
                     $prixfob = $prixcifs->updatefob($value, $key, $datas['tracking_number']);
                 }
                 $validations = new Application_Model_DbTable_Validationsxprice();
-                $validation = $validations->createValidation($nom_validationsupply, $date_validation_supply, $datas['validation'], $datas['commentaire_supply'], $user->id_user, $datas['tracking_number']);
+                $validation = $validations->createValidation($nom_validationsupply, $date_validation_supply, $etat, $datas['commentaire_supply'], $user->id_user, $datas['tracking_number']);
             }
              $emailVars = Zend_Registry::get('emailVars');
            // var_dump($datas); exit();
@@ -1010,7 +1010,7 @@ class XpriceController extends Zend_Controller_Action {
                     $priDirco = $prixDirco->insertPrixAccorde($value, $key, $datas['tracking_number']);
                 }
                 $nouvelle_validation = new Application_Model_DbTable_Validationsxprice();
-         $nouv_validation = $nouvelle_validation->createValidation($nom_validation, $date_validation, $validation, $etat, $datas['commentaire_dirco'], $user->id_user, $datas['tracking_number']);
+         $nouv_validation = $nouvelle_validation->createValidation($nom_validation, $date_validation, $datas['validation'],  $datas['commentaire_dirco'], $user->id_user, $datas['tracking_number']);
           }
           //echo '<pre>',var_export($formData['nom_validation']),'<pre>';
          
