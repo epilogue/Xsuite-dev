@@ -1005,7 +1005,7 @@ class XpriceController extends Zend_Controller_Action {
                     $remisesDirco = new Application_Model_DbTable_DemandeArticlexprices();
                     $remiseDirco = $remisesDirco->insertRemiseAccorde($value, $key, $datas['tracking']);
                 }
-                foreach ($remise_accordes  as $key => $value) {
+                foreach ($prix_accordes  as $key => $value) {
                     $prixDirco = new Application_Model_DbTable_DemandeArticlexprices();
                     $priDirco = $prixDirco->insertPrixAccorde($value, $key, $datas['tracking']);
                 }
