@@ -992,9 +992,9 @@ class XpriceController extends Zend_Controller_Action {
             $date_validation = date("Y-m-d H:i:s"); 
             $this->view->date_validation=$date_validation;
             $nom_validation = "dirco";
-         $formData= $this->getRequest()->getPost();
+         $formData= $this->getRequest()->getPost(); echo '<pre>',var_export($formData),'<pre>';
           foreach ($formData as $datas) {
-                echo '<pre>',var_export($datas),'<pre>';
+               
                 $prix_accordes = array_combine($datas['code_article'], $datas['prix_accorde_article']);
                 $remise_accordes = array_combine($datas['code_article'], $datas['remise_accorde_article']);
 
