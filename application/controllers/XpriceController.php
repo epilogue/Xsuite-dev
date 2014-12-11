@@ -992,7 +992,7 @@ class XpriceController extends Zend_Controller_Action {
          if ($this->getRequest()->isPost()) {
             $date_validation = date("Y-m-d H:i:s"); 
             $this->view->date_validation=$date_validation;
-            $nom_validation = "dirco";
+            $nom_validation = 'dirco';
              $this->nom_validation=$nom_validation;
          $formData[]= $this->getRequest()->getPost(); 
           foreach ($formData as $datas) {
