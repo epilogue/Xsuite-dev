@@ -953,8 +953,11 @@ class XpriceController extends Zend_Controller_Action {
     public function validatedircoAction(){
     
         $user = $this->_auth->getStorage()->read();
+         $tiltop= $user->id_user;
+        $this->view->dirco=$tiltop;
         // var_dump($user);
         $nom_validation = "dirco";
+        $this->nom_validation=$nom_validation;
         $numwp = $this->getRequest()->getParam('numwp', null);
         //var_dump($numwp);
         $this->view->numwp = $numwp;
