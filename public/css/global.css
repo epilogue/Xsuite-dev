@@ -283,7 +283,12 @@ h3{
     background-color:#268bd9;
     color:white;
 }
-
+#plop{
+    float:left;
+    height: 50px;
+    background-color:#268bd9;
+    color:white;
+}
 #fieldset-commentaires{
     width: 725px;
     float:left;
