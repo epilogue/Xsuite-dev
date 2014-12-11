@@ -659,7 +659,7 @@ class XpriceController extends Zend_Controller_Action {
           elseif (isset($formData['validation'])&& $formData['validation'] == "enAttente" ) {
               $idvalidhisto= new Application_Model_DbTable_Validationsxprice();
               $lastidvalid=$idvalidhisto->getValidation($formData['nom_validation'], $formData['tracking']);
-              var_dump($lastidvalid[0]['id_validation']);
+             // var_dump($lastidvalid[0]['id_validation']);
               $newhistocomm = new Application_Model_DbTable_HistoriqueCommentaire();
               $newhisto=$newhistocomm->createHistorique($formData['tracking'],$lastidvalid[0]['id_validation'],$info_user['id_user']);
               $lastidhisto= new Application_Model_DbTable_HistoriqueCommentaire();
@@ -1011,6 +1011,26 @@ class XpriceController extends Zend_Controller_Action {
          $nouv_validation = $nouvelle_validation->createValidation($formData['nom_validation'], $formData['date_validation'], $formData['validation'], $formData['commentaire_dirco'],$formData['dirco'], $formData['tracking']);
          $valid_id_valid= new Application_Model_DbTable_Validationsxprice();
          $valid_id_valids=$valid_id_valid->getValidation($formData['nom_validation'],$formData['tracking']);
+         
+          if (isset($formData['validation'])&& $formData['validation'] == "validee" ){
+            $emailVars = Zend_Registry::get('emailVars');
+            $destinataireMail1 ="mhuby@smc-france.fr"/*$info_user['mail_user']*/;
+            $url1 = "http://{$_SERVER['SERVER_NAME']}/xprice/list/numwp/{$numwp}";
+            $corpsMail1 = "Bonjour,\n"
+                    . "\n"
+                    . "Votre demande XPrice a été validée par .\n"
+                    . "Vous pouvez la consulter à cette adresse url : \n"
+                    . "%s"
+                    . "\n\n"
+                    . "Cordialement,\n"
+                    . "\n"
+                    . "--\n"
+                    . "Prix fobfr.";
+            $mail1 = new Xsuite_Mail();
+            $mail1->setSubject("XPrice :demande $numwp validée par Dirco.")
+                    ->setBodyText(sprintf($corpsMail1, $url1))
+                    ->addTo($destinataireMail1)
+          ->send();}
          }
     }
 
