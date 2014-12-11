@@ -1012,9 +1012,7 @@ class XpriceController extends Zend_Controller_Action {
                 $nouvelle_validation = new Application_Model_DbTable_Validationsxprice();
                 $nouv_validation = $nouvelle_validation->createValidation($nom_validation, $date_validation, $datas['validation'],  $datas['commentaire_dirco'], $user->id_user, $datas['tracking']);
           }
-          echo '<pre>',var_export($formData['validation']),'<pre>';
-         
-         
+          
           if (isset($formData[0]['validation'])&& $formData[0]['validation'] == "validee" ){
             $emailVars = Zend_Registry::get('emailVars');
             $destinataireMail1 ="mhuby@smc-france.fr"/*$info_user['mail_user']*/;
@@ -1034,6 +1032,11 @@ class XpriceController extends Zend_Controller_Action {
                     ->setBodyText(sprintf($corpsMail1, $url1))
                     ->addTo($destinataireMail1)
           ->send();}
+          
+          if(isset($formData[0]['validation']) && $formData[0]['validation'] == 'enAttente'){
+              
+          }
+          
          }
     }
 
