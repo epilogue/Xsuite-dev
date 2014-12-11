@@ -1015,7 +1015,7 @@ class XpriceController extends Zend_Controller_Action {
           //echo '<pre>',var_export($formData['nom_validation']),'<pre>';
          
          $valid_id_valid= new Application_Model_DbTable_Validationsxprice();
-         $valid_id_valids=$valid_id_valid->getValidation($formData['nom_validation'],$formData['tracking']);
+         $valid_id_valids=$valid_id_valid->getValidation($formData[0]['nom_validation'],$formData[0]['tracking']);
          
           if (isset($formData['validation'])&& $formData['validation'] == "validee" ){
             $emailVars = Zend_Registry::get('emailVars');
