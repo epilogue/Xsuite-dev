@@ -1015,7 +1015,7 @@ class XpriceController extends Zend_Controller_Action {
           echo '<pre>',var_export($formData['validation']),'<pre>';
          
          
-          if (isset($formData['validation'])&& $formData['validation'] == "validee" ){
+          if (isset($formData[0]['validation'])&& $formData[0]['validation'] == "validee" ){
             $emailVars = Zend_Registry::get('emailVars');
             $destinataireMail1 ="mhuby@smc-france.fr"/*$info_user['mail_user']*/;
             $url1 = "http://{$_SERVER['SERVER_NAME']}/xprice/list/numwp/{$numwp}";
