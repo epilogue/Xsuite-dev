@@ -294,7 +294,7 @@ h3{
 }
 .plop{
     float:left;
-    margin: auto;
+    margin-left:350px;
 }
 #fieldset-commentaires{
     width: 725px;
