@@ -1031,7 +1031,13 @@ class XpriceController extends Zend_Controller_Action {
             $mail1->setSubject("XPrice :demande $numwp validée par Dirco.")
                     ->setBodyText(sprintf($corpsMail1, $url1))
                     ->addTo($destinataireMail1)
-          ->send();}
+          ->send();
+            $flashMessenger = $this->_helper->getHelper('FlashMessenger');
+            $message = "l'offre $numwp a bien été validée.";
+            $flashMessenger->addMessage($message);
+            $redirector = $this->_helper->getHelper('Redirector');
+            $redirector->gotoSimple('index', 'xprice');
+            }
           
           elseif(isset($formData[0]['validation']) && $formData[0]['validation'] == 'enAttente'){
               $emailVars = Zend_Registry::get('emailVars');
@@ -1052,6 +1058,11 @@ class XpriceController extends Zend_Controller_Action {
                     ->setBodyText(sprintf($corpsMail2, $url2))
                     ->addTo($destinataireMail2)
           ->send();
+            $flashMessenger = $this->_helper->getHelper('FlashMessenger');
+            $message = "l'offre $numwp est en attente de réponse du commercial.";
+            $flashMessenger->addMessage($message);
+            $redirector = $this->_helper->getHelper('Redirector');
+            $redirector->gotoSimple('index', 'xprice');
           }
           elseif(isset($formData[0]['validation']) && $formData[0]['validation'] == 'nonValide'){
               $emailVars = Zend_Registry::get('emailVars');
@@ -1068,10 +1079,15 @@ class XpriceController extends Zend_Controller_Action {
                     . "--\n"
                     . "Dirco.";
             $mail3 = new Xsuite_Mail();
-            $mail3->setSubject("XPrice :demande $numwp mise en attente par Dirco.")
+            $mail3->setSubject("XPrice :demande $numwp non validée par Dirco.")
                     ->setBodyText(sprintf($corpsMail3, $url3))
                     ->addTo($destinataireMail3)
           ->send();
+            $flashMessenger = $this->_helper->getHelper('FlashMessenger');
+            $message = "l'offre $numwp n'a pas été validée.";
+            $flashMessenger->addMessage($message);
+            $redirector = $this->_helper->getHelper('Redirector');
+            $redirector->gotoSimple('index', 'xprice');
           }
           
          }
