@@ -1003,11 +1003,11 @@ class XpriceController extends Zend_Controller_Action {
 
                 foreach ($remise_accordes as $key => $value) {
                     $remisesDirco = new Application_Model_DbTable_DemandeArticlexprices();
-                    $remiseDirco = $remisesDirco->insertRemiseAccorde($value, $key, $datas['tracking_number']);
+                    $remiseDirco = $remisesDirco->insertRemiseAccorde($value, $key, $datas['tracking']);
                 }
                 foreach ($remise_accordes  as $key => $value) {
                     $prixDirco = new Application_Model_DbTable_DemandeArticlexprices();
-                    $priDirco = $prixDirco->insertPrixAccorde($value, $key, $datas['tracking_number']);
+                    $priDirco = $prixDirco->insertPrixAccorde($value, $key, $datas['tracking']);
                 }
                 $nouvelle_validation = new Application_Model_DbTable_Validationsxprice();
          $nouv_validation = $nouvelle_validation->createValidation($nom_validation, $date_validation, $datas['validation'],  $datas['commentaire_dirco'], $user->id_user, $datas['tracking']);
