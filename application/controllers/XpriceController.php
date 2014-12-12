@@ -173,9 +173,6 @@ class XpriceController extends Zend_Controller_Action {
 
             while ($resultat[] = odbc_fetch_array($resultats)) {
                 $this->view->resultat = $resultat;
-                echo '<pre>',  var_export($resultat),'<pre>';
-                $somme = array_sum($resultat['OBLNA2']);
-                var_dump($somme);
             }
             /* aller chercher prix fob prix cif sur la base MVCDXTA en utilisant les tables KOPCDT(date) KOITNO ( code article) et KO ( prix cif)
              *
@@ -1245,12 +1242,13 @@ class XpriceController extends Zend_Controller_Action {
         $this->view->tracking_number = $tracking_number;
         $infos = new Application_Model_DbTable_DemandeArticlexprices();
         $info = $infos->listtracking($tracking_number);
+        //echo '<pre>', var_export($info, true), '</pre>';
         $num_workplace_demande_xprice= $info[0]['num_workplace_demande_xprice'] ;
         $this->view->num_workplace_demande_xprice=$num_workplace_demande_xprice;
         
         $tests = new Application_Model_DbTable_DemandeArticlexprices();
         $test = $tests->sommePrixDemandeArticle($num_workplace_demande_xprice);
-        echo '<pre>', var_export($test, true), '</pre>';        
+       // echo '<pre>', var_export($test, true), '</pre>';        
         
     }
 
