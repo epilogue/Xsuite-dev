@@ -1243,7 +1243,7 @@ class XpriceController extends Zend_Controller_Action {
         $infos = new Application_Model_DbTable_DemandeArticlexprices();
         $info = $infos->listtracking($tracking_number);
         echo '<pre>', var_export($info, true), '</pre>';
-        $num_workplace_demande_xprice= $info['num_workplace_demande_xprice'] ;
+        $num_workplace_demande_xprice= $info[0]['num_workplace_demande_xprice'] ;
         $this->view->num_workplace_demande_xprice=$num_workplace_demande_xprice;
         
         $tests = new Application_Model_DbTable_DemandeArticlexprices();
