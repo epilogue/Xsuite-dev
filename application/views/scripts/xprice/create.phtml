@@ -106,13 +106,8 @@ $this->headTitle($this->title);
                     <td hidden="hidden"><?php echo $result['OBITNO'];?></td>
                 </tr>
             <?php } ?>
-                <tr>
-                <td colspan="3">total</td>
-                <td><?php $totalprixtarif=($result['OBSAPR']*((int)$result['OBORQT'])); echo $totalprixtarif."€";?></td>
-                <td><?php $obnal2=0; foreach ($this->resultat as $result){$obnal2+=$result['OBLNA2'];echo $obnal2;}?></td>
-            </tr>
         </table>
-        <span > Total offre workplace  : <input readonly="readonly" value="<?php $obnal2=0; foreach ($this->resultat as $result){$obnal2+=$result['OBLNA2'];echo $obnal2;}?>" name="totalofr" ></span>
+        <span > Total offre workplace  : <input readonly="readonly" value="<?php $obnal2=0; foreach ($this->resultat as $result){$obnal2+=$result['OBLNA2'];echo $obnal2 ."€";}?>" name="totalofr" ></span>
     </fieldset>
 </div>
 <div id="formcreate">
