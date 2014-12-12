@@ -1,66 +1,29 @@
  <?php
-        $this->title = 'Xprice/list';
-        $this->headTitle($this->title);
-        ?>
-         <h1>Consultation de l' offre</h1>
-            <h3><?php echo $this->tracking_number; ?></h3>
-                <div id="tableau">
-                    <table>
-                            <tr>
-                                <th>TRACKING NUMBER</th>
-                                <th>DATE DE L'OFFRE</th>
-                                <th>CLIENT</th>
-                                <th>MONTANT DE L'OFFRE</th>
-                                <th>DETAIL DE L'OFFRE</th>
-                            </tr>
-                            
-                            
-                            <tr>
-                            <td><?php echo $this->tracking_number; ?></td>
-                            <td><?php echo $this->date_demande_xprice; ?></td>
-                            <td><?php echo $this->info_client['nom_client']; ?></td>
-                            <td><?php $this->montant['total']; ?></td>
-                            <td><button id="bouton_objet" type="button" onclick="javascript:afficher('objet');">Détail</button></td>
-                            </tr>
-                            
-                    </table>
-                </div>
-                <div id="objet">
-                <table rules="all">
-                    <tr>
-                        <th>TRACKING NUMBER</th>
-                        <th>DATE DE L'OFFRE</th>
-                        <th>CLIENT</th>
-                        <th>COMMENTAIRE</th>
-                        <th>MONTANT DE L'OFFRE</th>
-                        <th>NUMERO DE L'ARTICLE</th>
-                        <th>REFERENCE DE L'ARTICLE</th>
-                        <th>QUANTITE</th>
-                        <th>PRIX WORKPLACE (prix unitaire)</th>
-                        <th>PRIX DEMANDE POUR ARTICLE</th>
-                        <th>REMISE DEMANDEE</th>
-                        
-          
-                    </tr>
-                    </br>
-                    </br>
-                    <tr>
-                        <td><?php echo $this->tracking_number; ?></td>
-                        <td><?php echo $this->date_demande_xprice; ?></td>
-                        <td><?php echo $this->info_client['nom_client']; ?></td>
-                        <td><?php echo $this->commentaire_demande_xprice; ?></td>
-                        <td><?php echo $this->montant['total']; ?></td>
-                    <?php foreach ($this->demande_article_xprices as $result) { ?>
-                                        
-                        <td><?php echo $result['code_article']; ?></td>
-                        <td><?php echo $result['reference_article']; ?></td>
-                        <td><?php echo $result['quantite_demande']; ?></td>
-                        <td><?php echo $result['prixwplace_demande_article']; ?></td>
-                        <td><?php echo $result['prix_demande_article']; ?></td>
-                        <td><?php echo $result['remise_demande_article']; ?></td>
-                                      
-                    <?php } ?>
-                    </tr>
-                </table>
-                </div>
+$this->title = 'Xprice/list';
+$this->headTitle($this->title);
+?>
+ <h1>Consultation de l' offre</h1>
+    <h3><?php echo $this->tracking_number; ?></h3>
+        <div id="tableau">
+            <table>
+                <tr>
+                    <th>TRACKING NUMBER</th>
+                    <th>DATE DE L'OFFRE</th>
+                    <th>CLIENT</th>
+                    <th>MONTANT DE L'OFFRE</th>
+                    <th>DETAIL DE L'OFFRE</th>
+                </tr>
+
+
+                <tr>
+                <td><?php echo $this->tracking_number; ?></td>
+                <td><?php echo $this->date_demande_xprice; ?></td>
+                <td><?php echo $this->info_client['nom_client']; ?></td>
+                <td><?php $this->montant['total']; ?></td>
+                <td><button id="bouton_objet" type="button" onclick="javascript:afficher('objet');">Détail</button></td>
+                </tr>
+
+            </table>
+        </div>
+               
     
