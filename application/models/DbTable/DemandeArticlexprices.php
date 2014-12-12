@@ -107,18 +107,11 @@ class Application_Model_DbTable_DemandeArticlexprices extends Zend_Db_Table_Abst
     //a checker
     public function sommePrixDemandeArticle($num_workplace_demande_xprice) {
        $num_workplace_demande_xprice="$num_workplace_demande_xprice";
-      $goto= $this->getAdapter();
-      $select=$goto->select()
-              ->from(array('demande_article_xprices'),array("SUM('prix_demande_xprice')"))
-              ->where('num_workplace_demande_xprice = ?', $num_workplace_demande_xprice);
-      $plop= $select->query();
-     
-      $result = $plop->fetchAll();var_dump($result);
-       if (!$result) {  
-            return null;
-        } else {
-            return $result;
-        }
+       $sql="select SUM('demande_article_xprices' from 'demande_article_xprices' where 'num_workplace_demande_xprice = ?', $num_workplace_demande_xprice";
+      $res= $this->getAdapter()->query($sql);
+      $rest = $res->fetchObject();
+      return $rest;
+      
     }
    public function insertRemiseAccorde($remiseDirco,$code_article, $tracking_number) {
      $code_article = "$code_article";
