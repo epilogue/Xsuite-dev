@@ -107,7 +107,6 @@ class Application_Model_DbTable_DemandeArticlexprices extends Zend_Db_Table_Abst
     //a checker
     public function sommePrixDemandeArticle($num_workplace_demande_xprice) {
        $num_workplace_demande_xprice="$num_workplace_demande_xprice";
-       $goto= $this_>getAdapter();
       
        $data= array('prix_demande_article' => $prix_demande_article);
        $where= $goto->quoteInto('num_workplace_demande_xprice = ?', $num_workplace_demande_xprice);   
