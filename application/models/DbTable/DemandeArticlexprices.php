@@ -105,9 +105,8 @@ class Application_Model_DbTable_DemandeArticlexprices extends Zend_Db_Table_Abst
     }
     //creation de la fonction qui additionne le montant des prix_demande_article recuperer
     //a checker
-    public function sommePrixDemandeArticle($num_workplace_demande_xprice,$prix_demande_article) {
+    public function sommePrixDemandeArticle($num_workplace_demande_xprice) {
        $num_workplace_demande_xprice="$num_workplace_demande_xprice";
-       $prix_demande_article="$prix_demande_article";
        $goto= $this_>getAdapter();
       
        $data= array('prix_demande_article' => $prix_demande_article);
