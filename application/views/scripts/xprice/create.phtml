@@ -107,7 +107,9 @@ $this->headTitle($this->title);
                 </tr>
             <?php } ?>
         </table>
-        <span > Total offre workplace  : <input readonly="readonly" value="<?php $obnal2=0; foreach ($this->resultat as $result){$obnal2+=$result['OBLNA2'];}echo $obnal2 ."€";?>" name="totalofr" ></span>
+        <br>
+        <br>
+        <span ><h3> Total offre workplace  : <input readonly="readonly" value="<?php $obnal2=0; foreach ($this->resultat as $result){$obnal2+=$result['OBLNA2'];}echo $obnal2 ."€";?>" name="totalofr" ></h3></span>
     </fieldset>
 </div>
 <div id="formcreate">
