@@ -1236,12 +1236,13 @@ class XpriceController extends Zend_Controller_Action {
     }
     
     public function listAction() {
+        //$numwp = $this->getRequest()->getParam('numwp', null);
         $tracking = $this->getRequest()->getParam('tracking_number', null);
         $tracking_number = 'SP-FR-' . $tracking;
         $this->view->tracking_number = $tracking_number;
         $infos = new Application_Model_DbTable_DemandeArticlexprices();
         $info = $infos->listtracking($tracking_number);
-        //echo '<pre>', var_export($info, true), '</pre>';
+        echo '<pre>', var_export($info, true), '</pre>'; exit();
         $num_workplace_demande_xprice= "$num_workplace_demande_xprice" ;
         $this->view->num_workplace_demande_xprice=$num_workplace_demande_xprice;
         
