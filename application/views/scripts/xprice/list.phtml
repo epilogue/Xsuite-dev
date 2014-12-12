@@ -7,23 +7,21 @@ $this->headTitle($this->title);
         <div id="tableau">
             <table>
                 <tr>
-                    <th>TRACKING NUMBER</th>
-                    <th>DATE DE L'OFFRE</th>
-                    <th>CLIENT</th>
-                    <th>MONTANT DE L'OFFRE</th>
-                    <th>DETAIL DE L'OFFRE</th>
+                    <th>tracking number</th>
+                    <th>date de l'offre</th>
+                    <th>client</th>
+                    <th>montant de l'offre</th>
+                    <th>détails</th>
                 </tr>
-
-
                 <tr>
-                <td><?php echo $this->tracking_number; ?></td>
-                <td><?php echo $this->date_demande_xprice; ?></td>
-                <td><?php echo $this->info_client['nom_client']; ?></td>
-                <td><?php $this->montant['total']; ?></td>
-                <td><button id="bouton_objet" type="button" onclick="javascript:afficher('objet');">Détail</button></td>
+                    <td><?php echo $this->tracking_number; ?></td>
+                    <td><?php echo $this->date_demande_xprice; ?></td>
+                    <td><?php echo $this->info_client['nom_client']; ?></td>
+                    <td><?php $this->montant['total']; ?></td>
+                    <td><button id="bouton_objet" type="button" onclick="javascript:afficher('objet');">Détail</button></td>
                 </tr>
-
             </table>
+            
         </div>
                
     
