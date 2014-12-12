@@ -107,7 +107,7 @@ class Application_Model_DbTable_DemandeArticlexprices extends Zend_Db_Table_Abst
     //a checker
     public function sommePrixDemandeArticle($num_workplace_demande_xprice) {
        $num_workplace_demande_xprice="$num_workplace_demande_xprice";
-       $sql="select SUM('demande_article_xprices') from 'demande_article_xprices' where 'num_workplace_demande_xprice '=$num_workplace_demande_xprice";
+       $sql="select SUM(`demande_article_xprices`) from `demande_article_xprices` where `num_workplace_demande_xprice`= '$num_workplace_demande_xprice'";
       $res= $this->getAdapter()->query($sql);
       $rest = $res->fetchObject();
       return $rest;
