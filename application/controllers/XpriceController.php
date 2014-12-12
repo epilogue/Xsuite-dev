@@ -1246,8 +1246,8 @@ class XpriceController extends Zend_Controller_Action {
         $num_workplace_demande_xprice= "$num_workplace_demande_xprice" ;
         $this->view->num_workplace_demande_xprice=$num_workplace_demande_xprice;
         
-        $tests = new Application_Model_DbTable_DemandeArticlexprices();
-        $test = $tests->sommePrixDemandeArticle($num_workplace_demande_xprice);
+       // $tests = new Application_Model_DbTable_DemandeArticlexprices();
+        //$test = $tests->sommePrixDemandeArticle($num_workplace_demande_xprice);
        // echo '<pre>', var_export($test, true), '</pre>';         
         
     }
