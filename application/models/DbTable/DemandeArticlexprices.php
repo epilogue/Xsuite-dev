@@ -111,7 +111,7 @@ class Application_Model_DbTable_DemandeArticlexprices extends Zend_Db_Table_Abst
       $select=$goto->select()
               ->from(array('demande_article_xprices'),array("SUM('prix_demande_xprice')"))
               ->where('num_workplace_demande_xprice = ?', $num_workplace_demande_xprice);
-      $plop= $select->quey();
+      $plop= $select->query();
       echo $select;
     }
    public function insertRemiseAccorde($remiseDirco,$code_article, $tracking_number) {
