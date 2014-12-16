@@ -14,25 +14,25 @@ class XpriceController extends Zend_Controller_Action {
     //  public $odbc_conn3= null;
 
     public function init() {
-        //$this->dsn = Zend_Registry::get("dsnString");
-//        $this->odbc_conn = odbc_connect($this->dsn, "", "");
-        $this->odbc_conn = odbc_connect('Movex', "EU65535", "CCS65535");
-        if (!$this->odbc_conn) {
-            echo "pas d'accès à la base de données CVXDTA";
-        }
+//        //$this->dsn = Zend_Registry::get("dsnString");
+////        $this->odbc_conn = odbc_connect($this->dsn, "", "");
+//        $this->odbc_conn = odbc_connect('Movex', "EU65535", "CCS65535");
+//        if (!$this->odbc_conn) {
+//            echo "pas d'accès à la base de données CVXDTA";
+//        }
         $this->_auth = Zend_Auth::getInstance();
         $this->view->messages = $this->_helper->flashMessenger->getMessages();
-
-       // $this->dsn2 = Zend_Registry::get("dsn2String");
-        $this->odbc_conn2 = odbc_connect('Movex2', "EU65535", "CCS65535");
-        if (!$this->odbc_conn2) {
-            echo "pas d'accès à la base de données MVXCDTA";
-        }
-        // $this->dsn3,"","");
-         $this->odbc_conn3 = odbc_connect('Movex3', "EU65535", "CCS65535");
-        if (!$this->odbc_conn3) {
-            echo "pas d'accès à la base de données SMCCDTA";
-        }
+//
+//       // $this->dsn2 = Zend_Registry::get("dsn2String");
+//        $this->odbc_conn2 = odbc_connect('Movex2', "EU65535", "CCS65535");
+//        if (!$this->odbc_conn2) {
+//            echo "pas d'accès à la base de données MVXCDTA";
+//        }
+//        // $this->dsn3,"","");
+//         $this->odbc_conn3 = odbc_connect('Movex3', "EU65535", "CCS65535");
+//        if (!$this->odbc_conn3) {
+//            echo "pas d'accès à la base de données SMCCDTA";
+//        }
     }
 
     public function indexAction() {
@@ -821,17 +821,17 @@ class XpriceController extends Zend_Controller_Action {
         // var_dump($user);
         $nom_validation = "fobfr";
         $numwp = $this->getRequest()->getParam('numwp', null);
-        //var_dump($numwp);
+       // var_dump($numwp);
         $this->view->numwp = $numwp;
         /*
          * on va rechercher les informations concernant la demande _xprice
          */
         $infos_demande_xprice = new Application_Model_DbTable_Xprices();
         $info_demande_xprice = $infos_demande_xprice->getNumwp($numwp);
-        //echo '<pre>', var_export($info_demande_xprice), '</pre>';
+        //echo '<pre>', var_export($info_demande_xprice), '</pre>'; exit();
         // var_dump( $info_demande_xprice['id_user']);
         $this->view->info_demande_xprice = $info_demande_xprice;
-         $date =DateTime::createFromFormat('Y-m-d',$info_demande_xprice['date_demande_xprice']);
+        $date =DateTime::createFromFormat('Y-m-d',$info_demande_xprice['date_demande_xprice']);
         $dateplop=$date->format('d/m/Y');
         $this->view->dateplop=$dateplop;
         $infos_user = new Application_Model_DbTable_Users();
