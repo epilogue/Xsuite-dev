@@ -110,5 +110,19 @@ class Application_Model_DbTable_Users extends Zend_Db_Table_Abstract {
         $this->delete('id_user=' . (int) $id_user);
     }
 
+    public function getFonctionLabel($id_user){
+        $db = $this->getAdapter();
+        $select = $db->select()
+                -> from("users",array("users.id_user","fonctions.description_fonction"))
+                ->join(array("fonctions"),"fonctions.id_fonction = users.id_fonction")
+                ->where("users.id_user ='{$id_user}'");
+        $res = $select->query();
+        $result = $res->fetchAll();
+        if (!$result) {
+            return null;
+        } else {
+            return $result;
+        }
+    }
 }
 

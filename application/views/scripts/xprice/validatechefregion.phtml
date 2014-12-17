@@ -2,6 +2,7 @@
 $this->title = 'Xprice/validateChefregion';
 $this->headTitle($this->title);
 ?>
+<h2>Validation Offre Workplace par le chef de région</h2>
 <div id='workplace'>
     <fieldset id="wp">
         <legend>Informations offre</legend>
@@ -107,23 +108,25 @@ $this->headTitle($this->title);
         <span><?php echo $this->info_demande_xprice['commentaire_demande_xprice'] ?></span>
     </fieldset>
 </div>
-<form method="post">
-    <div id='cdr'>
-        <fieldset>
-            <legend>Commentaire chef de région</legend>
-            <textarea name="commentaire_chefregion" cols="75" rows="10"></textarea>
-        </fieldset>
-    </div>
-    <div id="valid_cdr">
-        <input type="radio" name="validation" value="nonValide"> La demande n'est pas validée <br>
-        <input type="radio" name="validation" value="validee"> La demande est validée <br>
-        <input type="radio" name="validation" value="enAttente">  en attente de réponse  <br> 
-        <input hidden="hidden" name="nom_validation" value="validation_cdr">
-        <input hidden="hidden" name="date_validation" value="<?php echo date("Y-m-d H:i:s")?>">
-        <input hidden="hidden" name="cdr" value="<?php echo $this->cdr;?>">
-        <input hidden="hidden" name="tracking" value="<?php echo $this->info_demande_xprice['tracking_number_demande_xprice'] ;?>"> 
-   </div>
-        
-    <input type="submit" value="enregistrer">
-        
-</form>
+<div>
+    <form method="post">
+        <div id='cdr'>
+            <fieldset>
+                <legend>Commentaire chef de région</legend>
+                <textarea name="commentaire_chefregion" cols="75" rows="10"></textarea>
+            </fieldset>
+        </div>
+        <div id="valid_cdr">
+            <input type="radio" name="validation" value="nonValide"> La demande n'est pas validée <br>
+            <input type="radio" name="validation" value="validee"> La demande est validée <br>
+            <input type="radio" checked="checked" name="validation" value="enAttente">  en attente de réponse  <br> 
+            <input hidden="hidden" name="nom_validation" value="validation_cdr">
+            <input hidden="hidden" name="date_validation" value="<?php echo date("Y-m-d H:i:s")?>">
+            <input hidden="hidden" name="cdr" value="<?php echo $this->cdr;?>">
+            <input hidden="hidden" name="tracking" value="<?php echo $this->info_demande_xprice['tracking_number_demande_xprice'] ;?>"> 
+       </div>
+
+        <input class='plop' type="submit" value="enregistrer statut offre">
+
+    </form>
+</div>
