@@ -533,7 +533,7 @@ class XpriceController extends Zend_Controller_Action {
         $this->view->validations = $validationsDemandesXprices;
         $usersValidations = array();
 
-        foreach ($validationsDemandesXprices as $key => $validationDemandeXprice) {
+        foreach (@$validationsDemandesXprices as $key => $validationDemandeXprice) {
             $userValidationInfos = $infos_user->getFonctionLabel($validationDemandeXprice['id_user']);
             $usersValidations[$key]['fonction'] = $userValidationInfos['description_fonction'];
         }
@@ -766,7 +766,7 @@ class XpriceController extends Zend_Controller_Action {
 //        exit();
         $usersValidations = array();
 
-        foreach ($validationsDemandesXprices as $key => $validationDemandeXprice) {
+        foreach (@$validationsDemandesXprices as $key => $validationDemandeXprice) {
             $userValidationInfos = $infos_user->getFonctionLabel($validationDemandeXprice['id_user']);
             $usersValidations[$key]['fonction'] = $userValidationInfos['description_fonction'];
         }
@@ -932,7 +932,7 @@ class XpriceController extends Zend_Controller_Action {
         $this->view->validations = $validationsDemandesXprices;
         $usersValidations = array();
 
-        foreach ($validationsDemandesXprices as $key => $validationDemandeXprice) {
+        foreach (@$validationsDemandesXprices as $key => $validationDemandeXprice) {
             $userValidationInfos = $infos_user->getFonctionLabel($validationDemandeXprice['id_user']);
             $usersValidations[$key]['fonction'] = $userValidationInfos['description_fonction'];
         }
@@ -1088,6 +1088,27 @@ class XpriceController extends Zend_Controller_Action {
         $this->view->dateplop = $dateplop;
         $infos_user = new Application_Model_DbTable_Users();
         $info_user = $infos_user->getUserDemande($info_demande_xprice['id_user']);
+
+        /*
+         * chargement des validations avec leurs commentaires
+         */
+        $dbtValidationsDemandesXprices = new Application_Model_DbTable_Validationsdemandexprices();
+        $validationsDemandesXprices = $dbtValidationsDemandesXprices->getAllValidation($info_demande_xprice['id_demande_xprice']);
+
+        $this->view->validations = $validationsDemandesXprices;
+//        echo "<pre>", var_export($validationsDemandesXprices, true), "</pre>";
+//        exit();
+        $usersValidations = array();
+
+        foreach (@$validationsDemandesXprices as $key => $validationDemandeXprice) {
+            $userValidationInfos = $infos_user->getFonctionLabel($validationDemandeXprice['id_user']);
+            $usersValidations[$key]['fonction'] = $userValidationInfos['description_fonction'];
+        }
+        $this->view->usersValidations = $usersValidations;
+        /*
+         * Fin du chargement des validations
+         */
+
         //echo '<pre>', var_export($info_user), '</pre>';
         $this->view->info_user = $info_user;
         $infos_client = new Application_Model_DbTable_Clients();
@@ -1134,23 +1155,37 @@ class XpriceController extends Zend_Controller_Action {
             $this->view->date_validationfobfr = $date_validationfobfr;
             $etat = "validé";
             $nom_validationfobfr = "fobfr";
-            $formData[] = $this->getRequest()->getPost();
+            $formData = $this->getRequest()->getPost();
+            $datas = $this->getRequest()->getPost();
             //echo "<pre>", var_export($formData),"</pre>";
-            foreach ($formData as $datas) {
-                $fobs = array_combine($datas['code_article'], $datas['prix_fob']);
-                $cifs = array_combine($datas['code_article'], $datas['prix_cif']);
+//            foreach ($formData as $datas) {
+            $fobs = array_combine($datas['code_article'], $datas['prix_fob']);
+            $cifs = array_combine($datas['code_article'], $datas['prix_cif']);
 
-                foreach ($cifs as $key => $value) {
-                    $prixcifs = new Application_Model_DbTable_DemandeArticlexprices();
-                    $prixcif = $prixcifs->updatecif($value, $key, $datas['tracking_number']);
-                }
-                foreach ($fobs as $key => $value) {
-                    $prixfobs = new Application_Model_DbTable_DemandeArticlexprices();
-                    $prixfob = $prixcifs->updatefob($value, $key, $datas['tracking_number']);
-                }
-                $validations = new Application_Model_DbTable_Validationsxprice();
-                $validation = $validations->createValidation($nom_validationfobfr, $date_validationfobfr, $etat, $datas['commentaire_fobfr'], $user->id_user, $datas['tracking_number']);
+            foreach ($cifs as $key => $value) {
+                $prixcifs = new Application_Model_DbTable_DemandeArticlexprices();
+                $prixcif = $prixcifs->updatecif($value, $key, $datas['tracking_number']);
             }
+            foreach ($fobs as $key => $value) {
+                $prixfobs = new Application_Model_DbTable_DemandeArticlexprices();
+                $prixfob = $prixcifs->updatefob($value, $key, $datas['tracking_number']);
+            }
+            $validations = new Application_Model_DbTable_Validationsxprice();
+            $validation = $validations->createValidation($nom_validationfobfr, $date_validationfobfr, $etat, $datas['commentaire_fobfr'], $user->id_user, $datas['tracking_number']);
+
+            $datasValidation = array(
+                'nom_validation' => $nom_validationfobfr, 'validation' => $etat,
+                'commentaire' => $formData['commentaire_fobfr'],
+                'id_user' => $user->id_user, 'id_demande_xprice' => $info_demande_xprice['id_demande_xprice']
+            );
+//            echo "<pre>", var_export($datasValidation, true), "</pre>";
+//            exit();
+            if (array_key_exists('reponse', $formData)) {
+                $datasValidation['reponse'] = $formData['reponse'];
+            }
+
+            $this->genererValidation($datasValidation);
+//            }
             $emailVars = Zend_Registry::get('emailVars');
             $Mailsupply = $emailVars->listes->supplychain;
             $url = "http://{$_SERVER['SERVER_NAME']}/xprice/validatesupply/numwp/{$numwp}";
@@ -1203,6 +1238,27 @@ class XpriceController extends Zend_Controller_Action {
         $this->view->dateplop = $dateplop;
         $infos_user = new Application_Model_DbTable_Users();
         $info_user = $infos_user->getUserDemande($info_demande_xprice['id_user']);
+
+        /*
+         * chargement des validations avec leurs commentaires
+         */
+        $dbtValidationsDemandesXprices = new Application_Model_DbTable_Validationsdemandexprices();
+        $validationsDemandesXprices = $dbtValidationsDemandesXprices->getAllValidation($info_demande_xprice['id_demande_xprice']);
+
+        $this->view->validations = $validationsDemandesXprices;
+//        echo "<pre>", var_export($validationsDemandesXprices, true), "</pre>";
+//        exit();
+        $usersValidations = array();
+
+        foreach (@$validationsDemandesXprices as $key => $validationDemandeXprice) {
+            $userValidationInfos = $infos_user->getFonctionLabel($validationDemandeXprice['id_user']);
+            $usersValidations[$key]['fonction'] = $userValidationInfos['description_fonction'];
+        }
+        $this->view->usersValidations = $usersValidations;
+        /*
+         * Fin du chargement des validations
+         */
+
         // echo '<pre>',var_export($info_user),'</pre>';
         $this->view->info_user = $info_user;
         $infos_client = new Application_Model_DbTable_Clients();
@@ -1240,24 +1296,37 @@ class XpriceController extends Zend_Controller_Action {
             $this->view->date_validation_supply = $date_validation_supply;
             $etat = "validé";
             $nom_validationsupply = "supply";
-            $formData[] = $this->getRequest()->getPost();
+            $formData = $this->getRequest()->getPost();
+            $datas = $this->getRequest()->getPost();
             //echo '<pre>',var_export($formData),'<pre>';
-            foreach ($formData as $datas) {
+//            foreach ($formData as $datas) {
+            $fobs = array_combine($datas['code_article'], $datas['prix_fob']);
+            $cifs = array_combine($datas['code_article'], $datas['prix_cif']);
 
-                $fobs = array_combine($datas['code_article'], $datas['prix_fob']);
-                $cifs = array_combine($datas['code_article'], $datas['prix_cif']);
-
-                foreach ($cifs as $key => $value) {
-                    $prixcifs = new Application_Model_DbTable_DemandeArticlexprices();
-                    $prixcif = $prixcifs->updatecif($value, $key, $datas['tracking_number']);
-                }
-                foreach ($fobs as $key => $value) {
-                    $prixfobs = new Application_Model_DbTable_DemandeArticlexprices();
-                    $prixfob = $prixcifs->updatefob($value, $key, $datas['tracking_number']);
-                }
-                $validations = new Application_Model_DbTable_Validationsxprice();
-                $validation = $validations->createValidation($nom_validationsupply, $date_validation_supply, $etat, $datas['commentaire_supply'], $user->id_user, $datas['tracking_number']);
+            foreach ($cifs as $key => $value) {
+                $prixcifs = new Application_Model_DbTable_DemandeArticlexprices();
+                $prixcif = $prixcifs->updatecif($value, $key, $datas['tracking_number']);
             }
+            foreach ($fobs as $key => $value) {
+                $prixfobs = new Application_Model_DbTable_DemandeArticlexprices();
+                $prixfob = $prixcifs->updatefob($value, $key, $datas['tracking_number']);
+            }
+            $validations = new Application_Model_DbTable_Validationsxprice();
+            $validation = $validations->createValidation($nom_validationsupply, $date_validation_supply, $etat, $datas['commentaire_supply'], $user->id_user, $datas['tracking_number']);
+
+            $datasValidation = array(
+                'nom_validation' => $nom_validationsupply, 'validation' => $etat,
+                'commentaire' => $formData['commentaire_supply'],
+                'id_user' => $user->id_user, 'id_demande_xprice' => $info_demande_xprice['id_demande_xprice']
+            );
+//            echo "<pre>", var_export($datasValidation, true), "</pre>";
+//            exit();
+            if (array_key_exists('reponse', $formData)) {
+                $datasValidation['reponse'] = $formData['reponse'];
+            }
+
+            $this->genererValidation($datasValidation);
+//            }
             $emailVars = Zend_Registry::get('emailVars');
             // var_dump($datas); exit();
             foreach ($formData as $ploptitude) {

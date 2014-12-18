@@ -110,7 +110,7 @@ $this->headTitle($this->title);
                 <td>Commmentaire Commercial</td>
                 <td></td>
             </tr>-->
-            <?php foreach ($this->validations as $key => $value) { ?>
+            <?php foreach (@$this->validations as $key => $value) { ?>
                 <tr>
                     <td>Commentaire <?php echo strtolower($this->usersValidations[$key]['fonction']); ?></td>
                     <td><?php echo $value['date_validation']; ?></td>
