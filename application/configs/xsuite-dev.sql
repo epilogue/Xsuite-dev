@@ -1,0 +1,930 @@
+-- phpMyAdmin SQL Dump
+-- version 3.4.10.1deb1
+-- http://www.phpmyadmin.net
+--
+-- Client: localhost
+-- Généré le : Mar 16 Décembre 2014 à 07:18
+-- Version du serveur: 5.5.37
+-- Version de PHP: 5.3.10-1ubuntu3.13
+
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+
+--
+-- Base de données: `xsuite-dev`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `articles`
+--
+
+CREATE TABLE IF NOT EXISTS `articles` (
+  `id_article` int(11) NOT NULL AUTO_INCREMENT,
+  `reference_article` varchar(80) NOT NULL,
+  `code_article` varchar(8) NOT NULL,
+  `description_article` varchar(80) DEFAULT NULL,
+  PRIMARY KEY (`id_article`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=33 ;
+
+--
+-- Contenu de la table `articles`
+--
+
+INSERT INTO `articles` (`id_article`, `reference_article`, `code_article`, `description_article`) VALUES
+(1, 'CJ2RA10-60S                   ', '01213156', NULL),
+(2, 'TCU0425B-1                    ', '00027254', NULL),
+(3, 'AS2002F-06                    ', '00769767', NULL),
+(4, 'KM13-04-06-3                  ', '00052298', NULL),
+(5, 'MHK2-12D                      ', '00013565', NULL),
+(6, 'VX232DZ3AA                    ', '01017641', NULL),
+(7, 'VX232LZ3AA                    ', '01017643', NULL),
+(8, 'VNB204A-F10A                  ', '00226848', NULL),
+(9, 'VNB214A-F10A-5DZ-Q            ', '00960808', NULL),
+(10, 'VNB201A-F10A                  ', '00226844', NULL),
+(11, 'VNB211A-F10A-5DZ-Q            ', '00831610', NULL),
+(12, 'VX212AZ3AA                    ', '00933991', NULL),
+(13, 'GDM2A-L5                      ', '00438771', NULL),
+(14, 'VT307K-5DO1-01F-Q             ', '01047197', NULL),
+(15, 'GM209NJ-B17                   ', '00160337', NULL),
+(16, 'VFN2120N-5DO-02F-Q            ', '00288766', NULL),
+(17, 'EBKX-L7005-040                ', '00044021', NULL),
+(18, 'KQ2H06-02AS                   ', '00983492', NULL),
+(19, 'KQ2H06-01AS                   ', '00983491', NULL),
+(20, 'KQ2L06-02AS                   ', '00983563', NULL),
+(21, 'KQ2L06-01AS                   ', '00983562', NULL),
+(22, 'KQ2T06-00A                    ', '00981649', NULL),
+(23, 'TU0604C-100                   ', '00028184', NULL),
+(24, 'ASV310F-02-06S                ', '00002048', NULL),
+(25, 'QEP0014-A-01                  ', '00852080', NULL),
+(26, 'SS5V2-QES833                  ', '01281670', NULL),
+(27, 'SS5V2-QES290                  ', '01193550', NULL),
+(28, 'SS5V4-10FD1-08BS-QES0224      ', '01243460', NULL),
+(29, 'CDU20-25D                     ', '00015489', NULL),
+(30, 'D-M9PSAPC                     ', '00102746', NULL),
+(31, 'CDU10-25D                     ', '00015368', NULL),
+(32, 'VV5QC21-QHS608                ', '01282717', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `clients`
+--
+
+CREATE TABLE IF NOT EXISTS `clients` (
+  `id_client` int(11) NOT NULL AUTO_INCREMENT,
+  `nom_client` varchar(80) NOT NULL,
+  `numwp_client` varchar(15) NOT NULL,
+  `adresse_client` varchar(100) NOT NULL,
+  `id_industry` varchar(30) NOT NULL,
+  `potentiel` varchar(80) DEFAULT NULL,
+  PRIMARY KEY (`id_client`),
+  KEY `id_industry` (`id_industry`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
+
+--
+-- Contenu de la table `clients`
+--
+
+INSERT INTO `clients` (`id_client`, `nom_client`, `numwp_client`, `adresse_client`, `id_industry`, `potentiel`) VALUES
+(1, 'SAMES TECHNOLOGIES                  ', 'I024720000', '.                                   BP 86                                                           ', '19', '0'),
+(2, 'ACTINI                              ', 'I051370000', '.                                   PARC GE MONTIGNY 6 MAXILLY                                      ', '416', '0'),
+(3, 'EUROPLACER                          ', 'I009250000', 'ZI                                  ROUTE DE CHOLET                                                 ', '267', '0'),
+(4, 'MECA PROJET                         ', 'I015720000', '11 RUE JEAN ZAY                     P.A ACTI LEADER BRIAND                                          ', '38', '0'),
+(5, 'CCF OREXAD LANDERNEAU               ', 'I017960013', 'CHEZ ORADIS RELATIONS FOURNISSEURS  174 AV. JEAN JAURES                 CS 30220                    ', '275', '415000.00'),
+(6, 'CTD PULVERISATION                   ', 'I051640000', '.                                   PARC D''ENTREPRISES VISIONIS         RUE DE L''INDUSTRIE          ', '416', '0'),
+(7, 'DOVER EUROPE SARL                   ', 'I050010000', '                                    CHEMIN BLANDONNET 2                                             ', '309', '2500000.00'),
+(8, 'IMECA STE D''INVESTISST&DE MECANIQUE ', 'I012650000', 'ATTN de Mme Sandra Oyonarte         107 ALLEE DES SAPINS                PARC D''ACTIVITE DU BACONNET ', '57', '0'),
+(9, 'FABRICOM SYSTEMES D''ASSEMBLAGE      ', 'I000350001', '                                    PARC LAFAYETTE                      8 RUE LAFAYETTE             ', '61', '0');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `demande_article_xprices`
+--
+
+CREATE TABLE IF NOT EXISTS `demande_article_xprices` (
+  `id_demande_article` int(11) NOT NULL AUTO_INCREMENT,
+  `prixwplace_demande_article` decimal(10,2) NOT NULL,
+  `prix_demande_article` float NOT NULL,
+  `quantite_demande_article` int(11) NOT NULL,
+  `remise_demande_article` float DEFAULT NULL,
+  `date_demande_xprice` date NOT NULL,
+  `prix_accorde_demande_article` float DEFAULT NULL,
+  `remise_accorde_demande_article` float DEFAULT NULL,
+  `prix_fob_demande_article` float DEFAULT NULL,
+  `prix_cif_demande_article` float DEFAULT NULL,
+  `marge_demande_article` float DEFAULT NULL,
+  `tracking_number_demande_xprice` varchar(50) NOT NULL,
+  `code_article` varchar(15) NOT NULL,
+  `reference_article` varchar(80) NOT NULL,
+  `num_workplace_demande_xprice` varchar(35) NOT NULL,
+  PRIMARY KEY (`id_demande_article`),
+  KEY `tracking_number_demande_xprice` (`tracking_number_demande_xprice`),
+  KEY `code_article` (`code_article`,`reference_article`),
+  KEY `num_workplace_demande_xprice` (`num_workplace_demande_xprice`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=33 ;
+
+--
+-- Contenu de la table `demande_article_xprices`
+--
+
+INSERT INTO `demande_article_xprices` (`id_demande_article`, `prixwplace_demande_article`, `prix_demande_article`, `quantite_demande_article`, `remise_demande_article`, `date_demande_xprice`, `prix_accorde_demande_article`, `remise_accorde_demande_article`, `prix_fob_demande_article`, `prix_cif_demande_article`, `marge_demande_article`, `tracking_number_demande_xprice`, `code_article`, `reference_article`, `num_workplace_demande_xprice`) VALUES
+(1, 28.00, 19.04, 600, 32, '2014-11-19', NULL, NULL, 5.54, 5.54, NULL, 'SP-FR-QIS00001', '01213156       ', 'CJ2RA10-60S                   ', '0090672356'),
+(2, 14.43, 10.32, 600, 28.48, '2014-11-19', NULL, NULL, 2.6, 2.6, NULL, 'SP-FR-QIS00001', '00027254       ', 'TCU0425B-1                    ', '0090672356'),
+(3, 11.92, 8.79, 100, 26.26, '2014-11-19', NULL, NULL, 2.32, 2.32, NULL, 'SP-FR-QIS00001', '00769767       ', 'AS2002F-06                    ', '0090672356'),
+(4, 6.26, 3.95, 200, 36.9, '2014-11-19', NULL, NULL, 1.2, 1.2, NULL, 'SP-FR-QIS00001', '00052298       ', 'KM13-04-06-3                  ', '0090672356'),
+(5, 388.25, 232.95, 2, 40, '2014-11-17', NULL, NULL, 69.71, 69.71, NULL, 'SP-FR-QAS00002', '00013565       ', 'MHK2-12D                      ', '0090671383'),
+(6, 49.66, 30.79, 250, 38, '2014-11-17', NULL, NULL, 12.25, 12.25, NULL, 'SP-FR-QAS00003', '01017641       ', 'VX232DZ3AA                    ', '0090671294'),
+(7, 70.43, 43.67, 250, 38, '2014-11-17', NULL, NULL, 17.39, 17.39, NULL, 'SP-FR-QAS00003', '01017643       ', 'VX232LZ3AA                    ', '0090671294'),
+(8, 88.45, 26.53, 250, 70.01, '2014-11-17', NULL, NULL, 21.25, 21.25, NULL, 'SP-FR-QAS00003', '00226848       ', 'VNB204A-F10A                  ', '0090671294'),
+(9, 123.69, 37.11, 250, 70, '2014-11-17', NULL, NULL, 30.42, 30.42, NULL, 'SP-FR-QAS00003', '00960808       ', 'VNB214A-F10A-5DZ-Q            ', '0090671294'),
+(10, 67.25, 23.54, 250, 65, '2014-11-17', NULL, NULL, 16.2, 16.2, NULL, 'SP-FR-QAS00003', '00226844       ', 'VNB201A-F10A                  ', '0090671294'),
+(11, 102.72, 35.95, 250, 65, '2014-11-17', NULL, NULL, 25.38, 25.38, NULL, 'SP-FR-QAS00003', '00831610       ', 'VNB211A-F10A-5DZ-Q            ', '0090671294'),
+(12, 32.89, 9.87, 250, 69.99, '2014-11-17', NULL, NULL, 8.11, 8.11, NULL, 'SP-FR-QAS00003', '00933991       ', 'VX212AZ3AA                    ', '0090671294'),
+(13, 10.89, 5.45, 250, 49.95, '2014-11-17', NULL, NULL, 2.58, 2.58, NULL, 'SP-FR-QAS00003', '00438771       ', 'GDM2A-L5                      ', '0090671294'),
+(14, 38.97, 11.69, 250, 70, '2014-11-17', NULL, NULL, 12.04, 12.04, NULL, 'SP-FR-QAS00003', '01047197       ', 'VT307K-5DO1-01F-Q             ', '0090671294'),
+(15, 5.65, 2.83, 250, 49.91, '2014-11-17', NULL, NULL, 1.06, 1.06, NULL, 'SP-FR-QAS00003', '00160337       ', 'GM209NJ-B17                   ', '0090671294'),
+(16, 70.93, 14.19, 2500, 79.99, '2014-11-17', NULL, NULL, 26.83, 26.83, NULL, 'SP-FR-QAS00003', '00288766       ', 'VFN2120N-5DO-02F-Q            ', '0090671294'),
+(17, 11.14, 1.67, 5000, 85.01, '2014-11-17', NULL, NULL, 1.95, 1.95, NULL, 'SP-FR-QAS00003', '00044021       ', 'EBKX-L7005-040                ', '0090671294'),
+(18, 2.13, 0.64, 650, 69.95, '2014-11-17', NULL, NULL, 0.45, 0.45, NULL, 'SP-FR-QAS00003', '00983492       ', 'KQ2H06-02AS                   ', '0090671294'),
+(19, 2.08, 0.62, 250, 70.19, '2014-11-17', NULL, NULL, 0.34, 0.34, NULL, 'SP-FR-QAS00003', '00983491       ', 'KQ2H06-01AS                   ', '0090671294'),
+(20, 3.36, 0.67, 800, 80.06, '2014-11-17', NULL, NULL, 0.65, 0.65, NULL, 'SP-FR-QAS00003', '00983563       ', 'KQ2L06-02AS                   ', '0090671294'),
+(21, 3.20, 0.64, 300, 80, '2014-11-17', NULL, NULL, 0.53, 0.53, NULL, 'SP-FR-QAS00003', '00983562       ', 'KQ2L06-01AS                   ', '0090671294'),
+(22, 3.19, 0.64, 700, 79.94, '2014-11-17', NULL, NULL, 0.79, 0.79, NULL, 'SP-FR-QAS00003', '00981649       ', 'KQ2T06-00A                    ', '0090671294'),
+(23, 93.17, 27.95, 20, 70, '2014-11-17', NULL, NULL, 23.81, 23.81, NULL, 'SP-FR-QAS00003', '00028184       ', 'TU0604C-100                   ', '0090671294'),
+(24, 20.81, 6.24, 200, 70.01, '2014-11-17', NULL, NULL, 3.73, 3.73, NULL, 'SP-FR-QAS00003', '00002048       ', 'ASV310F-02-06S                ', '0090671294'),
+(25, 432.83, 196.27, 1200, 54.65, '2014-11-18', NULL, NULL, NULL, NULL, NULL, 'SP-FR-QAS00004', '00852080       ', 'QEP0014-A-01                  ', '0090671957'),
+(26, 996.31, 547.97, 28, 45, '2014-11-17', NULL, NULL, NULL, NULL, NULL, 'SP-FR-QAS00005', '01281670       ', 'SS5V2-QES833                  ', '0090671397'),
+(27, 406.80, 203.4, 28, 50, '2014-11-17', NULL, NULL, NULL, NULL, NULL, 'SP-FR-QAS00005', '01193550       ', 'SS5V2-QES290                  ', '0090671397'),
+(28, 1197.96, 622.94, 56, 48, '2014-11-17', NULL, NULL, NULL, NULL, NULL, 'SP-FR-QAS00005', '01243460       ', 'SS5V4-10FD1-08BS-QES0224      ', '0090671397'),
+(29, 63.30, 48.74, 28, 23, '2014-11-17', NULL, NULL, 11.46, 11.46, NULL, 'SP-FR-QAS00005', '00015489       ', 'CDU20-25D                     ', '0090671397'),
+(30, 39.25, 21.58, 84, 45.02, '2014-11-17', NULL, NULL, 11.08, 11.08, NULL, 'SP-FR-QAS00005', '00102746       ', 'D-M9PSAPC                     ', '0090671397'),
+(31, 51.94, 41.04, 28, 20.99, '2014-11-17', NULL, NULL, 9.39, 9.39, NULL, 'SP-FR-QAS00005', '00015368       ', 'CDU10-25D                     ', '0090671397'),
+(32, 1424.90, 541.46, 2, 62, '2014-11-20', NULL, NULL, 10, 10, NULL, 'SP-FR-QAS00006', '01282717       ', 'VV5QC21-QHS608                ', '0090672383');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `demande_xprices`
+--
+
+CREATE TABLE IF NOT EXISTS `demande_xprices` (
+  `id_demande_xprice` int(11) NOT NULL AUTO_INCREMENT,
+  `num_workplace_demande_xprice` varchar(35) NOT NULL,
+  `tracking_number_demande_xprice` varchar(50) NOT NULL,
+  `commentaire_demande_xprice` text,
+  `date_demande_xprice` date NOT NULL,
+  `justificatif_demande_xprice` varchar(80) NOT NULL,
+  `id_user` int(11) NOT NULL,
+  `id_validation` int(11) DEFAULT NULL,
+  `numwp_client` varchar(15) NOT NULL,
+  PRIMARY KEY (`id_demande_xprice`),
+  KEY `id_demande_article` (`id_user`,`id_validation`),
+  KEY `numwp_client` (`numwp_client`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
+
+--
+-- Contenu de la table `demande_xprices`
+--
+
+INSERT INTO `demande_xprices` (`id_demande_xprice`, `num_workplace_demande_xprice`, `tracking_number_demande_xprice`, `commentaire_demande_xprice`, `date_demande_xprice`, `justificatif_demande_xprice`, `id_user`, `id_validation`, `numwp_client`) VALUES
+(1, '0090672356', 'SP-FR-QIS00001', 'plop plop', '2014-11-19', '', 47, NULL, 'I009250000'),
+(2, '0090671383', 'SP-FR-QAS00002', '', '2014-11-17', '', 12, NULL, 'I017960013'),
+(3, '0090671294', 'SP-FR-QAS00003', '', '2014-11-17', '', 37, NULL, 'I051640000'),
+(4, '0090671957', 'SP-FR-QAS00004', '', '2014-11-18', '', 83, NULL, 'I050010000'),
+(5, '0090671397', 'SP-FR-QAS00005', '', '2014-11-17', '', 43, NULL, 'I012650000'),
+(6, '0090672383', 'SP-FR-QAS00006', '', '2014-11-20', '', 11, NULL, 'I000350001');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `fonctions`
+--
+
+CREATE TABLE IF NOT EXISTS `fonctions` (
+  `id_fonction` int(11) NOT NULL AUTO_INCREMENT,
+  `nom_fonction` varchar(30) NOT NULL,
+  `description_fonction` text NOT NULL,
+  PRIMARY KEY (`id_fonction`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=33 ;
+
+--
+-- Contenu de la table `fonctions`
+--
+
+INSERT INTO `fonctions` (`id_fonction`, `nom_fonction`, `description_fonction`) VALUES
+(1, 'KAM', 'bla bla'),
+(2, 'ITC', 'bla bla bli'),
+(3, 'ITC Leader', 'plop'),
+(4, 'ATC', 'attaché technico commercial'),
+(5, 'DBD', 'directeur business developpement'),
+(6, 'DD', 'Développeur Distribution'),
+(7, 'DM', 'Developpement manager'),
+(8, 'TE', 'Technicien d études'),
+(9, 'IP', 'Ingénieur projet'),
+(10, 'CDR', 'chef de region'),
+(11, 'NBD', 'new business developpement'),
+(12, 'PDG', 'president directeur general'),
+(13, 'Dirco', 'directeur commercial'),
+(14, 'leader Engeneering', 'responsable engeneering'),
+(15, 'Leader  technique', 'group leader support technique'),
+(18, 'AT', 'assitant technique'),
+(19, 'DM', 'developpement Manager'),
+(20, 'CDM', 'chef de marché'),
+(23, 'PM', 'product management'),
+(24, 'RPM', 'responsable product management'),
+(26, 'CDM_CP2', 'chef de marché CP2'),
+(27, 'CDM_FM', 'chef de marché food project'),
+(28, 'CDM_E2P', 'chef de marché énergie environnement'),
+(29, 'CDM_LSP_EP', 'chef de marché life and science et électronics project'),
+(30, 'CDM_CP1', 'chef de marché CP1'),
+(31, 'dir_marcom', 'direction marketing communication'),
+(32, 'supply_chain_manager', 'suplly chain manager');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `historique_commentaire`
+--
+
+CREATE TABLE IF NOT EXISTS `historique_commentaire` (
+  `id_histo_commentaire` int(11) NOT NULL AUTO_INCREMENT,
+  `tracking_number` varchar(50) NOT NULL,
+  `id_validation` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL,
+  `commentaire_reponse` text,
+  PRIMARY KEY (`id_histo_commentaire`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `holons`
+--
+
+CREATE TABLE IF NOT EXISTS `holons` (
+  `id_holon` int(11) NOT NULL AUTO_INCREMENT,
+  `nom_holon` varchar(15) NOT NULL,
+  `description_holon` text NOT NULL,
+  PRIMARY KEY (`id_holon`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=31 ;
+
+--
+-- Contenu de la table `holons`
+--
+
+INSERT INTO `holons` (`id_holon`, `nom_holon`, `description_holon`) VALUES
+(2, 'IN00', 'holon de la zone QC et QF'),
+(3, 'IS00', 'holon de la zone QE et QH'),
+(4, 'IW00', 'holon de la zone QI et QK'),
+(5, 'IS01', 'region est '),
+(6, 'IS03', 'region est'),
+(7, 'IS06', 'region est'),
+(8, 'IW01', 'ouest'),
+(9, 'IW02', 'ouest'),
+(10, 'IW03', 'ouest'),
+(11, 'IS02', 'region est'),
+(12, 'IS05', 'region est'),
+(13, 'IS04', 'region est'),
+(14, 'IW04', 'region ouest'),
+(15, 'IW05', 'region ouest'),
+(16, 'IW06', 'region ouest'),
+(17, 'IW07', 'region ouest'),
+(18, 'IN01', 'region nord'),
+(19, 'IN02', 'region nord'),
+(20, 'IN03', 'region nord'),
+(21, 'IN04', 'region nord'),
+(22, 'IN05', 'region nord'),
+(23, 'IN06', 'region nord'),
+(24, 'IM00', 'siege'),
+(25, 'IM01', 'siege'),
+(26, 'IM02', 'siege'),
+(27, 'IM03', 'siege'),
+(28, 'IX00', 'export'),
+(29, 'IX01', 'export'),
+(30, 'IS07', 'region est');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `industry`
+--
+
+CREATE TABLE IF NOT EXISTS `industry` (
+  `id_industry` int(11) NOT NULL AUTO_INCREMENT,
+  `nom_industry` varchar(80) NOT NULL,
+  `code_smc_industry` varchar(15) NOT NULL,
+  `code_movex_industry` varchar(30) NOT NULL,
+  `description_industry` tinytext NOT NULL,
+  PRIMARY KEY (`id_industry`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=417 ;
+
+--
+-- Contenu de la table `industry`
+--
+
+INSERT INTO `industry` (`id_industry`, `nom_industry`, `code_smc_industry`, `code_movex_industry`, `description_industry`) VALUES
+(1, 'Car Projects', 'CP', 'CAZ', 'AUTRES'),
+(2, 'Car Projects', 'CP', 'CA1', 'FABRIQUANT DE VOITURE'),
+(3, 'Car Projects', 'CP', 'CA2', 'FABRIQUANT DE CARROSSERIE'),
+(4, 'Car Projects', 'CP', 'CBZ', 'AUTRES MACHINES DE PRESSES ET FILIERES'),
+(5, 'Car Projects', 'CP', 'CB1', 'PRESSES'),
+(6, 'Car Projects', 'CP', 'CCZ', 'AUTRES MACHINES DE SOUDAGE'),
+(7, 'Car Projects', 'CP', 'CC1', 'MACHINE DE SOUDAGE PAR POINT'),
+(8, 'Car Projects', 'CP', 'CC2', 'MACHINE DE SOUDAGE A L''ARC'),
+(9, 'Car Projects', 'CP', 'CDZ', 'AUTRE MACHINE DE GALVANISATION'),
+(10, 'Car Projects', 'CP', 'CD1', 'MACHINE AUTOMATIQUE DE GALVANISATION'),
+(11, 'Car Projects', 'CP', 'CE1', 'MACHINE POUR COMPOSANT ELECTRONIQUE'),
+(12, 'Car Projects', 'CP', 'CE2', 'MACHINE D''USINAGE?'),
+(13, 'Car Projects', 'CP', 'CE3', 'MACHINE D''ASSEMBLAGE AUTOMATIQUE'),
+(14, 'Car Projects', 'CP', 'CE4', 'MACHINE DE MOULAGE RESINE'),
+(15, 'Car Projects', 'CP', 'CE5', 'CONVOYEUR, MACHINE DE TRANSFERT'),
+(16, 'Car Projects', 'CP', 'CE6', 'ROBOTS'),
+(17, 'Car Projects', 'CP', 'CE7', 'MACHINE DE MOULAGE'),
+(18, 'Car Projects', 'CP', 'CE8', 'MACHINE DE FABRICATION DE PILE A COMBUSTIBLE (POUR VOITURE)'),
+(19, 'Car Projects', 'CP', 'CFZ', 'AUTRES'),
+(20, 'Car Projects', 'CP', 'CGZ', 'AUTRES COMPOSANTS MOTEUR'),
+(21, 'Car Projects', 'CP', 'CG1', 'PISTONS'),
+(22, 'Car Projects', 'CP', 'CHZ', 'AUTRES COMPOSANTS LIES AU MOTEUR'),
+(23, 'Car Projects', 'CP', 'CH1', 'TUYAUX D''ECHAPPEMENT ET SILENCIEUX'),
+(24, 'Car Projects', 'CP', 'CH2', 'EQUIPEMENT D''INJECTION DE CARBURANT POUR MOTEUR DIESEL'),
+(25, 'Car Projects', 'CP', 'CH3', 'RADIATEURS'),
+(26, 'Car Projects', 'CP', 'CIZ', 'AUTRE COMPOSANT ELECTRIQUE POUR MOTEUR'),
+(27, 'Car Projects', 'CP', 'CI1', 'DEMARREURS'),
+(28, 'Car Projects', 'CP', 'CI2', 'COMPOSANTS ELECTRONIQUES ET CAPTEURS'),
+(29, 'Car Projects', 'CP', 'CI3', 'GENERATEUR DE CHARGE (ALTERNATEUR)vvvvvvvvv '),
+(30, 'Car Projects', 'CP', 'CI4', 'BOUGIES D''ALLUMAGE'),
+(31, 'Car Projects', 'CP', 'CI5', 'EQUIPEMENT ELECTRONIQUE LIE AU FREINAGE'),
+(32, 'Car Projects', 'CP', 'CJZ', 'AUTRE COMPOSANT ELECTRIQUE ET INSTRUMENTS'),
+(33, 'Car Projects', 'CP', 'CJ1', 'PROJECTEUR, PHARES'),
+(34, 'Car Projects', 'CP', 'CJ2', 'ESSUIE GLACE, MOTEURS'),
+(35, 'Car Projects', 'CP', 'CJ3', 'COMPTEUR DE VITESSE'),
+(36, 'Car Projects', 'CP', 'CJ4', 'BOUTON ELECTRIQUE, COMMUTATEUR'),
+(37, 'Car Projects', 'CP', 'CJ5', 'FAISCEAU DE CABLES'),
+(38, 'Car Projects', 'CP', 'CKZ', 'AUTRE COMPOSANT DE TRANSMISSION'),
+(39, 'Car Projects', 'CP', 'CK1', 'TRANSMISSION'),
+(40, 'Car Projects', 'CP', 'CLZ', 'AUTRE COMPOSANT DE DIRECTION'),
+(41, 'Car Projects', 'CP', 'CL1', 'DIRECTION ASSISTEE'),
+(42, 'Car Projects', 'CP', 'CMZ', 'AUTRES COMPOSANT DE SUSPENSION'),
+(43, 'Car Projects', 'CP', 'CM1', 'AMORTISSEURS'),
+(44, 'Car Projects', 'CP', 'CNZ', 'AUTRES COMPOSANT DE FREIN'),
+(45, 'Car Projects', 'CP', 'CN1', 'DISQUE, EQUIPEMENT DE FREINAGE'),
+(46, 'Car Projects', 'CP', 'CO1', 'ROUES'),
+(47, 'Car Projects', 'CP', 'CP1', 'PNEUS'),
+(48, 'Car Projects', 'CP', 'CQZ', 'AUTRES ACCESSOIRES DE CARROSSERIES'),
+(49, 'Car Projects', 'CP', 'CQ1', 'TABLEAU DE BORDS ET PANEAUX'),
+(50, 'Car Projects', 'CP', 'CQ2', 'POIGNEES DE PORTES ET SERRURES'),
+(51, 'Car Projects', 'CP', 'CQ3', 'RESERVOIRS D''ESSENCE'),
+(52, 'Car Projects', 'CP', 'CQ4', 'AIRBAG ET ACCESSOIRES'),
+(53, 'Car Projects', 'CP', 'CQ5', 'PILES A COMBUSTIBLE POUR VEHICULE ELECTRIQUE'),
+(54, 'Car Projects', 'CP', 'CQ6', 'BATTERIE RECHARGEABLE UNIQUEMENT POUR LES VEHICULES ELECTRIQUES'),
+(55, 'Car Projects', 'CP', 'CQ7', 'CLIMATISATION AUTOMOBILE'),
+(56, 'Car Projects', 'CP', 'CRZ', 'AUTRES ACCESSOIRES DE CARROSSERIES'),
+(57, 'Car Projects', 'CP', 'CSA', 'MACHINE DE FABRICATION DE PNEUS'),
+(58, 'Car Projects', 'CP', 'CSB', 'MACHINE DE FABRICATION DE PILE A COMBUSTIBLE POUR VEHICULE ELECTRIQUE'),
+(59, 'Car Projects', 'CP', 'CSC', 'MACHINE DE FABRICATION DE BATTERIE RECHARGEABLE UNIQUEMENT POUR LES VEHICULES ELECTRIQUES'),
+(60, 'Car Projects', 'CP', 'CSD', 'FABRIQUANT DE MACHINE POUR ACCESSOIRE DE CARROSSERIE'),
+(61, 'Car Projects', 'CP', 'CSZ', 'FOURNISSEUR DE MATERIEL, AUTRE'),
+(62, 'Car Projects', 'CP', 'CS1', 'MACHINE DE FABRICATION DE COMPOSANT MOTEUR'),
+(63, 'Car Projects', 'CP', 'CS2', 'MACHINE DE FABRICATION DE COMPOSANT LIE AU MOTEUR'),
+(64, 'Car Projects', 'CP', 'CS3', 'MACHINE DE FABRICATION DE COMPOSANT DE MOTEUR ELECTRIQUE'),
+(65, 'Car Projects', 'CP', 'CS4', 'MACHINE DE FABRICATION DE COMPOSANT ELECTRIQUE ET DE MESURE'),
+(66, 'Car Projects', 'CP', 'CS5', 'MACHINE DE FABRICATION DE COMPOSANT DE TRANSMISSION'),
+(67, 'Car Projects', 'CP', 'CS6', 'MACHINE DE FABRICATION DE COMPOSANT DE DIRECTION'),
+(68, 'Car Projects', 'CP', 'CS7', 'MACHINE DE FABRICATION DE COMPOSANT DE SUSPENSION'),
+(69, 'Car Projects', 'CP', 'CS8', 'MACHINE DE FABRICATION DE COMPOSANT DE FREIN'),
+(70, 'Car Projects', 'CP', 'CS9', 'MACHINE DE FABRICATION DE ROUES'),
+(71, 'Car Projects', 'CP', 'CTZ', 'AUTRES'),
+(72, 'Car Projects', 'CP', 'CT1', 'FABRIQUANT DE BATTERIE SECONDAIRE'),
+(73, 'Car Projects', 'CP', 'CT2', 'FABRIQUANT D''USINE DE BATTERIE SECONDAIRE'),
+(74, 'Car Projects', 'CP', 'CT3', 'FABRIQUANT DE MOTEUR'),
+(75, 'Car Projects', 'CP', 'CT4', 'FABRIQUANT D''USINE DE MOTEUR'),
+(76, 'Car Projects', 'CP', 'CA3', 'inconnu'),
+(77, 'MEDICAL PROJECT', 'DP', 'DAZ', 'OTHER DIAGNOSTIC IMAGING SYSTEMS OR RELATED EQUIPMENT/APPARATUS'),
+(78, 'MEDICAL PROJECT', 'DP', 'DA1', 'X-RAY,CT.MRI'),
+(79, 'MEDICAL PROJECT', 'DP', 'DA2', 'APPAREILS DE DEVELOPPEMENT DE FILMS MEDICAUX ET APPAREILS ASSOCIES'),
+(80, 'MEDICAL PROJECT', 'DP', 'DBZ', 'OTHER MEASURING AND MONITORING SYSTEMS FOR BIOPHENOMENA'),
+(81, 'MEDICAL PROJECT', 'DP', 'DB1', 'TENSIOMETRE ET PRISE DE TENSION'),
+(82, 'MEDICAL PROJECT', 'DP', 'DB2', 'SYSTEME DE CONTROLE POUR LES LITS'),
+(83, 'MEDICAL PROJECT', 'DP', 'DB3', 'MACHINE DE CONTROLE DE LA RESPIRATION'),
+(84, 'MEDICAL PROJECT', 'DP', 'DB4', 'ENDOSCOPES ET APPAREILS ASSOCIES'),
+(85, 'MEDICAL PROJECT', 'DP', 'DCZ', 'OTHER MEDICAL LABORATORY TEST EQUIPMENT'),
+(86, 'MEDICAL PROJECT', 'DP', 'DC1', 'ANALYSEUR DE BIOCHIMIE'),
+(87, 'MEDICAL PROJECT', 'DP', 'DC2', 'ANALYSEUR D''ELECTROLYTES'),
+(88, 'MEDICAL PROJECT', 'DP', 'DC3', 'DISPOSITIF D''ELECTROPHORESE'),
+(89, 'MEDICAL PROJECT', 'DP', 'DC4', 'ENZYME IMMUNOASSAY SYSTEM'),
+(90, 'MEDICAL PROJECT', 'DP', 'DC5', 'DISPOSITIF DE MESURE DU GLUCOSE(Y COMPRIS DU DIABETE)'),
+(91, 'MEDICAL PROJECT', 'DP', 'DC6', 'EQUIPEMENT DE TEST HEMATOLOGIQUE'),
+(92, 'MEDICAL PROJECT', 'DP', 'DC7', 'INSTRUMENT DE TEST FECAL ET URINE'),
+(93, 'MEDICAL PROJECT', 'DP', 'DDZ', 'OTHER MEDICAL LABORATORY PRE-TREATMENT EQUIPMENT'),
+(94, 'MEDICAL PROJECT', 'DP', 'DD1', 'SYSTEME DE TRANSPORT D''ECHANTILLON MEDICAUX'),
+(95, 'MEDICAL PROJECT', 'DP', 'DD2', 'SYSTEME ET EQUIPEMENT D''ECHANTILLONAGE'),
+(96, 'MEDICAL PROJECT', 'DP', 'DEZ', 'OTHER MEDICAL FACILITY APPARATUS '),
+(97, 'MEDICAL PROJECT', 'DP', 'DE1', 'SPRAY ET INHALATEUR POUR USAGE MEDICAL'),
+(98, 'MEDICAL PROJECT', 'DP', 'DE2', 'ASPIRATEUR POUR USAGE MEDICAL'),
+(99, 'MEDICAL PROJECT', 'DP', 'DE3', 'APPAREILS ET MACHINES DE LAVAGE D''ENDOSCOPE'),
+(100, 'MEDICAL PROJECT', 'DP', 'DE4', 'TABLE D''OPERATION ET D''EXAMEN, LIT'),
+(101, 'MEDICAL PROJECT', 'DP', 'DE5', 'APPAREILS ET MACHNIES DE STERILISATION, DESINFECTION '),
+(102, 'MEDICAL PROJECT', 'DP', 'DE6', 'UNITE ET SYSTEME LIES A L''APPROVISIONNEMENT DE GAZ'),
+(103, 'MEDICAL PROJECT', 'DP', 'DFZ', 'OTHER ARTIFICIAL INTERNAL ORGAN APPARATUS AND ASSIST DEVICES'),
+(104, 'MEDICAL PROJECT', 'DP', 'DF1', 'PERITONEAL DIALYSIS APPARATUS'),
+(105, 'MEDICAL PROJECT', 'DP', 'DF2', 'SYSTEME DE PURIFICATION DU SANG'),
+(106, 'MEDICAL PROJECT', 'DP', 'DF3', 'VENTILATEUR ARTIFICIEL'),
+(107, 'MEDICAL PROJECT', 'DP', 'DF4', 'MACHINE D''ANESTHESIE'),
+(108, 'MEDICAL PROJECT', 'DP', 'DF5', 'CONCENTRATEUR D''OXYGENE'),
+(109, 'MEDICAL PROJECT', 'DP', 'DGZ', 'OTHER THERAPEUTIC APPARATUS OR SURGICAL EQUIPMENT'),
+(110, 'MEDICAL PROJECT', 'DP', 'DG1', 'MACHINES ET APPAREILS DE THERAPIE PAR LA RADIOACTIVITE,BASSE FREQUENCE'),
+(111, 'MEDICAL PROJECT', 'DP', 'DG2', 'EQUIPEMENT DE THERAPIE LASER, EQUIPEMENT DE CHIRURGIE LASER'),
+(112, 'MEDICAL PROJECT', 'DP', 'DHZ', 'OTHER DENTAL EQUIPMENT'),
+(113, 'MEDICAL PROJECT', 'DP', 'DH1', 'UNITE DENTAIRE'),
+(114, 'MEDICAL PROJECT', 'DP', 'DH2', 'EQUIPEMENT DE THERAPIE LASER DENTAIRE ET EQUIPEMENT DE CHIRURGIE DENTAIRE'),
+(115, 'MEDICAL PROJECT', 'DP', 'DIZ', 'OTHER NURSING APPLIANCES'),
+(116, 'MEDICAL PROJECT', 'DP', 'DI1', 'BAIGNOIRE POUR BEBE'),
+(117, 'MEDICAL PROJECT', 'DP', 'DI2', 'LIT ET MATELAS POUR BEBE'),
+(118, 'MEDICAL PROJECT', 'DP', 'DJZ', 'AUTRES EQUIPEMENTS MEDICAUX ET INSTALLATIONS'),
+(119, 'MEDICAL PROJECT', 'DP', 'DKZ', 'OTHER GENERAL ANALYTICAL INSTRUMENTS'),
+(120, 'MEDICAL PROJECT', 'DP', 'DK1', 'CHROMATOGRAPHE LIQUIDE ET  GAZEUX...'),
+(121, 'MEDICAL PROJECT', 'DP', 'DK2', 'EQUIPEMENT D''ANALYSE PHOTOMETRIQUE (ADSORPTION LUMIERE, EMETTANT DE LA LUMIERE)'),
+(122, 'MEDICAL PROJECT', 'DP', 'DK3', 'ANALYSEUR DE LA POLLUTION DE L''AIR'),
+(123, 'MEDICAL PROJECT', 'DP', 'DK4', 'ANALYSEUR DES EMISSIONS D''ECHAPPEMENT DE VOITURE'),
+(124, 'MEDICAL PROJECT', 'DP', 'DK5', 'ANALYSEUR DE POLLUTION DE L''EAU'),
+(125, 'MEDICAL PROJECT', 'DP', 'DLZ', 'OTHER BIO-RELATED ANALYTICAL INSTRUMENTS'),
+(126, 'MEDICAL PROJECT', 'DP', 'DL1', 'APPAREILS DE SYNTHESE PEPTIDIQUE'),
+(127, 'MEDICAL PROJECT', 'DP', 'DL2', 'SEQUENCEUR DE PROTEINES'),
+(128, 'MEDICAL PROJECT', 'DP', 'DL3', 'SEQUENCEUR D''ADN'),
+(129, 'MEDICAL PROJECT', 'DP', 'DL4', 'MICRO ARRAY'),
+(130, 'MEDICAL PROJECT', 'DP', 'DL5', 'APPAREILS DE REGENERATION DES TISSUS'),
+(131, 'MEDICAL PROJECT', 'DP', 'DM1', 'FABRICANTS D''APPAREILS MEDICAUX (GOUTTE A GOUTTE, AIGUILLE, THERMOMETRE, PANSEMENT)'),
+(132, 'MEDICAL PROJECT', 'DP', 'DM2', 'MATERIEL MEDICAL ET FABRICANTS D''EQUIPEMENTS'),
+(133, 'MEDICAL PROJECT', 'DP', 'DN1', 'FABRICANTS DE PRODUITS PHARMACEUTIQUES'),
+(134, 'MEDICAL PROJECT', 'DP', 'DN2', 'CONSTRUCTION D''INSTALLATIONS (INSTALLATIONS CLE EN MAIN)'),
+(135, 'MEDICAL PROJECT', 'DP', 'DN3', 'INSTALLATION DES UTILITES (CONCEPTION DE TUYAUTERIE, LES TRAVAUX DE TUYAUTERIE...)'),
+(136, 'MEDICAL PROJECT', 'DP', 'DN4', 'PROCESSUS AMONT (MACHINES DE TRAITEMENT DES INGREDIENTS, DE REMPLISSAGE ET APPAREILS DE ...)'),
+(137, 'MEDICAL PROJECT', 'DP', 'DN5', 'PROCESSUS AVAL (IMPRESSION, EMBALLAGE, INSTRUMENTS DE MESURE, DE TRANSPORT, ENTREPOT)'),
+(138, 'ELECTRONIQUE PROJECT', 'EP', 'EA1', 'EQUIPEMENT DE CROISSANCE DE CRISTAL'),
+(139, 'ELECTRONIQUE PROJECT', 'EP', 'EA2', 'EQUIPEMENT DE TRANCHAGE, EQUIPEMENT DE POLISSAGE'),
+(140, 'ELECTRONIQUE PROJECT', 'EP', 'EBA', 'EQUIPEMENT DE CROISSANCE PAR EPITAXIE'),
+(141, 'ELECTRONIQUE PROJECT', 'EP', 'EBB', 'EQUIPEMENT DE PULVERISATION'),
+(142, 'ELECTRONIQUE PROJECT', 'EP', 'EBC', 'IMPLANTEUR D''ION'),
+(143, 'ELECTRONIQUE PROJECT', 'EP', 'EBD', 'EQUIPEMENT DE NETTOYAGE ET DE SECHAGE'),
+(144, 'ELECTRONIQUE PROJECT', 'EP', 'EBE', 'EQUIPEMENT DE CMP'),
+(145, 'ELECTRONIQUE PROJECT', 'EP', 'EBF', 'EQUIPEMENT DE PLACAGE CUIVRE'),
+(146, 'ELECTRONIQUE PROJECT', 'EP', 'EBZ', 'AUTRES'),
+(147, 'ELECTRONIQUE PROJECT', 'EP', 'EB1', 'SYSTEME D''EXPOSITION'),
+(148, 'ELECTRONIQUE PROJECT', 'EP', 'EB2', 'SYSTEME DE LITHOGRAPHIE PAR FAISCEAU D''ELECTRONS'),
+(149, 'ELECTRONIQUE PROJECT', 'EP', 'EB3', 'DEPOT ET DEVELOPPEMENT'),
+(150, 'ELECTRONIQUE PROJECT', 'EP', 'EB4', 'EQUIPEMENT DE CALCINATION'),
+(151, 'ELECTRONIQUE PROJECT', 'EP', 'EB5', 'EQUIPEMENT DE GRAVURE'),
+(152, 'ELECTRONIQUE PROJECT', 'EP', 'EB6', 'EQUIPEMENT DE FOUR DE DIFFUSION'),
+(153, 'ELECTRONIQUE PROJECT', 'EP', 'EB7', 'EQUIPEMENT DE RECUIT PAR LAMPE (RTP)'),
+(154, 'ELECTRONIQUE PROJECT', 'EP', 'EB8', 'EQUIPEMENT DE CVD (CHEMICAL VAPOR DEPOSITION)'),
+(155, 'ELECTRONIQUE PROJECT', 'EP', 'EB9', 'EQUIPEMENT DE MOCVD'),
+(156, 'ELECTRONIQUE PROJECT', 'EP', 'ECZ', 'AUTRES'),
+(157, 'ELECTRONIQUE PROJECT', 'EP', 'EC1', 'EQUIPEMENT DE DECOUPE, EQUIPEMENT DE MEULAGE'),
+(158, 'ELECTRONIQUE PROJECT', 'EP', 'EC2', 'EQUIPEMENT DE MISE EN PLACE'),
+(159, 'ELECTRONIQUE PROJECT', 'EP', 'EC3', 'EQUIPEMENT DE REGROUPEMENT'),
+(160, 'ELECTRONIQUE PROJECT', 'EP', 'EC4', 'EQUIPEMENT DE MOULAGE'),
+(161, 'ELECTRONIQUE PROJECT', 'EP', 'EC5', 'EQUIPEMENT DE MARQUAGE'),
+(162, 'ELECTRONIQUE PROJECT', 'EP', 'EC6', 'TESTEUR'),
+(163, 'ELECTRONIQUE PROJECT', 'EP', 'EDZ', 'AUTRES'),
+(164, 'ELECTRONIQUE PROJECT', 'EP', 'ED1', 'TESTEUR'),
+(165, 'ELECTRONIQUE PROJECT', 'EP', 'ED2', 'SONDEUR'),
+(166, 'ELECTRONIQUE PROJECT', 'EP', 'ED3', 'MANIPULATEUR'),
+(167, 'ELECTRONIQUE PROJECT', 'EP', 'ED4', 'ÉQUIPEMENT (ENVIRONNEMENTAL) D''INCINERATION'),
+(168, 'ELECTRONIQUE PROJECT', 'EP', 'EEA', 'MACHINE DE MEULAGE DE SUBSTRAT DE VERRE'),
+(169, 'ELECTRONIQUE PROJECT', 'EP', 'EEZ', 'AUTRES'),
+(170, 'ELECTRONIQUE PROJECT', 'EP', 'EE1', 'SYSTEME D''EXPOSITION'),
+(171, 'ELECTRONIQUE PROJECT', 'EP', 'EE2', 'DEPOT ET DEVELOPPEMENT'),
+(172, 'ELECTRONIQUE PROJECT', 'EP', 'EE3', 'EQUIPEMENT DE CALCINATION, EQUIPEMENT DE SEPARATION DE RESISTANCE'),
+(173, 'ELECTRONIQUE PROJECT', 'EP', 'EE4', 'EQUIPEMENT DE GRAVURE'),
+(174, 'ELECTRONIQUE PROJECT', 'EP', 'EE5', 'EQUIPEMENT CVD'),
+(175, 'ELECTRONIQUE PROJECT', 'EP', 'EE6', 'EQUIPEMENT DE TRAITEMENT THERMIQUE'),
+(176, 'ELECTRONIQUE PROJECT', 'EP', 'EE7', 'EQUIPEMENT DE PULVERISATION'),
+(177, 'ELECTRONIQUE PROJECT', 'EP', 'EE8', 'IMPLANTEUR D''ION'),
+(178, 'ELECTRONIQUE PROJECT', 'EP', 'EE9', 'EQUIPEMENT DE NETTOYAGE'),
+(179, 'ELECTRONIQUE PROJECT', 'EP', 'EFA', 'EQUIPEMENT DE FABRICATION DE RETRO-ECLAIRAGE'),
+(180, 'ELECTRONIQUE PROJECT', 'EP', 'EFZ', 'AUTRES'),
+(181, 'ELECTRONIQUE PROJECT', 'EP', 'EF1', 'MACHINE DE RECUIT LASER'),
+(182, 'ELECTRONIQUE PROJECT', 'EP', 'EF2', 'SYSTEME DE TRAITEMENT PAR ALIGNEMENT DES COUCHES'),
+(183, 'ELECTRONIQUE PROJECT', 'EP', 'EF3', 'FOUR DE CUISSON'),
+(184, 'ELECTRONIQUE PROJECT', 'EP', 'EF4', 'EQUIPEMENT DE FROTTEMENT, EQUIPEMENT D''ALIGNEMENT UV'),
+(185, 'ELECTRONIQUE PROJECT', 'EP', 'EF5', 'SYSTEME DE GRAVURE ET DE DECOUPE'),
+(186, 'ELECTRONIQUE PROJECT', 'EP', 'EF6', 'PULVERISATEUR POUR ESPACEMENT'),
+(187, 'ELECTRONIQUE PROJECT', 'EP', 'EF7', 'PANEL ALIGNER'),
+(188, 'ELECTRONIQUE PROJECT', 'EP', 'EF8', 'SYSTEME DE REMPLISSAGE'),
+(189, 'ELECTRONIQUE PROJECT', 'EP', 'EF9', 'EQUIPEMENT OLB (PEMBALLAGE)'),
+(190, 'ELECTRONIQUE PROJECT', 'EP', 'EGZ', 'AUTRES'),
+(191, 'ELECTRONIQUE PROJECT', 'EP', 'EG1', 'SYSTEME DE CONTROLE VISUEL'),
+(192, 'ELECTRONIQUE PROJECT', 'EP', 'EG2', 'MACHINE DE TEST PAR RANGEE'),
+(193, 'ELECTRONIQUE PROJECT', 'EP', 'EG3', 'MACHINE DE TEST PAR FILTRE COULEUR'),
+(194, 'ELECTRONIQUE PROJECT', 'EP', 'EG4', 'TESTEUR DE PANNEAUX LCD (SONDEUR)'),
+(195, 'ELECTRONIQUE PROJECT', 'EP', 'EG5', 'EQUIPEMENT DE REPARATION'),
+(196, 'ELECTRONIQUE PROJECT', 'EP', 'EHA', 'SABLAGE'),
+(197, 'ELECTRONIQUE PROJECT', 'EP', 'EHB', 'ALIGNEUR DE PANNEAU'),
+(198, 'ELECTRONIQUE PROJECT', 'EP', 'EHC', 'EQUIPEMENT D''ETANCHEITE ET D''ECHAPPEMENT'),
+(199, 'ELECTRONIQUE PROJECT', 'EP', 'EHZ', 'AUTRES'),
+(200, 'ELECTRONIQUE PROJECT', 'EP', 'EH1', 'ALIGNEUR'),
+(201, 'ELECTRONIQUE PROJECT', 'EP', 'EH2', 'DEPOT DE RESISTANCE'),
+(202, 'ELECTRONIQUE PROJECT', 'EP', 'EH3', 'EQUIPEMENT DE LAMINAGE'),
+(203, 'ELECTRONIQUE PROJECT', 'EP', 'EH4', 'SYSTEME DE PULVERISATION'),
+(204, 'ELECTRONIQUE PROJECT', 'EP', 'EH5', 'SYSTEME D''EVAPORATION PAR FAISCEAU D''ELECTRONS'),
+(205, 'ELECTRONIQUE PROJECT', 'EP', 'EH6', 'EQUIPEMENT DE NETTOYAGE'),
+(206, 'ELECTRONIQUE PROJECT', 'EP', 'EH7', 'MACHINE D''IMPRESSION PAR ECRAN'),
+(207, 'ELECTRONIQUE PROJECT', 'EP', 'EH8', 'DEPOT COUCHE EPAISSE'),
+(208, 'ELECTRONIQUE PROJECT', 'EP', 'EH9', 'FOUR SEC'),
+(209, 'ELECTRONIQUE PROJECT', 'EP', 'EIZ', 'AUTRES'),
+(210, 'ELECTRONIQUE PROJECT', 'EP', 'EI1', 'EQUIPEMENT DE FABRICATION DE CELLULE'),
+(211, 'ELECTRONIQUE PROJECT', 'EP', 'EI2', 'EQUIPEMENT DE FABRICATION DE MODULE'),
+(212, 'ELECTRONIQUE PROJECT', 'EP', 'EJ1', 'EQUIPEMENT DE FABRICATION DE LED'),
+(213, 'ELECTRONIQUE PROJECT', 'EP', 'EKZ', 'AUTRES'),
+(214, 'ELECTRONIQUE PROJECT', 'EP', 'EK1', 'SYSTEME D''ALIMENTATION DE GAZ'),
+(215, 'ELECTRONIQUE PROJECT', 'EP', 'EK2', 'SYSTEME D''ALIMENTATION DE PRODUITS CHIMIQUES'),
+(216, 'ELECTRONIQUE PROJECT', 'EP', 'ELZ', 'AUTRES'),
+(217, 'ELECTRONIQUE PROJECT', 'EP', 'EL1', 'EQUIPEMENT DE TRANSFERT DE FOUP'),
+(218, 'ELECTRONIQUE PROJECT', 'EP', 'EL2', 'ROBOT SALLE BLANCHE'),
+(219, 'ELECTRONIQUE PROJECT', 'EP', 'EL3', 'EQUIPEMENT DE TRANSFERT SANS CONTACT'),
+(220, 'ELECTRONIQUE PROJECT', 'EP', 'EMZ', 'AUTRES'),
+(221, 'ELECTRONIQUE PROJECT', 'EP', 'EM1', 'EQUIPEMENT RELATIF A LA FABRICATION DE CARTE'),
+(222, 'ELECTRONIQUE PROJECT', 'EP', 'EM2', 'EQUIPEMENT RELATIF A L''EMBALLAGE DE COMPOSANT'),
+(223, 'ELECTRONIQUE PROJECT', 'EP', 'EM3', 'TESTEUR'),
+(224, 'ELECTRONIQUE PROJECT', 'EP', 'ENZ', 'AUTRES'),
+(225, 'ELECTRONIQUE PROJECT', 'EP', 'EN1', 'WAFER EN SILICIUM / WAFER EN SEMICONDUCTEUR COMPOSE'),
+(226, 'ELECTRONIQUE PROJECT', 'EP', 'EN2', 'SUBSTRAT DE VERRE (POUR ECRAN PLAN)'),
+(227, 'ELECTRONIQUE PROJECT', 'EP', 'EOZ', 'AUTRES'),
+(228, 'ELECTRONIQUE PROJECT', 'EP', 'EO1', 'MPC・MCU'),
+(229, 'ELECTRONIQUE PROJECT', 'EP', 'EO2', 'MEMOIRE DRAM'),
+(230, 'ELECTRONIQUE PROJECT', 'EP', 'EO3', 'MEMOIRE FLASH'),
+(231, 'ELECTRONIQUE PROJECT', 'EP', 'EO4', 'SYSTEME LSI'),
+(232, 'ELECTRONIQUE PROJECT', 'EP', 'EO5', 'SEMICONDUCTEUR CCD, OPT'),
+(233, 'ELECTRONIQUE PROJECT', 'EP', 'EO6', 'SEMICONDUCTEUR EMBARQUE (SEMICONDUCTEUR DE PUISSANCE, CAPTEUR)'),
+(234, 'ELECTRONIQUE PROJECT', 'EP', 'EO7', 'MICROMACHINE （MEMS）'),
+(235, 'ELECTRONIQUE PROJECT', 'EP', 'EO8', 'LED'),
+(236, 'ELECTRONIQUE PROJECT', 'EP', 'EP1', 'CELLULE SOLAIRE'),
+(237, 'ELECTRONIQUE PROJECT', 'EP', 'EQZ', 'AUTRES'),
+(238, 'ELECTRONIQUE PROJECT', 'EP', 'EQ1', 'CELL (PRIMARY CELL, SECONDARY CELL)'),
+(239, 'ELECTRONIQUE PROJECT', 'EP', 'EQ2', 'EQUIPEMENT RELATIF AU HDD'),
+(240, 'ELECTRONIQUE PROJECT', 'EP', 'EQ3', 'EQUIPEMENT RELATIF AUX CONDENSATEURS ET TRANSISTORS'),
+(241, 'ELECTRONIQUE PROJECT', 'EP', 'EQ4', 'EQUIPEMENT RELATIF AUX APPAREILS NUMERIQUES'),
+(242, 'ELECTRONIQUE PROJECT', 'EP', 'EQ5', 'EQUIPEMENT RELATIF AUX APPAREILS'),
+(243, 'ELECTRONIQUE PROJECT', 'EP', 'EQ6', 'EQUIPEMENT RELATIF AUX DVD, CD, MD'),
+(244, 'ELECTRONIQUE PROJECT', 'EP', 'ERZ', 'AUTRES'),
+(245, 'ELECTRONIQUE PROJECT', 'EP', 'ER1', 'EQUIPEMENT RELATIF AUX PILES A COMBUSTIBLE (POUR PC, APPAREIL)'),
+(246, 'ELECTRONIQUE PROJECT', 'EP', 'ER2', 'EQUIPEMENT RELATIF AUX PC'),
+(247, 'ELECTRONIQUE PROJECT', 'EP', 'ER3', 'EQUIPEMENT RELATIF AUX OA'),
+(248, 'ELECTRONIQUE PROJECT', 'EP', 'ER4', 'EQUIPEMENT RELATIF A LA COMMUNICATION'),
+(249, 'ELECTRONIQUE PROJECT', 'EP', 'ER5', 'EQUIPEMENT RELATIF AUX INSTRUMENTS ELECTRONIQUES DE MESURE'),
+(250, 'ELECTRONIQUE PROJECT', 'EP', 'ER6', 'EQUIPEMENT RELATIF A L''INDUSTRIE'),
+(251, 'ELECTRONIQUE PROJECT', 'EP', 'ESZ', 'AUTRES'),
+(252, 'ELECTRONIQUE PROJECT', 'EP', 'ES1', 'POUR TC'),
+(253, 'ELECTRONIQUE PROJECT', 'EP', 'ES2', 'POUR PC'),
+(254, 'ELECTRONIQUE PROJECT', 'EP', 'ET1', 'POUR PC'),
+(255, 'ELECTRONIQUE PROJECT', 'EP', 'EUZ', 'AUTRES'),
+(256, 'ELECTRONIQUE PROJECT', 'EP', 'EU1', 'POUR TC'),
+(257, 'ELECTRONIQUE PROJECT', 'EP', 'EU2', 'POUR PC'),
+(258, 'ELECTRONIQUE PROJECT', 'EP', 'EV1', 'CONDENSATEUR, TRANSISTOR, ETC…'),
+(259, 'ELECTRONIQUE PROJECT', 'EP', 'EWZ', 'AUTRES'),
+(260, 'ELECTRONIQUE PROJECT', 'EP', 'EW1', 'APPAREILS NUMERIQUES (A L''EXCEPTION DES ECRANS PLATS TC)'),
+(261, 'ELECTRONIQUE PROJECT', 'EP', 'EW2', 'PC ET PERIPHERIQUE (MO, IMPRIMANTE...)'),
+(262, 'ELECTRONIQUE PROJECT', 'EP', 'EW3', 'HDD'),
+(263, 'ELECTRONIQUE PROJECT', 'EP', 'EW4', 'APPAREIL EMBARQUE (GPS, AUDIO, SYSTEME DE NAVIGATION, SYSTEME DE PEAGE ELECTRONIQUE)'),
+(264, 'ELECTRONIQUE PROJECT', 'EP', 'EW5', 'PILE (NON RECHARGEABLE, RECHARGEABLE)'),
+(265, 'ELECTRONIQUE PROJECT', 'EP', 'EW6', 'DVD, CD ET DISQUE MD'),
+(266, 'ELECTRONIQUE PROJECT', 'EP', 'EW7', 'TELEPHONE PORTABLE, EQUIPEMENT DE COMMUNICATION'),
+(267, 'ELECTRONIQUE PROJECT', 'EP', 'EXZ', 'AUTRES'),
+(268, 'ELECTRONIQUE PROJECT', 'EP', 'EX1', 'INSTRUMENT DE MESURE ELECTRONIQUE (ANALYSEUR, EQUIPEMENT DE MESURE...)'),
+(269, 'ELECTRONIQUE PROJECT', 'EP', 'EX2', 'MACHINE DE BUREAU (FAX, IMPRIMANTE...)'),
+(270, 'ELECTRONIQUE PROJECT', 'EP', 'EX3', 'PILE A COMBUSTIBLE (POUR PC, APPAREIL ELECTRIQUE）'),
+(271, 'ELECTRONIQUE PROJECT', 'EP', 'EX4', 'MOTEUR'),
+(272, 'FOOD PROJECT', 'FP', 'FAZ', 'AUTRES'),
+(273, 'FOOD PROJECT', 'FP', 'FA1', 'TRANSFORMATION DE LA VIANDE ET DES POISSONS (INCLUANT LES FABRICANTS DE TOFU)'),
+(274, 'FOOD PROJECT', 'FP', 'FA2', 'FABRICANTS DE PRODUITS LAITIERS (INCLUANT LES YAOURTS, FROMAGES, PUDDING, CREMES DESSERTS, DESSERTS LACTES…)'),
+(275, 'FOOD PROJECT', 'FP', 'FA3', 'FABRICANTS DE PRODUITS TRANSFORMES A BASE DE PRODUITS FRAIS OU SECS (FRUITS, LEGUMES, PATES…)'),
+(276, 'FOOD PROJECT', 'FP', 'FA4', 'FABRICANTS DE SAUCES (SOJA, KETCHUP, MOUTARDE…)'),
+(277, 'FOOD PROJECT', 'FP', 'FA5', 'FABRICANTS DE PRODUITS PULVERULENTS OU GRANULEUX (SUCRE, AMIDON, SEL, RIZ, ALIMENTS POUR ANIMAUX DOMESTIQUES, CAFE...)'),
+(278, 'FOOD PROJECT', 'FP', 'FA6', 'FABRICANTS DE PRODUITS SURGELES (GLACES, FRUITS, LEGUMES, PLATS PREPARES…)'),
+(279, 'FOOD PROJECT', 'FP', 'FA7', 'BOULANGERIES, VIENNOISERIES, PATISSERIES, CONFISERIES INDUSTRIELLES ET CHOCOLATERIE'),
+(280, 'FOOD PROJECT', 'FP', 'FA8', 'FABRICANTS DE TABAC'),
+(281, 'FOOD PROJECT', 'FP', 'FBZ', 'AUTRES (MACHINES DE TRANSFORMATION DE PRODUITS LAITIERS…)'),
+(282, 'FOOD PROJECT', 'FP', 'FB1', 'MACHINES DE TRANSFORMATION DE LA VIANDE ET DES POISSONS (INCLUANT LES FABRICANTS DE TOFU)'),
+(283, 'FOOD PROJECT', 'FP', 'FB2', 'REMPLISSEUSES MAIS PAS DE BOISSONS NI LES FORM FILL SEAL (FFS) TYPE ERCA FORMSEAL'),
+(284, 'FOOD PROJECT', 'FP', 'FB3', 'TRIEURS MECANIQUES OU TRIEUR AVEC ANALYSE D''IMAGE'),
+(285, 'FOOD PROJECT', 'FP', 'FB4', 'MACHINES DE FABRICATION DU PAIN, DES VIENNOISERIES, DES PATISSERIES, DU CHOCOLAT ET DES CONFISERIES'),
+(286, 'FOOD PROJECT', 'FP', 'FB5', 'MACHINES DE FABRICATION DES PATES'),
+(287, 'FOOD PROJECT', 'FP', 'FB6', 'MACHINES DE TRANSFORMATION DES GRAINS DE BLE, D''ORGE, D''AVOINE, DE COLZA, DE TOURNESOL…TOUTES LES CEREALES, OLEAGINEUSES, PROTEAGINEUSE…'),
+(288, 'FOOD PROJECT', 'FP', 'FB7', 'MATERIELS DE CUISSONS DE RIZ DANS LES CUISINES INDUSTRIELS (RESTAURATION COLLECTIVE, HORS FOYERS…)'),
+(289, 'FOOD PROJECT', 'FP', 'FB8', 'MATERIELS DE CONSERVATION AU FROID ET DE CONGELATION DANS LES CUISINES INDUSTRIELS (RESTAURATION COLLECTIVE, HORS FOYERS…)'),
+(290, 'FOOD PROJECT', 'FP', 'FB9', 'CONSTRUCTEUR DE MACHINES AGRICOLES (PULVERISATEUR, HERSE, SEMOIR, TRACTEUR, PLANTEUR…)'),
+(291, 'FOOD PROJECT', 'FP', 'FCZ', 'AUTRES'),
+(292, 'FOOD PROJECT', 'FP', 'FC1', 'BOISSONS ALCOOLISEES (BIERES, LIQUEUR, VIN, SAKE, COGNAC, ARMAGNAC, APERITIFS…)'),
+(293, 'FOOD PROJECT', 'FP', 'FC2', 'BOISSONS SANS ALCOOL (SODA, EAUX, JUS DE FRUITS…)'),
+(294, 'FOOD PROJECT', 'FP', 'FC3', 'LAIT EN BOUTEILLE, EN BRIC OU AUTRE CONTENANT'),
+(295, 'FOOD PROJECT', 'FP', 'FDZ', 'AUTRES'),
+(296, 'FOOD PROJECT', 'FP', 'FD1', 'MATERIELS DE PREPARATION DE LA BOISSON ET DU CONTENANT INCLUANT TOUTES LES ETAPES PRECEDENT LE REMPLISSAGE (BROYAGE, FILTRAGE, PRESSAGE, ECHANGEUR THERMIQUE, MELANGEUR, INFUSEUR, PASTEURISATEUR, STERILISATEUR…)'),
+(297, 'FOOD PROJECT', 'FP', 'FD2', 'MACHINES DE SOUFFLAGE DES BOUTEILLES PLASTIQUES'),
+(298, 'FOOD PROJECT', 'FP', 'FD3', 'MACHINES DE NETTOYAGE ET DE RINÇAGE DES CONTENANTS…ETC…'),
+(299, 'FOOD PROJECT', 'FP', 'FD4', 'MACHINES DE REMPLISSAGE DES BOUTEILLES, CANNETTES, BRICS, SACS…'),
+(300, 'FOOD PROJECT', 'FP', 'FD5', 'MACHINES D''EMBALLAGES DE BOISSONS UTILISANT DU THERMOSOUDAGE (CAPPING…)'),
+(301, 'FOOD PROJECT', 'FP', 'FD6', 'MACHINES A IMPRIMER OU ETIQUETTER OU POSER UN FILM CONTENANT LA MARQUE DU PRODUIT…(LABELLING MACHINE)'),
+(302, 'FOOD PROJECT', 'FP', 'FD7', 'MACHINES D''EMBALLAGE DE BOISSONS (PALLETISEURS, ENCAISSEUSES…)'),
+(303, 'FOOD PROJECT', 'FP', 'FD8', 'MACHINE DE DISTRIBUTION DE BOISSON'),
+(304, 'FOOD PROJECT', 'FP', 'FEZ', 'AUTRES EMBALLAGES'),
+(305, 'FOOD PROJECT', 'FP', 'FE1', 'FABRICANT DE BOUTEILLES AUTRES QUE PET'),
+(306, 'FOOD PROJECT', 'FP', 'FE2', 'FABRICANT DE CANNETTES, FUTS…'),
+(307, 'FOOD PROJECT', 'FP', 'FE3', 'FABRICANT DE BRICS ALIMENTAIRES, DE CARTONS…'),
+(308, 'FOOD PROJECT', 'FP', 'FE4', 'FABRICANT DE BOUTEILLES PLASTIQUES'),
+(309, 'FOOD PROJECT', 'FP', 'FFZ', 'AUTRES'),
+(310, 'FOOD PROJECT', 'FP', 'FF1', 'FORM-FILL-SEAL MACHINES, ETIQUETTEUSES, ENSACHEUSES AVEC THERMOSOUDAGE…. CONVOYEURS, FORMAGE DES CARTONS, ENCAISSEUSES…'),
+(311, 'FOOD PROJECT', 'FP', 'FGZ', 'AUTRES'),
+(312, 'FOOD PROJECT', 'FP', 'FG1', 'BUREAU D''ETUDES, CONSTRUCTEUR'),
+(313, 'FOOD PROJECT', 'FP', 'FG2', 'CABLAGE, ELECTRICIENS….'),
+(314, 'MACHINE TOOL PROJECT', 'MP', 'MAZ', 'AUTRES'),
+(315, 'MACHINE TOOL PROJECT', 'MP', 'MA1', 'TOUR'),
+(316, 'MACHINE TOOL PROJECT', 'MP', 'MA2', 'CENTRE D''USINAGE'),
+(317, 'MACHINE TOOL PROJECT', 'MP', 'MA3', 'PERCEUSE'),
+(318, 'MACHINE TOOL PROJECT', 'MP', 'MA4', 'MACHINE DEDIEE, MACHINE DE TRANSFERT'),
+(319, 'MACHINE TOOL PROJECT', 'MP', 'MA5', 'LASER, MACHINE A DECHARGE ELECTRIQUE'),
+(320, 'MACHINE TOOL PROJECT', 'MP', 'MA6', 'MEULEUSE, AIGUISEUSE'),
+(321, 'MACHINE TOOL PROJECT', 'MP', 'MA7', 'MACHINE COMPLEXE'),
+(322, 'MACHINE TOOL PROJECT', 'MP', 'MA8', 'CHARGEUR'),
+(323, 'MACHINE TOOL PROJECT', 'MP', 'MBZ', 'AUTRES'),
+(324, 'MACHINE TOOL PROJECT', 'MP', 'MB1', 'PRESSE'),
+(325, 'MACHINE TOOL PROJECT', 'MP', 'MB2', 'CISAILLE'),
+(326, 'MACHINE TOOL PROJECT', 'MP', 'MB3', 'PLIEUSE'),
+(327, 'MACHINE TOOL PROJECT', 'MP', 'MCZ', 'AUTRES'),
+(328, 'MACHINE TOOL PROJECT', 'MP', 'MC1', 'FONDERIE'),
+(329, 'MACHINE TOOL PROJECT', 'MP', 'MC2', 'MACHINE DE MOULAGE'),
+(330, 'MACHINE TOOL PROJECT', 'MP', 'MC3', 'MACHINE DE MOULAGE A RESINE'),
+(331, 'MACHINE TOOL PROJECT', 'MP', 'MDZ', 'AUTRES'),
+(332, 'MACHINE TOOL PROJECT', 'MP', 'MD1', 'ROBOT DE CHARGEMENT / DECHARGEMENT'),
+(333, 'MACHINE TOOL PROJECT', 'MP', 'MD2', 'ROBOT POLYARTOCULE'),
+(334, 'MACHINE TOOL PROJECT', 'MP', 'MEZ', 'AUTRES'),
+(335, 'MACHINE TOOL PROJECT', 'MP', 'ME1', 'MACHINE POUR PROCESS ET ASSEMBAGE DE PRECISION'),
+(336, 'MACHINE TOOL PROJECT', 'MP', 'ME2', 'MACHINE DE MESURE'),
+(337, 'MACHINE TOOL PROJECT', 'MP', 'MFZ', 'AUTRES'),
+(338, 'MACHINE TOOL PROJECT', 'MP', 'MF1', 'COMPRESSEUR, REFRIGERATEUR'),
+(339, 'MINING AND PROCESS PROJECT', 'RP', 'RAA', 'CALCAIRE'),
+(340, 'MINING AND PROCESS PROJECT', 'RP', 'RAB', 'SABLE, GRAVIER'),
+(341, 'MINING AND PROCESS PROJECT', 'RP', 'RAC', 'NICKEL'),
+(342, 'MINING AND PROCESS PROJECT', 'RP', 'RAD', 'POTASSE'),
+(343, 'MINING AND PROCESS PROJECT', 'RP', 'RAE', 'SEL'),
+(344, 'MINING AND PROCESS PROJECT', 'RP', 'RAF', 'ARGENT'),
+(345, 'MINING AND PROCESS PROJECT', 'RP', 'RAG', 'URANIUM'),
+(346, 'MINING AND PROCESS PROJECT', 'RP', 'RAH', 'ZINC'),
+(347, 'MINING AND PROCESS PROJECT', 'RP', 'RAI', 'BORATE'),
+(348, 'MINING AND PROCESS PROJECT', 'RP', 'RAJ', 'SABLE BITUMEUX'),
+(349, 'MINING AND PROCESS PROJECT', 'RP', 'RAK', 'TERRE RARA'),
+(350, 'MINING AND PROCESS PROJECT', 'RP', 'RAZ', 'DIVERS METAUX OU MINERAUX'),
+(351, 'MINING AND PROCESS PROJECT', 'RP', 'RA1', 'RAFFINAGE D''ALUMINIUM'),
+(352, 'MINING AND PROCESS PROJECT', 'RP', 'RA2', 'FONDERIE D''ALUMINIUM'),
+(353, 'MINING AND PROCESS PROJECT', 'RP', 'RA3', 'BAUXITE'),
+(354, 'MINING AND PROCESS PROJECT', 'RP', 'RA4', 'CHARBON'),
+(355, 'MINING AND PROCESS PROJECT', 'RP', 'RA5', 'CUIVRE'),
+(356, 'MINING AND PROCESS PROJECT', 'RP', 'RA6', 'DIAMANTS'),
+(357, 'MINING AND PROCESS PROJECT', 'RP', 'RA7', 'OR'),
+(358, 'MINING AND PROCESS PROJECT', 'RP', 'RA8', 'MINERAI DE FER'),
+(359, 'MINING AND PROCESS PROJECT', 'RP', 'RA9', 'PLOMB'),
+(360, 'MINING AND PROCESS PROJECT', 'RP', 'RBZ', 'DIVERS MACHINES MOBILES'),
+(361, 'MINING AND PROCESS PROJECT', 'RP', 'RB1', 'FOREUSES'),
+(362, 'MINING AND PROCESS PROJECT', 'RP', 'RB2', 'DRAGUEUSE'),
+(363, 'MINING AND PROCESS PROJECT', 'RP', 'RB3', 'PELLETEUSES'),
+(364, 'MINING AND PROCESS PROJECT', 'RP', 'RB4', 'TOMBEREAUX'),
+(365, 'MINING AND PROCESS PROJECT', 'RP', 'RB5', 'VEHICULE DE SERVICE'),
+(366, 'MINING AND PROCESS PROJECT', 'RP', 'RB6', 'CAMION ANVO'),
+(367, 'MINING AND PROCESS PROJECT', 'RP', 'RB7', 'WAGON MINIERS'),
+(368, 'MINING AND PROCESS PROJECT', 'RP', 'RB8', 'MACHINES D''EXTRACTION SOUTERRAINE'),
+(369, 'MINING AND PROCESS PROJECT', 'RP', 'RB9', 'LABORATOIRE DE SIMULATION MOBILE'),
+(370, 'MINING AND PROCESS PROJECT', 'RP', 'RCZ', 'DIVERS EQUIPEMENTS DE TRANSFORMATION'),
+(371, 'MINING AND PROCESS PROJECT', 'RP', 'RC1', 'EQUIPEMENT DE FORAGE'),
+(372, 'MINING AND PROCESS PROJECT', 'RP', 'RC2', 'EQUIPEMENT DE PUIT DE DESCENTE, TREUIL'),
+(373, 'MINING AND PROCESS PROJECT', 'RP', 'RC3', 'EQUIPEMENT DE CAROTTAGE ET D''ANALYSE'),
+(374, 'MINING AND PROCESS PROJECT', 'RP', 'RC4', 'CONVOYEURS'),
+(375, 'MINING AND PROCESS PROJECT', 'RP', 'RC5', 'CONCASSEURS ET BROYEURS'),
+(376, 'MINING AND PROCESS PROJECT', 'RP', 'RC6', 'SEPARATEURS, CYCLONES, TAMIS'),
+(377, 'MINING AND PROCESS PROJECT', 'RP', 'RC7', 'EQUIPEMENTS DE FILTRATION'),
+(378, 'MINING AND PROCESS PROJECT', 'RP', 'RC8', 'CENTRIFUGEUSES ET INCINERATEURS'),
+(379, 'MINING AND PROCESS PROJECT', 'RP', 'RDZ', 'DIVERS EQUIPEMENTS DE RAFFINAGE'),
+(380, 'MINING AND PROCESS PROJECT', 'RP', 'RD1', 'LESSIVEUR (PROCEDE CHIMIQUE)'),
+(381, 'MINING AND PROCESS PROJECT', 'RP', 'RD2', 'INCINERATEUR'),
+(382, 'MINING AND PROCESS PROJECT', 'RP', 'RD3', 'AUTOCLAVES'),
+(383, 'MINING AND PROCESS PROJECT', 'RP', 'RD4', 'ELECTROLYSEUR & ELECTROPRECIPITATEUR'),
+(384, 'MINING AND PROCESS PROJECT', 'RP', 'RD5', 'PREPARATION DES CATHODES & ANODES'),
+(385, 'MINING AND PROCESS PROJECT', 'RP', 'RD6', 'FILTRE'),
+(386, 'MINING AND PROCESS PROJECT', 'RP', 'RD7', 'FOUR'),
+(387, 'MINING AND PROCESS PROJECT', 'RP', 'RD8', 'SECHEUR'),
+(388, 'MINING AND PROCESS PROJECT', 'RP', 'REZ', 'DIVERS EQUIPEMENTS DE COULEE'),
+(389, 'MINING AND PROCESS PROJECT', 'RP', 'RE1', 'PRECIPITATEUR ELECTROSTATIQUE'),
+(390, 'MINING AND PROCESS PROJECT', 'RP', 'RE2', 'FOUR A FUSION'),
+(391, 'MINING AND PROCESS PROJECT', 'RP', 'RE3', 'CUVES DE PROCESS ALUMINIUM'),
+(392, 'MINING AND PROCESS PROJECT', 'RP', 'RE4', 'ATELIER DE FABRICATION D''ANODE'),
+(393, 'MINING AND PROCESS PROJECT', 'RP', 'RE5', 'ATELIER DE MOULAGE DES LINGOTS'),
+(394, 'MINING AND PROCESS PROJECT', 'RP', 'RE6', 'PONTS ROULANT'),
+(395, 'MINING AND PROCESS PROJECT', 'RP', 'RFZ', 'DIVERS EQUIPEMENTS AUXILIAIRES'),
+(396, 'MINING AND PROCESS PROJECT', 'RP', 'RF1', 'PRODUITS CHIMIQUES ET REACTIFS'),
+(397, 'MINING AND PROCESS PROJECT', 'RP', 'RF2', 'USINE D''ACIDE / USINE CHIMIQUE'),
+(398, 'MINING AND PROCESS PROJECT', 'RP', 'RF3', 'TRAITEMENT DES EAUX'),
+(399, 'MINING AND PROCESS PROJECT', 'RP', 'RF4', 'RECUPERATEUR DE CHALEUR'),
+(400, 'MINING AND PROCESS PROJECT', 'RP', 'RF5', 'SYSTEME DE VENTILATION ET DE CONTROLE DES EMISSIONS'),
+(401, 'MINING AND PROCESS PROJECT', 'RP', 'RF6', 'USINE DE PRODUCTION D''AIR ET D''OXYGENE'),
+(402, 'MINING AND PROCESS PROJECT', 'RP', 'RF7', 'CENTRALE ELECTRIQUE'),
+(403, 'MINING AND PROCESS PROJECT', 'RP', 'RGA', 'INSTRUMENTATION'),
+(404, 'MINING AND PROCESS PROJECT', 'RP', 'RGB', 'SOUS TRAITANT EN MAINTENANCE'),
+(405, 'MINING AND PROCESS PROJECT', 'RP', 'RGC', 'GESTIONNAIRE D''APPROVISIONNEMENT'),
+(406, 'MINING AND PROCESS PROJECT', 'RP', 'RGZ', 'DIVERS FOURNISSEURS'),
+(407, 'MINING AND PROCESS PROJECT', 'RP', 'RG1', 'INGENIERIES'),
+(408, 'MINING AND PROCESS PROJECT', 'RP', 'RG2', 'MAITRE D''ŒUVRE'),
+(409, 'MINING AND PROCESS PROJECT', 'RP', 'RG3', 'SOUS TRAITANT D''INSTALLATION'),
+(410, 'MINING AND PROCESS PROJECT', 'RP', 'RG4', 'SOUS TRAITANT ELECTRIQUE'),
+(411, 'MINING AND PROCESS PROJECT', 'RP', 'RG5', 'SYSTEME DE CONTROLE ET D''AUTOMATISATION'),
+(412, 'MINING AND PROCESS PROJECT', 'RP', 'RG6', 'POMPES ET VANNES'),
+(413, 'MINING AND PROCESS PROJECT', 'RP', 'RG7', 'SYSTEME DE LUBRIFICATION'),
+(414, 'MINING AND PROCESS PROJECT', 'RP', 'RG8', 'EQUIPEMENT POUR ATELIER MOBILE'),
+(415, 'MINING AND PROCESS PROJECT', 'RP', 'RG9', 'EQUIPEMENT POUR LA MAINTENANCE DES VOIES FERREES'),
+(416, 'sans code industry', 'SCI', 'SCI', 'sans code industrie');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `users`
+--
+
+CREATE TABLE IF NOT EXISTS `users` (
+  `id_user` int(11) NOT NULL AUTO_INCREMENT,
+  `nom_user` varchar(80) NOT NULL,
+  `prenom_user` varchar(80) NOT NULL,
+  `tel_user` int(10) DEFAULT NULL,
+  `email_user` varchar(80) NOT NULL,
+  `password_user` varchar(10) NOT NULL,
+  `numwp_user` varchar(10) DEFAULT NULL,
+  `id_fonction` int(11) DEFAULT NULL,
+  `id_zone` int(11) DEFAULT NULL,
+  `id_holon` int(11) DEFAULT NULL,
+  `niveau` varchar(25) NOT NULL DEFAULT 'niveau0',
+  PRIMARY KEY (`id_user`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=138 ;
+
+--
+-- Contenu de la table `users`
+--
+
+INSERT INTO `users` (`id_user`, `nom_user`, `prenom_user`, `tel_user`, `email_user`, `password_user`, `numwp_user`, `id_fonction`, `id_zone`, `id_holon`, `niveau`) VALUES
+(4, 'BAUER', 'Alexandre', 6, 'abauer@smc-france.fr', 'alex4288', 'IP14', 5, 1, 25, 'niveau4'),
+(6, 'BERINGUE', 'Nicolas', 6, 'nberingue@smc-france.fr', 'smc00501', 'IB17', 26, 4, 5, 'niveau0'),
+(9, 'BOQUILLARD', 'Alain', 6, 'aboquillard@smc-france.fr', 'smc00671', 'IS10', 2, 3, 7, 'niveau0'),
+(11, 'BRETON', 'Gilles', 6, 'gbreton@smc-france.fr', 'smc00276', 'IB06', 1, 4, 7, 'niveau1'),
+(12, 'BRIANTAIS', 'Laurent', 6, 'lbriantais@smc-france.fr', 'smc00590', 'ID23', 6, 6, 15, 'niveau0'),
+(13, 'BRIATTE', 'Bruno', 6, 'bbriatte@smc-france.fr', 'smc00608', 'IP13', 27, 1, 25, 'niveau0'),
+(15, 'BRULE', 'Damien', 6, 'dbrule@smc-france.fr', 'smc00644', 'IN01', 2, 0, 19, 'niveau0'),
+(16, 'BUCCHI', 'St', 6, 'sbucchi@smc-france.fr', 'smc00534', 'IS05', 28, 1, 25, 'niveau0'),
+(17, 'BURON', 'Nicolas', 6, 'nburon@smc-france.fr', 'smc2009', 'IW02', 3, 6, 9, 'niveau0'),
+(18, 'CALMELS', 'Christophe', 6, 'ccalmels@smc-france.fr', 'smc00356', 'IC13', 2, 3, 11, 'niveau1'),
+(20, 'CHANTELOUP', 'Willy', 6, 'wchanteloup@smc-france.fr', 'ferrari', 'ID01', 1, 6, 16, 'niveau0'),
+(23, 'CHOUX', 'Damien', 6, 'dchoux@smc-france.fr', 'smc00684', 'IS11', 2, 4, 5, 'niveau0'),
+(24, 'CLERIN', 'R', 6, 'rclerin@smc-france.fr', 'smc00651', 'IS01', 2, 0, 5, 'niveau0'),
+(25, 'COUDAN', 'Jean-Christophe', 6, 'jcoudan@smc-france.fr', 'smc00066', 'IS02', 2, 3, 6, 'niveau0'),
+(26, 'COULOMBEL', 'Mickael', 6, 'mcoulombel@smc-france.fr', 'smc00683', 'IN09', 2, 2, 19, 'niveau0'),
+(27, 'COURTOIS', 'Karine', 0, 'kcourtois@smc-france.fr', 'smc00201', 'IM22', 0, 0, 25, 'niveau0'),
+(28, 'COURTOIS', 'Julien', 6, 'jcourtois@smc-france.fr', 'jc101182', 'IS07', 6, 4, 12, 'niveau0'),
+(31, 'D''ANGELO', 'Thierry', 0, 'tdangelo@smc-france.fr', 'smc00094', 'Support te', 15, 0, 25, 'niveau0'),
+(33, 'DAVID', 'Gaetan', 6, 'gdavid@smc-france.fr', 'smc00511', 'ID18', 2, 6, 8, 'niveau0'),
+(34, 'DAZIN', 'Patrice', 6, 'pdazin@smc-france.fr', 'smc00253', 'ID04', 1, 6, 8, 'niveau0'),
+(35, 'DELAUGE', 'Francois', 6, 'fdelauge@smc-france.fr', 'smc00012', 'IB01', 13, 0, 25, 'niveau4'),
+(37, 'DELOBEL', 'Christophe', 6, 'cdelobel@smc-france.fr', 'cdelo74', 'IS12', 2, 3, 11, 'niveau1'),
+(39, 'DEPRETZ', 'Fabien', 6, 'fdepretz@smc-france.fr', 'smc00581', 'IA25', 2, 2, 19, 'niveau1'),
+(42, 'DRANCOURT', 'Frederic', 6, 'fdrancourt@smc-france.fr', 'smc00689', 'IN10', 1, 5, 23, 'niveau0'),
+(43, 'DUCREUX', 'Stephane', 6, 'sducreux@smc-france.fr', 'morrison', 'IC21', 2, 3, 6, 'niveau1'),
+(45, 'DUROURE', 'Francis', 6, 'fduroure@smc-france.fr', 'smc00076', 'IC02', 11, 3, 30, 'niveau0'),
+(46, 'DUVERNET', 'Jean-Denis', 6, 'jduvernet@smc-france.fr', 'smc00410', 'IB10', 1, 4, 7, 'niveau0'),
+(47, 'FOREST', 'Gaetan', 6, 'gforest@smc-france.fr', 'smc00365', 'ID09', 2, 6, 8, 'niveau1'),
+(51, 'FRIOCOURT', 'Anthony', 6, 'afriocourt@smc-france.fr', 'smc00645', 'ID13', 2, 0, 9, 'niveau0'),
+(53, 'GARCIA BALLESTER', 'Nicolas', 6, 'ngarciaballester@smc-france.fr', 'smc00495', 'IC17', 2, 3, 6, 'niveau0'),
+(56, 'GERMAIN', 'Bruno', 6, 'bgermain@smc-france.fr', 'smc2012', 'IW01', 2, 0, 9, 'niveau0'),
+(59, 'GOUCHET', 'Pierrick', 6, 'pgouchet@smc-france.fr', 'smc00544', 'ID21', 2, 6, 8, 'niveau0'),
+(61, 'GRELOT', 'Christelle', 0, 'cgrelot@smc-france.fr', 'smc00458', 'IM18', 0, 0, 25, 'niveau0'),
+(62, 'GRIOTIER', 'Cyril', 6, 'cyril.griotier@smc-france.fr', 'cgmd0705', 'IX02', 2, 3, 29, 'niveau0'),
+(63, 'GRUAT', 'Fr', 6, 'fgruat@smc-france.fr', 'smc00500', 'ID14', 6, 6, 15, 'niveau0'),
+(64, 'HATTERER', 'Nicolas', 6, 'nhatterer@smc-france.fr', 'smc00665', 'IS03', 2, 3, 11, 'niveau0'),
+(65, 'HAUPTMANN', 'Mickael', 6, 'mhauptmann@smc-france.fr', 'smc00549', 'IB24', 2, 4, 5, 'niveau0'),
+(67, 'HUBY', 'Magalie', 0, 'mhuby@smc-france.fr', 'smc00687', '', 0, 1, 25, 'niveau4'),
+(70, 'JOURDAIN', 'Emmanuel', 6, 'ejourdain@smc-france.fr', 'thomas01', '', 32, 0, 25, 'niveau4'),
+(71, 'JOURET', 'Gilles', 6, 'gjouret@smc-france.fr', 'MATHISLO', 'IF06', 3, 7, 10, 'niveau0'),
+(72, 'LADANT', 'Sophie', 6, 'sladant@smc-france.fr', 'smc00332', 'IB07', 2, 4, 11, 'niveau0'),
+(73, 'LAFARGE', 'Bruno', 6, 'blafarge@smc-france.fr', 'Mat14109', 'IW05', 2, 6, 9, 'niveau0'),
+(74, 'LAFAY', 'Martial', 6, 'mlafay@smc-france.fr', 'FRL4F4', 'IC27', 3, 3, 11, 'niveau1bis'),
+(75, 'LAMBARD', 'Rodrigue', 6, 'rlambard@smc-france.fr', 'smc00652', 'IN05', 2, 0, 20, 'niveau0'),
+(77, 'LANG', 'Frederic', 6, 'flang@smc-france.fr', 'smc00132', 'IE02', 3, 5, 18, 'niveau0'),
+(78, 'LANIEL', 'Christophe', 6, 'claniel@smc-france.fr', 'smc00363', 'IC16', 2, 3, 29, 'niveau0'),
+(79, 'LE CAM', 'Brice', 6, 'blecam@smc-france.fr', 'smc00591', 'ID24', 2, 6, 9, 'niveau0'),
+(80, 'LECLERCQ', 'Pierre', 6, 'pleclercq@smc-france.fr', 'smc00280', 'IE07', 1, 5, 23, 'niveau0'),
+(81, 'LECOUSTRE', 'Benoit', 6, 'blecoustre@smc-france.fr', 'smc00635', 'IE25', 2, 2, 18, 'niveau0'),
+(82, 'LEDERMANN', 'Jonathan', 6, 'jledermann@smc-france.fr', 'lithium2', 'IA31', 3, 2, 19, 'niveau0'),
+(83, 'LEFRERE', 'Emmanuel', 6, 'elefrere@smc-france.fr', 'smc00455', 'IS06', 1, 7, 16, 'niveau2'),
+(84, 'LEGEARD', 'Arnaud', 6, 'alegeard@smc-france.fr', 'smc00648', '', 29, 0, 25, 'niveau0'),
+(85, 'LEMACON', 'Max', 6, 'mlemacon@smc-france.fr', 'smc00389', 'IE11', 6, 5, 22, 'niveau1'),
+(87, 'LEMOINE', 'Cedric', 6, 'clemoine@smc-france.fr', 'smc00628', '', 30, 1, 25, 'niveau0'),
+(88, 'LETELLIER', 'Steevy', 6, 'sletellier@smc-france.fr', 'smc00293', 'IA04', 2, 7, 10, 'niveau0'),
+(89, 'LOGET', 'Emmanuelle', 6, 'eloget@smc-france.fr', 'smc00609', '', 31, 0, 25, 'niveau0'),
+(91, 'MACZENKO', 'Cedric', 6, 'cmaczenko@smc-france.fr', 'ARMAGEDO', 'IE04', 1, 5, 23, 'niveau0'),
+(92, 'MANSAU', 'Philippe', 6, 'pmansau@smc-france.fr', 'smc00470', 'IE12', 3, 5, 20, 'niveau1bis'),
+(93, 'MARAVAL', 'Beno', 6, 'bmaraval@smc-france.fr', 'smc00598', 'IF21', 6, 7, 15, 'niveau0'),
+(95, 'MEZANGE', 'Dominique', 6, '6ezange@smc-france.fr', 'MGBMK4', 'ID19', 10, 6, 4, 'niveau0'),
+(96, 'MICHARD', 'Stephane', 685572408, 'smichard@smc-france.fr', 'smc00193', 'ID03', 2, 6, 16, 'niveau0'),
+(97, 'MOAL', 'Thierry', 625554903, 'tmoal@smc-france.fr', 'SMC00068', 'IS10', 2, 3, 7, 'niveau0'),
+(98, 'MOSCONE', 'Franco', 685572391, 'fmoscone@smc-france.fr', 'smc00570', 'IA21', 2, 2, 19, 'niveau0'),
+(99, 'MOURA', 'Patrick', 686265172, 'pmoura@smc-france.fr', 'smc00553', 'IC25', 2, 3, 11, 'niveau0'),
+(100, 'MULLER', 'Emmanuel', 618735812, 'emuller@smc-france.fr', 'smc00491', 'IC31', 2, 3, 7, 'niveau0'),
+(101, 'OCAL', 'Aydovan', 6, 'aocal@smc-france.fr', 'smc00639', 'IF26', 2, 3, 6, 'niveau0'),
+(102, 'ORJOLLET', 'Claude', 0, 'corjollet@smc-france.fr', 'corjolle', 'Engineerin', 8, 0, 0, 'niveau0'),
+(103, 'ORNY', 'Marc-Olivier', 6, 'moorny@smc-france.fr', 'smc00382', 'Engineerin', 24, 0, 0, 'niveau0'),
+(104, 'PAGNI', 'Sophie', 0, 'spagni@smc-france.fr', 'smc00461', 'IM14', 2, 0, 25, 'niveau0'),
+(105, 'PEETERS', 'Christophe', 6, 'cpeeters@smc-france.fr', 'smc00254', 'IB05', 6, 3, 12, 'niveau1'),
+(107, 'PERRAUD', 'Vincent', 6, 'vperraud@smc-france.fr', '000000', 'Engineerin', 14, 0, 0, 'niveau1'),
+(111, 'PLOTON', 'Laurent', 6, 'lploton@smc-france.fr', 'smc00559', 'IF17', 10, 3, 3, 'niveau3'),
+(112, 'POTARD', 'Yannick', 6, 'ypotard@smc-france.fr', 'smc00614', 'IF23', 2, 7, 10, 'niveau0'),
+(113, 'POUPLIER', 'Patrice', 6, 'ppouplier@smc-france.fr', '928GT90', 'IE13', 2, 5, 20, 'niveau1'),
+(115, 'RAYMOND', 'Denis', 6, 'draymond@smc-france.fr', 'smc00187', 'ID02', 2, 6, 17, 'niveau0'),
+(116, 'RIBEIRO', 'Olinda', 0, 'oribeiro@smc-france.fr', 'smc00422', 'IM16', 2, 0, 25, 'niveau0'),
+(119, 'RITA', 'Massimo', 6, 'mrita@smc-france.fr', 'smc00403', 'IM03', 0, 0, 25, 'niveau0'),
+(122, 'ROLLET', 'Didier', 6, 'drollet@smc-france.fr', 'did5962*', 'IE05', 2, 5, 23, 'niveau0'),
+(123, 'RONCHI', 'Paolo', 0, 'pronchi@smc-france.fr', 'smc00120', '', 0, 0, 0, 'niveau0'),
+(124, 'ROYAL', 'Vincent', 6, 'vroyal@smc-france.fr', 'smc00620', 'IE28', 10, 2, 2, 'niveau0'),
+(125, 'SALAMI', 'Bruno', 6, 'bsalami@smc-france.fr', 'smc00179', 'IA23', 2, 2, 2, 'niveau0'),
+(126, 'SONVICO', 'Jacques', 6, 'jsonvico@smc-france.fr', 'smc00423', 'IB12', 2, 4, 7, 'niveau1'),
+(127, 'TAOURI', 'Youness', 0, 'ytaouri@smc-france.fr', 'ytaouri1', 'IS13', 2, 3, 6, 'niveau0'),
+(128, 'TERAGNOLI', 'Bruno', 6, 'bteragnoli@smc-france.fr', 'smc00668', 'IS08', 6, 3, 12, 'niveau0'),
+(129, 'THOUIN', 'Nicolas', 0, 'nthouin@smc-france.fr', 'smc00348', 'Product Ma', 23, 0, 25, 'niveau4'),
+(130, 'TONNELIER', 'Sophie', 0, 'stonnelier@smc-france.fr', 'smc00311', '', 0, 0, 0, 'niveau0'),
+(131, 'TOUCHARD', 'Dominique', 6, 'dtouchard@smc-france.fr', 'smc00685', 'IW06', 2, 6, 8, 'niveau0'),
+(132, 'VAILLANT', 'Fr', 6, 'fvaillant@smc-france.fr', 'smc00649', 'IN02', 0, 0, 0, 'niveau0'),
+(133, 'VANDEMEULEBROUCKE', 'Nicolas', 0, 'nvandemeulebroucke@smc-france.', 'smc2012', 'Engineerin', 9, 0, 0, 'niveau0'),
+(134, 'VERET', 'Nicolas', 6, 'nveret@smc-france.fr', 'smc00662', 'IN07', 2, 0, 5, 'niveau1'),
+(136, 'ZABKA', 'Patrick', 6, 'pzabka@smc-france.fr', 'alcrolle', 'ID22', 2, 6, 8, 'niveau2');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `validations_xprice`
+--
+
+CREATE TABLE IF NOT EXISTS `validations_xprice` (
+  `id_validation` int(11) NOT NULL AUTO_INCREMENT,
+  `nom_validation` varchar(80) NOT NULL,
+  `date_validation` datetime DEFAULT NULL,
+  `etat_validation` varchar(15) NOT NULL,
+  `commentaire_validation` text,
+  `id_user` int(11) NOT NULL,
+  `tracking_number_demande_xprice` varchar(15) NOT NULL,
+  PRIMARY KEY (`id_validation`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
+
+--
+-- Contenu de la table `validations_xprice`
+--
+
+INSERT INTO `validations_xprice` (`id_validation`, `nom_validation`, `date_validation`, `etat_validation`, `commentaire_validation`, `id_user`, `tracking_number_demande_xprice`) VALUES
+(1, 'validation_cdr', '2014-12-11 17:23:37', 'validee', 'plop plop', 111, 'SP-FR-QIS00001'),
+(2, 'fobfr', '2014-12-15 12:29:05', 'validé', '', 67, 'SP-FR-QAS00003'),
+(3, 'supply', '2014-12-15 12:29:55', 'validé', '', 67, 'SP-FR-QAS00003'),
+(4, 'fobfr', '2014-12-15 12:30:51', 'validé', '', 67, 'SP-FR-QAS00002'),
+(5, 'fobfr', '2014-12-15 12:31:28', 'validé', '', 67, 'SP-FR-QAS00002'),
+(6, 'fobfr', '2014-12-16 07:14:55', 'validé', '', 67, 'SP-FR-QAS00006'),
+(7, 'supply', '2014-12-16 07:15:54', 'validé', '', 67, 'SP-FR-QAS00006');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `zones`
+--
+
+CREATE TABLE IF NOT EXISTS `zones` (
+  `id_zone` int(11) NOT NULL AUTO_INCREMENT,
+  `nom_zone` varchar(15) NOT NULL,
+  `description_zone` text NOT NULL,
+  `id_holon` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id_zone`),
+  KEY `id_holon` (`id_holon`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
+
+--
+-- Contenu de la table `zones`
+--
+
+INSERT INTO `zones` (`id_zone`, `nom_zone`, `description_zone`, `id_holon`) VALUES
+(1, 'QA', 'siege', 1),
+(2, 'QC', 'zone je sais pas', 2),
+(3, 'QE', 'région est', 3),
+(4, 'QH', 'zone est', 3),
+(5, 'QF', 'zone je sais pas ', 2),
+(6, 'QI', 'je sais pas ', 4),
+(7, 'QK', 'je sais pas ', 4);
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

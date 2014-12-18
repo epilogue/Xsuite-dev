@@ -13,7 +13,7 @@ $this->headTitle($this->title);
             </tr>
             <tr>
                 <td>Date de l'offre workplace :</td>
-                <td><?php echo  $this->dateplop; ?></td>
+                <td><?php echo $this->dateplop; ?></td>
             </tr>
             <tr>
                 <td>Tracking number :</td>
@@ -28,19 +28,19 @@ $this->headTitle($this->title);
         <table>
             <tr>
                 <td>Nom:</td>
-                <td><?php echo $this->info_user['nom_user'];?></td>
+                <td><?php echo $this->info_user['nom_user']; ?></td>
             </tr>
             <tr>
                 <td>Prénom:</td>
-                <td><?php echo $this->info_user['prenom_user'];?></td>
+                <td><?php echo $this->info_user['prenom_user']; ?></td>
             </tr>
             <tr>
                 <td>Email:</td>
-                <td><?php echo $this->info_user['email_user'];?></td>
+                <td><?php echo $this->info_user['email_user']; ?></td>
             </tr>
             <tr>
                 <td>Téléphone:</td>
-                <td><?php echo $this->info_user['tel_user'];?></td>
+                <td><?php echo $this->info_user['tel_user']; ?></td>
             </tr>
             <tr>
                 <td>Holon:</td>
@@ -48,24 +48,24 @@ $this->headTitle($this->title);
             </tr>
             <tr>
                 <td>User workplace:</td>
-                <td><?php echo $this->info_user['numwp_user'];?></td>
+                <td><?php echo $this->info_user['numwp_user']; ?></td>
             </tr>
         </table>
     </fieldset>
     <fieldset id="info_client">
-    <legend>Informations Client</legend>
+        <legend>Informations Client</legend>
         <table>
             <tr>
                 <td>Nom:</td>
-                <td><?php echo $this->info_client['nom_client'];?></td>
+                <td><?php echo $this->info_client['nom_client']; ?></td>
             </tr>
             <tr>
                 <td>User Workplace:</td>
-                <td><?php echo $this->info_client['numwp_client'];?></td>
+                <td><?php echo $this->info_client['numwp_client']; ?></td>
             </tr>
             <tr>
                 <td>Projet industrie:</td>
-                <td><?php  echo $this->nom_industrie['nom_industry']?></td>
+                <td><?php echo $this->nom_industrie['nom_industry'] ?></td>
             </tr>
             <tr>
                 <td>Potentiel:</td>
@@ -87,12 +87,12 @@ $this->headTitle($this->title);
             </tr>
             <?php foreach ($this->info_demande_article_xprice as $result) { ?>
                 <tr>
-                    <td><?php echo $result['code_article'];?></td>
-                    <td><?php echo $result['reference_article'];?></td>
-                    <td><?php echo $result['quantite_demande_article'];?></td>
-                    <td><?php echo $result['prixwplace_demande_article']."€";?></td>
-                    <td><?php echo $result['prix_demande_article']."€";?></td>
-                    <td><?php echo $result['remise_demande_article']."%"; ?></td>
+                    <td><?php echo $result['code_article']; ?></td>
+                    <td><?php echo $result['reference_article']; ?></td>
+                    <td><?php echo $result['quantite_demande_article']; ?></td>
+                    <td><?php echo $result['prixwplace_demande_article'] . "€"; ?></td>
+                    <td><?php echo $result['prix_demande_article'] . "€"; ?></td>
+                    <td><?php echo $result['remise_demande_article'] . "%"; ?></td>
                 </tr>
             <?php } ?>
         </table>
@@ -103,9 +103,21 @@ $this->headTitle($this->title);
         <span><?php echo $this->info_demande_xprice['justificatif_demande_xprice'] ?></span>
     </fieldset>
 </div>
-<div id='comm_demande'>
-    <fieldset id='comm_user'><legend>Commentaire commercial</legend>
-        <span><?php echo $this->info_demande_xprice['commentaire_demande_xprice'] ?></span>
+<div id='commentaire'>
+    <fieldset id='comm_user'><legend>Commentaires</legend>
+        <table>
+<!--            <tr>
+                <td>Commmentaire Commercial</td>
+                <td></td>
+            </tr>-->
+            <?php foreach ($this->validations as $key => $value) { ?>
+                <tr>
+                    <td>Commentaire <?php echo strtolower($this->usersValidations[$key]['fonction']); ?></td>
+                    <td><?php echo $value['date_validation']; ?></td>
+                    <td><?php echo nl2br($value['commentaire']); ?></td>
+                </tr>
+            <?php } ?>
+        </table>
     </fieldset>
 </div>
 <div>
@@ -119,12 +131,12 @@ $this->headTitle($this->title);
         <div id="valid_cdr">
             <input type="radio" name="validation" value="nonValide"> La demande n'est pas validée <br>
             <input type="radio" name="validation" value="validee"> La demande est validée <br>
-            <input type="radio" checked="checked" name="validation" value="enAttente">  en attente de réponse  <br> 
+            <input type="radio" checked="checked" name="validation" value="enAttente">  en attente de réponse  <br>
             <input hidden="hidden" name="nom_validation" value="validation_cdr">
-            <input hidden="hidden" name="date_validation" value="<?php echo date("Y-m-d H:i:s")?>">
-            <input hidden="hidden" name="cdr" value="<?php echo $this->cdr;?>">
-            <input hidden="hidden" name="tracking" value="<?php echo $this->info_demande_xprice['tracking_number_demande_xprice'] ;?>"> 
-       </div>
+            <input hidden="hidden" name="date_validation" value="<?php echo date("Y-m-d H:i:s") ?>">
+            <input hidden="hidden" name="cdr" value="<?php echo $this->cdr; ?>">
+            <input hidden="hidden" name="tracking" value="<?php echo $this->info_demande_xprice['tracking_number_demande_xprice']; ?>">
+        </div>
 
         <input class='plop' type="submit" value="enregistrer statut offre">
 
