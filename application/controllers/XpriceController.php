@@ -580,7 +580,7 @@ class XpriceController extends Zend_Controller_Action {
                 $datasValidation['reponse'] = $formData['reponse'];
             }
 
-            $this->genererValidation($datasValidation);
+            $commentId = $this->genererValidation($datasValidation);
 
             /*
              * si la variable $validation existe et qu'elle est égale à "validee"
@@ -612,7 +612,12 @@ class XpriceController extends Zend_Controller_Action {
                 $destIndustry = $info_client['id_industry'];
                 $params2 = array();
                 $params2['destinataireMail'] = $emailVars->listes->fobfr;
-                $params2['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/prixfobfr/numwp/{$numwp}";
+//                $params2['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/prixfobfr/numwp/{$numwp}";
+                if (!is_null($commentId)) {
+                    $params2['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/prixfobfr/numwp/{$numwp}/com/{$commentId}";
+                } else {
+                    $params2['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/prixfobfr/numwp/{$numwp}";
+                }
                 $params2['corpsMail'] = "Bonjour,\n"
                         . "\n"
                         . "Vous avez une nouvelle demande XPrice à valider.\n"
@@ -704,7 +709,13 @@ class XpriceController extends Zend_Controller_Action {
 
                 $params1 = array();
                 $params1['destinataireMail'] = "mhuby@smc-france.fr"/* $info_user['mail_user'] */;
-                $params1['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/update/numwp/{$numwp}/histo/{$lasthisto[0]['id_histo_commentaire']}";
+//                $params1['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/update/numwp/{$numwp}/histo/{$lasthisto[0]['id_histo_commentaire']}";
+                if (!is_null($commentId)) {
+                    $params1['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/update/numwp/{$numwp}/com/{$commentId}";
+                } else {
+                    $params1['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/update/numwp/{$numwp}";
+                }
+
                 $params1['corpsMail'] = "Bonjour,\n"
                         . "\n"
                         . "Votre demande XPrice est en attente d'une réponse de votre part.\n"
@@ -1376,13 +1387,13 @@ class XpriceController extends Zend_Controller_Action {
 
     public function updateAction() {
         $numwp = $this->getRequest()->getParam('numwp', null);
-        $histo_rep=$this->getRequest()->getParam('histo',null);
-        $this->view->histo_rep=$histo_rep;
+        $histo_rep = $this->getRequest()->getParam('histo', null);
+        $this->view->histo_rep = $histo_rep;
         $param = $this->getRequest();
 //        echo '<pre>',var_export($param),'<pre>'; exit();
         $infos = new Application_Model_DbTable_Xprices();
         $info = $infos->getNumwp($numwp);
-        $id_demande_xprice=$info['id_demande_xprice'];
+        $id_demande_xprice = $info['id_demande_xprice'];
         $tracking_number = $info['tracking_number_demande_xprice'];
         $this->view->tracking_number = $tracking_number;
         $date_offre = $info['date_demande_xprice'];
@@ -1400,13 +1411,13 @@ class XpriceController extends Zend_Controller_Action {
         $this->view->montant_total = $test->total;
         $this->view->infos_client = $infos_client;
         /* recupération des commentaires concernant la demande */
-        
-        $commentairesoffre= new Application_Model_DbTable_Validationsdemandexprices();
-        $commentaireoffre=$commentairesoffre->getAllValidation($id_demande_xprice);
+
+        $commentairesoffre = new Application_Model_DbTable_Validationsdemandexprices();
+        $commentaireoffre = $commentairesoffre->getAllValidation($id_demande_xprice);
         $this->view->commentaire = $commentaireoffre;
         $usersCommentaires = array();
-        echo '<pre>', var_export($infos_commercial),'<pre>';
-        echo '<pre>', var_export($commentaireoffre),'<pre>';
+        echo '<pre>', var_export($infos_commercial), '<pre>';
+        echo '<pre>', var_export($commentaireoffre), '<pre>';
         foreach (@$commentaireoffre as $key => $commoffre) {
             $userCommInfos = $info_commercial->getFonctionLabel($commoffre['id_user']);
             $usersCommentaires[$key]['fonction'] = $userCommInfos['description_fonction'];
