@@ -32,10 +32,22 @@ $this->headTitle($this->title);
         }
         ?>
 
-        <fieldset><legend>Question</legend>
-        <?php echo $this->commentId; ?>
+        <fieldset>
+            <legend>Question</legend>
+            <table>
+                <tr>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </table>
         </fieldset>
-        <fieldset><legend>Réponse</legend></fieldset>
+        <fieldset>
+            <legend>Réponse</legend>
+            <textarea name="reponse_comm" cols="80" rows="10">
+                
+            </textarea>
+            
+        </fieldset>
         <div id="plop">
             <input class="plop" type='submit' value="Envoyer la réponse">
         </div>
