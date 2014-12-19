@@ -1405,7 +1405,7 @@ class XpriceController extends Zend_Controller_Action {
         $commentaireoffre=$commentairesoffre->getAllValidation($id_demande_xprice);
         $this->view->commentaire = $commentaireoffre;
         $usersCommentaires = array();
-
+echo '<pre>', var_export($commentaireoffre),'<pre>'; exit();
         foreach (@$commentaireoffre as $key => $commoffre) {
             $userCommInfos = $infos_commercial->getFonctionLabel($commoffre['id_user']);
             $usersCommentaires[$key]['fonction'] = $userCommInfos['description_fonction'];
