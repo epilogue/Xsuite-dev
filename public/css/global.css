@@ -320,6 +320,17 @@ h3{
     width: 60px;
 }
 
+#tableau table,#tableau th,#tableau tr,#tableau td{
+     border-style:solid;
+    border-color:black;
+    border-width: thin;
+}
+
+#tableau input {
+    width: 60px;
+    background-color:#268bd9;
+    color:white;
+}
 fieldset legend{
     font-weight: bold;
     font-style: italic;
