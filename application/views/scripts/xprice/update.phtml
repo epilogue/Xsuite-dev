@@ -33,7 +33,7 @@ $this->headTitle($this->title);
         ?><table>
              <?php foreach (@$this->commentaire as $key => $value) { ?>
                 <tr>
-                    <td>Commentaire <?php echo strtolower($this->usersCommentairess[$key]['fonction']); ?></td>
+                    <td>Commentaire <?php echo strtolower($this->usersCommentaires[$key]['fonction']); ?></td>
                     <td><?php echo $value['date_validation']; ?></td>
                     <td><?php echo nl2br($value['commentaire']); ?></td>
                 </tr>
