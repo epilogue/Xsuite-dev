@@ -45,6 +45,7 @@ $this->headTitle($this->title);
             <table  class='article'>
                  <?php foreach (@$this->commentaire as $key => $value) { ?>
                 <tr><?php if($value['etat_validation'] == "enAttente"){ ?>
+                    <td>Commentaire <?php echo strtolower($this->usersCommentaires[$key]['fonction']); ?></td>
                     <td><?php echo $value['date_validation'];?></td>
                      <td><?php echo nl2br($value['commentaire']); ?></td>
                 </tr>
