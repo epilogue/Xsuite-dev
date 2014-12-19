@@ -22,7 +22,7 @@ $this->headTitle($this->title);
     </table>
 </div>
 <div id="comm_up">
-    <fieldset><legend>Commentaires</legend></fieldset>
+    <fieldset><legend>Commentaires</legend>
     <form>
         <?php /* aucun commentId n'existe dans le getrequest */
         if (!is_null($this->commentId)) {
@@ -32,13 +32,14 @@ $this->headTitle($this->title);
         }
         ?><table>
              <?php foreach (@$this->commentaire as $key => $value) { ?>
-                <tr>
+                <tr><?php if($value['etat'] != "enAttente"){ ?>
                     <td>Commentaire <?php echo strtolower($this->usersCommentaires[$key]['fonction']); ?></td>
                     <td><?php echo $value['date_validation']; ?></td>
                     <td><?php echo nl2br($value['commentaire']); ?></td>
                 </tr>
-            <?php } ?>
+                <?php } } ?>
 </table>
+    </fieldset>
         <fieldset>
             <legend>Question</legend>
             <table>
