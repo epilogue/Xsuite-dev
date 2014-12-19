@@ -43,10 +43,12 @@ $this->headTitle($this->title);
         <fieldset>
             <legend>Question</legend>
             <table>
-                <tr>
-                    <td><?php echo $this->commentId;?></td>
-                    <td><?php echo $this->histo_rep;?></td>
+                 <?php foreach (@$this->commentaire as $key => $value) { ?>
+                <tr><?php if($value['etat_validation'] == "enAttente"){ ?>
+                    <td><?php echo $value['date_validation'];?></td>
+                     <td><?php echo nl2br($value['commentaire']); ?></td>
                 </tr>
+                <?php } } ?>
             </table>
         </fieldset>
         <fieldset>
