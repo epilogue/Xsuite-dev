@@ -30,7 +30,7 @@ $this->headTitle($this->title);
             <input type="hidden" name="reponse" value="<?php echo $this->commentId; ?>">
             <?php
         }
-        ?><table>
+        ?><table  class='article'>
              <?php foreach (@$this->commentaire as $key => $value) { ?>
                 <tr><?php if($value['etat_validation'] != "enAttente"){ ?>
                     <td>Commentaire <?php echo strtolower($this->usersCommentaires[$key]['fonction']); ?></td>
@@ -42,7 +42,7 @@ $this->headTitle($this->title);
     </fieldset>
         <fieldset>
             <legend>Question</legend>
-            <table>
+            <table  class='article'>
                  <?php foreach (@$this->commentaire as $key => $value) { ?>
                 <tr><?php if($value['etat_validation'] == "enAttente"){ ?>
                     <td><?php echo $value['date_validation'];?></td>
