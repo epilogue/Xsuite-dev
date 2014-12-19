@@ -1379,7 +1379,7 @@ class XpriceController extends Zend_Controller_Action {
         $histo_rep=$this->getRequest()->getParam('histo',null);
         $this->view->histo_rep=$histo_rep;
         $param = $this->getRequest();
-       // echo '<pre>',var_export($param),'<pre>'; exit();
+        echo '<pre>',var_export($param),'<pre>'; exit();
         $infos = new Application_Model_DbTable_Xprices();
         $info = $infos->getNumwp($numwp);
         $tracking_number = $info['tracking_number_demande_xprice'];
