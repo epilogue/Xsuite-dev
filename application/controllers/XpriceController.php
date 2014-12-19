@@ -592,7 +592,7 @@ class XpriceController extends Zend_Controller_Action {
             if (isset($formData['validation']) && $formData['validation'] == "validee") {
                 $params1 = array();
                 $params1['destinataireMail'] = "mhuby@smc-france.fr"/* $info_user['mail_user'] */;
-                $params1['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/list/numwp/{$numwp}";
+                $params1['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/consult/numwp/{$numwp}";
                 $params1['corpsMail'] = "Bonjour,\n"
                         . "\n"
                         . "Votre demande XPrice a été validée par .\n"
@@ -671,7 +671,7 @@ class XpriceController extends Zend_Controller_Action {
              */ elseif (isset($formData['validation']) && $formData['validation'] == "nonValide") {
                 $params1 = array();
                 $params1['destinataireMail'] = "mhuby@smc-france.fr"/* $info_user['mail_user'] */;
-                $params1['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/list/numwp/{$numwp}";
+                $params1['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/consult/numwp/{$numwp}";
                 $params1['corpsMail'] = "Bonjour,\n"
                         . "\n"
                         . "Votre demande XPrice a été refusée par .\n"
@@ -820,9 +820,9 @@ class XpriceController extends Zend_Controller_Action {
                 $params = array();
                 $params['destinataireMail'] = "mhuby@smc-france.fr"/* $info_user['mail_user'] */;
                 if (!is_null($commentId)) {
-                    $params['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/list/numwp/{$numwp}/com/{$commentId}";
+                    $params['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/consult/numwp/{$numwp}/com/{$commentId}";
                 } else {
-                    $params['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/list/numwp/{$numwp}";
+                    $params['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/consult/numwp/{$numwp}";
                 }
                 $params['corpsMail'] = "Bonjour,\n"
                         . "\n"
@@ -872,9 +872,9 @@ class XpriceController extends Zend_Controller_Action {
                 $params = array();
                 $params['destinataireMail'] = "mhuby@smc-france.fr"/* $info_user['mail_user'] */;
                 if (!is_null($commentId)) {
-                    $params['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/list/numwp/{$numwp}/com/{$commentId}";
+                    $params['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/consult/numwp/{$numwp}/com/{$commentId}";
                 } else {
-                    $params['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/list/numwp/{$numwp}";
+                    $params['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/consult/numwp/{$numwp}";
                 }
                 $params['corpsMail'] = "Bonjour,\n"
                         . "\n"
@@ -989,7 +989,7 @@ class XpriceController extends Zend_Controller_Action {
             $params = array();
             if (isset($formData['validation']) && $formData['validation'] == "validee") {
                 $params['destinataireMail'] = "mhuby@smc-france.fr"/* $info_user['mail_user'] */;
-                $params['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/list/numwp/{$numwp}";
+                $params['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/consult/numwp/{$numwp}";
                 $params['corpsMail'] = "Bonjour,\n"
                         . "\n"
                         . "Votre demande XPrice a été validée par .\n"
@@ -1038,9 +1038,9 @@ class XpriceController extends Zend_Controller_Action {
                 $emailVars = Zend_Registry::get('emailVars');
                 $params['destinataireMail'] = "mhuby@smc-france.fr"/* $info_user['mail_user'] */;
                 if (!is_null($commentId)) {
-                    $params['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/list/numwp/{$numwp}/com/{$commentId}";
+                    $params['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/consult/numwp/{$numwp}/com/{$commentId}";
                 } else {
-                    $params['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/list/numwp/{$numwp}";
+                    $params['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/consult/numwp/{$numwp}";
                 }
                 $params['corpsMail'] = "Bonjour,\n"
                         . "\n"
