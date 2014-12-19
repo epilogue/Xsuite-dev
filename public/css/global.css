@@ -335,7 +335,17 @@ h3{
     border-color:black;
     border-width: thin;
 }
+.article{
+    border-style:solid;
+    border-color:black;
+    border-width: thin;
+}
 
+.article button {
+    width: 60px;
+    background-color:#268bd9;
+    color:white;
+}
 #tableau button {
     width: 60px;
     background-color:#268bd9;
