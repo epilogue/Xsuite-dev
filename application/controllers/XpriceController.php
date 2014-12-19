@@ -1379,9 +1379,10 @@ class XpriceController extends Zend_Controller_Action {
         $histo_rep=$this->getRequest()->getParam('histo',null);
         $this->view->histo_rep=$histo_rep;
         $param = $this->getRequest();
-        echo '<pre>',var_export($param),'<pre>'; exit();
+//        echo '<pre>',var_export($param),'<pre>'; exit();
         $infos = new Application_Model_DbTable_Xprices();
         $info = $infos->getNumwp($numwp);
+        $id_demande_xprice=$info['id_demande_xprice'];
         $tracking_number = $info['tracking_number_demande_xprice'];
         $this->view->tracking_number = $tracking_number;
         $date_offre = $info['date_demande_xprice'];
@@ -1398,6 +1399,18 @@ class XpriceController extends Zend_Controller_Action {
         $test = $tests->sommePrixDemandeArticle($numwp);
         $this->view->montant_total = $test->total;
         $this->view->infos_client = $infos_client;
+        /* recupération des commentaires concernant la demande */
+        
+        $commentairesoffre= new Application_Model_DbTable_Validationsdemandexprices();
+        $commentaireoffre=$commentairesoffre->getAllValidation($id_demande_xprice);
+        $this->view->commentaire = $commentaireoffre;
+        $usersCommentaires = array();
+
+        foreach (@$commentaireoffre as $key => $commoffre) {
+            $userCommInfos = $infos_user->getFonctionLabel($commoffre['id_user']);
+            $usersCommentaires[$key]['fonction'] = $userCommInfos['description_fonction'];
+        }
+        $this->view->usersCommentaires = $usersCommentaires;
     }
 
     public function consultAction() {

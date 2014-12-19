@@ -24,14 +24,21 @@ $this->headTitle($this->title);
 <div id="comm_up">
     <fieldset><legend>Commentaires</legend></fieldset>
     <form>
-        <?php
+        <?php /* aucun commentId n'existe dans le getrequest */
         if (!is_null($this->commentId)) {
             ?>
             <input type="hidden" name="reponse" value="<?php echo $this->commentId; ?>">
             <?php
         }
-        ?>
-
+        ?><table>
+             <?php foreach (@$this->commentaire as $key => $value) { ?>
+                <tr>
+                    <td>Commentaire <?php echo strtolower($this->usersCommentairess[$key]['fonction']); ?></td>
+                    <td><?php echo $value['date_validation']; ?></td>
+                    <td><?php echo nl2br($value['commentaire']); ?></td>
+                </tr>
+            <?php } ?>
+</table>
         <fieldset>
             <legend>Question</legend>
             <table>
