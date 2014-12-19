@@ -296,6 +296,11 @@ h3{
     float:left;
     margin-left:350px;
 }
+.plop input{
+   height: 50px;
+    background-color:#268bd9;
+    color:white; 
+}
 #fieldset-commentaires{
     width: 725px;
     float:left;
