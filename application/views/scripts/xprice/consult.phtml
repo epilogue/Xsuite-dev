@@ -15,10 +15,10 @@ $this->headTitle($this->title);
                 </tr>
                 <tr>
                     <td><?php echo $this->tracking_number; ?></td>
-                    <td><?php echo $this->date_demande_xprice; ?></td>
-                    <td><?php echo $this->info_client['nom_client']; ?></td>
-                    <td><?php $this->montant['total']; ?></td>
-                    <td><button id="bouton_objet" type="button" onclick="javascript:afficher('objet');">Détail</button></td>
+                    <td><?php echo $this->date_offre; ?></td>
+                    <td><?php echo $this->infos_client['nom_client']; ?></td>
+                    <td><?php echo round($this->montant_total,2); ?></td>
+                    <td><button id="bouton_objet" type="button" onclick="javascript:afficher('objet');">Détails</button></td>
                 </tr>
             </table>
             

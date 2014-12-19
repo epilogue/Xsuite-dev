@@ -359,7 +359,7 @@ class XpriceController extends Zend_Controller_Action {
                                 $destinataireMail2 = $emailVars->listes->leaderin06;
                                 break;
                         }
-                        $url2 = "http://{$_SERVER['SERVER_NAME']}/xprice/consultleader/numwp/{$numwp}";
+                        $url2 = "http://{$_SERVER['SERVER_NAME']}/xprice/consult/numwp/{$numwp}";
                         $corpsMail2 = "Bonjour,\n"
                                 . "\n"
                                 . "Vous avez une nouvelle demande XPrice à consulter.\n"
@@ -370,7 +370,6 @@ class XpriceController extends Zend_Controller_Action {
                                 . "\n"
                                 . "--\n"
                                 . "Xsuite";
-                        //var_dump($destinataireMail2);
                         $mail2 = new Xsuite_Mail();
                         $mail2->setSubject("XPrice : Nouvelle Offre à consulter de {$user_info['nom_user']} pour {$infos_client['OKCUNM']}")
                                 ->setBodyText(sprintf($corpsMail2, $url2))
@@ -381,9 +380,6 @@ class XpriceController extends Zend_Controller_Action {
                      * ici si fonction itc kam ou leader  envoie de mail au chef de region pour validation
                      */
                     $zonetracking = substr($trackingNumber, 6, 2);
-                    // var_dump($zonetracking);
-                    // var_dump($holoncreateur);
-                    // var_dump($fonctioncreateur);
                     if ($fonctioncreateur == "1" or $fonctioncreateur == "2" or $fonctioncreateur == "3") {
                         switch ($zonetracking) {
                             case "QA":
@@ -444,7 +440,6 @@ class XpriceController extends Zend_Controller_Action {
                                     . "\n"
                                     . "--\n"
                                     . "Xsuite";
-                            //var_dump($destinataireMail3);
                             $mail3 = new Xsuite_Mail();
                             $mail3->setSubject("XPrice : Nouvelle Offre à valider de {$user_info['nom_user']} pour {$infos_client['OKCUNM']}")
                                     ->setBodyText(sprintf($corpsMail3, $url3))
@@ -465,7 +460,7 @@ class XpriceController extends Zend_Controller_Action {
                      * Fin du traitement
                      */
                     $flashMessenger = $this->_helper->getHelper('FlashMessenger');
-                    $message = "Votre demande à bien été enregistrée.";
+                    $message = "Votre demande a bien été enregistrée.";
                     $flashMessenger->addMessage($message);
                     $redirector = $this->_helper->getHelper('Redirector');
                     $redirector->gotoSimple('index', 'xprice');
@@ -643,7 +638,7 @@ class XpriceController extends Zend_Controller_Action {
                         break;
                 }
                 $params3 = array();
-                $params3['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/validatechefmarche/numwp/{$numwp}";
+                $params3['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/consult/numwp/{$numwp}";
                 $params3['corpsMail'] = "Bonjour,\n"
                         . "\n"
                         . "Vous avez une nouvelle demande XPrice à consulter.\n"
@@ -1046,7 +1041,7 @@ class XpriceController extends Zend_Controller_Action {
                 $params['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/list/numwp/{$numwp}";
                 $params['corpsMail'] = "Bonjour,\n"
                         . "\n"
-                        . "Votre demande XPrice estnon validée par DIRCO .\n"
+                        . "Votre demande XPrice en'est pas validée par DIRCO .\n"
                         . "Vous pouvez la consulter à cette adresse url : \n"
                         . "%s"
                         . "\n\n"
@@ -1385,20 +1380,25 @@ class XpriceController extends Zend_Controller_Action {
 
     }
 
-    public function listAction() {
-        //$numwp = $this->getRequest()->getParam('numwp', null);
-        $tracking = $this->getRequest()->getParam('tracking_number', null);
-        $tracking_number = 'SP-FR-' . $tracking;
+    public function consultAction() {
+        $numwp = $this->getRequest()->getParam('numwp', null);
+        $infos = new Application_Model_DbTable_Xprices();
+        $info = $infos->getNumwp($numwp);
+        $tracking_number= $info['tracking_number_demande_xprice'];
         $this->view->tracking_number = $tracking_number;
-        $infos = new Application_Model_DbTable_DemandeArticlexprices();
-        $info = $infos->listtracking($tracking_number);
-        //echo '<pre>', var_export($info, true), '</pre>';
-        $num_workplace_demande_xprice = $info[0]['num_workplace_demande_xprice'];
-        $this->view->num_workplace_demande_xprice = $num_workplace_demande_xprice;
-
+        $date_offre=$info['date_demande_xprice'];
+        $this->view->date_offre=$date_offre;
+        $id_commercial=$info['id_user'];
+        $numwp_client=$info['numwp_client'];
+        $info_client=new Application_Model_DbTable_Clients;
+        $infos_client=$info_client->getClientnumwp($numwp_client);
+        $info_commercial=new Application_Model_DbTable_Users();
+        $infos_commercial=$info_commercial->getUser($id_commercial);
         $tests = new Application_Model_DbTable_DemandeArticlexprices();
-        $test = $tests->sommePrixDemandeArticle($num_workplace_demande_xprice);
-        // echo '<pre>', var_export($test, true), '</pre>';
+        $test = $tests->sommePrixDemandeArticle($numwp);
+        $this->view->montant_total=$test->total;
+        $this->view->infos_client=$infos_client;
+      
     }
 
 }
