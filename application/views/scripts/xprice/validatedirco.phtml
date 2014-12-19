@@ -129,6 +129,13 @@ $this->headTitle($this->title);
         <div id='commentaire_dirco'>
             <fieldset><legend>Commentaire Directeur Commercial</legend>
                 <textarea name="commentaire_dirco" cols="80" rows="10"></textarea>
+                <?php
+                if (!is_null($this->commentId)) {
+                    ?>
+                    <input type="hidden" name="reponse" value="<?php echo $this->commentId; ?>">
+                    <?php
+                }
+                ?>
             </fieldset>
         </div>
         <div id="valid_dirco">

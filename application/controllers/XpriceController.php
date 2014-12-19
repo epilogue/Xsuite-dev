@@ -23,13 +23,27 @@ class XpriceController extends Zend_Controller_Action {
         $this->_auth = Zend_Auth::getInstance();
         $this->view->messages = $this->_helper->flashMessenger->getMessages();
 
-       // $this->dsn2 = Zend_Registry::get("dsn2String");
+        // id de commentaire pour tracking des questions/réponses
+        $comId = $this->getRequest()->getParam('com', null);
+        if (!is_null($comId)) {
+            $comId = intval($comId);
+            $dbtValidation = new Application_Model_DbTable_Validationsdemandexprices();
+            if ($dbtValidation->checkId($comId) == true) {
+                $this->view->commentId = $comId;
+            } else {
+                $this->view->commentId = null;
+            }
+        } else {
+            $this->view->commentId = null;
+        }
+
+        // $this->dsn2 = Zend_Registry::get("dsn2String");
         $this->odbc_conn2 = odbc_connect('Movex2', "EU65535", "CCS65535");
         if (!$this->odbc_conn2) {
             echo "pas d'accès à la base de données MVXCDTA";
         }
         // $this->dsn3,"","");
-         $this->odbc_conn3 = odbc_connect('Movex3', "EU65535", "CCS65535");
+        $this->odbc_conn3 = odbc_connect('Movex3', "EU65535", "CCS65535");
         if (!$this->odbc_conn3) {
             echo "pas d'accès à la base de données SMCCDTA";
         }
@@ -234,6 +248,7 @@ class XpriceController extends Zend_Controller_Action {
                     //si le client existe  alors on insert immédiatement dans la table demande_xprices
 
                     $numwpexist = $demandes_xprice->getNumwp($numwp);
+                    $firstComment = null;
                     if (is_null($numwpexist)) {
                         $demande_xprice = $demandes_xprice->createXprice(
                                 $numwp, $trackingNumber, $formData['commentaire_demande_article'], $infos_offres->OBRGDT, $formData['mini_demande_article'], $user_info['id_user'], null, $numclientwp['OACHL1']);
@@ -241,7 +256,8 @@ class XpriceController extends Zend_Controller_Action {
                         if (!is_null($formData['commentaire_demande_article']) && trim($formData['commentaire_demande_article']) != "") {
                             $now = new DateTime();
                             $validationDemande = $dbtValidationDemande->createValidation(
-                                    "création", $now->format('Y-m-d H:i:s'), "enAttente", $user_info['id_user'], $demande_xprice->lastId(), trim($formData['commentaire_demande_article']));
+                                    "creation", $now->format('Y-m-d H:i:s'), "creation", $user_info['id_user'], $demande_xprice->lastId(), trim($formData['commentaire_demande_article']));
+                            $firstComment = $dbtValidationDemande->lastId();
                         }
                     }
                     /*
@@ -345,6 +361,7 @@ class XpriceController extends Zend_Controller_Action {
                                 break;
                         }
                         $url2 = "http://{$_SERVER['SERVER_NAME']}/xprice/consult/numwp/{$numwp}";
+
                         $corpsMail2 = "Bonjour,\n"
                                 . "\n"
                                 . "Vous avez une nouvelle demande XPrice à consulter.\n"
@@ -392,7 +409,11 @@ class XpriceController extends Zend_Controller_Action {
                                 $destinataireMail1 = $emailVars->listes->cdrouest;
                                 break;
                         }
-                        $url1 = "http://{$_SERVER['SERVER_NAME']}/xprice/validatechefregion/numwp/{$numwp}";
+                        if (!is_null($firstComment)) {
+                            $url1 = "http://{$_SERVER['SERVER_NAME']}/xprice/validatechefregion/numwp/{$numwp}/com/{$firstComment}";
+                        } else {
+                            $url1 = "http://{$_SERVER['SERVER_NAME']}/xprice/validatechefregion/numwp/{$numwp}";
+                        }
                         $corpsMail1 = "Bonjour,\n"
                                 . "\n"
                                 . "Vous avez une nouvelle demande XPrice à valider.\n"
@@ -414,7 +435,11 @@ class XpriceController extends Zend_Controller_Action {
                      */ elseif ($fonctioncreateur == "7" || $fonctioncreateur == "6" || $fonctioncreateur == "11") {
                         if ($zonetracking == "QA" || $zonetracking == "QF" || $zonetracking == "QE" || $zonetracking == "QI" || $zonetracking == "QC" || $zonetracking == "QH" || $zonetracking == "QK") {
                             $destinataireMail3 = $emailVars->listes->cm;
-                            $url3 = "http://{$_SERVER['SERVER_NAME']}/xprice/validatechefmarche/numwp/{$numwp}";
+                            if (!is_null($firstComment)) {
+                                $url3 = "http://{$_SERVER['SERVER_NAME']}/xprice/validatechefmarche/numwp/{$numwp}/com/{$firstComment}";
+                            } else {
+                                $url3 = "http://{$_SERVER['SERVER_NAME']}/xprice/validatechefmarche/numwp/{$numwp}";
+                            }
                             $corpsMail3 = "Bonjour,\n"
                                     . "\n"
                                     . "Vous avez une nouvelle demande XPrice à valider.\n"
@@ -462,9 +487,13 @@ class XpriceController extends Zend_Controller_Action {
         $now = new Datetime();
         $commentaire = (!is_null($datas['commentaire']) && trim($datas['commentaire']) != "") ? trim($datas['commentaire']) : null;
         $validations_demande_xprices_id = (array_key_exists('reponse', $datas) && trim($datas['reponse']) != "") ? $datas['reponse'] : null;
-        $validation = $dbtValidation->createValidation(
+        $dbtValidation->createValidation(
                 $datas['nom_validation'], $now->format('Y-m-d H:i:s'), $datas['validation'], $datas['id_user'], $datas['id_demande_xprice'], $commentaire, $validations_demande_xprices_id);
-        return $validation;
+        if (!is_null($commentaire)) {
+            return $dbtValidation->lastId();
+        } else {
+            return null;
+        }
     }
 
     protected function sendEmail($params) {
@@ -698,7 +727,6 @@ class XpriceController extends Zend_Controller_Action {
         }
     }
 
-
     public function validatedbdAction() {
         $user = $this->_auth->getStorage()->read();
         $tiltop = $user->id_user;
@@ -785,13 +813,17 @@ class XpriceController extends Zend_Controller_Action {
                 $datasValidation['reponse'] = $datas['reponse'];
             }
 
-            $this->genererValidation($datasValidation);
+            $commentId = $this->genererValidation($datasValidation);
 
             $emailVars = Zend_Registry::get('emailVars');
             if (isset($datas['validation']) && $datas['validation'] == "validee") {
                 $params = array();
                 $params['destinataireMail'] = "mhuby@smc-france.fr"/* $info_user['mail_user'] */;
-                $params['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/list/numwp/{$numwp}";
+                if (!is_null($commentId)) {
+                    $params['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/list/numwp/{$numwp}/com/{$commentId}";
+                } else {
+                    $params['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/list/numwp/{$numwp}";
+                }
                 $params['corpsMail'] = "Bonjour,\n"
                         . "\n"
                         . "Votre demande XPrice a été validée par .\n"
@@ -813,7 +845,11 @@ class XpriceController extends Zend_Controller_Action {
             } elseif (isset($datas['validation']) && $datas['validation'] == 'enAttente') {
                 $params = array();
                 $params['destinataireMail'] = "mhuby@smc-france.fr"/* $info_user['mail_user'] */;
-                $params['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/update/numwp/{$numwp}";
+                if (!is_null($commentId)) {
+                    $params['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/update/numwp/{$numwp}/com/{$commentId}";
+                } else {
+                    $params['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/update/numwp/{$numwp}";
+                }
                 $params['corpsMail'] = "Bonjour,\n"
                         . "\n"
                         . "Votre demande XPrice est en attente de réponse à la question posée par dbd .\n"
@@ -835,7 +871,11 @@ class XpriceController extends Zend_Controller_Action {
             } elseif (isset($datas['validation']) && $datas['validation'] == 'nonValide') {
                 $params = array();
                 $params['destinataireMail'] = "mhuby@smc-france.fr"/* $info_user['mail_user'] */;
-                $params['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/list/numwp/{$numwp}";
+                if (!is_null($commentId)) {
+                    $params['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/list/numwp/{$numwp}/com/{$commentId}";
+                } else {
+                    $params['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/list/numwp/{$numwp}";
+                }
                 $params['corpsMail'] = "Bonjour,\n"
                         . "\n"
                         . "Votre demande XPrice est non validée par dbd .\n"
@@ -943,7 +983,7 @@ class XpriceController extends Zend_Controller_Action {
                 $datasValidation['reponse'] = $formData['reponse'];
             }
 
-            $this->genererValidation($datasValidation);
+            $commentId = $this->genererValidation($datasValidation);
 
             $emailVars = Zend_Registry::get('emailVars');
             $params = array();
@@ -971,7 +1011,11 @@ class XpriceController extends Zend_Controller_Action {
             } elseif (isset($formData['validation']) && $formData['validation'] == 'enAttente') {
                 $emailVars = Zend_Registry::get('emailVars');
                 $params['destinataireMail'] = "mhuby@smc-france.fr"/* $info_user['mail_user'] */;
-                $params['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/update/numwp/{$numwp}";
+                if (!is_null($commentId)) {
+                    $params['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/update/numwp/{$numwp}/com/{$commentId}";
+                } else {
+                    $params['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/update/numwp/{$numwp}";
+                }
                 $params['corpsMail'] = "Bonjour,\n"
                         . "\n"
                         . "Votre demande XPrice est en attente de réponse à la question posée par DIRCO .\n"
@@ -993,7 +1037,11 @@ class XpriceController extends Zend_Controller_Action {
             } elseif (isset($formData['validation']) && $formData['validation'] == 'nonValide') {
                 $emailVars = Zend_Registry::get('emailVars');
                 $params['destinataireMail'] = "mhuby@smc-france.fr"/* $info_user['mail_user'] */;
-                $params['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/list/numwp/{$numwp}";
+                if (!is_null($commentId)) {
+                    $params['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/list/numwp/{$numwp}/com/{$commentId}";
+                } else {
+                    $params['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/list/numwp/{$numwp}";
+                }
                 $params['corpsMail'] = "Bonjour,\n"
                         . "\n"
                         . "Votre demande XPrice en'est pas validée par DIRCO .\n"
@@ -1125,11 +1173,15 @@ class XpriceController extends Zend_Controller_Action {
                 $datasValidation['reponse'] = $formData['reponse'];
             }
 
-            $this->genererValidation($datasValidation);
+            $commentId = $this->genererValidation($datasValidation);
 //            }
             $emailVars = Zend_Registry::get('emailVars');
             $Mailsupply = $emailVars->listes->supplychain;
-            $url = "http://{$_SERVER['SERVER_NAME']}/xprice/validatesupply/numwp/{$numwp}";
+            if (!is_null($commentId)) {
+                $url = "http://{$_SERVER['SERVER_NAME']}/xprice/validatesupply/numwp/{$numwp}/com/{$commentId}";
+            } else {
+                $url = "http://{$_SERVER['SERVER_NAME']}/xprice/validatesupply/numwp/{$numwp}";
+            }
             $corpsMail = "Bonjour,\n"
                     . "\n"
                     . "Vous avez une nouvelle demande XPrice à valider.\n"
@@ -1258,12 +1310,11 @@ class XpriceController extends Zend_Controller_Action {
                 $datasValidation['reponse'] = $formData['reponse'];
             }
 
-            $this->genererValidation($datasValidation);
+            $commentId = $this->genererValidation($datasValidation);
 //            }
             $emailVars = Zend_Registry::get('emailVars');
             // var_dump($datas); exit();
             foreach ($formData as $ploptitude) {
-
                 $marge = array_combine($ploptitude['code_article'], $ploptitude['remise_demande_article']);
             }
             $margemin = false;
@@ -1275,7 +1326,12 @@ class XpriceController extends Zend_Controller_Action {
             }
             if ($margemin == true) {
                 $destinatairemail = $emailVars->listes->dirco;
-                $url = "http://{$_SERVER['SERVER_NAME']}/xprice/validatedirco/numwp/{$numwp}";
+
+                if (!is_null($commentId)) {
+                    $url = "http://{$_SERVER['SERVER_NAME']}/xprice/validatedirco/numwp/{$numwp}/com/{$commentId}";
+                } else {
+                    $url = "http://{$_SERVER['SERVER_NAME']}/xprice/validatedirco/numwp/{$numwp}";
+                }
                 $corpsMail = "Bonjour,\n"
                         . "\n"
                         . "Vous avez une nouvelle demande XPrice à valider.\n"
@@ -1288,7 +1344,11 @@ class XpriceController extends Zend_Controller_Action {
                         . "Supply Chain Manager.";
             } else {
                 $destinatairemail = $emailVars->listes->dbd;
-                $url = "http://{$_SERVER['SERVER_NAME']}/xprice/validatedbd/numwp/{$numwp}";
+                if (!is_null($commentId)) {
+                    $url = "http://{$_SERVER['SERVER_NAME']}/xprice/validatedbd/numwp/{$numwp}/com/{$commentId}";
+                } else {
+                    $url = "http://{$_SERVER['SERVER_NAME']}/xprice/validatedbd/numwp/{$numwp}";
+                }
                 $corpsMail = "Bonjour,\n"
                         . "\n"
                         . "Vous avez une nouvelle demande XPrice à valider.\n"
@@ -1315,49 +1375,47 @@ class XpriceController extends Zend_Controller_Action {
     }
 
     public function updateAction() {
- $numwp = $this->getRequest()->getParam('numwp', null);
+        $numwp = $this->getRequest()->getParam('numwp', null);
         $infos = new Application_Model_DbTable_Xprices();
         $info = $infos->getNumwp($numwp);
-        $tracking_number= $info['tracking_number_demande_xprice'];
+        $tracking_number = $info['tracking_number_demande_xprice'];
         $this->view->tracking_number = $tracking_number;
-        $date_offre=$info['date_demande_xprice'];
+        $date_offre = $info['date_demande_xprice'];
         $date = DateTime::createFromFormat('Y-m-d', $date_offre);
         $dateplop = $date->format('d/m/Y');
-        $this->view->date_offre=$dateplop;
-        $id_commercial=$info['id_user'];
-        $numwp_client=$info['numwp_client'];
-        $info_client=new Application_Model_DbTable_Clients;
-        $infos_client=$info_client->getClientnumwp($numwp_client);
-        $info_commercial=new Application_Model_DbTable_Users();
-        $infos_commercial=$info_commercial->getUser($id_commercial);
+        $this->view->date_offre = $dateplop;
+        $id_commercial = $info['id_user'];
+        $numwp_client = $info['numwp_client'];
+        $info_client = new Application_Model_DbTable_Clients;
+        $infos_client = $info_client->getClientnumwp($numwp_client);
+        $info_commercial = new Application_Model_DbTable_Users();
+        $infos_commercial = $info_commercial->getUser($id_commercial);
         $tests = new Application_Model_DbTable_DemandeArticlexprices();
         $test = $tests->sommePrixDemandeArticle($numwp);
-        $this->view->montant_total=$test->total;
-        $this->view->infos_client=$infos_client;
-      
+        $this->view->montant_total = $test->total;
+        $this->view->infos_client = $infos_client;
     }
 
     public function consultAction() {
         $numwp = $this->getRequest()->getParam('numwp', null);
         $infos = new Application_Model_DbTable_Xprices();
         $info = $infos->getNumwp($numwp);
-        $tracking_number= $info['tracking_number_demande_xprice'];
+        $tracking_number = $info['tracking_number_demande_xprice'];
         $this->view->tracking_number = $tracking_number;
-        $date_offre=$info['date_demande_xprice'];
+        $date_offre = $info['date_demande_xprice'];
         $date = DateTime::createFromFormat('Y-m-d', $date_offre);
         $dateplop = $date->format('d/m/Y');
-        $this->view->date_offre=$dateplop;
-        $id_commercial=$info['id_user'];
-        $numwp_client=$info['numwp_client'];
-        $info_client=new Application_Model_DbTable_Clients;
-        $infos_client=$info_client->getClientnumwp($numwp_client);
-        $info_commercial=new Application_Model_DbTable_Users();
-        $infos_commercial=$info_commercial->getUser($id_commercial);
+        $this->view->date_offre = $dateplop;
+        $id_commercial = $info['id_user'];
+        $numwp_client = $info['numwp_client'];
+        $info_client = new Application_Model_DbTable_Clients;
+        $infos_client = $info_client->getClientnumwp($numwp_client);
+        $info_commercial = new Application_Model_DbTable_Users();
+        $infos_commercial = $info_commercial->getUser($id_commercial);
         $tests = new Application_Model_DbTable_DemandeArticlexprices();
         $test = $tests->sommePrixDemandeArticle($numwp);
-        $this->view->montant_total=$test->total;
-        $this->view->infos_client=$infos_client;
-      
+        $this->view->montant_total = $test->total;
+        $this->view->infos_client = $infos_client;
     }
 
 }

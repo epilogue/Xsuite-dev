@@ -128,6 +128,13 @@ $this->headTitle($this->title);
         <div id='formprixfob'>
             <fieldset id='form_prixfob'><legend>Commentaire Supply chain Manager</legend>
                 <textarea name="commentaire_supply" cols="50" rows="20"></textarea>
+                <?php
+                if (!is_null($this->commentId)) {
+                    ?>
+                    <input type="hidden" name="reponse" value="<?php echo $this->commentId; ?>">
+                    <?php
+                }
+                ?>
             </fieldset>
         </div>
         <div id="plop">

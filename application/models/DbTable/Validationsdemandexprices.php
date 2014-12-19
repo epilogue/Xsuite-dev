@@ -45,4 +45,24 @@ class Application_Model_DbTable_Validationsdemandexprices extends Zend_Db_Table_
         }
     }
 
+    public function lastId($increase = false) {
+        $sql = $this->getAdapter()->query("select MAX(id) AS lastId from {$this->_name};");
+        $res = $sql->fetchObject();
+        if ($increase) {
+            return $res->lastId + 1;
+        } else {
+            return $res->lastId;
+        }
+    }
+
+    public function checkId($id) {
+        $sql = $this->getAdapter()->query("select id from {$this->_name} where id={$id}");
+        $res = $sql->fetch();
+        if (array_key_exists('id', $res) && $res['id'] == $id) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 }

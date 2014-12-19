@@ -14,16 +14,24 @@ $this->headTitle($this->title);
         </tr>
         <tr>
             <td><?php echo $this->tracking_number; ?></td>
-                    <td><?php echo $this->date_offre; ?></td>
-                    <td><?php echo $this->infos_client['nom_client']; ?></td>
-                    <td><?php echo round($this->montant_total,2)."€"; ?></td>
-                    <td><button id="bouton_objet" type="button" onclick="javascript:afficher('objet');">Détails</button></td>
+            <td><?php echo $this->date_offre; ?></td>
+            <td><?php echo $this->infos_client['nom_client']; ?></td>
+            <td><?php echo round($this->montant_total, 2) . "€"; ?></td>
+            <td><button id="bouton_objet" type="button" onclick="javascript:afficher('objet');">Détails</button></td>
         </tr>
     </table>
 </div>
 <div id="comm_up">
     <fieldset><legend>Commentaires</legend></fieldset>
     <form>
+        <?php
+        if (!is_null($this->commentId)) {
+            ?>
+            <input type="hidden" name="reponse" value="<?php echo $this->commentId; ?>">
+            <?php
+        }
+        ?>
+
         <fieldset><legend>Question</legend></fieldset>
         <fieldset><legend>Réponse</legend></fieldset>
         <div id="plop">
