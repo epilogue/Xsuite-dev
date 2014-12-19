@@ -320,13 +320,23 @@ h3{
     width: 60px;
 }
 
+
+#plop{
+    float:left;
+    height: 50px;
+    color:white;
+      width: 725px;
+       margin-top:30px;
+    margin-bottom:25px;
+    margin-left:25px;
+}
 #tableau table,#tableau th,#tableau tr,#tableau td{
      border-style:solid;
     border-color:black;
     border-width: thin;
 }
 
-#tableau input {
+#tableau button {
     width: 60px;
     background-color:#268bd9;
     color:white;
