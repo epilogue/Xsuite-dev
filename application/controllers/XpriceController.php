@@ -194,7 +194,6 @@ class XpriceController extends Zend_Controller_Action {
             $query1quart = "select ZMCPJO.Z2MCL1  from EIT.SMCCDTA.ZMCPJO  ZMCPJO where ZMCPJO.Z2CUNO= '{$resultat[0]['OBCUNO']}' ";
             $industriewp = odbc_fetch_array(odbc_exec($this->odbc_conn3, $query1quart));
             $this->view->industriewp = $industriewp;
-            //var_dump($industriewp['Z2MCL1']);
             $industriewp['Z2MCL1'] = trim($industriewp['Z2MCL1']);
             if ($industriewp['Z2MCL1'] == "" || $industriewp['Z2MCL1'] == " ") {
                 $industriewp['Z2MCL1'] = "SCI";
@@ -458,10 +457,6 @@ class XpriceController extends Zend_Controller_Action {
         }
     }
 
-    public function consultleaderAction() {
-
-    }
-
     protected function genererValidation($datas) {
         $dbtValidation = new Application_Model_DbTable_Validationsdemandexprices();
         $now = new Datetime();
@@ -703,9 +698,6 @@ class XpriceController extends Zend_Controller_Action {
         }
     }
 
-    public function validatechefmarcheAction() {
-
-    }
 
     public function validatedbdAction() {
         $user = $this->_auth->getStorage()->read();
@@ -1163,10 +1155,6 @@ class XpriceController extends Zend_Controller_Action {
         }
     }
 
-    public function deleteAction() {
-        // action body
-    }
-
     public function validatesupplyAction() {
         $user = $this->_auth->getStorage()->read();
         // var_dump($user);
@@ -1208,11 +1196,9 @@ class XpriceController extends Zend_Controller_Action {
          * Fin du chargement des validations
          */
 
-        // echo '<pre>',var_export($info_user),'</pre>';
         $this->view->info_user = $info_user;
         $infos_client = new Application_Model_DbTable_Clients();
         $info_client = $infos_client->getClientnumwp($info_demande_xprice['numwp_client']);
-        //echo '<pre>',var_export($info_client),'</pre>';
         $this->view->info_client = $info_client;
         $noms_industrie = new Application_Model_DbTable_Industry();
         $nom_industrie = $noms_industrie->getIndustry($info_client['id_industry']);
@@ -1220,10 +1206,8 @@ class XpriceController extends Zend_Controller_Action {
         $infos_validation = new Application_Model_DbTable_Validationsxprice();
         $info_validation = $infos_validation->getValidation($nom_validation, $info_demande_xprice['tracking_number_demande_xprice']);
         $this->view->info_validation = $info_validation;
-        //echo '<pre>',var_export($info_validation,true),'</pre>';
         $infos_demande_article_xprice = new Application_Model_DbTable_DemandeArticlexprices();
         $info_demande_article_xprice = $infos_demande_article_xprice->getDemandeArticlexprice($numwp);
-        //echo '<pre>',  var_export($info_demande_article_xprice,true),'</pre>';
         $this->view->info_demande_article_xprice = $info_demande_article_xprice;
 //        foreach ($info_demande_article_xprice as $value) {
 //
@@ -1331,7 +1315,26 @@ class XpriceController extends Zend_Controller_Action {
     }
 
     public function updateAction() {
-
+ $numwp = $this->getRequest()->getParam('numwp', null);
+        $infos = new Application_Model_DbTable_Xprices();
+        $info = $infos->getNumwp($numwp);
+        $tracking_number= $info['tracking_number_demande_xprice'];
+        $this->view->tracking_number = $tracking_number;
+        $date_offre=$info['date_demande_xprice'];
+        $date = DateTime::createFromFormat('Y-m-d', $date_offre);
+        $dateplop = $date->format('d/m/Y');
+        $this->view->date_offre=$dateplop;
+        $id_commercial=$info['id_user'];
+        $numwp_client=$info['numwp_client'];
+        $info_client=new Application_Model_DbTable_Clients;
+        $infos_client=$info_client->getClientnumwp($numwp_client);
+        $info_commercial=new Application_Model_DbTable_Users();
+        $infos_commercial=$info_commercial->getUser($id_commercial);
+        $tests = new Application_Model_DbTable_DemandeArticlexprices();
+        $test = $tests->sommePrixDemandeArticle($numwp);
+        $this->view->montant_total=$test->total;
+        $this->view->infos_client=$infos_client;
+      
     }
 
     public function consultAction() {
