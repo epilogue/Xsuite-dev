@@ -32,7 +32,9 @@ $this->headTitle($this->title);
         }
         ?>
 
-        <fieldset><legend>Question</legend></fieldset>
+        <fieldset><legend>Question</legend>
+        <?php echo $this->histo_rep; ?>
+        </fieldset>
         <fieldset><legend>Réponse</legend></fieldset>
         <div id="plop">
             <input class="plop" type='submit' value="Envoyer la réponse">

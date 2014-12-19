@@ -1376,6 +1376,8 @@ class XpriceController extends Zend_Controller_Action {
 
     public function updateAction() {
         $numwp = $this->getRequest()->getParam('numwp', null);
+        $histo_rep=$this->getRequest()->getParam('commentId',null);
+        $this->histo_rep=$histo_rep;
         $infos = new Application_Model_DbTable_Xprices();
         $info = $infos->getNumwp($numwp);
         $tracking_number = $info['tracking_number_demande_xprice'];
