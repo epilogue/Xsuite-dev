@@ -335,7 +335,7 @@ h3{
     border-color:black;
     border-width: thin;
 }
-.article{
+.article,.article th,.article tr,.article td{
     border-style:solid;
     border-color:black;
     border-width: thin;
