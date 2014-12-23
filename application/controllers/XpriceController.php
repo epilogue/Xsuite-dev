@@ -155,8 +155,6 @@ class XpriceController extends Zend_Controller_Action {
             //requete 1 pour remplir  les données du commercial à partir du numwp
             $query1 = "SELECT OOLINE.OBSMCD  as userwp FROM EIT.CVXCDTA.OOLINE OOLINE WHERE OOLINE.OBORNO='{$numwp}'";
             $numwp_user = odbc_fetch_array(odbc_exec($this->odbc_conn, $query1));
-            echo '<pre>',  var_export($numwp_user),'<pre>';
-                       
             $usertest = new Application_Model_DbTable_Users();
             $user_info = $usertest->getMovexUser($numwp_user['USERWP']);
             $this->view->user_info = $user_info;
@@ -179,7 +177,6 @@ class XpriceController extends Zend_Controller_Action {
 
             while ($resultat[] = odbc_fetch_array($resultats)) {
                 $this->view->resultat = $resultat;
-                 echo '<pre>',  var_export($resultat),'<pre>';
             }
             /* aller chercher prix fob prix cif sur la base MVCDXTA en utilisant les tables KOPCDT(date) KOITNO ( code article) et KO ( prix cif)
              *
@@ -198,7 +195,6 @@ class XpriceController extends Zend_Controller_Action {
                 $prixciffob[] = odbc_fetch_object($resultats3);
             }
             $this->view->prixciffob = $prixciffob;
-             echo '<pre>',  var_export($prixciffob),'<pre>';
             /*
              * à partir du code client de la table ooline on va chercher dans la table ocusma
              * les informations concernant le client pour pouvoir les afficher dans la vue phtml
@@ -206,14 +202,12 @@ class XpriceController extends Zend_Controller_Action {
             $query1bis = "select * from EIT.MVXCDTA.OCUSMA OCUSMA where OCUSMA.OKCUNO = '{$resultat[0]['OBCUNO']}'";
             $infos_client = odbc_fetch_array(odbc_exec($this->odbc_conn2, $query1bis));
             $this->view->infos_client = $infos_client;
-             echo '<pre>',  var_export($infos_client),'<pre>';
             $query1ter = "select OOHEAD.OACHL1 from EIT.MVXCDTA.OOHEAD OOHEAD where OOHEAD.OACUNO = '{$resultat[0]['OBCUNO']}'";
             $numclientwp = odbc_fetch_array(odbc_exec($this->odbc_conn2, $query1ter));
              echo '<pre>',  var_export($numclientwp),'<pre>';
             $this->view->numclientwp = $numclientwp['OACHL1'];
             $query1quart = "select ZMCPJO.Z2MCL1  from EIT.SMCCDTA.ZMCPJO  ZMCPJO where ZMCPJO.Z2CUNO= '{$resultat[0]['OBCUNO']}' ";
             $industriewp = odbc_fetch_array(odbc_exec($this->odbc_conn3, $query1quart));
-             echo '<pre>',  var_export($industriewp),'<pre>'; exit();
             $this->view->industriewp = $industriewp;
             $industriewp['Z2MCL1'] = trim($industriewp['Z2MCL1']);
             if ($industriewp['Z2MCL1'] == "" || $industriewp['Z2MCL1'] == " ") {
