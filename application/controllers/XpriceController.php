@@ -101,7 +101,6 @@ class XpriceController extends Zend_Controller_Action {
 	FROM EIT.CVXCDTA.OOLINE OOLINE WHERE OOLINE.OBORNO = '{$_POST['num_offre_worplace']}' AND OOLINE.OBDIVI='FR0' and OOLINE.OBCONO='100'";
                 $results = odbc_exec($this->odbc_conn, $query);
                 $r = odbc_fetch_object($results);
-                echo '<pre>',  var_export($r),'<pre>';exit();
                 if ($r->NBNUMWP === $_POST['num_offre_worplace']) {
                     $redirector->gotoSimple('create', 'xprice', null, array('numwp' => $_POST['num_offre_worplace']));
                 } else {
@@ -138,6 +137,8 @@ class XpriceController extends Zend_Controller_Action {
             $pirate = "select OOLINE.OBORNO, OOLINE.OBRGDT, OOLINE.OBORNO from EIT.CVXCDTA.OOLINE OOLINE where OOLINE.OBORNO='{$numwp}'";
             $infos_offre = odbc_exec($this->odbc_conn, $pirate);
             $infos_offres = odbc_fetch_object($infos_offre);
+            echo '<pre>',  var_export($infos_offres),'<pre>';
+                        exit();
             $this->view->infos_offres = $infos_offres;
             $dateinit = $infos_offres->OBRGDT;
             $dateinit3 = substr($dateinit, 0, 4);
