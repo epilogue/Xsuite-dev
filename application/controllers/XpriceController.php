@@ -101,6 +101,7 @@ class XpriceController extends Zend_Controller_Action {
 	FROM EIT.CVXCDTA.OOLINE OOLINE WHERE OOLINE.OBORNO = '{$_POST['num_offre_worplace']}' AND OOLINE.OBDIVI='FR0' and OOLINE.OBCONO='100'";
                 $results = odbc_exec($this->odbc_conn, $query);
                 $r = odbc_fetch_object($results);
+                echo '<pre>',  var_export($r),'<pre>';exit();
                 if ($r->NBNUMWP === $_POST['num_offre_worplace']) {
                     $redirector->gotoSimple('create', 'xprice', null, array('numwp' => $_POST['num_offre_worplace']));
                 } else {
