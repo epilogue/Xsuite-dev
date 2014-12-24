@@ -9,7 +9,7 @@ and open the template in the editor.
 */
 
 #header{
-    width: 1024px;
+    width: 1124px;
     height: 150px;
     background-color: white;
 }
@@ -121,7 +121,7 @@ and open the template in the editor.
 #center{
     float:right;
     /*margin-left: 245px;*/
-    width: 900px;
+    width: 1124px;
     height: auto;
     background-color:white;
     border-radius:10px;
