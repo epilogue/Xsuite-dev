@@ -87,8 +87,8 @@ and open the template in the editor.
 }
 #menu{
     width: 900px;
-    height: 150px;
-    background-color: #006699;
+    height: 70px;
+    background-color:transparent;
     margin-top: 10px;
     margin-bottom: 10px;
     border-bottom-right-radius:15px;
