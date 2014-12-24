@@ -120,6 +120,19 @@ border-radius:0;
 #menu_haut ul li:last-child{
 border-radius:0 0 8px 8px;
 }
+#menu_haut ul{
+position:absolute;
+max-height:0;
+left: 0;
+right: 0;
+overflow:hidden;
+-moz-transition: .8s all .3s;
+-webkit-transition: .8s all .3s;
+transition: .8s all .3s;
+}
+#menu_haut li:hover ul{
+max-height:15em;
+}
 
 #center{
     
