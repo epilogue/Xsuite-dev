@@ -141,15 +141,22 @@ h3{
 .menu_entete ul{
     background-color: black;
     text-decoration:none;
+    list-style: none;
 }
 .menu_entete li{
     background-color:red;
+    text-decoration:none;
+    list-style: none;
 }
 .sous_menu ul {
     background-color: green;
+    text-decoration:none;
+    list-style: none;
 }
 .sous_menu li{
     background-color: #268bd9;
+    text-decoration:none;
+    list-style: none;
 }
 /* éléments du menu déroulant
 #menu,#menu ul{
