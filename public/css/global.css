@@ -136,7 +136,15 @@ h3{
     color:#A0A1A1;
     text-align: center;
 }
-/* éléments du menu déroulant*/
+
+/*menu essai 2*/
+.menu_entete{
+    background-color: #A0A1A1;
+}
+.sous_menu{
+    background-color: #268bd9;
+}
+/* éléments du menu déroulant
 #menu,#menu ul{
     line-height: 21px;
     text-align: center;
@@ -146,7 +154,7 @@ h3{
 
 }
 
-#menu{
+/*#menu{
     font-weight: bold;
     font-family: arial;
     font-size:10px;
@@ -166,7 +174,7 @@ h3{
     color:white;
     height: 50px;
 }
-/*sous liste*/
+/*sous liste
 #menu li ul{
     position:absolute;
     width:144px;
@@ -176,12 +184,12 @@ h3{
     z-index:1;
 }
 
-/* au passage de la souris */
+ au passage de la souris 
 #menu a:hover{
     color:black;
     background-color:transparent;
 }
-/*deroule fait référence à la fonction js */
+deroule fait référence à la fonction js 
 #menu li:hover ul ul ,#menu li.deroule ul ul{
     left:-999em;
 }
@@ -191,7 +199,7 @@ h3{
     min-height: 0;
 }
 
-/*fin du menu*/
+fin du menu*/
 
 /**les tableaux
 /*div entourant les tableaux pour les centrer
