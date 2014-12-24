@@ -31,25 +31,15 @@ echo $this->doctype();
         <div id="Content">
             <?php    $autentificated= $this->loggedInAs(); if($autentificated == ''){?>
             <div id="menu_haut" hidden="hidden">
+            </div><?php } else{?>
+            <div id="menu_haut" >
                 <ul class="menu_haut">
                     <li><a>Xprice</a>
-                        <ul>
+                        <ul class="menu_haut">
                             <li><a>Création</a></li>
                             <li><a>Consultation</a></li>
                         </ul>
                     </li>
-                    <li><a>Xprice Distrib</a></li>
-                    <li><a>Xsimple</a></li>
-                    <li><a>Xprev</a></li>
-                    <li><a>Xpertise</a></li>
-                    <li><a>XRFS</a></li>
-                    <li><a>XSDB</a></li>
-                    <li><a>Annuaire</a></li>
-                </ul>
-            </div><?php } else{?>
-            <div id="menu_haut" >
-                <ul class="menu_haut">
-                    <li><a>Xprice</a></li>
                     <li><a>Xprice Distrib</a></li>
                     <li><a>Xsimple</a></li>
                     <li><a>Xprev</a></li>
