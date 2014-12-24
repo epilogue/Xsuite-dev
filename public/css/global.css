@@ -79,7 +79,7 @@ and open the template in the editor.
 #sidebar_left{
     float: left;
     width: 175px;
-    height: 310px;
+    height:700px;
     background-color: #C4BDBD;
     /* border-radius: 10px; */
     border-bottom-right-radius:15px;
@@ -92,7 +92,32 @@ and open the template in the editor.
     height:auto;
     background-color:white;
 }
+#menu_haut{
+    width: 1124px;
+    height: 60px;
+    background-color: #006699;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-bottom-right-radius:15px;
+    border-top-left-radius:15px;
+    
+}
+.menu_haut{
+    list-style-type: none;
+    margin-left: 10px;
+    padding: 0;
+    color:white;
+}
+  .menu_haut li {
+    display:inline;
+    float:left;
+    padding-top: 5px;
+}
 
+.menu_haut a{
+    display:block;
+    width: 100px;
+}
 #center{
     float:right;
     /*margin-left: 245px;*/
@@ -136,7 +161,47 @@ h3{
     color:#A0A1A1;
     text-align: center;
 }
-/* éléments du menu déroulant*/
+
+/*menu essai 2*/
+.menu_entete ul{
+    background-color: transparent;
+    text-decoration:none;
+    list-style: none;
+   
+    
+}
+ul .menu_entete{
+     padding-left: 0 !important;
+}
+.menu_entete li{
+    background-color:transparent;
+    text-decoration:none;
+    list-style: none;
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.sous_menu ul {
+    background-color: green;
+    text-decoration:none;
+    list-style: none;
+     padding-left: 0px;
+}
+.title_menu{
+    color:black;
+    font-weight: bold;
+}
+.sous_menu li{
+    background-color: #268bd9;
+    text-decoration:none;
+    list-style: none;
+    text-align: center;
+    font-weight: normal;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+}
+/* éléments du menu déroulant
 #menu,#menu ul{
     line-height: 21px;
     text-align: center;
@@ -146,7 +211,7 @@ h3{
 
 }
 
-#menu{
+/*#menu{
     font-weight: bold;
     font-family: arial;
     font-size:10px;
@@ -166,7 +231,7 @@ h3{
     color:white;
     height: 50px;
 }
-/*sous liste*/
+/*sous liste
 #menu li ul{
     position:absolute;
     width:144px;
@@ -176,12 +241,12 @@ h3{
     z-index:1;
 }
 
-/* au passage de la souris */
+ au passage de la souris 
 #menu a:hover{
     color:black;
     background-color:transparent;
 }
-/*deroule fait référence à la fonction js */
+deroule fait référence à la fonction js 
 #menu li:hover ul ul ,#menu li.deroule ul ul{
     left:-999em;
 }
@@ -191,7 +256,7 @@ h3{
     min-height: 0;
 }
 
-/*fin du menu*/
+fin du menu*/
 
 /**les tableaux
 /*div entourant les tableaux pour les centrer
