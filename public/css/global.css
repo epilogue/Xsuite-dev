@@ -168,6 +168,7 @@ ul .menu_entete{
     text-decoration:none;
     list-style: none;
     text-align: center;
+    font-weight: normal;
 }
 /* éléments du menu déroulant
 #menu,#menu ul{
