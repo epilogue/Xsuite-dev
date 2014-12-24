@@ -30,7 +30,7 @@ echo $this->doctype();
             </div>
         </div>
         <div id="Content">
-            <?php  $auth = Zend_Auth::getInstance(); echo $auth;?>
+            <?php  $auth = Zend_Auth::getInstance(); echo '<pre>',var_export($auth),'<pre>';?>
             <div id="menu_haut">
                 <ul class="menu_haut">
                     <li><a>Xprice</a></li>
