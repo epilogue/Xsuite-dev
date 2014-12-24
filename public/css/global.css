@@ -138,10 +138,10 @@ h3{
 }
 
 /*menu essai 2*/
-.menu_entete{
+.menu_entete ul{
     background-color: #A0A1A1;
 }
-.sous_menu{
+.sous_menu li{
     background-color: #268bd9;
 }
 /* éléments du menu déroulant
