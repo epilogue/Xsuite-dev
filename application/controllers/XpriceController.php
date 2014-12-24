@@ -41,7 +41,7 @@ class XpriceController extends Zend_Controller_Action {
         $this->odbc_conn2 = odbc_connect('Movex2', "EU65535", "CCS65535");
         if (!$this->odbc_conn2) {
             echo "pas d'accès à la base de données MVXCDTA";
-        }
+    }
         // $this->dsn3,"","");
         $this->odbc_conn3 = odbc_connect('Movex3', "EU65535", "CCS65535");
         if (!$this->odbc_conn3) {
