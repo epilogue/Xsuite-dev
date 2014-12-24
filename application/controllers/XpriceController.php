@@ -14,12 +14,12 @@ class XpriceController extends Zend_Controller_Action {
     //  public $odbc_conn3= null;
 
     public function init() {
-        $this->dsn = Zend_Registry::get("dsnString");
+//        $this->dsn = Zend_Registry::get("dsnString");
 ////        $this->odbc_conn = odbc_connect($this->dsn, "", "");
-        $this->odbc_conn = odbc_connect('Movex', "EU65535", "CCS65535");
-        if (!$this->odbc_conn) {
-            echo "pas d'accès à la base de données CVXDTA";
-        }
+//        $this->odbc_conn = odbc_connect('Movex', "EU65535", "CCS65535");
+//        if (!$this->odbc_conn) {
+//            echo "pas d'accès à la base de données CVXDTA";
+//        }
         $this->_auth = Zend_Auth::getInstance();
         $this->view->messages = $this->_helper->flashMessenger->getMessages();
 
@@ -38,15 +38,15 @@ class XpriceController extends Zend_Controller_Action {
         }
 
         // $this->dsn2 = Zend_Registry::get("dsn2String");
-        $this->odbc_conn2 = odbc_connect('Movex2', "EU65535", "CCS65535");
-        if (!$this->odbc_conn2) {
-            echo "pas d'accès à la base de données MVXCDTA";
-    }
-        // $this->dsn3,"","");
-        $this->odbc_conn3 = odbc_connect('Movex3', "EU65535", "CCS65535");
-        if (!$this->odbc_conn3) {
-            echo "pas d'accès à la base de données SMCCDTA";
-        }
+//        $this->odbc_conn2 = odbc_connect('Movex2', "EU65535", "CCS65535");
+//        if (!$this->odbc_conn2) {
+//            echo "pas d'accès à la base de données MVXCDTA";
+//    }
+//        // $this->dsn3,"","");
+//        $this->odbc_conn3 = odbc_connect('Movex3', "EU65535", "CCS65535");
+//        if (!$this->odbc_conn3) {
+//            echo "pas d'accès à la base de données SMCCDTA";
+//        }
     }
 
     public function indexAction() {
