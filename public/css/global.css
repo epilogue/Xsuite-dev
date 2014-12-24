@@ -104,8 +104,9 @@ and open the template in the editor.
 }
 .menu_haut{
     list-style-type: none;
-    margin: 0;
+    margin-left: 10px;
     padding: 0;
+    color:white;
 }
 .menu_haut li{
     display:inline;
