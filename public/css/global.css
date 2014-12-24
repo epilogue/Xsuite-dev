@@ -45,7 +45,10 @@ and open the template in the editor.
     padding-left:15px;
     text-align:center;
 }
-
+#logged-in-as{
+    color:white;
+    font-weight: bold;
+}
 #header_site a:hover,a:visited, a:link{
     color:white !important;
     padding: 15px 10px 0 5px;
