@@ -93,7 +93,7 @@ and open the template in the editor.
     background-color:white;
 }
 #menu_haut{
-    width: 1124px;
+    width: 800px;
     height: 60px;
     background-color: #006699;
     margin-top: 10px;
@@ -121,7 +121,7 @@ and open the template in the editor.
 #center{
     float:right;
     /*margin-left: 245px;*/
-    width: 1124px;
+    width: 800px;
     height: auto;
     background-color:white;
     border-radius:10px;
