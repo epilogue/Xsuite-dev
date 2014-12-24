@@ -85,6 +85,7 @@ and open the template in the editor.
     height:auto;
     background-color:white;
 }
+
 #menu{
     width: 900px;
     height: 70px;
@@ -201,6 +202,18 @@ background:#006699;
 background:#006699;
 }
 #menu_haut li:nth-child(3) li{
+background:#006699;
+}
+#menu_haut li:nth-child(4) li{
+background:#006699;
+}
+#menu_haut li:nth-child(5) li{
+background:#006699;
+}
+#menu_haut li:nth-child(6) li{
+background:#006699;
+}
+#menu_haut li:nth-child(7) li{
 background:#006699;
 }
 #menu_haut li:last-child li{
