@@ -108,10 +108,10 @@ and open the template in the editor.
     padding: 0;
     color:white;
 }
- li .menu_haut {
+  .menu_haut li {
     display:inline;
-    margin-left: 5px;
-    width: 70px;
+    margin-left: 15px;
+    width: 130px;
 }
 #center{
     float:right;
