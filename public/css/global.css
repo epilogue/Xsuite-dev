@@ -39,7 +39,7 @@ and open the template in the editor.
     width:250px;
     height: 100px;
     float: right;
-    background-image: -moz-linear-gradient(top, #8F8B8B 33%, #C4BDBD 66%);
+    background-image: -moz-linear-gradient(top, #006699 33%, #C4BDBD 66%);
     border-radius: 10px;
     padding-top:15px;
     padding-left:15px;
@@ -146,8 +146,10 @@ and open the template in the editor.
 h1{
     font-weight: bold;
     font-size: 48px;
-    color: #A0A1A1;
+    color: #006699;
     text-align: center;
+    font-family: verdana;
+    font-variant-caps: small-caps;
 }
 
 h2{
