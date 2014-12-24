@@ -94,10 +94,13 @@ and open the template in the editor.
 }
 #menu_haut{
     width: 1124px;
-    height: 100px;
+    height: 60px;
     background-color: #006699;
     margin-top: 10px;
     margin-bottom: 10px;
+    border-bottom-right-radius:15px;
+    border-top-left-radius:15px;
+    
 }
 #center{
     float:right;
