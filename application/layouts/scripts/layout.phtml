@@ -32,7 +32,12 @@ echo $this->doctype();
             <?php    $autentificated= $this->loggedInAs(); if($autentificated == ''){?>
             <div id="menu_haut" hidden="hidden">
                 <ul class="menu_haut">
-                    <li><a>Xprice</a></li>
+                    <li><a>Xprice</a>
+                        <ul>
+                            <li>Création</li>
+                            <li>Consultation</li>
+                        </ul>
+                    </li>
                     <li><a>Xprice Distrib</a></li>
                     <li><a>Xsimple</a></li>
                     <li><a>Xprev</a></li>
