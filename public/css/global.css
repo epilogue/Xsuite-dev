@@ -110,6 +110,8 @@ and open the template in the editor.
 }
 .menu_haut li{
     display:inline;
+    margin-left: 5px;
+    width: 70px;
 }
 #center{
     float:right;
