@@ -33,15 +33,14 @@ echo $this->doctype();
             <div id="sidebar_left">
                 <ul  class="menu_entete">
                     <li class="menu_entete"><a href="<?php echo $this->url(array('controller' => 'xprice', 'action' => 'index'), null, true); ?>">Xprice</a>
-                        <ul class="sous_menu">
+                        <ul class="sous_menu">plip
                             <li class="sous_menu"><a href="<?php echo $this->url(array('controller' => 'xprice', 'action' => 'numwp'), null, true); ?>">Cr&eacute;ation</a></li>
-                            <li class="sous_menu"><a href="<?php echo $this->url(array('controller' => 'xprice', 'action' => 'update'), null, true); ?>">Modification</a></li>
                             <li class="sous_menu"><a href="<?php echo $this->url(array('controller' => 'xprice', 'action' => 'list'), null, true); ?>">Consultation</a></li>
                         </ul>
                     </li>
 
                     <li class="menu_entete"><a href="<?php echo $this->url(array('controller' => 'user', 'action' => 'index'), null, true); ?>">Annuaire utilisateur</a>
-                        <ul class="sous_menu">
+                        <ul class="sous_menu">plop
                             <li class="sous_menu"><a href="<?php echo $this->url(array('controller' => 'user', 'action' => 'create'), null, true); ?>">Cr&eacute;ation</a></li>
                             <?php /*
                              * Si tu met un lien "modifier" ici il te faut une étape de sélection de l'entité à modifier
