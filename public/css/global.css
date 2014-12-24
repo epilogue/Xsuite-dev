@@ -79,16 +79,6 @@ and open the template in the editor.
     height: auto;
 }
 
-#sidebar_left{
-    float: left;
-    width: 175px;
-    height:700px;
-    background-color: #C4BDBD;
-    /* border-radius: 10px; */
-    border-bottom-right-radius:15px;
-    border-top-left-radius:15px;
-
-}
 
 #Content{
     width:1124px;
@@ -97,7 +87,7 @@ and open the template in the editor.
 }
 #menu_haut{
     width: 900px;
-    height: 60px;
+    height: 150px;
     background-color: #006699;
     margin-top: 10px;
     margin-bottom: 10px;
