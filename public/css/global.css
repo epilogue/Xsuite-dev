@@ -102,6 +102,14 @@ and open the template in the editor.
     border-top-left-radius:15px;
     
 }
+.menu_haut{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+.menu_haut li{
+    display:inline;
+}
 #center{
     float:right;
     /*margin-left: 245px;*/
