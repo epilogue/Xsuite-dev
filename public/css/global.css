@@ -155,14 +155,16 @@ ul .menu_entete{
     text-align: center;
     padding-top: 10px;
     padding-bottom: 10px;
-    font-weight: bold;
-    color: black;
 }
 .sous_menu ul {
     background-color: green;
     text-decoration:none;
     list-style: none;
      padding-left: 0px;
+}
+.title_menu{
+    color:black;
+    font-weight: bold;
 }
 .sous_menu li{
     background-color: #268bd9;
