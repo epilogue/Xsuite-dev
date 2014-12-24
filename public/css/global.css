@@ -113,9 +113,9 @@ and open the template in the editor.
     float:left;
 }
 
-.menu_haut p{
+.menu_haut a{
     display:block;
-    width: 130px;
+    width: 100px;
 }
 #center{
     float:right;
