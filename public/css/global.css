@@ -118,6 +118,13 @@ and open the template in the editor.
     padding: 0;
     color:white;
 }
+.sous_menu li {
+    padding-top: 5px;
+}
+
+.sous_menu a{
+    width: 100px;
+}
 #center{
     
     margin-left: 100px;
