@@ -171,6 +171,8 @@ ul .menu_entete{
     text-align: center;
     font-weight: normal;
     border-radius: 5px;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
 }
 /* éléments du menu déroulant
 #menu,#menu ul{
