@@ -139,7 +139,13 @@ h3{
 
 /*menu essai 2*/
 .menu_entete ul{
-    background-color: #A0A1A1;
+    background-color: black;
+}
+.menu_entete li{
+    background-color:red;
+}
+.sous_menu ul {
+    background-color: green;
 }
 .sous_menu li{
     background-color: #268bd9;
