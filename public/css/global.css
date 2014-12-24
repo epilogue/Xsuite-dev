@@ -112,6 +112,12 @@ and open the template in the editor.
     display:block;
     width: 100px;
 }
+.sous_menu{
+    list-style-type: none;
+    margin-left: 10px;
+    padding: 0;
+    color:white;
+}
 #center{
     
     margin-left: 100px;
