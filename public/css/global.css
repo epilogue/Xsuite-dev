@@ -142,8 +142,11 @@ h3{
     background-color: black;
     text-decoration:none;
     list-style: none;
-    padding-left: 0px !important;
+   
     
+}
+ul .menu_entete{
+     padding-left: 0 !important;
 }
 .menu_entete li{
     background-color:red;
