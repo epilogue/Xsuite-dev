@@ -108,7 +108,7 @@ and open the template in the editor.
     padding: 0;
     color:white;
 }
- li.menu_haut {
+ li .menu_haut {
     display:inline;
     margin-left: 5px;
     width: 70px;
