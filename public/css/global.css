@@ -153,6 +153,9 @@ ul .menu_entete{
     text-decoration:none;
     list-style: none;
     text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-weight: bold;
 }
 .sous_menu ul {
     background-color: green;
