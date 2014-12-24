@@ -139,7 +139,7 @@ h3{
 
 /*menu essai 2*/
 .menu_entete ul{
-    background-color: black;
+    background-color: transparent;
     text-decoration:none;
     list-style: none;
    
@@ -149,13 +149,14 @@ ul .menu_entete{
      padding-left: 0 !important;
 }
 .menu_entete li{
-    background-color:white;
+    background-color:transparent;
     text-decoration:none;
     list-style: none;
     text-align: center;
     padding-top: 10px;
     padding-bottom: 10px;
     font-weight: bold;
+    color: black;
 }
 .sous_menu ul {
     background-color: green;
