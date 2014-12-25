@@ -9,7 +9,7 @@ and open the template in the editor.
 */
 
 #header{
-    width: 1124px;
+    width: 1024px;
     height: 150px;
     background-color: white;
 }
@@ -25,14 +25,14 @@ and open the template in the editor.
     float:left;
     margin-left: 30px;
     width: 450px;
-    height:150px;
+    height:100px;
     background-color: white;
 }
 
 #header_right{
     float:right;
     width: 250px;
-    height: 150px;
+    height: 100px;
 }
 
 #header_site{
