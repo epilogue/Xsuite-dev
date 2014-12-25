@@ -228,6 +228,13 @@ background:#006699;
     border-radius:10px;
     border: medium solid #C4BDBD;
 }
+.submit{
+    color: white;
+    height: 50px;
+    width: auto;
+    border-radius: 10px;
+    background-color: #006699;
+}
 
 /*fin  corps de page */
 
