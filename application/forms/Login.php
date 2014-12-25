@@ -13,8 +13,9 @@ class Application_Form_Login extends Zend_Form {
         $this->addElement('password', 'password_user', array(
             'label' => 'mot de passe :',
             'required' => true));
-        $this->addElement('submit', 'submit','submit', 'submit',array(
+        $this->addElement('submit', 'submit' ,array(
             'ignore' => true,
+            'class'=>'submit',
             'label' => 'connexion'));
     }
 
