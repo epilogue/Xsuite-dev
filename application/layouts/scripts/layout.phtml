@@ -10,8 +10,14 @@ echo $this->doctype();
         echo $this->headLink()->prependStylesheet($this->baseUrl() . '/css/global.css');
         echo $this->headTitle();
         ?>
-        <script type="text/javascript" src="js/menu.js"></script>
-        <script type="text/javascript" src="js/afficher.js"></script>
+        <script type="text/javascript" src='/js/jquery-1.10.2.min.js'></script>
+        <script type="text/javascript" src='/js/jquery-ui-1.10.4.min.js'></script>
+        <script type="text/javascript" src='/js/afficher.js'></script>
+        <script type="text/javascript" src='/js/menu.js'></script>
+
+        <?php
+        echo $this->headScript();
+        ?>
 
     </head>
     <body>
@@ -29,109 +35,113 @@ echo $this->doctype();
             </div>
         </div>
         <div id="Content">
-            <?php    $autentificated= $this->loggedInAs(); if($autentificated == ''){?>
-            <div id="menu_haut" hidden="hidden">
-            </div><?php } else{?>
-            <div id="menu" >
-                <ul id="menu_haut">
-                    <li><a>Xprice</a>
-                        <ul>
-                            <li><a>Création</a></li>
-                            <li><a>Consultation</a></li>
-                        </ul>
-                    </li>
-                    <li><a>Xprice Distrib</a>
-                    <ul>
-                            <li><a>Création</a></li>
-                            <li><a>Consultation</a></li>
-                        </ul>
-                    </li>
-                    <li><a>Xsimple</a>
-                        <ul>
-                            <li><a>Création</a></li>
-                            <li><a>Consultation</a></li>
-                        </ul>
-                    </li>
-                    <li><a>Xprev</a>
-                        <ul>
-                            <li><a>Création</a></li>
-                            <li><a>Consultation</a></li>
-                        </ul>
-                    </li>
-                    <li><a>Xpertise</a>
-                        <ul>
-                            <li><a>Création</a></li>
-                            <li><a>Consultation</a></li>
-                        </ul>
-                    </li>
-                    <li><a>XRFS</a>
-                        <ul>
-                            <li><a>Création</a></li>
-                            <li><a>Consultation</a></li>
-                        </ul>
-                    </li>
-                    <li><a>XSDB</a>
-                        <ul>
-                            <li><a>Création</a></li>
-                            <li><a>Consultation</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div><?php } ?>
-<!--            <div id="sidebar_left">
-                <ul  class="menu_entete" style ="padding-left:0px;padding-top: 5px;padding-bottom: 5px;">
-                    <li class="menu_entete"><p class="title_menu">Xprice</p>
-                        <ul class="sous_menu" style ="padding-left:0px;">
-                            <li class="sous_menu"><a href="<?php echo $this->url(array('controller' => 'xprice', 'action' => 'numwp'), null, true); ?>">Cr&eacute;ation</a></li>
-                            <li class="sous_menu"><a href="<?php echo $this->url(array('controller' => 'xprice', 'action' => 'consult'), null, true); ?>">Consultation</a></li>
-                        </ul>
-                    </li>
-                     <li class="menu_entete"><p class="title_menu">XPriceDistrib</p>
-                        <ul>
-                            <li></li>
-                        </ul>
-                    </li>
-                    <li class="menu_entete"><p class="title_menu">XSimple</p>
-                        <ul>
-                            <li></li>
-                        </ul>
-                    </li>
-                      <li class="menu_entete"><p class="title_menu">XPrev</p>
-                        <ul>
-                            <li></li>
-                        </ul>
-                    </li>
-                     <li class="menu_entete"><p class="title_menu">XRFS</p>
-                        <ul>
-                            <li></li>
-                        </ul>
-                    </li>
-                     <li class="menu_entete"><p class="title_menu">XSDB</p>
-                        <ul>
-                            <li></li>
-                        </ul>
-                    </li>
-                     <li class="menu_entete"><p class="title_menu">XPertise</p>
-                        <ul>
-                            <li></li>
-                        </ul>
-                    </li>
-                    <li class="menu_entete"><p class="title_menu">Annuaire utilisateur</p>
-                        <ul class="sous_menu" style ="padding-left:0px;">
-                            <li class="sous_menu"><a href="<?php echo $this->url(array('controller' => 'user', 'action' => 'create'), null, true); ?>">Cr&eacute;ation</a></li>
-                            <?php /*
-                             * Si tu met un lien "modifier" ici il te faut une étape de sélection de l'entité à modifier
-                             * sinon tu arrive sur un formulaire de modification vide.
-                             */ ?>
-                            <li class="sous_menu"><a href="<?php echo $this->url(array('controller' => 'user', 'action' => 'update'), null, true); ?>">Modification</a></li>
-                            <?php /* 
-                             * Même remarque que ci dessus, hormis le fait que tu ne peux pas supprimer un élément non sélectionné.
-                             */ ?>
-                            <li class="sous_menu"><a href="<?php echo $this->url(array('controller' => 'user', 'action' => 'delete'), null, true); ?>">Suppression</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>-->
+            <?php
+            $autentificated = $this->loggedInAs();
+            if ($autentificated == '') {
+                ?>
+                <div id="menu_haut" hidden="hidden">
+                </div><?php } else { ?>
+                <div id="menu" >
+                    <ul id="menu_haut">
+                        <li><a>Xprice</a>
+                            <ul>
+                                <li><a>Création</a></li>
+                                <li><a>Consultation</a></li>
+                            </ul>
+                        </li>
+                        <li><a>Xprice Distrib</a>
+                            <ul>
+                                <li><a>Création</a></li>
+                                <li><a>Consultation</a></li>
+                            </ul>
+                        </li>
+                        <li><a>Xsimple</a>
+                            <ul>
+                                <li><a>Création</a></li>
+                                <li><a>Consultation</a></li>
+                            </ul>
+                        </li>
+                        <li><a>Xprev</a>
+                            <ul>
+                                <li><a>Création</a></li>
+                                <li><a>Consultation</a></li>
+                            </ul>
+                        </li>
+                        <li><a>Xpertise</a>
+                            <ul>
+                                <li><a>Création</a></li>
+                                <li><a>Consultation</a></li>
+                            </ul>
+                        </li>
+                        <li><a>XRFS</a>
+                            <ul>
+                                <li><a>Création</a></li>
+                                <li><a>Consultation</a></li>
+                            </ul>
+                        </li>
+                        <li><a>XSDB</a>
+                            <ul>
+                                <li><a>Création</a></li>
+                                <li><a>Consultation</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div><?php } ?>
+            <!--            <div id="sidebar_left">
+                            <ul  class="menu_entete" style ="padding-left:0px;padding-top: 5px;padding-bottom: 5px;">
+                                <li class="menu_entete"><p class="title_menu">Xprice</p>
+                                    <ul class="sous_menu" style ="padding-left:0px;">
+                                        <li class="sous_menu"><a href="<?php echo $this->url(array('controller' => 'xprice', 'action' => 'numwp'), null, true); ?>">Cr&eacute;ation</a></li>
+                                        <li class="sous_menu"><a href="<?php echo $this->url(array('controller' => 'xprice', 'action' => 'consult'), null, true); ?>">Consultation</a></li>
+                                    </ul>
+                                </li>
+                                 <li class="menu_entete"><p class="title_menu">XPriceDistrib</p>
+                                    <ul>
+                                        <li></li>
+                                    </ul>
+                                </li>
+                                <li class="menu_entete"><p class="title_menu">XSimple</p>
+                                    <ul>
+                                        <li></li>
+                                    </ul>
+                                </li>
+                                  <li class="menu_entete"><p class="title_menu">XPrev</p>
+                                    <ul>
+                                        <li></li>
+                                    </ul>
+                                </li>
+                                 <li class="menu_entete"><p class="title_menu">XRFS</p>
+                                    <ul>
+                                        <li></li>
+                                    </ul>
+                                </li>
+                                 <li class="menu_entete"><p class="title_menu">XSDB</p>
+                                    <ul>
+                                        <li></li>
+                                    </ul>
+                                </li>
+                                 <li class="menu_entete"><p class="title_menu">XPertise</p>
+                                    <ul>
+                                        <li></li>
+                                    </ul>
+                                </li>
+                                <li class="menu_entete"><p class="title_menu">Annuaire utilisateur</p>
+                                    <ul class="sous_menu" style ="padding-left:0px;">
+                                        <li class="sous_menu"><a href="<?php echo $this->url(array('controller' => 'user', 'action' => 'create'), null, true); ?>">Cr&eacute;ation</a></li>
+            <?php /*
+             * Si tu met un lien "modifier" ici il te faut une étape de sélection de l'entité à modifier
+             * sinon tu arrive sur un formulaire de modification vide.
+             */
+            ?>
+        <li class="sous_menu"><a href="<?php echo $this->url(array('controller' => 'user', 'action' => 'update'), null, true); ?>">Modification</a></li>
+            <?php /*
+             * Même remarque que ci dessus, hormis le fait que tu ne peux pas supprimer un élément non sélectionné.
+             */ ?>
+        <li class="sous_menu"><a href="<?php echo $this->url(array('controller' => 'user', 'action' => 'delete'), null, true); ?>">Suppression</a></li>
+        </ul>
+        </li>
+        </ul>
+        </div>-->
             <div id="center">
                 <?php if (count($this->messages)) : ?>
                     <ul id="messages">

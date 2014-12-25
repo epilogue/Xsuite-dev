@@ -1,6 +1,7 @@
 <?php
 $this->title = 'Xprice/validatedbd';
 $this->headTitle($this->title);
+$this->headScript()->appendFile('/js/controllers/xprice/recalculeprix_marge.js');
 ?>
 <h2>Validation de l'offre<br><?php echo $this->info_demande_xprice['tracking_number_demande_xprice'] ?> par le DBD</h2>
 <div id='workplace'>
@@ -108,18 +109,18 @@ $this->headTitle($this->title);
                         <th>prix accordé</th>
                         <th>remise accordée</th>
                     </tr>
-                    <?php foreach ($this->info_demande_article_xprice as $result) { ?>
+                    <?php foreach ($this->info_demande_article_xprice as $k => $result) { ?>
                         <tr>
                             <td><input readonly="readonly" value="<?php echo $result['code_article']; ?>"  name="<?php echo 'code_article[]'; ?>"></td>
                             <td><?php echo $result['reference_article']; ?></td>
                             <td><?php echo $result['quantite_demande_article']; ?></td>
-                            <td><?php echo $result['prixwplace_demande_article']; ?></td>
+                            <td id="pwp-<?php echo $k; ?>"><?php echo $result['prixwplace_demande_article']; ?></td>
                             <td><?php echo $result['prix_demande_article']; ?></td>
                             <td><?php echo $result['remise_demande_article'] . "% "; ?></td>
                             <td><?php echo $result['prix_fob_demande_article']; ?></td>
                             <td><?php echo $result['prix_cif_demande_article']; ?></td>
-                            <td><input value="<?php echo $result['prix_demande_article']; ?>" name="<?php echo 'prix_accorde_article[]' ?>" style="background-color: #74aaca;"></td>
-                            <td><input value="<?php echo $result['remise_demande_article'] . "% "; ?>" name="<?php echo 'remise_accorde_article[]' ?>" style="background-color: #74aaca;"></td>
+                            <td><input class="pda" id="pda-<?php echo $k; ?>" value="<?php echo $result['prix_demande_article']; ?>" name="<?php echo 'prix_accorde_article[]' ?>" style="background-color: #74aaca;"></td>
+                            <td><input class="ra" id="ra-<?php echo $k; ?>" value="<?php echo $result['remise_demande_article'] . "%"; ?>" name="<?php echo 'remise_accorde_article[]' ?>" style="background-color: #74aaca;"></td>
                         </tr>
                     <?php } ?>
                 </table>

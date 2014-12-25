@@ -2,16 +2,16 @@
 
 class XpriceController extends Zend_Controller_Action {
 
-    // public $dsn="DRIVER=Client Access ODBC Driver(32-bit);UID=EU65535;PWD=CCS65535;SYSTEM=10.105.80.32;DBQ=CVXCDTA";
-    // public $dsn = "Database=CVXCDTA;UID=EU65535;PWD=CCS65535;";
-    // public $dsn = "Movex";
-    //public $dsn2 = "DRIVER={MySQL};Server=127.0.0.1;Database=MVXCDTA;UID=root;PWD=geek;";
-    //public $dsn2 = "";
+// public $dsn="DRIVER=Client Access ODBC Driver(32-bit);UID=EU65535;PWD=CCS65535;SYSTEM=10.105.80.32;DBQ=CVXCDTA";
+// public $dsn = "Database=CVXCDTA;UID=EU65535;PWD=CCS65535;";
+// public $dsn = "Movex";
+//public $dsn2 = "DRIVER={MySQL};Server=127.0.0.1;Database=MVXCDTA;UID=root;PWD=geek;";
+//public $dsn2 = "";
     public $odbc_conn = null;
     public $odbc_conn2 = null;
     public $odbc_conn3 = null;
 
-    //  public $odbc_conn3= null;
+//  public $odbc_conn3= null;
 
     public function init() {
 //        $this->dsn = Zend_Registry::get("dsnString");
@@ -23,7 +23,7 @@ class XpriceController extends Zend_Controller_Action {
         $this->_auth = Zend_Auth::getInstance();
         $this->view->messages = $this->_helper->flashMessenger->getMessages();
 
-        // id de commentaire pour tracking des questions/réponses
+// id de commentaire pour tracking des questions/réponses
         $comId = $this->getRequest()->getParam('com', null);
         if (!is_null($comId)) {
             $comId = intval($comId);
@@ -37,7 +37,7 @@ class XpriceController extends Zend_Controller_Action {
             $this->view->commentId = null;
         }
 
-        // $this->dsn2 = Zend_Registry::get("dsn2String");
+// $this->dsn2 = Zend_Registry::get("dsn2String");
 //        $this->odbc_conn2 = odbc_connect('Movex2', "EU65535", "CCS65535");
 //        if (!$this->odbc_conn2) {
 //            echo "pas d'accès à la base de données MVXCDTA";
@@ -50,7 +50,7 @@ class XpriceController extends Zend_Controller_Action {
     }
 
     public function indexAction() {
-        // action body
+// action body
         $tracking = $this->getRequest()->getParam('tracking_number', null);
         $form = new Application_Form_Recherchexprice();
         if (!is_null($tracking)) {
@@ -132,8 +132,8 @@ class XpriceController extends Zend_Controller_Action {
         $this->view->numwp = $numwp;
 
         if (!is_null($numwp)) {
-            //si le numero workplace est valide alors on fait la requête pour movex
-            // requête d'informations de l'offre
+//si le numero workplace est valide alors on fait la requête pour movex
+// requête d'informations de l'offre
             $pirate = "select OOLINE.OBORNO, OOLINE.OBRGDT, OOLINE.OBORNO from EIT.CVXCDTA.OOLINE OOLINE where OOLINE.OBORNO='{$numwp}'";
             $infos_offre = odbc_exec($this->odbc_conn, $pirate);
             $infos_offres = odbc_fetch_object($infos_offre);
@@ -151,8 +151,8 @@ class XpriceController extends Zend_Controller_Action {
             $Xprices = new Application_Model_DbTable_Xprices();
             $trackingNumber = Application_Model_DbTable_Xprices::makeTrackingNumber($zone['nom_zone'], $Xprices->lastId(true));
             $this->view->trackingNumber = $trackingNumber;
-            // requetes pour remplir le phtml :
-            //requete 1 pour remplir  les données du commercial à partir du numwp
+// requetes pour remplir le phtml :
+//requete 1 pour remplir  les données du commercial à partir du numwp
             $query1 = "SELECT OOLINE.OBSMCD  as userwp FROM EIT.CVXCDTA.OOLINE OOLINE WHERE OOLINE.OBORNO='{$numwp}'";
             $numwp_user = odbc_fetch_array(odbc_exec($this->odbc_conn, $query1));
             $usertest = new Application_Model_DbTable_Users();
@@ -204,7 +204,7 @@ class XpriceController extends Zend_Controller_Action {
             $this->view->infos_client = $infos_client;
             $query1ter = "select OOHEAD.OACHL1 from EIT.MVXCDTA.OOHEAD OOHEAD where OOHEAD.OACUNO = '{$resultat[0]['OBCUNO']}'";
             $numclientwp = odbc_fetch_array(odbc_exec($this->odbc_conn2, $query1ter));
-             echo '<pre>',  var_export($numclientwp),'<pre>';
+            echo '<pre>', var_export($numclientwp), '<pre>';
             $this->view->numclientwp = $numclientwp['OACHL1'];
             $query1quart = "select ZMCPJO.Z2MCL1  from EIT.SMCCDTA.ZMCPJO  ZMCPJO where ZMCPJO.Z2CUNO= '{$resultat[0]['OBCUNO']}' ";
             $industriewp = odbc_fetch_array(odbc_exec($this->odbc_conn3, $query1quart));
@@ -236,7 +236,7 @@ class XpriceController extends Zend_Controller_Action {
                 $formData = $this->getRequest()->getPost();
                 if ($form->isValid($formData)) {
                     $emailVars = Zend_Registry::get('emailVars');
-                    //alors si le client n'existe pas ' on insert d'abord dans la table client
+//alors si le client n'existe pas ' on insert d'abord dans la table client
                     $clients = new Application_Model_DbTable_Clients();
                     $client = $clients->getClientnumwp($numclientwp['OACHL1']);
 
@@ -245,8 +245,8 @@ class XpriceController extends Zend_Controller_Action {
                     if (is_null($client)) {
                         $newclient = $clients->createClient($infos_client['OKCUNM'], $numclientwp['OACHL1'], $adresse_client, $info_industry['id_industry'], $infos_client['OKCFC7']);
                     }
-                    // et ensuite  on insert dans la table demande_xprices
-                    //si le client existe  alors on insert immédiatement dans la table demande_xprices
+// et ensuite  on insert dans la table demande_xprices
+//si le client existe  alors on insert immédiatement dans la table demande_xprices
 
                     $numwpexist = $demandes_xprice->getNumwp($numwp);
                     $firstComment = null;
@@ -516,7 +516,7 @@ class XpriceController extends Zend_Controller_Action {
          */
         $infos_demande_xprice = new Application_Model_DbTable_Xprices();
         $info_demande_xprice = $infos_demande_xprice->getNumwp($numwp);
-        //echo '<pre>',  var_export($info_demande_xprice),'<pre>';
+//echo '<pre>',  var_export($info_demande_xprice),'<pre>';
         $user_id = $info_demande_xprice['id_user'];
         $this->view->info_demande_xprice = $info_demande_xprice;
         $date = DateTime::createFromFormat('Y-m-d', $info_demande_xprice['date_demande_xprice']);
@@ -731,7 +731,7 @@ class XpriceController extends Zend_Controller_Action {
                 $this->sendEmail($params1);
 
                 $flashMessenger = $this->_helper->getHelper('FlashMessenger');
-                $message = "la demande  est en attente de réponse du commercial.";
+                $message = "la demande est en attente de réponse du commercial.";
                 $flashMessenger->addMessage($message);
                 $redirector = $this->_helper->getHelper('Redirector');
                 $redirector->gotoSimple('index', 'xprice');
@@ -797,7 +797,7 @@ class XpriceController extends Zend_Controller_Action {
 //            $formData[] = $this->getRequest()->getPost(); //@todo : à remplacer par la ligne suivante
             $datas = $this->getRequest()->getPost();
 //            foreach ($formData as $datas) {
-            // echo '<pre>',  var_export($datas,true),'</pre>';exit();
+// echo '<pre>',  var_export($datas,true),'</pre>';exit();
             $prix_accordes = array_combine($datas['code_article'], $datas['prix_accorde_article']);
             $remise_accordes = array_combine($datas['code_article'], $datas['remise_accorde_article']);
 
@@ -968,7 +968,7 @@ class XpriceController extends Zend_Controller_Action {
             $formData = $this->getRequest()->getPost();
             $datas = $this->getRequest()->getPost();
 //            foreach ($formData as $datas) {
-            // echo '<pre>',  var_export($datas,true),'</pre>';exit();
+// echo '<pre>',  var_export($datas,true),'</pre>';exit();
             $prix_accordes = array_combine($datas['code_article'], $datas['prix_accorde_article']);
             $remise_accordes = array_combine($datas['code_article'], $datas['remise_accorde_article']);
 
@@ -1078,7 +1078,7 @@ class XpriceController extends Zend_Controller_Action {
 
     public function prixfobfrAction() {
         $user = $this->_auth->getStorage()->read();
-        // var_dump($user);
+// var_dump($user);
 
         $numwp = $this->getRequest()->getParam('numwp', null);
         $this->view->numwp = $numwp;
@@ -1121,12 +1121,12 @@ class XpriceController extends Zend_Controller_Action {
         $this->view->nom_industrie = $nom_industrie;
         $infos_demande_article_xprice = new Application_Model_DbTable_DemandeArticlexprices();
         $info_demande_article_xprice = $infos_demande_article_xprice->getDemandeArticlexprice($numwp);
-        //echo '<pre>',  var_export($info_demande_article_xprice,true),'</pre>';
+//echo '<pre>',  var_export($info_demande_article_xprice,true),'</pre>';
         $this->view->info_demande_article_xprice = $info_demande_article_xprice;
         $anneecourante = date('Y');
-        //$anneecourante=2018;
+//$anneecourante=2018;
         foreach ($info_demande_article_xprice as $value) {
-            //echo '<pre>',  var_export($value),'<pre>';
+//echo '<pre>',  var_export($value),'<pre>';
             $mmcono = "100";
             $division = "FR0";
             $facility = "I01";
@@ -1136,7 +1136,7 @@ class XpriceController extends Zend_Controller_Action {
             $agreement1 = "I000001";
             $agreement2 = "I000002";
             $agreement3 = "I000003";
-            //var_dump($value->code_article);
+//var_dump($value->code_article);
             $query = " select * from EIT.MVXCDTA.MPAGRP MPAGRP where MPAGRP.AJCONO = '$mmcono' AND MPAGRP.AJSUNO = '$supplier' AND (MPAGRP.AJAGNB = '$agreement3'  OR MPAGRP.AJAGNB = '$agreement2' OR MPAGRP.AJAGNB = '$agreement1') AND MPAGRP.AJOBV2 = '{$value['code_article']}' AND MPAGRP.AJOBV1 = '$division'  ORDER BY MPAGRP.AJAGNB";
 
             $infos_prixfobfr = odbc_fetch_array(odbc_exec($this->odbc_conn2, $query));
@@ -1148,7 +1148,7 @@ class XpriceController extends Zend_Controller_Action {
 //                    }
 
             $this->view->infos_prixfobfr = $infos_prixfobfr;
-            // echo '<pre>',  var_export($infos_prixfobfr),'<pre>';                exit();
+// echo '<pre>',  var_export($infos_prixfobfr),'<pre>';                exit();
         }
 
         if ($this->getRequest()->isPost()) {
@@ -1158,7 +1158,7 @@ class XpriceController extends Zend_Controller_Action {
             $nom_validationfobfr = "fobfr";
             $formData = $this->getRequest()->getPost();
             $datas = $this->getRequest()->getPost();
-            //echo "<pre>", var_export($formData),"</pre>";
+//echo "<pre>", var_export($formData),"</pre>";
 //            foreach ($formData as $datas) {
             $fobs = array_combine($datas['code_article'], $datas['prix_fob']);
             $cifs = array_combine($datas['code_article'], $datas['prix_cif']);
@@ -1221,18 +1221,18 @@ class XpriceController extends Zend_Controller_Action {
 
     public function validatesupplyAction() {
         $user = $this->_auth->getStorage()->read();
-        // var_dump($user);
+// var_dump($user);
         $nom_validation = "fobfr";
         $numwp = $this->getRequest()->getParam('numwp', null);
-        // var_dump($numwp);
+// var_dump($numwp);
         $this->view->numwp = $numwp;
         /*
          * on va rechercher les informations concernant la demande _xprice
          */
         $infos_demande_xprice = new Application_Model_DbTable_Xprices();
         $info_demande_xprice = $infos_demande_xprice->getNumwp($numwp);
-        //echo '<pre>', var_export($info_demande_xprice), '</pre>'; exit();
-        // var_dump( $info_demande_xprice['id_user']);
+//echo '<pre>', var_export($info_demande_xprice), '</pre>'; exit();
+// var_dump( $info_demande_xprice['id_user']);
         $this->view->info_demande_xprice = $info_demande_xprice;
         $date = DateTime::createFromFormat('Y-m-d', $info_demande_xprice['date_demande_xprice']);
         $dateplop = $date->format('d/m/Y');
@@ -1295,7 +1295,7 @@ class XpriceController extends Zend_Controller_Action {
             $nom_validationsupply = "supply";
             $formData = $this->getRequest()->getPost();
             $datas = $this->getRequest()->getPost();
-            //echo '<pre>',var_export($formData),'<pre>';
+//echo '<pre>',var_export($formData),'<pre>';
 //            foreach ($formData as $datas) {
             $fobs = array_combine($datas['code_article'], $datas['prix_fob']);
             $cifs = array_combine($datas['code_article'], $datas['prix_cif']);
@@ -1325,7 +1325,7 @@ class XpriceController extends Zend_Controller_Action {
             $commentId = $this->genererValidation($datasValidation);
 //            }
             $emailVars = Zend_Registry::get('emailVars');
-            // var_dump($datas); exit();
+// var_dump($datas); exit();
             foreach ($formData as $ploptitude) {
                 $marge = array_combine($ploptitude['code_article'], $ploptitude['remise_demande_article']);
             }
@@ -1387,7 +1387,10 @@ class XpriceController extends Zend_Controller_Action {
     }
 
     public function updateAction() {
+        $user = $this->_auth->getStorage()->read();
         $numwp = $this->getRequest()->getParam('numwp', null);
+        $comId = $this->getRequest()->getParam('com', null);
+        $this->view->commentId = $comId;
         $histo_rep = $this->getRequest()->getParam('histo', null);
         $this->view->histo_rep = $histo_rep;
         $param = $this->getRequest();
@@ -1412,40 +1415,130 @@ class XpriceController extends Zend_Controller_Action {
         $this->view->montant_total = $test->total;
         $this->view->infos_client = $infos_client;
         /* recupération des commentaires concernant la demande */
+        $infos_demande_xprice = new Application_Model_DbTable_Xprices();
+        $info_demande_xprice = $infos_demande_xprice->getNumwp($numwp);
 
         $commentairesoffre = new Application_Model_DbTable_Validationsdemandexprices();
         $commentaireoffre = $commentairesoffre->getAllValidation($id_demande_xprice);
         $this->view->commentaire = $commentaireoffre;
         $usersCommentaires = array();
-        echo '<pre>', var_export($infos_commercial), '<pre>';
-        echo '<pre>', var_export($commentaireoffre), '<pre>';
+
         foreach (@$commentaireoffre as $key => $commoffre) {
             $userCommInfos = $info_commercial->getFonctionLabel($commoffre['id_user']);
             $usersCommentaires[$key]['fonction'] = $userCommInfos['description_fonction'];
         }
         $this->view->usersCommentaires = $usersCommentaires;
+
+        if ($this->getRequest()->isPost()) {
+            $nom_validation = "reponse";
+            $formData = $this->getRequest()->getPost();
+
+            $datasValidation = array(
+                'nom_validation' => $nom_validation, 'validation' => "enAttente",
+                'commentaire' => $formData['reponse_comm'],
+                'id_user' => $user->id_user, 'id_demande_xprice' => $info_demande_xprice['id_demande_xprice']
+            );
+            if (array_key_exists('reponse', $formData)) {
+                $datasValidation['reponse'] = $formData['reponse'];
+            }
+
+            $commentId = $this->genererValidation($datasValidation);
+
+            $question = $commentairesoffre->getValidationById($comId);
+            $users = new Application_Model_DbTable_Users();
+
+            $destReponse = $users->getUser($question['id_user']);
+            $fonctions = array(
+                13 => "dirco",
+                10 => "chefregion",
+                5 => "dbd"
+            );
+            $idF = $destReponse['id_fonction'];
+            $params1 = array();
+            $params1['destinataireMail'] = "mhuby@smc-france.fr"/* $destReponse->email_user */;
+//                $params1['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/update/numwp/{$numwp}/histo/{$lasthisto[0]['id_histo_commentaire']}";
+            if (!is_null($commentId)) {
+                $params1['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/validate{$fonctions[$idF]}/numwp/{$numwp}/com/{$commentId}";
+            } else {
+                $params1['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/validate{$fonctions[$idF]}/numwp/{$numwp}";
+            }
+
+            $params1['corpsMail'] = "Bonjour,\n"
+                    . "\n"
+                    . "Une réponse à été apportée à la question que vous avez posé sur une demande XPrice.\n"
+                    . "Veuillez vous rendre à l'adresse url : \n"
+                    . "%s"
+                    . "\n\n"
+                    . "Cordialement,\n"
+                    . "\n"
+                    . "--\n"
+                    . "Xprice.";
+            $params1['sujet'] = "XPrice : réponse sur la demande $numwp.";
+            $this->sendEmail($params1);
+
+            $flashMessenger = $this->_helper->getHelper('FlashMessenger');
+            $message = "la demande est en attente de réponse du commercial.";
+            $flashMessenger->addMessage($message);
+            $redirector = $this->_helper->getHelper('Redirector');
+            $redirector->gotoSimple('index', 'xprice');
+        }
     }
 
     public function consultAction() {
+        $user = $this->_auth->getStorage()->read();
+        $tiltop = $user->id_user;
+        $this->view->cdr = $tiltop;
         $numwp = $this->getRequest()->getParam('numwp', null);
-        $infos = new Application_Model_DbTable_Xprices();
-        $info = $infos->getNumwp($numwp);
-        $tracking_number = $info['tracking_number_demande_xprice'];
-        $this->view->tracking_number = $tracking_number;
-        $date_offre = $info['date_demande_xprice'];
-        $date = DateTime::createFromFormat('Y-m-d', $date_offre);
+        $this->view->numwp = $numwp;
+        /*
+         * on va rechercher les informations concernant la demande _xprice
+         */
+        $infos_demande_xprice = new Application_Model_DbTable_Xprices();
+        $info_demande_xprice = $infos_demande_xprice->getNumwp($numwp);
+//echo '<pre>',  var_export($info_demande_xprice),'<pre>';
+        $user_id = $info_demande_xprice['id_user'];
+        $this->view->info_demande_xprice = $info_demande_xprice;
+        $date = DateTime::createFromFormat('Y-m-d', $info_demande_xprice['date_demande_xprice']);
         $dateplop = $date->format('d/m/Y');
-        $this->view->date_offre = $dateplop;
-        $id_commercial = $info['id_user'];
-        $numwp_client = $info['numwp_client'];
-        $info_client = new Application_Model_DbTable_Clients;
-        $infos_client = $info_client->getClientnumwp($numwp_client);
-        $info_commercial = new Application_Model_DbTable_Users();
-        $infos_commercial = $info_commercial->getUser($id_commercial);
-        $tests = new Application_Model_DbTable_DemandeArticlexprices();
-        $test = $tests->sommePrixDemandeArticle($numwp);
-        $this->view->montant_total = $test->total;
-        $this->view->infos_client = $infos_client;
+        $this->view->dateplop = $dateplop;
+        /*
+         * on recherche si la validation existe déjà ou si elle est en attente;
+         */
+        $nomvalidationrecherche = "cdr";
+        $tracking = $info_demande_xprice['tracking_number_demande_xprice'];
+        $recherchevalidation = new Application_Model_DbTable_Validationsxprice();
+        $recherchesvalidation = $recherchevalidation->getValidation($nomvalidationrecherche, $tracking);
+        $infos_user = new Application_Model_DbTable_Users();
+        /*
+         * chargement des validations avec leurs commentaires
+         */
+        $dbtValidationsDemandesXprices = new Application_Model_DbTable_Validationsdemandexprices();
+        $validationsDemandesXprices = $dbtValidationsDemandesXprices->getAllValidation($info_demande_xprice['id_demande_xprice']);
+
+        $this->view->validations = $validationsDemandesXprices;
+        $usersValidations = array();
+
+        foreach (@$validationsDemandesXprices as $key => $validationDemandeXprice) {
+            $userValidationInfos = $infos_user->getFonctionLabel($validationDemandeXprice['id_user']);
+            $usersValidations[$key]['fonction'] = $userValidationInfos['description_fonction'];
+        }
+        $this->view->usersValidations = $usersValidations;
+        /*
+         * Fin du chargement des validations
+         */
+
+        $info_user = $infos_user->getUserDemande($user_id);
+
+        $this->view->info_user = $info_user;
+        $infos_client = new Application_Model_DbTable_Clients();
+        $info_client = $infos_client->getClientnumwp($info_demande_xprice['numwp_client']);
+        $this->view->info_client = $info_client;
+        $noms_industrie = new Application_Model_DbTable_Industry();
+        $nom_industrie = $noms_industrie->getIndustry($info_client['id_industry']);
+        $this->view->nom_industrie = $nom_industrie;
+        $infos_demande_article_xprice = new Application_Model_DbTable_DemandeArticlexprices();
+        $info_demande_article_xprice = $infos_demande_article_xprice->getDemandeArticlexprice($numwp);
+        $this->view->info_demande_article_xprice = $info_demande_article_xprice;
     }
 
 }

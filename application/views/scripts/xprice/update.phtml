@@ -22,42 +22,47 @@ $this->headTitle($this->title);
     </table>
 </div>
 <div id="comm_up">
-    <fieldset><legend>Commentaires</legend>
-    <form>
-        <?php /* aucun commentId n'existe dans le getrequest */
-        if (!is_null($this->commentId)) {
-            ?>
-            <input type="hidden" name="reponse" value="<?php echo $this->commentId; ?>">
+    <form method="post">
+        <fieldset><legend>Commentaires</legend>
             <?php
-        }
-        ?><table  class='article'>
-             <?php foreach (@$this->commentaire as $key => $value) { ?>
-                <tr><?php if($value['etat_validation'] != "enAttente"){ ?>
-                    <td>Commentaire <?php echo strtolower($this->usersCommentaires[$key]['fonction']); ?></td>
-                    <td><?php echo $value['date_validation']; ?></td>
-                    <td><?php echo nl2br($value['commentaire']); ?></td>
-                </tr>
-                <?php } } ?>
-</table>
-    </fieldset>
+            /* aucun commentId n'existe dans le getrequest */
+            if (!is_null($this->commentId)) {
+                ?>
+                <input type="hidden" name="reponse" value="<?php echo $this->commentId; ?>">
+                <?php
+            }
+            ?><table  class='article'>
+            <?php foreach (@$this->commentaire as $key => $value) { ?>
+                    <tr><?php if ($value['etat_validation'] != "enAttente") { ?>
+                            <td>Commentaire <?php echo strtolower($this->usersCommentaires[$key]['fonction']); ?></td>
+                            <td><?php echo $value['date_validation']; ?></td>
+                            <td><?php echo nl2br($value['commentaire']); ?></td>
+                        </tr>
+                    <?php
+                    }
+                }
+                ?>
+            </table>
+        </fieldset>
         <fieldset>
             <legend>Question</legend>
             <table  class='article'>
-                 <?php foreach (@$this->commentaire as $key => $value) { ?>
-                <tr><?php if($value['etat_validation'] == "enAttente"){ ?>
-                    <td>Commentaire <?php echo strtolower($this->usersCommentaires[$key]['fonction']); ?></td>
-                    <td><?php echo $value['date_validation'];?></td>
-                     <td><?php echo nl2br($value['commentaire']); ?></td>
-                </tr>
-                <?php } } ?>
+<?php foreach (@$this->commentaire as $key => $value) { ?>
+                    <tr><?php if ($value['etat_validation'] == "enAttente") { ?>
+                            <td>Commentaire <?php echo strtolower($this->usersCommentaires[$key]['fonction']); ?></td>
+                            <td><?php echo $value['date_validation']; ?></td>
+                            <td><?php echo nl2br($value['commentaire']); ?></td>
+                        </tr>
+                    <?php
+                    }
+                }
+                ?>
             </table>
         </fieldset>
         <fieldset>
             <legend>Réponse</legend>
-            <textarea name="reponse_comm" cols="80" rows="10">
-                
-            </textarea>
-            
+            <textarea name="reponse_comm" cols="80" rows="10"></textarea>
+
         </fieldset>
         <div id="plop">
             <input class="plop" type='submit' value="Envoyer la réponse">

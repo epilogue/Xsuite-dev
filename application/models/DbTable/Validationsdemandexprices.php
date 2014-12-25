@@ -18,6 +18,16 @@ class Application_Model_DbTable_Validationsdemandexprices extends Zend_Db_Table_
         return $this;
     }
 
+    public function getValidationById($id_validation) {
+        $id_validation = (int) $id_validation;
+
+        $row = $this->fetchRow('id=' . $id_validation);
+        if (!$row) {
+            throw new Exception("could not find row $id_validation");
+        }
+        return $row->toArray();
+    }
+
     public function getValidation($nom_validation, $id_demande_xprice) {
         $nom_validation = "$nom_validation";
         $plop = $this->getAdapter();
