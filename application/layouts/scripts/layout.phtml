@@ -45,14 +45,14 @@ echo $this->doctype();
                     <ul id="menu_haut">
                         <li><a>Xprice</a>
                             <ul>
-                                <li><a>Création</a></li>
-                                <li><a>Consultation</a></li>
+                                <li><a href="<?php echo $this->url(array('controller' => 'xprice', 'action' => 'numwp'), null, true); ?>">Cr&eacute;ation</a></li>
+                                <li><a href="<?php echo $this->url(array('controller' => 'xprice', 'action' => 'consult'), null, true); ?>">Consultation</a></li>
                             </ul>
                         </li>
                         <li><a>Xprice Distrib</a>
                             <ul>
-                                <li><a>Création</a></li>
-                                <li><a>Consultation</a></li>
+                                <li><a href="<?php echo $this->url(array('controller' => 'xdistrib', 'action' => 'create'), null, true); ?>">Cr&eacute;ation</a></li>
+                                <li><a href="<?php echo $this->url(array('controller' => 'xdistrib', 'action' => 'update'), null, true); ?>">Consultation</a></li>
                             </ul>
                         </li>
                         <li><a>Xsimple</a>
