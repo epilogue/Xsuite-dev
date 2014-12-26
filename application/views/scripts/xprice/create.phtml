@@ -114,7 +114,16 @@ $this->headTitle($this->title);
         </fieldset>
     </div>
     <div id="formcreate" class="workplace">
+        <fielset>
+            <legend>Justificatif de la demande</legend>
+            <table>
+                <tr>
+                    <td><?php echo $this->form->faible->label;?></td>
+                    <td><?php echo $this->form->faible->value;?></td>
+                </tr>
+            </table>
+        </fielset>
         <?php echo $this->form->justificatif ;?>
-        <?php echo $this->form->faible;?>
+        
     </div>
 </div>
