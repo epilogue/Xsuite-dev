@@ -86,8 +86,9 @@ echo $this->doctype();
                             </ul>
                         </li>
                     </ul>
-                </div><?php } ?>
+                </div><?php } ?><?php echo $this->layout()->content; ?>
             <div id="center">
+                
                 <?php if (count($this->messages)) : ?>
                     <ul id="messages">
                         <?php foreach ($this->messages as $message) : ?>
@@ -107,6 +108,6 @@ echo $this->doctype();
                  */ ?>
             </div>
         </div>
- <?php echo $this->layout()->content; ?>
+ 
     </body>
 </html>
