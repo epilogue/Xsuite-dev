@@ -36,8 +36,7 @@ class Application_Form_CreationDemande  extends Zend_Form {
          */
         
         $commentaire_demande_article = new Zend_Form_Element_Textarea('commentaire_demande_article');
-        $commentaire_demande_article->setLabel('Commentaire commercial:')
-                ->setRequired(false);
+        $commentaire_demande_article->setRequired(false);
         
         /*
          * bouton de soumission

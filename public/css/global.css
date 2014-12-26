@@ -268,6 +268,12 @@ background:#006699;
 .required{
     font-family: verdana;
 }
+textarea{
+    height: 150px;
+    width: 750px;
+    resize: vertical;
+}
+
 /*fieldset*/
 .field_info{
    
