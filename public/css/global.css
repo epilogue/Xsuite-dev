@@ -226,15 +226,8 @@ background:#006699;
 background:#006699;
 }
 
-/*#center{
-    
-    margin-left: 62px;
-    width: 900px;
-    height: auto;
-    background-color:white;
-    border-radius:10px;
-    border: medium solid #006699;
-}*/
+
+/*les div*/
 .contenu{
     
     margin-left: 62px;
@@ -246,6 +239,18 @@ background:#006699;
     font-family: verdana;
     font-size: 12px;
 }
+
+.workplace{
+    float:left;
+    width: 900px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: none;
+    height:auto;
+}
+
+/*les boutons */
+
 .submit{
     color: white;
     height: 50px;
@@ -263,7 +268,7 @@ background:#006699;
 .required{
     font-family: verdana;
 }
-
+/*fieldset*/
 .field_info{
    
     width: 310px;
@@ -273,11 +278,10 @@ background:#006699;
 }
 .field{
     width: 725px;
-    /*float:left;*/
     margin-bottom:25px;
     margin-left:auto;
     margin-right:auto;
-     border-color: #006699;
+    border-color: #006699;
 }
 fieldset legend{
     font-weight: bold;
@@ -286,7 +290,7 @@ fieldset legend{
     font-family: verdana;
     color:#006699;
 }
-
+/*tableaux*/
 .enum {
     border-style:solid;
     border-color:#006699;
@@ -294,6 +298,7 @@ fieldset legend{
     border-collapse: collapse;
     padding-top:5px;
     padding-bottom: 5px;
+    width:100%;
 }
 .enum th,.enum td{
     border-style:solid;
@@ -317,6 +322,8 @@ fieldset legend{
 
 }
 /*fin footer*/
+
+/*les titres*/
 h1{
     font-weight: bold;
     font-size: 48px;
@@ -331,12 +338,14 @@ h2{
     font-size:34px;
     color: #006699;
     text-align:center;
+    font-family: verdana;
 }
 h3{
     font-weight: bold;
     font-size: 20px;
     color: #006699;
     text-align: center;
+    font-family: verdana;
 }
 
 
@@ -363,39 +372,9 @@ h3{
     color: black;
 }
 
-.workplace{
-    float:left;
-    width: 900px;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    border: none;
-    height:auto;
-}
 
-/*#fieldset wp{
-    width: 725px;
-    float:left;
-    margin-bottom:25px;
-    margin-left:25px;
-}*/
 
-/*#information{
-    width: 100%;
-    height: auto;
-    margin-bottom : 20px;
-}*/
 
-/*#info_user{
-    width: 300px;
-    float: left;
-    margin-left: 25px;
-}
-
-#info_client{
-    width: 300px;
-    float:left;
-    margin-left: 75px;
-}*/
 
 #information table{
     width: 315px;
@@ -509,12 +488,12 @@ h3{
 }
 
 
-#formcreate{
+/*#formcreate{
     width: 750px;
     float:left;
     margin-bottom:25px;
     margin-left:25px;
-}
+}*/
 
 #faible-label,
 #mini_demande_article-label,
