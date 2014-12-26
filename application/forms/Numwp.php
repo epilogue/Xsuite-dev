@@ -17,6 +17,7 @@ class Application_Form_Numwp extends Zend_Form {
 
         $submit = new Zend_Form_Element_Submit('submit');
         $submit->setAttrib('num_offre_workplace', 'submitbutton')
+                ->setAttrib('class','submit')
                 ->setLabel('entrer');
         $this->addElements(array($num_offre_workplace, $submit));
     }
