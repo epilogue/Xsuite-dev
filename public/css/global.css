@@ -243,6 +243,8 @@ background:#006699;
     background-color:white;
     border-radius:10px;
     border: medium solid #006699;
+    font-family: verdana;
+    font-size: 12px;
 }
 .submit{
     color: white;
