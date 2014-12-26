@@ -148,6 +148,7 @@ font-family:arial;
 }
 #menu_haut ul a{
 padding:8px 0;
+margin-top: 0px !important;
 }
 #menu_haut li:hover li a{
 color:#fff;
