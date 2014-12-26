@@ -10,6 +10,7 @@ class Application_Form_Numwp extends Zend_Form {
         $num_offre_workplace = new Zend_Form_Element_Text('num_offre_worplace');
         $num_offre_workplace->setLabel("numéro d'offre workplace : ")
                 ->setRequired(TRUE)
+                ->setDescription("exemple: 00906XXXXXX")
                 ->addFilter('StripTags')
                 ->addFilter('StringTrim')
                 ->addValidator('regex', false, array('/^00[9][0][6][0-9]/', 'messages' => array(Zend_Validate_Regex::NOT_MATCH => "numéro invalide")))
