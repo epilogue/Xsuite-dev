@@ -252,6 +252,7 @@ background:#006699;
     color: white;
     height: 50px;
     width:auto;
+    float:left;
     border-radius: 10px;
     background-color: #006699;
     border-right-width: 0px; 
