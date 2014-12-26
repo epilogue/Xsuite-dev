@@ -52,6 +52,7 @@ and open the template in the editor.
 #logged-in-as{
     color:white;
     font-size: 18px;
+    font-family: verdana;
 }
 #header_site a:hover,a:visited, a:link{
     color:white !important;
