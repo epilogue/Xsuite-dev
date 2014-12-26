@@ -89,7 +89,7 @@ echo $this->doctype();
                 </div><?php } ?>
             <div id="center">
                 <?php if (count($this->messages)) : ?>
-                    <ul id="messages">
+                    <ul id="messages" class="message">
                         <?php foreach ($this->messages as $message) : ?>
                             <li><?php echo $message; ?></li>
                         <?php endforeach; ?>

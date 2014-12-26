@@ -354,6 +354,13 @@ h3{
     font-family: verdana;
 }
 
+.message{
+    text-align: center;
+    font-family: verdana;
+    color: #006699;
+    font-size: 16px;
+    
+}
 
 /*tableau du module user**/
 #tableIndex{
