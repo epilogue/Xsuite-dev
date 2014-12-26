@@ -275,7 +275,8 @@ background:#006699;
     width: 725px;
     float:left;
     margin-bottom:25px;
-    margin-left:40px;
+    margin-left:auto;
+    margin-right:auto;
      border-color: #006699;
 }
 fieldset legend{
