@@ -254,7 +254,7 @@ background:#006699;
 .submit{
     color: white;
     height: 50px;
-    width:70px;
+    width:100px;
     border-radius: 10px;
     background-color: #006699;
     border-right-width: 0px; 
@@ -410,19 +410,7 @@ h3{
     margin-left:25px;
 }
 
-/*#demandeArticle{
-    width: 750px;
-    float:left;
-    margin-top:30px;
-    margin-bottom:25px;
-    margin-left:25px;
-}*/
 
-/*#demandeArticle table,#demandeArticle th,#demandeArticle tr,#demandeArticle td{
-    border-style:solid;
-    border-color:black;
-    border-width: thin;
-}*/
 #demandeArticle input{
     width: 60px;
 }
