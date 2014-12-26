@@ -347,11 +347,11 @@ h3{
 
 .workplace{
     float:left;
-    width: 755px;
-    margin-top: 30px;
-    margin-bottom: 30px;
-    margin-left:25px;
+    width: 900px;
+    margin-top: 20px;
+    margin-bottom: 20px;
     border: none;
+    height:auto;
 }
 
 /*#fieldset wp{
@@ -361,11 +361,11 @@ h3{
     margin-left:25px;
 }*/
 
-#information{
+/*#information{
     width: 100%;
     height: auto;
     margin-bottom : 20px;
-}
+}*/
 
 #info_user{
     width: 300px;
