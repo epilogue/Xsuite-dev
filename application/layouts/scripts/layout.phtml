@@ -86,9 +86,8 @@ echo $this->doctype();
                             </ul>
                         </li>
                     </ul>
-                </div><?php } ?><?php echo $this->layout()->content; ?>
+                </div><?php } ?>
             <div id="center">
-                
                 <?php if (count($this->messages)) : ?>
                     <ul id="messages">
                         <?php foreach ($this->messages as $message) : ?>
@@ -98,16 +97,6 @@ echo $this->doctype();
                 <?php endif; ?>
             </div>
         </div>
-        <div id="footer">
-            <div id="logo">
-                <?php /* @todo commentaire franck
-                 * Oulla ! attention au url relatives ça peut ne pas fonctionner partout !
-                 * 2 solutions :
-                 *  - utiliser une url absolue pour ce logo (src="/images/...)
-                 *  - placer l'image en background css
-                 */ ?>
-            </div>
-        </div>
- 
+            <?php echo $this->layout()->content; ?>
     </body>
 </html>
