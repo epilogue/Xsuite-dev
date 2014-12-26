@@ -237,13 +237,15 @@ background:#006699;
 .submit{
     color: white;
     height: 50px;
-    width: auto;
+    width:70px;
     border-radius: 10px;
     background-color: #006699;
     border-right-width: 0px; 
     border-left-width: 0px;
     border-bottom-width:0px;
     border-top-width:0px;
+    margin-left: auto;
+    margin-right: auto;
     
 }
 .required{
