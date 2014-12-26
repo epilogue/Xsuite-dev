@@ -248,6 +248,19 @@ background:#006699;
     margin-right: auto;
     
 }
+.button{
+    color: white;
+    height: 50px;
+    width:auto;
+    border-radius: 10px;
+    background-color: #006699;
+    border-right-width: 0px; 
+    border-left-width: 0px;
+    border-bottom-width:0px;
+    border-top-width:0px;
+    margin-left: 40%;
+    margin-right: auto;
+}
 .required{
     font-family: verdana;
 }
