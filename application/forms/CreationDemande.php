@@ -44,7 +44,9 @@ class Application_Form_CreationDemande  extends Zend_Form {
          */
         
         $submit = new Zend_Form_Element_Submit('submit');
-        $submit->setAttrib('id_demande_article', 'submitbutton')->setLabel("Envoyer X-price");
+        $submit->setAttrib('id_demande_article', 'submitbutton')
+                ->setAttrib("class", "submit")
+                ->setLabel("Envoyer X-price");
         
         /*
          * ajout des élements au form
