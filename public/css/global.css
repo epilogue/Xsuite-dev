@@ -273,7 +273,7 @@ background:#006699;
 }
 .field{
     width: 725px;
-    float:left;
+    /*float:left;*/
     margin-bottom:25px;
     margin-left:auto;
     margin-right:auto;
@@ -368,7 +368,7 @@ h3{
     margin-bottom : 20px;
 }*/
 
-#info_user{
+/*#info_user{
     width: 300px;
     float: left;
     margin-left: 25px;
@@ -378,7 +378,7 @@ h3{
     width: 300px;
     float:left;
     margin-left: 75px;
-}
+}*/
 
 #information table{
     width: 315px;
