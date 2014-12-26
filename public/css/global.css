@@ -79,13 +79,13 @@ and open the template in the editor.
 }
 
 #centre{
-    width: 1124px;
+    width: 1024px;
     height: auto;
 }
 
 
 #Content{
-    width:1124px;
+    width:1024px;
     height:auto;
     background-color:white;
 }
@@ -225,12 +225,12 @@ background:#006699;
 }
 #center{
     
-    margin-left: 100px;
+    margin-left: 62px;
     width: 900px;
     height: auto;
     background-color:white;
     border-radius:10px;
-    border: medium solid #C4BDBD;
+    border: medium solid #006699;
 }
 .submit{
     color: white;
