@@ -238,8 +238,14 @@ background:#006699;
     width: auto;
     border-radius: 10px;
     background-color: #006699;
+    
 }
-
+.submit element{
+    border-right: 0px; 
+    border-left: 0px;
+    border-bottom:0px;
+    border-top:0px;
+}
 /*fin  corps de page */
 
 /*footer*/
@@ -276,104 +282,7 @@ h3{
     text-align: center;
 }
 
-/*menu essai 2*/
-.menu_entete ul{
-    background-color: transparent;
-    text-decoration:none;
-    list-style: none;
-   
-    
-}
-ul .menu_entete{
-     padding-left: 0 !important;
-}
-.menu_entete li{
-    background-color:transparent;
-    text-decoration:none;
-    list-style: none;
-    text-align: center;
-    padding-top: 10px;
-    padding-bottom: 10px;
-}
-.sous_menu ul {
-    background-color: green;
-    text-decoration:none;
-    list-style: none;
-     padding-left: 0px;
-}
-.title_menu{
-    color:black;
-    font-weight: bold;
-}
-.sous_menu li{
-    background-color: #268bd9;
-    text-decoration:none;
-    list-style: none;
-    text-align: center;
-    font-weight: normal;
-    border-radius: 5px;
-    margin-bottom: 10px;
-    padding-bottom: 10px;
-}
-/* éléments du menu déroulant
-#menu,#menu ul{
-    line-height: 21px;
-    text-align: center;
-    padding:10px 0 0;
-    margin:15px;
-    list-style: none;
 
-}
-
-/*#menu{
-    font-weight: bold;
-    font-family: arial;
-    font-size:10px;
-}
-
-#menu a {
-    padding:0;
-    display:block;
-    width: 144px;
-    text-decoration :none;
-}
-
-#menu li {
-    float:left;
-    background-image: -moz-linear-gradient(top, #8F8B8B 33%, #C4BDBD 66%);
-    border-radius: 10px;
-    color:white;
-    height: 50px;
-}
-/*sous liste
-#menu li ul{
-    position:absolute;
-    width:144px;
-    left:-999em;
-    padding-top:0px;
-    margin:0;
-    z-index:1;
-}
-
- au passage de la souris 
-#menu a:hover{
-    color:black;
-    background-color:transparent;
-}
-deroule fait référence à la fonction js 
-#menu li:hover ul ul ,#menu li.deroule ul ul{
-    left:-999em;
-}
-
-#menu li:hover ul,#menu li li:hover ul,#menu li.deroule ul,#menu li li.deroule ul {
-    left:auto;
-    min-height: 0;
-}
-
-fin du menu*/
-
-/**les tableaux
-/*div entourant les tableaux pour les centrer
 /*tableau du module user**/
 #tableIndex{
     float:left;
