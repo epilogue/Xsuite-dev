@@ -11,7 +11,7 @@ and open the template in the editor.
 #header{
     width: 1024px;
     height: 150px;
-    background-color: white;
+     background-image: -moz-linear-gradient(top, #006699 33%, #74aaca 66%);
 }
 
 #header_left{
@@ -26,7 +26,7 @@ and open the template in the editor.
     margin-left: 30px;
     width: 450px;
     height:100px;
-    background-color: white;
+    color:white;
 }
 
 #header_right{
@@ -39,7 +39,6 @@ and open the template in the editor.
     width:250px;
     height: 100px;
     float: right;
-    background-image: -moz-linear-gradient(top, #006699 33%, #74aaca 66%);
     border-radius: 10px;
     padding-top:15px;
     padding-left:15px;
