@@ -268,7 +268,7 @@ background:#006699;
    
     width: 310px;
     float: left;
-    margin-left: 60px;
+    margin-left: 75px;
     border-color: #006699;
 }
 .field{
@@ -285,6 +285,13 @@ fieldset legend{
     font-size: 20px;
     font-family: verdana;
     color:#006699;
+}
+
+.enum {
+    border-style:solid;
+    border-color:#006699;
+    border-width: thin;
+    border-collapse: collapse;
 }
 /*fin  corps de page */
 
@@ -414,19 +421,19 @@ h3{
     margin-left:25px;
 }
 
-#demandeArticle{
+/*#demandeArticle{
     width: 750px;
     float:left;
     margin-top:30px;
     margin-bottom:25px;
     margin-left:25px;
-}
+}*/
 
-#demandeArticle table,#demandeArticle th,#demandeArticle tr,#demandeArticle td{
+/*#demandeArticle table,#demandeArticle th,#demandeArticle tr,#demandeArticle td{
     border-style:solid;
     border-color:black;
     border-width: thin;
-}
+}*/
 #demandeArticle input{
     width: 60px;
 }
