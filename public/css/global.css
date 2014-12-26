@@ -310,6 +310,9 @@ fieldset legend{
     padding-top:5px;
     padding-bottom: 5px;
 }
+.bouton{
+  width:100%;  
+}
 /*fin  corps de page */
 
 /*footer*/
