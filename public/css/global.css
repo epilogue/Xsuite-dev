@@ -62,23 +62,6 @@ and open the template in the editor.
     text-decoration: none;
 }
 /* fin header */
-
-/*corps de page*/
-#accueil{
-    /* background-image:url('/images/smc_logo_2013.png');*/
-}
-
-
-#accueil_centre{
-    /* background-image:url("/images/smc_logo_2013.png");*/
-    background-repeat:no-repeat;
-    /*background-position: center;*/
-    width: 300px;
-    float:left;
-    padding-left: 100px;
-    padding-top: 30px;
-}
-
 #centre{
     width: 1024px;
     height: auto;
@@ -359,6 +342,8 @@ h3{
     font-family: verdana;
     color: #006699;
     font-size: 16px;
+    list-style-type: none;
+    font-style: italic;
     
 }
 
