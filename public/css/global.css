@@ -263,7 +263,10 @@ background:#006699;
 }
 
 .field_info{
-    
+   
+    width: 300px;
+    float: left;
+    margin-left: 30px;
 }
 .field{
     width: 725px;
