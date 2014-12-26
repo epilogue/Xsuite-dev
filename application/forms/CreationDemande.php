@@ -73,9 +73,11 @@ class Application_Form_CreationDemande  extends Zend_Form {
             'Fieldset'
         ));
         $this->getDisplayGroup('justificatif')
-                ->setLegend("Justificatif de la demande");
+                ->setLegend("Justificatif de la demande")
+                ->setAttrib("class", "field");
         $this->getDisplayGroup('commentaire')
-                ->setLegend("Commentaires");
+                ->setLegend("Commentaires")
+                ->setAttrib("class", "field");
         
         
         $this->addElement($submit);

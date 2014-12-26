@@ -4,10 +4,10 @@ $this->headTitle($this->title);
 ?>
 <div id="contenu">
 <h1>Cr&eacute;ation d'une offre </h1>
-<div id='workplace'>
-    <fieldset id="wp">
+<div id="workplace" class="workplace">
+    <fieldset id="wp" class="field">
         <legend>Informations offre</legend>
-        <table>
+        <table class="table_info">
             <tr>
                 <td>Numéro workplace de l'offre :</td>
                 <td><?php echo $this->infos_offres->OBORNO; ?></td>
@@ -24,7 +24,7 @@ $this->headTitle($this->title);
     </fieldset>
 </div>
 <div id="information">
-    <fieldset id="info_user">
+    <fieldset id="info_user" class="field_info">
         <legend>Informations Commercial</legend>
         <table>
             <tr>
@@ -76,7 +76,7 @@ $this->headTitle($this->title);
     </fieldset>
 </div>
 <div id="demandeArticle">
-    <fieldset ><legend>Articles </legend>
+    <fieldset class="field"><legend>Articles </legend>
         <table id="article">
             <tr>
                 <th>code article</th>

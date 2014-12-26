@@ -225,7 +225,17 @@ background:#006699;
 #menu_haut li:last-child li{
 background:#006699;
 }
-#center{
+
+/*#center{
+    
+    margin-left: 62px;
+    width: 900px;
+    height: auto;
+    background-color:white;
+    border-radius:10px;
+    border: medium solid #006699;
+}*/
+#contenu{
     
     margin-left: 62px;
     width: 900px;
@@ -249,6 +259,22 @@ background:#006699;
     
 }
 .required{
+    font-family: verdana;
+}
+
+.field_info{
+    
+}
+.field{
+    width: 725px;
+    float:left;
+    margin-bottom:25px;
+    margin-left:25px;
+}
+fieldset legend{
+    font-weight: bold;
+    font-style: italic;
+    font-size: 20px;
     font-family: verdana;
 }
 /*fin  corps de page */
@@ -434,12 +460,7 @@ h3{
     background-color:#268bd9;
     color:white;
 }
-fieldset legend{
-    font-weight: bold;
-    font-style: italic;
-    font-size: 20px;
-    font-family: verdana;
-}
+
 
 #confirmcreate{
     width: 350px;
