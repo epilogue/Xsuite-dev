@@ -8,7 +8,7 @@ class Application_Form_Numwp extends Zend_Form {
 
 
         $num_offre_workplace = new Zend_Form_Element_Text('num_offre_worplace');
-        $num_offre_workplace->setLabel("num&eacute;ro d'offre workplace : ")
+        $num_offre_workplace->setLabel("numéro d'offre workplace : ")
                 ->setRequired(TRUE)
                 ->addFilter('StripTags')
                 ->addFilter('StringTrim')
