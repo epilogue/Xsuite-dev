@@ -238,13 +238,11 @@ background:#006699;
     width: auto;
     border-radius: 10px;
     background-color: #006699;
-    
-}
-.submit element{
     border-right-width: 0px; 
     border-left-width: 0px;
     border-bottom-width:0px;
     border-top-width:0px;
+    
 }
 /*fin  corps de page */
 
