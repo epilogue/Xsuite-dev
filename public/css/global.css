@@ -547,7 +547,7 @@ span {
     width: 60px !important;
 }
 
-#formlogin{
+.little_form{
     width: 300px;
     margin-left: auto;
     margin-right: auto;

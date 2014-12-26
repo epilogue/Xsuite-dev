@@ -5,6 +5,7 @@ class Application_Form_Numwp extends Zend_Form {
     public function init() {
         $this->setMethod('post');
         $this->setAction('/xprice/numwp');
+        $this->setAttrib("class", "little_form");
 
 
         $num_offre_workplace = new Zend_Form_Element_Text('num_offre_worplace');
