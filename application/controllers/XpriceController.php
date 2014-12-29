@@ -1599,14 +1599,14 @@ class XpriceController extends Zend_Controller_Action {
         echo '<pre>',  var_export($info_demande_xprice),'<pre>';
         $user_id = $info_demande_xprice->id_user;
         $this->view->info_demande_xprice = $info_demande_xprice;
-        $date = DateTime::createFromFormat('Y-m-d', $info_demande_xprice['date_demande_xprice']);
+        $date = DateTime::createFromFormat('Y-m-d', $info_demande_xprice->date_demande_xprice);
         $dateplop = $date->format('d/m/Y');
         $this->view->dateplop = $dateplop;
         /*
          * on recherche si la validation existe déjà ou si elle est en attente;
          */
         $nomvalidationrecherche = "cdr";
-        $tracking = $info_demande_xprice['tracking_number_demande_xprice'];
+        $tracking = $info_demande_xprice->tracking_number_demande_xprice;
         $recherchevalidation = new Application_Model_DbTable_Validationsxprice();
         $recherchesvalidation = $recherchevalidation->getValidation($nomvalidationrecherche, $tracking);
         $infos_user = new Application_Model_DbTable_Users();
@@ -1614,7 +1614,7 @@ class XpriceController extends Zend_Controller_Action {
          * chargement des validations avec leurs commentaires
          */
         $dbtValidationsDemandesXprices = new Application_Model_DbTable_Validationsdemandexprices();
-        $validationsDemandesXprices = $dbtValidationsDemandesXprices->getAllValidation($info_demande_xprice['id_demande_xprice']);
+        $validationsDemandesXprices = $dbtValidationsDemandesXprices->getAllValidation($info_demande_xprice->id_demande_xprice);
 
         $this->view->validations = $validationsDemandesXprices;
         $usersValidations = array();
