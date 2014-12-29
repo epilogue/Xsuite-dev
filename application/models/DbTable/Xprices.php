@@ -90,6 +90,7 @@ class Application_Model_DbTable_Xprices extends Zend_Db_Table_Abstract {
         }
     }
 public function searchAll($tracking_number){
+     $tracking_number = "$tracking_number";
     $sql="select * from demande_xprices where tracking_number_demande_xprice = '{$tracking_number}'";
     echo $sql; exit();
     $res= $this->getAdapter()->query($sql);
