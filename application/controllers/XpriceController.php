@@ -1557,7 +1557,7 @@ class XpriceController extends Zend_Controller_Action {
     }
     public function trackingAction(){
          $track = $this->getRequest()->getParam('track', null);
-        $form = new Application_Form_Numwp();
+        $form = new Application_Form_Tracking();
         if (!is_null($track)) {
             $form->populate(array("tracking_number_demande_xprice" => $track));
         }
