@@ -832,8 +832,10 @@ class XpriceController extends Zend_Controller_Action {
                 $params['destinataireMail'] = "mhuby@smc-france.fr"/* $info_user['mail_user'] */;
                 if (!is_null($commentId)) {
                     $params['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/consult/numwp/{$numwp}/com/{$commentId}";
+                    $params1['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/validatedirco/numwp/{$numwp}";
                 } else {
                     $params['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/consult/numwp/{$numwp}";
+                    $params1['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/validatedirco/numwp/{$numwp}";
                 }
                 $params['corpsMail'] = "Bonjour,\n"
                         . "\n"
@@ -846,7 +848,20 @@ class XpriceController extends Zend_Controller_Action {
                         . "--\n"
                         . "dbd.";
                 $params['sujet'] = "XPrice :demande $numwp validée par dbd.";
+                $params1['corpsMail'] = "Bonjour,\n"
+                        . "\n"
+                        . "Vous avez une nouvelle demande à valider .\n"
+                        . "Vous pouvez la valider à cette adresse url : \n"
+                        . "%s"
+                        . "\n\n"
+                        . "Cordialement,\n"
+                        . "\n"
+                        . "--\n"
+                        . "dbd.";
+                $params1['sujet'] = "XPrice :nouvelle demande à valider $numwp.";
+                
                 $this->sendEmail($params);
+                $this->sendEmail($params1);
 
                 $flashMessenger = $this->_helper->getHelper('FlashMessenger');
                 $message = "l'offre $numwp a bien été validée.";
