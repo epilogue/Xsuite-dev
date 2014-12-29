@@ -1556,7 +1556,7 @@ class XpriceController extends Zend_Controller_Action {
         $this->view->info_demande_article_xprice = $info_demande_article_xprice;
     }
     public function trackingAction(){
-         $track = $this->getRequest()->getParam('track', null);
+         $track = $this->getRequest()->getParam('tracking_number_demande_xprice', null);
         $form = new Application_Form_TrackingSearch();
         if (!is_null($track)) {
             $form->populate(array("tracking_number_demande_xprice" => $track));
@@ -1568,7 +1568,7 @@ class XpriceController extends Zend_Controller_Action {
                 $tracksearch= new Application_Model_DbTable_Xprices();
                 $r=$tracksearch->getTracking($track);
                 
-                if ($r->tracking_number_demande_xprice === $_POST['tracking_number_demùande_xprice']) {
+                if ($r->tracking_number_demande_xprice === $_POST['tracking_number_demande_xprice']) {
                     $redirector->gotoSimple('consultlibre', 'xprice', null, array('tracking' => $_POST['tracking_number_demande_xprice']));
                 } else {
                     $flashMessenger = $this->_helper->getHelper('FlashMessenger');
