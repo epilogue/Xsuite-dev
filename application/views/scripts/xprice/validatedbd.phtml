@@ -3,100 +3,98 @@ $this->title = 'Xprice/validatedbd';
 $this->headTitle($this->title);
 $this->headScript()->appendFile('/js/controllers/xprice/recalculeprix_marge.js');
 ?>
-<h2>Validation de l'offre<br><?php echo $this->info_demande_xprice['tracking_number_demande_xprice'] ?> par le DBD</h2>
-<div id='workplace'>
-    <fieldset id="wp">
-        <legend>Informations offre</legend>
-        <table>
-            <tr>
-                <td>Numéro workplace de l'offre :</td>
-                <td><?php echo $this->numwp; ?></td>
-            </tr>
-            <tr>
-                <td>Date de l'offre workplace :</td>
-                <td><?php echo $this->dateplop; ?></td>
-            </tr>
-            <tr>
-                <td>Tracking number :</td>
-                <td><?php echo $this->info_demande_xprice['tracking_number_demande_xprice']; ?></td>
-            </tr>
-        </table>
-    </fieldset>
-</div>
-<div id="information">
-    <fieldset id="info_user">
-        <legend>Informations Commercial</legend>
-        <table>
-            <tr>
-                <td>Nom:</td>
-                <td><?php echo $this->info_user['nom_user']; ?></td>
-            </tr>
-            <tr>
-                <td>Prénom:</td>
-                <td><?php echo $this->info_user['prenom_user']; ?></td>
-            </tr>
-            <tr>
-                <td>Email:</td>
-                <td><?php echo $this->info_user['email_user']; ?></td>
-            </tr>
-            <tr>
-                <td>Téléphone:</td>
-                <td><?php echo $this->info_user['tel_user']; ?></td>
-            </tr>
-            <tr>
-                <td>Holon:</td>
-                <td><?php echo $this->holon; ?></td>
-            </tr>
-            <tr>
-                <td>User workplace:</td>
-                <td><?php echo $this->info_user['numwp_user']; ?></td>
-            </tr>
-        </table>
-    </fieldset>
-    <fieldset id="info_client">
-        <legend>Informations Client</legend>
-        <table>
-            <tr>
-                <td>Nom:</td>
-                <td><?php echo $this->info_client['nom_client']; ?></td>
-            </tr>
-            <tr>
-                <td>User Workplace:</td>
-                <td><?php echo $this->info_client['numwp_client']; ?></td>
-            </tr>
-            <tr>
-                <td>Projet industrie:</td>
-                <td><?php echo $this->nom_industrie['nom_industry']; ?></td>
-            </tr>
-            <tr>
-                <td>Potentiel:</td>
-                <td><?php echo $this->info_client['potentiel']; ?></td>
-            </tr>
-        </table>
-    </fieldset>
-</div>
-<div id="commentaire">
-    <fieldset><legend>Commentaires</legend>
-        <table>
-<!--            <tr>
-                <td>Commmentaire Commercial</td>
-                <td></td>
-            </tr>-->
-            <?php foreach (@$this->validations as $key => $value) { ?>
+<div id="contenu" class="contenu">
+    <h2>Validation de l'offre<br><?php echo $this->info_demande_xprice['tracking_number_demande_xprice'] ?> par le DBD</h2>
+    <div id='workplace' class="workplace">
+        <fieldset id="wp" class="field">
+            <legend>Informations offre</legend>
+            <table>
                 <tr>
-                    <td>Commentaire <?php echo strtolower($this->usersValidations[$key]['fonction']); ?></td>
-                    <td><?php echo $value['date_validation']; ?></td>
-                    <td><?php echo nl2br($value['commentaire']); ?></td>
+                    <td>Numéro workplace de l'offre :</td>
+                    <td><?php echo $this->numwp; ?></td>
                 </tr>
-            <?php } ?>
-        </table>
-    </fieldset>
-</div>
-<div id="formulairedirco">
+                <tr>
+                    <td>Date de l'offre workplace :</td>
+                    <td><?php echo $this->dateplop; ?></td>
+                </tr>
+                <tr>
+                    <td>Tracking number :</td>
+                    <td><?php echo $this->info_demande_xprice['tracking_number_demande_xprice']; ?></td>
+                </tr>
+            </table>
+        </fieldset>
+    </div>
+    <div id="information" class="workplace">
+        <fieldset id="info_user" class="field_info">
+            <legend>Informations Commercial</legend>
+            <table>
+                <tr>
+                    <td>Nom:</td>
+                    <td><?php echo $this->info_user['nom_user']; ?></td>
+                </tr>
+                <tr>
+                    <td>Prénom:</td>
+                    <td><?php echo $this->info_user['prenom_user']; ?></td>
+                </tr>
+                <tr>
+                    <td>Email:</td>
+                    <td><?php echo $this->info_user['email_user']; ?></td>
+                </tr>
+                <tr>
+                    <td>Téléphone:</td>
+                    <td><?php echo $this->info_user['tel_user']; ?></td>
+                </tr>
+                <tr>
+                    <td>Holon:</td>
+                    <td><?php echo $this->holon; ?></td>
+                </tr>
+                <tr>
+                    <td>User workplace:</td>
+                    <td><?php echo $this->info_user['numwp_user']; ?></td>
+                </tr>
+            </table>
+        </fieldset>
+        <fieldset id="info_client" class="field_info">
+            <legend>Informations Client</legend>
+            <table>
+                <tr>
+                    <td>Nom:</td>
+                    <td><?php echo $this->info_client['nom_client']; ?></td>
+                </tr>
+                <tr>
+                    <td>User Workplace:</td>
+                    <td><?php echo $this->info_client['numwp_client']; ?></td>
+                </tr>
+                <tr>
+                    <td>Projet industrie:</td>
+                    <td><?php echo $this->nom_industrie['nom_industry']; ?></td>
+                </tr>
+                <tr>
+                    <td>Potentiel:</td>
+                    <td><?php echo $this->info_client['potentiel']; ?></td>
+                </tr>
+            </table>
+        </fieldset>
+    </div>
+    <div id="commentaire" class="workplace">
+        <fieldset class="field">
+            <legend>Commentaires</legend>
+            <table class="enum">
+                <?php foreach (@$this->validations as $key => $value) { ?>
+                    <tr>
+                        <td>Commentaire <?php echo strtolower($this->usersValidations[$key]['fonction']); ?></td>
+                        <td><?php echo $value['date_validation']; ?></td>
+                        <td><?php echo nl2br($value['commentaire']); ?></td>
+                    </tr>
+                <?php } ?>
+            </table>
+        </fieldset>
+    </div>
     <form action="" method="post">
-        <div id="demandeArticle">
-            <fieldset ><legend>Articles </legend>
-                <table id="article">
+        <div id="demandeArticle" class="workplace">
+            <fieldset class="field">
+                <legend>Articles </legend>
+                <table id="article" class="enum">
                     <tr>
                         <th>code article</th>
                         <th>référence article</th>
@@ -124,11 +122,11 @@ $this->headScript()->appendFile('/js/controllers/xprice/recalculeprix_marge.js')
                         </tr>
                     <?php } ?>
                 </table>
-
             </fieldset>
         </div>
-        <div id='commentaire_dirco'>
-            <fieldset><legend>Commentaire DBD</legend>
+        <div id='commentaire_dirco' class="workplace">
+            <fieldset class="field">
+                <legend>Commentaire DBD</legend>
                 <textarea name="commentaire_dbd" cols="80" rows="10"></textarea>
                 <?php
                 if (!is_null($this->commentId)) {
@@ -139,7 +137,7 @@ $this->headScript()->appendFile('/js/controllers/xprice/recalculeprix_marge.js')
                 ?>
             </fieldset>
         </div>
-        <div id="valid_dirco">
+        <div id="valid_dirco" class="workplace">
             <input type="radio" name="validation" value="nonValide"> La demande n'est pas validée <br>
             <input type="radio" name="validation" value="validee"> La demande est validée <br>
             <input type="radio" name="validation" checked="checked" value="enAttente">  en attente de réponse  <br>
@@ -148,8 +146,6 @@ $this->headScript()->appendFile('/js/controllers/xprice/recalculeprix_marge.js')
             <input hidden="hidden" name="dbd" value="<?php echo $this->dbd; ?>">
             <input hidden="hidden" name="tracking" value="<?php echo $this->info_demande_xprice['tracking_number_demande_xprice']; ?>">
         </div>
-        <div id="plop">
             <input class="plop" type="submit" value="enregistrer statut offre">
-        </div>
     </form>
 </div>

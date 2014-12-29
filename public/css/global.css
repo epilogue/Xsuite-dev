@@ -515,10 +515,6 @@ h3{
     font-family: verdana;
 }
 span {
-    /*border-radius: 5px;
-    border-color:grey;
-    border-style:solid;
-    border-width: 1px;*/
     width: 700px;
     float:left;
     text-align: center;
@@ -537,13 +533,6 @@ span {
 
 
 #formindex{
-    /*width: 700px;
-    margin-left: auto;
-    margin-right: auto;
-     float:left;
-    margin-left:10px;
-    margin-right:10px;
-    margin-bottom:10px;*/
     width: 300px;
     margin-left: auto;
     margin-right: auto;
@@ -564,43 +553,4 @@ span {
     padding-bottom: 15px;
 }
 
-
-
-#comm_demande
-{ width: 750px;
-    float:left;
-    margin-top:30px;
-    margin-bottom:25px;
-    margin-left:25px;
-}
-
-
-#valid_cdr
-{ width: 750px;
-    float:left;
-    margin-top:30px;
-    margin-bottom:25px;
-    margin-left:25px;
-    height: 130px;
-}
-
-#commentaire_dirco{
-    width: 750px;
-    float:left;
-    margin-top:30px;
-    margin-bottom:25px;
-    margin-left:25px;
-    height:240px;
-}
-#commentaire_dirco fieldset{
-    height:240px;
-}
-#valid_dirco
-{ width: 750px;
-    float:left;
-    margin-top:30px;
-    margin-bottom:25px;
-    margin-left:25px;
-    height: 130px;
-}
 
