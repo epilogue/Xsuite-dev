@@ -1638,7 +1638,7 @@ class XpriceController extends Zend_Controller_Action {
         $nom_industrie = $noms_industrie->getIndustry($info_client['id_industry']);
         $this->view->nom_industrie = $nom_industrie;
         $infos_demande_article_xprice = new Application_Model_DbTable_DemandeArticlexprices();
-        $info_demande_article_xprice = $infos_demande_article_xprice->getDemandeArticlexprice($numwp);
+        $info_demande_article_xprice = $infos_demande_article_xprice->getDemandeArticlexprice($info_demande_xprice->num_workplace_demande_xprice);
         $this->view->info_demande_article_xprice = $info_demande_article_xprice;
     }
 
