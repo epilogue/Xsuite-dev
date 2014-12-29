@@ -584,15 +584,6 @@ span {
     height: 130px;
 }
 
-
-#commentaire table,
-#commentaire tr,
-#commentaire td{
-    border-style:solid;
-    border-color:black;
-    border-width: thin;
-    
-}
 #commentaire_dirco{
     width: 750px;
     float:left;
