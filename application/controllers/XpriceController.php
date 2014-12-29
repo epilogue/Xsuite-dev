@@ -1589,9 +1589,10 @@ class XpriceController extends Zend_Controller_Action {
         $tiltop = $user->id_user;
         $this->view->cdr = $tiltop;
         $tracking = $this->getRequest()->getParam('tracking_number_demande_xprice', null);
+        echo $tracking;
         $this->view->tracking = $tracking;
         /*
-         * on va rechercher les informations concernant la demande _xprice
+         * on va rechercher les informations concernant la demande_xprice
          */
         $infos_demande_xprice = new Application_Model_DbTable_Xprices();
         $info_demande_xprice = $infos_demande_xprice->searchAll($tracking);
