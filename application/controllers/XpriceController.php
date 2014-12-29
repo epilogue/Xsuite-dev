@@ -1558,6 +1558,7 @@ class XpriceController extends Zend_Controller_Action {
     public function trackingAction(){
          $track = $this->getRequest()->getParam('tracking_number_demande_xprice', null);
         $form = new Application_Form_TrackingSearch();
+        echo $track;
         if (!is_null($track)) {
             $form->populate(array("tracking_number_demande_xprice" => $track));
         }
@@ -1567,7 +1568,7 @@ class XpriceController extends Zend_Controller_Action {
             if ($form->isValid($this->getRequest()->getPost())) {
                 $tracksearch= new Application_Model_DbTable_Xprices();
                 $r=$tracksearch->getTracking($track);
-                
+                echo '<pre>',  var_export($r),'<pre>'; exit();
                 if ($r->tracking_number_demande_xprice === $_POST['tracking_number_demande_xprice']) {
                     $redirector->gotoSimple('consultlibre', 'xprice', null, array('tracking' => $_POST['tracking_number_demande_xprice']));
                 } else {
