@@ -1568,8 +1568,8 @@ class XpriceController extends Zend_Controller_Action {
             if ($form->isValid($this->getRequest()->getPost())) {
                 $tracksearch= new Application_Model_DbTable_Xprices();
                 $r=$tracksearch->getTracking($track);
-                echo '<pre>',  var_export($r),'<pre>'; exit();
-                if ($r->tracking_number_demande_xprice === $_POST['tracking_number_demande_xprice']) {
+                echo '<pre>',  var_export($r),'<pre>'; 
+                if ($r['tracking_number_demande_xprice'] == $_POST['tracking_number_demande_xprice']) {
                     $redirector->gotoSimple('consultlibre', 'xprice', null, array('tracking' => $_POST['tracking_number_demande_xprice']));
                 } else {
                     $flashMessenger = $this->_helper->getHelper('FlashMessenger');
