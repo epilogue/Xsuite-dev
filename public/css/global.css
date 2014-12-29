@@ -236,7 +236,7 @@ background:#006699;
 .submit{
     color: white;
     height: 50px;
-    width:100px;
+    width:auto;
     border-radius: 10px;
     background-color: #006699;
     border-right-width: 0px; 
