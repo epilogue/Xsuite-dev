@@ -830,6 +830,7 @@ class XpriceController extends Zend_Controller_Action {
             if (isset($datas['validation']) && $datas['validation'] == "validee") {
                 $params = array();
                 $params['destinataireMail'] = "mhuby@smc-france.fr"/* $info_user['mail_user'] */;
+                  $params1['destinataireMail'] = $emailVars->listes->dirco/* $info_user['mail_user'] */;
                 if (!is_null($commentId)) {
                     $params['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/consult/numwp/{$numwp}/com/{$commentId}";
                     $params1['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/validatedirco/numwp/{$numwp}";
