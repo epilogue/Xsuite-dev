@@ -1588,7 +1588,7 @@ class XpriceController extends Zend_Controller_Action {
         $user = $this->_auth->getStorage()->read();
         $tiltop = $user->id_user;
         $this->view->cdr = $tiltop;
-        $tracking = $this->getRequest()->getParams();
+        $tracking = $this->getRequest()->getParam('tracking', null);
         echo '<pre>',var_export($tracking),'<pre>';
         $this->view->tracking = $tracking;
         /*
