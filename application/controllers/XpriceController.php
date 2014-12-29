@@ -1555,5 +1555,89 @@ class XpriceController extends Zend_Controller_Action {
         $info_demande_article_xprice = $infos_demande_article_xprice->getDemandeArticlexprice($numwp);
         $this->view->info_demande_article_xprice = $info_demande_article_xprice;
     }
+    public function trackingAction(){
+         $track = $this->getRequest()->getParam('track', null);
+        $form = new Application_Form_Numwp();
+        if (!is_null($track)) {
+            $form->populate(array("tracking_number_demande_xprice" => $track));
+        }
+        if ($this->getRequest()->isPost()) {
+            $redirector = $this->_helper->getHelper('Redirector');
+
+            if ($form->isValid($this->getRequest()->getPost())) {
+                $tracksearch= new Application_Model_DbTable_Xprices();
+                $r=$tracksearch->getTracking($track);
+                
+                if ($r->tracking_number_demande_xprice === $_POST['tracking_number_demùande_xprice']) {
+                    $redirector->gotoSimple('consultlibre', 'xprice', null, array('tracking' => $_POST['tracking_number_demande_xprice']));
+                } else {
+                    $flashMessenger = $this->_helper->getHelper('FlashMessenger');
+                    $message = "ce numéro d'offre n'a pas de concordance dans la base Xsuite";
+                    $flashMessenger->addMessage($message);
+                    $redirector->gotoSimple('tracking', 'xprice', null, array('tracking' => $_POST['tracking_number_demande_xprice']));
+                }
+            } else {
+                $form->populate($this->getRequest()->getPost());
+            }
+        }
+        $this->view->form = $form;
+    }
+    
+    public function consultlibreAction() {
+        $user = $this->_auth->getStorage()->read();
+        $tiltop = $user->id_user;
+        $this->view->cdr = $tiltop;
+        $numwp = $this->getRequest()->getParam('tracking', null);
+        $this->view->tracking = $tracking;
+        /*
+         * on va rechercher les informations concernant la demande _xprice
+         */
+        $infos_demande_xprice = new Application_Model_DbTable_Xprices();
+        $info_demande_xprice = $infos_demande_xprice->getNumwp($tracking);
+echo '<pre>',  var_export($info_demande_xprice),'<pre>'; exit();
+        $user_id = $info_demande_xprice['id_user'];
+        $this->view->info_demande_xprice = $info_demande_xprice;
+        $date = DateTime::createFromFormat('Y-m-d', $info_demande_xprice['date_demande_xprice']);
+        $dateplop = $date->format('d/m/Y');
+        $this->view->dateplop = $dateplop;
+        /*
+         * on recherche si la validation existe déjà ou si elle est en attente;
+         */
+        $nomvalidationrecherche = "cdr";
+        $tracking = $info_demande_xprice['tracking_number_demande_xprice'];
+        $recherchevalidation = new Application_Model_DbTable_Validationsxprice();
+        $recherchesvalidation = $recherchevalidation->getValidation($nomvalidationrecherche, $tracking);
+        $infos_user = new Application_Model_DbTable_Users();
+        /*
+         * chargement des validations avec leurs commentaires
+         */
+        $dbtValidationsDemandesXprices = new Application_Model_DbTable_Validationsdemandexprices();
+        $validationsDemandesXprices = $dbtValidationsDemandesXprices->getAllValidation($info_demande_xprice['id_demande_xprice']);
+
+        $this->view->validations = $validationsDemandesXprices;
+        $usersValidations = array();
+
+        foreach (@$validationsDemandesXprices as $key => $validationDemandeXprice) {
+            $userValidationInfos = $infos_user->getFonctionLabel($validationDemandeXprice['id_user']);
+            $usersValidations[$key]['fonction'] = $userValidationInfos['description_fonction'];
+        }
+        $this->view->usersValidations = $usersValidations;
+        /*
+         * Fin du chargement des validations
+         */
+
+        $info_user = $infos_user->getUserDemande($user_id);
+
+        $this->view->info_user = $info_user;
+        $infos_client = new Application_Model_DbTable_Clients();
+        $info_client = $infos_client->getClientnumwp($info_demande_xprice['numwp_client']);
+        $this->view->info_client = $info_client;
+        $noms_industrie = new Application_Model_DbTable_Industry();
+        $nom_industrie = $noms_industrie->getIndustry($info_client['id_industry']);
+        $this->view->nom_industrie = $nom_industrie;
+        $infos_demande_article_xprice = new Application_Model_DbTable_DemandeArticlexprices();
+        $info_demande_article_xprice = $infos_demande_article_xprice->getDemandeArticlexprice($numwp);
+        $this->view->info_demande_article_xprice = $info_demande_article_xprice;
+    }
 
 }
