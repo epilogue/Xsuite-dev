@@ -123,8 +123,8 @@ $this->headTitle($this->title);
     </div>
     <div>
         <form method="post">
-            <div id='cdr'>
-                <fieldset>
+            <div id="cdr" class="workplace">
+                <fieldset class="field">
                     <legend>Commentaire chef de région</legend>
                     <textarea name="commentaire_chefregion" cols="75" rows="10"></textarea>
                     <?php
@@ -136,7 +136,7 @@ $this->headTitle($this->title);
                     ?>
                 </fieldset>
             </div>
-            <div id="valid_cdr">
+            <div id="valid_cdr" class="workplace">
                 <input type="radio" name="validation" value="nonValide"> La demande n'est pas validée <br>
                 <input type="radio" name="validation" value="validee"> La demande est validée <br>
                 <input type="radio" checked="checked" name="validation" value="enAttente">  en attente de réponse  <br>
@@ -146,7 +146,7 @@ $this->headTitle($this->title);
                 <input hidden="hidden" name="tracking" value="<?php echo $this->info_demande_xprice['tracking_number_demande_xprice']; ?>">
             </div>
 
-            <input class='plop' type="submit" value="enregistrer statut offre">
+            <input class="submit" type="submit" value="enregistrer statut offre">
 
         </form>
     </div>
