@@ -1476,7 +1476,7 @@ class XpriceController extends Zend_Controller_Action {
             $this->sendEmail($params1);
 
             $flashMessenger = $this->_helper->getHelper('FlashMessenger');
-            $message = "la demande est en attente de réponse du commercial.";
+            $message = "la demande est en attente de réponse du {$fonctions[$idF]}.";
             $flashMessenger->addMessage($message);
             $redirector = $this->_helper->getHelper('Redirector');
             $redirector->gotoSimple('index', 'xprice');
