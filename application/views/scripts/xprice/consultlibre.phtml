@@ -122,5 +122,20 @@ $this->headScript()->appendFile('/js/controllers/xprice/affiche_masque_commentai
             </table>
         </fieldset>
     </div>
+    <div id="validation" class="workplace">
+        <button class="submit" id="historiqueVal" name="historiqueVal" value="historiqueVal">Historique validation</button>
+        <fieldset>
+            <legend>Validation</legend>
+            <table class="enum">
+                <?php foreach (@$this->validations as $key => $value) { ?>
+                    <tr>
+                        <td>Commentaire <?php echo strtolower($this->usersValidations[$key]['fonction']); ?></td>
+                        <td><?php echo $value['date_validation']; ?></td>
+                        <td><?php echo nl2br($value['etat_validation']); ?></td>
+                    </tr>
+                <?php } ?>
+            </table>
+        </fieldset>
+    </div>
 </div>
 
