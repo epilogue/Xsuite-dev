@@ -2,6 +2,7 @@
 $this->title = 'Xprice/consultlibre';
 $this->headTitle($this->title);
 $this->headScript()->appendFile('/js/controllers/xprice/affiche_masque_commentaires.js');
+$this->headScript()->appendFile('/js/controllers/xprice/afficher_masquer_validations.js');
 ?>
 <div id="contenu" class="contenu">
     <h2>Consultation de l' offre</h2>
@@ -124,7 +125,7 @@ $this->headScript()->appendFile('/js/controllers/xprice/affiche_masque_commentai
     </div>
     <div id="validation" class="workplace">
         <button class="submit" id="historiqueVal" name="historiqueVal" value="historiqueVal">Historique validation</button>
-        <fieldset>
+        <fieldset id='valid_hist' class='field'>
             <legend>Validation</legend>
             <table class="enum">
                 <?php foreach (@$this->validations as $key => $value) { ?>
