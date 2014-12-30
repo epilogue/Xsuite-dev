@@ -2,6 +2,7 @@
 $this->title = 'Xprice/validatedirco';
 $this->headTitle($this->title);
 $this->headScript()->appendFile('/js/controllers/xprice/recalculeprix_marge.js');
+$this->headScript()->appendFile('/js/controllers/xprice/afficher_masquer_validations.js');
 ?>
 <div id="contenu" class="contenu">
 <h2>Validation de l'offre<br><?php echo $this->info_demande_xprice['tracking_number_demande_xprice'] ?> par le Directeur commercial</h2>
@@ -124,6 +125,21 @@ $this->headScript()->appendFile('/js/controllers/xprice/recalculeprix_marge.js')
                 </table>
             </fieldset>
         </div>
+        <div id="validation" class="workplace">
+        <button class="submit" id="historiqueVal" name="historiqueVal" value="historiqueVal">Historique validation</button>
+        <fieldset  id='valid_hist' class='field'>
+            <legend>Validation</legend>
+            <table class="enum">
+                <?php foreach (@$this->validations as $key => $value) { ?>
+                    <tr>
+                        <td>Commentaire <?php echo strtolower($this->usersValidations[$key]['fonction']); ?></td>
+                        <td><?php echo $value['date_validation']; ?></td>
+                        <td><?php echo nl2br($value['etat_validation']); ?></td>
+                    </tr>
+                <?php } ?>
+            </table>
+        </fieldset>
+    </div>
         <div id="commentaire_dirco" class="workplace">
             <fieldset class="field">
                 <legend>Commentaire Directeur Commercial</legend>
