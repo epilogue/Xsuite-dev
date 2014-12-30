@@ -125,7 +125,7 @@ $this->headScript()->appendFile('/js/controllers/xprice/afficher_masquer_validat
     </div>
     <div id="validation" class="workplace">
         <button class="submit" id="historiqueVal" name="historiqueVal" value="historiqueVal">Historique validation</button>
-        <fieldset>
+        <fieldset  id='valid_hist' class='field'>
             <legend>Validation</legend>
             <table class="enum">
                 <?php foreach (@$this->validations as $key => $value) { ?>
