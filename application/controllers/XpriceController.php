@@ -1480,7 +1480,7 @@ class XpriceController extends Zend_Controller_Action {
 
             $params1['corpsMail'] = "Bonjour,\n"
                     . "\n"
-                    . "Une réponse à été apportée à la question que vous avez posé sur une demande XPrice.\n"
+                    . "Une réponse a été apportée à la question que vous avez posé sur une demande XPrice.\n"
                     . "Veuillez vous rendre à l'adresse url : \n"
                     . "%s"
                     . "\n\n"
@@ -1488,7 +1488,7 @@ class XpriceController extends Zend_Controller_Action {
                     . "\n"
                     . "--\n"
                     . "Xprice.";
-            $params1['sujet'] = "XPrice : réponse sur la demande $numwp.";
+            $params1['sujet'] = "XPrice : réponse sur la demande $numwp pour le client {$infos_client['nom_client']}.";
             $this->sendEmail($params1);
 
             $flashMessenger = $this->_helper->getHelper('FlashMessenger');
