@@ -1622,7 +1622,7 @@ class XpriceController extends Zend_Controller_Action {
             $usersValidations[$key]['fonction'] = $userValidationInfos['description_fonction'];
         }
         $this->view->usersValidations = $usersValidations;
-        echo '<pre>',  var_export($userValidationInfos),'<pre>';
+        echo '<pre>',  var_export($usersValidations),'<pre>';
         /*
          * Fin du chargement des validations
          */
