@@ -1596,7 +1596,6 @@ class XpriceController extends Zend_Controller_Action {
          */
         $infos_demande_xprice = new Application_Model_DbTable_Xprices();
         $info_demande_xprice = $infos_demande_xprice->searchAll($tracking);
-        echo '<pre>',  var_export($info_demande_xprice),'<pre>';
         $user_id = $info_demande_xprice->id_user;
         $this->view->info_demande_xprice = $info_demande_xprice;
         $date = DateTime::createFromFormat('Y-m-d', $info_demande_xprice->date_demande_xprice);
