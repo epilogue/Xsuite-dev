@@ -19,7 +19,7 @@ $this->headScript()->appendFile('/js/controllers/xprice/affiche_masque_commentai
                 </tr>
                 <tr>
                     <td>Tracking number :</td>
-                    <td><?php echo $this->info_demande_xprice['tracking_number_demande_xprice']; ?></td>
+                    <td><?php echo $this->info_demande_xprice->tracking_number_demande_xprice; ?></td>
                 </tr>
             </table>
         </fieldset>
@@ -104,7 +104,7 @@ $this->headScript()->appendFile('/js/controllers/xprice/affiche_masque_commentai
     <div id ='just_demande' class="workplace">
         <fieldset id = 'justif_user' class="field">
             <legend>Justificatif de la demande</legend>
-            <span><?php echo $this->info_demande_xprice['justificatif_demande_xprice'] ?></span>
+            <span><?php echo $this->info_demande_xprice->justificatif_demande_xprice ?></span>
         </fieldset>
     </div>
     <div id='commentaire' class="workplace">
