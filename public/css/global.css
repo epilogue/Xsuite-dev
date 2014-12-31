@@ -14,7 +14,7 @@ body{
 #header{
     width: 1024px;
     height: 150px;
-    background-image: -moz-linear-gradient(top, #006699 33%, #74aaca 66%);
+    background-image: -moz-linear-gradient(top, #2A60AA 33%, #74aaca 66%);
     margin-bottom: 10px;
     border-radius: 10px;
 }
@@ -146,69 +146,69 @@ color:#fff;
 /* background des liens menus */
 #menu_haut li:first-child{
 background-color: #729EBF;
-background-image: -webkit-linear-gradient(top, #006699 33%,#74aaca 66%);
-background-image:linear-gradient(to bottom, #006699 33%, #74aaca 66%);
+background-image: -webkit-linear-gradient(top, #2A60AA 33%,#74aaca 66%);
+background-image:linear-gradient(to bottom, #2A60AA 33%, #74aaca 66%);
 }
 #menu_haut li:nth-child(2){
 background-color: #729EBF;
-background-image: -webkit-linear-gradient(top, #006699 33%,#74aaca 66%);
-background-image:linear-gradient(to bottom, #006699 33%, #74aaca 66%);
+background-image: -webkit-linear-gradient(top, #2A60AA 33%,#74aaca 66%);
+background-image:linear-gradient(to bottom, #2A60AA 33%, #74aaca 66%);
 }
 #menu_haut li:nth-child(3){
 background-color: #729EBF;
-background-image: -webkit-linear-gradient(top, #006699 33%,#74aaca 66%);
-background-image:linear-gradient(to bottom, #006699 33%, #74aaca 66%);
+background-image: -webkit-linear-gradient(top, #2A60AA 33%,#74aaca 66%);
+background-image:linear-gradient(to bottom, #2A60AA 33%, #74aaca 66%);
 }
 #menu_haut li:nth-child(4){
 background-color: #729EBF;
-background-image: -webkit-linear-gradient(top, #006699 33%,#74aaca 66%);
-background-image:linear-gradient(to bottom, #006699 33%, #74aaca 66%);
+background-image: -webkit-linear-gradient(top, #2A60AA 33%,#74aaca 66%);
+background-image:linear-gradient(to bottom, #2A60AA 33%, #74aaca 66%);
 }
 #menu_haut li:nth-child(5){
 background-color: #729EBF;
-background-image: -webkit-linear-gradient(top, #006699 33%,#74aaca 66%);
-background-image:linear-gradient(to bottom, #006699 33%, #74aaca 66%);
+background-image: -webkit-linear-gradient(top, #2A60AA 33%,#74aaca 66%);
+background-image:linear-gradient(to bottom, #2A60AA 33%, #74aaca 66%);
 }
 #menu_haut li:nth-child(6){
 background-color: #729EBF;
-background-image: -webkit-linear-gradient(top, #006699 33%,#74aaca 66%);
-background-image:linear-gradient(to bottom, #006699 33%, #74aaca 66%);
+background-image: -webkit-linear-gradient(top, #2A60AA 33%,#74aaca 66%);
+background-image:linear-gradient(to bottom, #2A60AA 33%, #74aaca 66%);
 }
 #menu_haut li:nth-child(7){
 background-color: #729EBF;
-background-image: -webkit-linear-gradient(top, #006699 33%,#74aaca 66%);
-background-image:linear-gradient(to bottom, #006699 33%, #74aaca 66%);
+background-image: -webkit-linear-gradient(top, #2A60AA 33%,#74aaca 66%);
+background-image:linear-gradient(to bottom, #2A60AA 33%, #74aaca 66%);
 }
 #menu_haut li:last-child{
 background-color: #729EBF;
-background-image: -webkit-linear-gradient(top, #006699 33%,#74aaca 66%);
-background-image:linear-gradient(to bottom, #006699 33%, #74aaca 66%);
+background-image: -webkit-linear-gradient(top, #2A60AA 33%,#74aaca 66%);
+background-image:linear-gradient(to bottom, #2A60AA 33%, #74aaca 66%);
 }
 /* background des liens sous menus */
 #menu_haut li:first-child li{
-background:#006699;
+background:#2A60AA;
 }
 
 #menu_haut li:nth-child(2) li{
-background:#006699;
+background:#2A60AA;
 }
 #menu_haut li:nth-child(3) li{
-background:#006699;
+background:#2A60AA;
 }
 #menu_haut li:nth-child(4) li{
-background:#006699;
+background:#2A60AA;
 }
 #menu_haut li:nth-child(5) li{
-background:#006699;
+background:#2A60AA;
 }
 #menu_haut li:nth-child(6) li{
-background:#006699;
+background:#2A60AA;
 }
 #menu_haut li:nth-child(7) li{
-background:#006699;
+background:#2A60AA;
 }
 #menu_haut li:last-child li{
-background:#006699;
+background:#2A60AA;
 }
 
 
@@ -220,7 +220,7 @@ background:#006699;
     height: auto;
     background-color:white;
     border-radius:10px;
-    border: medium solid #006699;
+    border: medium solid #2A60AA;
     font-family: verdana;
     font-size: 12px;
 }
@@ -241,7 +241,7 @@ background:#006699;
     height: 50px;
     width:auto;
     border-radius: 10px;
-    background-color: #006699;
+    background-color: #2A60AA;
     border-right-width: 0px; 
     border-left-width: 0px;
     border-bottom-width:0px;
@@ -256,7 +256,7 @@ background:#006699;
     height: 50px;
     width:auto;
     border-radius: 10px;
-    background-color: #006699;
+    background-color: #2A60AA;
     border-right-width: 0px; 
     border-left-width: 0px;
     border-bottom-width:0px;
@@ -279,26 +279,26 @@ textarea{
     width: 310px;
     float: left;
     margin-left: 75px;
-    border-color: #006699;
+    border-color: #2A60AA;
 }
 .field{
     width: 725px;
     margin-bottom:25px;
     margin-left:auto;
     margin-right:auto;
-    border-color: #006699;
+    border-color: #2A60AA;
 }
 fieldset legend{
     font-weight: bold;
     font-style: italic;
     font-size: 20px;
     font-family: verdana;
-    color:#006699;
+    color:#2A60AA;
 }
 /*tableaux*/
 .enum {
     border-style:solid;
-    border-color:#006699;
+    border-color:#2A60AA;
     border-width: thin;
     border-collapse: collapse;
     padding-top:5px;
@@ -307,7 +307,7 @@ fieldset legend{
 }
 .enum th,.enum td{
     border-style:solid;
-    border-color:#006699;
+    border-color:#2A60AA;
     border-width: thin;
     border-collapse: collapse;
     padding-top:5px;
@@ -335,7 +335,7 @@ fieldset legend{
 h1{
     font-weight: bold;
     font-size: 48px;
-    color: #006699;
+    color: #2A60AA;
     text-align: center;
     font-family: verdana;
     font-variant-caps: small-caps;
@@ -344,14 +344,14 @@ h1{
 h2{
     font-weight:bold;
     font-size:34px;
-    color: #006699;
+    color: #2A60AA;
     text-align:center;
     font-family: verdana;
 }
 h3{
     font-weight: bold;
     font-size: 20px;
-    color: #006699;
+    color: #2A60AA;
     text-align: center;
     font-family: verdana;
 }
@@ -359,7 +359,7 @@ h3{
 .message{
     text-align: center;
     font-family: verdana;
-    color: #006699;
+    color: #2A60AA;
     font-size: 16px;
     list-style-type: none;
     font-style: italic;
