@@ -14,7 +14,7 @@ body{
 #header{
     width: 1024px;
     height: 150px;
-    background-image: -moz-linear-gradient(top, #2A60AA 33%,#5082B4 33%,#74aaca 33%);
+    background-image: -moz-linear-gradient(top, #2A60AA 33%,#5082B4 66%);
     margin-bottom: 10px;
     border-radius: 10px;
 }
