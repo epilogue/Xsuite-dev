@@ -589,7 +589,7 @@ class XpriceController extends Zend_Controller_Action {
              * on envoi un email au tc qui a créer la demande , et on envoi un mail au cm pour qu'il la valide également
              */
             $emailVars = Zend_Registry::get('emailVars');
-            if (isset($formData['validation']) && $formData['validation'] == "validee") {
+            if (isset($formData['validation']) && $formData['validation'] == "validée") {
                 $params1 = array();
                 $params1['destinataireMail'] = "mhuby@smc-france.fr"/* $info_user['mail_user'] */;
                 $params1['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/consult/numwp/{$numwp}";
@@ -827,7 +827,7 @@ class XpriceController extends Zend_Controller_Action {
             $commentId = $this->genererValidation($datasValidation);
 
             $emailVars = Zend_Registry::get('emailVars');
-            if (isset($datas['validation']) && $datas['validation'] == "validee") {
+            if (isset($datas['validation']) && $datas['validation'] == "validée") {
                 $params = array();
                 $params['destinataireMail'] = "mhuby@smc-france.fr"/* $info_user['mail_user'] */;
                   $params1['destinataireMail'] = $emailVars->listes->dirco/* $info_user['mail_user'] */;
@@ -982,8 +982,6 @@ class XpriceController extends Zend_Controller_Action {
             $this->nom_validation = $nom_validation;
             $formData = $this->getRequest()->getPost();
             $datas = $this->getRequest()->getPost();
-//            foreach ($formData as $datas) {
-// echo '<pre>',  var_export($datas,true),'</pre>';exit();
             $prix_accordes = array_combine($datas['code_article'], $datas['prix_accorde_article']);
             $remise_accordes = array_combine($datas['code_article'], $datas['remise_accorde_article']);
 
@@ -997,15 +995,12 @@ class XpriceController extends Zend_Controller_Action {
             }
             $nouvelle_validation = new Application_Model_DbTable_Validationsxprice();
             $nouv_validation = $nouvelle_validation->createValidation($nom_validation, $date_validation, $datas['validation'], $datas['commentaire_dirco'], $user->id_user, $datas['tracking']);
-//            }
 
             $datasValidation = array(
                 'nom_validation' => $nom_validation, 'validation' => $formData['validation'],
                 'commentaire' => $formData['commentaire_dirco'],
                 'id_user' => $user->id_user, 'id_demande_xprice' => $info_demande_xprice['id_demande_xprice']
             );
-//            echo "<pre>", var_export($datasValidation, true), "</pre>";
-//            exit();
             if (array_key_exists('reponse', $formData)) {
                 $datasValidation['reponse'] = $formData['reponse'];
             }
@@ -1014,7 +1009,7 @@ class XpriceController extends Zend_Controller_Action {
 
             $emailVars = Zend_Registry::get('emailVars');
             $params = array();
-            if (isset($formData['validation']) && $formData['validation'] == "validee") {
+            if (isset($formData['validation']) && $formData['validation'] == "validée") {
                 $params['destinataireMail'] = "mhuby@smc-france.fr"/* $info_user['mail_user'] */;
                 $params['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/consult/numwp/{$numwp}";
                 $params['corpsMail'] = "Bonjour,\n"
@@ -1026,15 +1021,16 @@ class XpriceController extends Zend_Controller_Action {
                         . "Cordialement,\n"
                         . "\n"
                         . "--\n"
-                        . "Prix fobfr.";
+                        . "Directeur Commercial.";
                 $params['sujet'] = "XPrice :demande $numwp pour le client {$info_client['nom_client']} validée par Directeur Commercial.";
                 $this->sendEmail($params);
 
                 $flashMessenger = $this->_helper->getHelper('FlashMessenger');
-                $message = "l'offre $numwp pour le client {$info_client['nom_client']} a bien été validée.";
+                $message = "l'offre $numwp pour le client{$info_client['nom_client']} a bien été validée.";
                 $flashMessenger->addMessage($message);
                 $redirector = $this->_helper->getHelper('Redirector');
                 $redirector->gotoSimple('index', 'xprice');
+                
             } elseif (isset($formData['validation']) && $formData['validation'] == 'enAttente') {
                 $emailVars = Zend_Registry::get('emailVars');
                 $params['destinataireMail'] = "mhuby@smc-france.fr"/* $info_user['mail_user'] */;
@@ -1045,14 +1041,14 @@ class XpriceController extends Zend_Controller_Action {
                 }
                 $params['corpsMail'] = "Bonjour,\n"
                         . "\n"
-                        . "Votre demande XPrice est en attente de réponse à la question posée par  le Directeur Commercial .\n"
+                        . "Votre demande XPrice est en attente de réponse à la question posée par le Directeur Commercial .\n"
                         . "Vous pouvez la consulter à cette adresse url : \n"
                         . "%s"
                         . "\n\n"
                         . "Cordialement,\n"
                         . "\n"
                         . "--\n"
-                        . "Dirco.";
+                        . "Directeur Commercial.";
                 $params['sujet'] = "XPrice :demande $numwp pour le client {$info_client['nom_client']} est mise en attente par le Directeur Commercial.";
                 $this->sendEmail($params);
 
@@ -1078,8 +1074,8 @@ class XpriceController extends Zend_Controller_Action {
                         . "Cordialement,\n"
                         . "\n"
                         . "--\n"
-                        . "Dirco.";
-                $params['sujet'] = "XPrice :demande $numwp pour le client {$info_client['nom_client']} non validée par Le Directeur Commercial.";
+                        . "Directeur Commercial.";
+                $params['sujet'] = "XPrice :demande$numwp pour le client{$info_client['nom_client']}non validée par Le Directeur Commercial.";
                 $this->sendEmail($params);
 
                 $flashMessenger = $this->_helper->getHelper('FlashMessenger');
@@ -1169,7 +1165,7 @@ class XpriceController extends Zend_Controller_Action {
         if ($this->getRequest()->isPost()) {
             $date_validationfobfr = date("Y-m-d H:i:s");
             $this->view->date_validationfobfr = $date_validationfobfr;
-            $etat = "validé";
+            $etat = "validée";
             $nom_validationfobfr = "fobfr";
             $formData = $this->getRequest()->getPost();
             $datas = $this->getRequest()->getPost();
@@ -1306,7 +1302,7 @@ class XpriceController extends Zend_Controller_Action {
             $date_validation_supply = date("Y-m-d H:i:s");
             echo $date_validation_supply;
             $this->view->date_validation_supply = $date_validation_supply;
-            $etat = "validé";
+            $etat = "validée";
             $nom_validationsupply = "supply";
             $formData = $this->getRequest()->getPost();
             $datas = $this->getRequest()->getPost();
