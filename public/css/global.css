@@ -264,6 +264,15 @@ background:#2A60AA;
     margin-left: 40%;
     margin-right: auto;
 }
+
+.indexbouton{
+   color: white;
+    height: 50px;
+    width:auto;
+    border-radius: 10px;
+    background-color: #2A60AA; 
+     margin-left: 120px;
+}
 .required{
     font-family: verdana;
 }
