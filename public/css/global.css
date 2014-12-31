@@ -272,6 +272,10 @@ background:#2A60AA;
     border-radius: 10px;
     background-color: #2A60AA; 
      margin-left: 120px;
+      border-right-width: 0px; 
+    border-left-width: 0px;
+    border-bottom-width:0px;
+    border-top-width:0px;
 }
 .required{
     font-family: verdana;
