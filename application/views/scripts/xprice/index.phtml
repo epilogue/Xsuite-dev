@@ -5,12 +5,13 @@ $this->headTitle($this->title);
 
 
 <div class="contenu">
-    <h2>Xprice</h3>
+    <h2>Xprice</h2>
+    <h1>Demande en ligne pour Prix Spéciaux</h1>  
     <div>
         <table class="bouton">
             <tr>
-                <td><button class="button"><a href="<?php echo $this->url(array('controller' => 'xprice', 'action' => 'tracking'), null, true); ?>">Consulter une Xprice</a></button></td>
-                <td><a href="<?php echo $this->url(array('controller' => 'xprice', 'action' => 'numwp'), null, true); ?>"><button class="button">Créer une Xprice</button></a></td>
+                <td><a href="<?php echo $this->url(array('controller' => 'xprice', 'action' => 'tracking'), null, true); ?>"><button class="button"></button>Consulter une Xprice</a></button></td>
+                <td><a href="<?php echo $this->url(array('controller' => 'xprice', 'action' => 'numwp'), null, true); ?>"><button >Créer une Xprice</button></a></td>
             </tr>
         </table>    
     </div>
