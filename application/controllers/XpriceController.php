@@ -589,7 +589,7 @@ class XpriceController extends Zend_Controller_Action {
              * on envoi un email au tc qui a créer la demande , et on envoi un mail au cm pour qu'il la valide également
              */
             $emailVars = Zend_Registry::get('emailVars');
-            if (isset($formData['validation']) && $formData['validation'] == "validée") {
+            if (isset($formData['validation']) && $formData['validation'] == "validee") {
                 $params1 = array();
                 $params1['destinataireMail'] = "mhuby@smc-france.fr"/* $info_user['mail_user'] */;
                 $params1['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/consult/numwp/{$numwp}";
@@ -827,7 +827,7 @@ class XpriceController extends Zend_Controller_Action {
             $commentId = $this->genererValidation($datasValidation);
 
             $emailVars = Zend_Registry::get('emailVars');
-            if (isset($datas['validation']) && $datas['validation'] == "validée") {
+            if (isset($datas['validation']) && $datas['validation'] == "validee") {
                 $params = array();
                 $params['destinataireMail'] = "mhuby@smc-france.fr"/* $info_user['mail_user'] */;
                   $params1['destinataireMail'] = $emailVars->listes->dirco/* $info_user['mail_user'] */;
@@ -1009,7 +1009,7 @@ class XpriceController extends Zend_Controller_Action {
 
             $emailVars = Zend_Registry::get('emailVars');
             $params = array();
-            if (isset($formData['validation']) && $formData['validation'] == "validée") {
+            if (isset($formData['validation']) && $formData['validation'] == "validee") {
                 $params['destinataireMail'] = "mhuby@smc-france.fr"/* $info_user['mail_user'] */;
                 $params['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/consult/numwp/{$numwp}";
                 $params['corpsMail'] = "Bonjour,\n"
