@@ -9,11 +9,11 @@ $(document).ready(function (){
     $('button#detailbutton').click(function(){
         if(comments == true) {
             comments = false;
-            $('div#details').hide();
+            $('div#demandeArticle').hide();
             $(this).html('Détails');
         } else {
             comments = true;
-            $('div#details').show();
+            $('div#demandeArticle').show();
             $(this).html(' Masquer Détails');
         }
         return false;

@@ -1429,7 +1429,6 @@ class XpriceController extends Zend_Controller_Action {
         $test = $tests->sommePrixDemandeArticle($numwp);
         $this->view->montant_total = $test->total;
         $this->view->infos_client = $infos_client;
-        $this->view->info_user = $info_user;
         $this->view->infos_client = $infos_client;
         $noms_industrie = new Application_Model_DbTable_Industry();
         $nom_industrie = $noms_industrie->getIndustry($infos_client['id_industry']);
