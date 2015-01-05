@@ -1138,7 +1138,6 @@ class XpriceController extends Zend_Controller_Action {
         $anneecourante = date('Y');
 //$anneecourante=2018;
         foreach ($info_demande_article_xprice as $value) {
-echo '<pre>',  var_export($value),'<pre>';
             $mmcono = "100";
             $division = "FR0";
             $facility = "I01";
@@ -1174,6 +1173,7 @@ echo "<pre>", var_export($formData),"</pre>"; exit();
 //            foreach ($formData as $datas) {
             $fobs = array_combine($datas['code_article'], $datas['prix_fob']);
             $cifs = array_combine($datas['code_article'], $datas['prix_cif']);
+            $marges = array_combine($datas['code_article'],$datas['marge_demande_article']);
 
             foreach ($cifs as $key => $value) {
                 $prixcifs = new Application_Model_DbTable_DemandeArticlexprices();
@@ -1182,6 +1182,10 @@ echo "<pre>", var_export($formData),"</pre>"; exit();
             foreach ($fobs as $key => $value) {
                 $prixfobs = new Application_Model_DbTable_DemandeArticlexprices();
                 $prixfob = $prixcifs->updatefob($value, $key, $datas['tracking_number']);
+            }
+            foreach ($marges as $key => $value){
+                $margeinit = new Application_Model_DbTable_DemandeArticlexprices();
+                $marge= $margeinit->insertMarge($value, $key, $datas['tracking_number']);
             }
             $validations = new Application_Model_DbTable_Validationsxprice();
             $validation = $validations->createValidation($nom_validationfobfr, $date_validationfobfr, $etat, $datas['commentaire_fobfr'], $user->id_user, $datas['tracking_number']);
