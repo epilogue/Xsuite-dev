@@ -757,6 +757,7 @@ class XpriceController extends Zend_Controller_Action {
         $this->view->dateplop = $dateplop;
         $infos_user = new Application_Model_DbTable_Users();
         $info_user = $infos_user->getUserDemande($info_demande_xprice['id_user']);
+       
         /*
          * chargement des validations avec leurs commentaires
          */
