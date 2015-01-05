@@ -1034,6 +1034,20 @@ class XpriceController extends Zend_Controller_Action {
                         . "Directeur Commercial.";
                 $params['sujet'] = "XPrice :demande $numwp pour le client {$info_client['nom_client']} validée par Directeur Commercial.";
                 $this->sendEmail($params);
+                $params1['destinataireMail'] =$emailVars->listes->serviceclient;
+                $params1['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/consult/numwp/{$numwp}";
+                $params1['corpsMail'] = "Bonjour,\n"
+                        . "\n"
+                        . "Votre demande XPrice pour le client {$info_client['nom_client']} a été validée par le Directeur Commercial .\n"
+                        . "Vous pouvez la consulter à cette adresse url : \n"
+                        . "%s"
+                        . "\n\n"
+                        . "Cordialement,\n"
+                        . "\n"
+                        . "--\n"
+                        . "Directeur Commercial.";
+                $params1['sujet'] = "XPrice :demande $numwp pour le client {$info_client['nom_client']} validée par Directeur Commercial.";
+                $this->sendEmail($params1);
 
                 $flashMessenger = $this->_helper->getHelper('FlashMessenger');
                 $message = "l'offre $numwp pour le client{$info_client['nom_client']} a bien été validée.";
