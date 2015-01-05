@@ -16,4 +16,14 @@ $(document).ready(function (){
         $('input#pda-'+k).val(pda);
         $(this).val(parseFloat($(this).val())+'%')
     });
+     $('input.ma').change(function (){
+        var idT = $(this).attr('id').split('-');
+        var k = idT[1];
+        var cif = parseFloat($('td#cif-'+k).html());
+        var ma = parseFloat($(this).val());
+        
+        var pda = Number(((100-ra)*pwp)/100).toFixed(2);
+        $('input#pda-'+k).val(pda);
+        $(this).val(parseFloat($(this).val())+'%')
+    });
 });
