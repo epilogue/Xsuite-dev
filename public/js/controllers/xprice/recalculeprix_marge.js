@@ -14,8 +14,11 @@ $(document).ready(function (){
         var ra = parseFloat($(this).val());
         var pda = Number(((100-ra)*pwp)/100).toFixed(2);
         $('input#pda-'+k).val(pda);
-        $(this).val(parseFloat($(this).val())+'%')
+        var ma = Number(1-(parseFloat($('td#cif-'+k).html()))/parseFloat( $('input#pda-'+k).val(pda)));
+        $('input#ma-'+k).val(ma+'%');
+        $(this).val(parseFloat($(this).val())+'%');
     });
+    
      $('input.ma').change(function (){
         var idT = $(this).attr('id').split('-');
         var k = idT[1];
@@ -24,6 +27,6 @@ $(document).ready(function (){
         
         var pda = Number(((100-ra)*pwp)/100).toFixed(2);
         $('input#pda-'+k).val(pda);
-        $(this).val(parseFloat($(this).val())+'%')
+        $(this).val(parseFloat($(this).val())+'%');
     });
 });
