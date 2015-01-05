@@ -1169,7 +1169,6 @@ class XpriceController extends Zend_Controller_Action {
             $nom_validationfobfr = "fobfr";
             $formData = $this->getRequest()->getPost();
             $datas = $this->getRequest()->getPost();
-echo "<pre>", var_export($formData),"</pre>"; exit();
 //            foreach ($formData as $datas) {
             $fobs = array_combine($datas['code_article'], $datas['prix_fob']);
             $cifs = array_combine($datas['code_article'], $datas['prix_cif']);
