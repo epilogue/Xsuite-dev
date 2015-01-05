@@ -15,7 +15,7 @@ $(document).ready(function (){
         var pda = Number(((100-ra)*pwp)/100).toFixed(2);
         $('input#pda-'+k).val(pda);
         var ma = Number(1-(parseFloat($('td#cif-'+k).html()))/Number(((100-ra)*pwp)/100).toFixed(2));
-        $('input#ma-'+k).val(round(ma,2)+'%');
+        $('input#ma-'+k).val(ma+'%');
         $(this).val(parseFloat($(this).val())+'%');
     });
     
