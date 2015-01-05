@@ -150,5 +150,15 @@ class Application_Model_DbTable_DemandeArticlexprices extends Zend_Db_Table_Abst
    return $plop2;
    
    }
+    public function updateMarge($marge, $code_article, $tracking_number) {
+        $code_article = "$code_article";
+        $tracking_number = "$tracking_number";
+        $plop = $this->getAdapter();
+        $datas = array('marge_demande_article' => $marge);
+        $where = $plop->quoteInto('code_article = ?', $code_article)
+                . $plop->quoteInto(' And tracking_number_demande_xprice = ?', $tracking_number);
+        $plop2 = $this->update($datas, $where);
+        return $plop2;
+    }
 }
 

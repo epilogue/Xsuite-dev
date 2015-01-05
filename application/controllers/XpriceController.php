@@ -800,7 +800,7 @@ class XpriceController extends Zend_Controller_Action {
 // echo '<pre>',  var_export($datas,true),'</pre>';exit();
             $prix_accordes = array_combine($datas['code_article'], $datas['prix_accorde_article']);
             $remise_accordes = array_combine($datas['code_article'], $datas['remise_accorde_article']);
-
+            $marge = array_combine($datas['code_article'],$datas['marge_demande_article']);
             foreach ($remise_accordes as $key => $value) {
                 $remisesDirco = new Application_Model_DbTable_DemandeArticlexprices();
                 $remiseDirco = $remisesDirco->insertRemiseAccorde($value, $key, $datas['tracking']);
@@ -808,6 +808,10 @@ class XpriceController extends Zend_Controller_Action {
             foreach ($prix_accordes as $key => $value) {
                 $prixDirco = new Application_Model_DbTable_DemandeArticlexprices();
                 $priDirco = $prixDirco->insertPrixAccorde($value, $key, $datas['tracking']);
+            }
+            foreach($marge as $key=>$value){
+                $margeinit=new Application_Model_DbTable_DemandeArticlexprices();
+                $marges = $margeinit->updateMarge($value,$key,$datas['tracking']);
             }
 //            }
 
