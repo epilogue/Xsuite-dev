@@ -67,7 +67,7 @@ class XpriceController extends Zend_Controller_Action {
                     $redirector->gotoSimple('list', 'xprice', null, array('tracking_number' => $_POST['tracking_number']));
                 } else {
                     $flashMessenger = $this->_helper->getHelper('FlashMessenger');
-                    $message = "ce tracking number  n'a pas de concordance dans la base Xsuite";
+                    $message = "Ce tracking number n'a pas de concordance dans la base Xsuite";
                     $flashMessenger->addMessage($message);
                     $redirector->gotoSimple('index', 'xprice', null, array('tracking_number' => $_POST['tracking_number']));
                 }
