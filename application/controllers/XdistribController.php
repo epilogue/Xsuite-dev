@@ -100,5 +100,11 @@ public function createAction()
     public function consultlibre(){
         
     }
+    public function numwp(){
+        
+    }
+    public function consult(){
+        
+    }
 }
 
