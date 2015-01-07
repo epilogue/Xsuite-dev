@@ -69,7 +69,7 @@ public function createAction()
     {
         // action body
     }
-    public function tracking(){
+    public function trackingAction(){
          $track = $this->getRequest()->getParam('tracking_number_demande_xdistrib', null);
         $form = new Application_Form_TrackingSearch();
         echo $track;
@@ -97,13 +97,10 @@ public function createAction()
         }
         $this->view->form = $form;
     }
-    public function consultlibre(){
+    public function consultlibreAction(){
         
     }
-    public function numwp(){
-        
-    }
-    public function consult(){
+    public function numwpAction(){
         
     }
 }
