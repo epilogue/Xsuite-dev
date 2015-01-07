@@ -24,7 +24,7 @@ class LoginController extends Zend_Controller_Action {
 
     protected function _process($values) {
         $adapter = $this->_getAuthAdapter();
-        $adapter->setIdentity($values['nom_user']);
+        $adapter->setIdentity($values['email_user']);
         $adapter->setCredential($values['password_user']);
 
         $auth = Zend_Auth::getInstance();
@@ -43,7 +43,7 @@ class LoginController extends Zend_Controller_Action {
         $authAdapter = new Zend_Auth_Adapter_DbTable($dbAdapter);
 
         $authAdapter->setTableName('users')
-                ->setIdentityColumn('nom_user')
+                ->setIdentityColumn('email_user')
                 ->setCredentialColumn('password_user');
 
         return $authAdapter;

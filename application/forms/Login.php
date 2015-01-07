@@ -6,7 +6,7 @@ class Application_Form_Login extends Zend_Form {
         $this->setName("login");
         $this->setMethod('post');
         $this->addElement(
-                'text', 'nom_user', array(
+                'text', 'email_user', array(
             'label' => "nom d'utilisateur :",
             'required' => true));
 
