@@ -2,7 +2,9 @@
 
 class XdistribController extends Zend_Controller_Action
 {
-
+    public $odbc_conn = null;
+    public $odbc_conn2 = null;
+    public $odbc_conn3 = null;
     public function init()
     {
         $auth = Zend_Auth::getInstance();
