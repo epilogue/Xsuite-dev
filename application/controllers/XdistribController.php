@@ -54,7 +54,7 @@ class XdistribController extends Zend_Controller_Action
                     $flashMessenger = $this->_helper->getHelper('FlashMessenger');
                     $message = "ce tracking number n'a pas de concordance dans la base Xsuite";
                     $flashMessenger->addMessage($message);
-                    $redirector->gotoSimple('index', 'xprice', null, array('tracking_number' => $_POST['tracking_number']));
+                    $redirector->gotoSimple('index', 'xdistrib', null, array('tracking_number' => $_POST['tracking_number']));
                 }
             }
         }
