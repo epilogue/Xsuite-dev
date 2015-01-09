@@ -80,7 +80,7 @@ public function createAction()
             $redirector = $this->_helper->getHelper('Redirector');
 
             if ($form->isValid($this->getRequest()->getPost())) {
-                $tracksearch= new Application_Model_DbTable_Xprices();
+                $tracksearch= new Application_Model_DbTable_Xdistrib();
                 $r=$tracksearch->getTracking($track);
                 echo '<pre>',  var_export($r),'<pre>'; 
                 if ($r['tracking_number_demande_xdistrib'] == $_POST['tracking_number_demande_xdistrib']) {

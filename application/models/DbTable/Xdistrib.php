@@ -31,4 +31,13 @@ class Application_Model_DbTable_Xdistrib extends Zend_Db_Table_Abstract {
             return $row->toArray();
         }
     }
+     public function getTracking($tracking_number) {
+        $tracking_number = "$tracking_number";
+        $row = $this->fetchRow("tracking_number_demande_xdistrib = '{$tracking_number}'");
+        if (!$row) {
+            return null;
+        } else {
+            return $row->toArray();
+        }
+    }
 }
