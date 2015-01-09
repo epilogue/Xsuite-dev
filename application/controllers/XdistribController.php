@@ -71,7 +71,7 @@ public function createAction()
     }
     public function trackingAction(){
          $track = $this->getRequest()->getParam('tracking_number_demande_xdistrib', null);
-        $form = new Application_Form_TrackingSearch();
+        $form = new Application_Form_TrackingSearchDistrib();
         echo $track;
         if (!is_null($track)) {
             $form->populate(array("tracking_number_demande_xdistrib" => $track));
@@ -101,7 +101,43 @@ public function createAction()
         
     }
     public function numwpAction(){
-        
+         $numwp = $this->getRequest()->getParam('numwp', null);
+        $form = new Application_Form_NumwpDistrib();
+        $mmcono = "100";
+        $division = "FR0";
+        $facility = "I01";
+        $type = "3";
+        $warehouse = "I02";
+        $supplier = "I990001";
+        $agreement1 = "I000001";
+        $agreement2 = "I000002";
+        $agreement3 = "I000003";
+        if (!is_null($numwp)) {
+            $form->populate(array("num_offre_worplace" => $numwp));
+        }
+        if ($this->getRequest()->isPost()) {
+            $redirector = $this->_helper->getHelper('Redirector');
+
+            if ($form->isValid($this->getRequest()->getPost())) {
+
+                $query = "select
+	OOLINE.OBORNO as NBNUMWP,OOLINE.OBCUNO
+	FROM EIT.CVXCDTA.OOLINE OOLINE WHERE OOLINE.OBORNO = '{$_POST['num_offre_worplace']}' AND OOLINE.OBDIVI='FR0' and OOLINE.OBCONO='100'";
+                $results = odbc_exec($this->odbc_conn, $query);
+                $r = odbc_fetch_object($results);
+                if ($r->NBNUMWP === $_POST['num_offre_worplace']) {
+                    $redirector->gotoSimple('create', 'xdistrib', null, array('numwp' => $_POST['num_offre_worplace']));
+                } else {
+                    $flashMessenger = $this->_helper->getHelper('FlashMessenger');
+                    $message = "ce numéro d'offre n'a pas de concordance dans la base MOVEX";
+                    $flashMessenger->addMessage($message);
+                    $redirector->gotoSimple('numwp', 'xdistrib', null, array('numwp' => $_POST['num_offre_worplace']));
+                }
+            } else {
+                $form->populate($this->getRequest()->getPost());
+            }
+        }
+        $this->view->form = $form;
     }
 }
 
