@@ -8,8 +8,8 @@ class Application_Form_TrackingSearchDistrib extends Zend_Form {
         $this->setAttrib("class", "little_form");
 
 
-        $tracking_number_demande_xprice = new Zend_Form_Element_Text('tracking_number_demande_xdistrib');
-        $tracking_number_demande_xprice->setLabel("numéro tracking de la Xdistrib : ")
+        $tracking_number_demande_xdistrib = new Zend_Form_Element_Text('tracking_number_demande_xdistrib');
+        $tracking_number_demande_xdistrib->setLabel("numéro tracking de la Xdistrib : ")
                 ->setRequired(TRUE)
                 ->setDescription("exemple: SPD-FR-QX00000")
                 ->addFilter('StripTags')
