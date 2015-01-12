@@ -88,6 +88,12 @@ $this->headScript()->appendFile('/js/controllers/xprice/afficher_masquer_validat
                     <th>prix workplace</th>
                     <th>prix demandé</th>
                     <th>remise demandée</th>
+                    <?php if($this->utilisateur =='5' or $this->utilisateur== '13'){ ?>
+                    <th>Prix cif</th>
+                    <th>Prix fob</th>
+                    <th>Prix accordés</th>
+                    <th>Remises accordées</th>
+                    <th>Marge</th><?php } else {}?>
                 </tr>
                 <?php foreach ($this->info_demande_article_xprice as $result) { ?>
                     <tr>
@@ -97,6 +103,12 @@ $this->headScript()->appendFile('/js/controllers/xprice/afficher_masquer_validat
                         <td><?php echo $result['prixwplace_demande_article'] . "€"; ?></td>
                         <td><?php echo $result['prix_demande_article'] . "€"; ?></td>
                         <td><?php echo $result['remise_demande_article'] . "%"; ?></td>
+                         <?php if($this->utilisateur =='5' or $this->utilisateur== '13'){ ?>
+                        <td><?php echo $result['prix_cif_demande_article'] . "€"; ?></td>
+                        <td><?php echo $result['prix_fob_demande_article'] . "€"; ?></td>
+                        <td><?php echo $result['prix_accorde_demande_article'] . "€"; ?></td>
+                        <td><?php echo $result['remise_accordee_demande_article'] . "%"; ?></td>
+                        <td><?php echo $result['marge_demande_article'] . "%"; ?></td><?php } else {}?>
                     </tr>
                 <?php } ?>
             </table>

@@ -1399,7 +1399,7 @@ class XpriceController extends Zend_Controller_Action {
 
     public function updateAction() {
         $user = $this->_auth->getStorage()->read();
-        echo '<pre>',  var_export($user),'</pre>';
+       // echo '<pre>',  var_export($user),'</pre>';
         $this->view->utilisateur=$user->id_fonction;
         $numwp = $this->getRequest()->getParam('numwp', null);
         $comId = $this->getRequest()->getParam('com', null);
@@ -1506,6 +1506,7 @@ class XpriceController extends Zend_Controller_Action {
 
     public function consultAction() {
         $user = $this->_auth->getStorage()->read();
+         $this->view->utilisateur=$user->id_fonction;
         $tiltop = $user->id_user;
         $this->view->cdr = $tiltop;
         $numwp = $this->getRequest()->getParam('numwp', null);
@@ -1591,6 +1592,7 @@ class XpriceController extends Zend_Controller_Action {
     
     public function consultlibreAction() {
         $user = $this->_auth->getStorage()->read();
+         $this->view->utilisateur=$user->id_fonction;
         $tiltop = $user->id_user;
         $this->view->cdr = $tiltop;
         $tracking = $this->getRequest()->getParam('tracking', null);

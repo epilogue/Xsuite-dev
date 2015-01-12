@@ -49,6 +49,12 @@ $this->headScript()->appendFile('/js/controllers/xprice/afficher_masquer_details
                         <td><?php echo $result['prixwplace_demande_article'] . "€"; ?></td>
                         <td><?php echo $result['prix_demande_article'] . "€"; ?></td>
                         <td><?php echo $result['remise_demande_article'] . "%"; ?></td>
+                        <?php if($this->utilisateur =='5' or $this->utilisateur== '13'){ ?>
+                        <td><?php echo $result['prix_cif_demande_article'] . "€"; ?></td>
+                        <td><?php echo $result['prix_fob_demande_article'] . "€"; ?></td>
+                        <td><?php echo $result['prix_accorde_demande_article'] . "€"; ?></td>
+                        <td><?php echo $result['remise_accordee_demande_article'] . "%"; ?></td>
+                        <td><?php echo $result['marge_demande_article'] . "%"; ?></td><?php } else {}?>
                     </tr>
                 <?php } ?>
             </table>
