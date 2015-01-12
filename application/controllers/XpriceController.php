@@ -1339,7 +1339,8 @@ class XpriceController extends Zend_Controller_Action {
 //  echo '<pre>',  var_export($datas),'</pre>';
 //            foreach ($datas as $ploptitude) {
 //                 echo '<pre>',  var_export($ploptitude),'</pre>';
-                $marge = array_combine($datas['code_article'],(1-($datas['prix_cif']/$datas['prixwplace'])));
+            $ploptitude=1-($datas['prix_cif']/$datas['prixwplace']);
+                $marge = array_combine($datas['code_article'],$ploptitude);
 //            }
             $margemin = false;
             echo '<pre>',  var_export($marge),'</pre>';exit();
