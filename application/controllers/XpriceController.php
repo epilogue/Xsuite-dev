@@ -1336,7 +1336,7 @@ class XpriceController extends Zend_Controller_Action {
             $commentId = $this->genererValidation($datasValidation);
 //            }
             $emailVars = Zend_Registry::get('emailVars');
- var_dump($formData); 
+  echo '<pre>',  var_export($formData),'</pre>';exit();
             foreach ($formData as $ploptitude) {
                 $marge = array_combine($ploptitude['code_article'],(1-($ploptitude['prix_cif_demande_article']/$ploptitude['prixwplace_demande_article'])));
             }
