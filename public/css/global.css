@@ -378,7 +378,7 @@ h3{
     font-style: italic;
     
 }
-.errorcontenu{
+.errorcontenu a:link,.errorcontenu a:visited,.errorcontenu a:hover{
     font-weight: bold;
     font-size: 20px;
     color: #2A60AA !important;
