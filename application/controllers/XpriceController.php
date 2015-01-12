@@ -1399,6 +1399,7 @@ class XpriceController extends Zend_Controller_Action {
 
     public function updateAction() {
         $user = $this->_auth->getStorage()->read();
+        echo '<pre>',  var_export($user),'</pre>';exit();
         $numwp = $this->getRequest()->getParam('numwp', null);
         $comId = $this->getRequest()->getParam('com', null);
         $this->view->commentId = $comId;
