@@ -14,7 +14,7 @@
 class Application_Model_DbTable_Xdistrib extends Zend_Db_Table_Abstract {
      protected $_name = 'demande_xdistrib';
     public static function makeTrackingNumber($zone, $nombre) {
-        $annee = 'S';
+        $annee = 'T';
         // @todo générer l'année
         // construction du nombre
         $baseNombre = "00000";

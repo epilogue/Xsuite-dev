@@ -27,7 +27,6 @@ class XdistribController extends Zend_Controller_Action
         if (!$this->odbc_conn2) {
             echo "pas d'accès à la base de données MVXCDTA";
         }
-       // $this->dsn3 = Zend_Registry::get("dsn3String");
         $this->odbc_conn3 = odbc_connect('Movex3', "EU65535", "CCS65535");
         if (!$this->odbc_conn3) {
             echo "pas d'accès à la base de données SMCCDTA";

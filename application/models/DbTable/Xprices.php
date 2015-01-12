@@ -49,7 +49,7 @@ class Application_Model_DbTable_Xprices extends Zend_Db_Table_Abstract {
     }
 
     public static function makeTrackingNumber($zone, $nombre) {
-        $annee = 'S';
+        $annee = 'T';
         // @todo générer l'année
         // construction du nombre
         $baseNombre = "00000";
