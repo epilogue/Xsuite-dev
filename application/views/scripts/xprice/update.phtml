@@ -34,6 +34,12 @@ $this->headScript()->appendFile('/js/controllers/xprice/afficher_masquer_details
                     <th>prix workplace</th>
                     <th>prix demandé</th>
                     <th>remise demandée</th>
+                    <?php if($this->utilisateur =='5' or $this->utilisateur== '13'){ ?>
+                    <th>Prix cif</th>
+                    <th>Prix fob</th>
+                    <th>Prix accordés</th>
+                    <th>Remises accordées</th>
+                    <th>Marge</th><?php } else {}?>
                 </tr>
                 <?php foreach ($this->info_demande_article_xprice as $result) { ?>
                     <tr>
