@@ -1341,7 +1341,7 @@ class XpriceController extends Zend_Controller_Action {
                 $marge = array_combine($ploptitude['code_article'],(1-($ploptitude['prix_cif_demande_article']/$ploptitude['prixwplace_demande_article'])));
             }
             $margemin = false;
-            echo '<pre>',  var_export($marge),'</pre>';
+            echo '<pre>',  var_export($marge),'</pre>';exit();
             foreach ($marge as $key => $value2) {
                 $margesmc = 100 - ((int) $value2);
                 if ($margesmc < 10 || $margesmc == 0) {
