@@ -381,8 +381,8 @@ h3{
 .errorcontenu{
     font-weight: bold;
     font-size: 20px;
-    color: #2A60AA;
-    text-align: center;
+    color: #2A60AA !important;
+    text-align: center !important;
     font-family: verdana;
 }
 
