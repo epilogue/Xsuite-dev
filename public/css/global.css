@@ -378,6 +378,13 @@ h3{
     font-style: italic;
     
 }
+.errorcontenu{
+    font-weight: bold;
+    font-size: 20px;
+    color: #2A60AA;
+    text-align: center;
+    font-family: verdana;
+}
 
 /*tableau du module user**/
 #tableIndex{
