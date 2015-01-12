@@ -1336,11 +1336,11 @@ class XpriceController extends Zend_Controller_Action {
             $commentId = $this->genererValidation($datasValidation);
 //            }
             $emailVars = Zend_Registry::get('emailVars');
-  echo '<pre>',  var_export($datas),'</pre>';
-            foreach ($datas as $ploptitude) {
-                 echo '<pre>',  var_export($ploptitude),'</pre>';
-                $marge = array_combine($ploptitude['code_article'],(1-($ploptitude['prix_cif']/$ploptitude['prixwplace'])));
-            }
+//  echo '<pre>',  var_export($datas),'</pre>';
+//            foreach ($datas as $ploptitude) {
+//                 echo '<pre>',  var_export($ploptitude),'</pre>';
+                $marge = array_combine($datas['code_article'],(1-($ploptitude['prix_cif']/$ploptitude['prixwplace'])));
+//            }
             $margemin = false;
             echo '<pre>',  var_export($marge),'</pre>';exit();
             foreach ($marge as $key => $value2) {
