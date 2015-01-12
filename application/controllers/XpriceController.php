@@ -1344,7 +1344,6 @@ class XpriceController extends Zend_Controller_Action {
             $margemin = false;
             foreach ($marges as $key => $value2) {
                 $margesmc = $value2;
-                var_dump($margesmc); exit();
                 if ($margesmc < 10 || $margesmc == 0) {
                     $margemin = true;
                 }
