@@ -10,7 +10,7 @@ class LoginController extends Zend_Controller_Action {
        
         $loginForm = new Application_Form_Login();
         $request = $this->getRequest();
-$url=$this->getRequest()->getRequestUri();
+        $url=$this->getRequest()->getRequestUri();
  //echo '<pre>',var_export($url),'</pre>';exit();
         if ($request->isPost()) {
             if ($loginForm->isValid($request->getPost())) {
@@ -20,7 +20,7 @@ $url=$this->getRequest()->getRequestUri();
                     $this->_helper->redirector('index', 'index');}
                     else{
                         $url2="'http://xsuite-test'.$url";
-        $this->redirect($url2);}
+        $this->_redirect( $url2);}
                 } // else message d'erreur de login mot de passe
             }
         }
