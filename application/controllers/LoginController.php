@@ -15,12 +15,13 @@ class LoginController extends Zend_Controller_Action {
         if ($request->isPost()) {
             if ($loginForm->isValid($request->getPost())) {
                 if ($this->_process($loginForm->getValues())) {
-                    if(is_null($url)){
-                   
-                    $this->_helper->redirector('index', 'index');}
+                    if(isset($url)and $url!="/login"){
+                    $this->_redirect( $url);
+                    }
                     else{
+                        $this->_helper->redirector('index', 'index');
                        
-        $this->_redirect( $url);}
+       }
                 } // else message d'erreur de login mot de passe
             }
         }
