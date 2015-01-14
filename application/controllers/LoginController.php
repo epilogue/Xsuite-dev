@@ -7,7 +7,7 @@ class LoginController extends Zend_Controller_Action {
     }
     
     public function indexAction() {
-       echo '<pre>', var_export($_POST),'</pre>';
+       echo '<pre>', var_export($this->request->referer()),'</pre>';
         $loginForm = new Application_Form_Login();
         $request = $this->getRequest();
 
