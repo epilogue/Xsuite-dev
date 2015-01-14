@@ -805,6 +805,36 @@ class XpriceController extends Zend_Controller_Action {
             $commentId = $this->genererValidation($datasValidation);
 
             $emailVars = Zend_Registry::get('emailVars');
+             /* $marges=  array_combine($datas['code_article'], $datas['marge']);
+//            foreach ($formData as $ploptitude) {
+//                $marge = array_combine($ploptitude['code_article'],( $ploptitude['remise_demande_article']));
+//            }
+            $margemin = false;
+            foreach ($marges as $key => $value2) {
+                $margesmc = $value2;
+                if ($margesmc < 10 || $margesmc == 0) {
+                    $margemin = true;
+                }
+            }
+            if ($margemin == true) {
+                $destinatairemail = $emailVars->listes->dirco;
+
+                if (!is_null($commentId)) {
+                    $url = "http://{$_SERVER['SERVER_NAME']}/xprice/validatedirco/numwp/{$numwp}/com/{$commentId}";
+                } else {
+                    $url = "http://{$_SERVER['SERVER_NAME']}/xprice/validatedirco/numwp/{$numwp}";
+                }
+                $corpsMail = "Bonjour,\n"
+                        . "\n"
+                        . "Vous avez une nouvelle demande XPrice à valider.\n"
+                        . "Veuillez vous rendre à l'adresse url : \n"
+                        . "%s"
+                        . "\n\n"
+                        . "Cordialement,\n"
+                        . "\n"
+                        . "--\n"
+                        . "Supply Chain Manager.";
+            }*/
             if (isset($datas['validation']) && $datas['validation'] == "validee") {
                 $params = array();
                 $params['destinataireMail'] = /*"mhuby@smc-france.fr"*/ $info_user['mail_user'] ;
@@ -1337,36 +1367,7 @@ class XpriceController extends Zend_Controller_Action {
 //            }
             $emailVars = Zend_Registry::get('emailVars');
 // var_dump($datas); exit();
-            $marges=  array_combine($datas['code_article'], $datas['marge']);
-//            foreach ($formData as $ploptitude) {
-//                $marge = array_combine($ploptitude['code_article'],( $ploptitude['remise_demande_article']));
-//            }
-            $margemin = false;
-            foreach ($marges as $key => $value2) {
-                $margesmc = $value2;
-                if ($margesmc < 10 || $margesmc == 0) {
-                    $margemin = true;
-                }
-            }
-            if ($margemin == true) {
-                $destinatairemail = $emailVars->listes->dirco;
-
-                if (!is_null($commentId)) {
-                    $url = "http://{$_SERVER['SERVER_NAME']}/xprice/validatedirco/numwp/{$numwp}/com/{$commentId}";
-                } else {
-                    $url = "http://{$_SERVER['SERVER_NAME']}/xprice/validatedirco/numwp/{$numwp}";
-                }
-                $corpsMail = "Bonjour,\n"
-                        . "\n"
-                        . "Vous avez une nouvelle demande XPrice à valider.\n"
-                        . "Veuillez vous rendre à l'adresse url : \n"
-                        . "%s"
-                        . "\n\n"
-                        . "Cordialement,\n"
-                        . "\n"
-                        . "--\n"
-                        . "Supply Chain Manager.";
-            } else {
+          /* else {*/
                 $destinatairemail = $emailVars->listes->dbd;
                 if (!is_null($commentId)) {
                     $url = "http://{$_SERVER['SERVER_NAME']}/xprice/validatedbd/numwp/{$numwp}/com/{$commentId}";
@@ -1383,7 +1384,7 @@ class XpriceController extends Zend_Controller_Action {
                         . "\n"
                         . "--\n"
                         . "Supply Chain Manager.";
-            }
+          /*}*/
             $emailVars = Zend_Registry::get('emailVars');
             $mail = new Xsuite_Mail();
             $mail->setSubject("TEST XPrice : Nouvelle demande de {$info_user['nom_user']} pour le client {$info_client['nom_client']} à valider.")
