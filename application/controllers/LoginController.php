@@ -20,7 +20,7 @@ $url=$this->getRequest()->getRequestUri();
                     $this->_helper->redirector('index', 'index');}
                     else{
                         $url2="'http://xsuite-test'.$url";
-        $this->redirect('$url2');}
+        $this->redirect($url2);}
                 } // else message d'erreur de login mot de passe
             }
         }
