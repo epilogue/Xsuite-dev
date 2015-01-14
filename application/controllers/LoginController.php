@@ -11,11 +11,11 @@ class LoginController extends Zend_Controller_Action {
         $loginForm = new Application_Form_Login();
         $request = $this->getRequest();
 $url=$this->getRequest()->getRequestUri();
-
+ echo '<pre>',var_export($url),'</pre>';exit();
         if ($request->isPost()) {
             if ($loginForm->isValid($request->getPost())) {
                 if ($this->_process($loginForm->getValues())) {
-                    echo '<pre>',var_export($url),'</pre>';
+                   
                     $this->_helper->redirector('index', 'index');
                 } // else message d'erreur de login mot de passe
             }
