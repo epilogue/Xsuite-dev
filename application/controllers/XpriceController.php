@@ -837,7 +837,9 @@ class XpriceController extends Zend_Controller_Action {
             }*/
             if (isset($datas['validation']) && $datas['validation'] == "validee") {
                 $params = array();
-                $params['destinataireMail'] = /*"mhuby@smc-france.fr"*/ $info_user['mail_user'] ;
+                
+                 if ($margemin == true){
+                  $params['destinataireMail'] = /*"mhuby@smc-france.fr"*/ $info_user['mail_user'] ;
                   $params1['destinataireMail'] = $emailVars->listes->dirco;
                 if (!is_null($commentId)) {
                     $params['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/consult/numwp/{$numwp}/com/{$commentId}";
@@ -871,7 +873,44 @@ class XpriceController extends Zend_Controller_Action {
                 
                 $this->sendEmail($params);
                 $this->sendEmail($params1);
-
+                 }
+                 else{/*envoi de mail au tc, au cdr, au leader, au cm et au service client.*/
+                    $params2['destinataireMail'] = /*"mhuby@smc-france.fr"*/ $info_user['mail_user'] ;
+                    $params3['destinataireMail'] = $emailVars->listes->serviceClient ;
+                     $params3['destinataireMail'] = $emailVars->listes->serviceClient ;
+                     if (!is_null($commentId)) {
+                    $params2['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/consult/numwp/{$numwp}/com/{$commentId}";
+                    $params3['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/consult/numwp/{$numwp}";
+                    } else {
+                    $params2['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/consult/numwp/{$numwp}";
+                    $params3['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/consult/numwp/{$numwp}";
+                    }
+                    $params2['corpsMail'] = "Bonjour,\n"
+                        . "\n"
+                        . "Votre demande XPrice $numwp a été validée par le Directeur Business Developpement .\n"
+                        . "Vous pouvez la consulter à cette adresse url : \n"
+                        . "%s"
+                        . "\n\n"
+                        . "Cordialement,\n"
+                        . "\n"
+                        . "--\n"
+                        . "dbd.";
+                    $params2['sujet'] = "TEST XPrice :demande $numwp pour {$info_client['nom_client']}validée par Directeur Business Developpement.";
+                    $params3['corpsMail'] = "Bonjour,\n"
+                        . "\n"
+                        . "la demande Xprice $numwp de {$info_user['nom_user']} pour le client {$info_client['nom_client']}a été validée par le dbd .\n"
+                        . "Vous pouvez la consulter à cette adresse url : \n"
+                        . "%s"
+                        . "\n\n"
+                        . "Cordialement,\n"
+                        . "\n"
+                        . "--\n"
+                        . "dbd.";
+                $params3['sujet'] = " TEST XPrice : la demande $numwp de {$info_user['nom_user']} pour le client {$info_client['nom_client']}a été validée .";
+                
+                $this->sendEmail($params2);
+                $this->sendEmail($params3);
+                 }
                 $flashMessenger = $this->_helper->getHelper('FlashMessenger');
                 $message = "l'offre $numwp  pour le client {$info_client['nom_client']}a bien été validée.";
                 $flashMessenger->addMessage($message);
