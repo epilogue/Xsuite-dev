@@ -19,8 +19,8 @@ class LoginController extends Zend_Controller_Action {
                    
                     $this->_helper->redirector('index', 'index');}
                     else{
-                        $url2="'http://xsuite-test'.$url";
-        $this->_redirect( $url2);}
+                       
+        $this->_redirect( $url);}
                 } // else message d'erreur de login mot de passe
             }
         }
