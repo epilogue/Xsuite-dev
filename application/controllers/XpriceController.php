@@ -845,6 +845,12 @@ class XpriceController extends Zend_Controller_Action {
             }*/
             if (isset($datas['validation']) && $datas['validation'] == "validee") {
                 $params = array();
+                $params1 = array();
+                $params2 = array();
+                $params3 = array();
+                $params4 = array();
+                $params5 = array();
+                $params6 = array();
                 
                  if ($margemin == true){
                   $params['destinataireMail'] = /*"mhuby@smc-france.fr"*/ $info_user['mail_user'] ;
@@ -1007,10 +1013,41 @@ class XpriceController extends Zend_Controller_Action {
                                 . "\n"
                                 . "--\n"
                                 . "Xsuite";
-                        $params5['sujet']="TEST XPrice :  Offre $numwp  de {$user_info['nom_user']} pour {$info_client['nom_client']} validée par le DBD";
+                        $params5['sujet']="TEST XPrice :Offre $numwp de {$user_info['nom_user']} pour {$info_client['nom_client']} validée par le DBD";
                       $this->sendEmail($params5); 
                     }
-                //envoi au cm
+                switch ($destIndustry) {
+                    case ($destIndustry > 0 && $destIndustry < 77 ):
+                        $destinataireMail2 = $emailVars->listes->carindustries1;
+                        break;
+                    case ($destIndustry > 76 && $destIndustry < 138 ):
+                        $destinataireMail2 = $emailVars->listes->lifeandscience;
+                        break;
+                    case ($destIndustry > 137 && $destIndustry < 272 ):
+                        $destinataireMail2 = $emailVars->listes->electronique;
+                        break;
+                    case ($destIndustry > 271 && $destIndustry < 314 ):
+                        $destinataireMail2 = $emailVars->listes->foodindustries;
+                        break;
+                    case ($destIndustry > 313 && $destIndustry <= 415 ):
+                        $destinataireMail2 = $emailVars->listes->environnementenergie;
+                        break;
+                }
+                $params6['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/consult/numwp/{$numwp}";
+                $params6['corpsMail'] = "Bonjour,\n"
+                        . "\n"
+                        . "la demande XPrice $numwp de {$info_user['nom_user']} pour le client {$info_client['nom_client']} a été validée par le DBD.\n"
+                        . "Pour consulter la demande veuillez vous rendre à l'adresse url : \n"
+                        . "%s"
+                        . "\n\n"
+                        . "Cordialement,\n"
+                        . "\n"
+                        . "--\n"
+                        . "Xprice";
+                $params6['destinataireMail'] = $destinataireMail2;
+                $params6['sujet'] = "TEST XPrice : La demande $numwp de {$info_user['nom_user']} pour le client {$info_client['nom_client']}a été validée par le DBD.";
+                $this->sendEmail($params6);
+                    
                 
                  }
                 $flashMessenger = $this->_helper->getHelper('FlashMessenger');
@@ -1093,6 +1130,15 @@ class XpriceController extends Zend_Controller_Action {
         $this->view->dateplop = $dateplop;
         $infos_user = new Application_Model_DbTable_Users();
         $info_user = $infos_user->getUserDemande($info_demande_xprice['id_user']);
+        $id_holon=$info_user['id_holon'];
+        $holonuser = new Application_Model_DbTable_Holons();
+        $holonuser1 = $holonuser->getHolon($id_holon);
+        $nom_holon = $holonuser1['nom_holon'];
+        $this->view->holon = $nom_holon;
+        $trackingNumber=$info_demande_xprice['tracking_number_demande_xprice'];
+        $zonetracking = substr($trackingNumber, 6, 2);
+        $fonctioncreateur = $info_user['id_fonction'];
+        
 
         /*
          * chargement des validations avec leurs commentaires
@@ -1117,6 +1163,7 @@ class XpriceController extends Zend_Controller_Action {
         $this->view->info_client = $info_client;
         $noms_industrie = new Application_Model_DbTable_Industry();
         $nom_industrie = $noms_industrie->getIndustry($info_client['id_industry']);
+        $destIndustry = $info_client['id_industry'];
         $this->view->nom_industrie = $nom_industrie;
         $infos_validation = new Application_Model_DbTable_Validationsxprice();
         $info_validation = $infos_validation->getAllValidation($info_demande_xprice['tracking_number_demande_xprice']);
