@@ -1210,6 +1210,11 @@ class XpriceController extends Zend_Controller_Action {
 
             $emailVars = Zend_Registry::get('emailVars');
             $params = array();
+            $params1 =array();
+            $params2 = array();
+            $params3=  array();
+            $params4=  array();
+            $params5 = array();
             if (isset($formData['validation']) && $formData['validation'] == "validee") {
                 $params['destinataireMail'] = /*mhuby@smc-france.fr*/$info_user['mail_user'];
                 $params['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/consult/numwp/{$numwp}";
@@ -1225,11 +1230,11 @@ class XpriceController extends Zend_Controller_Action {
                         . "Directeur Commercial.";
                 $params['sujet'] = "TEST XPrice :demande $numwp pour le client {$info_client['nom_client']} validée par Directeur Commercial.";
                 $this->sendEmail($params);
-                $params1['destinataireMail'] =$emailVars->listes->serviceclient;
+                $params1['destinataireMail'] =$emailVars->listes->serviceClient;
                 $params1['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/consult/numwp/{$numwp}";
                 $params1['corpsMail'] = "Bonjour,\n"
                         . "\n"
-                        . "Votre demande XPrice pour le client {$info_client['nom_client']} a été validée par le Directeur Commercial .\n"
+                        . "la demande XPrice pour le client {$info_client['nom_client']} a été validée par le Directeur Commercial .\n"
                         . "Vous pouvez la consulter à cette adresse url : \n"
                         . "%s"
                         . "\n\n"
@@ -1239,7 +1244,143 @@ class XpriceController extends Zend_Controller_Action {
                         . "Directeur Commercial.";
                 $params1['sujet'] = " TEST XPrice :demande $numwp pour le client {$info_client['nom_client']} validée par Directeur Commercial.";
                 $this->sendEmail($params1);
+//envoi mail leader
+                if ($fonctioncreateur == "1") {
+                        switch ($id_holon) {
+                            case "5":
+                                $params2['destinataireMail'] = $emailVars->listes->leaderis01;
+                                break;
+                            case "6":
+                                $params2['destinataireMail'] = $emailVars->listes->leaderis03;
+                                break;
+                            case "8":
+                                $params2['destinataireMail'] = $emailVars->listes->leaderiw01;
+                                break;
+                            case "9":
+                                $params2['destinataireMail'] = $emailVars->listes->leaderiw02;
+                                break;
+                            case "10":
+                                $params2['destinataireMail'] = $emailVars->listes->leaderiw03;
+                                break;
+                            case "11":
+                                $params2['destinataireMail'] = $emailVars->listes->leaderis02;
+                                break;
+                            case "14":
+                                $params2['destinataireMail'] = $emailVars->listes->leaderiw04;
+                                break;
+                            case "18":
+                                $params2['destinataireMail'] = $emailVars->listes->leaderin01;
+                                break;
+                            case "19":
+                                $params2['destinataireMail'] = $emailVars->listes->leaderin02;
+                                break;
+                            case "20":
+                                $params2['destinataireMail'] = $emailVars->listes->leaderin03;
+                                break;
+                        }
+                         $params2['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/consult/numwp/{$numwp}";
 
+                         $params2['corpsMail'] = "Bonjour,\n"
+                                . "\n"
+                                . "la demande Xprice $numwp de {$info_user['nom_user']} pour le client {$info_client['nom_client']} a été validée par le Dirco.\n"
+                                . "Pour consulter la demande veuillez vous rendre à l'adresse url : \n"
+                                . "%s"
+                                . "\n\n"
+                                . "Cordialement,\n"
+                                . "\n"
+                                . "--\n"
+                                . "Xsuite";
+                        $params2['sujet']="TEST XPrice :  Offre $numwp  de {$user_info['nom_user']} pour {$info_client['nom_client']} validée par le Dirco";
+                      $this->sendEmail($params2);           
+                    }
+                    //envoi au cdr
+                if ($fonctioncreateur == "1" or $fonctioncreateur == "2" or $fonctioncreateur == "3") {
+                        switch ($zonetracking) {
+                            case "QA":
+                               $params3['destinataireMail'] = $emailVars->listes->qa;
+                                break;
+                            case "QC":
+                                $params3['destinataireMail'] = $emailVars->listes->cdrnord;
+                                break;
+                            case "QF":
+                                $params3['destinataireMail'] = $emailVars->listes->cdrnord;
+                                break;
+                            case "QE":
+                                $params3['destinataireMail'] = $emailVars->listes->cdrest;
+                                break;
+                            case "QH":
+                                $params3['destinataireMail'] = $emailVars->listes->cdrest;
+                                break;
+                            case "QF":
+                                $params3['destinataireMail'] = $emailVars->listes->cdrnord;
+                                break;
+                            case "QI":
+                                $params3['destinataireMail'] = $emailVars->listes->cdrouest;
+                                break;
+                            case "QK":
+                                $params3['destinataireMail'] = $emailVars->listes->cdrouest;
+                                break;
+                        }
+                        $params3['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/consult/numwp/{$numwp}";
+
+                        $params3['corpsMail'] = "Bonjour,\n"
+                                . "\n"
+                                . "la demande Xprice $numwp de {$info_user['nom_user']} pour le client {$info_client['nom_client']} a été validée par le Dirco.\n"
+                                . "Pour consulter la demande veuillez vous rendre à l'adresse url : \n"
+                                . "%s"
+                                . "\n\n"
+                                . "Cordialement,\n"
+                                . "\n"
+                                . "--\n"
+                                . "Xsuite";
+                        $params3['sujet']="TEST XPrice :Offre $numwp de {$user_info['nom_user']} pour {$info_client['nom_client']} validée par le Dirco";
+                      $this->sendEmail($params3); 
+                    }
+                    switch ($destIndustry) {
+                    case ($destIndustry > 0 && $destIndustry < 77 ):
+                        $destinataireMail2 = $emailVars->listes->carindustries1;
+                        break;
+                    case ($destIndustry > 76 && $destIndustry < 138 ):
+                        $destinataireMail2 = $emailVars->listes->lifeandscience;
+                        break;
+                    case ($destIndustry > 137 && $destIndustry < 272 ):
+                        $destinataireMail2 = $emailVars->listes->electronique;
+                        break;
+                    case ($destIndustry > 271 && $destIndustry < 314 ):
+                        $destinataireMail2 = $emailVars->listes->foodindustries;
+                        break;
+                    case ($destIndustry > 313 && $destIndustry <= 415 ):
+                        $destinataireMail2 = $emailVars->listes->environnementenergie;
+                        break;
+                }
+                $params4['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/consult/numwp/{$numwp}";
+                $params4['corpsMail'] = "Bonjour,\n"
+                        . "\n"
+                        . "la demande XPrice $numwp de {$info_user['nom_user']} pour le client {$info_client['nom_client']} a été validée par le Dirco.\n"
+                        . "Pour consulter la demande veuillez vous rendre à l'adresse url : \n"
+                        . "%s"
+                        . "\n\n"
+                        . "Cordialement,\n"
+                        . "\n"
+                        . "--\n"
+                        . "Xprice";
+                $params4['destinataireMail'] = $destinataireMail2;
+                $params4['sujet'] = "TEST XPrice : La demande $numwp de {$info_user['nom_user']} pour le client {$info_client['nom_client']}a été validée par le Dirco.";
+                $this->sendEmail($params4);
+                 $params5['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/consult/numwp/{$numwp}";
+                $params5['corpsMail'] = "Bonjour,\n"
+                        . "\n"
+                        . "la demande XPrice $numwp de {$info_user['nom_user']} pour le client {$info_client['nom_client']} a été validée par le Dirco.\n"
+                        . "Pour consulter la demande veuillez vous rendre à l'adresse url : \n"
+                        . "%s"
+                        . "\n\n"
+                        . "Cordialement,\n"
+                        . "\n"
+                        . "--\n"
+                        . "Xprice";
+                $params5['destinataireMail'] = $emailVars->listes->dbd;
+                $params5['sujet'] = "TEST XPrice : La demande $numwp de {$info_user['nom_user']} pour le client {$info_client['nom_client']}a été validée par le Dirco.";
+                $this->sendEmail($params5);
                 $flashMessenger = $this->_helper->getHelper('FlashMessenger');
                 $message = "l'offre $numwp pour le client{$info_client['nom_client']} a bien été validée.";
                 $flashMessenger->addMessage($message);
@@ -1292,7 +1433,20 @@ class XpriceController extends Zend_Controller_Action {
                         . "Directeur Commercial.";
                 $params['sujet'] = "TEST XPrice :demande$numwp pour le client{$info_client['nom_client']}non validée par Le Directeur Commercial.";
                 $this->sendEmail($params);
-
+                $params5['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/consult/numwp/{$numwp}";
+                $params5['corpsMail'] = "Bonjour,\n"
+                        . "\n"
+                        . "la demande XPrice $numwp de {$info_user['nom_user']} pour le client {$info_client['nom_client']} a été refusée par le Dirco.\n"
+                        . "Pour consulter la demande veuillez vous rendre à l'adresse url : \n"
+                        . "%s"
+                        . "\n\n"
+                        . "Cordialement,\n"
+                        . "\n"
+                        . "--\n"
+                        . "Xprice";
+                $params5['destinataireMail'] = $emailVars->listes->dbd;
+                $params5['sujet'] = "TEST XPrice : La demande $numwp de {$info_user['nom_user']} pour le client {$info_client['nom_client']}a été refusée par le Dirco.";
+                $this->sendEmail($params5);
                 $flashMessenger = $this->_helper->getHelper('FlashMessenger');
                 $message = "l'offre $numwp pour le client {$info_client['nom_client']} n'a pas été validée.";
                 $flashMessenger->addMessage($message);
