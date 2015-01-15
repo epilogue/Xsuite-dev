@@ -564,7 +564,7 @@ class XpriceController extends Zend_Controller_Action {
             $emailVars = Zend_Registry::get('emailVars');
             if (isset($formData['validation']) && $formData['validation'] == "validee") {
                 $params1 = array();
-                $params1['destinataireMail'] = "mhuby@smc-france.fr"/*$info_user['mail_user']*/ ;
+                $params1['destinataireMail'] = /*mhuby@smc-france.fr*/$info_user['mail_user'] ;
                 $params1['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/consult/numwp/{$numwp}";
                 $params1['corpsMail'] = "Bonjour,\n"
                         . "\n"
@@ -576,7 +576,7 @@ class XpriceController extends Zend_Controller_Action {
                         . "\n"
                         . "--\n"
                         . "Prix fobfr.";
-                $params1['sujet'] = "TEST XPrice :demande {$info_demande_xprice['tracking_number']} pour le client {$info_client['nom_client']} validée par votre chef de région.";
+                $params1['sujet'] = "TEST XPrice :la demande $numwp pour le client {$info_client['nom_client']} validée par votre chef de région.";
                 $this->sendEmail($params1);
                 /*
                  * on recherche le chef de marche correspondant auquel la demande s'adresse
@@ -648,7 +648,7 @@ class XpriceController extends Zend_Controller_Action {
              * alors envoi mail tc et insertion dans la table validation
              */ elseif (isset($formData['validation']) && $formData['validation'] == "nonValide") {
                 $params1 = array();
-                $params1['destinataireMail'] = "mhuby@smc-france.fr"/*$info_user['mail_user']*/ ;
+                $params1['destinataireMail'] = /*mhuby@smc-france.fr*/$info_user['mail_user'] ;
                 $params1['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/consult/numwp/{$numwp}";
                 $params1['corpsMail'] = "Bonjour,\n"
                         . "\n"
@@ -681,7 +681,7 @@ class XpriceController extends Zend_Controller_Action {
                 $lasthisto = $lastidhisto->getHistorique($formData['tracking'], $lastidvalid[0]['id_validation']);
 
                 $params1 = array();
-                $params1['destinataireMail'] = "mhuby@smc-france.fr"/*$info_user['mail_user'] */;
+                $params1['destinataireMail'] = /*mhuby@smc-france.fr*/$info_user['mail_user'];
 //                $params1['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/update/numwp/{$numwp}/histo/{$lasthisto[0]['id_histo_commentaire']}";
                 if (!is_null($commentId)) {
                     $params1['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/update/numwp/{$numwp}/com/{$commentId}";
@@ -853,7 +853,7 @@ class XpriceController extends Zend_Controller_Action {
                 $params6 = array();
                 
                  if ($margemin == true){
-                  $params['destinataireMail'] = "mhuby@smc-france.fr"/* $info_user['mail_user']*/ ;
+                  $params['destinataireMail'] = /*mhuby@smc-france.fr*/$info_user['mail_user'] ;
                   $params1['destinataireMail'] = $emailVars->listes->dirco;
                 if (!is_null($commentId)) {
                     $params['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/consult/numwp/{$numwp}/com/{$commentId}";
@@ -889,7 +889,7 @@ class XpriceController extends Zend_Controller_Action {
                 $this->sendEmail($params1);
                  }
                  else{/*envoi de mail au tc, au cdr, au leader, au cm et au service client.*/
-                    $params2['destinataireMail'] = "mhuby@smc-france.fr"/*$info_user['mail_user'] */;
+                    $params2['destinataireMail'] = /*mhuby@smc-france.fr*/$info_user['mail_user'];
                     $params3['destinataireMail'] = $emailVars->listes->serviceClient ;
                     //$params3['destinataireMail'] = $emailVars->listes->serviceClient ;
                      if (!is_null($commentId)) {
@@ -1057,7 +1057,7 @@ class XpriceController extends Zend_Controller_Action {
                 $redirector->gotoSimple('index', 'xprice');
             } elseif (isset($datas['validation']) && $datas['validation'] == 'enAttente') {
                 $params = array();
-                $params['destinataireMail'] = "mhuby@smc-france.fr" /*$info_user['mail_user']*/;
+                $params['destinataireMail'] = /*mhuby@smc-france.fr*/ $info_user['mail_user'];
                 if (!is_null($commentId)) {
                     $params['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/update/numwp/{$numwp}/com/{$commentId}";
                 } else {
@@ -1083,7 +1083,7 @@ class XpriceController extends Zend_Controller_Action {
                 $redirector->gotoSimple('index', 'xprice');
             } elseif (isset($datas['validation']) && $datas['validation'] == 'nonValide') {
                 $params = array();
-                $params['destinataireMail'] = "mhuby@smc-france.fr"/*$info_user['mail_user'] */;
+                $params['destinataireMail'] = /*mhuby@smc-france.fr*/$info_user['mail_user'];
                 if (!is_null($commentId)) {
                     $params['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/consult/numwp/{$numwp}/com/{$commentId}";
                 } else {
@@ -1211,7 +1211,7 @@ class XpriceController extends Zend_Controller_Action {
             $emailVars = Zend_Registry::get('emailVars');
             $params = array();
             if (isset($formData['validation']) && $formData['validation'] == "validee") {
-                $params['destinataireMail'] = "mhuby@smc-france.fr"/*$info_user['mail_user'] */;
+                $params['destinataireMail'] = /*mhuby@smc-france.fr*/$info_user['mail_user'];
                 $params['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/consult/numwp/{$numwp}";
                 $params['corpsMail'] = "Bonjour,\n"
                         . "\n"
@@ -1248,7 +1248,7 @@ class XpriceController extends Zend_Controller_Action {
                 
             } elseif (isset($formData['validation']) && $formData['validation'] == 'enAttente') {
                 $emailVars = Zend_Registry::get('emailVars');
-                $params['destinataireMail'] ="mhuby@smc-france.fr"/*$info_user['mail_user']*/ ;
+                $params['destinataireMail'] =/*mhuby@smc-france.fr*/$info_user['mail_user'] ;
                 if (!is_null($commentId)) {
                     $params['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/update/numwp/{$numwp}/com/{$commentId}";
                 } else {
@@ -1274,7 +1274,7 @@ class XpriceController extends Zend_Controller_Action {
                 $redirector->gotoSimple('index', 'xprice');
             } elseif (isset($formData['validation']) && $formData['validation'] == 'nonValide') {
                 $emailVars = Zend_Registry::get('emailVars');
-                $params['destinataireMail'] = "mhuby@smc-france.fr"/* $info_user['mail_user']*/ ;
+                $params['destinataireMail'] = /*mhuby@smc-france.fr*/$info_user['mail_user'] ;
                 if (!is_null($commentId)) {
                     $params['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/consult/numwp/{$numwp}/com/{$commentId}";
                 } else {
@@ -1665,7 +1665,7 @@ class XpriceController extends Zend_Controller_Action {
             );
             $idF = $destReponse['id_fonction'];
             $params1 = array();
-            $params1['destinataireMail'] ="mhuby@smc-france.fr"/* $destReponse->email_user */;
+            $params1['destinataireMail'] =/*mhuby@smc-france.fr*/ $destReponse->email_user;
 //                $params1['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/update/numwp/{$numwp}/histo/{$lasthisto[0]['id_histo_commentaire']}";
             if (!is_null($commentId)) {
                 $params1['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/validate{$fonctions[$idF]}/numwp/{$numwp}/com/{$commentId}";
