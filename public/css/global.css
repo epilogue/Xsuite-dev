@@ -179,6 +179,11 @@ background-color: #729EBF;
 background-image: -webkit-linear-gradient(top, #2A60AA 33%,#5082B4 66%);
 background-image:linear-gradient(to bottom, #2A60AA 33%, #5082B4 66%);
 }
+#menu_haut li:nth-child(8){
+background-color: #729EBF;
+background-image: -webkit-linear-gradient(top, #2A60AA 33%,#5082B4 66%);
+background-image:linear-gradient(to bottom, #2A60AA 33%, #5082B4 66%);
+}
 #menu_haut li:last-child{
 background-color: #729EBF;
 background-image: -webkit-linear-gradient(top, #2A60AA 33%,#5082B4 66%);
