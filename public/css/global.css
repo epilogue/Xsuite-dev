@@ -78,13 +78,13 @@ body{
 }
 
 #menu{
-    width: 900px;
+    width: 990px;
     height: 35px;
     background-color:transparent;
     margin-top: 20px;
     border-bottom-right-radius:15px;
     border-top-left-radius:15px;
-    margin-left: 62px;
+    margin-left: 22px;
     
 }
 #menu_haut,#menu_haut ul{
@@ -179,11 +179,11 @@ background-color: #729EBF;
 background-image: -webkit-linear-gradient(top, #2A60AA 33%,#5082B4 66%);
 background-image:linear-gradient(to bottom, #2A60AA 33%, #5082B4 66%);
 }
-/*#menu_haut li:nth-child(8){
+#menu_haut li:nth-child(8){
 background-color: #729EBF;
 background-image: -webkit-linear-gradient(top, #2A60AA 33%,#5082B4 66%);
 background-image:linear-gradient(to bottom, #2A60AA 33%, #5082B4 66%);
-}*/
+}
 #menu_haut li:last-child{
 background-color: #729EBF;
 background-image: -webkit-linear-gradient(top, #2A60AA 33%,#5082B4 66%);
