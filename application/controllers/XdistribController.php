@@ -75,7 +75,109 @@ public function createAction()
             $zone = $zoneT->getZone($user->id_zone);
             $Xdistribs = new Application_Model_DbTable_Xdistrib();
             $trackingNumber = Application_Model_DbTable_Xdistrib::makeTrackingNumber($zone['nom_zone'], $Xdistribs->lastId(true));
-            $this->view->trackingNumber = $trackingNumber;}
+            $this->view->trackingNumber = $trackingNumber;
+            $query1 = "SELECT OOLINE.OBSMCD  as userwp FROM EIT.CVXCDTA.OOLINE OOLINE WHERE OOLINE.OBORNO='{$numwp}'";
+            $numwp_user = odbc_fetch_array(odbc_exec($this->odbc_conn, $query1));
+            $usertest = new Application_Model_DbTable_Users();
+            $user_info = $usertest->getMovexUser($numwp_user['USERWP']);
+            $this->view->user_info = $user_info;
+            $id_holon = $user_info['id_holon'];
+            $holonuser = new Application_Model_DbTable_Holons();
+            $holonuser1 = $holonuser->getHolon($id_holon);
+            $nom_holon = $holonuser1['nom_holon'];
+            $this->view->holon = $nom_holon;
+            $fonctioncreateur = $user_info['id_fonction'];
+            $zonetracking = substr($trackingNumber, 6, 2);
+            $query2 = "select OOLINE.OBORNO,OOLINE.OBCUNO,OOLINE.OBITNO,OOLINE.OBITDS,OOLINE.OBORQT,OOLINE.OBLNA2,OOLINE.OBNEPR,OOLINE.OBSAPR,OOLINE.OBELNO,OOLINE.OBRGDT,
+                    OOLINE.OBLMDT,
+                    OOLINE.OBSMCD
+                    from EIT.CVXCDTA.OOLINE OOLINE WHERE OOLINE.OBORNO='{$numwp}' AND OOLINE.OBDIVI LIKE 'FR0' AND OOLINE.OBCONO=100";
+            $resultats = odbc_exec($this->odbc_conn, $query2);
+
+            while ($resultat[] = odbc_fetch_array($resultats)) {
+                    $this->view->resultat = $resultat;
+                }
+            foreach ($this->view->resultat as $itnoarticle) {
+                    $mmcono = "100";
+                    $division = "FR0";
+                    $facility = "I01";
+                    $type = "3";
+                    $warehouse = "I02";
+                    $supplier = "I990001";
+                    $agreement1 = "I000001";
+                    $agreement2 = "I000002";
+                    $agreement3 = "I000003";
+                    $query3 = "select * from EIT.MVXCDTA.MPAGRP MPAGRP where MPAGRP.AJCONO = '$mmcono' AND MPAGRP.AJSUNO = '$supplier' AND (MPAGRP.AJAGNB = '$agreement3'  OR MPAGRP.AJAGNB = '$agreement2' OR MPAGRP.AJAGNB = '$agreement1') AND MPAGRP.AJOBV2 = '{$itnoarticle['OBITNO']}' AND MPAGRP.AJOBV1 = '$division'  ORDER BY MPAGRP.AJAGNB";
+                    $resultats3 = odbc_Exec($this->odbc_conn2, $query3);
+                    $prixciffob[] = odbc_fetch_object($resultats3);
+                }
+            $this->view->prixciffob = $prixciffob;
+             /*
+             * à partir du code distributeur de la table ooline on va chercher dans la table ocusma
+             * les informations concernant le distributeur pour pouvoir les afficher dans la vue phtml
+             */
+            $query1bis = "select * from EIT.MVXCDTA.OCUSMA OCUSMA where OCUSMA.OKCUNO = '{$resultat[0]['OBCUNO']}'";
+            $infos_distributeur = odbc_fetch_array(odbc_exec($this->odbc_conn2, $query1bis));
+            $this->view->infos_distributeur = $infos_distributeur;
+            $query1ter = "select OOHEAD.OACHL1 from EIT.MVXCDTA.OOHEAD OOHEAD where OOHEAD.OACUNO = '{$resultat[0]['OBCUNO']}'";
+            $numdistributeurwp = odbc_fetch_array(odbc_exec($this->odbc_conn2, $query1ter));
+            $this->view->numdistributeurwp = $numdistributeurwp['OACHL1'];
+            $query1quart = "select ZMCPJO.Z2MCL1  from EIT.SMCCDTA.ZMCPJO  ZMCPJO where ZMCPJO.Z2CUNO= '{$resultat[0]['OBCUNO']}' ";
+            $industriewp = odbc_fetch_array(odbc_exec($this->odbc_conn3, $query1quart));
+            $this->view->industriewp = $industriewp;
+            $industriewp['Z2MCL1'] = trim($industriewp['Z2MCL1']);
+            if ($industriewp['Z2MCL1'] == "" || $industriewp['Z2MCL1'] == " ") {
+                    $industriewp['Z2MCL1'] = "SCI";
+                }
+            /*
+             * information concernant  le projet industry auquel appartient le distributeur
+             *    donc à partir du code movex industry on va chercher dans la base xsuite
+             *  le nom de l'industrie auquel le distributeur appartient pour ensuite l'afficher dans la vue
+             */
+
+            if (isset($industriewp['Z2MCL1']) && $industriewp['Z2MCL1'] != '' && $industriewp['Z2MCL1'] != ' ' && $industriewp['Z2MCL1'] != '  ') {
+                    $industry = new Application_Model_DbTable_Industry();
+                    $info_industry = $industry->getMovexIndustry($industriewp['Z2MCL1']);
+                    $this->view->info_industry = $info_industry;
+                } else {
+                    $plop10 = "SCI";
+                    $industry = new Application_Model_DbTable_Industry();
+                    $info_industry = $industry->getMovexIndustry($plop10);
+                    $this->view->info_industry = $info_industry;
+                }
+             $form = new Application_Form_CreationDemande();
+            if ($this->getRequest()->isPost()) {
+                    $formData = $this->getRequest()->getPost();
+                    if ($form->isValid($formData)) {
+                        $emailVars = Zend_Registry::get('emailVars');
+                        //alors si le distributeur n'existe pas ' on insert d'abord dans la table distributeur
+                        $distributeurs = new Application_Model_DbTable_Distributeurs();
+                        $distributeur = $distributeurs->getDistributeurnumwp($numdistributeurwp['OACHL1']);
+
+                        $adresse_distributeur = $infos_distributeur['OKCUA1'] . $infos_distributeur['OKCUA2'] . $infos_distributeur['OKCUA3'] . $infos_distributeur['OKCUA4'];
+
+                        if (is_null($distributeur)) {
+                            $newdistributeur = $distributeurs->createDistributeur($infos_distributeur['OKCUNM'], $numdistributeurwp['OACHL1'], $adresse_distributeur, $info_industry['id_industry'], $infos_distributeur['OKCFC7']);
+                        }
+                        // et ensuite  on insert dans la table demande_xdistribs
+                        //si le distributeur existe  alors on insert immédiatement dans la table demande_xdistribs
+
+                        $numwpexist = $demandes_xdistrib->getNumwp($numwp);
+                        $firstComment = null;
+                        if (is_null($numwpexist)) {
+                            $demande_xdistrib = $demandes_xdistrib->createXdistrib(
+                            $numwp, $trackingNumber, $formData['commentaire_demande_article'], $infos_offres->OBRGDT, $formData['mini_demande_article'],$formData['concurrent_demande_article'],$formData['part_demande_article'],$formData['faible'], $user_info['id_user'], null, $numdistributeurwp['OACHL1']);
+                            $dbtValidationDemande = new Application_Model_DbTable_Validationsdemandexdistribs();
+                            if (!is_null($formData['commentaire_demande_article']) && trim($formData['commentaire_demande_article']) != "") {
+                                $now = new DateTime();
+                                $validationDemande = $dbtValidationDemande->createValidation(
+                                        "creation", $now->format('Y-m-d H:i:s'), "creation", $user_info['id_user'], $demande_xdistrib->lastId(), trim($formData['commentaire_demande_article']));
+                                $firstComment = $dbtValidationDemande->lastId();
+                            }
+                        }
+                    }
+                }
+            }
     }
     public function consultAction()
     {
