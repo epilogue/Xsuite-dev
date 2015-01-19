@@ -58,4 +58,14 @@ class Application_Model_DbTable_Xdistrib extends Zend_Db_Table_Abstract {
         $this->insert($data);
         return $this;
     }
+    
+    public function lastId($increase = false) {
+        $sql = $this->getAdapter()->query("select MAX(id_demande_xdistrib) AS lastId from demande_xdistrib;");
+        $res = $sql->fetchObject();
+        if ($increase) {
+            return $res->lastId + 1;
+        } else {
+            return $res->lastId;
+        }
+    }
 }
