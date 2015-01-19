@@ -8,7 +8,7 @@ class Zend_View_Helper_LoggedInAs extends Zend_View_Helper_Abstract
             $nom_user = $auth->getIdentity()->nom_user;
             $prenom_user =$auth->getIdentity()->prenom_user;
             $logoutUrl = $this->view->url(array('controller'=>'login', 'action'=>'logout'), null, true);
-            return 'Bienvenue ' . $prenom_user .' '.$nom_user.  '. <a href="'.$logoutUrl.'">Déconnexion</a>';
+            return 'Bienvenue ' . $prenom_user .' . <a href="'.$logoutUrl.'">Déconnexion</a>';
         } 
 
         $request = Zend_Controller_Front::getInstance()->getRequest();
