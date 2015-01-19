@@ -74,7 +74,7 @@ public function createAction()
             $zoneT = new Application_Model_DbTable_Zones();
             $zone = $zoneT->getZone($user->id_zone);
             $Xdistribs = new Application_Model_DbTable_Xdistrib();
-            $trackingNumber = Application_Model_DbTable_Xdistrib::makeTrackingNumber($zone['nom_zone'], $Xdistrib->lastId(true));
+            $trackingNumber = Application_Model_DbTable_Xdistrib::makeTrackingNumber($zone['nom_zone'], $Xdistribs->lastId(true));
             $this->view->trackingNumber = $trackingNumber;}
     }
     public function consultAction()
