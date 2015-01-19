@@ -4,4 +4,75 @@ $this->headTitle($this->title);
 ?>
 <div id="plop3" class="contenu">
     <h2>Création d'une offre Xprice-distrib</h2>
+    <div id="workplace" class="workplace">
+        <fieldset id="wp" class="field">
+            <legend>Informations offre</legend>
+            <table class="table_info">
+                <tr>
+                    <td>Numéro workplace de l'offre :</td>
+                    <td><?php echo $this->infos_offres->OBORNO; ?></td>
+                </tr>
+                <tr>
+                    <td>Date de l'offre workplace :</td>
+                    <td><?php echo  $this->datefinal; ?></td>
+                </tr>
+                <tr>
+                    <td>Tracking number :</td>
+                    <td><?php echo $this->trackingNumber; ?></td>
+                </tr>
+            </table>
+        </fieldset>
+    </div>
+    <div id="information" class="workplace">
+        <fieldset id="info_user" class="field_info_2">
+            <legend>Informations Commercial</legend>
+            <table>
+                <tr>
+                    <td>Nom:</td>
+                    <td><?php echo $this->user_info['nom_user'];?></td>
+                </tr>
+                <tr>
+                    <td>Prénom:</td>
+                    <td><?php echo $this->user_info['prenom_user'];?></td>
+                </tr>
+                <tr>
+                    <td>Email:</td>
+                    <td><?php echo $this->user_info['email_user'];?></td>
+                </tr>
+                <tr>
+                    <td>Téléphone:</td>
+                    <td><?php echo $this->user_info['tel_user'];?></td>
+                </tr>
+                <tr>
+                    <td>Holon:</td>
+                    <td><?php echo $this->holon; ?></td>
+                </tr>
+                <tr>
+                    <td>User workplace:</td>
+                    <td><?php echo $this->user_info['numwp_user'];?></td>
+                </tr>
+            </table>
+        </fieldset>
+        <fieldset id="info_client" class="field_info_2">
+            <legend>Informations Client</legend>
+            <table>
+                <tr>
+                    <td>Nom:</td>
+                    <td><?php echo $this->infos_client['OKCUNM'];?></td>
+                </tr>
+                <tr>
+                    <td>User Workplace:</td>
+                    <td><?php echo $this->numclientwp;?></td>
+                </tr>
+                <tr>
+                    <td>Projet industrie:</td>
+                    <td><?php echo $this->info_industry['nom_industry']?></td>
+                </tr>
+                <tr>
+                    <td>Potentiel:</td>
+                    <td><?php echo $this->infos_client['OKCFC7']; ?></td>
+                </tr>
+            </table>
+        </fieldset>
+    </div>
 </div>
