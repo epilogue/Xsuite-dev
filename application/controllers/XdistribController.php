@@ -40,7 +40,40 @@ class XdistribController extends Zend_Controller_Action
 
 public function createAction()
     {
-        // action body
+        $numwp = $this->getRequest()->getParam('numwp', null);
+        $demandes_xdistrib = new Application_Model_DbTable_Xdistrib();
+        $demande_xdistrib = $demandes_xdistrib->getNumwp($numwp);
+        if (!is_null($demande_xdistrib)) {
+            $redirector = $this->_helper->getHelper('Redirector');
+            $flashMessenger = $this->_helper->getHelper('FlashMessenger');
+            $message = "Cette offre a déjà été créée.";
+            $flashMessenger->addMessage($message);
+            $message = "Veuillez cliquer sur : <a href=\"/xprice/tracking\">'Xdistrib : Consulter'</a>.";
+            $flashMessenger->addMessage($message);
+            $redirector->gotoSimple('index', 'xdistrib');
+        }
+        $this->view->numwp = $numwp;
+//si le numero workplace est valide alors on fait la requête pour movex
+// requête d'informations de l'offre
+        if (!is_null($numwp)) {
+
+            $pirate = "select OOLINE.OBORNO, OOLINE.OBRGDT, OOLINE.OBORNO from EIT.CVXCDTA.OOLINE OOLINE where OOLINE.OBORNO='{$numwp}'";
+            $infos_offre = odbc_exec($this->odbc_conn, $pirate);
+            $infos_offres = odbc_fetch_object($infos_offre);
+            $this->view->infos_offres = $infos_offres;
+            $dateinit = $infos_offres->OBRGDT;
+            $dateinit3 = substr($dateinit, 0, 4);
+            $dateinit2 = substr($dateinit, 4, 2);
+            $dateinit1 = substr($dateinit, 6, 2);
+            $dateinitf = array($dateinit1, $dateinit2, $dateinit3);
+            $datefinal = implode('/', $dateinitf);
+            $this->view->datefinal = $datefinal;
+            $user = $this->_auth->getStorage()->read();
+            $zoneT = new Application_Model_DbTable_Zones();
+            $zone = $zoneT->getZone($user->id_zone);
+            $Xdistribs = new Application_Model_DbTable_Xdistrib();
+            $trackingNumber = Application_Model_DbTable_Xdistrib::makeTrackingNumber($zone['nom_zone'], $Xdistrib->lastId(true));
+            $this->view->trackingNumber = $trackingNumber;}
     }
     public function consultAction()
     {
@@ -78,7 +111,7 @@ public function createAction()
         
     }
     public function numwpAction(){
-         $numwp = $this->getRequest()->getParam('numwp', null);
+        $numwp = $this->getRequest()->getParam('numwp', null);
         $form = new Application_Form_NumwpDistrib();
         $mmcono = "100";
         $division = "FR0";
