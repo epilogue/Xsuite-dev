@@ -7,15 +7,17 @@ class XdistribController extends Zend_Controller_Action
     public $odbc_conn3 = null;
     public function init()
     {
-        $auth = Zend_Auth::getInstance();
-        $user = $auth->getIdentity();
-        if (is_null($user)) {
-            $this->_helper->redirector('index', 'login');
-        } else {
-            /* @todo commentaire franck
-             * Et donc, ici, on peut faire de l'acl de manière plus fine
-             */
-        }
+       // $auth = Zend_Auth::getInstance();
+        $this->_auth = Zend_Auth::getInstance();
+        $this->view->messages = $this->_helper->flashMessenger->getMessages();
+//        $user = $auth->getIdentity();
+//        if (is_null($user)) {
+//            $this->_helper->redirector('index', 'login');
+//        } else {
+//            /* @todo commentaire franck
+//             * Et donc, ici, on peut faire de l'acl de manière plus fine
+//             */
+//        }
         $this->view->messages = $this->_helper->flashMessenger->getMessages();
         $this->dsn = Zend_Registry::get("dsnString");
         $this->odbc_conn = odbc_connect('Movex', "EU65535", "CCS65535");
@@ -48,7 +50,7 @@ public function createAction()
             $flashMessenger = $this->_helper->getHelper('FlashMessenger');
             $message = "Cette offre a déjà été créée.";
             $flashMessenger->addMessage($message);
-            $message = "Veuillez cliquer sur : <a href=\"/xprice/tracking\">'Xdistrib : Consulter'</a>.";
+            $message = "Veuillez cliquer sur : <a href=\"/xdistrib/tracking\">'Xdistrib : Consulter'</a>.";
             $flashMessenger->addMessage($message);
             $redirector->gotoSimple('index', 'xdistrib');
         }
