@@ -53,7 +53,7 @@ class Application_Model_DbTable_Xdistrib extends Zend_Db_Table_Abstract {
             'id_user' => $id_user,
             'id_validation' => $id_validation,
             'numwp_client' => $numwp_client,
-            'numwp_distributeur' =>$numwp_distrib
+            'numwp_distributeur' =>$numwp_distributeur
         );
         $this->insert($data);
         return $this;
