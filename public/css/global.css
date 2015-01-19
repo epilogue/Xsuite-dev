@@ -250,7 +250,14 @@ background:#2A60AA;
     border: none;
     height:auto;
 }
-
+.workplace_2{
+    float:left;
+    width: 970px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: none;
+    height:auto;
+}
 /*les boutons */
 
 .submit{
@@ -449,7 +456,18 @@ h3{
     width: 200px;
 }
 
+#information2 table{
+    width: 315px;
+    height: 200px;
+}
 
+#information2 input{
+    width: 150px;
+}
+
+#information2 td{
+    width: 200px;
+}
 #fieldset-commentaires{
     width: 725px;
     float:left;
