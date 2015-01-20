@@ -223,7 +223,7 @@ background:#2A60AA;
 #menu_haut li:last-child li{
 background:#2A60AA;
 }
-
+/* fin menu*/
 
 /*les div*/
 .contenu{
@@ -346,6 +346,7 @@ fieldset legend{
     font-family: verdana;
     color:#2A60AA;
 }
+/*fin des fieldset*/
 /*tableaux*/
 .enum {
     border-style:solid;
@@ -406,7 +407,7 @@ h3{
     text-align: center;
     font-family: verdana;
 }
-
+/*fin des titres */
 .message{
     text-align: center;
     font-family: verdana;
@@ -469,10 +470,14 @@ h3{
     padding-bottom: 15px;
 }
 #num_offre_worplace,#tracking_number_demande_xdistrib,#tracking_number_demande_xprice{
-    padding-left:10px;
+    padding-left:15px;
 }
-
-
+/*fin formulaire*/
+/*
+*
+*
+*/
+/*tableau des fieldset information client commercial distributeur */
 #information table{
     width: 315px;
     height: 200px;
@@ -498,6 +503,8 @@ h3{
 #information2 td{
     width: 150px;
 }
+
+/* fin des tableaux*/
 #fieldset-commentaires{
     width: 725px;
     float:left;
