@@ -296,7 +296,7 @@ class XpriceController extends Zend_Controller_Action {
                     $emailVars = Zend_Registry::get('emailVars');
                     $fonctioncreateur = $user_info['id_fonction'];
                     $holoncreateur = $user_info['id_holon'];
-
+                    $clientsnom=trim($infos_client['OKCUNM']);
                     /*
                      * ici si itc envoie mail au leader en fonction du holon pour consultation
                      */
@@ -346,7 +346,7 @@ class XpriceController extends Zend_Controller_Action {
                                 . "--\n"
                                 . "Xsuite";
                         $mail2 = new Xsuite_Mail();
-                        $mail2->setSubject("TEST XPrice : Nouvelle Offre à consulter de {$user_info['nom_user']} pour {$infos_client['OKCUNM']}")
+                        $mail2->setSubject("TEST XPrice : Nouvelle Offre à consulter de {$user_info['nom_user']} pour $clientsnom")
                                 ->setBodyText(sprintf($corpsMail2, $url2))
                                 ->addTo($destinataireMail2)
                                 ->send();
@@ -398,7 +398,7 @@ class XpriceController extends Zend_Controller_Action {
                                 . "--\n"
                                 . "Xsuite";
                         $mail1 = new Xsuite_Mail();
-                        $mail1->setSubject("TEST XPrice : Nouvelle Offre à valider de {$user_info['nom_user']} pour {$infos_client['OKCUNM']}")
+                        $mail1->setSubject("TEST XPrice : Nouvelle Offre à valider de {$user_info['nom_user']} pour $clientsnom")
                                 ->setBodyText(sprintf($corpsMail1, $url1))
                                 ->addTo($destinataireMail1)
                                 ->send();
@@ -424,7 +424,7 @@ class XpriceController extends Zend_Controller_Action {
                                     . "--\n"
                                     . "Xsuite";
                             $mail3 = new Xsuite_Mail();
-                            $mail3->setSubject("TEST XPrice : Nouvelle Offre à valider de {$user_info['nom_user']} pour {$infos_client['OKCUNM']}")
+                            $mail3->setSubject("TEST XPrice : Nouvelle Offre à valider de {$user_info['nom_user']} pour $clientsnom")
                                     ->setBodyText(sprintf($corpsMail3, $url3))
                                     ->addTo($destinataireMail3)
                                     ->send();
@@ -532,7 +532,7 @@ class XpriceController extends Zend_Controller_Action {
         $infos_demande_article_xprice = new Application_Model_DbTable_DemandeArticlexprices();
         $info_demande_article_xprice = $infos_demande_article_xprice->getDemandeArticlexprice($numwp);
         $this->view->info_demande_article_xprice = $info_demande_article_xprice;
-
+        $nomclients = trim($info_client['nom_client']);
         if ($this->getRequest()->isPost()) {
             $date_validation = date("Y-m-d H:i:s");
             $this->view->date_validation = $date_validation;
@@ -576,7 +576,7 @@ class XpriceController extends Zend_Controller_Action {
                         . "\n"
                         . "--\n"
                         . "Prix fobfr.";
-                $params1['sujet'] = "TEST XPrice :la demande $numwp pour le client {$info_client['nom_client']} validée par votre chef de région.";
+                $params1['sujet'] = "TEST XPrice :la demande $numwp pour le client $nomclients validée par votre chef de région.";
                 $this->sendEmail($params1);
                 /*
                  * on recherche le chef de marche correspondant auquel la demande s'adresse
@@ -593,7 +593,7 @@ class XpriceController extends Zend_Controller_Action {
                 }
                 $params2['corpsMail'] = "Bonjour,\n"
                         . "\n"
-                        . "Vous avez une nouvelle demande XPrice à valider {$info_user['nom_user']} pour le client {$info_client['nom_client']}.\n"
+                        . "Vous avez une nouvelle demande XPrice à valider {$info_user['nom_user']} pour le client $nomclients.\n"
                         . "Veuillez vous rendre à l'adresse url : \n"
                         . "%s"
                         . "\n\n"
@@ -601,7 +601,7 @@ class XpriceController extends Zend_Controller_Action {
                         . "\n"
                         . "--\n"
                         . "Xprice";
-                $params2['sujet'] = "TEST XPrice : Nouvelle demande à valider de {$info_user['nom_user']} pour le client {$info_client['nom_client']}.";
+                $params2['sujet'] = "TEST XPrice : Nouvelle demande à valider de {$info_user['nom_user']} pour le client $nomclients.";
                 $this->sendEmail($params2);
 
                 switch ($destIndustry) {
@@ -625,7 +625,7 @@ class XpriceController extends Zend_Controller_Action {
                 $params3['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/consult/numwp/{$numwp}";
                 $params3['corpsMail'] = "Bonjour,\n"
                         . "\n"
-                        . "Vous avez une nouvelle demande XPrice à consulter de {$info_user['nom_user']} pour le client {$info_client['nom_client']}.\n"
+                        . "Vous avez une nouvelle demande XPrice à consulter de {$info_user['nom_user']} pour le client $nomclients.\n"
                         . "Veuillez vous rendre à l'adresse url : \n"
                         . "%s"
                         . "\n\n"
@@ -634,7 +634,7 @@ class XpriceController extends Zend_Controller_Action {
                         . "--\n"
                         . "Xprice";
                 $params3['destinataireMail'] = $destinataireMail2;
-                $params3['sujet'] = "TEST XPrice : Nouvelle demande à consulter de {$info_user['nom_user']} pour le client {$info_client['nom_client']}.";
+                $params3['sujet'] = "TEST XPrice : Nouvelle demande à consulter de {$info_user['nom_user']} pour le client $nomclients.";
                 $this->sendEmail($params3);
 
                 $flashMessenger = $this->_helper->getHelper('FlashMessenger');
@@ -652,7 +652,7 @@ class XpriceController extends Zend_Controller_Action {
                 $params1['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/consult/numwp/{$numwp}";
                 $params1['corpsMail'] = "Bonjour,\n"
                         . "\n"
-                        . "Votre demande XPrice a été refusée pour le client {$info_client['nom_client']} par .\n"
+                        . "Votre demande XPrice a été refusée pour le client $nomclients par .\n"
                         . "%s"
                         . "\n\n"
                         . "Cordialement,\n"
@@ -691,7 +691,7 @@ class XpriceController extends Zend_Controller_Action {
 
                 $params1['corpsMail'] = "Bonjour,\n"
                         . "\n"
-                        . "Votre demande XPrice pour le client {$info_client['nom_client']}est en attente d'une réponse de votre part.\n"
+                        . "Votre demande XPrice pour le client $nomclientsest en attente d'une réponse de votre part.\n"
                         . "Veuillez vous rendre à l'adresse url : \n"
                         . "%s"
                         . "\n\n"
@@ -699,7 +699,7 @@ class XpriceController extends Zend_Controller_Action {
                         . "\n"
                         . "--\n"
                         . "Xprice.";
-                $params1['sujet'] = "TEST XPrice :demande $numwp pour le client {$info_client['nom_client']} en attente de réponse.";
+                $params1['sujet'] = "TEST XPrice :demande $numwp pour le client $nomclients en attente de réponse.";
                 $this->sendEmail($params1);
 
                 $flashMessenger = $this->_helper->getHelper('FlashMessenger');
@@ -770,6 +770,7 @@ class XpriceController extends Zend_Controller_Action {
         $infos_demande_article_xprice = new Application_Model_DbTable_DemandeArticlexprices();
         $info_demande_article_xprice = $infos_demande_article_xprice->getDemandeArticlexprice($numwp);
         $this->view->info_demande_article_xprice = $info_demande_article_xprice;
+        $nomclients= trim($info_client['nom_client']);
         if ($this->getRequest()->isPost()) {
             $date_validation = date("Y-m-d H:i:s");
             $this->view->date_validation = $date_validation;
@@ -872,10 +873,10 @@ class XpriceController extends Zend_Controller_Action {
                         . "\n"
                         . "--\n"
                         . "dbd.";
-                $params['sujet'] = "TEST XPrice :demande $numwp pour {$info_client['nom_client']}validée par Directeur Business Developpement.";
+                $params['sujet'] = "TEST XPrice :demande $numwp pour $nomclientsvalidée par Directeur Business Developpement.";
                 $params1['corpsMail'] = "Bonjour,\n"
                         . "\n"
-                        . "Vous avez une nouvelle demande Xprice de {$info_user['nom_user']} pour le client {$info_client['nom_client']}à valider .\n"
+                        . "Vous avez une nouvelle demande Xprice de {$info_user['nom_user']} pour le client $nomclientsà valider .\n"
                         . "Vous pouvez la valider à cette adresse url : \n"
                         . "%s"
                         . "\n\n"
@@ -883,7 +884,7 @@ class XpriceController extends Zend_Controller_Action {
                         . "\n"
                         . "--\n"
                         . "dbd.";
-                $params1['sujet'] = " TEST XPrice :nouvelle demande à valider $numwp de {$info_user['nom_user']} pour le client {$info_client['nom_client']} .";
+                $params1['sujet'] = " TEST XPrice :nouvelle demande à valider $numwp de {$info_user['nom_user']} pour le client $nomclients .";
                 
                 $this->sendEmail($params);
                 $this->sendEmail($params1);
@@ -909,10 +910,10 @@ class XpriceController extends Zend_Controller_Action {
                         . "\n"
                         . "--\n"
                         . "dbd.";
-                    $params2['sujet'] = "TEST XPrice :demande $numwp pour {$info_client['nom_client']}validée par Directeur Business Developpement.";
+                    $params2['sujet'] = "TEST XPrice :demande $numwp pour $nomclientsvalidée par Directeur Business Developpement.";
                     $params3['corpsMail'] = "Bonjour,\n"
                         . "\n"
-                        . "la demande Xprice $numwp de {$info_user['nom_user']} pour le client {$info_client['nom_client']}a été validée par le dbd .\n"
+                        . "la demande Xprice $numwp de {$info_user['nom_user']} pour le client $nomclientsa été validée par le dbd .\n"
                         . "Vous pouvez la consulter à cette adresse url : \n"
                         . "%s"
                         . "\n\n"
@@ -920,7 +921,7 @@ class XpriceController extends Zend_Controller_Action {
                         . "\n"
                         . "--\n"
                         . "dbd.";
-                $params3['sujet'] = " TEST XPrice : la demande $numwp de {$info_user['nom_user']} pour le client {$info_client['nom_client']}a été validée .";
+                $params3['sujet'] = " TEST XPrice : la demande $numwp de {$info_user['nom_user']} pour le client $nomclientsa été validée .";
                 
                 $this->sendEmail($params2);
                 $this->sendEmail($params3);
@@ -962,7 +963,7 @@ class XpriceController extends Zend_Controller_Action {
 
                          $params4['corpsMail'] = "Bonjour,\n"
                                 . "\n"
-                                . "la demande Xprice $numwp de {$info_user['nom_user']} pour le client {$info_client['nom_client']} a été validée par le DBD.\n"
+                                . "la demande Xprice $numwp de {$info_user['nom_user']} pour le client $nomclients a été validée par le DBD.\n"
                                 . "Pour consulter la demande veuillez vous rendre à l'adresse url : \n"
                                 . "%s"
                                 . "\n\n"
@@ -970,7 +971,7 @@ class XpriceController extends Zend_Controller_Action {
                                 . "\n"
                                 . "--\n"
                                 . "Xsuite";
-                        $params4['sujet']="TEST XPrice :  Offre $numwp  de {$user_info['nom_user']} pour {$info_client['nom_client']} validée par le DBD";
+                        $params4['sujet']="TEST XPrice :  Offre $numwp  de {$user_info['nom_user']} pour $nomclients validée par le DBD";
                       $this->sendEmail($params4);           
                     }
                 //envoi au cdr
@@ -1005,7 +1006,7 @@ class XpriceController extends Zend_Controller_Action {
 
                          $params5['corpsMail'] = "Bonjour,\n"
                                 . "\n"
-                                . "la demande Xprice $numwp de {$info_user['nom_user']} pour le client {$info_client['nom_client']} a été validée par le DBD.\n"
+                                . "la demande Xprice $numwp de {$info_user['nom_user']} pour le client $nomclients a été validée par le DBD.\n"
                                 . "Pour consulter la demande veuillez vous rendre à l'adresse url : \n"
                                 . "%s"
                                 . "\n\n"
@@ -1013,7 +1014,7 @@ class XpriceController extends Zend_Controller_Action {
                                 . "\n"
                                 . "--\n"
                                 . "Xsuite";
-                        $params5['sujet']="TEST XPrice :Offre $numwp de {$user_info['nom_user']} pour {$info_client['nom_client']} validée par le DBD";
+                        $params5['sujet']="TEST XPrice :Offre $numwp de {$user_info['nom_user']} pour $nomclients validée par le DBD";
                       $this->sendEmail($params5); 
                     }
                 switch ($destIndustry) {
@@ -1036,7 +1037,7 @@ class XpriceController extends Zend_Controller_Action {
                 $params6['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/consult/numwp/{$numwp}";
                 $params6['corpsMail'] = "Bonjour,\n"
                         . "\n"
-                        . "la demande XPrice $numwp de {$info_user['nom_user']} pour le client {$info_client['nom_client']} a été validée par le DBD.\n"
+                        . "la demande XPrice $numwp de {$info_user['nom_user']} pour le client $nomclients a été validée par le DBD.\n"
                         . "Pour consulter la demande veuillez vous rendre à l'adresse url : \n"
                         . "%s"
                         . "\n\n"
@@ -1045,13 +1046,13 @@ class XpriceController extends Zend_Controller_Action {
                         . "--\n"
                         . "Xprice";
                 $params6['destinataireMail'] = $destinataireMail2;
-                $params6['sujet'] = "TEST XPrice : La demande $numwp de {$info_user['nom_user']} pour le client {$info_client['nom_client']}a été validée par le DBD.";
+                $params6['sujet'] = "TEST XPrice : La demande $numwp de {$info_user['nom_user']} pour le client $nomclientsa été validée par le DBD.";
                 $this->sendEmail($params6);
                     
                 
                  }
                 $flashMessenger = $this->_helper->getHelper('FlashMessenger');
-                $message = "l'offre $numwp  pour le client {$info_client['nom_client']}a bien été validée.";
+                $message = "l'offre $numwp  pour le client $nomclientsa bien été validée.";
                 $flashMessenger->addMessage($message);
                 $redirector = $this->_helper->getHelper('Redirector');
                 $redirector->gotoSimple('index', 'xprice');
@@ -1065,7 +1066,7 @@ class XpriceController extends Zend_Controller_Action {
                 }
                 $params['corpsMail'] = "Bonjour,\n"
                         . "\n"
-                        . "Votre demande XPrice pour le client {$info_client['nom_client']} est en attente de réponse à la question posée par dbd .\n"
+                        . "Votre demande XPrice pour le client $nomclients est en attente de réponse à la question posée par dbd .\n"
                         . "Vous pouvez la consulter à cette adresse url : \n"
                         . "%s"
                         . "\n\n"
@@ -1091,7 +1092,7 @@ class XpriceController extends Zend_Controller_Action {
                 }
                 $params['corpsMail'] = "Bonjour,\n"
                         . "\n"
-                        . "Votre demande XPrice pour le client {$info_client['nom_client']} est non validée par dbd .\n"
+                        . "Votre demande XPrice pour le client $nomclients est non validée par dbd .\n"
                         . "Vous pouvez la consulter à cette adresse url : \n"
                         . "%s"
                         . "\n\n"
@@ -1099,7 +1100,7 @@ class XpriceController extends Zend_Controller_Action {
                         . "\n"
                         . "--\n"
                         . "dbd.";
-                $params['sujet'] = " TEST XPrice :demande $numwp pour le client {$info_client['nom_client']}non validée par dbd.";
+                $params['sujet'] = " TEST XPrice :demande $numwp pour le client $nomclientsnon validée par dbd.";
                 $this->sendEmail($params);
 
                 $flashMessenger = $this->_helper->getHelper('FlashMessenger');
@@ -1178,6 +1179,7 @@ class XpriceController extends Zend_Controller_Action {
             $this->nom_validation = $nom_validation;
             $formData = $this->getRequest()->getPost();
             $datas = $this->getRequest()->getPost();
+            $nomclients=trim($info_client['nom_client']);
             $prix_accordes = array_combine($datas['code_article'], $datas['prix_accorde_article']);
             $remise_accordes = array_combine($datas['code_article'], $datas['remise_accorde_article']);
 
@@ -1220,7 +1222,7 @@ class XpriceController extends Zend_Controller_Action {
                 $params['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/consult/numwp/{$numwp}";
                 $params['corpsMail'] = "Bonjour,\n"
                         . "\n"
-                        . "Votre demande XPrice pour le client {$info_client['nom_client']} a été validée par le Directeur Commercial .\n"
+                        . "Votre demande XPrice pour le client $nomclients a été validée par le Directeur Commercial .\n"
                         . "Vous pouvez la consulter à cette adresse url : \n"
                         . "%s"
                         . "\n\n"
@@ -1228,13 +1230,13 @@ class XpriceController extends Zend_Controller_Action {
                         . "\n"
                         . "--\n"
                         . "Directeur Commercial.";
-                $params['sujet'] = "TEST XPrice :demande $numwp pour le client {$info_client['nom_client']} validée par Directeur Commercial.";
+                $params['sujet'] = "TEST XPrice :demande $numwp pour le client $nomclients validée par Directeur Commercial.";
                 $this->sendEmail($params);
                 $params1['destinataireMail'] =$emailVars->listes->serviceClient;
                 $params1['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/consult/numwp/{$numwp}";
                 $params1['corpsMail'] = "Bonjour,\n"
                         . "\n"
-                        . "la demande XPrice pour le client {$info_client['nom_client']} a été validée par le Directeur Commercial .\n"
+                        . "la demande XPrice pour le client $nomclients a été validée par le Directeur Commercial .\n"
                         . "Vous pouvez la consulter à cette adresse url : \n"
                         . "%s"
                         . "\n\n"
@@ -1242,7 +1244,7 @@ class XpriceController extends Zend_Controller_Action {
                         . "\n"
                         . "--\n"
                         . "Directeur Commercial.";
-                $params1['sujet'] = " TEST XPrice :demande $numwp pour le client {$info_client['nom_client']} validée par Directeur Commercial.";
+                $params1['sujet'] = " TEST XPrice :demande $numwp pour le client $nomclients validée par Directeur Commercial.";
                 $this->sendEmail($params1);
 //envoi mail leader
                 if ($fonctioncreateur == "1") {
@@ -1282,7 +1284,7 @@ class XpriceController extends Zend_Controller_Action {
 
                          $params2['corpsMail'] = "Bonjour,\n"
                                 . "\n"
-                                . "la demande Xprice $numwp de {$info_user['nom_user']} pour le client {$info_client['nom_client']} a été validée par le Dirco.\n"
+                                . "la demande Xprice $numwp de {$info_user['nom_user']} pour le client $nomclients a été validée par le Dirco.\n"
                                 . "Pour consulter la demande veuillez vous rendre à l'adresse url : \n"
                                 . "%s"
                                 . "\n\n"
@@ -1290,7 +1292,7 @@ class XpriceController extends Zend_Controller_Action {
                                 . "\n"
                                 . "--\n"
                                 . "Xsuite";
-                        $params2['sujet']="TEST XPrice :  Offre $numwp  de {$user_info['nom_user']} pour {$info_client['nom_client']} validée par le Dirco";
+                        $params2['sujet']="TEST XPrice :  Offre $numwp  de {$user_info['nom_user']} pour $nomclients validée par le Dirco";
                       $this->sendEmail($params2);           
                     }
                     //envoi au cdr
@@ -1325,7 +1327,7 @@ class XpriceController extends Zend_Controller_Action {
 
                         $params3['corpsMail'] = "Bonjour,\n"
                                 . "\n"
-                                . "la demande Xprice $numwp de {$info_user['nom_user']} pour le client {$info_client['nom_client']} a été validée par le Dirco.\n"
+                                . "la demande Xprice $numwp de {$info_user['nom_user']} pour le client $nomclients a été validée par le Dirco.\n"
                                 . "Pour consulter la demande veuillez vous rendre à l'adresse url : \n"
                                 . "%s"
                                 . "\n\n"
@@ -1333,7 +1335,7 @@ class XpriceController extends Zend_Controller_Action {
                                 . "\n"
                                 . "--\n"
                                 . "Xsuite";
-                        $params3['sujet']="TEST XPrice :Offre $numwp de {$user_info['nom_user']} pour {$info_client['nom_client']} validée par le Dirco";
+                        $params3['sujet']="TEST XPrice :Offre $numwp de {$user_info['nom_user']} pour $nomclients validée par le Dirco";
                       $this->sendEmail($params3); 
                     }
                     switch ($destIndustry) {
@@ -1356,7 +1358,7 @@ class XpriceController extends Zend_Controller_Action {
                 $params4['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/consult/numwp/{$numwp}";
                 $params4['corpsMail'] = "Bonjour,\n"
                         . "\n"
-                        . "la demande XPrice $numwp de {$info_user['nom_user']} pour le client {$info_client['nom_client']} a été validée par le Dirco.\n"
+                        . "la demande XPrice $numwp de {$info_user['nom_user']} pour le client $nomclients a été validée par le Dirco.\n"
                         . "Pour consulter la demande veuillez vous rendre à l'adresse url : \n"
                         . "%s"
                         . "\n\n"
@@ -1365,12 +1367,12 @@ class XpriceController extends Zend_Controller_Action {
                         . "--\n"
                         . "Xprice";
                 $params4['destinataireMail'] = $destinataireMail2;
-                $params4['sujet'] = "TEST XPrice : La demande $numwp de {$info_user['nom_user']} pour le client {$info_client['nom_client']}a été validée par le Dirco.";
+                $params4['sujet'] = "TEST XPrice : La demande $numwp de {$info_user['nom_user']} pour le client $nomclientsa été validée par le Dirco.";
                 $this->sendEmail($params4);
                  $params5['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/consult/numwp/{$numwp}";
                 $params5['corpsMail'] = "Bonjour,\n"
                         . "\n"
-                        . "la demande XPrice $numwp de {$info_user['nom_user']} pour le client {$info_client['nom_client']} a été validée par le Dirco.\n"
+                        . "la demande XPrice $numwp de {$info_user['nom_user']} pour le client $nomclients a été validée par le Dirco.\n"
                         . "Pour consulter la demande veuillez vous rendre à l'adresse url : \n"
                         . "%s"
                         . "\n\n"
@@ -1379,10 +1381,10 @@ class XpriceController extends Zend_Controller_Action {
                         . "--\n"
                         . "Xprice";
                 $params5['destinataireMail'] = $emailVars->listes->dbd;
-                $params5['sujet'] = "TEST XPrice : La demande $numwp de {$info_user['nom_user']} pour le client {$info_client['nom_client']}a été validée par le Dirco.";
+                $params5['sujet'] = "TEST XPrice : La demande $numwp de {$info_user['nom_user']} pour le client $nomclientsa été validée par le Dirco.";
                 $this->sendEmail($params5);
                 $flashMessenger = $this->_helper->getHelper('FlashMessenger');
-                $message = "l'offre $numwp pour le client{$info_client['nom_client']} a bien été validée.";
+                $message = "l'offre $numwp pour le client$nomclients a bien été validée.";
                 $flashMessenger->addMessage($message);
                 $redirector = $this->_helper->getHelper('Redirector');
                 $redirector->gotoSimple('index', 'xprice');
@@ -1405,11 +1407,11 @@ class XpriceController extends Zend_Controller_Action {
                         . "\n"
                         . "--\n"
                         . "Directeur Commercial.";
-                $params['sujet'] = "TEST XPrice :demande $numwp pour le client {$info_client['nom_client']} est mise en attente par le Directeur Commercial.";
+                $params['sujet'] = "TEST XPrice :demande $numwp pour le client $nomclients est mise en attente par le Directeur Commercial.";
                 $this->sendEmail($params);
 
                 $flashMessenger = $this->_helper->getHelper('FlashMessenger');
-                $message = "l'offre $numwp pour le client {$info_client['nom_client']} est en attente de réponse du commercial.";
+                $message = "l'offre $numwp pour le client $nomclients est en attente de réponse du commercial.";
                 $flashMessenger->addMessage($message);
                 $redirector = $this->_helper->getHelper('Redirector');
                 $redirector->gotoSimple('index', 'xprice');
@@ -1423,7 +1425,7 @@ class XpriceController extends Zend_Controller_Action {
                 }
                 $params['corpsMail'] = "Bonjour,\n"
                         . "\n"
-                        . "Votre demande XPrice pour le client {$info_client['nom_client']} n'est pas validée par le Directeur Commercial .\n"
+                        . "Votre demande XPrice pour le client $nomclients n'est pas validée par le Directeur Commercial .\n"
                         . "Vous pouvez la consulter à cette adresse url : \n"
                         . "%s"
                         . "\n\n"
@@ -1431,12 +1433,12 @@ class XpriceController extends Zend_Controller_Action {
                         . "\n"
                         . "--\n"
                         . "Directeur Commercial.";
-                $params['sujet'] = "TEST XPrice :demande$numwp pour le client{$info_client['nom_client']}non validée par Le Directeur Commercial.";
+                $params['sujet'] = "TEST XPrice :demande$numwp pour le client$nomclientsnon validée par Le Directeur Commercial.";
                 $this->sendEmail($params);
                 $params5['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/consult/numwp/{$numwp}";
                 $params5['corpsMail'] = "Bonjour,\n"
                         . "\n"
-                        . "la demande XPrice $numwp de {$info_user['nom_user']} pour le client {$info_client['nom_client']} a été refusée par le Dirco.\n"
+                        . "la demande XPrice $numwp de {$info_user['nom_user']} pour le client $nomclients a été refusée par le Dirco.\n"
                         . "Pour consulter la demande veuillez vous rendre à l'adresse url : \n"
                         . "%s"
                         . "\n\n"
@@ -1445,10 +1447,10 @@ class XpriceController extends Zend_Controller_Action {
                         . "--\n"
                         . "Xprice";
                 $params5['destinataireMail'] = $emailVars->listes->dbd;
-                $params5['sujet'] = "TEST XPrice : La demande $numwp de {$info_user['nom_user']} pour le client {$info_client['nom_client']}a été refusée par le Dirco.";
+                $params5['sujet'] = "TEST XPrice : La demande $numwp de {$info_user['nom_user']} pour le client $nomclientsa été refusée par le Dirco.";
                 $this->sendEmail($params5);
                 $flashMessenger = $this->_helper->getHelper('FlashMessenger');
-                $message = "l'offre $numwp pour le client {$info_client['nom_client']} n'a pas été validée.";
+                $message = "l'offre $numwp pour le client $nomclients n'a pas été validée.";
                 $flashMessenger->addMessage($message);
                 $redirector = $this->_helper->getHelper('Redirector');
                 $redirector->gotoSimple('index', 'xprice');
@@ -1537,6 +1539,7 @@ class XpriceController extends Zend_Controller_Action {
             $nom_validationfobfr = "fobfr";
             $formData = $this->getRequest()->getPost();
             $datas = $this->getRequest()->getPost();
+            $nomclients=trim($info_client['nom_client']);
 //            foreach ($formData as $datas) {
             $fobs = array_combine($datas['code_article'], $datas['prix_fob']);
             $cifs = array_combine($datas['code_article'], $datas['prix_cif']);
@@ -1579,7 +1582,7 @@ class XpriceController extends Zend_Controller_Action {
             }
             $corpsMail = "Bonjour,\n"
                     . "\n"
-                    . "Vous avez une nouvelle demande XPrice de {$info_user['nom_user']} pour le client {$info_client['nom_client']} à valider.\n"
+                    . "Vous avez une nouvelle demande XPrice de {$info_user['nom_user']} pour le client $nomclients à valider.\n"
                     . "Veuillez vous rendre à l'adresse url : \n"
                     . "%s"
                     . "\n\n"
@@ -1588,7 +1591,7 @@ class XpriceController extends Zend_Controller_Action {
                     . "--\n"
                     . "Prix fobfr.";
             $mail = new Xsuite_Mail();
-            $mail->setSubject("TEST XPrice : Nouvelle demand Xprice de {$info_user['nom_user']} pour le client {$info_client['nom_client']} à valider .")
+            $mail->setSubject("TEST XPrice : Nouvelle demand Xprice de {$info_user['nom_user']} pour le client $nomclients à valider .")
                     ->setBodyText(sprintf($corpsMail, $url))
                     ->addTo($Mailsupply)
                     ->send();
@@ -1678,6 +1681,7 @@ class XpriceController extends Zend_Controller_Action {
             $nom_validationsupply = "supply";
             $formData = $this->getRequest()->getPost();
             $datas = $this->getRequest()->getPost();
+            $nomclients=trim($info_client['nom_client']);
 //echo '<pre>',var_export($formData),'<pre>';
 //            foreach ($formData as $datas) {
             $fobs = array_combine($datas['code_article'], $datas['prix_fob']);
@@ -1718,7 +1722,7 @@ class XpriceController extends Zend_Controller_Action {
                 }
                 $corpsMail = "Bonjour,\n"
                         . "\n"
-                        . "Vous avez une nouvelle demande XPrice {$info_user['nom_user']} pour le client {$info_client['nom_client']} à valider.\n"
+                        . "Vous avez une nouvelle demande XPrice {$info_user['nom_user']} pour le client $nomclients à valider.\n"
                         . "Veuillez vous rendre à l'adresse url : \n"
                         . "%s"
                         . "\n\n"
@@ -1729,7 +1733,7 @@ class XpriceController extends Zend_Controller_Action {
           /*}*/
             $emailVars = Zend_Registry::get('emailVars');
             $mail = new Xsuite_Mail();
-            $mail->setSubject("TEST XPrice : Nouvelle demande de {$info_user['nom_user']} pour le client {$info_client['nom_client']} à valider.")
+            $mail->setSubject("TEST XPrice : Nouvelle demande de {$info_user['nom_user']} pour le client $nomclients à valider.")
                     ->setBodyText(sprintf($corpsMail, $url))
                     ->addTo($destinatairemail)
                     ->send();
@@ -1771,7 +1775,7 @@ class XpriceController extends Zend_Controller_Action {
         $test = $tests->sommePrixDemandeArticle($numwp);
         $this->view->montant_total = $test->total;
         $this->view->infos_client = $infos_client;
-        $this->view->infos_client = $infos_client;
+        $nomclients=trim($infos_client['nom_client']);
         $noms_industrie = new Application_Model_DbTable_Industry();
         $nom_industrie = $noms_industrie->getIndustry($infos_client['id_industry']);
         $this->view->nom_industrie = $nom_industrie;
@@ -1837,7 +1841,7 @@ class XpriceController extends Zend_Controller_Action {
                     . "\n"
                     . "--\n"
                     . "Xprice.";
-            $params1['sujet'] = "TEST XPrice : réponse sur la demande $numwp pour le client {$infos_client['nom_client']}.";
+            $params1['sujet'] = "TEST XPrice : réponse sur la demande $numwp pour le client $nomclients.";
             $this->sendEmail($params1);
 
             $flashMessenger = $this->_helper->getHelper('FlashMessenger');
