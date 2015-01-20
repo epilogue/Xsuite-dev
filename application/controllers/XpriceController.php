@@ -125,8 +125,8 @@ class XpriceController extends Zend_Controller_Action {
             $flashMessenger = $this->_helper->getHelper('FlashMessenger');
             $message = "Cette offre a déjà été créée.";
             $flashMessenger->addMessage($message);
-            $message = "Veuillez cliquer sur : <a href=\"/xprice/tracking\">'Xprice : Consulter'</a>.";
-            $flashMessenger->addMessage($message);
+//            $message = "Veuillez cliquer sur : <a href=\"/xprice/tracking\">'Xprice : Consulter'</a>.";
+//            $flashMessenger->addMessage($message);
             $redirector->gotoSimple('index', 'xprice');
         }
         $this->view->numwp = $numwp;
@@ -971,7 +971,7 @@ class XpriceController extends Zend_Controller_Action {
                                 . "\n"
                                 . "--\n"
                                 . "Xsuite";
-                        $params4['sujet']="TEST XPrice :  Offre $numwp  de {$user_info['nom_user']} pour $nomclients validée par le DBD";
+                        $params4['sujet']="TEST XPrice :  Offre $numwp  de {$info_user['nom_user']} pour $nomclients validée par le DBD";
                       $this->sendEmail($params4);           
                     }
                 //envoi au cdr
@@ -1722,7 +1722,7 @@ class XpriceController extends Zend_Controller_Action {
                 }
                 $corpsMail = "Bonjour,\n"
                         . "\n"
-                        . "Vous avez une nouvelle demande XPrice {$info_user['nom_user']} pour le client $nomclients à valider.\n"
+                        . "Vous avez une nouvelle demande XPrice de  {$info_user['nom_user']} pour le client $nomclients à valider.\n"
                         . "Veuillez vous rendre à l'adresse url : \n"
                         . "%s"
                         . "\n\n"
