@@ -3,7 +3,6 @@
 class LoginController extends Zend_Controller_Action {
 
     public function aclfailAction() {
-        
     }
     
     public function indexAction() {
