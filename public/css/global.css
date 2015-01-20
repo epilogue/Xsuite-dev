@@ -448,12 +448,12 @@ h3{
     color: black;
 }
 /*formulaire consultation , creation xprice xdistrib*/
-#tracking_number_demande_xdistrib-label,#tracking_number_demande_xprice-label{
+#tracking_number_demande_xdistrib-label,#tracking_number_demande_xprice-label,#email_user-label{
     width: 250px;
     padding-left: 75px;
 }
 
-#tracking_number_demande_xdistrib-element,#tracking_number_demande_xprice-element{
+#tracking_number_demande_xdistrib-element,#tracking_number_demande_xprice-element,#email_user-element{
    padding-top: 20px;
    padding-left: 50px;
 }
