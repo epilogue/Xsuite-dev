@@ -5,4 +5,8 @@ $this->headTitle($this->title);
 <div id="plop4" class="contenu">
     <h2>Xprice-distrib</h2>
     <h3>Demande en ligne de Prix Spéciaux pour Distributeurs</h3>
+     <div class="lien">
+        <a class="retour" href="<?php echo $this->url(array('controller' => 'xprice', 'action' => 'tracking'), null, true); ?>"><button class="retour" >Consulter une Xprice</button></a>
+        <a class="retour" href="<?php echo $this->url(array('controller' => 'xprice', 'action' => 'numwp'), null, true); ?>"><button class="retour" >Créer une Xprice</button></a>           
+    </div>
 </div>
