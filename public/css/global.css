@@ -446,10 +446,10 @@ h3{
 #userIndex a:hover, a:visited, a:link{
     color: black;
 }
-/*formulaire consult tracking*/
+/*formulaire consultation , creation xprice xdistrib*/
 #tracking_number_demande_xdistrib-label,#tracking_number_demande_xprice-label{
     width: 250px;
-    padding-left: 70px;
+    padding-left: 75px;
 }
 
 #tracking_number_demande_xdistrib-element,#tracking_number_demande_xprice-element{
@@ -467,6 +467,9 @@ h3{
 
 #tracking_number-label{
     padding-bottom: 15px;
+}
+#num_offre_workplace,#tracking_number_demande_xdistrib,#tracking_number_demande_xprice{
+    padding-left:10px;
 }
 
 
