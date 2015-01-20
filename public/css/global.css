@@ -446,9 +446,28 @@ h3{
 #userIndex a:hover, a:visited, a:link{
     color: black;
 }
+/*formulaire consult tracking*/
+#tracking_number_demande_xdistrib-label,#tracking_number_demande_xprice-label{
+    width: 250px;
+    padding-left: 70px;
+}
 
+#tracking_number_demande_xdistrib-element,#tracking_number_demande_xprice-element{
+   padding-top: 20px;
+   padding-left: 50px;
+}
+#num_offre_worplace-label{
+    padding-left: 80px;
+    padding-bottom: 20px;
+    width: 250px;
+}
+#num_offre_worplace-element{
+    padding-left: 50px;
+}
 
-
+#tracking_number-label{
+    padding-bottom: 15px;
+}
 
 
 #information table{
