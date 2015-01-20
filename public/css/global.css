@@ -83,11 +83,7 @@ body{
     margin-bottom: 20px;
     margin-top: 20px;
 }
-.retour{
-   float: left;
-   margin-left: 20px;
-   width: 70px;
-}
+
 
 #menu{
     width: 990px;
@@ -261,7 +257,7 @@ background:#2A60AA;
 /*les boutons */
 
 .submit{
-    color: white;
+   color: white;
     height: 50px;
     width:auto;
     border-radius: 10px;
@@ -274,6 +270,17 @@ background:#2A60AA;
     margin-right: auto;
     margin-bottom: 10px;
     
+}
+.retour{ color: white;
+   float: left;
+   margin-left: 20px;
+   width: auto;
+   border-radius: 10px;
+    background-color: #2A60AA;
+    border-right-width: 0px; 
+    border-left-width: 0px;
+    border-bottom-width:0px;
+    border-top-width:0px;
 }
 .button{
     color: white;
