@@ -137,7 +137,7 @@ $this->headScript()->appendFile('/js/controllers/xprice/afficher_masquer_validat
                             <td id="cif-<?php echo $k; ?>"><?php echo $result['prix_cif_demande_article']; ?></td>
                             <td><input class="pda" id="pda-<?php echo $k; ?>" value="<?php echo $result['prix_demande_article']; ?>" name="<?php echo 'prix_accorde_article[]' ?>" style="background-color: #74aaca;"></td>
                             <td><input class="ra" id="ra-<?php echo $k; ?>" value="<?php echo $result['remise_demande_article'] . "%"; ?>" name="<?php echo 'remise_accorde_article[]' ?>" style="background-color: #74aaca;"></td>
-                            <td><input  class="ma" id="ma-<?php echo $k;?>"  value="<?php echo round((100* $result['marge_demande_article']),2) .'%'; ?>" name="<?php echo 'marge_demande_article[]';?>" style="background-color: #74aaca;"></td>
+                            <td><input  class="ma" id="ma-<?php echo $k;?>"  value="<?php echo round(($result['marge_demande_article']),2) .'%'; ?>" name="<?php echo 'marge_demande_article[]';?>" style="background-color: #74aaca;"></td>
                         </tr>
                     <?php } ?>
                 </table>
