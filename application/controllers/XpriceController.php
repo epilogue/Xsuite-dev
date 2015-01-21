@@ -814,7 +814,7 @@ class XpriceController extends Zend_Controller_Action {
             $commentId = $this->genererValidation($datasValidation);
 
             $emailVars = Zend_Registry::get('emailVars');
-             /* $marges=  array_combine($datas['code_article'], $datas['marge']);
+              $marges=  array_combine($datas['code_article'], $datas['marge']);
 //            foreach ($formData as $ploptitude) {
 //                $marge = array_combine($ploptitude['code_article'],( $ploptitude['remise_demande_article']));
 //            }
@@ -825,7 +825,7 @@ class XpriceController extends Zend_Controller_Action {
                     $margemin = true;
                 }
             }
-            if ($margemin == true) {
+           /* if ($margemin == true) {
                 $destinatairemail = $emailVars->listes->dirco;
 
                 if (!is_null($commentId)) {
