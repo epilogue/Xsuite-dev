@@ -24,7 +24,7 @@ $(document).ready(function (){
         var k = idT[1];
         var cif = parseFloat($('td#cif-'+k).html());
         var ma = parseFloat($(this).val());
-         var ma = Number(100*(1-(parseFloat($('td#cif-'+k).html()))/$('input#pda-'+k).val(pda)));
+        var ma = Number(1-(parseFloat($('td#cif-'+k).html()))/$('input#pda-'+k).val(pda));
         var pda = Number(((100-ra)*pwp)/100).toFixed(2);
         $('input#pda-'+k).val(pda);
         $(this).val(parseFloat($(this).val())+'%');
