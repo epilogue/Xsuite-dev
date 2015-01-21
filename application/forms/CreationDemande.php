@@ -13,7 +13,7 @@ class Application_Form_CreationDemande  extends Zend_Form {
                 ->setRequired(false);
 
         $part_demande_article = new Zend_Form_Element_Text('part_demande_article');
-        $part_demande_article->setLabel('Parts de marché:');
+        $part_demande_article->setLabel('Parts de marché smc:');
 
         $mini_demande_article = new Zend_Form_Element_Text('mini_demande_article');
         $mini_demande_article->setLabel('Minimum de commande (ex: 200kits machines commandés tous les 2 mois) :')
