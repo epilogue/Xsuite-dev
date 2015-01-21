@@ -81,7 +81,7 @@ public function createAction()
             $usertest = new Application_Model_DbTable_Users();
             $user_info = $usertest->getMovexUser($numwp_user['USERWP']);
             $this->view->user_info = $user_info;
-            echo '<pre>', var_export($user_info),'</pre>';
+            //echo '<pre>', var_export($user_info),'</pre>';
             $id_holon = $user_info['id_holon'];
             $holonuser = new Application_Model_DbTable_Holons();
             $holonuser1 = $holonuser->getHolon($id_holon);
@@ -97,6 +97,7 @@ public function createAction()
 
             while ($resultat[] = odbc_fetch_array($resultats)) {
                     $this->view->resultat = $resultat;
+                    echo '<pre>',var_export($resultat),'</pre>';
                 }
             foreach ($this->view->resultat as $itnoarticle) {
                     $mmcono = "100";
@@ -120,7 +121,7 @@ public function createAction()
             $query1bis = "select * from EIT.MVXCDTA.OCUSMA OCUSMA where OCUSMA.OKCUNO = '{$resultat[0]['OBCUNO']}'";
             $infos_distributeur = odbc_fetch_array(odbc_exec($this->odbc_conn2, $query1bis));
             $this->view->infos_distributeur = $infos_distributeur;
-            echo '<pre>',  var_export($infos_distributeur),'</pre>';
+           // echo '<pre>',  var_export($infos_distributeur),'</pre>';
             $query1ter = "select OOHEAD.OACHL1 from EIT.MVXCDTA.OOHEAD OOHEAD where OOHEAD.OACUNO = '{$resultat[0]['OBCUNO']}'";
             $numdistributeurwp = odbc_fetch_array(odbc_exec($this->odbc_conn2, $query1ter));
             $this->view->numdistributeurwp = $numdistributeurwp['OACHL1'];
