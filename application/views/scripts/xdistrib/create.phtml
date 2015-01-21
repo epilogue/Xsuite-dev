@@ -23,102 +23,104 @@ $this->headTitle($this->title);
             </table>
         </fieldset>
     </div>
-    <div id="information2" class="workplace2">
-        <fieldset id="info_user" class="field_info_2">
-            <legend>Informations Commercial</legend>
-            <table>
-                <tr>
-                    <td>Nom:</td>
-                    <td><?php echo $this->user_info['nom_user'];?></td>
-                </tr>
-                <tr>
-                    <td>Prénom:</td>
-                    <td><?php echo $this->user_info['prenom_user'];?></td>
-                </tr>
-                <tr>
-                    <td>Email:</td>
-                    <td><?php echo $this->user_info['email_user'];?></td>
-                </tr>
-                <tr>
-                    <td>Téléphone:</td>
-                    <td><?php echo $this->user_info['tel_user'];?></td>
-                </tr>
-                <tr>
-                    <td>Holon:</td>
-                    <td><?php echo $this->holon; ?></td>
-                </tr>
-                <tr>
-                    <td>User workplace:</td>
-                    <td><?php echo $this->user_info['numwp_user'];?></td>
-                </tr>
-            </table>
-        </fieldset>
-        <fieldset id="info_distributeur" class="field_info_2">
-            <legend>Informations Distributeur</legend>
-            <table>
-                <tr>
-                    <td>Nom:</td>
-                    <td><?php echo $this->infos_distributeur['OKCUNM'];?></td>
-                </tr>
-                <tr>
-                    <td>Nom du contact:</td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>Prénom du contact:</td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>Adresse:</td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>Agence:</td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>User Workplace:</td>
-                    <td><?php echo $this->numdistributeurwp;?></td>
-                </tr>
-                <tr>
-                    <td>Projet industrie:</td>
-                    <td><?php echo $this->info_industry['nom_industry']?></td>
-                </tr>
-                <tr>
-                    <td>Holon:</td>
-                    <td>plop</td>
-                </tr>
-                <tr>
-                    <td>Potentiel:</td>
-                    <td><?php echo $this->infos_distributeur['OKCFC7']; ?></td>
-                </tr>
-            </table>
-        </fieldset>
-        <form>
-        <fieldset id="info_client" class="field_info_2">
-            <legend>Informations Client Final</legend>
-            <table>
-                <tr>
-                    <td>Nom:</td>
-                    <td><input type="text"  name="nom_client"></td>
-                </tr>
-                <tr>
-                    <td>Adresse:</td>
-                    <td><input type="text"  name="nom_client"></td>
-                </tr>
-                <tr>
-                    <td>User Workplace:</td>
-                    <td><input type="text" name="numclientwp"></td>
-                </tr>
-                <tr>
-                    <td>Projet industrie:</td>
-                    <td><input type="text" name="nom_industry"></td>
-                </tr>
-                <tr>
-                    <td>Potentiel:</td>
-                    <td><input type="text" name="potentiel"></td>
-                </tr>
-            </table>
-        </fieldset>
-    </div></form>
+    <form>
+        <div id="information2" class="workplace2">
+            <fieldset id="info_user" class="field_info_2">
+                <legend>Informations Commercial</legend>
+                <table>
+                    <tr>
+                        <td>Nom:</td>
+                        <td><?php echo $this->user_info['nom_user'];?></td>
+                    </tr>
+                    <tr>
+                        <td>Prénom:</td>
+                        <td><?php echo $this->user_info['prenom_user'];?></td>
+                    </tr>
+                    <tr>
+                        <td>Email:</td>
+                        <td><?php echo $this->user_info['email_user'];?></td>
+                    </tr>
+                    <tr>
+                        <td>Téléphone:</td>
+                        <td><?php echo $this->user_info['tel_user'];?></td>
+                    </tr>
+                    <tr>
+                        <td>Holon:</td>
+                        <td><?php echo $this->holon; ?></td>
+                    </tr>
+                    <tr>
+                        <td>User workplace:</td>
+                        <td><?php echo $this->user_info['numwp_user'];?></td>
+                    </tr>
+                </table>
+            </fieldset>
+            <fieldset id="info_distributeur" class="field_info_2">
+                <legend>Informations Distributeur</legend>
+                <table>
+                    <tr>
+                        <td>Nom:</td>
+                        <td><?php echo $this->infos_distributeur['OKCUNM'];?></td>
+                    </tr>
+                    <tr>
+                        <td>Nom du contact:</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Prénom du contact:</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Adresse:</td>
+                        <td><?php echo $this->infos_distributeur['OKCUA2'] . $this->infos_distributeur['OKCUA3'].$this->infos_distributeur['OKCUA4'];?></td>
+                    </tr>
+                    <tr>
+                        <td>Agence:</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>User Workplace:</td>
+                        <td><?php echo $this->numdistributeurwp;?></td>
+                    </tr>
+                    <tr>
+                        <td>Projet industrie:</td>
+                        <td><?php echo $this->info_industry['nom_industry']?></td>
+                    </tr>
+                    <tr>
+                        <td>Holon:</td>
+                        <td>plop</td>
+                    </tr>
+                    <tr>
+                        <td>Potentiel:</td>
+                        <td><?php echo $this->infos_distributeur['OKCFC7']; ?></td>
+                    </tr>
+                </table>
+            </fieldset>
+
+            <fieldset id="info_client" class="field_info_2">
+                <legend>Informations Client Final</legend>
+                <table>
+                    <tr>
+                        <td>Nom:</td>
+                        <td><input type="text"  name="nom_client"></td>
+                    </tr>
+                    <tr>
+                        <td>Adresse:</td>
+                        <td><input type="text"  name="nom_client"></td>
+                    </tr>
+                    <tr>
+                        <td>User Workplace:</td>
+                        <td><input type="text" name="numclientwp"></td>
+                    </tr>
+                    <tr>
+                        <td>Projet industrie:</td>
+                        <td><input type="text" name="nom_industry"></td>
+                    </tr>
+                    <tr>
+                        <td>Potentiel:</td>
+                        <td><input type="text" name="potentiel"></td>
+                    </tr>
+                </table>
+            </fieldset>
+        </div>
+    </form>
 </div>
