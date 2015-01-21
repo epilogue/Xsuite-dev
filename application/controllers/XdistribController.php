@@ -81,7 +81,7 @@ public function createAction()
             $usertest = new Application_Model_DbTable_Users();
             $user_info = $usertest->getMovexUser($numwp_user['USERWP']);
             $this->view->user_info = $user_info;
-            echo '<pre>',  var_export,($user_info),'</pre>';
+            echo '<pre>', var_export($user_info),'</pre>';
             $id_holon = $user_info['id_holon'];
             $holonuser = new Application_Model_DbTable_Holons();
             $holonuser1 = $holonuser->getHolon($id_holon);
