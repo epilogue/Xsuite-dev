@@ -100,7 +100,7 @@ $this->headTitle($this->title);
                         <td><?php echo round($result['OBSAPR'],2)."€";?></td>
                         <td><?php echo round($result['OBNEPR'],2)."€";?></td>
                         <td><?php $margedemande=(($result['OBNEPR']*100)/$result['OBSAPR']); $margedef=100-$margedemande;echo round($margedef,2)."%"; ?></td>
-                        <td><?php echo round($result['OBLNA2'])."€";?></td>
+                        <td><?php echo round($result['OBLNA2'],2)."€";?></td>
                         <td hidden="hidden"></td>
                         <td hidden="hidden"></td>
                         <td hidden="hidden"><?php echo $result['OBITNO'];?></td>
