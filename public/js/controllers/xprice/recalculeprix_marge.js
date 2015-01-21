@@ -14,7 +14,7 @@ $(document).ready(function (){
         var ra = parseFloat($(this).val());
         var pda = Number(((100-ra)*pwp)/100).toFixed(2);
         $('input#pda-'+k).val(pda);
-        var ma = Number(1-(parseFloat($('td#cif-'+k).html()))/Number(((100-ra)*pwp)/100).toFixed(2));
+        var ma = Number(1-(parseFloat($('td#cif-'+k).html())/Number(((100-ra)*pwp)/100)).toFixed(2));
         $('input#ma-'+k).val(ma+'%');
         $(this).val(parseFloat($(this).val())+'%');
     });
