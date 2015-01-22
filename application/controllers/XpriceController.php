@@ -778,13 +778,13 @@ class XpriceController extends Zend_Controller_Action {
         var_dump($blocage);
         foreach ($blocage as $blocs){
         $bloc = $blocs['etat_validation'];
-        }
+        
         if($bloc == "validee"){
              $flashMessenger = $this->_helper->getHelper('FlashMessenger');
                 $message1 = "vous avez déjà validée cette offre.";
                 $flashMessenger->addMessage($message1);
              $redirector = $this->_helper->getHelper('Redirector');
-             $redirector->gotoSimple('index', 'xprice');
+        $redirector->gotoSimple('index', 'xprice');}
         }
         $nomclients= trim($info_client['nom_client']);
         if ($this->getRequest()->isPost()) {
