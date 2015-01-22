@@ -21,14 +21,15 @@ $(document).ready(function (){
     
      $('input.ma').change(function (){
         var idT = $(this).attr('id').split('-');
-        var pwp = parseFloat($('td#pwp-'+k).html());
+        
         var k = idT[1];
+        var pwp = parseFloat($('td#pwp-'+k).html());
         var cif = parseFloat($('td#cif-'+k).html());
         var ma = parseFloat($(this).val());
         var pda = Number(cif/(1-(ma/100))).toFixed(2);
         $('input#pda-'+k).val(pda);
         $(this).val(parseFloat($(this).val())+'%');
-        var ra = Number(100-(Number(pda))*100).toFixed(2);
+        var ra = Number(100-(Number(pda))*100/pwp).toFixed(2);
         $('input#ra-'+k).val(ra);
     });
 });
