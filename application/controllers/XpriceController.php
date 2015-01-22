@@ -830,15 +830,15 @@ class XpriceController extends Zend_Controller_Action {
             $commentId = $this->genererValidation($datasValidation);
 
             $emailVars = Zend_Registry::get('emailVars');
-              $marges=  array_combine($datas['code_article'], $datas['marge']);
+             // $marges=  array_combine($datas['code_article'], $datas['marge']);
 //            foreach ($formData as $ploptitude) {
 //                $marge = array_combine($ploptitude['code_article'],( $ploptitude['remise_demande_article']));
 //            }
             $margemin = false;
-           echo '<pre>',  var_export($marges),'</pre>';
+           echo '<pre>',  var_export($marges),'</pre>'; exit();
             foreach ($marges as $key => $value2) {
                 $margesmc = $value2;
-                 echo '<pre>',  var_export($margesmc),'</pre>'; exit();
+                 echo '<pre>',  var_export($margesmc),'</pre>';
                 if ($margesmc < 10 || $margesmc == 0) {
                     $margemin = true;
                 }
