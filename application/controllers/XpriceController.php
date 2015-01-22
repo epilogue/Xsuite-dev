@@ -798,7 +798,7 @@ class XpriceController extends Zend_Controller_Action {
 // echo '<pre>',  var_export($datas,true),'</pre>';exit();
             $prix_accordes = array_combine($datas['code_article'], $datas['prix_accorde_article']);
             $remise_accordes = array_combine($datas['code_article'], $datas['remise_accorde_article']);
-            $marge = array_combine($datas['code_article'],$datas['marge_demande_article']); echo '<pre>',  var_export($marge),'</pre>'; 
+            $marge = array_combine($datas['code_article'],$datas['marge_demande_article']); 
             foreach ($remise_accordes as $key => $value) {
                 $remisesDirco = new Application_Model_DbTable_DemandeArticlexprices();
                 $remiseDirco = $remisesDirco->insertRemiseAccorde($value, $key, $datas['tracking']);
@@ -839,7 +839,7 @@ class XpriceController extends Zend_Controller_Action {
           
             foreach ($marge as $key => $value2) {
                 $margesmc = substr($value2,0,-1);
-                 echo '<pre>',  var_export($margesmc),'</pre>';exit();
+                 //echo '<pre>',  var_export($margesmc),'</pre>';exit();
                 if ($margesmc < 10 || $margesmc == 0) {
                     $margemin = true;
                 }
