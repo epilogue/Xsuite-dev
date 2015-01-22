@@ -776,7 +776,7 @@ class XpriceController extends Zend_Controller_Action {
         $blocages=new Application_Model_DbTable_Validationsdemandexprices();
         $blocage = $blocages->getValidation($nom_validation, $info_demande_xprice['id_demande_xprice']);
         var_dump($blocage);
-        $bloc = $blocage['etat_validation'];
+        $bloc = $blocage[0]['etat_validation'];
         if($bloc == "validee"){
              $redirector = $this->_helper->getHelper('Redirector');
              $redirector->gotoSimple('index', 'xprice');
