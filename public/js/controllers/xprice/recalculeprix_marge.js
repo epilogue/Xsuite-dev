@@ -28,7 +28,7 @@ $(document).ready(function (){
         var pda = Number(cif/(1-(ma/100))).toFixed(2);
         $('input#pda-'+k).val(pda);
         $(this).val(parseFloat($(this).val())+'%');
-        var ra = Number(100).toFixed(2);
+        var ra = Number(100-Number(cif)).toFixed(2);
         $('input#ra-'+k).val(ra);
     });
 });
