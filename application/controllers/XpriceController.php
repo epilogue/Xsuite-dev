@@ -809,7 +809,8 @@ class XpriceController extends Zend_Controller_Action {
             }
             foreach($marge as $key=>$value){
                 $margeinit=new Application_Model_DbTable_DemandeArticlexprices();
-                $marges = $margeinit->updateMarge($value,$key,$datas['tracking']);
+                $marges = $margeinit->updateMarge($value,$key,$datas['tracking']); 
+                echo '<pre>',  var_export($marges),'</pre>'; exit();
             }
 //            }
 
@@ -835,7 +836,7 @@ class XpriceController extends Zend_Controller_Action {
 //                $marge = array_combine($ploptitude['code_article'],( $ploptitude['remise_demande_article']));
 //            }
             $margemin = false;
-           echo '<pre>',  var_export($marges),'</pre>'; exit();
+          
             foreach ($marges as $key => $value2) {
                 $margesmc = $value2;
                  echo '<pre>',  var_export($margesmc),'</pre>';
