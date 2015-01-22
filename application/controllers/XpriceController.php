@@ -770,6 +770,16 @@ class XpriceController extends Zend_Controller_Action {
         $infos_demande_article_xprice = new Application_Model_DbTable_DemandeArticlexprices();
         $info_demande_article_xprice = $infos_demande_article_xprice->getDemandeArticlexprice($numwp);
         $this->view->info_demande_article_xprice = $info_demande_article_xprice;
+        
+        /*bloquage de la demande déjà validée */
+        
+        $blocages=new Application_Model_DbTable_Validationsdemandexprices();
+        $blocage = $blocages->getValidation($nom_validation, $info_demande_xprice['id_demande_xprice']);
+        $bloc = $blocage->etat_validation;
+        if($bloc == "validee"){
+             $redirector = $this->_helper->getHelper('Redirector');
+             $redirector->gotoSimple('index', 'xprice');
+        }
         $nomclients= trim($info_client['nom_client']);
         if ($this->getRequest()->isPost()) {
             $date_validation = date("Y-m-d H:i:s");
