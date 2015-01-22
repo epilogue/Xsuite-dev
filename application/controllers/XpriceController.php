@@ -835,6 +835,7 @@ class XpriceController extends Zend_Controller_Action {
 //                $marge = array_combine($ploptitude['code_article'],( $ploptitude['remise_demande_article']));
 //            }
             $margemin = false;
+            echo '<pre>',  var_export($margemin),'</pre>'; exit();
             foreach ($marges as $key => $value2) {
                 $margesmc = $value2;
                 if ($margesmc < 10 || $margesmc == 0) {
