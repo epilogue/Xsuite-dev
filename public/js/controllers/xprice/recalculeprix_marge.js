@@ -21,6 +21,7 @@ $(document).ready(function (){
     
      $('input.ma').change(function (){
         var idT = $(this).attr('id').split('-');
+         var pwp = parseFloat($('td#pwp-'+k).html());
         var k = idT[1];
         var cif = parseFloat($('td#cif-'+k).html());
         var ma = parseFloat($(this).val());
