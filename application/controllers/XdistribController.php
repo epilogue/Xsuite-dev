@@ -162,7 +162,7 @@ public function createAction()
                         if (is_null($distributeur)) {
                             $newdistributeur = $distributeurs->createDistributeur($infos_distributeur['OKCUNM'], $numdistributeurwp['OACHL1'], $adresse_distributeur, $info_industry['id_industry'], $infos_distributeur['OKCFC7']);
                         }
-                        // et ensuite  on insert dans la table demande_xdistribs
+                        // et ensuite  on insert dans la table demande_xdistrib
                         //si le distributeur existe  alors on insert immédiatement dans la table demande_xdistribs
 
                         $numwpexist = $demandes_xdistrib->getNumwp($numwp);
