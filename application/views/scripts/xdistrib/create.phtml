@@ -156,6 +156,10 @@ $this->headTitle($this->title);
                 </tr>
                 <?php } ?>
             </table>
+            <br>
+            <br>
+            <span >
+                <h3> Marge moyenne Affaire( sur l'ensemble des produits SMC): <input readonly="readonly" value="<?php $obnal2=0; foreach ($this->resultat as $result){$obnal2+=($result['OBLNA2']/count($this->resultat));}echo $obnal2 ."€";?>" name="MargeMoyenne" ></h3></span>
         </div>
         
     </form>
