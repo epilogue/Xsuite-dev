@@ -162,9 +162,9 @@ $this->headTitle($this->title);
                 <h3> Marge moyenne Affaire(sur l'ensemble des produits SMC): <input readonly="readonly" value="<?php $obnal2=0; foreach ($this->resultat as $result){$margedemande=(($result['OBNEPR']*100)/$result['OBSAPR']);$margedef=100-$margedemande;$obnal2+=($margedef/count($this->resultat));}echo round($obnal2,2) ."%";?>" name="MargeMoyenne" ></h3>
             </span>
         </div>
-        <div>
-            <fieldset>
-                <table>
+        <div id="concurrence" class="workplace">
+            <fieldset class="field"><legend>Concurrence</legend>
+                <table class="enum">
                     <tr>
                         <th>Concurrents</th>
                         <th>Références produits</th>
