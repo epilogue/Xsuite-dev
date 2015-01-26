@@ -162,6 +162,25 @@ $this->headTitle($this->title);
                 <h3> Marge moyenne Affaire(sur l'ensemble des produits SMC): <input readonly="readonly" value="<?php $obnal2=0; foreach ($this->resultat as $result){$margedemande=(($result['OBNEPR']*100)/$result['OBSAPR']);$margedef=100-$margedemande;$obnal2+=($margedef/count($this->resultat));}echo round($obnal2,2) ."%";?>" name="MargeMoyenne" ></h3>
             </span>
         </div>
-        
+        <div>
+            <fieldset>
+                <table>
+                    <tr>
+                        <th>Concurrents</th>
+                        <th>Références produits</th>
+                        <th>Prix tarif concurrent</th>
+                        <th>Prix spécial accordé concurrent</th>
+                    </tr>
+                    <?php foreach($this->resultat as $result){ ?>
+                    <tr>
+                        <td><input type="text" name="concurrent"></td>
+                        <td><?php echo $result['OBITDS'];?></td>
+                        <td><input type="text" name="prix_tarif_concurrent"></td>
+                        <td><input type="text" name="prix_accorde_concurrent"></td>
+                    </tr>
+                    <?php } ?>
+                </table>
+            </fieldset>
+        </div>
     </form>
 </div>
