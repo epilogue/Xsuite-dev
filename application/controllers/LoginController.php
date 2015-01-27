@@ -60,5 +60,9 @@ public function logoutAction()
         Zend_Auth::getInstance()->clearIdentity();
         $this->_helper->redirector('index'); // back to login page
     }
+    
+    public function perduAction(){
+        
+    }
 }
 

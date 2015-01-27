@@ -297,6 +297,23 @@ class XpriceController extends Zend_Controller_Action {
                     $fonctioncreateur = $user_info['id_fonction'];
                     $holoncreateur = $user_info['id_holon'];
                     $clientsnom=trim($infos_client['OKCUNM']);
+                    $destmail=$user_info['email_user'];
+                    $urls = "http://{$_SERVER['SERVER_NAME']}/xprice/consult/numwp/{$numwp}";
+                    $corpsMails = "Bonjour,\n"
+                                . "\n"
+                                . "Votre demande XPrice({$trackingNumber}/{$numwp}) a bien été envoyé.\n"
+                                . "pour la consulter veuillez vous rendre à l'adresse url : \n"
+                                . "%s"
+                                . "\n\n"
+                                . "Cordialement,\n"
+                                . "\n"
+                                . "--\n"
+                                . "Xsuite";
+                        $mails = new Xsuite_Mail();
+                        $mails->setSubject("TEST XPrice :Votre Offre  Xprice {$trackingNumber}/{$numwp} de {$user_info['nom_user']} pour $clientsnom")
+                                ->setBodyText(sprintf($corpsMails, $urls))
+                                ->addTo($destmail)
+                                ->send();
                     /*
                      * ici si itc envoie mail au leader en fonction du holon pour consultation
                      */

@@ -85,7 +85,25 @@ body{
     margin-bottom: 20px;
     margin-top: 20px;
 }
-
+a.perdu{
+  height: 30px;
+background-color: white !important;
+text-decoration: underline;
+/*background-image: -webkit-linear-gradient(top, #2A60AA 33%,#5082B4 66%);
+background-image: linear-gradient(to bottom, #2A60AA 33%, #5082B4 66%); 
+border-radius: 10px;*/
+ padding-bottom: 15px !important;
+ padding-top: 10px;
+ color:#729EBF !important;
+}
+.spanperdu{
+    height: 30px;
+    width:200px;
+    alignment-adjust: middle;
+}
+#loginne{
+    height: 380px;
+}
 
 #menu{
     width: 990px;
