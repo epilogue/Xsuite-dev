@@ -792,7 +792,7 @@ class XpriceController extends Zend_Controller_Action {
         
         $blocages=new Application_Model_DbTable_Validationsdemandexprices();
         $blocage = $blocages->getValidation($nom_validation, $info_demande_xprice['id_demande_xprice']);
-        var_dump($blocage);
+        //var_dump($blocage);
         foreach ($blocage as $blocs){
         $bloc = $blocs['etat_validation'];
         
@@ -1020,28 +1020,25 @@ class XpriceController extends Zend_Controller_Action {
                 if ($fonctioncreateur == "1" or $fonctioncreateur == "2" or $fonctioncreateur == "3") {
                         switch ($zonetracking) {
                             case "QA":
-                               $params5['destinataireMail'] = $emailVars->listes->qa;
+                               $params5['destinataireMail'] = $emailVars->listes->QA;
                                 break;
                             case "QC":
-                                $params5['destinataireMail'] = $emailVars->listes->cdrnord;
+                                $params5['destinataireMail'] = $emailVars->listes->CDRNORD;
                                 break;
                             case "QF":
-                                $params5['destinataireMail'] = $emailVars->listes->cdrnord;
+                                $params5['destinataireMail'] = $emailVars->listes->CDRNORD;
                                 break;
                             case "QE":
-                                $params5['destinataireMail'] = $emailVars->listes->cdrest;
+                                $params5['destinataireMail'] = $emailVars->listes->CDREST;
                                 break;
                             case "QH":
-                                $params5['destinataireMail'] = $emailVars->listes->cdrest;
-                                break;
-                            case "QF":
-                                $params5['destinataireMail'] = $emailVars->listes->cdrnord;
+                                $params5['destinataireMail'] = $emailVars->listes->CDREST;
                                 break;
                             case "QI":
-                                $params5['destinataireMail'] = $emailVars->listes->cdrouest;
+                                $params5['destinataireMail'] = $emailVars->listes->CDROUEST;
                                 break;
                             case "QK":
-                                $params5['destinataireMail'] = $emailVars->listes->cdrouest;
+                                $params5['destinataireMail'] = $emailVars->listes->CDROUEST;
                                 break;
                         }
                         $params5['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/consult/numwp/{$numwp}";
@@ -1354,28 +1351,25 @@ class XpriceController extends Zend_Controller_Action {
                 if ($fonctioncreateur == "1" or $fonctioncreateur == "2" or $fonctioncreateur == "3") {
                         switch ($zonetracking) {
                             case "QA":
-                               $params3['destinataireMail'] = $emailVars->listes->qa;
+                               $params3['destinataireMail'] = $emailVars->listes->QA;
                                 break;
                             case "QC":
-                                $params3['destinataireMail'] = $emailVars->listes->cdrnord;
+                                $params3['destinataireMail'] = $emailVars->listes->CDRNORD;
                                 break;
                             case "QF":
-                                $params3['destinataireMail'] = $emailVars->listes->cdrnord;
+                                $params3['destinataireMail'] = $emailVars->listes->CDRNORD;
                                 break;
                             case "QE":
-                                $params3['destinataireMail'] = $emailVars->listes->cdrest;
+                                $params3['destinataireMail'] = $emailVars->listes->CDREST;
                                 break;
                             case "QH":
-                                $params3['destinataireMail'] = $emailVars->listes->cdrest;
-                                break;
-                            case "QF":
-                                $params3['destinataireMail'] = $emailVars->listes->cdrnord;
+                                $params3['destinataireMail'] = $emailVars->listes->CDREST;
                                 break;
                             case "QI":
-                                $params3['destinataireMail'] = $emailVars->listes->cdrouest;
+                                $params3['destinataireMail'] = $emailVars->listes->CDROUEST;
                                 break;
                             case "QK":
-                                $params3['destinataireMail'] = $emailVars->listes->cdrouest;
+                                $params3['destinataireMail'] = $emailVars->listes->CDROUEST;
                                 break;
                         }
                         $params3['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/consult/numwp/{$numwp}";
@@ -2007,6 +2001,7 @@ class XpriceController extends Zend_Controller_Action {
          */
         $infos_demande_xprice = new Application_Model_DbTable_Xprices();
         $info_demande_xprice = $infos_demande_xprice->searchAll($tracking);
+        $numwp=$info_demande_xprice['num_workplace_demande_xprice'];
         $user_id = $info_demande_xprice->id_user;
         $this->view->info_demande_xprice = $info_demande_xprice;
         $date = DateTime::createFromFormat('Y-m-d', $info_demande_xprice->date_demande_xprice);
@@ -2051,5 +2046,7 @@ class XpriceController extends Zend_Controller_Action {
         $info_demande_article_xprice = $infos_demande_article_xprice->getDemandeArticlexprice($info_demande_xprice->num_workplace_demande_xprice);
         $this->view->info_demande_article_xprice = $info_demande_article_xprice;
     }
+    public function recapAction(){
 
+    } 
 }
