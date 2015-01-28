@@ -62,6 +62,7 @@ public function logoutAction()
     }
     
     public function perduAction(){
+         $this->view->messages = $this->_helper->flashMessenger->getMessages();
          $formperdu = new Application_Form_LoginPerdu();
           $email_user = $this->getRequest()->getParam('email_user', null);
          if ($this->getRequest()->isPost()) {
