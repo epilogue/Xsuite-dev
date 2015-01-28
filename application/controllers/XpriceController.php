@@ -379,25 +379,22 @@ class XpriceController extends Zend_Controller_Action {
                                 $destinataireMail1 = $emailVars->listes->qa;
                                 break;
                             case "QC":
-                                $destinataireMail1 = $emailVars->listes->cdrnord;
+                                $destinataireMail1 = $emailVars->listes->CDRNORD;
                                 break;
                             case "QF":
-                                $destinataireMail1 = $emailVars->listes->cdrnord;
+                                $destinataireMail1 = $emailVars->listes->CDRNORD;
                                 break;
                             case "QE":
-                                $destinataireMail1 = $emailVars->listes->cdrest;
+                                $destinataireMail1 = $emailVars->listes->CDREST;
                                 break;
                             case "QH":
-                                $destinataireMail1 = $emailVars->listes->cdrest;
-                                break;
-                            case "QF":
-                                $destinataireMail1 = $emailVars->listes->cdrnord;
+                                $destinataireMail1 = $emailVars->listes->CDREST;
                                 break;
                             case "QI":
-                                $destinataireMail1 = $emailVars->listes->cdrouest;
+                                $destinataireMail1 = $emailVars->listes->CDROUEST;
                                 break;
                             case "QK":
-                                $destinataireMail1 = $emailVars->listes->cdrouest;
+                                $destinataireMail1 = $emailVars->listes->CDROUEST;
                                 break;
                         }
                         echo '<pre>',  var_export($destinataireMail1),'</pre>'; exit();
