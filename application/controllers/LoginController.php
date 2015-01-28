@@ -91,7 +91,7 @@ public function logoutAction()
                     $message = "vos identifiants ont été envoyés  à cette adresse mail : $mail->email_user";
                     $flashMessenger->addMessage($message);
                     //$redirector = $this->_helper->getHelper('Redirector');
-                    $this->_helper->redirector('index', 'login');
+                    $this->_redirect('login/index');
                     //$flashMessenger = $this->_helper->getHelper('FlashMessenger');
                     
                     
