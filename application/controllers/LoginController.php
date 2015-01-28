@@ -87,11 +87,12 @@ public function logoutAction()
                                 ->setBodyText(sprintf($corpsMails))
                                 ->addTo($destmail)
                                 ->send();
+                    
+                    $redirector = $this->_helper->getHelper('Redirector');
+                    $redirector->gotoSimple('index', 'login');
                     $flashMessenger = $this->_helper->getHelper('FlashMessenger');
                     $message = "vos identifiants ont été envoyés  à cette adresse mail : $mail->email_user";
                     $flashMessenger->addMessage($message);
-                    $redirector = $this->_helper->getHelper('Redirector');
-                    $redirector->gotoSimple('index', 'login');
                     
                 }elseif($mail === FALSE){
                     $flashMessenger = $this->_helper->getHelper('FlashMessenger');
