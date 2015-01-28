@@ -372,6 +372,7 @@ class XpriceController extends Zend_Controller_Action {
                      * ici si fonction itc kam ou leader  envoie de mail au chef de region pour validation
                      */
                     $zonetracking = substr($trackingNumber, 6, 2);
+                    echo '<pre>',  var_export($zonetracking),'</pre>';
                     if ($fonctioncreateur == "1" or $fonctioncreateur == "2" or $fonctioncreateur == "3") {
                         switch ($zonetracking) {
                             case "QA":
@@ -399,6 +400,7 @@ class XpriceController extends Zend_Controller_Action {
                                 $destinataireMail1 = $emailVars->listes->cdrouest;
                                 break;
                         }
+                        echo '<pre>',  var_export($destinataireMail1),'</pre>'; exit();
                         if (!is_null($firstComment)) {
                             $url1 = "http://{$_SERVER['SERVER_NAME']}/xprice/validatechefregion/numwp/{$numwp}/com/{$firstComment}";
                         } else {
