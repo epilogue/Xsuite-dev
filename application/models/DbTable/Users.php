@@ -124,5 +124,12 @@ class Application_Model_DbTable_Users extends Zend_Db_Table_Abstract {
             return $result;
         }
     }
+    public function getPassword($email_user){
+         $email_user = "$email_user";
+    $sql="select password_user , email_user from users where email_user = '{$email_user}'";
+    $res= $this->getAdapter()->query($sql);
+      $rest = $res->fetchObject();
+      return $rest;
+    }
 
 }

@@ -62,7 +62,47 @@ public function logoutAction()
     }
     
     public function perduAction(){
-        
+         $formperdu = new Application_Form_LoginPerdu();
+          $email_user = $this->getRequest()->getParam('email_user', null);
+         if ($this->getRequest()->isPost()) {
+          if ($formperdu->isValid($this->getRequest()->getPost())){
+             $mails= new Application_Model_DbTable_Users();
+                $mail=$mails->getPassword($email_user);
+//                echo '<pre>',var_export($mail),'</pre>';                exit();
+                if(!is_null($mail) and $mail !== false){
+                    $destmail=$mail->email_user;
+                    
+                    $corpsMails = "Bonjour,\n"
+                                . "\n"
+                                . "Voici votre identifiant :$mail->email_user.\n"
+                                . "et votre mot de passe : $mail->password_user\n"
+                                
+                                . "Cordialement,\n"
+                                . "\n"
+                                . "--\n"
+                                . "Xsuite";
+                        $mailpass = new Xsuite_Mail();
+                        $mailpass->setSubject("vos informations d'identification")
+                                ->setBodyText(sprintf($corpsMails))
+                                ->addTo($destmail)
+                                ->send();
+                    $flashMessenger = $this->_helper->getHelper('FlashMessenger');
+                    $message = "vos identifiants ont été envoyés  à cette adresse mail : $mail->email_user";
+                    $flashMessenger->addMessage($message);
+                    $redirector = $this->_helper->getHelper('Redirector');
+                    $redirector->gotoSimple('index', 'login');
+                    
+                }elseif($mail === FALSE){
+                    $flashMessenger = $this->_helper->getHelper('FlashMessenger');
+                    $message = "cette adresse mail n'a pas de concordance dans la base Xsuite";
+                    $flashMessenger->addMessage($message);
+                    $redirector = $this->_helper->getHelper('Redirector');
+                    $redirector->gotoSimple('perdu', 'login');
+                }
+                
+         }
+         }
+         $this->view->form = $formperdu;
     }
 }
 
