@@ -98,7 +98,7 @@ public function logoutAction()
                     $flashMessenger = $this->_helper->getHelper('FlashMessenger');
                     $message = "cette adresse mail n'a pas de concordance dans la base Xsuite";
                     $flashMessenger->addMessage($message);
-                    $this->_helper->redirector('perdu', 'login');
+                    $this->_helper->redirector('perdu', 'login',null,$message);
 //                    $redirector = $this->_helper->getHelper('Redirector');
 //                    $redirector->gotoSimple('perdu', 'login');
                 }

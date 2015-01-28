@@ -723,7 +723,7 @@ class XpriceController extends Zend_Controller_Action {
                 $message = "la demande est en attente de réponse du commercial.";
                 $flashMessenger->addMessage($message);
                 $redirector = $this->_helper->getHelper('Redirector');
-                $redirector->gotoSimple('index', 'xprice',null , $message);
+                $redirector->gotoSimple('index', 'xprice');
             }
         }
     }
