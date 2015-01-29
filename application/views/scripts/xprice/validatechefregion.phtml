@@ -137,10 +137,10 @@ $this->headTitle($this->title);
                 </fieldset>
             </div>
             <div id="valid_cdr" class="workplace">
-                <input type="radio" name="validation" value="nonValide"> La demande n'est pas validée <input hidden="hidden" name="nom_validation" value="validation_cdr"><br>
-                <input type="radio" name="validation" value="validee"> La demande est validée <input hidden="hidden" name="date_validation" value="<?php echo date("Y-m-d H:i:s") ?>"><br>
-                <input type="radio" checked="checked" name="validation" value="enAttente">  en attente de réponse<input hidden="hidden" name="cdr" value="<?php echo $this->cdr; ?>"><br>
-               <input hidden="hidden" name="tracking" value="<?php echo $this->info_demande_xprice['tracking_number_demande_xprice']; ?>">
+                <input type="radio" name="validation" value="nonValide"> La demande n'est pas validée <input visibility="hidden" name="nom_validation" value="validation_cdr"><br>
+                <input type="radio" name="validation" value="validee"> La demande est validée <input visibility="hidden" name="date_validation" value="<?php echo date("Y-m-d H:i:s") ?>"><br>
+                <input type="radio" checked="checked" name="validation" value="enAttente">  en attente de réponse<input visibility="hidden" name="cdr" value="<?php echo $this->cdr; ?>"><br>
+               <input visibility="hidden" name="tracking" value="<?php echo $this->info_demande_xprice['tracking_number_demande_xprice']; ?>">
             </div>
             <input class="submit" type="submit" value="enregistrer statut offre">
         </form>
