@@ -228,6 +228,7 @@ background-color: #729EBF;
 background: -webkit-linear-gradient(top, #2A60AA 33%,#5082B4 66%);
 background: -moz-linear-gradient(top, #2A60AA 33%,#5082B4 66%);
 background:linear-gradient(to bottom, #2A60AA 33%, #5082B4 66%);
+top:-15px;
 }
 /* background des liens sous menus */
 #menu_haut li:first-child li{
