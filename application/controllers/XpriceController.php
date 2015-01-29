@@ -581,7 +581,7 @@ class XpriceController extends Zend_Controller_Action {
             $emailVars = Zend_Registry::get('emailVars');
             if (isset($formData['validation']) && $formData['validation'] == "validee") {
                 $params1 = array();
-                $params1['destinataireMail'] = $info_user['mail_user'] ;
+                $params1['destinataireMail'] = $info_user['email_user'] ;
                 $params1['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/consult/numwp/{$numwp}";
                 $params1['corpsMail'] = "Bonjour,\n"
                         . "\n"
@@ -665,7 +665,7 @@ class XpriceController extends Zend_Controller_Action {
              * alors envoi mail tc et insertion dans la table validation
              */ elseif (isset($formData['validation']) && $formData['validation'] == "nonValide") {
                 $params1 = array();
-                $params1['destinataireMail'] = $info_user['mail_user'] ;
+                $params1['destinataireMail'] = $info_user['email_user'] ;
                 $params1['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/consult/numwp/{$numwp}";
                 $params1['corpsMail'] = "Bonjour,\n"
                         . "\n"
@@ -698,7 +698,7 @@ class XpriceController extends Zend_Controller_Action {
                 $lasthisto = $lastidhisto->getHistorique($formData['tracking'], $lastidvalid[0]['id_validation']);
 
                 $params1 = array();
-                $params1['destinataireMail'] = $info_user['mail_user'];
+                $params1['destinataireMail'] = $info_user['email_user'];
 //                $params1['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/update/numwp/{$numwp}/histo/{$lasthisto[0]['id_histo_commentaire']}";
                 if (!is_null($commentId)) {
                     $params1['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/update/numwp/{$numwp}/com/{$commentId}";
@@ -747,6 +747,7 @@ class XpriceController extends Zend_Controller_Action {
         $this->view->dateplop = $dateplop;
         $infos_user = new Application_Model_DbTable_Users();
         $info_user = $infos_user->getUserDemande($info_demande_xprice['id_user']);
+        echo '<pre>',var_export($info_user),'</pre>';
         $id_holon=$info_user['id_holon'];
         $holonuser = new Application_Model_DbTable_Holons();
         $holonuser1 = $holonuser->getHolon($id_holon);
@@ -896,7 +897,7 @@ class XpriceController extends Zend_Controller_Action {
                 $params6 = array();
                 
                  if ($margemin == true){
-                  $params['destinataireMail'] = $info_user['mail_user'] ;
+                  $params['destinataireMail'] = $info_user['email_user'] ;
                   $params1['destinataireMail'] = $emailVars->listes->Dirco;
                 if (!is_null($commentId)) {
                     $params['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/consult/numwp/{$numwp}/com/{$commentId}";
@@ -932,7 +933,7 @@ class XpriceController extends Zend_Controller_Action {
                 $this->sendEmail($params1);
                  }
                  else{/*envoi de mail au tc, au cdr, au leader, au cm et au service client.*/
-                    $params2['destinataireMail'] = $info_user['mail_user'];
+                    $params2['destinataireMail'] = $info_user['email_user'];
                     $params3['destinataireMail'] = $emailVars->listes->serviceClient ;
                     //$params3['destinataireMail'] = $emailVars->listes->serviceClient ;
                      if (!is_null($commentId)) {
@@ -1097,7 +1098,7 @@ class XpriceController extends Zend_Controller_Action {
                 $redirector->gotoSimple('index', 'xprice');
             } elseif (isset($datas['validation']) && $datas['validation'] == 'enAttente') {
                 $params = array();
-                $params['destinataireMail'] = $info_user['mail_user'];
+                $params['destinataireMail'] = $info_user['email_user'];
                 if (!is_null($commentId)) {
                     $params['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/update/numwp/{$numwp}/com/{$commentId}";
                 } else {
@@ -1123,7 +1124,7 @@ class XpriceController extends Zend_Controller_Action {
                 $redirector->gotoSimple('index', 'xprice');
             } elseif (isset($datas['validation']) && $datas['validation'] == 'nonValide') {
                 $params = array();
-                $params['destinataireMail'] = $info_user['mail_user'];
+                $params['destinataireMail'] = $info_user['email_user'];
                 if (!is_null($commentId)) {
                     $params['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/consult/numwp/{$numwp}/com/{$commentId}";
                 } else {
@@ -1270,7 +1271,7 @@ class XpriceController extends Zend_Controller_Action {
             $params4=  array();
             $params5 = array();
             if (isset($formData['validation']) && $formData['validation'] == "validee") {
-                $params['destinataireMail'] = $info_user['mail_user'];
+                $params['destinataireMail'] = $info_user['email_user'];
                 $params['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/consult/numwp/{$numwp}";
                 $params['corpsMail'] = "Bonjour,\n"
                         . "\n"
@@ -1440,7 +1441,7 @@ class XpriceController extends Zend_Controller_Action {
                 
             } elseif (isset($formData['validation']) && $formData['validation'] == 'enAttente') {
                 $emailVars = Zend_Registry::get('emailVars');
-                $params['destinataireMail'] =$info_user['mail_user'] ;
+                $params['destinataireMail'] =$info_user['email_user'] ;
                 if (!is_null($commentId)) {
                     $params['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/update/numwp/{$numwp}/com/{$commentId}";
                 } else {
@@ -1466,7 +1467,7 @@ class XpriceController extends Zend_Controller_Action {
                 $redirector->gotoSimple('index', 'xprice');
             } elseif (isset($formData['validation']) && $formData['validation'] == 'nonValide') {
                 $emailVars = Zend_Registry::get('emailVars');
-                $params['destinataireMail'] = $info_user['mail_user'];
+                $params['destinataireMail'] = $info_user['email_user'];
                 if (!is_null($commentId)) {
                     $params['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/consult/numwp/{$numwp}/com/{$commentId}";
                 } else {
