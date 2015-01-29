@@ -801,7 +801,7 @@ class XpriceController extends Zend_Controller_Action {
                 $flashMessenger = $this->_helper->getHelper('FlashMessenger');
                 $message1 = "vous avez déjà validée cette offre.";
                 $flashMessenger->addMessage($message1);}    
-                else{
+                elseif($bloc=="nonValide"){
                  $flashMessenger = $this->_helper->getHelper('FlashMessenger');
                 $message1 = "cette offre a déjà été refusée.";
                 $flashMessenger->addMessage($message1);
