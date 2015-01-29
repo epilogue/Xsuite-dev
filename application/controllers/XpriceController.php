@@ -897,7 +897,7 @@ class XpriceController extends Zend_Controller_Action {
                 
                  if ($margemin == true){
                   $params['destinataireMail'] = $info_user['mail_user'] ;
-                  $params1['destinataireMail'] = $emailVars->listes->dirco;
+                  $params1['destinataireMail'] = $emailVars->listes->Dirco;
                 if (!is_null($commentId)) {
                     $params['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/consult/numwp/{$numwp}/com/{$commentId}";
                     $params1['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/validatedirco/numwp/{$numwp}";
