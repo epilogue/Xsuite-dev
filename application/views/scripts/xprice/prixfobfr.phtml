@@ -114,12 +114,12 @@ $this->headTitle($this->title);
                             <td><?php echo $result['remise_demande_article'] . "%"; ?></td>
                             <td><input id="prixfob" style="background-color: #74aaca;" type="text" name="prix_fob[]" value="<?php echo $result['prix_fob_demande_article']; ?>"></td>
                             <td><input id="prixcif" style="background-color: #74aaca;" type="text" name="prix_cif[]" value="<?php echo $result['prix_cif_demande_article']; ?>"></td>
-                            <td><input hidden="hidden" name="marge_demande_article[]" <?php $marge=(100*(1-($result['prix_cif_demande_article']/$result['prix_demande_article'])));?>value="<?php echo $marge;?>"> </td>
+                            <td><input type="hidden" name="marge_demande_article[]" <?php $marge=(100*(1-($result['prix_cif_demande_article']/$result['prix_demande_article'])));?>value="<?php echo $marge;?>"> </td>
                         </tr>
                     <?php } ?>
                 </table>
-                <input type="text" hidden="hidden" value="<?php echo $this->info_demande_xprice['tracking_number_demande_xprice']; ?>" name="tracking_number">
-                <input type="text" hidden="hidden" value="<?php echo $this->date_validationfobfr; ?>">
+                <input  type="hidden" value="<?php echo $this->info_demande_xprice['tracking_number_demande_xprice']; ?>" name="tracking_number">
+                <input  type="hidden" value="<?php echo $this->date_validationfobfr; ?>">
             </fieldset>
         </div>
         <div id="comFob" class="workplace">
