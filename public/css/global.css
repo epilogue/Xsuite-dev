@@ -127,7 +127,7 @@ text-align:center;
 #menu_haut li{
     
 display:inline-block;
-position:absolute;
+position:inherit;
 border-radius:8px 8px 0 0;
 }
 
@@ -143,7 +143,7 @@ border-radius:0;
 border-radius:0 0 8px 8px;
 }
 #menu_haut ul{
-position:inherit;
+position:absolute;
 max-height:0;
 left: 0;
 right: 0;
