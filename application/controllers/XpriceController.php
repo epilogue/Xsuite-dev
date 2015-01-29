@@ -796,7 +796,7 @@ class XpriceController extends Zend_Controller_Action {
         foreach ($blocage as $blocs){
         $bloc = $blocs['etat_validation'];
         
-        if($bloc == "validee" || $bloc="nonValide"){
+        if($bloc == "validee" || $bloc =="nonValide"){
             if($bloc=="validee"){
                 $flashMessenger = $this->_helper->getHelper('FlashMessenger');
                 $message1 = "vous avez déjà validée cette offre.";
