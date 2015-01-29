@@ -17,6 +17,8 @@ body{
     background: -moz-linear-gradient(top, #2A60AA 33%,#5082B4 66%);
     background: -webkit-linear-gradient(top, #2A60AA 33%,#5082B4 66%);
     background:-ms-linear-gradient(to bottom, #2A60AA 33%, #5082B4 66%);
+     background: linear-gradient(to bottom, #2A60AA 33%, #5082B4 66%);
+     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2A60AA', endColorstr='#5082B4',GradientType=1 ); /* IE6-9 */
     margin-bottom: 10px;
     border-radius: 10px;
 }
