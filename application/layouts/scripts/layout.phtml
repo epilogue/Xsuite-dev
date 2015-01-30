@@ -8,7 +8,8 @@ echo $this->doctype();
         <?php
         echo $this->headMeta();
         echo $this->headLink()->prependStylesheet($this->baseUrl() . '/css/global.css');
-        ?><!--[if !lte IE8]><?php echo $this->headLink()->prependStylesheet($this->baseUrl() . '/css/ie8.css');?><![endif]--><?php
+        ?>
+<!--[if !IE8]><?php echo $this->headLink()->prependStylesheet($this->baseUrl() . '/css/ie8.css');?><![endif]--><?php
         echo $this->headTitle();
         ?>
         <script type="text/javascript" src='/js/jquery-1.10.2.min.js'></script>
