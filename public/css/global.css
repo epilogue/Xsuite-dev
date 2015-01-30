@@ -21,6 +21,7 @@ body{
      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2A60AA', endColorstr='#5082B4',GradientType=1 ); /* IE6-9 */
     margin-bottom: 10px;
     border-radius: 10px;
+     behavior:url(./PIE-1.0.0);
 }
 
 #header_left{
