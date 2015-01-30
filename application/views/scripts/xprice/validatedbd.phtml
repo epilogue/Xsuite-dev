@@ -143,6 +143,25 @@ $this->headScript()->appendFile('/js/controllers/xprice/afficher_masquer_validat
                 </table>
                  
             </fieldset>
+            <div id ='just_demande' class="workplace">
+        <fieldset id = 'justif_user' class="field">
+            <legend>Justificatif de la demande</legend>
+           <table class="enum">
+                <tr>
+                    <th>Concurrent visé</th>
+                    <th>Parts de marché smc</th>
+                    <th>Minimum de commande</th>
+                    <th>Démarche stratégique</th>
+                </tr>
+                <tr>
+                    <td> <?php echo $this->info_demande_xprice['justificatif2_demande_xprice']; ?></td>
+                    <td> <?php echo $this->info_demande_xprice['justificatif3_demande_xprice'] ?></td>
+                    <td> <?php echo $this->info_demande_xprice['justificatif_demande_xprice'] ?></td>
+                    <td> <?php if($this->info_demande_xprice['justificatif4_demande_xprice'] == 0) {echo 'concentration des efforts' ;} elseif($this->info_demande_xprice['justificatif4_demande_xprice'] == 1){ echo 'attaquer le faible';}elseif($this->info_demande_xprice['justificatif4_demande_xprice'] ==2 ){ echo 'globalisation';} ?></td>
+                </tr>
+            </table>
+        </fieldset>
+    </div>
         </div>
         <div id="validation" class="workplace">
         <button class="submit" id="historiqueVal" name="historiqueVal" value="historiqueVal">Historique validation</button>
