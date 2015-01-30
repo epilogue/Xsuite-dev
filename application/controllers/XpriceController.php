@@ -1430,7 +1430,7 @@ class XpriceController extends Zend_Controller_Action {
                         . "\n"
                         . "--\n"
                         . "Xprice";
-                $params5['destinataireMail'] = $emailVars->listes->dbd;
+                $params5['destinataireMail'] = $emailVars->listes->DBD;
                 $params5['sujet'] = "TEST XPrice : La demande Xprice $trackingNumber/$numwp de {$info_user['nom_user']} pour le client $nomclients a été validée par le Dirco.";
                 $this->sendEmail($params5);
                 $flashMessenger = $this->_helper->getHelper('FlashMessenger');
@@ -1496,7 +1496,7 @@ class XpriceController extends Zend_Controller_Action {
                         . "\n"
                         . "--\n"
                         . "Xprice";
-                $params5['destinataireMail'] = $emailVars->listes->dbd;
+                $params5['destinataireMail'] = $emailVars->listes->DBD;
                 $params5['sujet'] = "TEST XPrice : La demande Xprice $trackingNumber/$numwp de {$info_user['nom_user']} pour le client $nomclients a été refusée par le Dirco.";
                 $this->sendEmail($params5);
                 $flashMessenger = $this->_helper->getHelper('FlashMessenger');
@@ -1868,6 +1868,7 @@ class XpriceController extends Zend_Controller_Action {
             $users = new Application_Model_DbTable_Users();
 
             $destReponse = $users->getUser($question['id_user']);
+            echo '<pre>',  var_export($destReponse),'</pre>'; exit();
             $fonctions = array(
                 13 => "dirco",
                 10 => "chefregion",
