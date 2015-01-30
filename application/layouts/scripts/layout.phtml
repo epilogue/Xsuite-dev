@@ -8,9 +8,10 @@ echo $this->doctype();
         <?php
         echo $this->headMeta();
         echo $this->headLink()->prependStylesheet($this->baseUrl() . '/css/global.css');
+        ?>
+<!--[if !IE7]><?php echo $this->headLink()->prependStylesheet($this->baseUrl() . '/css/ie8.css');?><![endif]--><?php
         echo $this->headTitle();
         ?>
-        <meta http-equiv="X-UA-Compatible" content="IE=7">
         <script type="text/javascript" src='/js/jquery-1.10.2.min.js'></script>
         <script type="text/javascript" src='/js/jquery-ui-1.10.4.min.js'></script>
         <script type="text/javascript" src='/js/afficher.js'></script>

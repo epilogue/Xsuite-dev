@@ -5,34 +5,26 @@ class XdistribController extends Zend_Controller_Action
     public $odbc_conn = null;
     public $odbc_conn2 = null;
     public $odbc_conn3 = null;
+    
     public function init()
     {
-       // $auth = Zend_Auth::getInstance();
         $this->_auth = Zend_Auth::getInstance();
         $this->view->messages = $this->_helper->flashMessenger->getMessages();
-//        $user = $auth->getIdentity();
-//        if (is_null($user)) {
-//            $this->_helper->redirector('index', 'login');
-//        } else {
-//            /* @todo commentaire franck
-//             * Et donc, ici, on peut faire de l'acl de manière plus fine
-//             */
-//        }
-        $this->view->messages = $this->_helper->flashMessenger->getMessages();
-//        $this->dsn = Zend_Registry::get("dsnString");
-//        $this->odbc_conn = odbc_connect('Movex', "EU65535", "CCS65535");
-//        if (!$this->odbc_conn) {
-//            echo "pas d'accès à la base de données CVXDTA";
-//        }
-//        $this->dsn2 = Zend_Registry::get("dsn2String");
-//        $this->odbc_conn2 = odbc_connect('Movex2', "EU65535", "CCS65535");
-//        if (!$this->odbc_conn2) {
-//            echo "pas d'accès à la base de données MVXCDTA";
-//        }
-//        $this->odbc_conn3 = odbc_connect('Movex3', "EU65535", "CCS65535");
-//        if (!$this->odbc_conn3) {
-//            echo "pas d'accès à la base de données SMCCDTA";
-//        }
+/*connexions à Movex*/
+        $this->dsn = Zend_Registry::get("dsnString");
+        $this->odbc_conn = odbc_connect('Movex', "EU65535", "CCS65535");
+        if (!$this->odbc_conn) {
+            echo "pas d'accès à la base de données CVXDTA";
+        }
+        $this->dsn2 = Zend_Registry::get("dsn2String");
+        $this->odbc_conn2 = odbc_connect('Movex2', "EU65535", "CCS65535");
+        if (!$this->odbc_conn2) {
+            echo "pas d'accès à la base de données MVXCDTA";
+        }
+        $this->odbc_conn3 = odbc_connect('Movex3', "EU65535", "CCS65535");
+        if (!$this->odbc_conn3) {
+            echo "pas d'accès à la base de données SMCCDTA";
+        }
     }
 
     public function indexAction()
@@ -179,7 +171,11 @@ public function createAction()
                             }
                         }
                     }
+                    else {
+                    $form->populate($formData);
+                    }
                 }
+                $this->view->form = $form;
             }
     }
     public function consultAction()

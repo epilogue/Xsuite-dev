@@ -623,19 +623,19 @@ class XpriceController extends Zend_Controller_Action {
 
                 switch ($destIndustry) {
                     case ($destIndustry > 0 && $destIndustry < 77 ):
-                        $destinataireMail2 = $emailVars->listes->carindustries1;
+                        $destinataireMail2 = $emailVars->listes->carIndustries1;
                         break;
                     case ($destIndustry > 76 && $destIndustry < 138 ):
-                        $destinataireMail2 = $emailVars->listes->lifeandscience;
+                        $destinataireMail2 = $emailVars->listes->LifeandScience;
                         break;
                     case ($destIndustry > 137 && $destIndustry < 272 ):
-                        $destinataireMail2 = $emailVars->listes->electronique;
+                        $destinataireMail2 = $emailVars->listes->Electronique;
                         break;
                     case ($destIndustry > 271 && $destIndustry < 314 ):
-                        $destinataireMail2 = $emailVars->listes->foodindustries;
+                        $destinataireMail2 = $emailVars->listes->foodIndustries;
                         break;
                     case ($destIndustry > 313 && $destIndustry <= 415 ):
-                        $destinataireMail2 = $emailVars->listes->environnementenergie;
+                        $destinataireMail2 = $emailVars->listes->environnementEnergie;
                         break;
                 }
                 $params3 = array();
@@ -1430,7 +1430,7 @@ class XpriceController extends Zend_Controller_Action {
                         . "\n"
                         . "--\n"
                         . "Xprice";
-                $params5['destinataireMail'] = $emailVars->listes->dbd;
+                $params5['destinataireMail'] = $emailVars->listes->DBD;
                 $params5['sujet'] = "TEST XPrice : La demande Xprice $trackingNumber/$numwp de {$info_user['nom_user']} pour le client $nomclients a été validée par le Dirco.";
                 $this->sendEmail($params5);
                 $flashMessenger = $this->_helper->getHelper('FlashMessenger');
@@ -1496,7 +1496,7 @@ class XpriceController extends Zend_Controller_Action {
                         . "\n"
                         . "--\n"
                         . "Xprice";
-                $params5['destinataireMail'] = $emailVars->listes->dbd;
+                $params5['destinataireMail'] = $emailVars->listes->DBD;
                 $params5['sujet'] = "TEST XPrice : La demande Xprice $trackingNumber/$numwp de {$info_user['nom_user']} pour le client $nomclients a été refusée par le Dirco.";
                 $this->sendEmail($params5);
                 $flashMessenger = $this->_helper->getHelper('FlashMessenger');
@@ -1868,6 +1868,7 @@ class XpriceController extends Zend_Controller_Action {
             $users = new Application_Model_DbTable_Users();
 
             $destReponse = $users->getUser($question['id_user']);
+            //echo '<pre>',  var_export($destReponse),'</pre>'; 
             $fonctions = array(
                 13 => "dirco",
                 10 => "chefregion",
@@ -1875,7 +1876,7 @@ class XpriceController extends Zend_Controller_Action {
             );
             $idF = $destReponse['id_fonction'];
             $params1 = array();
-            $params1['destinataireMail'] =$destReponse->email_user;
+            $params1['destinataireMail'] =$destReponse['email_user'];
 //                $params1['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/update/numwp/{$numwp}/histo/{$lasthisto[0]['id_histo_commentaire']}";
             if (!is_null($commentId)) {
                 $params1['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/validate{$fonctions[$idF]}/numwp/{$numwp}/com/{$commentId}";
@@ -1894,6 +1895,7 @@ class XpriceController extends Zend_Controller_Action {
                     . "--\n"
                     . "Xprice.";
             $params1['sujet'] = "TEST XPrice : réponse sur la demande Xprice  $tracking_number/$numwp pour le client $nomclients.";
+            //echo '<pre>',  var_export($params1),'</pre>'; exit();
             $this->sendEmail($params1);
 
             $flashMessenger = $this->_helper->getHelper('FlashMessenger');
