@@ -1876,7 +1876,7 @@ class XpriceController extends Zend_Controller_Action {
             );
             $idF = $destReponse['id_fonction'];
             $params1 = array();
-            $params1['destinataireMail'] =$destReponse->email_user;
+            $params1['destinataireMail'] =$destReponse['email_user'];
 //                $params1['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/update/numwp/{$numwp}/histo/{$lasthisto[0]['id_histo_commentaire']}";
             if (!is_null($commentId)) {
                 $params1['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/validate{$fonctions[$idF]}/numwp/{$numwp}/com/{$commentId}";
