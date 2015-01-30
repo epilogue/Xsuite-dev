@@ -141,6 +141,7 @@ $this->headScript()->appendFile('/js/controllers/xprice/afficher_masquer_validat
                         </tr>
                     <?php } ?>
                 </table>
+                 <span><h3> Poids de l'affaire :<input readonly="readonly" value="<?php $obnal2=0; foreach ($this->info_demande_article_xprice as $result){$obnal2+=$result['prix_demande_article']*int($result['quantite_demande_article']);} $poids = round($obnal2 /$this->info_client['potentiel']*1000)/100; echo $poids ."%";?>" name="totalpoids" ></h3></span>
             </fieldset>
         </div>
         <div id="validation" class="workplace">
