@@ -1868,7 +1868,7 @@ class XpriceController extends Zend_Controller_Action {
             $users = new Application_Model_DbTable_Users();
 
             $destReponse = $users->getUser($question['id_user']);
-            echo '<pre>',  var_export($destReponse),'</pre>'; exit();
+            echo '<pre>',  var_export($destReponse),'</pre>'; 
             $fonctions = array(
                 13 => "dirco",
                 10 => "chefregion",
@@ -1895,6 +1895,7 @@ class XpriceController extends Zend_Controller_Action {
                     . "--\n"
                     . "Xprice.";
             $params1['sujet'] = "TEST XPrice : réponse sur la demande Xprice  $tracking_number/$numwp pour le client $nomclients.";
+            echo '<pre>',  var_export($params1),'</pre>'; exit();
             $this->sendEmail($params1);
 
             $flashMessenger = $this->_helper->getHelper('FlashMessenger');
