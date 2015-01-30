@@ -747,7 +747,7 @@ class XpriceController extends Zend_Controller_Action {
         $this->view->dateplop = $dateplop;
         $infos_user = new Application_Model_DbTable_Users();
         $info_user = $infos_user->getUserDemande($info_demande_xprice['id_user']);
-        echo '<pre>',var_export($info_user),'</pre>';
+        //echo '<pre>',var_export($info_user),'</pre>';
         $id_holon=$info_user['id_holon'];
         $holonuser = new Application_Model_DbTable_Holons();
         $holonuser1 = $holonuser->getHolon($id_holon);
