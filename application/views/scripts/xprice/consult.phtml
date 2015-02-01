@@ -117,6 +117,18 @@ $this->headScript()->appendFile('/js/controllers/xprice/afficher_masquer_validat
                         <td><?php echo $result['marge_demande_article'] . "%"; ?></td><?php } else {}?>
                     </tr>
                 <?php } ?>
+                    <tr>
+                        <td colspan="3">TOTAL</td>
+                        <td>
+                            CA Brut :<?php $cab=0;;foreach($this->info_demande_article_xprice as $result)
+                            {$cab+=($result['quantite_demande_article']*$result['prixwplace_demande_article']);
+                            
+                            } echo $cab ."€"; ?>
+                        </td>
+                        <td>
+                            
+                        </td>
+                    </tr>
             </table>
              
         </fieldset>
