@@ -9,7 +9,7 @@ function moyenne(){
     
    var caat= parseFloat($("input.caat").html());
    var cab = parseFloat($("td#cab").html());
-   var moy = Number(1-(caat/cab));
+   var moy = Number(1-(parseFloat($("input.caat").html())/parseFloat($("td#cab").html())));
     $("input#mo").val(moy);
     
 }
