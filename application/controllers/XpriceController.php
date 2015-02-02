@@ -202,7 +202,6 @@ class XpriceController extends Zend_Controller_Action {
             $query1bis = "select * from EIT.MVXCDTA.OCUSMA OCUSMA where OCUSMA.OKCUNO = '{$resultat[0]['OBCUNO']}'";
             $infos_client = odbc_fetch_array(odbc_exec($this->odbc_conn2, $query1bis));
             $this->view->infos_client = $infos_client;
-            echo '<pre>',var_export($infos_client['OKCFC7']),'</pre>';exit();
             $query1ter = "select OOHEAD.OACHL1 from EIT.MVXCDTA.OOHEAD OOHEAD where OOHEAD.OACUNO = '{$resultat[0]['OBCUNO']}'";
             $numclientwp = odbc_fetch_array(odbc_exec($this->odbc_conn2, $query1ter));
             $this->view->numclientwp = $numclientwp['OACHL1'];
@@ -245,6 +244,8 @@ class XpriceController extends Zend_Controller_Action {
                     if (is_null($client)) {
                         $newclient = $clients->createClient($infos_client['OKCUNM'], $numclientwp['OACHL1'], $adresse_client, $info_industry['id_industry'], $infos_client['OKCFC7']);
                     }
+                    echo '<pre>',var_export($newclient),'</pre>';
+                                        exit();
 // et ensuite  on insert dans la table demande_xprices
 //si le client existe  alors on insert immédiatement dans la table demande_xprices
 
