@@ -6,8 +6,8 @@ function calculTotal() {
     $("#caat").val(total);
 }
 function moyenne(){
-     var a = parseFloat($('input#caat').val());
-     var b = parseFloat($('td#cab').val());
+     var a = $('input#caat').val();
+     var b = $('td#cab').val();
 var moy = Number(1-(a/b));
     $("input#mo").val(moy);
     
