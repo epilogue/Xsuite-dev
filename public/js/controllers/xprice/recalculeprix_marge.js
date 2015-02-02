@@ -6,10 +6,10 @@ function calculTotal() {
     $("#caat").val(total);
 }
 function moyenne(){
-    var moy = 0;
-    $("input.ra").each(function(i,e){
-        moy += parseFloat($(e).val());
-    });
+    
+   var caat= parseFloat($("input.caat").html());
+   var cab = parseFloat($("td#cab").html());
+   var moy = (1-(caat/cab));
     $("input#mo").val(moy);
     
 }
