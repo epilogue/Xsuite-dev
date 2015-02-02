@@ -7,9 +7,9 @@ function calculTotal() {
 }
 function moyenne(){
     var moy = 0;
-    var caat = parseFloat($('input#caat').html());
-    var cab = parseFloat($('td#cab').html());
-    moy=Number(1-(caat/cab));
+    $("input.ma").each(function(i,e){
+        moy += parseFloat($(e).val());
+    });
     $("input#mo").val(moy);
     
 }
