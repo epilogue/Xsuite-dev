@@ -1,3 +1,11 @@
+function calculTotal() {
+    var total = 0;
+    $("input.caa").each(function (i, e){
+        total += parseFloat($(e).val());
+    });
+    $("#caat").val(total);
+}
+
 $(document).ready(function (){
     $('input.pda').change(function (){
         var idT = $(this).attr('id').split('-');
@@ -9,7 +17,7 @@ $(document).ready(function (){
         $('input#ra-'+k).val(ra+'%');
         var ma = Number(100*(1 -(parseFloat($('td#cif-'+k).html()))/parseFloat($(this).val()))).toFixed(2);
          $('input#ma-'+k).val(ma+'%');
-         
+         calculTotal();
     });
     $('input.ra').change(function (){
         var idT = $(this).attr('id').split('-');
@@ -24,7 +32,7 @@ $(document).ready(function (){
         var ma = Number(100*(1-(parseFloat($('td#cif-'+k).html())/Number(((100-ra)*pwp)/100))).toFixed(2));
         $('input#ma-'+k).val(ma+'%');
         $(this).val(parseFloat($(this).val())+'%');
-        
+        calculTotal();
     });
     
      $('input.ma').change(function (){
@@ -42,7 +50,7 @@ $(document).ready(function (){
         var ra = Number(100-(Number(pda))*100/pwp).toFixed(2);
         $('input#ra-'+k).val(ra);
         
-        
+        calculTotal();
         
     });
 });
