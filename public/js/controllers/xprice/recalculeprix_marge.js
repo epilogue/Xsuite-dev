@@ -14,7 +14,7 @@ function moyenne(){
 //    });
 //    var moy = total/nombre;
 
-var moy = Number(1-(parseFloat($('input#caat').val())/parseFloat($('td#cab').val()))).toFixed(2);
+var moy = Number(1-(parseFloat($('input#caat').html())/parseFloat($('td#cab').html()))).toFixed(2);
     $("input#mo").val(moy);
     
 }
