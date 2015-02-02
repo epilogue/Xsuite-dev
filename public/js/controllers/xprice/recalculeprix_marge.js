@@ -24,6 +24,7 @@ function moyenneMarge(){
         totalma += parseFloat($(e).val());
         nombrema++;
     });
+    
     var moyma = totalma/nombrema;
     $("input#mamo").val(moyma);
 }
@@ -37,7 +38,7 @@ $(document).ready(function (){
         $('input#caa-'+k).val(caa);
         var ra = Number(100 - ((parseFloat($(this).val())*100)/parseFloat($('td#pwp-'+k).html()))).toFixed(2);
         $('input#ra-'+k).val(ra+'%');
-        var ma = Number(100*(1 -(parseFloat($('td#cif-'+k).html()))/parseFloat($(this).val()))).toFixed(2);
+        var ma = Number(100*(1 -(parseFloat($('td#cif-'+k).html())/parseFloat($(this).val())))).toFixed(2);
          $('input#ma-'+k).val(ma+'%');
          calculTotal();
          moyenne();
