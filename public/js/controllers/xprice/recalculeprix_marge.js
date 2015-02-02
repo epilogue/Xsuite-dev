@@ -6,15 +6,15 @@ function calculTotal() {
     $("#caat").val(total);
 }
 function moyenne(){
-//     var total = 0;
-//     var nombre=0;
-//    $("input.ra").each(function (i, e){
-//        total += parseFloat($(e).val());
-//        nombre++;
-//    });
-//    var moy = total/nombre;
+     var total = 0;
+     var nombre=0;
+    $("input.ra").each(function (i, e){
+        total += parseFloat($(e).val());
+        nombre++;
+    });
+    var moy = total/nombre;
 
-var moy = Number(1-(parseFloat($('input#caat').html())/parseFloat($('td#cab').html()))).toFixed(2);
+//var moy = Number(1-(parseFloat($('input#caat').html())/parseFloat($('td#cab').html()))).toFixed(2);
     $("input#mo").val(moy);
     
 }
