@@ -5,7 +5,14 @@ function calculTotal() {
     });
     $("#caat").val(total);
 }
-
+function moyenne(){
+    var moy = 0;
+    var caat = parseFloat($('input#caat').html());
+    var cab = parseFloat($('td#cab').html());
+    moy=Number(1-(caat/cab));
+    $("input#mo").val(moy);
+    
+}
 $(document).ready(function (){
     $('input.pda').change(function (){
         var idT = $(this).attr('id').split('-');

@@ -162,8 +162,8 @@ $this->headScript()->appendFile('/js/controllers/xprice/afficher_masquer_validat
                     <?php } ?>
                         <tr>
                             <td colspan="2">total</td>
-                            <td colspan="2">
-                                CA Brut :<?php $cab=0;;foreach($this->info_demande_article_xprice as $result)
+                            <td colspan="2" id="cab">
+                                CA Brut :<?php $cab=0;foreach($this->info_demande_article_xprice as $result)
                                 {$cab+=($result['quantite_demande_article']*$result['prixwplace_demande_article']);
                             
                             } echo $cab ."€"; ?>
@@ -183,7 +183,7 @@ $this->headScript()->appendFile('/js/controllers/xprice/afficher_masquer_validat
                                     $CAa+=(($result['prix_accorde_demande_article'])*$result['quantite_demande_article']);
                                     }?>  value ="<?php echo $CAa ;?>" >
                             </td>
-                            <td>remise Moyenne <?php $mo=100*(1-($CAa/$cab));echo $mo;?>  </td>
+                            <td>remise Moyenne<input id="mo"  <?php $mo=100*(1-($CAa/$cab));echo $mo;?> > </td>
                             
                         </tr>
                 </table>
