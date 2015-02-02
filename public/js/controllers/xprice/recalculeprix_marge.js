@@ -8,7 +8,7 @@ function calculTotal() {
 function moyenne(){
      var a = $('input#caat').val();
      var b = $('td#cab').val();
-var moy = Number(1-(a/b));
+var moy = 1-(a/b);
     $("input#mo").val(moy);
     
 }
