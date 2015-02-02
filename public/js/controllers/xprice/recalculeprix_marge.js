@@ -12,8 +12,9 @@ function moyenne(){
 //        total += parseFloat($(e).val());
 //        nombre++;
 //    });
-//    var moy = total/nombre; 
-var moy = Number (1- (parseFloat($('input#caat').val())/parseFloat($('td#cab').val())));
+//    var moy = total/nombre;
+
+var moy = Number(1-(parseFloat($('input#caat').val())/parseFloat($('td#cab').val()))).toFixed(2);
     $("input#mo").val(moy);
     
 }
