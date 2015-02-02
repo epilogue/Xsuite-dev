@@ -6,10 +6,13 @@ function calculTotal() {
     $("#caat").val(total);
 }
 function moyenne(){
-    
-   var caat= parseFloat($("input.caat").html());
-   var cab = parseFloat($("td#cab").html());
-   var moy = Number(1-(parseFloat($("input#caat").html())/parseFloat($("td#cab").html())));
+     var total = 0;
+     var nombre=0;
+    $("input.ra").each(function (i, e){
+        total += parseFloat($(e).val());
+        nombre++;
+    });
+    var moy = total/nombre;
     $("input#mo").val(moy);
     
 }
