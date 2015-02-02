@@ -11,7 +11,7 @@ function moyenne(){
         aa += parseFloat($(e).val());
     });
      
-     var b = parseFloat($('input.cab').val());
+     var b = parseFloat($('input#cab').val());
 var c= Number(1-(aa/b));
     $("input#mo").val(c);
     
