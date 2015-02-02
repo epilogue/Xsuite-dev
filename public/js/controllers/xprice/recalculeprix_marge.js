@@ -13,7 +13,7 @@ function moyenne(){
 //        nombre++;
 //    });
 //    var moy = total/nombre; 
-var moy = Number (1- (parseFloat($('input#caa').val())/parseFloat($('td.cab').val())));
+var moy = Number (1- (parseFloat($('input#caat').val())/parseFloat($('td#cab').val())));
     $("input#mo").val(moy);
     
 }
