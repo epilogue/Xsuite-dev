@@ -185,7 +185,7 @@ $this->headScript()->appendFile('/js/controllers/xprice/afficher_masquer_validat
                             </td>
                             <td>
                                 remise Moyenne <input id="Rmoy"<?php $RMo=0; foreach($this->info_demande_xprice as $result){
-                                    $RMo+=(1-((($result['prix_accorde_demande_article'])*$result['quantite_demande_article'])/($result['quantite_demande_article']*$result['prixwplace_demande_article'])))*100;
+                                    $RMo+=(1-((($result['prix_accorde_demande_article'])*$result['quantite_demande_article'])/($result['quantite_demande_article']*$result['prixwplace_demande_article'])));
                                 }?>  value ="<?php echo $RMo ;?>" >
                             </td>
                         </tr>
