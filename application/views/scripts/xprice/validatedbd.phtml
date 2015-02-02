@@ -183,6 +183,11 @@ $this->headScript()->appendFile('/js/controllers/xprice/afficher_masquer_validat
                                     $CAa+=(($result['prix_accorde_demande_article'])*$result['quantite_demande_article']);
                                     }?>  value ="<?php echo $CAa ;?>" >
                             </td>
+                            <td>
+                                remise Moyenne <input id="Rmoy"<?php $RMo=0; foreach($this->info_demande_xprice as $result){
+                                    $RMo+=((($result['prix_accorde_demande_article'])*$result['quantite_demande_article'])/($result['quantite_demande_article']*$result['prixwplace_demande_article']));
+                                }?>>
+                            </td>
                         </tr>
                 </table>
                  
