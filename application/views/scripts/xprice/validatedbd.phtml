@@ -162,11 +162,11 @@ $this->headScript()->appendFile('/js/controllers/xprice/afficher_masquer_validat
                     <?php } ?>
                         <tr>
                             <td colspan="2">total</td>
-                            <td colspan="2" id="cab" class="cab">
-                                CA Brut :<?php $cab=0;foreach($this->info_demande_article_xprice as $result)
+                            <td colspan="2" id="cab"> CA Brut :<input class="cab"
+                               <?php $cab=0;foreach($this->info_demande_article_xprice as $result)
                                 {$cab+=($result['quantite_demande_article']*$result['prixwplace_demande_article']);
                             
-                            } echo $cab; ?>
+                            } ?>value="<?php echo $cab; ?>">
                             </td>
                             <td colspan="2">
                                 Cout FOB: <?php $Cfob=0; foreach($this->info_demande_article_xprice as $result){
@@ -183,7 +183,7 @@ $this->headScript()->appendFile('/js/controllers/xprice/afficher_masquer_validat
                                     $CAa+=(($result['prix_accorde_demande_article'])*$result['quantite_demande_article']);
                                     }?>  value ="<?php echo $CAa ;?>" >
                             </td>
-                            <td>remise Moyenne<input id="mo"  <?php $moy=100*(1-($mo/$cab));?> value="<?php echo round($moy,2)."%"; ?>"> </td>
+                            <td>remise Moyenne<input id="mo"  <?php $moy=1-($mo/$cab);?> value="<?php echo round($moy,2)."%"; ?>"> </td>
                             <td>marge moyenne <input id="mamo"<?php $mamo = 100*(1-($Ccif/$CAa))?> value ="<?php echo round($mamo,2)."%"?>"></td>
                             
                         </tr>
