@@ -7,7 +7,7 @@ function calculTotal() {
 }
 function moyenne(){
     var moy = 0;
-    $("input.ma").each(function(i,e){
+    $("input.ra").each(function(i,e){
         moy += parseFloat($(e).val());
     });
     $("input#mo").val(moy);
@@ -25,7 +25,7 @@ $(document).ready(function (){
         var ma = Number(100*(1 -(parseFloat($('td#cif-'+k).html()))/parseFloat($(this).val()))).toFixed(2);
          $('input#ma-'+k).val(ma+'%');
          calculTotal();
-         moy();
+         moyenne();
     });
     $('input.ra').change(function (){
         var idT = $(this).attr('id').split('-');
@@ -41,7 +41,7 @@ $(document).ready(function (){
         $('input#ma-'+k).val(ma+'%');
         $(this).val(parseFloat($(this).val())+'%');
         calculTotal();
-        moy();
+        moyenne();
     });
     
      $('input.ma').change(function (){
@@ -60,6 +60,6 @@ $(document).ready(function (){
         $('input#ra-'+k).val(ra);
         
         calculTotal();
-        moy();
+        moyenne();
     });
 });
