@@ -162,7 +162,7 @@ $this->headScript()->appendFile('/js/controllers/xprice/afficher_masquer_validat
                     <?php } ?>
                         <tr>
                             <td colspan="2">total</td>
-                            <td colspan="2" id="cab">
+                            <td colspan="2" id="cab" class="cab">
                                 CA Brut :<?php $cab=0;foreach($this->info_demande_article_xprice as $result)
                                 {$cab+=($result['quantite_demande_article']*$result['prixwplace_demande_article']);
                             
