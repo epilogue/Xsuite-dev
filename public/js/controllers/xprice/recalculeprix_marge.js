@@ -11,7 +11,7 @@ function moyenne(){
         aa += parseFloat($(e).val());
     });
      
-     var b = parseFloat($('td.cab').html());
+     var b = parseFloat($('td.cab').val());
 var moy =b;
     $("input#mo").val(moy);
     
