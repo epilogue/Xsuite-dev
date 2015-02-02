@@ -1626,6 +1626,7 @@ class XpriceController extends Zend_Controller_Action {
 //            }
             $emailVars = Zend_Registry::get('emailVars');
             $Mailsupply = $emailVars->listes->supplychain;
+            $Mailfobfr = $emailVars->listes->fobfr;
             if (!is_null($commentId)) {
                 $url = "http://{$_SERVER['SERVER_NAME']}/xprice/validatesupply/numwp/{$numwp}/com/{$commentId}";
             } else {
@@ -1645,6 +1646,21 @@ class XpriceController extends Zend_Controller_Action {
             $mail->setSubject("TEST XPrice : Nouvelle demand Xprice $trackingNumber/$numwp de {$info_user['nom_user']} pour le client $nomclients à valider .")
                     ->setBodyText(sprintf($corpsMail, $url))
                     ->addTo($Mailsupply)
+                    ->send();
+            $corpsMail2 = "Bonjour,\n"
+                    . "\n"
+                    . "Vous avez une nouvelle demande XPrice $trackingNumber/$numwp de {$info_user['nom_user']} pour le client $nomclients à valider.\n"
+                    . "Veuillez vous rendre à l'adresse url : \n"
+                    . "%s"
+                    . "\n\n"
+                    . "Cordialement,\n"
+                    . "\n"
+                    . "--\n"
+                    . "Prix fobfr.";
+            $mail2 = new Xsuite_Mail();
+            $mail2->setSubject("TEST XPrice : Nouvelle demand Xprice $trackingNumber/$numwp de {$info_user['nom_user']} pour le client $nomclients à valider .")
+                    ->setBodyText(sprintf($corpsMail2, $url))
+                    ->addTo($Mailfobfr)
                     ->send();
             $flashMessenger = $this->_helper->getHelper('FlashMessenger');
             $message = "les prix fob et cif  ont bien été enregistrés.";
