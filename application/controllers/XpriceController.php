@@ -238,13 +238,13 @@ class XpriceController extends Zend_Controller_Action {
 //alors si le client n'existe pas ' on insert d'abord dans la table client
                     $clients = new Application_Model_DbTable_Clients();
                     $client = $clients->getClientnumwp($numclientwp['OACHL1']);
-
+                    $potentiel=$infos_client['OKCFC7'];
                     $adresse_client = $infos_client['OKCUA1'] . $infos_client['OKCUA2'] . $infos_client['OKCUA3'] . $infos_client['OKCUA4'];
 
                     if (is_null($client)) {
-                        $newclient = $clients->createClient($infos_client['OKCUNM'], $numclientwp['OACHL1'], $adresse_client, $info_industry['id_industry'], $infos_client['OKCFC7']);
+                        $newclient = $clients->createClient($infos_client['OKCUNM'], $numclientwp['OACHL1'], $adresse_client, $info_industry['id_industry'], $potentiel);
                     }
-                    echo '<pre>',var_export($newclient),'</pre>';exit();
+                    
 // et ensuite  on insert dans la table demande_xprices
 //si le client existe  alors on insert immédiatement dans la table demande_xprices
 
@@ -279,6 +279,12 @@ class XpriceController extends Zend_Controller_Action {
                     }
 
                     foreach ($prixciffob as $key => $value) {
+                        /* a ajouter
+                         *  requete suivante : select MITBAL.MBPUIT as acquisition from eit.MVXCDTA.MITBAL MITBAL where MITBAL.MBITNO='$value->AJOBV2' ;
+                            if $acquisition ==1 ou 3 prix fob = prix cif 
+                         * if $acquisition == 2 cif =1.07*fob
+                         * 
+                         *                          */
                         $insertprix = new Application_Model_DbTable_DemandeArticlexprices();
                         $inserprix = $insertprix->InserPrixFob($value->AJPUPR, $value->AJOBV2, $numwp);
                     }
