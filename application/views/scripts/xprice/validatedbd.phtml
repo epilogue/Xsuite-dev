@@ -166,7 +166,7 @@ $this->headScript()->appendFile('/js/controllers/xprice/afficher_masquer_validat
                                 CA Brut :<?php $cab=0;foreach($this->info_demande_article_xprice as $result)
                                 {$cab+=($result['quantite_demande_article']*$result['prixwplace_demande_article']);
                             
-                            } echo $cab ."€"; ?>
+                            } echo $cab; ?>€
                             </td>
                             <td colspan="2">
                                 Cout FOB: <?php $Cfob=0; foreach($this->info_demande_article_xprice as $result){
