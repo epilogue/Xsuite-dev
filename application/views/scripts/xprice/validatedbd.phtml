@@ -183,7 +183,7 @@ $this->headScript()->appendFile('/js/controllers/xprice/afficher_masquer_validat
                                     $CAa+=(($result['prix_accorde_demande_article'])*$result['quantite_demande_article']);
                                     }?>  value ="<?php echo $CAa ;?>" >
                             </td>
-                            <td>remise Moyenne<input id="mo"  <?php $moy=1-($mo/$cab);?> value="<?php echo round($moy,2)."%"; ?>"> </td>
+                            <td>remise Moyenne<input id="mo"  <?php $mo=1-($CAa/$cab);?> value="<?php echo round($mo,2)."%"; ?>"> </td>
                             <td>marge moyenne <input id="mamo"<?php $mamo = 100*(1-($Ccif/$CAa))?> value ="<?php echo round($mamo,2)."%"?>"></td>
                             
                         </tr>
