@@ -16,6 +16,18 @@ function moyenne(){
     $("input#mo").val(moy);
     
 }
+
+function moyenneMarge(){
+     var totalma = 0;
+     var nombrema=0;
+    $("input.ma").each(function (i, e){
+        totalma += parseFloat($(e).val());
+        nombrema++;
+    });
+    var moyma = totalma/nombrema;
+    $("input#mamo").val(moyma);
+}
+
 $(document).ready(function (){
     $('input.pda').change(function (){
         var idT = $(this).attr('id').split('-');
@@ -29,6 +41,7 @@ $(document).ready(function (){
          $('input#ma-'+k).val(ma+'%');
          calculTotal();
          moyenne();
+         moyenneMarge();
     });
     $('input.ra').change(function (){
         var idT = $(this).attr('id').split('-');
@@ -45,6 +58,7 @@ $(document).ready(function (){
         $(this).val(parseFloat($(this).val())+'%');
         calculTotal();
         moyenne();
+        moyenneMarge();
     });
     
      $('input.ma').change(function (){
@@ -64,5 +78,6 @@ $(document).ready(function (){
         
         calculTotal();
         moyenne();
+        moyenneMarge();
     });
 });
