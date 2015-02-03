@@ -122,13 +122,13 @@ $this->headScript()->appendFile('/js/controllers/xprice/afficher_masquer_validat
                     <?php } ?>
                         <tr>
                             <td colspan="2">total</td>
-                            <td colspan="2" visibility="hidden" > CA Brut :<input type ="hidden" class="cab" id="cab"
+                            <td colspan="2"> CA Brut :<input type ="hidden" class="cab" id="cab"
                                <?php $cab=0;foreach($this->info_demande_article_xprice as $result)
                                 {$cab+=($result['quantite_demande_article']*$result['prixwplace_demande_article']);
                             
                             } ?>value="<?php echo $cab; ?>">
                             </td>
-                            <td><input type ="hidden" class="tpd" id="tpd" <?php  $tpd = 0; foreach($this->info_demande_article_xprice as $result){
+                            <td><input class="tpd" id="tpd" <?php  $tpd = 0; foreach($this->info_demande_article_xprice as $result){
                                 $tpd+=($result['quantite_demande_article']*$result['prix_demande_article']);}?> value ="<?php echo $tpd ?>" ></td>
                             <td></td>
                             <td type ="hidden">
@@ -137,7 +137,7 @@ $this->headScript()->appendFile('/js/controllers/xprice/afficher_masquer_validat
                                 } echo $Cfob ."€"?>
                             </td>
                             <td>
-                                Cout CIF: <input type ="hidden"  id="ccif"<?php $Ccif=0; foreach($this->info_demande_article_xprice as $result){
+                                Cout CIF: <input id="ccif"<?php $Ccif=0; foreach($this->info_demande_article_xprice as $result){
                                     $Ccif+=($result['quantite_demande_article']*$result['prix_cif_demande_article']);
                                 }?> value="<?php echo $Ccif ."€"?>">
                             </td>
