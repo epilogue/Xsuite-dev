@@ -129,7 +129,7 @@ $this->headScript()->appendFile('/js/controllers/xprice/afficher_masquer_validat
                             } ?>value="<?php echo $cab; ?>">
                             </td>
                             <td><input class="tpd" id="tpd" <?php  $tpd = 0; foreach($this->info_demande_article_xprice as $result){
-                                $tpd+=$result['prix_demande_article'];}?> value ="<?php echo $tpd ?>" ></td>
+                                $tpd+=($result['quantite_demande_article']*$result['prix_demande_article']);}?> value ="<?php echo $tpd ?>" ></td>
                             <td></td>
                             <td>
                                 Cout FOB: <?php $Cfob=0; foreach($this->info_demande_article_xprice as $result){
