@@ -30,12 +30,13 @@ $(document).ready(function (){
         var idT = $(this).attr('id').split('-');
         var k = idT[1];
         var qt =parseFloat($('td#qt-'+k).html());
+         var cif = parseFloat($('td#cif-'+k).html());
         var caa=((parseFloat($(this).val()))*qt);
         $('input#caa-'+k).val(caa);
         var ra = Number(100 - ((parseFloat($(this).val())*100)/parseFloat($('td#pwp-'+k).html()))).toFixed(2);
         $('input#ra-'+k).val(ra+'%');
          /*marge=1-(coutCif/prixvente)*/
-        var ma = Number(100*(1 -(parseFloat($('td#cif-'+k).html())/parseFloat($(this).val())))).toFixed(2);
+        var ma = Number(100*(1 -(cif/parseFloat($(this).val())))).toFixed(2);
          $('input#ma-'+k).val(ma+'%');
          calculTotal();
          moyenne();
