@@ -128,6 +128,8 @@ $this->headScript()->appendFile('/js/controllers/xprice/afficher_masquer_validat
                             
                             } ?>value="<?php echo $cab; ?>">
                             </td>
+                            <td></td>
+                            <td></td>
                             <td>
                                 Cout FOB: <?php $Cfob=0; foreach($this->info_demande_article_xprice as $result){
                                     $Cfob+=($result['quantite_demande_article']*$result['prix_fob_demande_article']);
