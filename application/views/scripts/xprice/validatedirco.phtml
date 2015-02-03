@@ -159,6 +159,33 @@ $this->headScript()->appendFile('/js/controllers/xprice/afficher_masquer_validat
                              <td><input  class="ma" id="ma-<?php echo $k;?>"  value="<?php echo round(($result['marge_demande_article']),2) .'%'; ?>" name="<?php echo 'marge_demande_article[]';?>" style="background-color: #74aaca;"></td>
                         </tr>
                     <?php } ?>
+                         <tr>
+                            <td colspan="2">total</td>
+                            <td colspan="2" > CA Brut :<input class="cab" id="cab"
+                               <?php $cab=0;foreach($this->info_demande_article_xprice as $result)
+                                {$cab+=($result['quantite_demande_article']*$result['prixwplace_demande_article']);
+                            
+                            } ?>value="<?php echo $cab; ?>">
+                            </td>
+                            <td colspan="2">
+                                Cout FOB: <?php $Cfob=0; foreach($this->info_demande_article_xprice as $result){
+                                    $Cfob+=($result['quantite_demande_article']*$result['prix_fob_demande_article']);
+                                } echo $Cfob ."€"?>
+                            </td>
+                            <td colspan="2">
+                                Cout CIF: <input  id="ccif"<?php $Ccif=0; foreach($this->info_demande_article_xprice as $result){
+                                    $Ccif+=($result['quantite_demande_article']*$result['prix_cif_demande_article']);
+                                }?> value="<?php echo $Ccif ."€"?>">
+                            </td>
+                            <td >
+                                Cout CA accord:<input id="caat" <?php $CAa=0; foreach($this->info_demande_article_xprice as $result){
+                                    $CAa+=(($result['prix_accorde_demande_article'])*$result['quantite_demande_article']);
+                                    }?>  value ="<?php echo $CAa."€" ;?>" >
+                            </td>
+                            <td>remise Moyenne<input id="mo"  <?php $mo=100*(1-($CAa/$cab));?> value="<?php echo round($mo,2)."%"; ?>"></td>
+                            <td>marge moyenne <input id="mamo"<?php $mamo = 100*(1-($Ccif/$CAa))?> value ="<?php echo round($mamo,2)."%";?>"></td>
+                            
+                        </tr>
                 </table>
                 
             </fieldset>
