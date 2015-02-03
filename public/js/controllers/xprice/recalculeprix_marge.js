@@ -13,7 +13,7 @@ function moyenne(){
      
      var b = parseFloat($('input#cab').val());
 var c= Number(100*(1-(aa/b))).toFixed(2);
-    $("input#mo").val(c);
+    $("input#mo").val(c + '%');
     
 }
 
@@ -22,7 +22,7 @@ function moyenneMarge(){
           var ccat = parseFloat($('input#caat').val());
     
     var moyma =100*(1- (ccif /ccat)).toFixed(2);
-    $("input#mamo").val(moyma);
+    $("input#mamo").val(moyma +'%');
 }
 
 $(document).ready(function (){
