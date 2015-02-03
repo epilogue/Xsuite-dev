@@ -26,7 +26,11 @@ function moyenneMarge(){
 }
 
 function moyenneMargeFob(){
+     var ccif=parseFloat($('input#ccif').val());
+          var tpd = parseFloat($('input#tpd').val());
     
+    var moymafob =100*(1- (ccif /tpd)).toFixed(2);
+    $("input#mamofob").val(moymafob +'%');
 }
 
 
@@ -94,5 +98,6 @@ $(document).ready(function (){
         $(this).val(parseFloat($(this).val())+'€'); 
         var margefob = Number(100*(1-(prixcif/pd))).toFixed(2);
         $('input#margefob-'+k).val(margefob +'%');
+         moyenneMargeFob();
     });
 });
