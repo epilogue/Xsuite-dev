@@ -143,7 +143,7 @@ public function createAction()
             
             if ($this->getRequest()->isPost()) {
                     $formData = $this->getRequest()->getPost();
-                    if ($form->isValid($formData)) {
+                   
                         echo '<pre>',var_export($formData),'</pre>'; exit();
                         $emailVars = Zend_Registry::get('emailVars');
                         //alors si le distributeur n'existe pas ' on insert d'abord dans la table distributeur
@@ -171,12 +171,8 @@ public function createAction()
                                 $firstComment = $dbtValidationDemande->lastId();
                             }
                         }
-                    }
-                    else {
-                    $form->populate($formData);
-                    }
+                    
                 }
-                $this->view->form = $form;
             }
     }
     public function consultAction()
