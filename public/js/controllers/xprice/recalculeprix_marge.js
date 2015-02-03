@@ -12,7 +12,7 @@ function moyenne(){
     });
      
      var b = parseFloat($('input#cab').val());
-var c= Number(1-(aa/b));
+var c= Number(100*(1-(aa/b)));
     $("input#mo").val(c);
     
 }
@@ -21,7 +21,7 @@ function moyenneMarge(){
         var ccif=parseFloat($('input#ccif').val());
           var ccat = parseFloat($('input#caat').val());
     
-    var moyma =1- (ccif /ccat);
+    var moyma =100*(1- (ccif /ccat));
     $("input#mamo").val(moyma);
 }
 
