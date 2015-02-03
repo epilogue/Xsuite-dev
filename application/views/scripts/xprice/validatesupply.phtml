@@ -121,7 +121,7 @@ $this->headScript()->appendFile('/js/controllers/xprice/afficher_masquer_validat
                         </tr>
                     <?php } ?>
                         <tr>
-                            <td colspan="4">total</td>
+                            <td colspan="6">total</td>
                             <input type ="hidden" class="cab" id="cab"
                                <?php $cab=0;foreach($this->info_demande_article_xprice as $result)
                                 {$cab+=($result['quantite_demande_article']*$result['prixwplace_demande_article']);
@@ -129,8 +129,8 @@ $this->headScript()->appendFile('/js/controllers/xprice/afficher_masquer_validat
                             } ?>value="<?php echo $cab; ?>">
                             <input type="hidden" class="tpd" id="tpd" <?php  $tpd = 0; foreach($this->info_demande_article_xprice as $result){
                                 $tpd+=($result['quantite_demande_article']*$result['prix_demande_article']);}?> value ="<?php echo $tpd ?>" >
-                            <td></td>
-                            <td type ="hidden">
+                            
+                            <td >
                                 Cout FOB: <?php $Cfob=0; foreach($this->info_demande_article_xprice as $result){
                                     $Cfob+=($result['quantite_demande_article']*$result['prix_fob_demande_article']);
                                 } echo $Cfob ."€"?>
