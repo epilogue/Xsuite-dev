@@ -12,7 +12,7 @@ function moyenne(){
     });
      
      var b = parseFloat($('input#cab').val());
-var c= Number(100*(1-(aa/b)));
+var c= Number(100*(1-(aa/b))).toFixed(2);
     $("input#mo").val(c);
     
 }
@@ -21,7 +21,7 @@ function moyenneMarge(){
         var ccif=parseFloat($('input#ccif').val());
           var ccat = parseFloat($('input#caat').val());
     
-    var moyma =100*(1- (ccif /ccat));
+    var moyma =100*(1- (ccif /ccat)).toFixed(2);
     $("input#mamo").val(moyma);
 }
 
@@ -34,6 +34,7 @@ $(document).ready(function (){
         $('input#caa-'+k).val(caa);
         var ra = Number(100 - ((parseFloat($(this).val())*100)/parseFloat($('td#pwp-'+k).html()))).toFixed(2);
         $('input#ra-'+k).val(ra+'%');
+         /*marge=1-(coutCif/prixvente)*/
         var ma = Number(100*(1 -(parseFloat($('td#cif-'+k).html())/parseFloat($(this).val())))).toFixed(2);
          $('input#ma-'+k).val(ma+'%');
          calculTotal();
@@ -46,10 +47,12 @@ $(document).ready(function (){
         var qt =parseFloat($('td#qt-'+k).html());
         var pwp = parseFloat($('td#pwp-'+k).html());
         var ra = parseFloat($(this).val());
+        var cif = parseFloat($('td#cif-'+k).html());
         var pda = Number(((100-ra)*pwp)/100).toFixed(2);
         $('input#pda-'+k).val(pda);
         var caa=((Number(((100-ra)*pwp)/100))*qt);
         $('input#caa-'+k).val(caa);
+        /*marge=1-(coutCif/prixvente)*/
         var ma = Number(100*(1-(parseFloat($('td#cif-'+k).html())/Number(((100-ra)*pwp)/100))).toFixed(2));
         $('input#ma-'+k).val(ma+'%');
         $(this).val(parseFloat($(this).val())+'%');
