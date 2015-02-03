@@ -1,6 +1,8 @@
 <?php
 $this->title = 'Xprice/supplyChain';
 $this->headTitle($this->title);
+$this->headScript()->appendFile('/js/controllers/xprice/recalculeprix_marge.js');
+$this->headScript()->appendFile('/js/controllers/xprice/afficher_masquer_validations.js');
 ?>
 <div id="contenu" class="contenu">
     <h2>Validation des prix fob/cif <br>offre n=°<?php echo $this->info_demande_xprice['tracking_number_demande_xprice'] ?> par le supply chain manager</h2>
