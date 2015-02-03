@@ -18,14 +18,10 @@ var c= Number(1-(aa/b));
 }
 
 function moyenneMarge(){
-     var totalma = 0;
-     var nombrema=0;
-    $("input.ma").each(function (i, e){
-        totalma += parseFloat($(e).val());
-        nombrema++;
-    });
+        var ccif=parseFloat($('input#ccif').val());
+          var ccat = parseFloat($('input#caat').val());
     
-    var moyma = totalma/nombrema;
+    var moyma =1- (ccif /ccat);
     $("input#mamo").val(moyma);
 }
 

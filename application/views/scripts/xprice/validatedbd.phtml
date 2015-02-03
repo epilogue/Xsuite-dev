@@ -174,7 +174,7 @@ $this->headScript()->appendFile('/js/controllers/xprice/afficher_masquer_validat
                                 } echo $Cfob ."€"?>
                             </td>
                             <td colspan="2">
-                                Cout CIF: <input <?php $Ccif=0; foreach($this->info_demande_article_xprice as $result){
+                                Cout CIF: <input  id="ccif"<?php $Ccif=0; foreach($this->info_demande_article_xprice as $result){
                                     $Ccif+=($result['quantite_demande_article']*$result['prix_cif_demande_article']);
                                 }?> value="<?php echo $Ccif ."€"?>">
                             </td>
