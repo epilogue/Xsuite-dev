@@ -105,22 +105,22 @@ $this->headTitle($this->title);
                         <th>prix cif</th>
                         <th>Marge</th>
                     </tr>
-                    <?php foreach ($this->info_demande_article_xprice as $result) { ?>
+                    <?php foreach ($this->info_demande_article_xprice as $k=>$result) { ?>
                         <tr>
                             <td><input readonly="readonly" value="<?php echo $result['code_article'] ?>"  name="<?php echo 'code_article[]'; ?>"></td>
                             <td><?php echo $result['reference_article']; ?></td>
                             <td id="qt-<?php echo $k; ?>"><?php echo $result['quantite_demande_article']; ?></td>
                             <td id="pwp-<?php echo $k; ?>"><?php echo $result['prixwplace_demande_article']; ?></td>
-                            <td><?php echo $result['prix_demande_article']; ?></td>
+                            <td id="pd-<?php echo $k; ?>"><?php echo $result['prix_demande_article']; ?></td>
                             <td><?php echo $result['remise_demande_article'] . "% "; ?></td>
                             <td><input id="prixfob" style="background-color: #74aaca;" type="text" name="prix_fob[]" value="<?php echo $result['prix_fob_demande_article']; ?>"></td>
-                            <td><input id="prixcif" style="background-color: #74aaca;" type="text" name="prix_cif[]" value="<?php echo $result['prix_cif_demande_article']; ?>"></td>
-                            <td><input  value="<?php $marge=100*(1-($result['prix_cif_demande_article']/$result['prix_demande_article'])); echo round($marge,2)."%" ;?>" name="marge[]"</td>
+                            <td><input class="prixcif" id="prixcif" style="background-color: #74aaca;" type="text" name="prix_cif[]" value="<?php echo $result['prix_cif_demande_article']; ?>"></td>
+                            <td><input class="margefob" id="margefob-<?php echo $k;?>" value="<?php $marge=100*(1-($result['prix_cif_demande_article']/$result['prix_demande_article'])); echo round($marge,2)."%" ;?>" name="marge[]"</td>
                         </tr>
                     <?php } ?>
                         <tr>
                             <td colspan ="8">
-                                
+                                <input id="margefobmoy">
                             </td>
                         </tr>
                 </table>

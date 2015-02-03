@@ -25,6 +25,9 @@ function moyenneMarge(){
     $("input#mamo").val(moyma +'%');
 }
 
+function moyenneMargeFob(){}
+
+
 $(document).ready(function (){
     $('input.pda').change(function (){
         var idT = $(this).attr('id').split('-');
@@ -80,5 +83,15 @@ $(document).ready(function (){
         calculTotal();
         moyenne();
         moyenneMarge();
+    });
+    $('input.prixcif').change(function(){
+        var idT = $(this).attr('id').split('-');
+        var k = idT[1];
+        var qt = parseFloat($('td#qt-'+k).html());
+        var pwp = parseFloat($('td#pwp-'+k).html());
+        var pd = parseFloat($('td#pd-'+k).html());
+        var prixcif = parseFloat($(this).val());
+        var margefob = (100*(1-(prixcif/pd)));
+        $('input#margefob-'+k).val(margefob);
     });
 });
