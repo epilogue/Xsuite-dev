@@ -90,7 +90,7 @@ $(document).ready(function (){
         var pd = parseFloat($('td#pd-'+k).html());
         var prixcif = parseFloat($(this).val());
         $(this).val(parseFloat($(this).val())+'€'); 
-        var margefob = Number((100*(1-(prixcif/pd))));
+        var margefob = Number(100*(1-(prixcif/pd)));
         $('input#margefob-'+k).val(margefob);
     });
 });
