@@ -89,7 +89,7 @@ public function createAction()
 
             while ($resultat[] = odbc_fetch_array($resultats)) {
                     $this->view->resultat = $resultat;
-                    echo '<pre>',var_export($resultat),'</pre>';
+                  //  echo '<pre>',var_export($resultat),'</pre>';
                 }
             foreach ($this->view->resultat as $itnoarticle) {
                     $mmcono = "100";
@@ -113,7 +113,7 @@ public function createAction()
             $query1bis = "select * from EIT.MVXCDTA.OCUSMA OCUSMA where OCUSMA.OKCUNO = '{$resultat[0]['OBCUNO']}'";
             $infos_distributeur = odbc_fetch_array(odbc_exec($this->odbc_conn2, $query1bis));
             $this->view->infos_distributeur = $infos_distributeur;
-           // echo '<pre>',  var_export($infos_distributeur),'</pre>';
+            echo '<pre>',  var_export($infos_distributeur),'</pre>';
             $query1ter = "select OOHEAD.OACHL1 from EIT.MVXCDTA.OOHEAD OOHEAD where OOHEAD.OACUNO = '{$resultat[0]['OBCUNO']}'";
             $numdistributeurwp = odbc_fetch_array(odbc_exec($this->odbc_conn2, $query1ter));
             $this->view->numdistributeurwp = $numdistributeurwp['OACHL1'];
@@ -140,10 +140,11 @@ public function createAction()
                     $info_industry = $industry->getMovexIndustry($plop10);
                     $this->view->info_industry = $info_industry;
                 }
-             $form = new Application_Form_CreationDemande();
+            
             if ($this->getRequest()->isPost()) {
                     $formData = $this->getRequest()->getPost();
                     if ($form->isValid($formData)) {
+                        echo '<pre>',var_export($formData),'</pre>'; exit();
                         $emailVars = Zend_Registry::get('emailVars');
                         //alors si le distributeur n'existe pas ' on insert d'abord dans la table distributeur
                         $distributeurs = new Application_Model_DbTable_Distributeurs();
