@@ -121,13 +121,12 @@ $this->headScript()->appendFile('/js/controllers/xprice/afficher_masquer_validat
                         </tr>
                     <?php } ?>
                         <tr>
-                            <td colspan="2">total</td>
-                            <td colspan="2"> CA Brut :<input type ="hidden" class="cab" id="cab"
+                            <td colspan="6">total</td>
+                            <input type ="hidden" class="cab" id="cab"
                                <?php $cab=0;foreach($this->info_demande_article_xprice as $result)
                                 {$cab+=($result['quantite_demande_article']*$result['prixwplace_demande_article']);
                             
                             } ?>value="<?php echo $cab; ?>">
-                            </td>
                             <td><input class="tpd" id="tpd" <?php  $tpd = 0; foreach($this->info_demande_article_xprice as $result){
                                 $tpd+=($result['quantite_demande_article']*$result['prix_demande_article']);}?> value ="<?php echo $tpd ?>" ></td>
                             <td></td>
