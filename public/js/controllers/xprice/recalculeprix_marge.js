@@ -25,7 +25,9 @@ function moyenneMarge(){
     $("input#mamo").val(moyma +'%');
 }
 
-function moyenneMargeFob(){}
+function moyenneMargeFob(){
+    
+}
 
 
 $(document).ready(function (){
