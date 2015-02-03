@@ -115,13 +115,14 @@ $this->headTitle($this->title);
                             <td><?php echo $result['remise_demande_article'] . "% "; ?></td>
                             <td><input id="prixfob" style="background-color: #74aaca;" type="text" name="prix_fob[]" value="<?php echo $result['prix_fob_demande_article']; ?>"></td>
                             <td><input class="prixcif" id="prixcif-<?php echo $k;?>" style="background-color: #74aaca;" type="text" name="prix_cif[]" value="<?php echo $result['prix_cif_demande_article']; ?>"></td>
-                            <td><input class="margefob" id="margefob-<?php echo $k;?>" <?php $marge=100*(1-($result['prix_cif_demande_article']/$result['prix_demande_article']));?> value="<?php  echo round($marge,2)."%" ;?>" name="marge[]"></td>
+                            <td><input class="margefob" id="margefob-<?php echo $k;?>" <?php $margefob=100*(1-($result['prix_cif_demande_article']/$result['prix_demande_article']));?> value="<?php  echo round($margefob,2)."%" ;?>" name="marge[]"></td>
                         </tr>
                     <?php } ?>
                         <tr>
                             <td colspan ="8">
-                                <input id="margefobmoy">
+                                
                             </td>
+                            <td><input id="margefobmoy"></td>
                         </tr>
                 </table>
                 <input type="text" hidden="hidden" value="<?php echo $this->info_demande_xprice['tracking_number_demande_xprice']; ?>" name="tracking_number">
