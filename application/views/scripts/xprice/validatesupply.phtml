@@ -121,7 +121,7 @@ $this->headScript()->appendFile('/js/controllers/xprice/afficher_masquer_validat
                         </tr>
                     <?php } ?>
                         <tr>
-                            <td colspan="6">total</td>
+                            <td colspan="4">total</td>
                             <input type ="hidden" class="cab" id="cab"
                                <?php $cab=0;foreach($this->info_demande_article_xprice as $result)
                                 {$cab+=($result['quantite_demande_article']*$result['prixwplace_demande_article']);
