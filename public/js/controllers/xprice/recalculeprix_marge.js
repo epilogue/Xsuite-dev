@@ -91,7 +91,8 @@ $(document).ready(function (){
         var pwp = parseFloat($('td#pwp-'+k).html());
         var pd = parseFloat($('td#pd-'+k).html());
         var prixcif = parseFloat($(this).val());
-        var margefob = (100*(1-(prixcif/pd)));
+        var margefob = Number((100*(1-(prixcif/pd))));
         $('input#margefob-'+k).val(margefob);
+        $(this).val(parseFloat($(this).val())+'€');
     });
 });
