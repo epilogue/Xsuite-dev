@@ -140,6 +140,7 @@ $this->headScript()->appendFile('/js/controllers/xprice/afficher_masquer_validat
                                     $Ccif+=($result['quantite_demande_article']*$result['prix_cif_demande_article']);
                                 }?> value="<?php echo $Ccif ."€"?>">
                             </td>
+                            <td>marge moyenne <input id="mamo" <?php $mamo = 100*(1-($Ccif/$CAa))?> value ="<?php echo round($mamo,2)."%";?>"></td>
                         </tr>
                 </table>
                 <input type="text" hidden="hidden" value="<?php echo $this->info_demande_xprice['tracking_number_demande_xprice']; ?>" name="tracking_number">
