@@ -91,6 +91,6 @@ $(document).ready(function (){
         var prixcif = parseFloat($(this).val());
         $(this).val(parseFloat($(this).val())+'€'); 
         var margefob = Number(100*(1-(prixcif/pd))).toFixed(2);
-        $('input#margefob-'+k).val(margefob);
+        $('input#margefob-'+k).val(margefob +'%');
     });
 });
