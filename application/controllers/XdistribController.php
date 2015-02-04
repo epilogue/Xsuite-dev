@@ -119,7 +119,7 @@ public function createAction()
                 $agreement3 = "I000003";
                 $queryacquis = "select MITBAL.MBPUIT,MITBAL.MBCONO,MITBAL.MBSUNO,MITBAL.MBITNO from EIT.MVXCDTA.MITBAL MITBAL where MITBAL.MBCONO = '$mmcono' AND MITBAL.MBSUNO = '$supplier'  AND MITBAL.MBITNO = '{$itnoarticle['OBITNO']}'";
                 $resultatsacquis = odbc_Exec($this->odbc_conn2, $queryacquis);
-                $acquis[] = odbc_fetch_object($resultatsacquis);
+                $acquis = odbc_fetch_object($resultatsacquis);
             }
             $codeacquisition = array_combine($acquis['MBITNO'], $acquis['MBPUIT']);
            echo '<pre>',var_export($codeacquisition),'</pre>';
@@ -216,7 +216,7 @@ public function createAction()
                         if (is_null($articleexist)) {
                             $articles_xdistrib = $articles_xdistrib->createArticle($resultarticle['OBITDS'], $resultarticle['OBITNO'], null);
                         }
-                        $demande_article_xdistrib = $demandes_articles_xdistrib->createDemandeArticlexdistrib($resultarticle['OBSAPR'], $resultarticle['OBNEPR'], $resultarticle['OBORQT'], round(100 - ($resultarticle['OBNEPR'] * 100 / $resultarticle['OBSAPR']), 2), $infos_offres->OBRGDT,$resultarticle['OBNEPR'], round(100 - ($resultarticle['OBNEPR'] * 100 / $resultarticle['OBSAPR']), 2), null, null, null, $trackingNumber, $resultarticle['OBITNO'], $resultarticle['OBITDS'], $numwp,null);
+                        $demande_article_xdistrib = $demandes_articles_xdistrib->createDemandeArticlexdistrib($resultarticle['OBSAPR'], $resultarticle['OBNEPR'],$formData['prixClientFinal'], $resultarticle['OBORQT'], round(100 - ($resultarticle['OBNEPR'] * 100 / $resultarticle['OBSAPR']), 2), $infos_offres->OBRGDT,$resultarticle['OBNEPR'], round(100 - ($resultarticle['OBNEPR'] * 100 / $resultarticle['OBSAPR']), 2), null, null, null,$formData['MargeMoyenne'], $trackingNumber, $resultarticle['OBITNO'], $resultarticle['OBITDS'], $numwp,null);
                     }
                         
   /* dans un premier temps  on insert */                      
