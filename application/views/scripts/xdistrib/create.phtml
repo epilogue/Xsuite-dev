@@ -199,11 +199,12 @@ $this->headTitle($this->title);
                 <legend>Commentaire Commercial</legend>
                 <textarea name="commentaire_demande_xdistrib"></textarea>
             </fieldset>
-             <?php  foreach($acquis as $plop){
+            
+        </div>
+         <?php  foreach($acquis as $plop){
                  ?><input name="plopinette1" type="text" value ="<?php $plopinette=$plop['MBITNO'];echo $plopinette ?>">
                  <input name="plopinette2" type="text" value ="<?php $plopinette2=$plop['MBPUIT'];echo $plopinette2 ?>">
             <?php  }?>
-        </div>
         <input class="submit" type="submit" value="Envoyer Offre Xdistrib">
     </form>
 </div>
