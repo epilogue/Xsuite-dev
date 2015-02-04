@@ -104,6 +104,8 @@ public function createAction()
                     $query3 = "select * from EIT.MVXCDTA.MPAGRP MPAGRP where MPAGRP.AJCONO = '$mmcono' AND MPAGRP.AJSUNO = '$supplier' AND (MPAGRP.AJAGNB = '$agreement3'  OR MPAGRP.AJAGNB = '$agreement2' OR MPAGRP.AJAGNB = '$agreement1') AND MPAGRP.AJOBV2 = '{$itnoarticle['OBITNO']}' AND MPAGRP.AJOBV1 = '$division'  ORDER BY MPAGRP.AJAGNB";
                     $resultats3 = odbc_Exec($this->odbc_conn2, $query3);
                     $prixciffob[] = odbc_fetch_object($resultats3);
+                    $plop = odbc_fetch_object($resultats3);
+                    $tagada[] = array($plop->MBITNO => $plop->MBPUIT);
                 }
             $this->view->prixciffob = $prixciffob;
             
@@ -201,7 +203,7 @@ public function createAction()
                         if (is_null($articleexist)) {
                             $articles_xdistrib = $articles_xdistrib->createArticle($resultarticle['OBITDS'], $resultarticle['OBITNO'], null);
                         }
-                        $demande_article_xdistrib = $demandes_articles_xdistrib->createDemandeArticlexdistrib($resultarticle['OBSAPR'], $resultarticle['OBNEPR'],$formData['prixClientFinal'], $resultarticle['OBORQT'], round(100 - ($resultarticle['OBNEPR'] * 100 / $resultarticle['OBSAPR']), 2), $infos_offres->OBRGDT,$resultarticle['OBNEPR'], round(100 - ($resultarticle['OBNEPR'] * 100 / $resultarticle['OBSAPR']), 2), null, null, null,$formData['MargeMoyenne'], $trackingNumber, $resultarticle['OBITNO'], $resultarticle['OBITDS'], $numwp,null);
+                        $demande_article_xdistrib = $demandes_articles_xdistrib->createDemandeArticlexdistrib($resultarticle['OBSAPR'], $resultarticle['OBNEPR'],$formData['prixClientFinal'][trim($resultarticle['OBITNO'])], $resultarticle['OBORQT'], round(100 - ($resultarticle['OBNEPR'] * 100 / $resultarticle['OBSAPR']), 2), $infos_offres->OBRGDT,$resultarticle['OBNEPR'], round(100 - ($resultarticle['OBNEPR'] * 100 / $resultarticle['OBSAPR']), 2), null, null, null,$formData['MargeMoyenne'], $trackingNumber, $resultarticle['OBITNO'], $resultarticle['OBITDS'], $numwp,null);
                     }
                         
   /* dans un premier temps  on insert */                      

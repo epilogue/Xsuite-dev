@@ -146,7 +146,7 @@ $this->headTitle($this->title);
                         <td><?php echo (int)$result['OBORQT'];?></td>
                         <td><?php echo round($result['OBSAPR'],2)."€";?></td>
                         <td><?php echo round($result['OBNEPR'],2)."€";?></td>
-                        <td><input type="text" name ="<?php echo $result['OBITNO']?>-prixClientFinal"></td>
+                        <td><input type="text" name ="prixClientFinal[<?php echo trim($result['OBITNO']);?>]"></td>
                         <td><?php $margedemande=(($result['OBNEPR']*100)/$result['OBSAPR']); $margedef=100-$margedemande;echo round($margedef,2)."%"; ?></td>
                         <td><?php echo round($result['OBLNA2'],2)."€";?></td>
                         <td hidden="hidden"></td>
