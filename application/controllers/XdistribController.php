@@ -119,7 +119,7 @@ public function createAction()
                 $agreement3 = "I000003";
                 $queryacquis = "select MITBAL.MBPUIT,MITBAL.MBCONO,MITBAL.MBSUNO,MITBAL.MBITNO from EIT.MVXCDTA.MITBAL MITBAL where MITBAL.MBCONO = '$mmcono' AND MITBAL.MBSUNO = '$supplier'  AND MITBAL.MBITNO = '{$itnoarticle['OBITNO']}'";
                 $resultatsacquis = odbc_Exec($this->odbc_conn2, $queryacquis);
-                $acquis = odbc_fetch_object($resultatsacquis);
+                $acquis[] = odbc_fetch_object($resultatsacquis);
             }
            echo '<pre>',var_export($acquis),'</pre>'; exit();
              /*
