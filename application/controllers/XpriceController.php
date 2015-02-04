@@ -51,7 +51,8 @@ class XpriceController extends Zend_Controller_Action {
 
     public function indexAction() {
  $user = $this->_auth->getStorage()->read();
- $this->view->user = $user;
+ echo '<pre>',var_export($user),'</pre>';
+ 
     }
 
     public function numwpAction() {
