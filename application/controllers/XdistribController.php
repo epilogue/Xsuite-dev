@@ -121,7 +121,8 @@ public function createAction()
                 $resultatsacquis = odbc_Exec($this->odbc_conn2, $queryacquis);
                 $acquis[] = odbc_fetch_object($resultatsacquis);
             }
-           echo '<pre>',var_export($acquis),'</pre>'; exit();
+            $codeacquisition = array_combine($acquis['MBITNO'], $acquis['MBPUIT']);
+           echo '<pre>',var_export($codeacquisition),'</pre>';
              /*
              * à partir du code distributeur de la table ooline on va chercher dans la table ocusma
              * les informations concernant le distributeur pour pouvoir les afficher dans la vue phtml
@@ -208,6 +209,15 @@ public function createAction()
                         }
                         
   /* Insertion dans les tables Articles  et  demande_Article_Xdistrib */
+                        $articles_xdistrib = new Application_Model_DbTable_Articles();
+                    $demandes_articles_xdistrib = new Application_Model_DbTable_DemandeArticlexdistrib();
+                    foreach ($this->view->resultat as $resultarticle) {
+                        $articleexist = $articles_xdistrib->getArticle($resultarticle['OBITNO']);
+                        if (is_null($articleexist)) {
+                            $articles_xdistrib = $articles_xdistrib->createArticle($resultarticle['OBITDS'], $resultarticle['OBITNO'], null);
+                        }
+                        $demande_article_xdistrib = $demandes_articles_xdistrib->createDemandeArticlexdistrib($resultarticle['OBSAPR'], $resultarticle['OBNEPR'], $resultarticle['OBORQT'], round(100 - ($resultarticle['OBNEPR'] * 100 / $resultarticle['OBSAPR']), 2), $infos_offres->OBRGDT,$resultarticle['OBNEPR'], round(100 - ($resultarticle['OBNEPR'] * 100 / $resultarticle['OBSAPR']), 2), null, null, null, $trackingNumber, $resultarticle['OBITNO'], $resultarticle['OBITDS'], $numwp,null);
+                    }
                         
   /* dans un premier temps  on insert */                      
                     $flashMessenger = $this->_helper->getHelper('FlashMessenger');
