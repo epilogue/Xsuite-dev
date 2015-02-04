@@ -151,7 +151,7 @@ public function createAction()
                         $adresse_distributeur = $infos_distributeur['OKCUA1'] . $infos_distributeur['OKCUA2'] . $infos_distributeur['OKCUA3'] . $infos_distributeur['OKCUA4'];
 
                         if (is_null($distributeur)) {
-                            $newdistributeur = $distributeurs->createDistributeur($infos_distributeur['OKCUNM'], $numdistributeurwp['OACHL1'], $adresse_distributeur, $info_industry['id_industry'], $infos_distributeur['OKCFC7']);
+                            $newdistributeur = $distributeurs->createDistributeur($infos_distributeur['OKCUNM'],$formData['nom_contact_distributeur'],$formData['prenom_contact_distributeur'], $numdistributeurwp['OACHL1'],$formData['agence'], $adresse_distributeur, $info_industry['id_industry'], $infos_distributeur['OKCFC7']);
                         }
                         // et ensuite  on insert dans la table demande_xdistrib
                         //si le distributeur existe  alors on insert immédiatement dans la table demande_xdistribs
