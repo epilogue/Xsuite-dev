@@ -172,7 +172,7 @@ public function createAction()
                         $clients = new Application_Model_DbTable_Clients();
                         $client = $clients->getClientnumwp($formData['numclientwp']);
                         if(is_null($client)){
-                            $newclient = $clients->createClient($formData['nom_client'], $formData['numwpclient'], $formData['adresse_client'], $idIndustryClient, $formData['potentiel']);
+                            $newclient = $clients->createClient($formData['nom_client'], $formData['numclientwp'], $formData['adresse_client'], $idIndustryClient, $formData['potentiel']);
                         }
                         // et ensuite  on insert dans la table demande_xdistrib
                         //si le distributeur existe  alors on insert immédiatement dans la table demande_xdistribs
