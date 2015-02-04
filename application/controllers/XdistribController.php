@@ -143,8 +143,6 @@ public function createAction()
             
             if ($this->getRequest()->isPost()) {
                     $formData = $this->getRequest()->getPost();
-                   
-                        echo '<pre>',var_export($formData),'</pre>'; exit();
                         $emailVars = Zend_Registry::get('emailVars');
                         //alors si le distributeur n'existe pas ' on insert d'abord dans la table distributeur
                         $distributeurs = new Application_Model_DbTable_Distributeurs();
@@ -162,16 +160,20 @@ public function createAction()
                         $firstComment = null;
                         if (is_null($numwpexist)) {
                             $demande_xdistrib = $demandes_xdistrib->createXdistrib(
-                            $numwp, $trackingNumber, $formData['commentaire_demande_article'], $infos_offres->OBRGDT, $formData['mini_demande_article'],$formData['concurrent_demande_article'],$formData['part_demande_article'],$formData['faible'], $user_info['id_user'], null, $numdistributeurwp['OACHL1']);
+                            $numwp, $trackingNumber, $formData['contexte_demande'], $formData['commentaire_demande_xdistrib'],$infos_offres->OBRGDT, $formData['service_associe'], $user_info['id_user'], null,$formData['numclientwp'], $numdistributeurwp['OACHL1']);
                             $dbtValidationDemande = new Application_Model_DbTable_Validationsdemandexdistribs();
-                            if (!is_null($formData['commentaire_demande_article']) && trim($formData['commentaire_demande_article']) != "") {
+                            if (!is_null($formData['commentaire_demande_xdistrib']) && trim($formData['commentaire_demande_xdistrib']) != "") {
                                 $now = new DateTime();
                                 $validationDemande = $dbtValidationDemande->createValidation(
-                                        "creation", $now->format('Y-m-d H:i:s'), "creation", $user_info['id_user'], $demande_xdistrib->lastId(), trim($formData['commentaire_demande_article']));
+                                        "creation", $now->format('Y-m-d H:i:s'), "creation", $user_info['id_user'], $demande_xdistrib->lastId(), trim($formData['commentaire_demande_xdistrib']));
                                 $firstComment = $dbtValidationDemande->lastId();
                             }
                         }
-                    
+                    $flashMessenger = $this->_helper->getHelper('FlashMessenger');
+                $message = "l'offre $numwp a été envoyé.";
+                $flashMessenger->addMessage($message);
+                $redirector = $this->_helper->getHelper('Redirector');
+                $redirector->gotoSimple('index', 'xdistrib');
                 }
             }
     }
