@@ -121,7 +121,7 @@ public function createAction()
                 $resultatsacquis = odbc_Exec($this->odbc_conn2, $queryacquis);
                 $acquis = odbc_fetch_object($resultatsacquis);
             }
-           echo '<pre>',var_export($acquis),'</pre>';
+           echo '<pre>',var_export($acquis),'</pre>'; exit();
              /*
              * à partir du code distributeur de la table ooline on va chercher dans la table ocusma
              * les informations concernant le distributeur pour pouvoir les afficher dans la vue phtml
