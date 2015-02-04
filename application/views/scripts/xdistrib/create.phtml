@@ -146,7 +146,7 @@ $this->headTitle($this->title);
                         <td><?php echo (int)$result['OBORQT'];?></td>
                         <td><?php echo round($result['OBSAPR'],2)."€";?></td>
                         <td><?php echo round($result['OBNEPR'],2)."€";?></td>
-                        <td><input type="text" name ="prixClientFinal"></td>
+                        <td><input type="text" name ="prixClientFinal[]"></td>
                         <td><?php $margedemande=(($result['OBNEPR']*100)/$result['OBSAPR']); $margedef=100-$margedemande;echo round($margedef,2)."%"; ?></td>
                         <td><?php echo round($result['OBLNA2'],2)."€";?></td>
                         <td hidden="hidden"></td>
@@ -201,10 +201,6 @@ $this->headTitle($this->title);
             </fieldset>
             
         </div>
-         <?php  foreach($acquis as $plop){
-                 ?><input name="plopinette1" type="text" value ="<?php $plopinette=$plop['MBITNO'];echo $plopinette ?>">
-                 <input name="plopinette2" type="text" value ="<?php $plopinette2=$plop['MBPUIT'];echo $plopinette2 ?>">
-            <?php  }?>
         <input class="submit" type="submit" value="Envoyer Offre Xdistrib">
     </form>
 </div>
