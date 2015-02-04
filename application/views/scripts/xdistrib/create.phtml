@@ -139,14 +139,14 @@ $this->headTitle($this->title);
                     <th hidden="hidden">prix fob</th>
                     <th hidden="hidden">prix cif</th>
                 </tr>
-                 <?php  foreach ($this->resultat as $result) { ?>
+                 <?php  foreach ($this->resultat as $k=>$result) { ?>
                 <tr>
                     <td><?php echo $result['OBITNO'];?></td>
                         <td><?php echo $result['OBITDS'];?></td>
                         <td><?php echo (int)$result['OBORQT'];?></td>
                         <td><?php echo round($result['OBSAPR'],2)."€";?></td>
                         <td><?php echo round($result['OBNEPR'],2)."€";?></td>
-                        <td><input type="text" name ="prixClientFinal[]"></td>
+                        <td><input type="text" name ="prixClientFinal['<?php echo $k ;?>']"></td>
                         <td><?php $margedemande=(($result['OBNEPR']*100)/$result['OBSAPR']); $margedef=100-$margedemande;echo round($margedef,2)."%"; ?></td>
                         <td><?php echo round($result['OBLNA2'],2)."€";?></td>
                         <td hidden="hidden"></td>
