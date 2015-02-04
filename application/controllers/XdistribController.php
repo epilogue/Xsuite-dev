@@ -143,6 +143,20 @@ public function createAction()
             
             if ($this->getRequest()->isPost()) {
                     $formData = $this->getRequest()->getPost();
+                     $queryINDUS = "select ZMCPJO.Z2MCL1  from EIT.SMCCDTA.ZMCPJO  ZMCPJO where ZMCPJO.Z2CUNO= '{$formData['numclientwp']}' ";
+            $industriewpclient = odbc_fetch_array(odbc_exec($this->odbc_conn3, $queryINDUS));
+            
+            $industriewpclient['Z2MCL1'] = trim($industriewpclient['Z2MCL1']);
+            if ($industriewpclient['Z2MCL1'] == "" || $industriewpclient['Z2MCL1'] == " ") {
+                    $industriewpclient['Z2MCL1'] = "SCI";
+                }
+                if (isset($industriewpclient['Z2MCL1']) && $industriewpclient['Z2MCL1'] != '' && $industriewpclient['Z2MCL1'] != ' ' && $industriewpclient['Z2MCL1'] != '  ') {
+                    $industryclient = new Application_Model_DbTable_Industry();
+                    $info_industryclient = $industryclient->getMovexIndustry($industriewpclient['Z2MCL1']);
+                   $idIndustryClient = $info_industryclient['id_industry'];
+                } else {
+                   $idIndustryClient= 416;
+                }
                         $emailVars = Zend_Registry::get('emailVars');
                         //alors si le distributeur n'existe pas ' on insert d'abord dans la table distributeur
                         $distributeurs = new Application_Model_DbTable_Distributeurs();
@@ -152,6 +166,13 @@ public function createAction()
 
                         if (is_null($distributeur)) {
                             $newdistributeur = $distributeurs->createDistributeur($infos_distributeur['OKCUNM'],$formData['nom_contact_distributeur'],$formData['prenom_contact_distributeur'], $numdistributeurwp['OACHL1'],$formData['agence'], $adresse_distributeur,$formData['id_holon'], $info_industry['id_industry'], $infos_distributeur['OKCFC7']);
+                        }
+                        /* insertion Clients
+                        on regarde dans la base si le client existe */
+                        $clients = new Application_Model_DbTable_Clients();
+                        $client = $clients->getClientnumwp($formData['numclientwp']);
+                        if(is_null($client)){
+                            $newclient = $clients->createClient($formData['nom_client'], $formData['numwpclient'], $formData['adresse_client'], $idIndustryClient, $formData['potentiel']);
                         }
                         // et ensuite  on insert dans la table demande_xdistrib
                         //si le distributeur existe  alors on insert immédiatement dans la table demande_xdistribs

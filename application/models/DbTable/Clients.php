@@ -21,7 +21,7 @@ class Application_Model_DbTable_Clients extends Zend_Db_Table_Abstract {
             'numwp_client' => $numwp_client,
             'adresse_client' => $adresse_client,
             'id_industry' => $id_industry,
-            'potentiel' =>$potentiel
+            'potentiel' => $potentiel
         );
         $this->insert($data);
         return $this;
