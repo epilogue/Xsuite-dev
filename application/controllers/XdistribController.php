@@ -106,6 +106,22 @@ public function createAction()
                     $prixciffob[] = odbc_fetch_object($resultats3);
                 }
             $this->view->prixciffob = $prixciffob;
+            
+            foreach ($this->view->resultat as $itnoarticle) {
+                $mmcono = "100";
+                $division = "FR0";
+                $facility = "I01";
+                $type = "3";
+                $warehouse = "I02";
+                $supplier = "I990001";
+                $agreement1 = "I000001";
+                $agreement2 = "I000002";
+                $agreement3 = "I000003";
+                $queryacquis = "select MITBAL.MBPUIT,MITBAL.MBCONO,MITBAL.MBSUNO,MITBAL.MBITNO from EIT.MVXCDTA.MITBAL MITBAL where MITBAL.MBCONO = '$mmcono' AND MITBAL.MBSUNO = '$supplier'  AND MITBAL.MBITNO = '{$itnoarticle['OBITNO']}'";
+                $resultatsacquis = odbc_Exec($this->odbc_conn2, $queryacquis);
+                $acquis = odbc_fetch_object($resultatsacquis);
+            }
+           echo '<pre>',var_export($acquis),'</pre>';
              /*
              * à partir du code distributeur de la table ooline on va chercher dans la table ocusma
              * les informations concernant le distributeur pour pouvoir les afficher dans la vue phtml
@@ -190,6 +206,10 @@ public function createAction()
                                 $firstComment = $dbtValidationDemande->lastId();
                             }
                         }
+                        
+  /* Insertion dans les tables Articles  et  demande_Article_Xdistrib */
+                        
+  /* dans un premier temps  on insert */                      
                     $flashMessenger = $this->_helper->getHelper('FlashMessenger');
                 $message = "l'offre $numwp a été envoyé.";
                 $flashMessenger->addMessage($message);
