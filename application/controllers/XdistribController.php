@@ -107,24 +107,6 @@ public function createAction()
                 }
             $this->view->prixciffob = $prixciffob;
             
-            foreach ($this->view->resultat as $itnoarticle) {
-                $mmcono = "100";
-                $division = "FR0";
-                $facility = "I01";
-                $type = "3";
-                $warehouse = "I02";
-                $supplier = "I990001";
-                $agreement1 = "I000001";
-                $agreement2 = "I000002";
-                $agreement3 = "I000003";
-                $queryacquis = "select MITBAL.MBPUIT,MITBAL.MBCONO,MITBAL.MBSUNO,MITBAL.MBITNO from EIT.MVXCDTA.MITBAL MITBAL where MITBAL.MBCONO = '$mmcono' AND MITBAL.MBSUNO = '$supplier'  AND MITBAL.MBITNO = '{$itnoarticle['OBITNO']}'";
-                $resultatsacquis = odbc_Exec($this->odbc_conn2, $queryacquis);
-                $acquis[] = odbc_fetch_object($resultatsacquis);
-                       
-          
-            }
-                    $this->view->acquis = $acquis;
-               
              /*
              * à partir du code distributeur de la table ooline on va chercher dans la table ocusma
              * les informations concernant le distributeur pour pouvoir les afficher dans la vue phtml
@@ -162,7 +144,7 @@ public function createAction()
             
             if ($this->getRequest()->isPost()) {
                     $formData = $this->getRequest()->getPost();
-                    echo '<pre>',var_export($formData),'</pre>';exit();
+                   
                      $queryINDUS = "select ZMCPJO.Z2MCL1  from EIT.SMCCDTA.ZMCPJO  ZMCPJO where ZMCPJO.Z2CUNO= '{$formData['numclientwp']}' ";
             $industriewpclient = odbc_fetch_array(odbc_exec($this->odbc_conn3, $queryINDUS));
             
