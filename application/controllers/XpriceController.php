@@ -50,30 +50,8 @@ class XpriceController extends Zend_Controller_Action {
     }
 
     public function indexAction() {
-// action body
-//        $tracking = $this->getRequest()->getParam('tracking_number', null);
-//        $form = new Application_Form_Recherchexprice();
-//        if (!is_null($tracking)) {
-//            $form->populate(array("tracking_number" => $tracking));
-//        }
-//        if ($this->getRequest()->isPost()) {
-//            $redirector = $this->_helper->getHelper('Redirector');
-//
-//            if ($form->isValid($this->getRequest()->getPost())) {
-//                $tracking_number = 'SP-FR-' . $tracking;
-//                $getstracking = new Application_Model_DbTable_Xprices;
-//                $gettracking = $getstracking->getTracking($tracking_number);
-//                if (!is_null($gettracking)) {
-//                    $redirector->gotoSimple('list', 'xprice', null, array('tracking_number' => $_POST['tracking_number']));
-//                } else {
-//                    $flashMessenger = $this->_helper->getHelper('FlashMessenger');
-//                    $message = "Ce tracking number n'a pas de concordance dans la base Xsuite";
-//                    $flashMessenger->addMessage($message);
-//                    $redirector->gotoSimple('index', 'xprice', null, array('tracking_number' => $_POST['tracking_number']));
-//                }
-//            }
-//        }
-//        $this->view->form = $form;
+ $user = $this->_auth->getStorage()->read();
+ $this->view->user = $user;
     }
 
     public function numwpAction() {
