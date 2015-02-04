@@ -123,10 +123,8 @@ public function createAction()
                        
           
             }
-             while ($acquis) {
                     $this->view->acquis = $acquis;
-                  //  echo '<pre>',var_export($resultat),'</pre>';
-                }
+               
              /*
              * à partir du code distributeur de la table ooline on va chercher dans la table ocusma
              * les informations concernant le distributeur pour pouvoir les afficher dans la vue phtml
