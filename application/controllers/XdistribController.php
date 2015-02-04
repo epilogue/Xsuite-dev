@@ -120,10 +120,14 @@ public function createAction()
                 $queryacquis = "select MITBAL.MBPUIT,MITBAL.MBCONO,MITBAL.MBSUNO,MITBAL.MBITNO from EIT.MVXCDTA.MITBAL MITBAL where MITBAL.MBCONO = '$mmcono' AND MITBAL.MBSUNO = '$supplier'  AND MITBAL.MBITNO = '{$itnoarticle['OBITNO']}'";
                 $resultatsacquis = odbc_Exec($this->odbc_conn2, $queryacquis);
                 $acquis = odbc_fetch_object($resultatsacquis);
-                        $codeacquisition = array_combine($acquis['MBITNO'], $acquis['MBPUIT']);
-           echo '<pre>',var_export($codeacquisition),'</pre>';
+                       
+          
             }
-            
+             echo '<pre>',var_export($acquis),'</pre>';
+             foreach ( $acquis as $plop){
+                $key= $plop['MBITNO'];
+                $value = $plop['MBPUIT'];
+             }
              /*
              * à partir du code distributeur de la table ooline on va chercher dans la table ocusma
              * les informations concernant le distributeur pour pouvoir les afficher dans la vue phtml
