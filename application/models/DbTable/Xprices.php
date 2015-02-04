@@ -101,6 +101,9 @@ public function searchAll($tracking_number){
     $res= $this->getAdapter()->query($sql);
       $rest = $res->fetchObject();
       return $rest;
-}
+    }
+    public function searchByUser($id){
+        
+    }
 }
 
