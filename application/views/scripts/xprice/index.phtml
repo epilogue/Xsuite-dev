@@ -14,14 +14,18 @@ $this->headTitle($this->title);
             <th>Nom Client</th>
             <th>Date demande</th>
         </tr>
-    <?php  foreach($this->recapitulatif as $result){
+    <?php  foreach($this->recapitulatif as $k=>$result){
         ?><tr>
             <td><?php echo $result['num_workplace_demande_xprice']; ?></td>
             <td><?php echo $result['tracking_number_demande_xprice']; ?></td>
             <td><?php echo $result['nom_client']; ?></td>
              <td><?php echo $result['date_demande_xprice']; ?></td>
-             <td><button class="retour" >historique</button></a></td>
+             <td></td>
+             <td><button class="retour" id="historique-<?php echo $k; ?>">historique</button></td>
 </tr>
    <?php }?>
     </table>
+    <?php foreach($this->recapitulatif as $k=>$result){?> 
+    <div id="dialog-<?php echo $k; ?>"></div>
+  <?php }?>
 </div>
