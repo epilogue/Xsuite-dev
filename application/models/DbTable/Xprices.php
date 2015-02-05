@@ -103,6 +103,12 @@ public function searchAll($tracking_number){
       return $rest;
     }
     public function searchByUser($id){
+        $sql="select demande_xprices.num_workplace_demande_xprices,demande_xprices.tracking_number_demande_xprice,clients.nom_client,demande_xprices.date_demande_xprice from demande_xprices "
+                . "join clients on clients.numwp_client = demande_xprices.numwp_client"
+                . "where demande_xprices.id_user = $id";
+        $res = $this->getAdapter()->query($sql);
+        $rest=$res->fetchObject();
+        return $rest;
         
     }
 }
