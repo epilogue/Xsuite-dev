@@ -6,7 +6,23 @@ $this->headTitle($this->title);
 
 <div class="contenu">
     <h2>Xprice</h2>
-    <h3>Demande en ligne pour Prix Spéciaux</h3>  
+    <h3>Demande en ligne pour Prix Spéciaux</h3> 
+    <table>
+        <tr>
+            <th>Tracking number</th>
+            <th>Numéro Workplace</th>
+            <th>Nom Client</th>
+            <th>Date demande</th>
+        </tr>
+    <?php  foreach($this->recapitulatif as $result){
+        ?><tr>
+            <td><?php echo $result['num_workplace_demande_xprice']; ?></td>
+            <td><?php echo $result['tracking_number_demande_xprice']; ?></td>
+            <td><?php echo $result['nom_client']; ?></td>
+             <td><?php echo $result['date_demande_xprice']; ?></td>
+</tr>
+   <?php }?>
+    </table>
     <div class="lien">
         <a class="retour" href="<?php echo $this->url(array('controller' => 'xprice', 'action' => 'tracking'), null, true); ?>"><button class="retour" >Consulter une Xprice</button></a>
         <a class="retour" href="<?php echo $this->url(array('controller' => 'xprice', 'action' => 'numwp'), null, true); ?>"><button class="retour" >Créer une Xprice</button></a>           
