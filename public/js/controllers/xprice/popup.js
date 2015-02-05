@@ -7,7 +7,7 @@
      $(function() {
         var idT = $(this).attr('id').split('-');
         var k = idT[1];
-        $( "#dialog-"+k ).dialog({
+        $( "div#dialog-" +k).dialog({
            
         autoOpen: false,
         show: {
@@ -19,7 +19,7 @@
         duration: 1000
         }
         });
-        $( "#historique-"+k ).click(function() {
+        $("button.historique" ).click(function() {
             var idT = $(this).attr('id').split('-');
             var k = idT[1];
             $( "#dialog-"+k ).dialog( "open" );
