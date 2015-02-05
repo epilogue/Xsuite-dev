@@ -8,6 +8,7 @@ echo $this->doctype();
         <?php
         echo $this->headMeta();
         echo $this->headLink()->prependStylesheet($this->baseUrl() . '/css/global.css');
+        echo $this->headLink()->prependStylesheet($this->baseUrl() . '/css/jquery-ui.css');
         ?>
 <!--[if !IE7]><?php echo $this->headLink()->prependStylesheet($this->baseUrl() . '/css/ie8.css');?><![endif]--><?php
         echo $this->headTitle();
