@@ -225,7 +225,15 @@ public function createAction()
                     
                     $updatecif1 = new Application_Model_DbTable_DemandeArticlexdistrib();
                     $updatecif2 = $updatecif1->getDemandeArticlexdistrib($numwp);
-                        echo '<pre>',  var_export($updatecif2),'</pre>'; exit();
+                        echo '<pre>',  var_export($updatecif2),'</pre>'; 
+                        foreach($updatecif2 as $result){
+                            if($result['code_acquisition']===3){
+                                $cif= $result['prif_fob_demande_article']*1.07;
+                                $updatecif3 = $updatecif1->updatecif($cif, $result['code_article'], $result['tracking_number_demande_xdistrib']);
+                            }
+                            //
+                        }
+                        exit();
   /* dans un premier temps  on insert */                      
                     $flashMessenger = $this->_helper->getHelper('FlashMessenger');
                 $message = "l'offre $numwp a été envoyé.";
