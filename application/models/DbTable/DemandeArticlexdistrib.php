@@ -78,7 +78,7 @@ class Application_Model_DbTable_DemandeArticlexdistrib extends Zend_Db_Table_Abs
         $plop = $this->getAdapter();
         $datas = array('prix_fob_demande_article' => $fobs);
         $where = $plop->quoteInto('code_article = ?', $code_article)
-                . $plop->quoteInto(' And tracking_number_demande_xprice = ?', $tracking_number);
+                . $plop->quoteInto(' And tracking_number_demande_xdistrib = ?', $tracking_number);
         $plop2 = $this->update($datas, $where);
         return $plop2;
     }
@@ -119,9 +119,9 @@ class Application_Model_DbTable_DemandeArticlexdistrib extends Zend_Db_Table_Abs
     }
     //creation de la fonction qui additionne le montant des prix_demande_article recuperer
     //a checker
-    public function sommePrixDemandeArticle($num_workplace_demande_xprice) {
-       $num_workplace_demande_xprice="$num_workplace_demande_xprice";
-       $sql="select SUM(`prix_demande_article` * `quantite_demande_article`) as total from `demande_article_xprices` where `num_workplace_demande_xprice`= '$num_workplace_demande_xprice'";
+    public function sommePrixDemandeArticle($num_workplace_demande_xdistrib) {
+       $num_workplace_demande_xdistrib="$num_workplace_demande_xdistrib";
+       $sql="select SUM(`prix_demande_article` * `quantite_demande_article`) as total from `demande_article_xdistrib` where `num_workplace_demande_xdistrib`= '$num_workplace_demande_xdistrib'";
       $res= $this->getAdapter()->query($sql);
       $rest = $res->fetchObject();
       return $rest;
@@ -134,7 +134,7 @@ class Application_Model_DbTable_DemandeArticlexdistrib extends Zend_Db_Table_Abs
         $plop = $this->getAdapter();
         $datas = array('remise_accorde_demande_article' => $remiseDirco);
         $where = $plop->quoteInto('code_article = ?', $code_article)
-                . $plop->quoteInto('And tracking_number_demande_xprice = ?', $tracking_number);
+                . $plop->quoteInto('And tracking_number_demande_xdistrib = ?', $tracking_number);
         $plop2 = $this->update($datas, $where);
    return $plop2;
    
@@ -147,7 +147,7 @@ class Application_Model_DbTable_DemandeArticlexdistrib extends Zend_Db_Table_Abs
         $plop = $this->getAdapter();
         $datas = array('prix_accorde_demande_article' => $prixDirco);
         $where = $plop->quoteInto('code_article = ?', $code_article)
-                . $plop->quoteInto('And tracking_number_demande_xprice = ?', $tracking_number);
+                . $plop->quoteInto('And tracking_number_demande_xdistrib = ?', $tracking_number);
         $plop2 = $this->update($datas, $where);
    return $plop2;
    
@@ -159,7 +159,7 @@ class Application_Model_DbTable_DemandeArticlexdistrib extends Zend_Db_Table_Abs
         $plop = $this->getAdapter();
         $datas = array('marge_demande_article' => $marge);
         $where = $plop->quoteInto('code_article = ?', $code_article)
-                . $plop->quoteInto('And tracking_number_demande_xprice = ?', $tracking_number);
+                . $plop->quoteInto('And tracking_number_demande_xdistrib = ?', $tracking_number);
         $plop2 = $this->update($datas, $where);
    return $plop2;
    
@@ -170,7 +170,7 @@ class Application_Model_DbTable_DemandeArticlexdistrib extends Zend_Db_Table_Abs
         $plop = $this->getAdapter();
         $datas = array('marge_demande_article' => $marge);
         $where = $plop->quoteInto('code_article = ?', $code_article)
-                . $plop->quoteInto(' And tracking_number_demande_xprice = ?', $tracking_number);
+                . $plop->quoteInto(' And tracking_number_demande_xdistrib = ?', $tracking_number);
         $plop2 = $this->update($datas, $where);
         return $plop2;
     }
