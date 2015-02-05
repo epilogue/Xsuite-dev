@@ -109,7 +109,7 @@ public function createAction()
                     $plop = odbc_fetch_object($resultatsacquis);
                     $tagada[]= array(trim($plop->MBITNO) => $plop->MBPUIT);
                 }
-               echo '<pre>', var_export($tagada),'</pre>';               exit();
+               echo '<pre>', var_export($prixciffob),'</pre>';               exit();
             $this->view->prixciffob = $prixciffob;
             
              /*
