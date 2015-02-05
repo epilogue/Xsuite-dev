@@ -22,7 +22,7 @@
         $("button.historique" ).click(function() {
             var idT = $(this).attr('id').split('-');
             var k = idT[1];
-            $( "#dialog-"+k ).dialog( "open" );
+            $( "div#dialog-"+k ).dialog( "open" );
         });
 });
 });
