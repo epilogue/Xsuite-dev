@@ -28,7 +28,7 @@ class Application_Model_DbTable_DemandeArticlexdistrib extends Zend_Db_Table_Abs
         return $this;
     }
 
-    public function getDemandeArticlexprice($numwp) {
+    public function getDemandeArticlexdistrib($numwp) {
         $numwp = "$numwp";
         $rows = $this->fetchAll("num_workplace_demande_xdistrib = '{$numwp}'");
         if (!$rows) {
@@ -174,5 +174,6 @@ class Application_Model_DbTable_DemandeArticlexdistrib extends Zend_Db_Table_Abs
         $plop2 = $this->update($datas, $where);
         return $plop2;
     }
+    
 }
 

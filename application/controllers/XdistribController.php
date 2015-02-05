@@ -222,7 +222,10 @@ public function createAction()
                         $insertacquis= new Application_Model_DbTable_DemandeArticlexdistrib();
                         $inseracquis = $insertacquis->InserCodeAcquis($value->MBPUIT, $value->MBITNO, $numwp);
                     }
-                        
+                    
+                    $updatecif1 = new Application_Model_DbTable_DemandeArticlexdistrib();
+                    $updatecif2 = $updatecif1->getDemandeArticlexdistrib($numwp);
+                        echo '<pre>',  var_export($updatecif2),'</pre>'; exit();
   /* dans un premier temps  on insert */                      
                     $flashMessenger = $this->_helper->getHelper('FlashMessenger');
                 $message = "l'offre $numwp a été envoyé.";
