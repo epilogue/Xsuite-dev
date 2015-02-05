@@ -107,7 +107,7 @@ public function createAction()
                     $acquis= "select MITBAL.MBITNO, MITBAL.MBPUIT from EIT.MVXCDTA.MITBAL MITBAL where MITBAL.MBITNO ='{$itnoarticle['OBITNO']}'";
                     $resultatsacquis=odbc_Exec($this->odbc_conn2, $acquis);
                     $plop = odbc_fetch_object($resultatsacquis);
-                    $tagada = array(trim($plop->MBITNO) => $plop->MBPUIT);
+                    $tagada[]= array(trim($plop->MBITNO) => $plop->MBPUIT);
                 }
                echo '<pre>', var_export($tagada),'</pre>';               exit();
             $this->view->prixciffob = $prixciffob;
