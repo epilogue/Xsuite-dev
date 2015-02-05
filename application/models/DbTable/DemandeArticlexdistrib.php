@@ -49,6 +49,17 @@ class Application_Model_DbTable_DemandeArticlexdistrib extends Zend_Db_Table_Abs
         $plop2 = $this->update($datas, $where);
         return $plop2;
     }
+     public function InserCodeAcquis($codeAcquis, $code_article, $numwp) {
+        $code_article = "$code_article";
+        $numwp = "$numwp";
+        $codeAcquis = $codeAcquis;
+        $plop = $this->getAdapter();
+        $datas = array('code_acquisition' => $codeAcquis);
+        $where = $plop->quoteInto('code_article = ?', $code_article)
+                . $plop->quoteInto('And num_workplace_demande_xprice = ?', $numwp);
+        $plop2 = $this->update($datas, $where);
+        return $plop2;
+    }
 
     public function updatecif($cifs, $code_article, $tracking_number) {
         $code_article = "$code_article";

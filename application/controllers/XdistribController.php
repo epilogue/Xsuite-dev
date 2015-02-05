@@ -209,6 +209,20 @@ public function createAction()
                         }
                         $demande_article_xdistrib = $demandes_articles_xdistrib->createDemandeArticlexdistrib($resultarticle['OBSAPR'], $resultarticle['OBNEPR'],$formData['prixClientFinal'][trim($resultarticle['OBITNO'])], $resultarticle['OBORQT'], round(100 - ($resultarticle['OBNEPR'] * 100 / $resultarticle['OBSAPR']), 2), $infos_offres->OBRGDT,$resultarticle['OBNEPR'], round(100 - ($resultarticle['OBNEPR'] * 100 / $resultarticle['OBSAPR']), 2), null, null, null,$formData['MargeMoyenne'], $trackingNumber, $resultarticle['OBITNO'], $resultarticle['OBITDS'], $numwp,null);
                     }
+                     foreach ($tagada1 as $val) {
+                        /* a ajouter
+                         *  requete suivante : select MITBAL.MBPUIT as acquisition from eit.MVXCDTA.MITBAL MITBAL where MITBAL.MBITNO='$value->AJOBV2' ;
+                            if $acquisition ==1 ou 3 prix fob = prix cif 
+                         * if $acquisition == 2 cif =1.07*fob
+                         * 
+                         *                          */
+                        $insertprix = new Application_Model_DbTable_DemandeArticlexdistrib();
+                        $inserprix = $insertprix->InserPrixFob($value, $key, $numwp);
+                    }
+                    foreach($tagada as $val){
+                        $insertacquis= new Application_Model_DbTable_DemandeArticlexdistrib();
+                        $inseracquis = $insertacquis->InserCodeAcquis($value, $key, $numwp);
+                    }
                         
   /* dans un premier temps  on insert */                      
                     $flashMessenger = $this->_helper->getHelper('FlashMessenger');
