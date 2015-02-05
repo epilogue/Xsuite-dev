@@ -3,7 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
- $(function() {
+ $(document).ready(function (){
+     $(function() {
 $( "#dialog" ).dialog({
 autoOpen: false,
 show: {
@@ -21,4 +22,4 @@ $( "#historique" ).click(function() {
 $( "#dialog-"+k ).dialog( "open" );
 });
 });
-
+});
