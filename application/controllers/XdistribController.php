@@ -233,7 +233,6 @@ public function createAction()
                             }
                             //
                         }
-                        exit();
   /* dans un premier temps  on insert */                      
                     $flashMessenger = $this->_helper->getHelper('FlashMessenger');
                 $message = "l'offre $numwp a été envoyé.";
