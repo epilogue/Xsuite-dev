@@ -1,6 +1,8 @@
 <?php
 $this->title = 'Xprice/accueil';
 $this->headTitle($this->title);
+
+$this->headScript()->appendFile('/js/controllers/xprice/popup.js');
 ?>
 
 
@@ -26,6 +28,8 @@ $this->headTitle($this->title);
    <?php }?>
     </table>
     <?php foreach($this->recapitulatif as $k=>$result){?> 
-    <div id="dialog-<?php echo $k; ?>"></div>
+    <div id="dialog-<?php echo $k; ?>">
+        plop tagada tsouin tsouin
+    </div>
   <?php }?>
 </div>
