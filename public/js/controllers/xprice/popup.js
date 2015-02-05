@@ -5,21 +5,24 @@
  */
  $(document).ready(function (){
      $(function() {
-$( "#dialog" ).dialog({
-autoOpen: false,
-show: {
-effect: "blind",
-duration: 1000
-},
-hide: {
-effect: "explode",
-duration: 1000
-}
-});
-$( "#historique" ).click(function() {
-     var idT = $(this).attr('id').split('-');
+        var idT = $(this).attr('id').split('-');
         var k = idT[1];
-$( "#dialog-"+k ).dialog( "open" );
-});
+        $( "#dialog-"+k ).dialog({
+           
+        autoOpen: false,
+        show: {
+        effect: "blind",
+        duration: 1000
+        },
+        hide: {
+        effect: "explode",
+        duration: 1000
+        }
+        });
+        $( "#historique" ).click(function() {
+            var idT = $(this).attr('id').split('-');
+            var k = idT[1];
+            $( "#dialog-"+k ).dialog( "open" );
+        });
 });
 });
