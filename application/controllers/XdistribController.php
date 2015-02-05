@@ -107,8 +107,8 @@ public function createAction()
                     //$tagada1[]=array(trim($prixciffob->AJOBV2)=>$prixciffob->AJPUPR);
                     $acquis= "select MITBAL.MBITNO, MITBAL.MBPUIT from EIT.MVXCDTA.MITBAL MITBAL where MITBAL.MBITNO ='{$itnoarticle['OBITNO']}'";
                     $resultatsacquis=odbc_Exec($this->odbc_conn2, $acquis);
-                    $plop[] = odbc_fetch_object($resultatsacquis);
-                    $tagada[]= array(trim($plop->MBITNO) => $plop->MBPUIT);
+                    $resultatacquis[] = odbc_fetch_object($resultatsacquis);
+                   // $tagada[]= array(trim($plop->MBITNO) => $plop->MBPUIT);
                 }
             $this->view->prixciffob = $prixciffob;
             
@@ -218,7 +218,7 @@ public function createAction()
                         $insertprix = new Application_Model_DbTable_DemandeArticlexdistrib();
                         $inserprix = $insertprix->InserPrixFob($value->AJPUPR, $value->AJOBV2, $numwp);
                     }
-                    foreach($plop as $key=>$value){
+                    foreach($ $resultatacquis as $key=>$value){
                         $insertacquis= new Application_Model_DbTable_DemandeArticlexdistrib();
                         $inseracquis = $insertacquis->InserCodeAcquis($value->MBPUIT, $value->MBITNO, $numwp);
                     }
@@ -229,7 +229,7 @@ public function createAction()
                             if($result['code_acquisition']=='2'){
                                 $cifs= ($result['prix_fob_demande_article'])*1.07;
                                 $cif=round($cifs,2);
-                                $updatecif3 = $updatecif1->updatecif($cif, $result['code_article'], $result['tracking_number_demande_xdistrib']);
+                                $updatecif3 = $updatecif1->updatecif($cif, $result['code_article'], $result['tracking_number_demande_xprices']);
                             }
                            
                             
@@ -237,7 +237,8 @@ public function createAction()
                         $margeupdate1=new Application_Model_DbTable_DemandeArticlexdistrib();
                         $margeupdate2=$margeupdate1->getDemandeArticlexdistrib($numwp);
                         foreach($margeupdate2 as $res){
-                            $marge = 1-($res['prix_cif_demande_article']/$res['prix_accorde_demande_article']);
+                            $marges = 1-($res['prix_cif_demande_article']/$res['prix_accorde_demande_article']);
+                            $marge=$marges*100;
                             $margeupdate3=$margeupdate1->updateMarge($marge, $res['code_article'],$result['tracking_number_demande_xdistrib']);
                         }
                     $flashMessenger = $this->_helper->getHelper('FlashMessenger');

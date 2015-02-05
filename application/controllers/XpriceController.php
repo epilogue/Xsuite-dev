@@ -172,6 +172,9 @@ class XpriceController extends Zend_Controller_Action {
                 $query3 = "select * from EIT.MVXCDTA.MPAGRP MPAGRP where MPAGRP.AJCONO = '$mmcono' AND MPAGRP.AJSUNO = '$supplier' AND (MPAGRP.AJAGNB = '$agreement3'  OR MPAGRP.AJAGNB = '$agreement2' OR MPAGRP.AJAGNB = '$agreement1') AND MPAGRP.AJOBV2 = '{$itnoarticle['OBITNO']}' AND MPAGRP.AJOBV1 = '$division'  ORDER BY MPAGRP.AJAGNB";
                 $resultats3 = odbc_Exec($this->odbc_conn2, $query3);
                 $prixciffob[] = odbc_fetch_object($resultats3);
+                $acquis= "select MITBAL.MBITNO, MITBAL.MBPUIT from EIT.MVXCDTA.MITBAL MITBAL where MITBAL.MBITNO ='{$itnoarticle['OBITNO']}'";
+                    $resultatsacquis=odbc_Exec($this->odbc_conn2, $acquis);
+                    $resultatacquis[] = odbc_fetch_object($resultatsacquis);
             }           
             /*
              * à partir du code client de la table ooline on va chercher dans la table ocusma
@@ -253,7 +256,7 @@ class XpriceController extends Zend_Controller_Action {
                         if (is_null($articleexist)) {
                             $articles_xprice = $articles_xprice->createArticle($resultarticle['OBITDS'], $resultarticle['OBITNO'], null);
                         }
-                        $demande_xprice = $demandes_xprice->createDemandeArticlexprice($resultarticle['OBSAPR'], $resultarticle['OBNEPR'], $resultarticle['OBORQT'], round(100 - ($resultarticle['OBNEPR'] * 100 / $resultarticle['OBSAPR']), 2), $infos_offres->OBRGDT,$resultarticle['OBNEPR'], round(100 - ($resultarticle['OBNEPR'] * 100 / $resultarticle['OBSAPR']), 2), null, null, null, $trackingNumber, $resultarticle['OBITNO'], $resultarticle['OBITDS'], $numwp);
+                        $demande_xprice = $demandes_xprice->createDemandeArticlexprice($resultarticle['OBSAPR'], $resultarticle['OBNEPR'], $resultarticle['OBORQT'], round(100 - ($resultarticle['OBNEPR'] * 100 / $resultarticle['OBSAPR']), 2), $infos_offres->OBRGDT,$resultarticle['OBNEPR'], round(100 - ($resultarticle['OBNEPR'] * 100 / $resultarticle['OBSAPR']), 2), null, null, null, $trackingNumber, $resultarticle['OBITNO'], $resultarticle['OBITDS'], $numwp,null);
                     }
 
                     foreach ($prixciffob as $key => $value) {
@@ -266,6 +269,29 @@ class XpriceController extends Zend_Controller_Action {
                         $insertprix = new Application_Model_DbTable_DemandeArticlexprices();
                         $inserprix = $insertprix->InserPrixFob($value->AJPUPR, $value->AJOBV2, $numwp);
                     }
+                    foreach($ $resultatacquis as $key=>$value){
+                        $insertacquis= new Application_Model_DbTable_DemandeArticlexprices();
+                        $inseracquis = $insertacquis->InserCodeAcquis($value->MBPUIT, $value->MBITNO, $numwp);
+                    }
+                    
+                    $updatecif1 = new Application_Model_DbTable_DemandeArticlexprices();
+                    $updatecif2 = $updatecif1->getDemandeArticlexprices($numwp);                   
+                        foreach($updatecif2 as $result){
+                            if($result['code_acquisition']=='2'){
+                                $cifs= ($result['prix_fob_demande_article'])*1.07;
+                                $cif=round($cifs,2);
+                                $updatecif3 = $updatecif1->updatecif($cif, $result['code_article'], $result['tracking_number_demande_xprice']);
+                            }
+                           
+                            
+                        }
+                        $margeupdate1=new Application_Model_DbTable_DemandeArticlexprices();
+                        $margeupdate2=$margeupdate1->getDemandeArticlexprice($numwp);
+                        foreach($margeupdate2 as $res){
+                            $marges = 1-($res['prix_cif_demande_article']/$res['prix_accorde_demande_article']);
+                            $marge=$marges*100;
+                            $margeupdate3=$margeupdate1->updateMarge($marge, $res['code_article'],$result['tracking_number_demande_xprice']);
+                        }
 
                     /*
                      * ici, envoi des mails
