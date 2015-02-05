@@ -67,7 +67,7 @@ class Application_Model_DbTable_DemandeArticlexdistrib extends Zend_Db_Table_Abs
         $plop = $this->getAdapter();
         $datas = array('prix_cif_demande_article' => $cifs);
         $where = $plop->quoteInto('code_article = ?', $code_article)
-                . $plop->quoteInto(' And tracking_number_demande_xprice = ?', $tracking_number);
+                . $plop->quoteInto(' And tracking_number_demande_xdistrib = ?', $tracking_number);
         $plop2 = $this->update($datas, $where);
         return $plop2;
     }
