@@ -23,13 +23,8 @@ $this->headScript()->appendFile('/js/controllers/xprice/popup.js');
             <td><?php echo $result['nom_client']; ?></td>
              <td><?php echo $result['date_demande_xprice']; ?></td>
              <td></td>
-             <td><button class="historique" id="historique-<?php echo $k; ?>">historique</button></td>
+             <td><button class="historique" id="historique-<?php echo $k; ?>">historique</button><div class='dialog' id="dialog-<?php echo $k; ?>">plop tagada</div></td>
 </tr>
    <?php }?>
     </table>
-    <?php foreach($this->recapitulatif as $k=>$result){?> 
-    <div class='dialog' id="dialog-<?php echo $k; ?>">
-        plop tagada tsouin tsouin
-    </div>
-  <?php }?>
 </div>

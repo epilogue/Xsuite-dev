@@ -4,8 +4,8 @@
  * and open the template in the editor.
  */
  $(document).ready(function (){
-     $(function() {
-        var idT = $(this).attr('id').split('-');
+     $('div.dialog').each(function(i,e) {
+        var idT = $(e).attr('id').split('-');
         var k = idT[1];
         $( "div#dialog-" +k).dialog({
            
