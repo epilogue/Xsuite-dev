@@ -107,9 +107,12 @@ public function searchAll($tracking_number){
                 . "join clients on clients.numwp_client = demande_xprices.numwp_client"
                 . " where demande_xprices.id_user = $id";
         $res = $this->getAdapter()->query($sql);
-        $rest=$res->fetchObject();
-        return $rest;
-        
+        $rest=$res->fetchAll();
+        if (!$rest) {
+            return null;
+        } else {
+            return $rest;
+        }
     }
 }
 
