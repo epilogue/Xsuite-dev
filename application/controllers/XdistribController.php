@@ -228,7 +228,7 @@ public function createAction()
                         foreach($updatecif2 as $result){
                             if($result['code_acquisition']=='2'){
                                 $cif= ($result['prif_fob_demande_article'])*1.07;
-                                $updatecif3 = $updatecif1->updatecif($cif, $result['code_article'], $result['tracking_number_demande_xdistrib']);
+                                $updatecif3 = $updatecif1->updatecif((($result['prif_fob_demande_article'])*1.07), $result['code_article'], $result['tracking_number_demande_xdistrib']);
                             }
                             echo '<pre>',var_export($updatecif3),'</pre>';                            exit();
                             //
