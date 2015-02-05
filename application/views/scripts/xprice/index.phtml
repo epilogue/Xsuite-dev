@@ -16,10 +16,10 @@ $this->headTitle($this->title);
         </tr>
     <?php  foreach($this->recapitulatif as $result){
         ?><tr>
-            <td><?php echo $result['num_workplace_demande_xprice']; ?></td>
-            <td><?php echo $result['tracking_number_demande_xprice']; ?></td>
-            <td><?php echo $result['nom_client']; ?></td>
-             <td><?php echo $result['date_demande_xprice']; ?></td>
+            <td><?php echo $result->num_workplace_demande_xprice; ?></td>
+            <td><?php echo $result->tracking_number_demande_xprice; ?></td>
+            <td><?php echo $result->nom_client; ?></td>
+             <td><?php echo $result->date_demande_xprice; ?></td>
 </tr>
    <?php }?>
     </table>
