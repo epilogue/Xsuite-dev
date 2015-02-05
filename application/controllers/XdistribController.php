@@ -107,7 +107,7 @@ public function createAction()
                     //$tagada1[]=array(trim($prixciffob->AJOBV2)=>$prixciffob->AJPUPR);
                     $acquis= "select MITBAL.MBITNO, MITBAL.MBPUIT from EIT.MVXCDTA.MITBAL MITBAL where MITBAL.MBITNO ='{$itnoarticle['OBITNO']}'";
                     $resultatsacquis=odbc_Exec($this->odbc_conn2, $acquis);
-                    $plop = odbc_fetch_object($resultatsacquis);
+                    $plop[] = odbc_fetch_object($resultatsacquis);
                     $tagada[]= array(trim($plop->MBITNO) => $plop->MBPUIT);
                 }
             $this->view->prixciffob = $prixciffob;
@@ -218,9 +218,9 @@ public function createAction()
                         $insertprix = new Application_Model_DbTable_DemandeArticlexprices();
                         $inserprix = $insertprix->InserPrixFob($value->AJPUPR, $value->AJOBV2, $numwp);
                     }
-                    foreach($tagada as $val){
+                    foreach($plop as $key=>$value){
                         $insertacquis= new Application_Model_DbTable_DemandeArticlexdistrib();
-                        $inseracquis = $insertacquis->InserCodeAcquis($value, $key, $numwp);
+                        $inseracquis = $insertacquis->InserCodeAcquis($value->MBPUIT, $value->MBITNO, $numwp);
                     }
                         
   /* dans un premier temps  on insert */                      
