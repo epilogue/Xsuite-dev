@@ -227,13 +227,19 @@ public function createAction()
                     $updatecif2 = $updatecif1->getDemandeArticlexdistrib($numwp);                   
                         foreach($updatecif2 as $result){
                             if($result['code_acquisition']=='2'){
-                                $cif= ($result['prix_fob_demande_article'])*1.07;
+                                $cifs= ($result['prix_fob_demande_article'])*1.07;
+                                $cif=round($cifs,2);
                                 $updatecif3 = $updatecif1->updatecif($cif, $result['code_article'], $result['tracking_number_demande_xdistrib']);
                             }
-                            echo '<pre>',var_export($updatecif3),'</pre>';                            exit();
-                            //
+                           
+                            
                         }
-  /* dans un premier temps  on insert */                      
+                        $margeupdate1=new Application_Model_DbTable_DemandeArticlexdistrib();
+                        $margeupdate2=$margeupdate1->getDemandeArticlexdistrib($numwp);
+                        foreach($margeupdate2 as $res){
+                            $marge = 1-($res['prix_cif_demande_article']/$res['prix_accorde_demande_article']);
+                            $margeupdate3=$margeupdate1->updateMarge($marge, $res['code_article'],$result['tracking_number_demande_xdistrib']);
+                        }
                     $flashMessenger = $this->_helper->getHelper('FlashMessenger');
                 $message = "l'offre $numwp a été envoyé.";
                 $flashMessenger->addMessage($message);
