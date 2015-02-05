@@ -19,7 +19,7 @@
         duration: 1000
         }
         });
-        $( "#historique" ).click(function() {
+        $( ".historique" ).click(function() {
             var idT = $(this).attr('id').split('-');
             var k = idT[1];
             $( "#dialog-"+k ).dialog( "open" );
