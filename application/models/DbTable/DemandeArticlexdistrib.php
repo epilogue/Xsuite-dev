@@ -45,7 +45,7 @@ class Application_Model_DbTable_DemandeArticlexdistrib extends Zend_Db_Table_Abs
         $plop = $this->getAdapter();
         $datas = array('prix_fob_demande_article' => $prixciff, 'prix_cif_demande_article' => $prixciff);
         $where = $plop->quoteInto('code_article = ?', $code_article)
-                . $plop->quoteInto('And num_workplace_demande_xprice = ?', $numwp);
+                . $plop->quoteInto('And num_workplace_demande_xdistrib = ?', $numwp);
         $plop2 = $this->update($datas, $where);
         return $plop2;
     }
@@ -56,7 +56,7 @@ class Application_Model_DbTable_DemandeArticlexdistrib extends Zend_Db_Table_Abs
         $plop = $this->getAdapter();
         $datas = array('code_acquisition' => $codeAcquis);
         $where = $plop->quoteInto('code_article = ?', $code_article)
-                . $plop->quoteInto('And num_workplace_demande_xprice = ?', $numwp);
+                . $plop->quoteInto('And num_workplace_demande_xdistrib = ?', $numwp);
         $plop2 = $this->update($datas, $where);
         return $plop2;
     }

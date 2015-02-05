@@ -103,8 +103,8 @@ public function createAction()
                     $agreement3 = "I000003";
                     $query3 = "select * from EIT.MVXCDTA.MPAGRP MPAGRP where MPAGRP.AJCONO = '$mmcono' AND MPAGRP.AJSUNO = '$supplier' AND (MPAGRP.AJAGNB = '$agreement3'  OR MPAGRP.AJAGNB = '$agreement2' OR MPAGRP.AJAGNB = '$agreement1') AND MPAGRP.AJOBV2 = '{$itnoarticle['OBITNO']}' AND MPAGRP.AJOBV1 = '$division'  ORDER BY MPAGRP.AJAGNB";
                     $resultats3 = odbc_Exec($this->odbc_conn2, $query3);
-                    $prixciffob = odbc_fetch_object($resultats3);
-                    $tagada1[]=array(trim($prixciffob->AJOBV2)=>$prixciffob->AJPUPR);
+                    $prixciffob[] = odbc_fetch_object($resultats3);
+                    //$tagada1[]=array(trim($prixciffob->AJOBV2)=>$prixciffob->AJPUPR);
                     $acquis= "select MITBAL.MBITNO, MITBAL.MBPUIT from EIT.MVXCDTA.MITBAL MITBAL where MITBAL.MBITNO ='{$itnoarticle['OBITNO']}'";
                     $resultatsacquis=odbc_Exec($this->odbc_conn2, $acquis);
                     $plop = odbc_fetch_object($resultatsacquis);
@@ -208,15 +208,15 @@ public function createAction()
                         }
                         $demande_article_xdistrib = $demandes_articles_xdistrib->createDemandeArticlexdistrib($resultarticle['OBSAPR'], $resultarticle['OBNEPR'],$formData['prixClientFinal'][trim($resultarticle['OBITNO'])], $resultarticle['OBORQT'], round(100 - ($resultarticle['OBNEPR'] * 100 / $resultarticle['OBSAPR']), 2), $infos_offres->OBRGDT,$resultarticle['OBNEPR'], round(100 - ($resultarticle['OBNEPR'] * 100 / $resultarticle['OBSAPR']), 2), null, null, null,$formData['MargeMoyenne'], $trackingNumber, $resultarticle['OBITNO'], $resultarticle['OBITDS'], $numwp,null);
                     }
-                     foreach ($tagada1 as $val) {
+                    foreach ($prixciffob as $key => $value) {
                         /* a ajouter
                          *  requete suivante : select MITBAL.MBPUIT as acquisition from eit.MVXCDTA.MITBAL MITBAL where MITBAL.MBITNO='$value->AJOBV2' ;
                             if $acquisition ==1 ou 3 prix fob = prix cif 
                          * if $acquisition == 2 cif =1.07*fob
                          * 
                          *                          */
-                        $insertprix = new Application_Model_DbTable_DemandeArticlexdistrib();
-                        $inserprix = $insertprix->InserPrixFob($value, $key, $numwp);
+                        $insertprix = new Application_Model_DbTable_DemandeArticlexprices();
+                        $inserprix = $insertprix->InserPrixFob($value->AJPUPR, $value->AJOBV2, $numwp);
                     }
                     foreach($tagada as $val){
                         $insertacquis= new Application_Model_DbTable_DemandeArticlexdistrib();
