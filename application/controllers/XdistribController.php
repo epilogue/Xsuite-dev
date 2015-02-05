@@ -215,7 +215,7 @@ public function createAction()
                          * if $acquisition == 2 cif =1.07*fob
                          * 
                          *                          */
-                        $insertprix = new Application_Model_DbTable_DemandeArticlexprices();
+                        $insertprix = new Application_Model_DbTable_DemandeArticlexdistrib();
                         $inserprix = $insertprix->InserPrixFob($value->AJPUPR, $value->AJOBV2, $numwp);
                     }
                     foreach($plop as $key=>$value){
