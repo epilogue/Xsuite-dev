@@ -70,9 +70,9 @@ $infos_user = new Application_Model_DbTable_Users();
             foreach ($validationDemandeXprice as $key=>$plop)
             $userValidationInfos = $infos_user->getFonctionLabel($plop['id_user']);
             echo '<pre>', var_export($userValidationInfos),'</pre>';
-            $usersValidations[$key]['fonction'] = $userValidationInfos['description_fonction'];
+            $usersValidations[$key]['fonction'] = $userValidationInfos['description_fonction'];$this->view->usersValidations = $usersValidations;
         }
-        $this->view->usersValidations = $usersValidations;
+        
  }
     }
 
