@@ -103,15 +103,9 @@ public function searchAll($tracking_number){
       return $rest;
     }
     public function searchByUser($id){
-        $sql="SELECT demande_xprices.id_demande_xprice, demande_xprices.num_workplace_demande_xprice, demande_xprices.tracking_number_demande_xprice, clients.nom_client, demande_xprices.date_demande_xprice, users.nom_user,validations_demande_xprices.etat_validation, fonctions.nom_fonction
-FROM demande_xprices
-JOIN clients ON clients.numwp_client = demande_xprices.numwp_client
-JOIN validations_demande_xprices ON validations_demande_xprices.id_demande_xprice = demande_xprices.id_demande_xprice
-JOIN users ON users.id_user =validations_demande_xprices.id_user
-JOIN fonctions ON fonctions.id_fonction = users.id_fonction
-WHERE demande_xprices.id_user =$id
-GROUP BY validations_demande_xprices.id_demande_xprice,validations_demande_xprices.id_user
-ORDER BY demande_xprices.id_demande_xprice,validations_demande_xprices.date_validation";
+        $sql="select demande_xprices.id_demande_xprice, demande_xprices.num_workplace_demande_xprice,demande_xprices.tracking_number_demande_xprice,clients.nom_client,demande_xprices.date_demande_xprice from demande_xprices "
+                . "join clients on clients.numwp_client = demande_xprices.numwp_client"
+                . " where demande_xprices.id_user = $id";
         $res = $this->getAdapter()->query($sql);
         $rest=$res->fetchAll();
         if (!$rest) {
