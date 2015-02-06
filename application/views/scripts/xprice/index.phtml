@@ -27,8 +27,8 @@ $this->headScript()->appendFile('/js/controllers/xprice/popup.js');
                  <div class='dialog' id="dialog-<?php echo $k; ?>" title="historique">
                 
             <table class="enum">
-                <?php foreach ($this->validations as $key => $value) { ?>
-                <?php  if ( $value['id_demande_xprice'] == $result['id_demande_xprice']){?>
+                <?php foreach ($this->validations as $value) { ?>
+                <?php  if ($value['id_demande_xprice'] == $result['id_demande_xprice']){?>
                     <tr>
                         <td><?php echo $value['nom_validation']; ?></td>
                         <td><?php echo $value['date_validation']; ?></td>
