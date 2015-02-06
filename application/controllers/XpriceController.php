@@ -56,6 +56,17 @@ class XpriceController extends Zend_Controller_Action {
  $recapitulatif2 = $recapitulatif1->searchByUser($user->id_user);
  echo '<pre>',var_export($recapitulatif2),'</pre>';
  $this->view->recapitulatif = $recapitulatif2;
+  $dbtValidationsDemandesXprices = new Application_Model_DbTable_Validationsdemandexprices();
+        $validationsDemandesXprices = $dbtValidationsDemandesXprices->getAllValidation($recapitulatif2['id_demande_xprice']);
+
+        $this->view->validations = $validationsDemandesXprices;
+        $usersValidations = array();
+
+        foreach (@$validationsDemandesXprices as $key => $validationDemandeXprice) {
+            $userValidationInfos = $infos_user->getFonctionLabel($validationDemandeXprice['id_user']);
+            $usersValidations[$key]['fonction'] = $userValidationInfos['description_fonction'];
+        }
+        $this->view->usersValidations = $usersValidations;
  
     }
 
