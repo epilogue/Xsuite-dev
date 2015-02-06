@@ -65,7 +65,7 @@ class XpriceController extends Zend_Controller_Action {
         $this->view->validations = $validationsDemandesXprices;
         $usersValidations = array();
 $infos_user = new Application_Model_DbTable_Users();
-        foreach ($validationsDemandesXprices as  $validationDemandeXprice) {
+        foreach (@$validationsDemandesXprices as  $validationDemandeXprice) {
            
 //            foreach ($validationDemandeXprice as $key=>$plop)
 //            $userValidationInfos = $infos_user->getFonctionLabel($plop['id_user']);
