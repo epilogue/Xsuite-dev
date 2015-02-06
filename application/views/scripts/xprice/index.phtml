@@ -28,11 +28,13 @@ $this->headScript()->appendFile('/js/controllers/xprice/popup.js');
                 
             <table class="enum">
                 <?php foreach ($this->validations as $key => $value) { ?>
+                <?php  if ( $value['id_demande_xprice'] == $result['id_demande_xprice']){?>
                     <tr>
                         <td><?php echo $value['nom_validation']; ?></td>
                         <td><?php echo $value['date_validation']; ?></td>
-                        <td><?php echo nl2br($value['etat_validation']); ?></td>
+                        <td><?php echo $value['etat_validation']; ?></td>
                     </tr>
+                <?php } ?>
                 <?php } ?>
             </table>
                  </div>
