@@ -988,7 +988,7 @@ body .ui-tooltip {
 }
 .ui-state-hover .ui-icon,
 .ui-state-focus .ui-icon {
-	background-image: url("images/close-150192_640.png");
+	background-image: url("/images/close-150192_640.png");
 }
 .ui-state-active .ui-icon {
 	background-image: url("images/close-150192_640.png");
