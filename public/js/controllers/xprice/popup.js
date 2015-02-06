@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
  $(document).ready(function (){
-     $('#dialog').each(function(i,e) {
+     $('div.dialog').each(function(i,e) {
         var idT = $(e).attr('id').split('-');
         var k = idT[1];
         $( "div#dialog-" +k).dialog({
@@ -19,7 +19,7 @@
         duration: 1000
         }
         });
-        $("#opener" ).click(function() {
+        $("button.historique" ).click(function() {
             var idT = $(this).attr('id').split('-');
             var k = idT[1];
             $( "div#dialog-"+k ).dialog( "open" );
