@@ -61,7 +61,7 @@ class XpriceController extends Zend_Controller_Action {
   $dbtValidationsDemandesXprices = new Application_Model_DbTable_Validationsdemandexprices();
         $validationsDemandesXprices[] = $dbtValidationsDemandesXprices->getAllValidation($recap['id_demande_xprice']);
   }
-        echo '<pre>',  var_export($validationsDemandesXprices),'</pre>'; exit();
+        echo '<pre>',  var_export($validationsDemandesXprices),'</pre>'; 
         $this->view->validations = $validationsDemandesXprices;
         $usersValidations = array();
 
