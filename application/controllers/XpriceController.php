@@ -57,8 +57,9 @@ class XpriceController extends Zend_Controller_Action {
  echo '<pre>',var_export($recapitulatif2),'</pre>'; exit();
  $this->view->recapitulatif = $recapitulatif2;
   $infos_user = new Application_Model_DbTable_Users();
+  foreach($recapitulatif2 as $recap){
   $dbtValidationsDemandesXprices = new Application_Model_DbTable_Validationsdemandexprices();
-        $validationsDemandesXprices = $dbtValidationsDemandesXprices->getAllValidation($recapitulatif2['id_demande_xprice']);
+        $validationsDemandesXprices = $dbtValidationsDemandesXprices->getAllValidation($recap['id_demande_xprice']);
 
         $this->view->validations = $validationsDemandesXprices;
         $usersValidations = array();
@@ -68,7 +69,7 @@ class XpriceController extends Zend_Controller_Action {
             $usersValidations[$key]['fonction'] = $userValidationInfos['description_fonction'];
         }
         $this->view->usersValidations = $usersValidations;
- 
+  }
     }
 
     public function numwpAction() {
