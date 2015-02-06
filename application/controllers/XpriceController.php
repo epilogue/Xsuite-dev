@@ -57,23 +57,23 @@ class XpriceController extends Zend_Controller_Action {
 // echo '<pre>',var_export($recapitulatif2),'</pre>'; 
  $this->view->recapitulatif = $recapitulatif2;
   
-  foreach($recapitulatif2 as $recap){
-  $dbtValidationsDemandesXprices = new Application_Model_DbTable_Validationsdemandexprices();
-        $validationsDemandesXprices[] = $dbtValidationsDemandesXprices->getAllValidation($recap['id_demande_xprice']);
- 
-       // echo '<pre>',  var_export($validationsDemandesXprices),'</pre>'; 
-        $this->view->validations = $validationsDemandesXprices;
-        $usersValidations = array();
-$infos_user = new Application_Model_DbTable_Users();
-        foreach (@$validationsDemandesXprices as  $validationDemandeXprice) {
-           
-//            foreach ($validationDemandeXprice as $key=>$plop)
-//            $userValidationInfos = $infos_user->getFonctionLabel($plop['id_user']);
-//           // echo '<pre>', var_export($userValidationInfos),'</pre>';
-//            $usersValidations[$key]['fonction'] = $userValidationInfos['description_fonction'];$this->view->usersValidations = $usersValidations;
-        } echo '<pre>',  var_export($validationDemandeXprice),'</pre>';
-        
- }
+//  foreach($recapitulatif2 as $recap){
+//  $dbtValidationsDemandesXprices = new Application_Model_DbTable_Validationsdemandexprices();
+//        $validationsDemandesXprices[] = $dbtValidationsDemandesXprices->getAllValidation($recap['id_demande_xprice']);
+// 
+//       // echo '<pre>',  var_export($validationsDemandesXprices),'</pre>'; 
+//        $this->view->validations = $validationsDemandesXprices;
+//        $usersValidations = array();
+//$infos_user = new Application_Model_DbTable_Users();
+//        foreach (@$validationsDemandesXprices as  $validationDemandeXprice) {
+//           
+////            foreach ($validationDemandeXprice as $key=>$plop)
+////            $userValidationInfos = $infos_user->getFonctionLabel($plop['id_user']);
+////           // echo '<pre>', var_export($userValidationInfos),'</pre>';
+////            $usersValidations[$key]['fonction'] = $userValidationInfos['description_fonction'];$this->view->usersValidations = $usersValidations;
+//        } echo '<pre>',  var_export($validationDemandeXprice),'</pre>';
+//        
+// }
     }
 
     public function numwpAction() {

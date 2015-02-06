@@ -23,21 +23,8 @@ $this->headScript()->appendFile('/js/controllers/xprice/popup.js');
             <td><?php echo $result['nom_client']; ?></td>
              <td><?php echo $result['date_demande_xprice']; ?></td>
              <td></td>
-             <td><button class="historique" id="historique-<?php echo $k; ?>">historique</button>
-                 <div class='dialog' id="dialog-<?php echo $k; ?>" title="historique">
+             <td><a href="<?php echo $this->url(array("controller"=>"xprice","action"=>"consult","numwp"=>$result['num_workplace_demande_xprice']));?>" <button class="retour" id="historique-<?php echo $k; ?>">historique</button></a>
                 
-            <table class="enum">
-                <?php foreach (@$this->validations as $value) { ?>
-                <?php  if ($value['id_demande_xprice'] === $result['id_demande_xprice']){?>
-                    <tr>
-                        <td><?php echo $value['nom_validation']; ?></td>
-                        <td><?php echo $value['date_validation']; ?></td>
-                        <td><?php echo $value['etat_validation']; ?></td>
-                    </tr>
-                <?php } ?>
-                <?php } ?>
-            </table>
-                 </div>
              </td>
 </tr>
    <?php }?>
