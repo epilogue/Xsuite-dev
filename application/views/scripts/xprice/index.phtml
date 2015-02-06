@@ -24,7 +24,20 @@ $this->headScript()->appendFile('/js/controllers/xprice/popup.js');
              <td><?php echo $result['date_demande_xprice']; ?></td>
              <td></td>
              <td><button class="historique" id="historique-<?php echo $k; ?>">historique</button>
-                 <div class='dialog' id="dialog-<?php echo $k; ?>" title="historique">plop tagada</div>
+                 <div class='dialog' id="dialog-<?php echo $k; ?>" title="historique">
+                 <fieldset  id='valid_hist' class='field'>
+            <legend>Validation</legend>
+            <table class="enum">
+                <?php foreach (@$this->validations as $key => $value) { ?>
+                    <tr>
+                        <td>Commentaire <?php echo strtolower($this->usersValidations[$key]['fonction']); ?></td>
+                        <td><?php echo $value['date_validation']; ?></td>
+                        <td><?php echo nl2br($value['etat_validation']); ?></td>
+                    </tr>
+                <?php } ?>
+            </table>
+        </fieldset>
+                 </div>
              </td>
 </tr>
    <?php }?>
