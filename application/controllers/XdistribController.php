@@ -29,7 +29,12 @@ class XdistribController extends Zend_Controller_Action
 
     public function indexAction()
     {
-        
+         $user = $this->_auth->getStorage()->read();
+ //echo '<pre>',var_export($user),'</pre>';
+ $recapitulatif1 = new Application_Model_DbTable_Xdistrib();
+ $recapitulatif2 = $recapitulatif1->searchByUser($user->id_user);
+// echo '<pre>',var_export($recapitulatif2),'</pre>'; 
+ $this->view->recapitulatif = $recapitulatif2;
     }
 
 public function createAction()

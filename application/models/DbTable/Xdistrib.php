@@ -66,4 +66,17 @@ class Application_Model_DbTable_Xdistrib extends Zend_Db_Table_Abstract {
             return $res->lastId;
         }
     }
+    
+    public function searchByUser($id){
+        $sql="select demande_xdistrib.id_demande_xdistrib, demande_xdistrib.num_workplace_demande_xdistrib,demande_xdistrib.tracking_number_demande_xdistrib,clients.nom_client,demande_xdistrib.date_demande_xdistrib from demande_xdistrib "
+                . "join clients on clients.numwp_client = demande_xdistrib.numwp_client"
+                . " where demande_xdistrib.id_user = $id";
+        $res = $this->getAdapter()->query($sql);
+        $rest=$res->fetchAll();
+        if (!$rest) {
+            return null;
+        } else {
+            return $rest;
+        }
+    }
 }

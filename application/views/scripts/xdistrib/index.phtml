@@ -2,11 +2,25 @@
 $this->title = 'Xdistrib/accueil';
 $this->headTitle($this->title);
 ?>
-<div id="plop4" class="contenu">
-    <h2>Xprice-distrib</h2>
-    <h3>Demande en ligne de Prix Spéciaux pour Distributeurs</h3>
-     <div class="lien">
-        <a class="retour" href="<?php echo $this->url(array('controller' => 'xdistrib', 'action' => 'tracking'), null, true); ?>"><button class="retour" >Consulter une Xdistrib</button></a>
-        <a class="retour" href="<?php echo $this->url(array('controller' => 'xdistrib', 'action' => 'numwp'), null, true); ?>"><button class="retour" >Créer une Xdistrib</button></a>           
-    </div>
+<div class="contenu">
+    <h2>Xprice</h2>
+    <h3>Demande en ligne pour Prix Spéciaux</h3> 
+    <table class="enum">
+        <tr>
+            <th>Tracking number</th>
+            <th>Numéro Workplace</th>
+            <th>Nom Client</th>
+            <th>Date demande</th>
+        </tr>
+    <?php  foreach($this->recapitulatif as $k=>$result){
+        ?><tr>
+            <td><?php echo $result['num_workplace_demande_xprice']; ?></td>
+            <td><?php echo $result['tracking_number_demande_xprice']; ?></td>
+            <td><?php echo $result['nom_client']; ?></td>
+             <td><?php echo $result['date_demande_xprice']; ?></td>
+             <td><a href="<?php echo $this->url(array("controller"=>"xprice","action"=>"consult","numwp"=>$result['num_workplace_demande_xprice']));?>" <button class="retour" id="historique-<?php echo $k; ?>">historique</button></a>
+             </td>
+</tr>
+   <?php }?>
+    </table>
 </div>
