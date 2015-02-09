@@ -51,8 +51,7 @@ class XpriceController extends Zend_Controller_Action {
 
     public function indexAction() {
  $user = $this->_auth->getStorage()->read();
-echo '<pre>',var_export($user),'</pre>';
- if ($user->id_user == 1 || $user->id_user==2){
+ if ($user->id_fonction == 1 || $user->id_fonction==2){
  $recapitulatif1 = new Application_Model_DbTable_Xprices();
  $recapitulatif2 = $recapitulatif1->searchByUser($user->id_user);
 // echo '<pre>',var_export($recapitulatif2),'</pre>'; 
