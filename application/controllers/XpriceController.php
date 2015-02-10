@@ -71,6 +71,8 @@ class XpriceController extends Zend_Controller_Action {
              $tracking2="SP-FR-QK";
              break;
          }
+         $recapitulatif3=$recapitulatif1->searchByCDR($tracking1, $tracking2);
+         $this->view->recapitulatif = $recapitulatif3;
      }
 }
 
