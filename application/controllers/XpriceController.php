@@ -57,19 +57,22 @@ class XpriceController extends Zend_Controller_Action {
 // 
  $this->view->recapitulatif = $recapitulatif2;}
  elseif($user->id_fonction == 10){
-     echo tagada;
+     echo $user->id_holon;
      switch ($user->id_holon){
          case 2:
              $tracking1="SP-FR-QC";
              $tracking2="SP-FR-QF";
+             echo plop1;
              break;
          case 3:
              $tracking1="SP-FR-QE";
              $tracking2="SP-FR-QH";
+             echo plop2;
              break;
          case 4:
             $tracking1="SP-FR-QI";
              $tracking2="SP-FR-QK";
+             echo plop3;
              break;
          }
          $recapitulatif3=$recapitulatif1->searchByCDR($tracking1, $tracking2);
