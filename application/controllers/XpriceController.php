@@ -75,10 +75,9 @@ class XpriceController extends Zend_Controller_Action {
              echo plop3;
              break;
          }
-         $recapitulatif3=$recapitulatif1->searchByCDR($tracking1, $tracking2);
-         $this->view->recapitulatif = $recapitulatif3;
+         $recapitulatif2=$recapitulatif1->searchByCDR($tracking1, $tracking2);
      }
-     var_dump($tracking1);
+    $tis->view->recapitulatif = $recapitulatif2;
 }
 
     public function numwpAction() {
