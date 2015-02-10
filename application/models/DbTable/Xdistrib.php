@@ -79,4 +79,20 @@ class Application_Model_DbTable_Xdistrib extends Zend_Db_Table_Abstract {
             return $rest;
         }
     }
+    public function searchByCDR($tracking1,$tracking2){
+         
+        $sql="select demande_xdistrib.id_demande_xdistrib, demande_xdistrib.num_workplace_demande_xdistrib,demande_xdistrib.tracking_number_demande_xdsitrib,clients.nom_client,demande_xdsitrib.date_demande_xdistrib from demande_xdistrib "
+                . "join clients on clients.numwp_client = demande_xdistrib.numwp_client "
+                . "join users on users.id_user = demande_xdistrib.id_user"
+                
+                . " where demande_xdistrib.tracking_number_demande_xdistrib like '{$tracking1}%' or demande_xdistrib.tracking_number_demande_xdistrib like '{$tracking2}%' order by demande_xdistrib.date_demande_xdistrib desc";
+       
+        $res = $this->getAdapter()->query($sql);
+        $rest=$res->fetchAll();
+        if (!$rest) {
+            return null;
+        } else {
+            return $rest;
+        }
+    }
 }

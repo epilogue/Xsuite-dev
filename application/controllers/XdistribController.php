@@ -29,12 +29,33 @@ class XdistribController extends Zend_Controller_Action
 
     public function indexAction()
     {
-         $user = $this->_auth->getStorage()->read();
- //echo '<pre>',var_export($user),'</pre>';
- $recapitulatif1 = new Application_Model_DbTable_Xdistrib();
- $recapitulatif2 = $recapitulatif1->searchByUser($user->id_user);
-// echo '<pre>',var_export($recapitulatif2),'</pre>'; 
- $this->view->recapitulatif = $recapitulatif2;
+     $user = $this->_auth->getStorage()->read();
+     $holon =$user->id_holon; 
+     if ($user->id_fonction == 1 || $user->id_fonction==2){
+         $recapitulatif1 = new Application_Model_DbTable_Xdistrib();
+         $recapitulatif2 = $recapitulatif1->searchByUser($user->id_user);
+         $this->view->recapitulatif = $recapitulatif2;        
+     }
+
+ if($user->id_fonction == 10){
+     switch ($holon){
+         case 2:
+             $tracking1="SP-FR-QC";
+             $tracking2="SP-FR-QF";
+             break;
+         case 3:
+             $tracking1="SP-FR-QE";
+             $tracking2="SP-FR-QH";            
+             break;
+         case 4:
+            $tracking1="SP-FR-QI";
+            $tracking2="SP-FR-QK";            
+             break;
+         }
+         $recapitulatif1 = new Application_Model_DbTable_Xdistrib();
+         $recapitulatif2=$recapitulatif1->searchByCDR($tracking1,$tracking2);
+     }
+    $this->view->recapitulatif = $recapitulatif2;
     }
 
 public function createAction()
