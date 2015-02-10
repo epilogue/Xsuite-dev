@@ -137,6 +137,13 @@ public function searchAll($tracking_number){
                 . "join users on users.id_user = demande_xprices.id_user"
                 ."join validations_demande_xprices  on validations_demande_xprices.id_demande_xprice = demande_xprices.id_demande_xprice "
                 . " where validations_demande_xprices.nom_validation =='dbd'  and validations_demande_xprices.etat_validation ='validee' order by demande_xprices.date_demande_xprice desc";
-    }
+   $res = $this->getAdapter()->query($sql);
+        $rest=$res->fetchAll();
+        if (!$rest) {
+            return null;
+        } else {
+            return $rest;
+        }
+        }
 }
 
