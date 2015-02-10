@@ -54,8 +54,7 @@ class XpriceController extends Zend_Controller_Action {
  if ($user->id_fonction == 1 || $user->id_fonction==2){
  $recapitulatif1 = new Application_Model_DbTable_Xprices();
  $recapitulatif2 = $recapitulatif1->searchByUser($user->id_user);echo plop;
-// 
- $this->view->recapitulatif = $recapitulatif2;}
+}
  elseif($user->id_fonction == 10){
      echo $user->id_holon;
      switch ($user->id_holon){
@@ -77,7 +76,7 @@ class XpriceController extends Zend_Controller_Action {
          }
          $recapitulatif2=$recapitulatif1->searchByCDR($tracking1, $tracking2);
      }
-    $tis->view->recapitulatif = $recapitulatif2;
+    $this->view->recapitulatif = $recapitulatif2;
 }
 
     public function numwpAction() {
