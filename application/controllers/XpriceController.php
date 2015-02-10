@@ -81,7 +81,7 @@ class XpriceController extends Zend_Controller_Action {
              break;
          }
          
-     }echo '<pre>',var_export($recapitulatif2),'</pre>';
+     }
     $this->view->recapitulatif = $recapitulatif2;
 }
 
