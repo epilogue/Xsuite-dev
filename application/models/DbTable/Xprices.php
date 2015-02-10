@@ -124,7 +124,7 @@ public function searchAll($tracking_number){
                 
                 . " where demande_xprices.tracking_number_demande_xprice like '{$tracking1}%' or like '{$tracking2}%' order by demande_xprices.date_demande_xprice desc";
         echo '<pre>', var_export($sql, true), '</pre>';
-        $res = $this->getAdapter()->query($sql);
+        $res = $this->getAdapter()->query($sql);echo '<pre>', var_export($res, true), '</pre>'; exit();
         $rest=$res->fetchAll();
         if (!$rest) {
             return null;
