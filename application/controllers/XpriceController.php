@@ -59,15 +59,15 @@ class XpriceController extends Zend_Controller_Action {
  elseif($user->id_fonction == 10){
      echo tagada;
      switch ($user->id_holon){
-         case "2":
+         case 2:
              $tracking1="SP-FR-QC";
              $tracking2="SP-FR-QF";
              break;
-         case "3":
+         case 3:
              $tracking1="SP-FR-QE";
              $tracking2="SP-FR-QH";
              break;
-         case "4":
+         case 4:
             $tracking1="SP-FR-QI";
              $tracking2="SP-FR-QK";
              break;
