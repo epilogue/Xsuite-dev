@@ -95,4 +95,7 @@ class Application_Model_DbTable_Xdistrib extends Zend_Db_Table_Abstract {
             return $rest;
         }
     }
+    public function searchforDBD(){
+        $sql="select demande_xdistrib.id";
+    }
 }
