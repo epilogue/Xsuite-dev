@@ -81,6 +81,7 @@ class XpriceController extends Zend_Controller_Action {
              
              break;
          }
+         $recapitulatif1 = new Application_Model_DbTable_Xprices();
          $recapitulatif2=$recapitulatif1->searchByCDR($tracking1, $tracking2);
      }
     $this->view->recapitulatif = $recapitulatif2;
