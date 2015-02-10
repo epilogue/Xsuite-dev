@@ -116,11 +116,13 @@ public function searchAll($tracking_number){
     }
     
      public function searchByCDR($tracking1,$tracking2){
+         $tracking1="$tracking1";
+         $tracking2="$tracking2";
         $sql="select demande_xprices.id_demande_xprice, demande_xprices.num_workplace_demande_xprice,demande_xprices.tracking_number_demande_xprice,clients.nom_client,demande_xprices.date_demande_xprice from demande_xprices "
                 . "join clients on clients.numwp_client = demande_xprices.numwp_client "
                 . "join users.id_user = demande_xprices.id_user"
                 
-                . " where demande_xprices.tracking_number_demande_xprice like 'SP-FR-QH%' or like 'SP-FR-QE%' order by demande_xprices.date_demande_xprice desc";
+                . " where demande_xprices.tracking_number_demande_xprice like '$tracking1%' or like '$tracking2%' order by demande_xprices.date_demande_xprice desc";
         $res = $this->getAdapter()->query($sql);
         $rest=$res->fetchAll();
         if (!$rest) {
