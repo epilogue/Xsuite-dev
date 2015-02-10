@@ -122,7 +122,7 @@ public function searchAll($tracking_number){
                 . "join clients on clients.numwp_client = demande_xprices.numwp_client "
                 . "join users.id_user = demande_xprices.id_user"
                 
-                . " where demande_xprices.tracking_number_demande_xprice like '$tracking1%' or like '$tracking2%' order by demande_xprices.date_demande_xprice desc";
+                . " where demande_xprices.tracking_number_demande_xprice like '{$tracking1}%' or like '{$tracking2}%' order by demande_xprices.date_demande_xprice desc";
         $res = $this->getAdapter()->query($sql);
         $rest=$res->fetchAll();
         if (!$rest) {
