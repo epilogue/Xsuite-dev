@@ -135,7 +135,7 @@ public function searchAll($tracking_number){
         $sql="select demande_xprices.id_demande_xprice, demande_xprices.num_workplace_demande_xprice,demande_xprices.tracking_number_demande_xprice,clients.nom_client,demande_xprices.date_demande_xprice from demande_xprices"
                 . " join clients on clients.numwp_client = demande_xprices.numwp_client"
                 . " join users on users.id_user = demande_xprices.id_user"
-                ." join validations_demande_xprices  on validations_demande_xprices.id_demande_xprice = demande_xprices.id_demande_xprice "
+                . " join validations_demande_xprices  on validations_demande_xprices.id_demande_xprice = demande_xprices.id_demande_xprice "
                 . " where validations_demande_xprices.nom_validation like 'dbd'  and validations_demande_xprices.etat_validation like 'validee' order by demande_xprices.date_demande_xprice desc";
    $res = $this->getAdapter()->query($sql);
         $rest=$res->fetchAll();
