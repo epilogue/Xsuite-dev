@@ -83,7 +83,7 @@ class XpriceController extends Zend_Controller_Action {
          }
          
      }
-    $this->view->recapitulatif = $recapitulatif2;
+    //$this->view->recapitulatif = $recapitulatif2;
 }
 
     public function numwpAction() {
