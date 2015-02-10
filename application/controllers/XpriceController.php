@@ -61,17 +61,22 @@ class XpriceController extends Zend_Controller_Action {
          case 2:
              $tracking1="SP-FR-QC";
              $tracking2="SP-FR-QF";
-             echo plop1;$recapitulatif2=$recapitulatif1->searchByCDR($tracking1, $tracking2);
+             $recapitulatif2=$recapitulatif1->searchByCDR($tracking1, $tracking2);
+             $this->view->recapitulatif = $recapitulatif2;
              break;
          case 3:
              $tracking1="SP-FR-QE";
-             $tracking2="SP-FR-QH";$recapitulatif2=$recapitulatif1->searchByCDR($tracking1, $tracking2);
-             echo plop2;
+             $tracking2="SP-FR-QH";
+             $recapitulatif2=$recapitulatif1->searchByCDR($tracking1, $tracking2);
+             $this->view->recapitulatif = $recapitulatif2;
+             
              break;
          case 4:
             $tracking1="SP-FR-QI";
-             $tracking2="SP-FR-QK";$recapitulatif2=$recapitulatif1->searchByCDR($tracking1, $tracking2);
-             echo plop3;
+             $tracking2="SP-FR-QK";
+             $recapitulatif2=$recapitulatif1->searchByCDR($tracking1, $tracking2);
+             $this->view->recapitulatif = $recapitulatif2;
+             
              break;
          }
          
