@@ -190,7 +190,7 @@ public function createAction()
                         $adresse_distributeur = $infos_distributeur['OKCUA1'] . $infos_distributeur['OKCUA2'] . $infos_distributeur['OKCUA3'] . $infos_distributeur['OKCUA4'];
 /*insertion distributeur dans la bdd */
                         if (is_null($distributeur)) {
-                            $newdistributeur = $distributeurs->createDistributeur($infos_distributeur['OKCUNM'],$formData['nom_contact_distributeur'],$formData['prenom_contact_distributeur'], $numdistributeurwp['OACHL1'],$formData['agence'], $adresse_distributeur,$formData['id_holon'], $info_industry['id_industry'], $infos_distributeur['OKCFC7']);
+                            $newdistributeur = $distributeurs->createDistributeur($infos_distributeur['OKCUNM'],null,null, $numdistributeurwp['OACHL1'],null, $adresse_distributeur,null, $info_industry['id_industry'], $infos_distributeur['OKCFC7']);
                         }
                         /*fin insertion distributeur*/
                         
