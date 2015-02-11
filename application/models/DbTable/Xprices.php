@@ -131,7 +131,7 @@ public function searchAll($tracking_number){
         }
     }
      public function searchforDBD(){
-        $sql="select  distinct(demande_xprices.id_demande_xprice), demande_xprices.num_workplace_demande_xprice,demande_xprices.tracking_number_demande_xprice,clients.nom_client,demande_xprices.date_demande_xprice,validations_demande_xprices.etat_validation,validations_demande_xprices.nom_validation  from demande_xprices"
+        $sql="select  demande_xprices.id_demande_xprice, distinct( demande_xprices.num_workplace_demande_xprice),demande_xprices.tracking_number_demande_xprice,clients.nom_client,demande_xprices.date_demande_xprice,validations_demande_xprices.etat_validation,validations_demande_xprices.nom_validation  from demande_xprices"
                 . " join clients on clients.numwp_client = demande_xprices.numwp_client"
                 . " join users on users.id_user = demande_xprices.id_user"
                 . " join validations_demande_xprices  on validations_demande_xprices.id_demande_xprice = demande_xprices.id_demande_xprice "
