@@ -85,6 +85,7 @@ public function createAction()
             $infos_offre = odbc_exec($this->odbc_conn, $pirate);
             $infos_offres = odbc_fetch_object($infos_offre);
             $this->view->infos_offres = $infos_offres;
+             echo  offre,'<pre>', var_export($infos_offres),'</pre>';
             $dateinit = $infos_offres->OBRGDT;
             $dateinit3 = substr($dateinit, 0, 4);
             $dateinit2 = substr($dateinit, 4, 2);
@@ -98,12 +99,13 @@ public function createAction()
             $Xdistribs = new Application_Model_DbTable_Xdistrib();
             $trackingNumber = Application_Model_DbTable_Xdistrib::makeTrackingNumber($zone['nom_zone'], $Xdistribs->lastId(true));
             $this->view->trackingNumber = $trackingNumber;
+             echo  tracking,'<pre>', var_export($trackingNumber),'</pre>';
             $query1 = "SELECT OOLINE.OBSMCD  as userwp FROM EIT.CVXCDTA.OOLINE OOLINE WHERE OOLINE.OBORNO='{$numwp}'";
             $numwp_user = odbc_fetch_array(odbc_exec($this->odbc_conn, $query1));
             $usertest = new Application_Model_DbTable_Users();
             $user_info = $usertest->getMovexUser($numwp_user['USERWP']);
             $this->view->user_info = $user_info;
-            //echo '<pre>', var_export($user_info),'</pre>';
+            echo  user,'<pre>', var_export($user_info),'</pre>';
             $id_holon = $user_info['id_holon'];
             $holonuser = new Application_Model_DbTable_Holons();
             $holonuser1 = $holonuser->getHolon($id_holon);
@@ -149,7 +151,7 @@ public function createAction()
             $query1bis = "select * from EIT.MVXCDTA.OCUSMA OCUSMA where OCUSMA.OKCUNO = '{$resultat[0]['OBCUNO']}'";
             $infos_distributeur = odbc_fetch_array(odbc_exec($this->odbc_conn2, $query1bis));
             $this->view->infos_distributeur = $infos_distributeur;
-            echo '<pre>',  var_export($infos_distributeur),'</pre>';
+            echo distributeur, '<pre>',  var_export($infos_distributeur),'</pre>'; exit();
             $query1ter = "select OOHEAD.OACHL1 from EIT.MVXCDTA.OOHEAD OOHEAD where OOHEAD.OACUNO = '{$resultat[0]['OBCUNO']}'";
             $numdistributeurwp = odbc_fetch_array(odbc_exec($this->odbc_conn2, $query1ter));
             $this->view->numdistributeurwp = $numdistributeurwp['OACHL1'];
