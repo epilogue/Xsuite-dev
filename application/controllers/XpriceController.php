@@ -14,14 +14,16 @@ class XpriceController extends Zend_Controller_Action {
 //  public $odbc_conn3= null;
 
     public function init() {
+        $this->_auth = Zend_Auth::getInstance();
+        $this->view->messages = $this->_helper->flashMessenger->getMessages();
         $this->dsn = Zend_Registry::get("dsnString");
 //        $this->odbc_conn = odbc_connect($this->dsn, "", "");
         $this->odbc_conn = odbc_connect('Movex', "EU65535", "CCS65535");
         if (!$this->odbc_conn) {
             echo "pas d'accès à la base de données CVXDTA";
         }
-        $this->_auth = Zend_Auth::getInstance();
-        $this->view->messages = $this->_helper->flashMessenger->getMessages();
+       
+        
 
 // id de commentaire pour tracking des questions/réponses
         $comId = $this->getRequest()->getParam('com', null);
