@@ -72,7 +72,7 @@ public function createAction()
             $flashMessenger = $this->_helper->getHelper('FlashMessenger');
             $message = "Cette offre a déjà été créée.";
             $flashMessenger->addMessage($message);
-            $message = "Veuillez cliquer sur : <a href=\"/xdistrib/tracking\">'Xdistrib : Consulter'</a>.";
+            $message = "Veuillez cliquer sur : <a class=\"submit\" href=\"/xdistrib/tracking\">'Xdistrib : Consulter'</a>.";
             $flashMessenger->addMessage($message);
             $redirector->gotoSimple('index', 'xdistrib');
         }
@@ -176,7 +176,57 @@ public function createAction()
                     $info_industry = $industry->getMovexIndustry($plop10);
                     $this->view->info_industry = $info_industry;
                 }
-            
+                $distributeurs = new Application_Model_DbTable_Distributeurs();
+                        $distributeur = $distributeurs->getDistributeurnumwp($numdistributeurwp['OACHL1']);
+
+                        $adresse_distributeur = $infos_distributeur['OKCUA1'] . $infos_distributeur['OKCUA2'] . $infos_distributeur['OKCUA3'] . $infos_distributeur['OKCUA4'];
+
+                        if (is_null($distributeur)) {
+                            $newdistributeur = $distributeurs->createDistributeur($infos_distributeur['OKCUNM'],$formData['nom_contact_distributeur'],$formData['prenom_contact_distributeur'], $numdistributeurwp['OACHL1'],$formData['agence'], $adresse_distributeur,$formData['id_holon'], $info_industry['id_industry'], $infos_distributeur['OKCFC7']);
+                        }
+             /* Insertion dans les tables Articles  et  demande_Article_Xdistrib */
+                    $articles_xdistrib = new Application_Model_DbTable_Articles();
+                    $demandes_articles_xdistrib = new Application_Model_DbTable_DemandeArticlexdistrib();
+                    foreach ($this->view->resultat as $resultarticle) {
+                        $articleexist = $articles_xdistrib->getArticle($resultarticle['OBITNO']);
+                        if (is_null($articleexist)) {
+                            $articles_xdistrib = $articles_xdistrib->createArticle($resultarticle['OBITDS'], $resultarticle['OBITNO'], null);
+                        }
+                        $demande_article_xdistrib = $demandes_articles_xdistrib->createDemandeArticlexdistrib($resultarticle['OBSAPR'], $resultarticle['OBNEPR'],$formData['prixClientFinal'][trim($resultarticle['OBITNO'])], $resultarticle['OBORQT'], round(100 - ($resultarticle['OBNEPR'] * 100 / $resultarticle['OBSAPR']), 2), $infos_offres->OBRGDT,$resultarticle['OBNEPR'], round(100 - ($resultarticle['OBNEPR'] * 100 / $resultarticle['OBSAPR']), 2), null, null, null,$formData['MargeMoyenne'], $trackingNumber, $resultarticle['OBITNO'], $resultarticle['OBITDS'], $numwp,null);
+                    }
+                    foreach ($prixciffob as $key => $value) {
+                        /* a ajouter
+                         *  requete suivante : select MITBAL.MBPUIT as acquisition from eit.MVXCDTA.MITBAL MITBAL where MITBAL.MBITNO='$value->AJOBV2' ;
+                            if $acquisition ==1 ou 3 prix fob = prix cif 
+                         * if $acquisition == 2 cif =1.07*fob
+                         * 
+                         *                          */
+                        $insertprix = new Application_Model_DbTable_DemandeArticlexdistrib();
+                        $inserprix = $insertprix->InserPrixFob($value->AJPUPR, $value->AJOBV2, $numwp);
+                    }
+                    foreach($ $resultatacquis as $key=>$value){
+                        $insertacquis= new Application_Model_DbTable_DemandeArticlexdistrib();
+                        $inseracquis = $insertacquis->InserCodeAcquis($value->MBPUIT, $value->MBITNO, $numwp);
+                    }
+                    
+                    $updatecif1 = new Application_Model_DbTable_DemandeArticlexdistrib();
+                    $updatecif2 = $updatecif1->getDemandeArticlexdistrib($numwp);                   
+                        foreach($updatecif2 as $result){
+                            if($result['code_acquisition']=='2'){
+                                $cifs= ($result['prix_fob_demande_article'])*1.07;
+                                $cif=round($cifs,2);
+                                $updatecif3 = $updatecif1->updatecif($cif, $result['code_article'], $result['tracking_number_demande_xprices']);
+                            }
+                           
+                            
+                        }
+                        $margeupdate1=new Application_Model_DbTable_DemandeArticlexdistrib();
+                        $margeupdate2=$margeupdate1->getDemandeArticlexdistrib($numwp);
+                        foreach($margeupdate2 as $res){
+                            $marges = 1-($res['prix_cif_demande_article']/$res['prix_accorde_demande_article']);
+                            $marge=$marges*100;
+                            $margeupdate3=$margeupdate1->updateMarge($marge, $res['code_article'],$result['tracking_number_demande_xdistrib']);
+                        }
             if ($this->getRequest()->isPost()) {
                     $formData = $this->getRequest()->getPost();
                    
@@ -228,54 +278,54 @@ public function createAction()
                             }
                         }
                         
-  /* Insertion dans les tables Articles  et  demande_Article_Xdistrib */
-                        $articles_xdistrib = new Application_Model_DbTable_Articles();
-                    $demandes_articles_xdistrib = new Application_Model_DbTable_DemandeArticlexdistrib();
-                    foreach ($this->view->resultat as $resultarticle) {
-                        $articleexist = $articles_xdistrib->getArticle($resultarticle['OBITNO']);
-                        if (is_null($articleexist)) {
-                            $articles_xdistrib = $articles_xdistrib->createArticle($resultarticle['OBITDS'], $resultarticle['OBITNO'], null);
-                        }
-                        $demande_article_xdistrib = $demandes_articles_xdistrib->createDemandeArticlexdistrib($resultarticle['OBSAPR'], $resultarticle['OBNEPR'],$formData['prixClientFinal'][trim($resultarticle['OBITNO'])], $resultarticle['OBORQT'], round(100 - ($resultarticle['OBNEPR'] * 100 / $resultarticle['OBSAPR']), 2), $infos_offres->OBRGDT,$resultarticle['OBNEPR'], round(100 - ($resultarticle['OBNEPR'] * 100 / $resultarticle['OBSAPR']), 2), null, null, null,$formData['MargeMoyenne'], $trackingNumber, $resultarticle['OBITNO'], $resultarticle['OBITDS'], $numwp,null);
-                    }
-                    foreach ($prixciffob as $key => $value) {
-                        /* a ajouter
-                         *  requete suivante : select MITBAL.MBPUIT as acquisition from eit.MVXCDTA.MITBAL MITBAL where MITBAL.MBITNO='$value->AJOBV2' ;
-                            if $acquisition ==1 ou 3 prix fob = prix cif 
-                         * if $acquisition == 2 cif =1.07*fob
-                         * 
-                         *                          */
-                        $insertprix = new Application_Model_DbTable_DemandeArticlexdistrib();
-                        $inserprix = $insertprix->InserPrixFob($value->AJPUPR, $value->AJOBV2, $numwp);
-                    }
-                    foreach($ $resultatacquis as $key=>$value){
-                        $insertacquis= new Application_Model_DbTable_DemandeArticlexdistrib();
-                        $inseracquis = $insertacquis->InserCodeAcquis($value->MBPUIT, $value->MBITNO, $numwp);
-                    }
-                    
-                    $updatecif1 = new Application_Model_DbTable_DemandeArticlexdistrib();
-                    $updatecif2 = $updatecif1->getDemandeArticlexdistrib($numwp);                   
-                        foreach($updatecif2 as $result){
-                            if($result['code_acquisition']=='2'){
-                                $cifs= ($result['prix_fob_demande_article'])*1.07;
-                                $cif=round($cifs,2);
-                                $updatecif3 = $updatecif1->updatecif($cif, $result['code_article'], $result['tracking_number_demande_xprices']);
-                            }
-                           
-                            
-                        }
-                        $margeupdate1=new Application_Model_DbTable_DemandeArticlexdistrib();
-                        $margeupdate2=$margeupdate1->getDemandeArticlexdistrib($numwp);
-                        foreach($margeupdate2 as $res){
-                            $marges = 1-($res['prix_cif_demande_article']/$res['prix_accorde_demande_article']);
-                            $marge=$marges*100;
-                            $margeupdate3=$margeupdate1->updateMarge($marge, $res['code_article'],$result['tracking_number_demande_xdistrib']);
-                        }
-                    $flashMessenger = $this->_helper->getHelper('FlashMessenger');
-                $message = "l'offre $numwp a été envoyé.";
-                $flashMessenger->addMessage($message);
-                $redirector = $this->_helper->getHelper('Redirector');
-                $redirector->gotoSimple('index', 'xdistrib');
+//  /* Insertion dans les tables Articles  et  demande_Article_Xdistrib */
+//                    $articles_xdistrib = new Application_Model_DbTable_Articles();
+//                    $demandes_articles_xdistrib = new Application_Model_DbTable_DemandeArticlexdistrib();
+//                    foreach ($this->view->resultat as $resultarticle) {
+//                        $articleexist = $articles_xdistrib->getArticle($resultarticle['OBITNO']);
+//                        if (is_null($articleexist)) {
+//                            $articles_xdistrib = $articles_xdistrib->createArticle($resultarticle['OBITDS'], $resultarticle['OBITNO'], null);
+//                        }
+//                        $demande_article_xdistrib = $demandes_articles_xdistrib->createDemandeArticlexdistrib($resultarticle['OBSAPR'], $resultarticle['OBNEPR'],$formData['prixClientFinal'][trim($resultarticle['OBITNO'])], $resultarticle['OBORQT'], round(100 - ($resultarticle['OBNEPR'] * 100 / $resultarticle['OBSAPR']), 2), $infos_offres->OBRGDT,$resultarticle['OBNEPR'], round(100 - ($resultarticle['OBNEPR'] * 100 / $resultarticle['OBSAPR']), 2), null, null, null,$formData['MargeMoyenne'], $trackingNumber, $resultarticle['OBITNO'], $resultarticle['OBITDS'], $numwp,null);
+//                    }
+//                    foreach ($prixciffob as $key => $value) {
+//                        /* a ajouter
+//                         *  requete suivante : select MITBAL.MBPUIT as acquisition from eit.MVXCDTA.MITBAL MITBAL where MITBAL.MBITNO='$value->AJOBV2' ;
+//                            if $acquisition ==1 ou 3 prix fob = prix cif 
+//                         * if $acquisition == 2 cif =1.07*fob
+//                         * 
+//                         *                          */
+//                        $insertprix = new Application_Model_DbTable_DemandeArticlexdistrib();
+//                        $inserprix = $insertprix->InserPrixFob($value->AJPUPR, $value->AJOBV2, $numwp);
+//                    }
+//                    foreach($ $resultatacquis as $key=>$value){
+//                        $insertacquis= new Application_Model_DbTable_DemandeArticlexdistrib();
+//                        $inseracquis = $insertacquis->InserCodeAcquis($value->MBPUIT, $value->MBITNO, $numwp);
+//                    }
+//                    
+//                    $updatecif1 = new Application_Model_DbTable_DemandeArticlexdistrib();
+//                    $updatecif2 = $updatecif1->getDemandeArticlexdistrib($numwp);                   
+//                        foreach($updatecif2 as $result){
+//                            if($result['code_acquisition']=='2'){
+//                                $cifs= ($result['prix_fob_demande_article'])*1.07;
+//                                $cif=round($cifs,2);
+//                                $updatecif3 = $updatecif1->updatecif($cif, $result['code_article'], $result['tracking_number_demande_xprices']);
+//                            }
+//                           
+//                            
+//                        }
+//                        $margeupdate1=new Application_Model_DbTable_DemandeArticlexdistrib();
+//                        $margeupdate2=$margeupdate1->getDemandeArticlexdistrib($numwp);
+//                        foreach($margeupdate2 as $res){
+//                            $marges = 1-($res['prix_cif_demande_article']/$res['prix_accorde_demande_article']);
+//                            $marge=$marges*100;
+//                            $margeupdate3=$margeupdate1->updateMarge($marge, $res['code_article'],$result['tracking_number_demande_xdistrib']);
+//                        }
+//                    $flashMessenger = $this->_helper->getHelper('FlashMessenger');
+//                $message = "l'offre $numwp a été envoyé.";
+//                $flashMessenger->addMessage($message);
+//                $redirector = $this->_helper->getHelper('Redirector');
+//                $redirector->gotoSimple('index', 'xdistrib');
                 }
             }
     }
