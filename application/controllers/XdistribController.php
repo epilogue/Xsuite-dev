@@ -158,7 +158,7 @@ public function createAction()
             
             /*a partir d'ici on a toute les infos obligatoire pour enregistrer la demande Xdistrib*/
             $demande_xdistrib = $demandes_xdistrib->createXdistrib(
-                            $numwp, $trackingNumber, null,null,$infos_offres->OBRGDT,null, $user_info['id_user'], null,null, $numdistributeurwp['OACHL1']); exit();
+                            $numwp, $trackingNumber, null,null,$infos_offres->OBRGDT,null, $user_info['id_user'], null,null, $numdistributeurwp['OACHL1']); 
             /* fin insertion demande_xdistrib */
             
             $query1quart = "select ZMCPJO.Z2MCL1  from EIT.SMCCDTA.ZMCPJO  ZMCPJO where ZMCPJO.Z2CUNO= '{$resultat[0]['OBCUNO']}' ";
@@ -188,11 +188,13 @@ public function createAction()
                         $distributeur = $distributeurs->getDistributeurnumwp($numdistributeurwp['OACHL1']);
 
                         $adresse_distributeur = $infos_distributeur['OKCUA1'] . $infos_distributeur['OKCUA2'] . $infos_distributeur['OKCUA3'] . $infos_distributeur['OKCUA4'];
-
+/*insertion distributeur dans la bdd */
                         if (is_null($distributeur)) {
                             $newdistributeur = $distributeurs->createDistributeur($infos_distributeur['OKCUNM'],$formData['nom_contact_distributeur'],$formData['prenom_contact_distributeur'], $numdistributeurwp['OACHL1'],$formData['agence'], $adresse_distributeur,$formData['id_holon'], $info_industry['id_industry'], $infos_distributeur['OKCFC7']);
                         }
-             /* Insertion dans les tables Articles  et  demande_Article_Xdistrib */
+                        /*fin insertion distributeur*/
+                        
+             /* debut Insertion dans les tables Articles  et  demande_Article_Xdistrib */
                     $articles_xdistrib = new Application_Model_DbTable_Articles();
                     $demandes_articles_xdistrib = new Application_Model_DbTable_DemandeArticlexdistrib();
                     foreach ($this->view->resultat as $resultarticle) {
@@ -225,8 +227,7 @@ public function createAction()
                                 $cif=round($cifs,2);
                                 $updatecif3 = $updatecif1->updatecif($cif, $result['code_article'], $result['tracking_number_demande_xprices']);
                             }
-                           
-                            
+                                                     
                         }
                         $margeupdate1=new Application_Model_DbTable_DemandeArticlexdistrib();
                         $margeupdate2=$margeupdate1->getDemandeArticlexdistrib($numwp);
@@ -235,6 +236,7 @@ public function createAction()
                             $marge=$marges*100;
                             $margeupdate3=$margeupdate1->updateMarge($marge, $res['code_article'],$result['tracking_number_demande_xdistrib']);
                         }
+                        exit();
             if ($this->getRequest()->isPost()) {
                     $formData = $this->getRequest()->getPost();
                    
