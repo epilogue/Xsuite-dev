@@ -149,7 +149,7 @@ public function createAction()
             $query1bis = "select * from EIT.MVXCDTA.OCUSMA OCUSMA where OCUSMA.OKCUNO = '{$resultat[0]['OBCUNO']}'";
             $infos_distributeur = odbc_fetch_array(odbc_exec($this->odbc_conn2, $query1bis));
             $this->view->infos_distributeur = $infos_distributeur;
-           // echo '<pre>',  var_export($infos_distributeur),'</pre>';
+            echo '<pre>',  var_export($infos_distributeur),'</pre>';
             $query1ter = "select OOHEAD.OACHL1 from EIT.MVXCDTA.OOHEAD OOHEAD where OOHEAD.OACUNO = '{$resultat[0]['OBCUNO']}'";
             $numdistributeurwp = odbc_fetch_array(odbc_exec($this->odbc_conn2, $query1ter));
             $this->view->numdistributeurwp = $numdistributeurwp['OACHL1'];
