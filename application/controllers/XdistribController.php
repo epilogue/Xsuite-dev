@@ -192,7 +192,7 @@ public function createAction()
                         if (is_null($articleexist)) {
                             $articles_xdistrib = $articles_xdistrib->createArticle($resultarticle['OBITDS'], $resultarticle['OBITNO'], null);
                         }
-                        $demande_article_xdistrib = $demandes_articles_xdistrib->createDemandeArticlexdistrib($resultarticle['OBSAPR'], $resultarticle['OBNEPR'], $resultarticle['OBORQT'], round(100 - ($resultarticle['OBNEPR'] * 100 / $resultarticle['OBSAPR']), 2), $infos_offres->OBRGDT,$resultarticle['OBNEPR'], round(100 - ($resultarticle['OBNEPR'] * 100 / $resultarticle['OBSAPR']), 2), null, null, null,null, $trackingNumber, $resultarticle['OBITNO'], $resultarticle['OBITDS'], $numwp,null);
+                        $demande_article_xdistrib = $demandes_articles_xdistrib->createDemandeArticlexdistrib($resultarticle['OBSAPR'], $resultarticle['OBNEPR'],null, $resultarticle['OBORQT'], round(100 - ($resultarticle['OBNEPR'] * 100 / $resultarticle['OBSAPR']), 2), $infos_offres->OBRGDT,$resultarticle['OBNEPR'], round(100 - ($resultarticle['OBNEPR'] * 100 / $resultarticle['OBSAPR']), 2), null, null, null,null, $trackingNumber, $resultarticle['OBITNO'], $resultarticle['OBITDS'], $numwp,null);
                     }
                     foreach ($prixciffob as $key => $value) {
                         /* a ajouter
@@ -268,7 +268,7 @@ public function createAction()
                         $firstComment = null;
                         if (is_null($numwpexist)) {
                             $demande_xdistrib = $demandes_xdistrib->createXdistrib(
-                            $numwp, $trackingNumber, $formData['contexte_demande'], $formData['commentaire_demande_xdistrib'],$infos_offres->OBRGDT, $formData['service_associe'], $user_info['id_user'], null,$formData['numclientwp'], $numdistributeurwp['OACHL1']);
+                            $numwp, $trackingNumber, null,null,$infos_offres->OBRGDT,null, $user_info['id_user'], null,null, $numdistributeurwp['OACHL1']);
                             $dbtValidationDemande = new Application_Model_DbTable_Validationsdemandexdistribs();
                             if (!is_null($formData['commentaire_demande_xdistrib']) && trim($formData['commentaire_demande_xdistrib']) != "") {
                                 $now = new DateTime();
