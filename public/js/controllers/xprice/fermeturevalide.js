@@ -7,7 +7,7 @@ function changeyourbody(){
 var plop= $('#fermeturevalide').val();
 
     if(plop=="fermee"){
-        $('html').css('background-image', 'url("/images/maison.jpg")');
+        $('html').css('background-image', 'url("/images/Valide2.jpg")');
     }
     
 };
