@@ -6,7 +6,7 @@ $this->headScript()->appendFile('/js/controllers/xprice/afficher_masquer_validat
 $this->headScript()->appendFile('/js/controllers/xprice/fermeturevalide.js');
 ?>
 <div id="contenu" class="contenu">
-   <input  hidden= "hidden" value ="<?php echo $this->fermeturevalide['etat_validation']=="fermee" ?>" class="fermeture">
+   <input  hidden= "hidden" value ="<?php echo $this->fermeturevalide[0]['etat_validation']=="fermee" ?>" class="fermeture">
     <h2>Consultation de l' offre</h2>
     <div id='workplace' class="workplace">
         <fieldset id="wp" class="field">
@@ -113,7 +113,7 @@ $this->headScript()->appendFile('/js/controllers/xprice/fermeturevalide.js');
                         <td><?php echo $result['prix_accorde_demande_article'] . "€"; ?></td>
                         <td><?php echo $result['remise_accorde_demande_article'] . "%"; ?></td>
                         <?php }?>
-                         <?php if($this->utilisateur =='5' or $this->utilisateur== '13'){ ?>
+                         <?php if($this->utilisateur =='5' or $this->utilisateur== '13' or $this->utilisateur =='29'){ ?>
                         <td><?php echo $result['prix_cif_demande_article'] . "€"; ?></td>
                         <td><?php echo $result['prix_fob_demande_article'] . "€"; ?></td>
                         <td><?php echo $result['marge_demande_article'] . "%"; ?></td><?php } else {}?>
