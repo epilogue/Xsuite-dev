@@ -10,7 +10,7 @@ function changeyourbody(){
     var plop= $('input#fermeturevalide').val();
     alert(plop);
  if(plop=="fermee"){
-        $('html').css('background-image', 'url("/images/Valide2.jpg")');
+        $('html').css('background-image', 'url("/images/Valide2.png")');
     }
     
 };
