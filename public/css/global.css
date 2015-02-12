@@ -262,7 +262,7 @@ background:#2A60AA;
 
 .fermeture{
     width: 900px;
-    height: auto;
+    height: auto !important;
     background-color: grey;
 }
 .contenu{
