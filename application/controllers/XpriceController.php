@@ -851,7 +851,7 @@ class XpriceController extends Zend_Controller_Action {
         foreach ($blocage as $blocs){
         $bloc = $blocs['etat_validation'];
         
-        if($bloc == "validee" || $bloc =="nonValide" ||$bloc=="fermee"){
+        if($bloc == "validee" || $bloc =="nonValide" || $bloc=="fermee"){
             if($bloc=="validee"){
                 $flashMessenger = $this->_helper->getHelper('FlashMessenger');
                 $message1 = "vous avez déjà validée cette offre.";
@@ -951,13 +951,8 @@ class XpriceController extends Zend_Controller_Action {
                         . "Supply Chain Manager.";
             }*/
             if (isset($datas['validation']) && $datas['validation'] == "validee") {
-                $params = array();
                 $params1 = array();
-                $params2 = array();
-                $params3 = array();
-                $params4 = array();
-                $params5 = array();
-                $params6 = array();
+                
                 
                  if ($margemin == true){
                  // $params['destinataireMail'] = $info_user['email_user'] ;
@@ -994,8 +989,22 @@ class XpriceController extends Zend_Controller_Action {
                 
                 //$this->sendEmail($params);
                 $this->sendEmail($params1);
-                 }
-                 else{/*envoi de mail au tc, au cdr, au leader, au cm et au service client.*/
+            }
+            $flashMessenger = $this->_helper->getHelper('FlashMessenger');
+                $message = "l'offre $numwp  pour le client $nomclients a bien été validée.";
+                $flashMessenger->addMessage($message);
+                $redirector = $this->_helper->getHelper('Redirector');
+                $redirector->gotoSimple('index', 'xprice');
+            }
+                
+                 
+                 elseif(isset($datas['validation']) && $datas['validation'] == "fermee"){
+                     /*envoi de mail au tc, au cdr, au leader, au cm et au service client.*/
+                $params2 = array();
+                $params3 = array();
+                $params4 = array();
+                $params5 = array();
+                $params6 = array();
                     $params2['destinataireMail'] = $info_user['email_user'];
                     $params3['destinataireMail'] = $emailVars->listes->serviceClient ;
                     //$params3['destinataireMail'] = $emailVars->listes->serviceClient ;
@@ -1151,15 +1160,15 @@ class XpriceController extends Zend_Controller_Action {
                 $params6['destinataireMail'] = $destinataireMail2;
                 $params6['sujet'] = "TEST XPrice : La demande Xprice $trackingNumber/$numwp de {$info_user['nom_user']} pour le client $nomclients a été validée par le DBD.";
                 $this->sendEmail($params6);
-                    
-                
-                 }
-                $flashMessenger = $this->_helper->getHelper('FlashMessenger');
+                   $flashMessenger = $this->_helper->getHelper('FlashMessenger');
                 $message = "l'offre $numwp  pour le client $nomclients a bien été validée.";
                 $flashMessenger->addMessage($message);
                 $redirector = $this->_helper->getHelper('Redirector');
-                $redirector->gotoSimple('index', 'xprice');
-            } elseif (isset($datas['validation']) && $datas['validation'] == 'enAttente') {
+                $redirector->gotoSimple('index', 'xprice'); 
+                
+                 }
+                
+            elseif (isset($datas['validation']) && $datas['validation'] == 'enAttente') {
                 $params = array();
                 $params['destinataireMail'] = $info_user['email_user'];
                 if (!is_null($commentId)) {
@@ -1281,7 +1290,7 @@ class XpriceController extends Zend_Controller_Action {
         $blocage = $blocages->getValidation($nom_validation, $info_demande_xprice['id_demande_xprice']);
        // var_dump($blocage);
         $bloc = $blocage[0]['etat_validation'];
-        if($bloc == "validee"){
+        if($bloc == "fermee"){
              $flashMessenger = $this->_helper->getHelper('FlashMessenger');
                 $message1 = "vous avez déjà validée cette offre.";
                 $flashMessenger->addMessage($message1);
@@ -1333,7 +1342,7 @@ class XpriceController extends Zend_Controller_Action {
             $params3=  array();
             $params4=  array();
             $params5 = array();
-            if (isset($formData['validation']) && $formData['validation'] == "validee") {
+            if (isset($formData['validation']) && $formData['validation'] == "fermee") {
                 $params['destinataireMail'] = $info_user['email_user'];
                 $params['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/consult/numwp/{$numwp}";
                 $params['corpsMail'] = "Bonjour,\n"
