@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 function changeyourbody(){
-var plop= $('#fermeturevalide').val();
+var plop= $('input#fermeturevalide').val();
 
     if(plop=="fermee"){
         $('html').css('background-image', 'url("/images/Valide2.jpg")');
