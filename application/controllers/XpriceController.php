@@ -1995,6 +1995,7 @@ class XpriceController extends Zend_Controller_Action {
         $ferme = new Application_Model_DbTable_Validationsdemandexprices();
         $fermeture = $ferme->searchFermeture($numwp);
         $this->view->fermeturevalide = $fermeture;
+       echo '<pre>', var_export($fermeture),'</pre>';
         /*
          * on va rechercher les informations concernant la demande _xprice
          */
