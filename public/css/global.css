@@ -8,12 +8,25 @@ and open the template in the editor.
     Author     : mag
 */
 html{
-    background-image: none;
+   
 }
-body{
-    height: auto;
+body{ 
+     
+}
+.fermee{
+     background-image:url('/images/Valide2.png');
+     background-repeat:no-repeat;
+     background-position: 80% 18%;
+}
+.refusee{
+    background-image:url('/images/refuse.png');
+    background-repeat: no-repeat;
+    background-position: 80% 18%;
 }
 
+.clear{
+    clear: both;
+}
 #header{
     width: 1024px;
     height: 150px;
@@ -80,7 +93,7 @@ body{
 #Content{
     width:1024px;
     height:auto;
-    background-color:white;
+    background-color:transparent;
 }
 .lien{
     margin-left: 345px;
@@ -272,7 +285,7 @@ background:#2A60AA;
     margin-left: 62px;
     width: 900px;
     height: auto;
-    background-color:white;
+    background-color:transparent;
     border-radius:10px;
     border: medium solid #2A60AA;
     font-family: verdana;

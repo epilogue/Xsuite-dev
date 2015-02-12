@@ -3,14 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
+$(document).ready(function () {
     var plop= $('input#fermeturevalide').val();
-
-function changeyourbody(){
- if(plop="fermee"){
-        $("html").css({ 'background-image':"url('/images/Valide2.jpg')"});
+ if(plop=="fermee"){
+        $("body").addClass("fermee");
       // $("p").css({ color: "red", background: "blue" });
     }
+ if(plop=="nonValide"){
+      $("body").addClass("refusee");
+ }
+    
+});
+
+function changeyourbody(){
     
 };
 
