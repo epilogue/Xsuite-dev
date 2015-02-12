@@ -200,8 +200,8 @@ $this->headScript()->appendFile('/js/controllers/xprice/fermeturevalide.js');
                 <?php } ?>
                     
                 <?php if ($this->fermeturevalide=="fermee") { ?>
-                    <tr><td colspan = "3"> FIN DE LA PROCEDURE</td></tr>
-                    <?php } ?>
+                    <tr><td colspan = "3">---------FIN DE LA PROCEDURE--------</td></tr>
+                    <?php }else {?><tr><td>--------PROCEDURE EN COURS--------</td></tr> <?php }?>
             </table>
         </fieldset>
     </div>
