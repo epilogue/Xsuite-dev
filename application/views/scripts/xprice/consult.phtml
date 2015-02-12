@@ -6,7 +6,7 @@ $this->headScript()->appendFile('/js/controllers/xprice/afficher_masquer_validat
 $this->headScript()->appendFile('/js/controllers/xprice/fermeturevalide.js');
 ?>
 <div id="contenu" class="contenu">
-   <input  hidden= "hidden" value ="<?php echo $this->fermeturevalide[0]['etat_validation']=="fermee" ?>" class="fermeture">
+   <input  hidden= "hidden" value ="<?php echo $this->fermeturevalide=="fermee" ?>" class="fermeture">
     <h2>Consultation de l' offre</h2>
     <div id='workplace' class="workplace">
         <fieldset id="wp" class="field">
@@ -177,15 +177,12 @@ $this->headScript()->appendFile('/js/controllers/xprice/fermeturevalide.js');
             <table class="enum">
                 <?php foreach (@$this->validations as $key => $value) { ?>
                     <tr>
-                        <td> <?php echo strtolower($this->usersValidations[$key]['fonction']); ?></td>
+                        <td>Commentaire <?php echo strtolower($this->usersValidations[$key]['fonction']); ?></td>
                         <td><?php echo $value['date_validation']; ?></td>
                         <td><?php echo nl2br($value['commentaire']); ?></td>
                     </tr>
                    
                 <?php } ?>
-                <?php if ($this->fermeturevalide[0]['etat_validation']=="fermee") { ?>
-                    <tr><td colspan = "3"> FIN DE LA PROCEDURE</td></tr>
-                    <?php } ?>
             </table>
         </fieldset>
     </div>
@@ -196,11 +193,15 @@ $this->headScript()->appendFile('/js/controllers/xprice/fermeturevalide.js');
             <table class="enum">
                 <?php foreach (@$this->validations as $key => $value) { ?>
                     <tr>
-                        <td>Commentaire <?php echo strtolower($this->usersValidations[$key]['fonction']); ?></td>
+                        <td> <?php echo strtolower($this->usersValidations[$key]['fonction']); ?></td>
                         <td><?php echo $value['date_validation']; ?></td>
                         <td><?php echo nl2br($value['etat_validation']); ?></td>
                     </tr>
                 <?php } ?>
+                    
+                <?php if ($this->fermeturevalide=="fermee") { ?>
+                    <tr><td colspan = "3"> FIN DE LA PROCEDURE</td></tr>
+                    <?php } ?>
             </table>
         </fieldset>
     </div>
