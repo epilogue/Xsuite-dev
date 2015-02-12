@@ -7,6 +7,7 @@
     var plop= $('input#fermeturevalide').val();
 
 function changeyourbody(){
+    var plop= $('input#fermeturevalide').val();
  if(plop=="fermee"){
         $('html').css('background-image', 'url("/images/Valide2.jpg")');
     }
