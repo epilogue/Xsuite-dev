@@ -74,5 +74,17 @@ class Application_Model_DbTable_Validationsdemandexprices extends Zend_Db_Table_
             return false;
         }
     }
-
+     public function searchFermeture($numwp){
+            $sql = "SELECT etat_validation FROM validations_demande_xprices
+            join demande_xprices on demande_xprices.id_demande_xprice= validations_demande_xprices.id_demande_xprice
+             WHERE demande_xprices.num_workplace_demande_xprice =$numwp and validations_demande_xprices.etat_validation like 'fermee'";
+            
+             $res = $this->getAdapter()->query($sql);
+            $rest=$res->fetchAll();
+            if (!$rest) {
+                return null;
+            } else {
+                return $rest;
+            }
+        }
 }

@@ -75,7 +75,9 @@ body{
     height: auto;
 }
 
-
+#fermeture{
+    background-color: grey;
+}
 #Content{
     width:1024px;
     height:auto;

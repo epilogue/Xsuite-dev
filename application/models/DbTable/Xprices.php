@@ -78,14 +78,6 @@ class Application_Model_DbTable_Xprices extends Zend_Db_Table_Abstract {
         }
     }
 
-    public function fetchAll($numwp) {
-
-    }
-    
-    public function deleteByNumwp($numwp) {
-       
-    }
-
     public function getTracking($tracking_number) {
         $tracking_number = "$tracking_number";
         $row = $this->fetchRow("tracking_number_demande_xprice = '{$tracking_number}'");
@@ -144,5 +136,6 @@ public function searchAll($tracking_number){
             return $rest;
         }
         }
+       
 }
 

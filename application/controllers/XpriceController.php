@@ -1992,6 +1992,9 @@ class XpriceController extends Zend_Controller_Action {
         $this->view->cdr = $tiltop;
         $numwp = $this->getRequest()->getParam('numwp', null);
         $this->view->numwp = $numwp;
+        $ferme = new Application_Model_DbTable_Validationsdemandexprices();
+        $fermeture = $ferme->searchFermeture($numwp);
+        $this->view->fermeturevalide = $fermeture;
         /*
          * on va rechercher les informations concernant la demande _xprice
          */
