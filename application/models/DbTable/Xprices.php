@@ -128,14 +128,13 @@ public function searchAll($tracking_number){
                 . " join users on users.id_user = demande_xprices.id_user"
                 . " join validations_demande_xprices  on validations_demande_xprices.id_demande_xprice = demande_xprices.id_demande_xprice "
                 ." order by demande_xprices.id_demande_xprice desc, validations_demande_xprices.date_validation asc";
-   $res = $this->getAdapter()->query($sql);
-        $rest=$res->fetchAll();
-        if (!$rest) {
-            return null;
-        } else {
-            return $rest;
-        }
-        }
-       
+       $res = $this->getAdapter()->query($sql);
+            $rest=$res->fetchAll();
+            if (!$rest) {
+                return null;
+            } else {
+                return $rest;
+            }
+        }      
 }
 
