@@ -8,7 +8,7 @@ $(document).ready(function (){
 
 function changeyourbody(){
  if(plop="fermee"){
-        $('html').animate('background-image', 'url("/images/Valide2.jpg")');
+        $('html').css({'background-image': 'url("/images/Valide2.jpg")'});
     }
     
 };
