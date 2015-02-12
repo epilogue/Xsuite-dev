@@ -3,6 +3,7 @@ $this->title = 'Xprice/consult';
 $this->headTitle($this->title);
 $this->headScript()->appendFile('/js/controllers/xprice/affiche_masque_commentaires.js');
 $this->headScript()->appendFile('/js/controllers/xprice/afficher_masquer_validations.js');
+$this->headScript()->appendFile('/js/controllers/xprice/fermeturevalide.js');
 ?>
 <div id="contenu" class="contenu">
    <input  visibility= "hidden" value ="<?php echo $this->fermeturevalide[0]['etat_validation']=="fermee" ?>" class="fermeture">
