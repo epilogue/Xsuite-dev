@@ -82,6 +82,18 @@ class XpriceController extends Zend_Controller_Action {
      if($user->id_fonction == 5 || $user->id_fonction == 13){
          $recapitulatif1 = new Application_Model_DbTable_Xprices;
          $recapitulatif2=$recapitulatif1->searchforDBD();
+         $r = array();
+         for ($index = 0; $index < count($recapitulatif2); $index++) {
+             if(($index +1) > count($recapitulatif2)-1) {
+                 $r[] = $recapitulatif2[$index];
+             } else {
+                 if($recapitulatif2[$index]['num_workplace_demande_xprice'] != $recapitulatif2[$index+1]['num_workplace_demande_xprice']) {
+                     $r[] = $recapitulatif2[$index];
+                 }
+             }
+         }
+         unset($recapitulatif2);
+         $recapitulatif2 = $r;
      }
     $this->view->recapitulatif = $recapitulatif2;
 }
@@ -839,7 +851,7 @@ class XpriceController extends Zend_Controller_Action {
         foreach ($blocage as $blocs){
         $bloc = $blocs['etat_validation'];
         
-        if($bloc == "validee" || $bloc =="nonValide"){
+        if($bloc == "validee" || $bloc =="nonValide" ||$bloc=="fermee"){
             if($bloc=="validee"){
                 $flashMessenger = $this->_helper->getHelper('FlashMessenger');
                 $message1 = "vous avez déjà validée cette offre.";
@@ -849,8 +861,13 @@ class XpriceController extends Zend_Controller_Action {
                 $message1 = "cette offre a déjà été refusée.";
                 $flashMessenger->addMessage($message1);
                 }
+                elseif($bloc=="fermee"){
+                $flashMessenger = $this->_helper->getHelper('FlashMessenger');
+                $message1 = "cette offre est fermée.";
+                $flashMessenger->addMessage($message1);
+                }
              $redirector = $this->_helper->getHelper('Redirector');
-        $redirector->gotoSimple('index', 'xprice');}
+        $redirector->gotoSimple('index', 'index');}
         }
         $nomclients= trim($info_client['nom_client']);
         if ($this->getRequest()->isPost()) {
@@ -879,7 +896,19 @@ class XpriceController extends Zend_Controller_Action {
                
             }
 //            }
-
+ $margemin = false;
+          
+            foreach ($marge as $key => $value2) {
+                $margesmc = substr($value2,0,-1);
+                 //echo '<pre>',  var_export($margesmc),'</pre>';exit();
+                if ($margesmc < 10 || $margesmc == 0) {
+                    $margemin = true;
+                   
+                } 
+            }
+            if($margemin==false){
+                $datas['validation']="fermee";
+            }
             $nouvelle_validation = new Application_Model_DbTable_Validationsxprice();
             $nouv_validation = $nouvelle_validation->createValidation(
                     $nom_validation, $date_validation, $datas['validation'], $datas['commentaire_dbd'], $user->id_user, $datas['tracking']);
@@ -901,15 +930,7 @@ class XpriceController extends Zend_Controller_Action {
 //            foreach ($formData as $ploptitude) {
 //                $marge = array_combine($ploptitude['code_article'],( $ploptitude['remise_demande_article']));
 //            }
-            $margemin = false;
-          
-            foreach ($marge as $key => $value2) {
-                $margesmc = substr($value2,0,-1);
-                 //echo '<pre>',  var_export($margesmc),'</pre>';exit();
-                if ($margesmc < 10 || $margesmc == 0) {
-                    $margemin = true;
-                }
-            }
+           
            /* if ($margemin == true) {
                 $destinatairemail = $emailVars->listes->dirco;
 
@@ -939,26 +960,26 @@ class XpriceController extends Zend_Controller_Action {
                 $params6 = array();
                 
                  if ($margemin == true){
-                  $params['destinataireMail'] = $info_user['email_user'] ;
+                 // $params['destinataireMail'] = $info_user['email_user'] ;
                   $params1['destinataireMail'] = $emailVars->listes->Dirco;
                 if (!is_null($commentId)) {
-                    $params['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/consult/numwp/{$numwp}/com/{$commentId}";
+                   // $params['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/consult/numwp/{$numwp}/com/{$commentId}";
                     $params1['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/validatedirco/numwp/{$numwp}";
                 } else {
-                    $params['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/consult/numwp/{$numwp}";
+                    //$params['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/consult/numwp/{$numwp}";
                     $params1['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/validatedirco/numwp/{$numwp}";
                 }
-                $params['corpsMail'] = "Bonjour,\n"
-                        . "\n"
-                        . "Votre demande XPrice $trackingNumber/$numwp a été validée par le Directeur Business Developpement .\n"
-                        . "Vous pouvez la consulter à cette adresse url : \n"
-                        . "%s"
-                        . "\n\n"
-                        . "Cordialement,\n"
-                        . "\n"
-                        . "--\n"
-                        . "dbd.";
-                $params['sujet'] = "TEST XPrice :demande Xprice  $trackingNumber/$numwp pour $nomclients validée par Directeur Business Developpement.";
+//                $params['corpsMail'] = "Bonjour,\n"
+//                        . "\n"
+//                        . "Votre demande XPrice $trackingNumber/$numwp a été validée par le Directeur Business Developpement .\n"
+//                        . "Vous pouvez la consulter à cette adresse url : \n"
+//                        . "%s"
+//                        . "\n\n"
+//                        . "Cordialement,\n"
+//                        . "\n"
+//                        . "--\n"
+//                        . "dbd.";
+//                $params['sujet'] = "TEST XPrice :demande Xprice  $trackingNumber/$numwp pour $nomclients validée par Directeur Business Developpement.";
                 $params1['corpsMail'] = "Bonjour,\n"
                         . "\n"
                         . "Vous avez une nouvelle demande Xprice $trackingNumber/$numwp de {$info_user['nom_user']} pour le client $nomclients à valider .\n"
@@ -971,7 +992,7 @@ class XpriceController extends Zend_Controller_Action {
                         . "dbd.";
                 $params1['sujet'] = " TEST XPrice :nouvelle demande Xprice $trackingNumber/$numwp à valider $numwp de {$info_user['nom_user']} pour le client $nomclients .";
                 
-                $this->sendEmail($params);
+                //$this->sendEmail($params);
                 $this->sendEmail($params1);
                  }
                  else{/*envoi de mail au tc, au cdr, au leader, au cm et au service client.*/

@@ -49,7 +49,7 @@ class Xsuite_Controller_Plugin_Auth extends Zend_Controller_Plugin_Abstract
             $sAuth = new Zend_Session_Namespace('sAuth');
             $sAuth->setExpirationSeconds((int)3600);
         } else {
-            $role = 'niveau0';
+            $role = 'public';
         }
 
         $controller = $request->getControllerName();
