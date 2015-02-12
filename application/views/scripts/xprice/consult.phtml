@@ -177,11 +177,15 @@ $this->headScript()->appendFile('/js/controllers/xprice/fermeturevalide.js');
             <table class="enum">
                 <?php foreach (@$this->validations as $key => $value) { ?>
                     <tr>
-                        <td>Commentaire <?php echo strtolower($this->usersValidations[$key]['fonction']); ?></td>
+                        <td> <?php echo strtolower($this->usersValidations[$key]['fonction']); ?></td>
                         <td><?php echo $value['date_validation']; ?></td>
                         <td><?php echo nl2br($value['commentaire']); ?></td>
                     </tr>
+                   
                 <?php } ?>
+                <?php if ($this->fermeturevalide[0]['etat_validation']=="fermee") { ?>
+                    <tr><td colspan = "3"> FIN DE LA PROCEDURE</td></tr>
+                    <?php } ?>
             </table>
         </fieldset>
     </div>

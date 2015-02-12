@@ -113,7 +113,7 @@ class Application_Model_DbTable_Users extends Zend_Db_Table_Abstract {
     public function getFonctionLabel($id_user) {
         $db = $this->getAdapter();
         $select = $db->select()
-                ->from("users", array("users.id_user", "fonctions.description_fonction","nom_user"))
+                ->from("users", array("users.id_user", "fonctions.description_fonction","nom_user","prenom_user"))
                 ->join(array("fonctions"), "fonctions.id_fonction = users.id_fonction")
                 ->where("users.id_user ='{$id_user}'");
         $res = $select->query();
