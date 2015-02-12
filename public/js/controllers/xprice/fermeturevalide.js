@@ -8,7 +8,8 @@
 
 function changeyourbody(){
  if(plop="fermee"){
-        $('html').css({'background-image': 'url("/images/Valide2.jpg")'});
+        $("html").css({ 'background-image':"url('/images/Valide2.jpg')"});
+      // $("p").css({ color: "red", background: "blue" });
     }
     
 };
