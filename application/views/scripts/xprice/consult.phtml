@@ -6,7 +6,7 @@ $this->headScript()->appendFile('/js/controllers/xprice/afficher_masquer_validat
 $this->headScript()->appendFile('/js/controllers/xprice/fermeturevalide.js');
 ?>
 <div id="contenu" class="contenu">
-   <input  visibility= "hidden" value ="<?php echo $this->fermeturevalide[0]['etat_validation']=="fermee" ?>" class="fermeture">
+   <input  hidden= "hidden" value ="<?php echo $this->fermeturevalide['etat_validation']=="fermee" ?>" class="fermeture">
     <h2>Consultation de l' offre</h2>
     <div id='workplace' class="workplace">
         <fieldset id="wp" class="field">
