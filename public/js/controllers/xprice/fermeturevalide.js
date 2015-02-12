@@ -7,7 +7,7 @@ function changeyourbody(){
 var plop= $('#fermeturevalide').val();
 
     if(plop=="fermee"){
-        $('body').css('background-color','red');
+        $('html').css('background-image', 'url("/images/maison.jpg")');
     }
     
 };
