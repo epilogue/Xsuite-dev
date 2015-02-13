@@ -318,7 +318,7 @@ class XpriceController extends Zend_Controller_Action {
                     }
                     
                     $updatecif1 = new Application_Model_DbTable_DemandeArticlexprices();
-                    $updatecif2 = $updatecif1->getDemandeArticlexprices($numwp);                   
+                    $updatecif2 = $updatecif1->getDemandeArticlexprice($numwp);                   
                         foreach($updatecif2 as $result){
                             if($result['code_acquisition']=='2'){
                                 $cifs= ($result['prix_fob_demande_article'])*1.07;
