@@ -186,6 +186,7 @@ class XpriceController extends Zend_Controller_Action {
             $numwp_user = odbc_fetch_array(odbc_exec($this->odbc_conn, $query1));
             $usertest = new Application_Model_DbTable_Users();
             $user_info = $usertest->getMovexUser($numwp_user['USERWP']);
+            echo '<pre>',var_export($user_info),'</pre>';
             $this->view->user_info = $user_info;
             $id_holon = $user_info['id_holon'];
             $holonuser = new Application_Model_DbTable_Holons();
@@ -360,7 +361,7 @@ class XpriceController extends Zend_Controller_Action {
                     $clientsnom=trim($infos_client['OKCUNM']);
                     //$destmail=$user_info['email_user'];
                     $params=array();
-                    $params['destinataireMail']=$user_info['email_user'];
+                    $params['destinataireMail']="mhuby@smc-france.fr"/*$user_info['email_user']*/;
                     $params['url']="http://{$_SERVER['SERVER_NAME']}/xprice/consult/numwp/{$numwp}";
                     //$urls = "http://{$_SERVER['SERVER_NAME']}/xprice/consult/numwp/{$numwp}";
                     $params['corpsMail']="Bonjour,\n"
