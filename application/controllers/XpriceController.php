@@ -387,6 +387,9 @@ class XpriceController extends Zend_Controller_Action {
                             case "6":
                                 $destinataireMail2 = $emailVars->listes->leaderis03;
                                 break;
+                            case "7":
+                                $destinataireMail2 = "mhuby@smc-france.fr";
+                                break;
                             case "8":
                                 $destinataireMail2 = $emailVars->listes->leaderiw01;
                                 break;
