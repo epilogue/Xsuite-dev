@@ -77,7 +77,7 @@ class Application_Model_DbTable_Validationsdemandexprices extends Zend_Db_Table_
      public function searchFermeture($numwp){
             $sql = "SELECT etat_validation,demande_xprices.num_workplace_demande_xprice FROM validations_demande_xprices
             join demande_xprices on demande_xprices.id_demande_xprice= validations_demande_xprices.id_demande_xprice
-             WHERE demande_xprices.num_workplace_demande_xprice =$numwp and validations_demande_xprices.etat_validation like 'fermee' or validations_demande_xprices.etat_validation like 'nonValide' ";
+             WHERE demande_xprices.num_workplace_demande_xprice =$numwp ";
             
              $res = $this->getAdapter()->query($sql);
             $rest=$res->fetchAll();
