@@ -2006,7 +2006,7 @@ class XpriceController extends Zend_Controller_Action {
         foreach($fermeture as $ferm){
         $plop1 = $ferm
                 ;}
-        echo '<pre>',var_export($plop1),'</pre>';
+       // echo '<pre>',var_export($plop1),'</pre>';
       $this->view->fermeturevalide=$plop1['etat_validation'];
         /*
          * on va rechercher les informations concernant la demande _xprice
@@ -2101,6 +2101,13 @@ class XpriceController extends Zend_Controller_Action {
         $info_demande_xprice = $infos_demande_xprice->searchAll($tracking);
         $numwp=$info_demande_xprice->num_workplace_demande_xprice;
         $this->view->numwp=$numwp;
+         $ferme = new Application_Model_DbTable_Validationsdemandexprices();
+        $fermeture = $ferme->searchFermeture($numwp);
+        foreach($fermeture as $ferm){
+        $plop1 = $ferm
+                ;}
+       // echo '<pre>',var_export($plop1),'</pre>';
+      $this->view->fermeturevalide=$plop1['etat_validation'];
         $user_id = $info_demande_xprice->id_user;
         $this->view->info_demande_xprice = $info_demande_xprice;
         $date = DateTime::createFromFormat('Y-m-d', $info_demande_xprice->date_demande_xprice);
@@ -2125,7 +2132,7 @@ class XpriceController extends Zend_Controller_Action {
 
         foreach (@$validationsDemandesXprices as $key => $validationDemandeXprice) {
             $userValidationInfos = $infos_user->getFonctionLabel($validationDemandeXprice['id_user']);
-            $usersValidations[$key]['fonction'] = $userValidationInfos['description_fonction'];
+            $usersValidations[$key]['fonction'] =$userValidationInfos['prenom_user'].' ' .$userValidationInfos['nom_user'];
         }
         $this->view->usersValidations = $usersValidations;
         /*

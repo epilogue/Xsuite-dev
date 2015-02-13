@@ -3,8 +3,10 @@ $this->title = 'Xprice/consultlibre';
 $this->headTitle($this->title);
 $this->headScript()->appendFile('/js/controllers/xprice/affiche_masque_commentaires.js');
 $this->headScript()->appendFile('/js/controllers/xprice/afficher_masquer_validations.js');
+$this->headScript()->appendFile('/js/controllers/xprice/fermeturevalide.js');
 ?>
 <div id="contenu" class="contenu">
+     <input id="fermeturevalide"  type="hidden" visibility="hidden" value ="<?php echo $this->fermeturevalide; ?>" class="fermeture">
     <h2>Consultation de l' offre</h2>
     <div id='workplace' class="workplace">
         <fieldset id="wp" class="field">
@@ -188,13 +190,17 @@ $this->headScript()->appendFile('/js/controllers/xprice/afficher_masquer_validat
         <fieldset id='valid_hist' class='field'>
             <legend>Validation</legend>
             <table class="enum">
-                <?php foreach (@$this->validations as $key => $value) { ?>
+                <?php foreach (@$this->validations as $key => $value) { if($value['etat_validation']!="enAttente"){ ?>
+                
                     <tr>
-                        <td>Commentaire <?php echo strtolower($this->usersValidations[$key]['fonction']); ?></td>
+                        <td><?php echo strtolower($this->usersValidations[$key]['fonction']); ?></td>
                         <td><?php echo $value['date_validation']; ?></td>
                         <td><?php echo nl2br($value['etat_validation']); ?></td>
                     </tr>
-                <?php } ?>
+                <?php } } ?>
+                     <?php if ($this->fermeturevalide=="fermee") { ?>
+                    <tr><td colspan = "3" style="text-align:center;">---------FIN DE LA PROCEDURE--------</td></tr>
+                    <?php }else {?><tr><td colspan = "3" style="text-align:center;">--------PROCEDURE EN COURS--------</td></tr> <?php }?>
             </table>
         </fieldset>
     </div>

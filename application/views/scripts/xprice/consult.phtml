@@ -95,7 +95,7 @@ $this->headScript()->appendFile('/js/controllers/xprice/fermeturevalide.js');
                     <th>remise demandée</th>
                     <th>Prix accordés</th>
                     <th>Remises accordées</th>
-                    <?php if($this->utilisateur =='5' or $this->utilisateur== '13'){ ?>
+                    <?php if($this->utilisateur =='5' or $this->utilisateur== '13'  or $this->utilisateur== '29'){ ?>
                     <th>Prix cif</th>
                     <th>Prix fob</th>
                     
@@ -122,7 +122,7 @@ $this->headScript()->appendFile('/js/controllers/xprice/fermeturevalide.js');
                         <td><?php echo $result['marge_demande_article'] . "%"; ?></td><?php } else {}?>
                     </tr>
                 <?php } ?>
-                     <?php if($this->utilisateur =='5' or $this->utilisateur== '13'){ ?>
+                     <?php if($this->utilisateur =='5' or $this->utilisateur== '13' or $this->utilisateur =='29'){ ?>
                        <tr>
                             <td colspan="2">total</td>
                             <td colspan="2" > CA Brut :<input class="cab" id="cab"
