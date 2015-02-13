@@ -379,7 +379,7 @@ class XpriceController extends Zend_Controller_Action {
                      */
                                 var_dump($fonctioncreateur);
                                 var_dump($holoncreateur);
-                    if ($fonctioncreateur == "1") {
+                    if ($fonctioncreateur == "2") {
                         switch ($holoncreateur) {
                             case "5":
                                 $destinataireMail2 = $emailVars->listes->leaderis01;
