@@ -186,12 +186,12 @@ class XpriceController extends Zend_Controller_Action {
             $numwp_user = odbc_fetch_array(odbc_exec($this->odbc_conn, $query1));
             $usertest = new Application_Model_DbTable_Users();
             $user_info = $usertest->getMovexUser($numwp_user['USERWP']);
-            echo '<pre>',var_export($user_info),'</pre>';
             $this->view->user_info = $user_info;
             $id_holon = $user_info['id_holon'];
             $holonuser = new Application_Model_DbTable_Holons();
             $holonuser1 = $holonuser->getHolon($id_holon);
             $nom_holon = $holonuser1['nom_holon'];
+            
             $this->view->holon = $nom_holon;
             $fonctioncreateur = $user_info['id_fonction'];
             $zonetracking = substr($trackingNumber, 6, 2);
@@ -359,11 +359,9 @@ class XpriceController extends Zend_Controller_Action {
                     //$fonctioncreateur = $user_info['id_fonction'];
                     $holoncreateur = $user_info['id_holon'];
                     $clientsnom=trim($infos_client['OKCUNM']);
-                    //$destmail=$user_info['email_user'];
                     $params=array();
                     $params['destinataireMail']="mhuby@smc-france.fr"/*$user_info['email_user']*/;
                     $params['url']="http://{$_SERVER['SERVER_NAME']}/xprice/consult/numwp/{$numwp}";
-                    //$urls = "http://{$_SERVER['SERVER_NAME']}/xprice/consult/numwp/{$numwp}";
                     $params['corpsMail']="Bonjour,\n"
                                 . "\n"
                                 . "Votre demande XPrice({$trackingNumber}/{$numwp}) a bien été envoyé.\n"
@@ -374,26 +372,13 @@ class XpriceController extends Zend_Controller_Action {
                                 . "\n"
                                 . "--\n"
                                 . "Xsuite";
-//                    $corpsMails = "Bonjour,\n"
-//                                . "\n"
-//                                . "Votre demande XPrice({$trackingNumber}/{$numwp}) a bien été envoyé.\n"
-//                                . "pour la consulter veuillez vous rendre à l'adresse url : \n"
-//                                . "%s"
-//                                . "\n\n"
-//                                . "Cordialement,\n"
-//                                . "\n"
-//                                . "--\n"
-//                                . "Xsuite";
-                       // $mails = new Xsuite_Mail();
                                 $params['sujet']="TEST XPrice :Votre Offre  Xprice {$trackingNumber}/{$numwp} de {$user_info['nom_user']} pour $clientsnom";
-//                        $mails->setSubject("TEST XPrice :Votre Offre  Xprice {$trackingNumber}/{$numwp} de {$user_info['nom_user']} pour $clientsnom")
-//                                ->setBodyText(sprintf($corpsMails, $urls))
-//                                ->addTo($destmail)
-//                                ->send();
                                 $this->sendEmail($params);
                     /*
                      * ici si itc envoie mail au leader en fonction du holon pour consultation
                      */
+                                var_dump($fonctioncreateur);
+                                var_dump($holoncreateur);
                     if ($fonctioncreateur == "1") {
                         switch ($holoncreateur) {
                             case "5":
@@ -428,7 +413,7 @@ class XpriceController extends Zend_Controller_Action {
                                 break;
                         }
                         $url2 = "http://{$_SERVER['SERVER_NAME']}/xprice/consult/numwp/{$numwp}";
-
+var_dump($destinataireMail2); exit();
                         $corpsMail2 = "Bonjour,\n"
                                 . "\n"
                                 . "Vous avez une nouvelle demande XPrice({$trackingNumber}/{$numwp}) à consulter.\n"
