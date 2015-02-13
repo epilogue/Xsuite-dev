@@ -2006,7 +2006,7 @@ class XpriceController extends Zend_Controller_Action {
         foreach($fermeture as $ferm){
         $plop1 = $ferm
                 ;}
-        echo '<pre>',var_export($ferm),'</pre>';
+        echo '<pre>',var_export($plop1),'</pre>';
       
         /*
          * on va rechercher les informations concernant la demande _xprice
