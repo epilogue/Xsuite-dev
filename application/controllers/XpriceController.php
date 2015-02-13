@@ -377,8 +377,8 @@ class XpriceController extends Zend_Controller_Action {
                     /*
                      * ici si itc envoie mail au leader en fonction du holon pour consultation
                      */
-                                var_dump($fonctioncreateur);
-                                var_dump($holoncreateur);
+//                                var_dump($fonctioncreateur);
+//                                var_dump($holoncreateur);
                     if ($fonctioncreateur == "2") {
                         switch ($holoncreateur) {
                             case "5":
@@ -416,7 +416,7 @@ class XpriceController extends Zend_Controller_Action {
                                 break;
                         }
                         $url2 = "http://{$_SERVER['SERVER_NAME']}/xprice/consult/numwp/{$numwp}";
-var_dump($destinataireMail2); exit();
+//var_dump($destinataireMail2); exit();
                         $corpsMail2 = "Bonjour,\n"
                                 . "\n"
                                 . "Vous avez une nouvelle demande XPrice({$trackingNumber}/{$numwp}) à consulter.\n"
