@@ -2007,7 +2007,7 @@ class XpriceController extends Zend_Controller_Action {
         $plop1 = $ferm
                 ;}
         echo '<pre>',var_export($plop1),'</pre>';
-      
+      $this->view->fermeturevalide=$plop1;
         /*
          * on va rechercher les informations concernant la demande _xprice
          */
