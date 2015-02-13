@@ -50,6 +50,13 @@ class XpriceController extends Zend_Controller_Action {
             echo "pas d'accès à la base de données SMCCDTA";
         }
     }
+     protected function sendEmail($params) {
+        $mail = new Xsuite_Mail();
+        $mail->setSubject($params['sujet'])
+                ->setBodyText(sprintf($params['corpsMail'], $params['url']))
+                ->addTo($params['destinataireMail'])
+                ->send();
+    }
 
     public function indexAction() {
  $user = $this->_auth->getStorage()->read();
@@ -339,7 +346,7 @@ class XpriceController extends Zend_Controller_Action {
                     /*
                      * ici, envoi des mails
                      * NE PAS TOUCHER SOUS PEINE D'EFFONDREMENT DE L'APPLI
-                     *  à partir de la ligne 244 à la ligne 393
+                     *  à partir de la ligne 350 à la ligne 393
                      */
 
                     /* Dans un premier lieu on vérifie la fonction du créateur de la demande  :
@@ -348,12 +355,15 @@ class XpriceController extends Zend_Controller_Action {
                      * si leader  et dd envoie mail au chef de région.
                      */
                     $emailVars = Zend_Registry::get('emailVars');
-                    $fonctioncreateur = $user_info['id_fonction'];
+                    //$fonctioncreateur = $user_info['id_fonction'];
                     $holoncreateur = $user_info['id_holon'];
                     $clientsnom=trim($infos_client['OKCUNM']);
-                    $destmail=$user_info['email_user'];
-                    $urls = "http://{$_SERVER['SERVER_NAME']}/xprice/consult/numwp/{$numwp}";
-                    $corpsMails = "Bonjour,\n"
+                    //$destmail=$user_info['email_user'];
+                    $params=array();
+                    $params['destinataireMail']=$user_info['email_user'];
+                    $params['url']="http://{$_SERVER['SERVER_NAME']}/xprice/consult/numwp/{$numwp}";
+                    //$urls = "http://{$_SERVER['SERVER_NAME']}/xprice/consult/numwp/{$numwp}";
+                    $params['corpsMail']="Bonjour,\n"
                                 . "\n"
                                 . "Votre demande XPrice({$trackingNumber}/{$numwp}) a bien été envoyé.\n"
                                 . "pour la consulter veuillez vous rendre à l'adresse url : \n"
@@ -363,11 +373,23 @@ class XpriceController extends Zend_Controller_Action {
                                 . "\n"
                                 . "--\n"
                                 . "Xsuite";
-                        $mails = new Xsuite_Mail();
-                        $mails->setSubject("TEST XPrice :Votre Offre  Xprice {$trackingNumber}/{$numwp} de {$user_info['nom_user']} pour $clientsnom")
-                                ->setBodyText(sprintf($corpsMails, $urls))
-                                ->addTo($destmail)
-                                ->send();
+//                    $corpsMails = "Bonjour,\n"
+//                                . "\n"
+//                                . "Votre demande XPrice({$trackingNumber}/{$numwp}) a bien été envoyé.\n"
+//                                . "pour la consulter veuillez vous rendre à l'adresse url : \n"
+//                                . "%s"
+//                                . "\n\n"
+//                                . "Cordialement,\n"
+//                                . "\n"
+//                                . "--\n"
+//                                . "Xsuite";
+                       // $mails = new Xsuite_Mail();
+                                $params['sujet']="TEST XPrice :Votre Offre  Xprice {$trackingNumber}/{$numwp} de {$user_info['nom_user']} pour $clientsnom";
+//                        $mails->setSubject("TEST XPrice :Votre Offre  Xprice {$trackingNumber}/{$numwp} de {$user_info['nom_user']} pour $clientsnom")
+//                                ->setBodyText(sprintf($corpsMails, $urls))
+//                                ->addTo($destmail)
+//                                ->send();
+                                $this->sendEmail($params);
                     /*
                      * ici si itc envoie mail au leader en fonction du holon pour consultation
                      */
@@ -540,13 +562,7 @@ class XpriceController extends Zend_Controller_Action {
         }
     }
 
-    protected function sendEmail($params) {
-        $mail = new Xsuite_Mail();
-        $mail->setSubject($params['sujet'])
-                ->setBodyText(sprintf($params['corpsMail'], $params['url']))
-                ->addTo($params['destinataireMail'])
-                ->send();
-    }
+   
 
     public function validatechefregionAction() {
         $user = $this->_auth->getStorage()->read();
