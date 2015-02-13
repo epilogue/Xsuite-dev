@@ -312,7 +312,7 @@ class XpriceController extends Zend_Controller_Action {
                         $insertprix = new Application_Model_DbTable_DemandeArticlexprices();
                         $inserprix = $insertprix->InserPrixFob($value->AJPUPR, $value->AJOBV2, $numwp);
                     }
-                    foreach($ $resultatacquis as $key=>$value){
+                    foreach($resultatacquis as $key=>$value){
                         $insertacquis= new Application_Model_DbTable_DemandeArticlexprices();
                         $inseracquis = $insertacquis->InserCodeAcquis($value->MBPUIT, $value->MBITNO, $numwp);
                     }
