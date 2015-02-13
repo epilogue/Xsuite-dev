@@ -16,12 +16,12 @@ body{
 .fermee{
      background-image:url('/images/Valide2.png');
      background-repeat:no-repeat;
-     background-position: 80% 18%;
+     background-position: 70% 18%;
 }
 .refusee{
     background-image:url('/images/refuse.png');
     background-repeat: no-repeat;
-    background-position: 80% 18%;
+    background-position: 70% 18%;
 }
 
 .clear{
