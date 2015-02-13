@@ -427,7 +427,7 @@ class XpriceController extends Zend_Controller_Action {
                      */
                     $zonetracking = substr($trackingNumber, 6, 2);
                     //echo '<pre>',  var_export($zonetracking),'</pre>';
-                    if ($fonctioncreateur == "1" or $fonctioncreateur == "2" or $fonctioncreateur == "3") {
+                    if ($fonctioncreateur == "1" || $fonctioncreateur == "2" || $fonctioncreateur == "3") {
                         switch ($zonetracking) {
                             case "QA":
                                 $destinataireMail1 = $emailVars->listes->QA;
