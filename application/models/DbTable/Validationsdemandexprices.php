@@ -87,4 +87,15 @@ class Application_Model_DbTable_Validationsdemandexprices extends Zend_Db_Table_
                 return $rest;
             }
         }
+        public function getValidForEncours($numwp){
+            $sql="SELECT nom_validation,etat_validation FROM validations_demande_xprices 
+join demande_xprices on demande_xprices.id_demande_xprice =validations_demande_xprices.id_demande_xprice where num_workplace_demande_xprice = $numwp";
+             $res = $this->getAdapter()->query($sql);
+            $rest=$res->fetchAll();
+            if (!$rest) {
+                return null;
+            } else {
+                return $rest;
+            }
+        }
 }
