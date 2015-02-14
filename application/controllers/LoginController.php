@@ -21,7 +21,14 @@ class LoginController extends Zend_Controller_Action {
                      }
                 } // else message d'erreur de login mot de passe
             }
+        } else {
+            $this->view->messages = array_merge(
+                $this->_helper->flashMessenger->getMessages(),
+                $this->_helper->flashMessenger->getCurrentMessages()
+            );
+            $this->_helper->flashMessenger->clearCurrentMessages();
         }
+        
 
         $this->view->form = $loginForm;
     }
@@ -90,9 +97,7 @@ public function logoutAction()
                     $flashMessenger = $this->_helper->getHelper('FlashMessenger');
                     $message = "vos identifiants ont été envoyés  à cette adresse mail : $mail->email_user";
                     $flashMessenger->addMessage($message);
-                    //$redirector = $this->_helper->getHelper('Redirector');
-                    $this->_redirect('login/index');
-                    //$flashMessenger = $this->_helper->getHelper('FlashMessenger');
+                    $this->_helper->redirector('index');
                     
                     
                 }elseif($mail === FALSE){
