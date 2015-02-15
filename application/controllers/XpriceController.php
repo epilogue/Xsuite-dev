@@ -637,7 +637,8 @@ class XpriceController extends Zend_Controller_Action {
             }
 
             $commentId = $this->genererValidation($datasValidation);
-
+var_dump($commentId);
+var_dump($formData['validation']);
             /*
              * si la variable $validation existe et qu'elle est égale à "validee"
              *  alors on insert dans la table validation:  la date de validation ,

@@ -20,6 +20,12 @@ class LoginController extends Zend_Controller_Action {
                         $this->_helper->redirector('index', 'index');
                      }
                 } // else message d'erreur de login mot de passe
+            }else{$flashMessenger = $this->_helper->getHelper('FlashMessenger');
+                    $message = "adresse ou mot de passe incorrect";
+                    $flashMessenger->addMessage($message);
+                    //$this->_helper->redirector('perdu', 'login');
+                    $redirector = $this->_helper->getHelper('Redirector');
+                     $this->_helper->redirector('index', 'index');
             }
         } else {
             $this->view->messages = array_merge(
