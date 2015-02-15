@@ -1,6 +1,7 @@
 <?php
 $this->title = 'Xprice/validatedirco';
 $this->headTitle($this->title);
+$this->headScript()->appendFile('/js/numFormat.js');
 $this->headScript()->appendFile('/js/controllers/xprice/recalculeprix_marge.js');
 $this->headScript()->appendFile('/js/controllers/xprice/afficher_masquer_validations.js');
 ?>
@@ -134,7 +135,7 @@ $this->headScript()->appendFile('/js/controllers/xprice/afficher_masquer_validat
                     <tr>
                         <th>code article</th>
                         <th>référence article</th>
-                        <th>quantité</th>
+                        <th>quté &nbsp;</th>
                         <th>prix tarif</th>
                         <th>prix demandé</th>
                         <th>remise demandée</th>
@@ -148,42 +149,48 @@ $this->headScript()->appendFile('/js/controllers/xprice/afficher_masquer_validat
                         <tr>
                             <td><input readonly="readonly" value="<?php echo $result['code_article']; ?>"  name="<?php echo 'code_article[]'; ?>"></td>
                             <td><?php echo $result['reference_article']; ?></td>
-                            <td><?php echo $result['quantite_demande_article']; ?></td>
+                            <td id="qt-<?php echo $k; ?>"><?php echo $result['quantite_demande_article']; ?></td>
                             <td id="pwp-<?php echo $k; ?>"><?php echo $result['prixwplace_demande_article']; ?></td>
                             <td><?php echo $result['prix_demande_article']; ?></td>
                             <td><?php echo $result['remise_demande_article'] . "% "; ?></td>
                             <td><?php echo $result['prix_fob_demande_article']; ?></td>
                             <td id="cif-<?php echo $k; ?>"><?php echo $result['prix_cif_demande_article']; ?></td>
-                            <td><input class="pda" id="pda-<?php echo $k; ?>" value="<?php echo $result['prix_demande_article']; ?>" name="<?php echo 'prix_accorde_article[]' ?>" style="background-color: #74aaca;"></td>
-                            <td><input class="ra" id="ra-<?php echo $k; ?>" value="<?php echo $result['remise_demande_article'] . "%"; ?>" name="<?php echo 'remise_accorde_article[]' ?>" style="background-color: #74aaca;"></td>
+                            <td><input class="pda" id="pda-<?php echo $k; ?>" value="<?php echo $result['prix_accorde_demande_article']; ?>" name="<?php echo 'prix_accorde_article[]' ?>" style="background-color: #74aaca;"></td>
+                            <td><input class="ra" id="ra-<?php echo $k; ?>" value="<?php echo $result['remise_accorde_demande_article'] . "%"; ?>" name="<?php echo 'remise_accorde_article[]' ?>" style="background-color: #74aaca;"></td>
                              <td><input  class="ma" id="ma-<?php echo $k;?>"  value="<?php echo round(($result['marge_demande_article']),2) .'%'; ?>" name="<?php echo 'marge_demande_article[]';?>" style="background-color: #74aaca;"></td>
+                            <td><input type="hidden"  class="caa" id="caa-<?php echo $k;?>"  value="<?php echo round((($result['prix_accorde_demande_article'])*$result['quantite_demande_article']),2); ?>" name="caa" style="background-color:yellow;"></td>
                         </tr>
                     <?php } ?>
                          <tr>
                             <td colspan="2">total</td>
-                            <td colspan="2" > CA Brut :<input class="cab" id="cab"
+                            <td colspan="2" > CA Brut :<input class="cab" id="cab-affiche"
                                <?php $cab=0;foreach($this->info_demande_article_xprice as $result)
                                 {$cab+=($result['quantite_demande_article']*$result['prixwplace_demande_article']);
                             
-                            } ?>value="<?php echo $cab; ?>">
+                            } ?>value="<?php echo number_format($cab, 2, '.', ' '); ?>">
+                                <input id="cab" type="hidden" class="calculHidden" value="<?php echo $cab; ?>" >
                             </td>
                             <td colspan="2">
                                 Cout FOB: <?php $Cfob=0; foreach($this->info_demande_article_xprice as $result){
                                     $Cfob+=($result['quantite_demande_article']*$result['prix_fob_demande_article']);
-                                } echo $Cfob ."€"?>
+                                } echo number_format($Cfob, 2, '.', ' '); ?>
                             </td>
                             <td colspan="2">
-                                Cout CIF: <input  id="ccif"<?php $Ccif=0; foreach($this->info_demande_article_xprice as $result){
+                                Cout CIF: <input  id="ccif-affiche"<?php $Ccif=0; foreach($this->info_demande_article_xprice as $result){
                                     $Ccif+=($result['quantite_demande_article']*$result['prix_cif_demande_article']);
-                                }?> value="<?php echo $Ccif ."€"?>">
+                                }?> value="<?php echo number_format($Ccif, 2, '.', ' '); ?>">
+                                <input id="ccif" type="hidden" class="calculHidden" value="<?php echo $Ccif; ?>" >
                             </td>
                             <td >
-                                Cout CA accord:<input id="caat" <?php $CAa=0; foreach($this->info_demande_article_xprice as $result){
+                                Total CA accordé:<input id="caat-affiche" <?php $CAa=0; foreach($this->info_demande_article_xprice as $result){
                                     $CAa+=(($result['prix_accorde_demande_article'])*$result['quantite_demande_article']);
-                                    }?>  value ="<?php echo $CAa."€" ;?>" >
+                                    }?>  value ="<?php  echo number_format($CAa, 2, '.', ' '); ?>" >
+                                <input id="caat" type="hidden" class="calculHidden" value="<?php echo $CAa; ?>" >
                             </td>
-                            <td>remise Moyenne<input id="mo"  <?php $mo=100*(1-($CAa/$cab));?> value="<?php echo round($mo,2)."%"; ?>"></td>
-                            <td>marge moyenne <input id="mamo"<?php $mamo = 100*(1-($Ccif/$CAa))?> value ="<?php echo round($mamo,2)."%";?>"></td>
+                            <?php $mo=100*(1-($CAa/$cab));?>
+                            <td>remise Moyenne<input id="mo" value="<?php echo round($mo,2)."%"; ?>"></td>
+                            <?php $mamo = 100*(1-($Ccif/$CAa))?>
+                            <td>marge moyenne <input id="mamo" value ="<?php echo round($mamo,2)."%";?>"></td>
                             
                         </tr>
                 </table>
