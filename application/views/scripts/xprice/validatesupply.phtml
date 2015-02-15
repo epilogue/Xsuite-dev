@@ -143,8 +143,8 @@ $this->headScript()->appendFile('/js/controllers/xprice/afficher_masquer_validat
                             <td>marge moyenne <input id="mamofob" <?php $mamofob = 100*(1-($Ccif/$tpd))?> value ="<?php echo round($mamofob,2)."%";?>"></td>
                         </tr>
                 </table>
-                <input type="text" hidden="hidden" value="<?php echo $this->info_demande_xprice['tracking_number_demande_xprice']; ?>" name="tracking_number">
-                <input type="text" hidden="hidden" value="<?php echo $this->date_validation_supply; ?>" name="date_validation_supply">
+                <input type="hidden"  value="<?php echo $this->info_demande_xprice['tracking_number_demande_xprice']; ?>" name="tracking_number">
+                <input type="hidden" value="<?php echo $this->date_validation_supply; ?>" name="date_validation_supply">
             </fieldset>
         </div>
         <div id='formprixfob' class="workplace">
