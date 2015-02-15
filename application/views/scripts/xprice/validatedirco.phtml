@@ -26,6 +26,7 @@ $this->headScript()->appendFile('/js/controllers/xprice/afficher_masquer_validat
             </table>
         </fieldset>
     </div>
+<div class="clear"></div>
 <div id="information" class="workplace">
     <fieldset id="info_user" class="field_info">
             <legend>Informations Commercial</legend>
@@ -94,6 +95,7 @@ $this->headScript()->appendFile('/js/controllers/xprice/afficher_masquer_validat
             </table>
         </fieldset>
     </div>
+<div class="clear"></div>
  <div id ='just_demande' class="workplace">
         <fieldset id = 'justif_user' class="field">
             <legend>Justificatif de la demande</legend>
@@ -127,6 +129,7 @@ $this->headScript()->appendFile('/js/controllers/xprice/afficher_masquer_validat
             </table>
         </fieldset>
     </div>
+<div class="clear"></div>
     <form action="" method="post">
         <div id="demandeArticle" class="workplace">
             <fieldset class="field" >
@@ -197,6 +200,7 @@ $this->headScript()->appendFile('/js/controllers/xprice/afficher_masquer_validat
                 
             </fieldset>
         </div>
+        <div class="clear"></div>
         <div id="validation" class="workplace">
         <button class="submit" id="historiqueVal" name="historiqueVal" value="historiqueVal">Historique validation</button>
         <fieldset  id='valid_hist' class='field'>
@@ -212,6 +216,7 @@ $this->headScript()->appendFile('/js/controllers/xprice/afficher_masquer_validat
             </table>
         </fieldset>
     </div>
+        <div class="clear"></div>
         <div id="commentaire_dirco" class="workplace">
             <fieldset class="field">
                 <legend>Commentaire Directeur Commercial</legend>
@@ -225,6 +230,7 @@ $this->headScript()->appendFile('/js/controllers/xprice/afficher_masquer_validat
                 ?>
             </fieldset>
         </div>
+        <div class="clear"></div>
         <div id="valid_dirco" class="workplace">
             <input type="radio" name="validation" value="nonValide"> La demande n'est pas validée <br>
             <input type="radio" name="validation" value="fermee"> La demande est validée <br>
@@ -234,6 +240,8 @@ $this->headScript()->appendFile('/js/controllers/xprice/afficher_masquer_validat
             <input hidden="hidden" name="dirco" value="<?php echo $this->dirco; ?>">
             <input hidden="hidden" name="tracking" value="<?php echo $this->info_demande_xprice['tracking_number_demande_xprice']; ?>">
         </div>
+        <div class="clear"></div>
             <input class="submit" type="submit" value="enregistrer statut offre">
     </form>
 </div>
+<div class="clear"></div>

@@ -27,6 +27,7 @@ $this->headScript()->appendFile('/js/controllers/xprice/fermeturevalide.js');
             </table>
         </fieldset>
     </div>
+    <div class="clear"></div>
     <div id="information" class="workplace">
         <fieldset id="info_user" class="field_info">
             <legend>Informations Commercial</legend>
@@ -79,6 +80,7 @@ $this->headScript()->appendFile('/js/controllers/xprice/fermeturevalide.js');
             </table>
         </fieldset>
     </div>
+    <div class="clear"></div>
     <div id="demandeArticle" class="workplace">
         <fieldset class="field" >
             <legend>Articles </legend>
@@ -92,7 +94,7 @@ $this->headScript()->appendFile('/js/controllers/xprice/fermeturevalide.js');
                     <th>remise demandée</th>
                     <th>Prix accordés</th>
                     <th>Remises accordées</th>
-                    <?php if($this->utilisateur =='5' or $this->utilisateur== '13'){ ?>
+                    <?php if($this->utilisateur =='5' or $this->utilisateur== '13' or $this->utilisateur== '20'){ ?>
                     <th>Prix cif</th>
                     <th>Prix fob</th>
                     
@@ -113,13 +115,13 @@ $this->headScript()->appendFile('/js/controllers/xprice/fermeturevalide.js');
                         <td><?php echo $result['prix_accorde_demande_article'] . "€"; ?></td>
                         <td><?php echo $result['remise_accorde_demande_article'] . "%"; ?></td>
                         <?php }?>
-                         <?php if($this->utilisateur =='5' or $this->utilisateur== '13'){ ?>
+                         <?php if($this->utilisateur =='5' or $this->utilisateur== '13' or $this->utilisateur== '20'){ ?>
                         <td><?php echo $result['prix_cif_demande_article'] . "€"; ?></td>
                         <td><?php echo $result['prix_fob_demande_article'] . "€"; ?></td>
                         <td><?php echo $result['marge_demande_article'] . "%"; ?></td><?php } else {}?>
                     </tr>
                 <?php } ?>
-                    <?php if($this->utilisateur =='5' or $this->utilisateur== '13'){ ?>
+                    <?php if($this->utilisateur =='5' or $this->utilisateur== '13' or $this->utilisateur== '20'){ ?>
                        <tr>
                             <td colspan="2">total</td>
                             <td colspan="2" > CA Brut :<input class="cab" id="cab-affiche"
@@ -154,6 +156,7 @@ $this->headScript()->appendFile('/js/controllers/xprice/fermeturevalide.js');
              
         </fieldset>
     </div>
+    <div class="clear"></div>
     <div id ='just_demande' class="workplace">
         <fieldset id = 'justif_user' class="field">
             <legend>Justificatif de la demande</legend>
@@ -188,6 +191,7 @@ $this->headScript()->appendFile('/js/controllers/xprice/fermeturevalide.js');
             </table>
         </fieldset>
     </div>
+    <div class="clear"></div>
     <div id="validation" class="workplace">
         <button class="submit" id="historiqueVal" name="historiqueVal" value="historiqueVal">Historique validation</button>
         <fieldset id='valid_hist' class='field'>
@@ -212,5 +216,7 @@ $this->headScript()->appendFile('/js/controllers/xprice/fermeturevalide.js');
             </table>
         </fieldset>
     </div>
+    <div class="clear"></div>
 </div>
+<div class="clear"></div>
 

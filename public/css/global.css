@@ -27,6 +27,12 @@ body{
 .clear{
     clear: both;
 }
+
+.imgindex{
+    margin-left:50px;
+    padding-left: 50px;
+}
+
 #header{
     width: 1024px;
     height: 150px;
@@ -37,6 +43,7 @@ body{
      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2A60AA', endColorstr='#5082B4',GradientType=1 ); /* IE6-9 */
     margin-bottom: 10px;
     border-radius: 10px;
+    margin-left:50px;
 }
 
 #header_left{
@@ -129,7 +136,7 @@ border-radius: 10px;*/
     margin-top: 20px;
     border-bottom-right-radius:15px;
     border-top-left-radius:15px;
-    margin-left: 22px;
+    margin-left: 72px;
     
 }
 #menu_haut,#menu_haut ul{

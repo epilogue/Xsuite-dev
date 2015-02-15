@@ -95,7 +95,7 @@ $this->headScript()->appendFile('/js/controllers/xprice/fermeturevalide.js');
                     <th>remise demandée</th>
                     <th>Prix accordés</th>
                     <th>Remises accordées</th>
-                    <?php if($this->utilisateur =='5' or $this->utilisateur== '13'  or $this->utilisateur== '29'){ ?>
+                    <?php if($this->utilisateur =='5' or $this->utilisateur== '13'  or $this->utilisateur== '20'){ ?>
                     <th>Prix cif</th>
                     <th>Prix fob</th>
                     
@@ -116,13 +116,13 @@ $this->headScript()->appendFile('/js/controllers/xprice/fermeturevalide.js');
                         <td><?php echo $result['prix_accorde_demande_article'] ; ?></td>
                         <td><?php echo $result['remise_accorde_demande_article'] . "%"; ?></td>
                         <?php }?>
-                         <?php if($this->utilisateur =='5' or $this->utilisateur== '13' or $this->utilisateur =='29'){ ?>
+                         <?php if($this->utilisateur =='5' or $this->utilisateur== '13' or $this->utilisateur =='20'){ ?>
                         <td><?php echo $result['prix_cif_demande_article'] ; ?></td>
                         <td><?php echo $result['prix_fob_demande_article'] ; ?></td>
                         <td><?php echo $result['marge_demande_article'] . "%"; ?></td><?php } else {}?>
                     </tr>
                 <?php } ?>
-                     <?php if($this->utilisateur =='5' or $this->utilisateur== '13' or $this->utilisateur =='29'){ ?>
+                     <?php if($this->utilisateur =='5' or $this->utilisateur== '13' or $this->utilisateur =='20'){ ?>
                        <tr>
                             <td colspan="2">total</td>
                             <td colspan="2" > CA Brut :<input class="cab" id="cab-affiche"

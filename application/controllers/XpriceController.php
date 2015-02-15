@@ -16,12 +16,12 @@ class XpriceController extends Zend_Controller_Action {
     public function init() {
         $this->_auth = Zend_Auth::getInstance();
         $this->view->messages = $this->_helper->flashMessenger->getMessages();
-//        $this->dsn = Zend_Registry::get("dsnString");
-////        $this->odbc_conn = odbc_connect($this->dsn, "", "");
-//        $this->odbc_conn = odbc_connect('Movex', "EU65535", "CCS65535");
-//        if (!$this->odbc_conn) {
-//            echo "pas d'accès à la base de données CVXDTA";
-//        }
+        $this->dsn = Zend_Registry::get("dsnString");
+//        $this->odbc_conn = odbc_connect($this->dsn, "", "");
+        $this->odbc_conn = odbc_connect('Movex', "EU65535", "CCS65535");
+        if (!$this->odbc_conn) {
+            echo "pas d'accès à la base de données CVXDTA";
+        }
        
         
 
@@ -39,16 +39,16 @@ class XpriceController extends Zend_Controller_Action {
             $this->view->commentId = null;
         }
 
-// $this->dsn2 = Zend_Registry::get("dsn2String");
-//        $this->odbc_conn2 = odbc_connect('Movex2', "EU65535", "CCS65535");
-//        if (!$this->odbc_conn2) {
-//            echo "pas d'accès à la base de données MVXCDTA";
-//    }
-//        // $this->dsn3,"","");
-//        $this->odbc_conn3 = odbc_connect('Movex3', "EU65535", "CCS65535");
-//        if (!$this->odbc_conn3) {
-//            echo "pas d'accès à la base de données SMCCDTA";
-//        }
+ $this->dsn2 = Zend_Registry::get("dsn2String");
+        $this->odbc_conn2 = odbc_connect('Movex2', "EU65535", "CCS65535");
+        if (!$this->odbc_conn2) {
+            echo "pas d'accès à la base de données MVXCDTA";
+    }
+        // $this->dsn3,"","");
+        $this->odbc_conn3 = odbc_connect('Movex3', "EU65535", "CCS65535");
+        if (!$this->odbc_conn3) {
+            echo "pas d'accès à la base de données SMCCDTA";
+        }
     }
      protected function sendEmail($params) {
         $mail = new Xsuite_Mail();
@@ -1971,7 +1971,8 @@ class XpriceController extends Zend_Controller_Action {
             $fonctions = array(
                 13 => "dirco",
                 10 => "chefregion",
-                5 => "dbd"
+                5 => "dbd",
+                20=> "chefmarche"
             );
             $idF = $destReponse['id_fonction'];
             $params1 = array();
