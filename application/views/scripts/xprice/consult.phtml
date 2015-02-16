@@ -142,6 +142,8 @@ $this->headScript()->appendFile('/js/controllers/xprice/fermeturevalide.js');
                             } ?>value="<?php $cab2=number_format($cab,2,'.',' ');echo $cab2; ?>">
                                 <input id="cab" type="hidden" class="calculHidden" value="<?php echo $cab; ?>" >
                             </td>
+                            <td></td>
+                            <td></td>
                             <td >
                                 Total CA accordé:<input id="caat-affiche" <?php $CAa=0; foreach($this->info_demande_article_xprice as $result){
                                     $CAa+=(($result['prix_accorde_demande_article'])*$result['quantite_demande_article']);
