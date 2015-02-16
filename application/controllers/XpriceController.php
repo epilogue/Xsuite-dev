@@ -1303,7 +1303,7 @@ class XpriceController extends Zend_Controller_Action {
         where ZMCCSS.ZCDIVI  like 'FR0' and ZMCCSS.ZCYEA4 like '{$anneeencours}' and ZMCCSS.ZCDIUS like '{$info_demande_xprice['numwp_client']}'";
         $caencoursClients = odbc_exec($this->odbc_conn4, $querycaencours);
         $caencoursClient = odbc_fetch_object($caencoursClients);
-        $this->view->caencoursClient=$caencoursClient;
+        $this->view->caencoursClient=$caencoursClient->ca_ly;
         $infos_client = new Application_Model_DbTable_Clients();
         $info_client = $infos_client->getClientnumwp($info_demande_xprice['numwp_client']);
         $this->view->info_client = $info_client;
