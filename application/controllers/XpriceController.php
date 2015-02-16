@@ -1327,6 +1327,72 @@ class XpriceController extends Zend_Controller_Action {
             $usersValidations[$key]['fonction'] = $userValidationInfos['description_fonction'];
         }
         $this->view->usersValidations = $usersValidations;
+         /*essai valid en cours*/
+        $encours = new Application_Model_DbTable_Validationsdemandexprices();
+        $encours1 = $encours->getValidForEncours($numwp);
+       $i = (count($encours1)-1);
+       $plop2=$encours1[$i]['etat_validation'] ;
+       $plop3=$encours1[$i]['nom_validation'] ;
+       if($plop2 =="validee" || $plop2=="validée"){
+        switch ($plop3) {
+            case "cdr":
+                $encoursFonction="Nicolas Thouin";
+                $encoursNom="encours";
+
+                break;
+            case "fobfr":
+                 $encoursFonction="Emmanuel Jourdain";
+                $encoursNom="encours";
+                break;
+            
+            case "supply":
+                 $encoursFonction="Alexandre Bauer";
+                $encoursNom="encours";
+                break;
+            
+            case "dbd":
+                 $encoursFonction="François Delauge";
+                $encoursNom="encours";
+                break;
+            default:
+                break;
+        }
+    }
+    elseif($plop2=="creation"){
+           $encoursFonction="chef de région";
+           $encoursNom="encours";
+       }
+       elseif($plop2=="enAttente"){
+           switch ($plop3) {
+               case "reponse":
+                  $encoursFonction=$info_user['nom_user'].' '. $info_user['prenom_user'];
+                $encoursNom="encours"; 
+                break;
+            case "cdr":
+                $encoursFonction="chef de région";
+                $encoursNom="encours";
+                break;
+            case "fobfr":
+                 $encoursFonction="Nicolas Thouin";
+                $encoursNom="encours";
+                break;
+            
+            case "supply":
+                 $encoursFonction="Emmanuel Jourdain";
+                $encoursNom="encours";
+                break;
+            
+            case "dbd":
+                 $encoursFonction="Alexandre Bauer";
+                $encoursNom="encours";
+                break;
+            default:
+                break;
+        }
+       }
+        $this->view->encoursFonction = $encoursFonction;
+        $this->view->encoursNom=$encoursNom;
+        /*fin essai valid en cours*/
         /*
          * Fin du chargement des validations
          */
