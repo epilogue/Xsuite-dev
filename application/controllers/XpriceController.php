@@ -1316,7 +1316,7 @@ class XpriceController extends Zend_Controller_Action {
         
         $CA_YTD = $caencoursClient->CA_YTD;
         $this->view->caencoursClient=$CA_YTD;
-        $pourcent_progress=100-((100*$CA_LY)/$CA_YTD);
+        $pourcent_progress=round(100-((100*$CA_LY)/$CA_YTD),2).'%';
         $this->view->pourcent_progress=$pourcent_progress;
         $infos_client = new Application_Model_DbTable_Clients();
         $info_client = $infos_client->getClientnumwp($info_demande_xprice['numwp_client']);
