@@ -158,32 +158,33 @@ $this->headScript()->appendFile('/js/controllers/xprice/afficher_masquer_validat
                     <?php } ?>
                         <tr>
                             <td colspan="2">total</td>
-                            <td colspan="4" > CA Brut :<input class="cab" id="cab-affiche"
+                            <td colspan="2" ><input class="cab" id="cab-affiche"
                                <?php $cab=0;foreach($this->info_demande_article_xprice as $result)
                                 {$cab+=($result['quantite_demande_article']*$result['prixwplace_demande_article']);
                             
                             } ?>value="<?php echo number_format($cab, 2, '.', ' '); ?>">
                                 <input type="hidden" id="cab" class="calculHidden" value="<?php echo $cab; ?>">
                             </td>
+                            <td colspan="2"></td>
                             <td >
-                                Cout FOB: <?php $Cfob=0; foreach($this->info_demande_article_xprice as $result){
+                                 <?php $Cfob=0; foreach($this->info_demande_article_xprice as $result){
                                     $Cfob+=($result['quantite_demande_article']*$result['prix_fob_demande_article']);
                                 }; echo number_format($Cfob, 2, '.', ' ');?>
                             </td>
                             <td >
-                                Cout CIF: <input  id="ccif-affiche"<?php $Ccif=0; foreach($this->info_demande_article_xprice as $result){
+                                 <input  id="ccif-affiche"<?php $Ccif=0; foreach($this->info_demande_article_xprice as $result){
                                     $Ccif+=($result['quantite_demande_article']*$result['prix_cif_demande_article']);
                                 }?> value="<?php echo number_format($Ccif, 2, '.', ' '); ?>">
                                 <input id="ccif" type="hidden" class="calculHidden" value="<?php echo $Ccif; ?>">
                             </td>
                             <td >
-                                Total CA accordé: <input id="caat-affiche" <?php $CAa=0; foreach($this->info_demande_article_xprice as $result){
+                                 <input id="caat-affiche" <?php $CAa=0; foreach($this->info_demande_article_xprice as $result){
                                     $CAa+=(($result['prix_accorde_demande_article'])*$result['quantite_demande_article']);
                                     }?>  value ="<?php echo number_format($CAa, 2, '.', ' '); ?>" >
                                 <input id="caat" type="hidden" class="calculHidden" value="<?php echo $CAa; ?>" >
                             </td>
-                            <td>remise Moyenne: <input id="mo"  <?php $mo=100*(1-($CAa/$cab));?> value="<?php echo round($mo,2)."%"; ?>"></td>
-                            <td>marge moyenne: <input id="mamo"<?php $mamo = 100*(1-($Ccif/$CAa))?> value ="<?php echo round($mamo,2)."%";?>"></td>
+                            <td> <input id="mo"  <?php $mo=100*(1-($CAa/$cab));?> value="<?php echo round($mo,2)."%"; ?>"></td>
+                            <td> <input id="mamo"<?php $mamo = 100*(1-($Ccif/$CAa))?> value ="<?php echo round($mamo,2)."%";?>"></td>
                             
                         </tr>
                 </table>

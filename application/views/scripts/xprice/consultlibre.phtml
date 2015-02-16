@@ -135,7 +135,7 @@ $this->headScript()->appendFile('/js/controllers/xprice/fermeturevalide.js');
                     <?php if($this->utilisateur =='5' or $this->utilisateur== '13' or $this->utilisateur== '20'){ ?>
                        <tr>
                             <td colspan="2">total</td>
-                            <td colspan="2" > CA Brut :<input class="cab" id="cab-affiche"
+                            <td colspan="2" ><input class="cab" id="cab-affiche"
                                <?php $cab=0;foreach($this->info_demande_article_xprice as $result)
                                 {$cab+=($result['quantite_demande_article']*$result['prixwplace_demande_article']);
                             
