@@ -1297,7 +1297,7 @@ class XpriceController extends Zend_Controller_Action {
         $this->view->info_user = $info_user;
         
         /*infos clients */
-         $anneeencours = 'Y'-2;
+         $anneeencours = date('Y')-2;
        $this->view->anneeencours = $anneeencours;
         $infos_client = new Application_Model_DbTable_Clients();
         $info_client = $infos_client->getClientnumwp($info_demande_xprice['numwp_client']);
