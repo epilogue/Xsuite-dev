@@ -87,10 +87,6 @@ $this->headScript()->appendFile('/js/controllers/xprice/fermeturevalide.js');
                     <td>CA cumulé à date sur l'année en cours :</td>
                     <td><?php echo number_format($this->caencoursClient,2,'.',' '); ?></td>
                 </tr>
-                <tr>
-                    <td>% progression à date année en cours VS année N-1 :</td>
-                    <td><?php echo $this->pourcent_progress; ?></td>
-                </tr>
                 <?php } ?>
             </table>
         </fieldset>
@@ -139,23 +135,12 @@ $this->headScript()->appendFile('/js/controllers/xprice/fermeturevalide.js');
                      <?php if($this->utilisateur =='5' or $this->utilisateur== '13' or $this->utilisateur =='20'){ ?>
                        <tr>
                             <td colspan="2">total</td>
-                            <td colspan="2" > CA Brut :<input class="cab" id="cab-affiche"
+                            <td colspan="2" ><input class="cab" id="cab-affiche"
                                <?php $cab=0;foreach($this->info_demande_article_xprice as $result)
                                 {$cab+=($result['quantite_demande_article']*$result['prixwplace_demande_article']);
                             
                             } ?>value="<?php $cab2=number_format($cab,2,'.',' ');echo $cab2; ?>">
                                 <input id="cab" type="hidden" class="calculHidden" value="<?php echo $cab; ?>" >
-                            </td>
-                            <td colspan="2">
-                                Cout FOB: <?php $Cfob=0; foreach($this->info_demande_article_xprice as $result){
-                                    $Cfob+=($result['quantite_demande_article']*$result['prix_fob_demande_article']);
-                                }$Cfob2=number_format($Cfob,2,'.',' '); echo $Cfob2; ?>
-                            </td>
-                            <td colspan="2">
-                                Cout CIF: <input  id="ccif-affiche"<?php $Ccif=0; foreach($this->info_demande_article_xprice as $result){
-                                    $Ccif+=($result['quantite_demande_article']*$result['prix_cif_demande_article']);
-                                }?> value="<?php echo number_format($Ccif, 2, '.', ' '); ?>">
-                                <input id="ccif" type="hidden" class="calculHidden" value="<?php echo $Ccif; ?>" >
                             </td>
                             <td >
                                 Total CA accordé:<input id="caat-affiche" <?php $CAa=0; foreach($this->info_demande_article_xprice as $result){
@@ -164,6 +149,19 @@ $this->headScript()->appendFile('/js/controllers/xprice/fermeturevalide.js');
                                 <input id="caat" type="hidden" class="calculHidden" value="<?php echo $CAa; ?>" >
                             </td>
                             <td>remise Moyenne<input id="mo"  <?php $mo=100*(1-($CAa/$cab));?> value="<?php echo round($mo,2)."%"; ?>"></td>
+                            <td >
+                                Cout FOB: <?php $Cfob=0; foreach($this->info_demande_article_xprice as $result){
+                                    $Cfob+=($result['quantite_demande_article']*$result['prix_fob_demande_article']);
+                                }$Cfob2=number_format($Cfob,2,'.',' '); echo $Cfob2; ?>
+                            </td>
+                            <td >
+                                Cout CIF: <input  id="ccif-affiche"<?php $Ccif=0; foreach($this->info_demande_article_xprice as $result){
+                                    $Ccif+=($result['quantite_demande_article']*$result['prix_cif_demande_article']);
+                                }?> value="<?php echo number_format($Ccif, 2, '.', ' '); ?>">
+                                <input id="ccif" type="hidden" class="calculHidden" value="<?php echo $Ccif; ?>" >
+                            </td>
+                            
+                            
                             <td>marge moyenne <input id="mamo"<?php $mamo = 100*(1-($Ccif/$CAa))?> value ="<?php echo round($mamo,2)."%";?>"></td>
                             
                         </tr><?php } else {}?>
