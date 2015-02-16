@@ -417,7 +417,7 @@ fieldset legend{
     padding-top:5px;
     padding-bottom: 5px;
     width:100%;
-    font-family: verdana;
+    font-family: verdana,arial;
 }
 .enum th,.enum td{
     border-style:solid;
