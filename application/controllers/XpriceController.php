@@ -49,6 +49,10 @@ class XpriceController extends Zend_Controller_Action {
         if (!$this->odbc_conn3) {
             echo "pas d'accès à la base de données SMCCDTA";
         }
+        $this->odbc_conn4 = odbc_connect('Movex4', "EU65535", "CCS65535");
+        if (!$this->odbc_conn4) {
+            echo "pas d'accès à la base de données ZEUCDTA";
+        }
     }
      protected function sendEmail($params) {
         $mail = new Xsuite_Mail();
@@ -840,6 +844,15 @@ class XpriceController extends Zend_Controller_Action {
          */
 
         $this->view->info_user = $info_user;
+        /* informations client */
+        $anneeencours = 'Y'-2;
+        echo $anneeencours;
+        $querycaencours="select 
+            Sum(ZMCCSS.ZCSN01+ZMCCSS.ZCSN02+ZMCCSS.ZCSN03+ZMCCSS.ZCSN04+ZMCCSS.ZCSN05+ZMCCSS.ZCSN06+ZMCCSS.ZCSN07+ZMCCSS.ZCSN08+ZMCCSS.ZCSN09+ZMCCSS.ZCSN10+ZMCCSS.ZCSN11+ZMCCSS.ZCSN12) as CA_LY
+        from EIT.ZEUCDTA.ZMCCSS40 ZMCCSS
+        where ZMCCSS.ZCDIVI  like 'FR0' and ZMCCSS.ZCYEA4 like '2013' and ZMCCSS.ZCDIUS like {$info_demande_xprice['numwp_client']}";
+        $caencoursClients = odbc_exec($this->odbc_conn4, $querycaencours);
+            $caencoursClient = odbc_fetch_object($caencoursClients);
         $infos_client = new Application_Model_DbTable_Clients();
         $info_client = $infos_client->getClientnumwp($info_demande_xprice['numwp_client']);
         $this->view->info_client = $info_client;
