@@ -836,9 +836,75 @@ class XpriceController extends Zend_Controller_Action {
 
         foreach (@$validationsDemandesXprices as $key => $validationDemandeXprice) {
             $userValidationInfos = $infos_user->getFonctionLabel($validationDemandeXprice['id_user']);
-            $usersValidations[$key]['fonction'] = $userValidationInfos['description_fonction'];
+            $usersValidations[$key]['fonction'] = $userValidationInfos['prenom_user'].' ' .$userValidationInfos['nom_user'];
         }
         $this->view->usersValidations = $usersValidations;
+        /*essai valid en cours*/
+        $encours = new Application_Model_DbTable_Validationsdemandexprices();
+        $encours1 = $encours->getValidForEncours($numwp);
+       $i = (count($encours1)-1);
+       $plop2=$encours1[$i]['etat_validation'] ;
+       $plop3=$encours1[$i]['nom_validation'] ;
+       if($plop2 =="validee" || $plop2=="validée"){
+        switch ($plop3) {
+            case "cdr":
+                $encoursFonction="Nicolas Thouin";
+                $encoursNom="encours";
+
+                break;
+            case "fobfr":
+                 $encoursFonction="Emmanuel Jourdain";
+                $encoursNom="encours";
+                break;
+            
+            case "supply":
+                 $encoursFonction="Alexandre Bauer";
+                $encoursNom="encours";
+                break;
+            
+            case "dbd":
+                 $encoursFonction="François Delauge";
+                $encoursNom="encours";
+                break;
+            default:
+                break;
+        }
+    }
+    elseif($plop2=="creation"){
+           $encoursFonction="chef de région";
+           $encoursNom="encours";
+       }
+       elseif($plop2=="enAttente"){
+           switch ($plop3) {
+               case "reponse":
+                  $encoursFonction=$info_user['nom_user'].' '. $info_user['prenom_user'];
+                $encoursNom="encours"; 
+                break;
+            case "cdr":
+                $encoursFonction="chef de région";
+                $encoursNom="encours";
+                break;
+            case "fobfr":
+                 $encoursFonction="Nicolas Thouin";
+                $encoursNom="encours";
+                break;
+            
+            case "supply":
+                 $encoursFonction="Emmanuel Jourdain";
+                $encoursNom="encours";
+                break;
+            
+            case "dbd":
+                 $encoursFonction="Alexandre Bauer";
+                $encoursNom="encours";
+                break;
+            default:
+                break;
+        }
+       }
+        $this->view->encoursFonction = $encoursFonction;
+        $this->view->encoursNom=$encoursNom;
+        /*fin essai valid en cours*/
         /*
          * Fin du chargement des validations
          */
@@ -913,10 +979,7 @@ class XpriceController extends Zend_Controller_Action {
             $this->view->date_validation = $date_validation;
             $nom_validation = 'dbd';
             $this->nom_validation = $nom_validation;
-//            $formData[] = $this->getRequest()->getPost(); //@todo : à remplacer par la ligne suivante
             $datas = $this->getRequest()->getPost();
-//            foreach ($formData as $datas) {
-// echo '<pre>',  var_export($datas,true),'</pre>';exit();
             $prix_accordes = array_combine($datas['code_article'], $datas['prix_accorde_article']);
             $remise_accordes = array_combine($datas['code_article'], $datas['remise_accorde_article']);
             $marge = array_combine($datas['code_article'],$datas['marge_demande_article']); 
@@ -938,7 +1001,6 @@ class XpriceController extends Zend_Controller_Action {
           
             foreach ($marge as $key => $value2) {
                 $margesmc = substr($value2,0,-1);
-                 //echo '<pre>',  var_export($margesmc),'</pre>';exit();
                 if ($margesmc < 10 || $margesmc == 0) {
                     $margemin = true;
                    
@@ -955,8 +1017,6 @@ class XpriceController extends Zend_Controller_Action {
                 'nom_validation' => $nom_validation, 'validation' => $datas['validation'], 'commentaire' => $datas['commentaire_dbd'],
                 'id_user' => $user->id_user, 'id_demande_xprice' => $info_demande_xprice['id_demande_xprice']
             );
-//            echo "<pre>", var_export($datasValidation, true), "</pre>";
-//            exit();
             if (array_key_exists('reponse', $datas)) {
                 $datasValidation['reponse'] = $datas['reponse'];
             }
@@ -964,30 +1024,6 @@ class XpriceController extends Zend_Controller_Action {
             $commentId = $this->genererValidation($datasValidation);
 
             $emailVars = Zend_Registry::get('emailVars');
-             // $marges=  array_combine($datas['code_article'], $datas['marge']);
-//            foreach ($formData as $ploptitude) {
-//                $marge = array_combine($ploptitude['code_article'],( $ploptitude['remise_demande_article']));
-//            }
-           
-           /* if ($margemin == true) {
-                $destinatairemail = $emailVars->listes->dirco;
-
-                if (!is_null($commentId)) {
-                    $url = "http://{$_SERVER['SERVER_NAME']}/xprice/validatedirco/numwp/{$numwp}/com/{$commentId}";
-                } else {
-                    $url = "http://{$_SERVER['SERVER_NAME']}/xprice/validatedirco/numwp/{$numwp}";
-                }
-                $corpsMail = "Bonjour,\n"
-                        . "\n"
-                        . "Vous avez une nouvelle demande XPrice à valider.\n"
-                        . "Veuillez vous rendre à l'adresse url : \n"
-                        . "%s"
-                        . "\n\n"
-                        . "Cordialement,\n"
-                        . "\n"
-                        . "--\n"
-                        . "Supply Chain Manager.";
-            }*/
             if (isset($datas['validation']) && $datas['validation'] == "validee") {
                 $params1 = array();
                 
@@ -996,23 +1032,11 @@ class XpriceController extends Zend_Controller_Action {
                  // $params['destinataireMail'] = $info_user['email_user'] ;
                   $params1['destinataireMail'] = $emailVars->listes->Dirco;
                 if (!is_null($commentId)) {
-                   // $params['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/consult/numwp/{$numwp}/com/{$commentId}";
                     $params1['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/validatedirco/numwp/{$numwp}";
                 } else {
-                    //$params['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/consult/numwp/{$numwp}";
                     $params1['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/validatedirco/numwp/{$numwp}";
                 }
-//                $params['corpsMail'] = "Bonjour,\n"
-//                        . "\n"
-//                        . "Votre demande XPrice $trackingNumber/$numwp a été validée par le Directeur Business Developpement .\n"
-//                        . "Vous pouvez la consulter à cette adresse url : \n"
-//                        . "%s"
-//                        . "\n\n"
-//                        . "Cordialement,\n"
-//                        . "\n"
-//                        . "--\n"
-//                        . "dbd.";
-//                $params['sujet'] = "TEST XPrice :demande Xprice  $trackingNumber/$numwp pour $nomclients validée par Directeur Business Developpement.";
+
                 $params1['corpsMail'] = "Bonjour,\n"
                         . "\n"
                         . "Vous avez une nouvelle demande Xprice $trackingNumber/$numwp de {$info_user['nom_user']} pour le client $nomclients à valider .\n"
@@ -1025,7 +1049,6 @@ class XpriceController extends Zend_Controller_Action {
                         . "dbd.";
                 $params1['sujet'] = " TEST XPrice :nouvelle demande Xprice $trackingNumber/$numwp à valider $numwp de {$info_user['nom_user']} pour le client $nomclients .";
                 
-                //$this->sendEmail($params);
                 $this->sendEmail($params1);
             }
             $flashMessenger = $this->_helper->getHelper('FlashMessenger');
@@ -1045,7 +1068,6 @@ class XpriceController extends Zend_Controller_Action {
                 $params6 = array();
                     $params2['destinataireMail'] = $info_user['email_user'];
                     $params3['destinataireMail'] = $emailVars->listes->serviceClient ;
-                    //$params3['destinataireMail'] = $emailVars->listes->serviceClient ;
                      if (!is_null($commentId)) {
                     $params2['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/consult/numwp/{$numwp}/com/{$commentId}";
                     $params3['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/consult/numwp/{$numwp}";
@@ -2078,6 +2100,7 @@ class XpriceController extends Zend_Controller_Action {
         $info_demande_xprice = $infos_demande_xprice->getNumwp($numwp);
 //echo '<pre>',  var_export($info_demande_xprice),'<pre>';
         $user_id = $info_demande_xprice['id_user'];
+        /*info client*/
         $this->view->info_demande_xprice = $info_demande_xprice;
          $anneeencours_1 = date('Y')-2;
         $querycaencours_1="select 
@@ -2138,11 +2161,6 @@ class XpriceController extends Zend_Controller_Action {
         /*essai valid en cours*/
         $encours = new Application_Model_DbTable_Validationsdemandexprices();
         $encours1 = $encours->getValidForEncours($numwp);
-       // echo '<pre>',var_export($encours1),'</pre>';
-//        for($i=0;$i<count($encours1);++$i){
-//           $plop2=$encours1[$i]['etat_validation'] ;
-//           $plop3=$encours1[$i]['nom_validation'] ;
-//        }
        $i = (count($encours1)-1);
        $plop2=$encours1[$i]['etat_validation'] ;
        $plop3=$encours1[$i]['nom_validation'] ;
