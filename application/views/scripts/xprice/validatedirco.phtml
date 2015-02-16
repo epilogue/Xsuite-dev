@@ -201,7 +201,7 @@ $this->headScript()->appendFile('/js/controllers/xprice/afficher_masquer_validat
             <table class="enum">
                 <?php foreach (@$this->validations as $key => $value) { if($value['etat_validation']!="enAttente"){ ?>
                     <tr>
-                        <td>Commentaire <?php echo strtolower($this->usersValidations[$key]['fonction']); ?></td>
+                        <td><?php echo strtolower($this->usersValidations[$key]['fonction']); ?></td>
                         <td><?php echo $value['date_validation']; ?></td>
                         <td><?php echo nl2br($value['etat_validation']); ?></td>
                     </tr>
