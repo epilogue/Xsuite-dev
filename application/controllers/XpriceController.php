@@ -1300,7 +1300,7 @@ class XpriceController extends Zend_Controller_Action {
         $querycaencours="select 
             Sum(ZMCCSS.ZCSN01+ZMCCSS.ZCSN02+ZMCCSS.ZCSN03+ZMCCSS.ZCSN04+ZMCCSS.ZCSN05+ZMCCSS.ZCSN06+ZMCCSS.ZCSN07+ZMCCSS.ZCSN08+ZMCCSS.ZCSN09+ZMCCSS.ZCSN10+ZMCCSS.ZCSN11+ZMCCSS.ZCSN12) as CA_LY
         from EIT.ZEUCDTA.ZMCCSS40 ZMCCSS
-        where ZMCCSS.ZCDIVI  like 'FR0' and ZMCCSS.ZCYEA4 like {$anneeencours} and ZMCCSS.ZCDIUS like {$info_demande_xprice['numwp_client']}";
+        where ZMCCSS.ZCDIVI  like 'FR0' and ZMCCSS.ZCYEA4 like '{$anneeencours}' and ZMCCSS.ZCDIUS like '{$info_demande_xprice['numwp_client']}'";
         $caencoursClients = odbc_exec($this->odbc_conn4, $querycaencours);
             $caencoursClient = odbc_fetch_object($caencoursClients);
             echo '<pre>',  var_export($caencoursClient),'</pre>';
