@@ -845,13 +845,28 @@ class XpriceController extends Zend_Controller_Action {
 
         $this->view->info_user = $info_user;
         /* informations client */
-        $anneeencours = date('Y')-2;
-        $querycaencours="select 
-            Sum(ZMCCSS.ZCSN01+ZMCCSS.ZCSN02+ZMCCSS.ZCSN03+ZMCCSS.ZCSN04+ZMCCSS.ZCSN05+ZMCCSS.ZCSN06+ZMCCSS.ZCSN07+ZMCCSS.ZCSN08+ZMCCSS.ZCSN09+ZMCCSS.ZCSN10+ZMCCSS.ZCSN11+ZMCCSS.ZCSN12) as CA_LY
+        $anneeencours_1 = date('Y')-2;
+        $querycaencours_1="select 
+        Sum(ZMCCSS.ZCSN01+ZMCCSS.ZCSN02+ZMCCSS.ZCSN03+ZMCCSS.ZCSN04+ZMCCSS.ZCSN05+ZMCCSS.ZCSN06+ZMCCSS.ZCSN07+ZMCCSS.ZCSN08+ZMCCSS.ZCSN09+ZMCCSS.ZCSN10+ZMCCSS.ZCSN11+ZMCCSS.ZCSN12) as CA_LY
         from EIT.ZEUCDTA.ZMCCSS40 ZMCCSS
-        where ZMCCSS.ZCDIVI  like 'FR0' and ZMCCSS.ZCYEA4 like {$anneeencours} and ZMCCSS.ZCDIUS like {$info_demande_xprice['numwp_client']}";
-        $caencoursClients = odbc_exec($this->odbc_conn4, $querycaencours);
-            $caencoursClient = odbc_fetch_object($caencoursClients);
+        where ZMCCSS.ZCDIVI  like 'FR0' and ZMCCSS.ZCYEA4 like '{$anneeencours_1}' and ZMCCSS.ZCDIUS like '{$info_demande_xprice['numwp_client']}'";
+        $caencoursClients_1 = odbc_exec($this->odbc_conn4, $querycaencours_1);
+        $caencoursClient_1 = odbc_fetch_object($caencoursClients_1);
+        $CA_LY = $caencoursClient_1->CA_LY;
+        $this->view->caencoursClient_1=$CA_LY;
+        $anneeencours = date('Y')-1;
+        $querycaencours="select  
+         Sum(ZMCCSS.ZCSN01+ZMCCSS.ZCSN02+ZMCCSS.ZCSN03+ZMCCSS.ZCSN04+ZMCCSS.ZCSN05+ZMCCSS.ZCSN06+ZMCCSS.ZCSN07+ZMCCSS.ZCSN08+ZMCCSS.ZCSN09+ZMCCSS.ZCSN10+ZMCCSS.ZCSN11+ZMCCSS.ZCSN12) as CA_YTD
+
+         from EIT.ZEUCDTA.ZMCCSS40 ZMCCSS
+         where ZMCCSS.ZCDIVI  like 'FR0' and ZMCCSS.ZCYEA4 like '{$anneeencours}' and ZMCCSS.ZCDIUS like '{$info_demande_xprice['numwp_client']}'";
+         $caencoursClients = odbc_exec($this->odbc_conn4, $querycaencours);
+        $caencoursClient = odbc_fetch_object($caencoursClients);
+        
+        $CA_YTD = $caencoursClient->CA_YTD;
+        $this->view->caencoursClient=$CA_YTD;
+        $pourcent_progress=round(100-((100*$CA_LY)/$CA_YTD),2).'%';
+        $this->view->pourcent_progress=$pourcent_progress;
         $infos_client = new Application_Model_DbTable_Clients();
         $info_client = $infos_client->getClientnumwp($info_demande_xprice['numwp_client']);
         $this->view->info_client = $info_client;
@@ -1296,7 +1311,7 @@ class XpriceController extends Zend_Controller_Action {
         $this->view->info_user = $info_user;
         
         /*infos clients */
-          $anneeencours_1 = date('Y')-2;
+        $anneeencours_1 = date('Y')-2;
         $querycaencours_1="select 
         Sum(ZMCCSS.ZCSN01+ZMCCSS.ZCSN02+ZMCCSS.ZCSN03+ZMCCSS.ZCSN04+ZMCCSS.ZCSN05+ZMCCSS.ZCSN06+ZMCCSS.ZCSN07+ZMCCSS.ZCSN08+ZMCCSS.ZCSN09+ZMCCSS.ZCSN10+ZMCCSS.ZCSN11+ZMCCSS.ZCSN12) as CA_LY
         from EIT.ZEUCDTA.ZMCCSS40 ZMCCSS
@@ -2239,7 +2254,28 @@ class XpriceController extends Zend_Controller_Action {
       $this->view->fermeturevalide=$plop1['etat_validation'];
         $user_id = $info_demande_xprice->id_user;
         $this->view->info_demande_xprice = $info_demande_xprice;
+         $anneeencours_1 = date('Y')-2;
+        $querycaencours_1="select 
+        Sum(ZMCCSS.ZCSN01+ZMCCSS.ZCSN02+ZMCCSS.ZCSN03+ZMCCSS.ZCSN04+ZMCCSS.ZCSN05+ZMCCSS.ZCSN06+ZMCCSS.ZCSN07+ZMCCSS.ZCSN08+ZMCCSS.ZCSN09+ZMCCSS.ZCSN10+ZMCCSS.ZCSN11+ZMCCSS.ZCSN12) as CA_LY
+        from EIT.ZEUCDTA.ZMCCSS40 ZMCCSS
+        where ZMCCSS.ZCDIVI  like 'FR0' and ZMCCSS.ZCYEA4 like '{$anneeencours_1}' and ZMCCSS.ZCDIUS like '{$info_demande_xprice['numwp_client']}'";
+        $caencoursClients_1 = odbc_exec($this->odbc_conn4, $querycaencours_1);
+        $caencoursClient_1 = odbc_fetch_object($caencoursClients_1);
+        $CA_LY = $caencoursClient_1->CA_LY;
+        $this->view->caencoursClient_1=$CA_LY;
+        $anneeencours = date('Y')-1;
+        $querycaencours="select  
+         Sum(ZMCCSS.ZCSN01+ZMCCSS.ZCSN02+ZMCCSS.ZCSN03+ZMCCSS.ZCSN04+ZMCCSS.ZCSN05+ZMCCSS.ZCSN06+ZMCCSS.ZCSN07+ZMCCSS.ZCSN08+ZMCCSS.ZCSN09+ZMCCSS.ZCSN10+ZMCCSS.ZCSN11+ZMCCSS.ZCSN12) as CA_YTD
+
+         from EIT.ZEUCDTA.ZMCCSS40 ZMCCSS
+         where ZMCCSS.ZCDIVI  like 'FR0' and ZMCCSS.ZCYEA4 like '{$anneeencours}' and ZMCCSS.ZCDIUS like '{$info_demande_xprice['numwp_client']}'";
+         $caencoursClients = odbc_exec($this->odbc_conn4, $querycaencours);
+        $caencoursClient = odbc_fetch_object($caencoursClients);
         
+        $CA_YTD = $caencoursClient->CA_YTD;
+        $this->view->caencoursClient=$CA_YTD;
+        $pourcent_progress=round(100-((100*$CA_LY)/$CA_YTD),2).'%';
+        $this->view->pourcent_progress=$pourcent_progress;
         $infos_user = new Application_Model_DbTable_Users();
         $info_user = $infos_user->getUserDemande($info_demande_xprice->id_user);
         $id_holon=$info_user['id_holon'];
