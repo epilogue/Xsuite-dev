@@ -119,19 +119,19 @@ $this->headScript()->appendFile('/js/controllers/xprice/fermeturevalide.js');
                         <td><?php echo $result['code_article']; ?></td>
                         <td><?php echo $result['reference_article']; ?></td>
                         <td><?php echo $result['quantite_demande_article']; ?></td>
-                        <td><?php echo $result['prixwplace_demande_article'] . "€"; ?></td>
-                        <td><?php echo $result['prix_demande_article'] . "€"; ?></td>
+                        <td><?php echo $result['prixwplace_demande_article']; ?></td>
+                        <td><?php echo $result['prix_demande_article'] ; ?></td>
                         <td><?php echo $result['remise_demande_article'] . "%"; ?></td>
                         <?php if ( $result['prix_demande_article'] != $result['prix_accorde_demande_article']){ ?>
-                        <td style="background-color: yellow;"><?php echo $result['prix_accorde_demande_article'] . "€"; ?></td>
+                        <td style="background-color: yellow;"><?php echo $result['prix_accorde_demande_article']; ?></td>
                         <td style="background-color: yellow;"><?php echo $result['remise_accorde_demande_article'] . "%"; ?></td>
                         <?php }else{?>
-                        <td><?php echo $result['prix_accorde_demande_article'] . "€"; ?></td>
+                        <td><?php echo $result['prix_accorde_demande_article']; ?></td>
                         <td><?php echo $result['remise_accorde_demande_article'] . "%"; ?></td>
                         <?php }?>
                          <?php if($this->utilisateur =='5' or $this->utilisateur== '13' or $this->utilisateur== '20'){ ?>
-                        <td><?php echo $result['prix_cif_demande_article'] . "€"; ?></td>
-                        <td><?php echo $result['prix_fob_demande_article'] . "€"; ?></td>
+                        <td><?php echo $result['prix_cif_demande_article']; ?></td>
+                        <td><?php echo $result['prix_fob_demande_article']; ?></td>
                         <td><?php echo $result['marge_demande_article'] . "%"; ?></td><?php } else {}?>
                     </tr>
                 <?php } ?>
@@ -142,24 +142,24 @@ $this->headScript()->appendFile('/js/controllers/xprice/fermeturevalide.js');
                                <?php $cab=0;foreach($this->info_demande_article_xprice as $result)
                                 {$cab+=($result['quantite_demande_article']*$result['prixwplace_demande_article']);
                             
-                            } ?>value="<?php echo number_format($cab, 2, '.', ' '). "€"; ?>">
+                            } ?>value="<?php echo number_format($cab, 2, '.', ' '); ?>">
                                 <input id="cab" type="hidden" class="calculHidden" value="<?php echo $cab; ?>" >
                             </td>
                             <td colspan="2">
                                 Cout FOB: <?php $Cfob=0; foreach($this->info_demande_article_xprice as $result){
                                     $Cfob+=($result['quantite_demande_article']*$result['prix_fob_demande_article']);
-                                } echo number_format($Cfob, 2, '.', ' ') ."€"?>
+                                } echo number_format($Cfob, 2, '.', ' ');?>
                             </td>
                             <td colspan="2">
                                 Cout CIF: <input  id="ccif-affiche"<?php $Ccif=0; foreach($this->info_demande_article_xprice as $result){
                                     $Ccif+=($result['quantite_demande_article']*$result['prix_cif_demande_article']);
-                                }?> value="<?php echo number_format($Ccif, 2, '.', ' ') ."€"?>">
+                                }?> value="<?php echo number_format($Ccif, 2, '.', ' ');?>">
                                 <input id="ccif" type="hidden" class="calculHidden" value="<?php echo $Ccif; ?>" >
                             </td>
                             <td >
                                 Cout CA accord:<input id="caat-affiche" <?php $CAa=0; foreach($this->info_demande_article_xprice as $result){
                                     $CAa+=(($result['prix_accorde_demande_article'])*$result['quantite_demande_article']);
-                                    }?>  value ="<?php echo number_format($CAa, 2, '.', ' ')."€" ;?>" >
+                                    }?>  value ="<?php echo number_format($CAa, 2, '.', ' ');?>" >
                                 <input id="caat" type="hidden" class="calculHidden" value="<?php echo $CAa; ?>" >
                             </td>
                             <td>remise Moyenne<input id="mo"  <?php $mo=100*(1-($CAa/$cab));?> value="<?php echo round($mo,2)."%"; ?>"></td>
