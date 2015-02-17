@@ -364,7 +364,7 @@ class XpriceController extends Zend_Controller_Action {
                     $holoncreateur = $user_info['id_holon'];
                     $clientsnom=trim($infos_client['OKCUNM']);
                     $params=array();
-                    $params['destinataireMail']="mhuby@smc-france.fr"/*$user_info['email_user']*/;
+                    $params['destinataireMail']=$user_info['email_user'];
                     $params['url']="http://{$_SERVER['SERVER_NAME']}/xprice/consult/numwp/{$numwp}";
                     $params['corpsMail']="Bonjour,\n"
                                 . "\n"
