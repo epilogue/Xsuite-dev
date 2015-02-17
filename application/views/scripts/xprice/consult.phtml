@@ -113,10 +113,10 @@ $this->headScript()->appendFile('/js/controllers/xprice/fermeturevalide.js');
                 </tr>
                 <?php foreach ($this->info_demande_article_xprice as $result) { ?>
                     <tr>
-                        <td><?php echo number_format($result['code_article'],2,'.',' '); ?></td>
+                        <td><?php echo$result['code_article']; ?></td>
                         <td><?php echo $result['reference_article']; ?></td>
                         <td><?php echo $result['quantite_demande_article']; ?></td>
-                        <td><?php echo $result['prixwplace_demande_article'] ; ?></td>
+                        <td><?php echo number_format( $result['prixwplace_demande_article'],2,'.',' ') ; ?></td>
                         <td><?php echo $result['prix_demande_article'] ; ?></td>
                         <td><?php echo $result['remise_demande_article'] . "%"; ?></td>
                         <?php if ( $result['prix_demande_article'] != $result['prix_accorde_demande_article']){ ?>
