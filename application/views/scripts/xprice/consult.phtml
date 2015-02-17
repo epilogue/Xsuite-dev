@@ -117,18 +117,18 @@ $this->headScript()->appendFile('/js/controllers/xprice/fermeturevalide.js');
                         <td><?php echo $result['reference_article']; ?></td>
                         <td><?php echo $result['quantite_demande_article']; ?></td>
                         <td><?php echo number_format( $result['prixwplace_demande_article'],2,'.',' ') ; ?></td>
-                        <td><?php echo $result['prix_demande_article'] ; ?></td>
+                        <td><?php echo number_format($result['prix_demande_article'],2,'.',' ') ; ?></td>
                         <td><?php echo $result['remise_demande_article'] . "%"; ?></td>
                         <?php if ( $result['prix_demande_article'] != $result['prix_accorde_demande_article']){ ?>
-                        <td style="background-color: yellow;"><?php echo $result['prix_accorde_demande_article'] ; ?></td>
+                        <td style="background-color: yellow;"><?php echo number_format($result['prix_accorde_demande_article'],2,'.',' ') ; ?></td>
                         <td style="background-color: yellow;"><?php echo $result['remise_accorde_demande_article'] . "%"; ?></td>
                         <?php }else{?>
-                        <td><?php echo $result['prix_accorde_demande_article'] ; ?></td>
+                        <td><?php echo number_format($result['prix_accorde_demande_article'],2,'.',' ') ; ?></td>
                         <td><?php echo $result['remise_accorde_demande_article'] . "%"; ?></td>
                         <?php }?>
                          <?php if($this->utilisateur =='5' or $this->utilisateur== '13' or $this->utilisateur =='20'){ ?>
-                        <td><?php echo $result['prix_cif_demande_article'] ; ?></td>
-                        <td><?php echo $result['prix_fob_demande_article'] ; ?></td>
+                        <td><?php echo number_format($result['prix_cif_demande_article'],2,'.',' ') ; ?></td>
+                        <td><?php echo number_format($result['prix_fob_demande_article'],2,'.',' ') ; ?></td>
                         <td><?php echo $result['marge_demande_article'] . "%"; ?></td><?php } else {}?>
                     </tr>
                 <?php } ?>
