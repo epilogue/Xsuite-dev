@@ -373,6 +373,7 @@ if($user->id_fonction == 3){
                            }
                        }
 $this->view->plop=$plop;
+echo '<pre>',var_export($essaisremise),'</pre>'; exit();
  echo '<pre>',var_export($plop),'</pre>'; exit();
                     /*
                      * ici, envoi des mails
