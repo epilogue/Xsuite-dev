@@ -340,9 +340,7 @@ if($user->id_fonction == 3){
                                 $cifs= ($result['prix_fob_demande_article'])*1.07;
                                 $cif=round($cifs,2);
                                 $updatecif3 = $updatecif1->updatecif($cif, $result['code_article'], $result['tracking_number_demande_xprice']);
-                            }
-                           
-                            
+                            }     
                         }
                         $margeupdate1=new Application_Model_DbTable_DemandeArticlexprices();
                         $margeupdate2=$margeupdate1->getDemandeArticlexprice($numwp);
@@ -351,7 +349,31 @@ if($user->id_fonction == 3){
                             $marge=$marges*100;
                             $margeupdate3=$margeupdate1->updateMarge($marge, $res['code_article'],$result['tracking_number_demande_xprice']);
                         }
-
+                        /*
+                         * 
+                         * pour chaque ligne de la demande  on vérifie  si  la marge :
+                         * si il y a une ligne supérieur à 65  chemin classique ( drv, fobfr,supply,dbd,dirco)
+                         * si il y a une ligne  entre 55 et 65 validations par les drv uniquement  
+                         * si il y a une ligne entre 45 et 55 validation par les  leaders uniquement  
+                         * 
+                         * 
+                         */
+                       $essairemise = new Application_Model_DbTable_DemandeArticlexprices();
+                       $essairemises=$essairemise->getRemise($numwp);
+                       foreach ($essairemises as $essaisremise){
+                           if($essaisremise >65){
+                               $plop=66;
+                           }
+                           elseif($essaisremise>55  && $essaisremise<65 ){
+                               $plop=60;
+                           }
+                           elseif($essaisremise >45 && $essaisremise<55){
+                               $plop=50;
+                              
+                           }
+                       }
+$this->view->plop=$plop;
+ echo '<pre>',var_export($plop),'</pre>'; exit();
                     /*
                      * ici, envoi des mails
                      * NE PAS TOUCHER SOUS PEINE D'EFFONDREMENT DE L'APPLI

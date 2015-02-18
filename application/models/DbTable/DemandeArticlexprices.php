@@ -172,5 +172,15 @@ class Application_Model_DbTable_DemandeArticlexprices extends Zend_Db_Table_Abst
         $plop2 = $this->update($datas, $where);
         return $plop2;
     }
+    public function getRemise($numwp){
+        $sql="select remise_demande_article from demande_article_xprices where numworkplace_demande_xprice = {$numwp}";
+        $res = $this->getAdapter()->query($sql);
+        $rest=$res->fetchAll();
+        if (!$rest) {
+            return null;
+        } else {
+            return $rest;
+        }
+    }
 }
 
