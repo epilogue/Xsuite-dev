@@ -357,24 +357,7 @@ if($user->id_fonction == 3){
                          * si il y a une ligne entre 45 et 55 validation par les  leaders uniquement  
                          * 
                          * 
-                         */
-//                       $essairemise = new Application_Model_DbTable_DemandeArticlexprices();
-//                       $essairemises=$essairemise->getRemise($numwp);
-//                       foreach ($essairemises as $essaisremise){
-//                           if($essaisremise >65){
-//                               $plop=66;
-//                           }
-//                           elseif($essaisremise>55  && $essaisremise<65 ){
-//                               $plop=60;
-//                           }
-//                           elseif($essaisremise >45 && $essaisremise<55){
-//                               $plop=50;
-//                              
-//                           }
-//                       }
-//$this->view->plop=$plop;
-//echo '<pre>',var_export($essairemise),'</pre>'; exit();
-// echo '<pre>',var_export($plop),'</pre>'; exit();
+                         */                     
                     /*
                      * ici, envoi des mails
                      * NE PAS TOUCHER SOUS PEINE D'EFFONDREMENT DE L'APPLI
