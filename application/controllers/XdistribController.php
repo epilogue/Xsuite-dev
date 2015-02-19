@@ -129,7 +129,17 @@ public function createAction()
             /*recuperation de la fonction et de la zone de tracking  utilisé pour l'envoi des mails */
             $fonctioncreateur = $user_info['id_fonction'];
             $zonetracking = substr($trackingNumber, 6, 2);
-            
+            /*recuperation des donnees concernant l'offre 
+             * numero offre
+             * numero client
+             * code article
+             * reference article
+             * quantite
+             * prix demandé
+             * prix tarif
+             * date
+             * identifiant
+             */
             $query2 = "select OOLINE.OBORNO,OOLINE.OBCUNO,OOLINE.OBITNO,OOLINE.OBITDS,OOLINE.OBORQT,OOLINE.OBLNA2,OOLINE.OBNEPR,OOLINE.OBSAPR,OOLINE.OBELNO,OOLINE.OBRGDT,
                     OOLINE.OBLMDT,
                     OOLINE.OBSMCD
@@ -138,8 +148,8 @@ public function createAction()
 
             while ($resultat[] = odbc_fetch_array($resultats)) {
                     $this->view->resultat = $resultat;
-                   echo '<pre>',var_export($resultat),'</pre>';
                 }
+                /* recuperation du code acquisition , prif fob et cif*/
             foreach ($this->view->resultat as $itnoarticle) {
                     $mmcono = "100";
                     $division = "FR0";
@@ -153,11 +163,9 @@ public function createAction()
                     $query3 = "select * from EIT.MVXCDTA.MPAGRP MPAGRP where MPAGRP.AJCONO = '$mmcono' AND MPAGRP.AJSUNO = '$supplier' AND (MPAGRP.AJAGNB = '$agreement3'  OR MPAGRP.AJAGNB = '$agreement2' OR MPAGRP.AJAGNB = '$agreement1') AND MPAGRP.AJOBV2 = '{$itnoarticle['OBITNO']}' AND MPAGRP.AJOBV1 = '$division'  ORDER BY MPAGRP.AJAGNB";
                     $resultats3 = odbc_Exec($this->odbc_conn2, $query3);
                     $prixciffob[] = odbc_fetch_object($resultats3);
-                    //$tagada1[]=array(trim($prixciffob->AJOBV2)=>$prixciffob->AJPUPR);
                     $acquis= "select MITBAL.MBITNO, MITBAL.MBPUIT from EIT.MVXCDTA.MITBAL MITBAL where MITBAL.MBITNO ='{$itnoarticle['OBITNO']}'";
                     $resultatsacquis=odbc_Exec($this->odbc_conn2, $acquis);
                     $resultatacquis[] = odbc_fetch_object($resultatsacquis);
-                   // $tagada[]= array(trim($plop->MBITNO) => $plop->MBPUIT);
                 }
             $this->view->prixciffob = $prixciffob;
             
@@ -168,7 +176,6 @@ public function createAction()
             $query1bis = "select * from EIT.MVXCDTA.OCUSMA OCUSMA where OCUSMA.OKCUNO = '{$resultat[0]['OBCUNO']}'";
             $infos_distributeur = odbc_fetch_array(odbc_exec($this->odbc_conn2, $query1bis));
             $this->view->infos_distributeur = $infos_distributeur;
-            //echo  '<pre>',  var_export($infos_distributeur),'</pre>'; exit();
             $query1ter = "select OOHEAD.OACHL1 from EIT.MVXCDTA.OOHEAD OOHEAD where OOHEAD.OACUNO = '{$resultat[0]['OBCUNO']}'";
             $numdistributeurwp = odbc_fetch_array(odbc_exec($this->odbc_conn2, $query1ter));
             $this->view->numdistributeurwp = $numdistributeurwp['OACHL1'];
@@ -177,7 +184,7 @@ public function createAction()
             $demande_xdistrib = $demandes_xdistrib->createXdistrib(
                             $numwp, $trackingNumber, null,null,$infos_offres->OBRGDT,null, $user_info['id_user'], null,null, $numdistributeurwp['OACHL1']); 
             /* fin insertion demande_xdistrib */
-            
+            /*recuperation code industry*/
             $query1quart = "select ZMCPJO.Z2MCL1  from EIT.SMCCDTA.ZMCPJO  ZMCPJO where ZMCPJO.Z2CUNO= '{$resultat[0]['OBCUNO']}' ";
             $industriewp = odbc_fetch_array(odbc_exec($this->odbc_conn3, $query1quart));
             $this->view->industriewp = $industriewp ;
@@ -205,7 +212,7 @@ public function createAction()
                         $distributeur = $distributeurs->getDistributeurnumwp($numdistributeurwp['OACHL1']);
 
                         $adresse_distributeur = $infos_distributeur['OKCUA1'] . $infos_distributeur['OKCUA2'] . $infos_distributeur['OKCUA3'] . $infos_distributeur['OKCUA4'];
-/*insertion distributeur dans la bdd */
+                        /*insertion distributeur dans la bdd */
                         if (is_null($distributeur)) {
                             $newdistributeur = $distributeurs->createDistributeur($infos_distributeur['OKCUNM'],null,null, $numdistributeurwp['OACHL1'],null, $adresse_distributeur,null, $info_industry['id_industry'], $infos_distributeur['OKCFC7']);
                         }
@@ -221,17 +228,13 @@ public function createAction()
                         }
                         $demande_article_xdistrib = $demandes_articles_xdistrib->createDemandeArticlexdistrib($resultarticle['OBSAPR'], $resultarticle['OBNEPR'],null, $resultarticle['OBORQT'], round(100 - ($resultarticle['OBNEPR'] * 100 / $resultarticle['OBSAPR']), 2), $infos_offres->OBRGDT,$resultarticle['OBNEPR'], round(100 - ($resultarticle['OBNEPR'] * 100 / $resultarticle['OBSAPR']), 2), null, null, null,null, $trackingNumber, $resultarticle['OBITNO'], $resultarticle['OBITDS'], $numwp,null);
                     }
+                    
+                    /*insertion et update  prix fob et cif*/
                     foreach ($prixciffob as $key => $value) {
-                        /* a ajouter
-                         *  requete suivante : select MITBAL.MBPUIT as acquisition from eit.MVXCDTA.MITBAL MITBAL where MITBAL.MBITNO='$value->AJOBV2' ;
-                            if $acquisition ==1 ou 3 prix fob = prix cif 
-                         * if $acquisition == 2 cif =1.07*fob
-                         * 
-                         *                          */
                         $insertprix = new Application_Model_DbTable_DemandeArticlexdistrib();
                         $inserprix = $insertprix->InserPrixFob($value->AJPUPR, $value->AJOBV2, $numwp);
                     }
-                    foreach($ $resultatacquis as $key=>$value){
+                    foreach($resultatacquis as $key=>$value){
                         $insertacquis= new Application_Model_DbTable_DemandeArticlexdistrib();
                         $inseracquis = $insertacquis->InserCodeAcquis($value->MBPUIT, $value->MBITNO, $numwp);
                     }
