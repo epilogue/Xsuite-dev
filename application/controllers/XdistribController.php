@@ -25,10 +25,21 @@ class XdistribController extends Zend_Controller_Action
         if (!$this->odbc_conn3) {
             echo "pas d'accès à la base de données SMCCDTA";
         }
+         $this->odbc_conn4 = odbc_connect('Movex4', "EU65535", "CCS65535");
+        if (!$this->odbc_conn4) {
+            echo "pas d'accès à la base de données ZEUCDTA";
+        }
     }
 
     public function indexAction()
     {
+        /*
+         * en fonction de la fonction de l'utilisateur  on va chercher  dans la bdd  les offres qui le concerne 
+         * KAM et ITC  leurs offres 
+         * Leader leurs offres et celles de leur holon
+         * Chef de region  les offres de leurs régions
+         * DBD et Dirco  toutes les offres 
+         */
      $user = $this->_auth->getStorage()->read();
      $holon =$user->id_holon; 
      if ($user->id_fonction == 1 || $user->id_fonction==2){
