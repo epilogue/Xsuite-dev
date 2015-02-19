@@ -111,7 +111,6 @@ if($user->id_fonction == 3){
          $recapitulatif2 = $r;
      }
     $this->view->recapitulatif = $recapitulatif2;
-   echo '<pre>',var_export($recapitulatif2),'</pre>';
 }
 
     public function numwpAction() {
