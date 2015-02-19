@@ -27,7 +27,9 @@ body{
 .clear{
     clear: both;
 }
-
+.uploadFichier{
+    width: 300px;
+}
 .imgindex{
     margin-left:50px;
     padding-left: 50px;
