@@ -207,6 +207,7 @@ public function createAction()
                     $industry = new Application_Model_DbTable_Industry();
                     $info_industry = $industry->getMovexIndustry($plop10);
                     $this->view->info_industry = $info_industry;
+                    echo '<pre>',var_export($info_industry),'</pre>';
                 }
                 $distributeurs = new Application_Model_DbTable_Distributeurs();
                         $distributeur = $distributeurs->getDistributeurnumwp($numdistributeurwp['OACHL1']);
