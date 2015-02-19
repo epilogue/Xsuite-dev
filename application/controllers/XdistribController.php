@@ -257,57 +257,31 @@ public function createAction()
                             $marge=$marges*100;
                             $margeupdate3=$margeupdate1->updateMarge($marge, $res['code_article'],$res['tracking_number_demande_xdistrib']);
                         }
-                        exit();
+                        //exit();
             if ($this->getRequest()->isPost()) {
                     $formData = $this->getRequest()->getPost();
-                   
-                     $queryINDUS = "select ZMCPJO.Z2MCL1  from EIT.SMCCDTA.ZMCPJO  ZMCPJO where ZMCPJO.Z2CUNO= '{$formData['numclientwp']}' ";
-            $industriewpclient = odbc_fetch_array(odbc_exec($this->odbc_conn3, $queryINDUS));
-            
-            $industriewpclient['Z2MCL1'] = trim($industriewpclient['Z2MCL1']);
-            if ($industriewpclient['Z2MCL1'] == "" || $industriewpclient['Z2MCL1'] == " ") {
-                    $industriewpclient['Z2MCL1'] = "SCI";
-                }
-                if (isset($industriewpclient['Z2MCL1']) && $industriewpclient['Z2MCL1'] != '' && $industriewpclient['Z2MCL1'] != ' ' && $industriewpclient['Z2MCL1'] != '  ') {
-                    $industryclient = new Application_Model_DbTable_Industry();
-                    $info_industryclient = $industryclient->getMovexIndustry($industriewpclient['Z2MCL1']);
-                   $idIndustryClient = $info_industryclient['id_industry'];
-                } else {
-                   $idIndustryClient= 416;
-                }
-                        $emailVars = Zend_Registry::get('emailVars');
-                        //alors si le distributeur n'existe pas ' on insert d'abord dans la table distributeur
-                        $distributeurs = new Application_Model_DbTable_Distributeurs();
-                        $distributeur = $distributeurs->getDistributeurnumwp($numdistributeurwp['OACHL1']);
-
-                        $adresse_distributeur = $infos_distributeur['OKCUA1'] . $infos_distributeur['OKCUA2'] . $infos_distributeur['OKCUA3'] . $infos_distributeur['OKCUA4'];
-
-                        if (is_null($distributeur)) {
-                            $newdistributeur = $distributeurs->createDistributeur($infos_distributeur['OKCUNM'],$formData['nom_contact_distributeur'],$formData['prenom_contact_distributeur'], $numdistributeurwp['OACHL1'],$formData['agence'], $adresse_distributeur,$formData['id_holon'], $info_industry['id_industry'], $infos_distributeur['OKCFC7']);
-                        }
-                        /* insertion Clients
-                        on regarde dans la base si le client existe */
-                        $clients = new Application_Model_DbTable_Clients();
-                        $client = $clients->getClientnumwp($formData['numclientwp']);
-                        if(is_null($client)){
-                            $newclient = $clients->createClient($formData['nom_client'], $formData['numclientwp'], $formData['adresse_client'], $idIndustryClient, $formData['potentiel']);
-                        }
-                        // et ensuite  on insert dans la table demande_xdistrib
-                        //si le distributeur existe  alors on insert immédiatement dans la table demande_xdistribs
-
-                        $numwpexist = $demandes_xdistrib->getNumwp($numwp);
-                        $firstComment = null;
-                        if (is_null($numwpexist)) {
-                            $demande_xdistrib = $demandes_xdistrib->createXdistrib(
-                            $numwp, $trackingNumber, null,null,$infos_offres->OBRGDT,null, $user_info['id_user'], null,null, $numdistributeurwp['OACHL1']);
-                            $dbtValidationDemande = new Application_Model_DbTable_Validationsdemandexdistribs();
-                            if (!is_null($formData['commentaire_demande_xdistrib']) && trim($formData['commentaire_demande_xdistrib']) != "") {
-                                $now = new DateTime();
-                                $validationDemande = $dbtValidationDemande->createValidation(
-                                        "creation", $now->format('Y-m-d H:i:s'), "creation", $user_info['id_user'], $demande_xdistrib->lastId(), trim($formData['commentaire_demande_xdistrib']));
-                                $firstComment = $dbtValidationDemande->lastId();
-                            }
-                        }
+//                        /* insertion Clients
+//                        on regarde dans la base si le client existe */
+//                        $clients = new Application_Model_DbTable_Clients();
+//                        $client = $clients->getClientnumwp($formData['numclientwp']);
+//                        if(is_null($client)){
+//                            $newclient = $clients->createClient($formData['nom_client'], $formData['numclientwp'], $formData['adresse_client'], $idIndustryClient, $formData['potentiel']);
+//                        }
+//                       
+//
+//                        $numwpexist = $demandes_xdistrib->getNumwp($numwp);
+//                        $firstComment = null;
+//                        if (is_null($numwpexist)) {
+//                            $demande_xdistrib = $demandes_xdistrib->createXdistrib(
+//                            $numwp, $trackingNumber, null,null,$infos_offres->OBRGDT,null, $user_info['id_user'], null,null, $numdistributeurwp['OACHL1']);
+//                            $dbtValidationDemande = new Application_Model_DbTable_Validationsdemandexdistribs();
+//                            if (!is_null($formData['commentaire_demande_xdistrib']) && trim($formData['commentaire_demande_xdistrib']) != "") {
+//                                $now = new DateTime();
+//                                $validationDemande = $dbtValidationDemande->createValidation(
+//                                        "creation", $now->format('Y-m-d H:i:s'), "creation", $user_info['id_user'], $demande_xdistrib->lastId(), trim($formData['commentaire_demande_xdistrib']));
+//                                $firstComment = $dbtValidationDemande->lastId();
+//                            }
+//                        }
                         
 //  /* Insertion dans les tables Articles  et  demande_Article_Xdistrib */
 //                    $articles_xdistrib = new Application_Model_DbTable_Articles();
