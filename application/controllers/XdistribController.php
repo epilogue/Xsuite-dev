@@ -254,7 +254,7 @@ public function createAction()
                         foreach($margeupdate2 as $res){
                             $marges = 1-($res['prix_cif_demande_article']/$res['prix_accorde_demande_article']);
                             $marge=$marges*100;
-                            $margeupdate3=$margeupdate1->updateMarge($marge, $res['code_article'],$result['tracking_number_demande_xdistrib']);
+                            $margeupdate3=$margeupdate1->updateMarge($marge, $res['code_article'],$res['tracking_number_demande_xdistrib']);
                         }
                         exit();
             if ($this->getRequest()->isPost()) {
