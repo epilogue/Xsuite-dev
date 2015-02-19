@@ -91,12 +91,12 @@ public function createAction()
 //si le numero workplace est valide alors on fait la requête pour movex
 // requête d'informations de l'offre
         if (!is_null($numwp)) {
-
+            /*recuperation numwp et date*/
             $pirate = "select OOLINE.OBORNO, OOLINE.OBRGDT, OOLINE.OBORNO from EIT.CVXCDTA.OOLINE OOLINE where OOLINE.OBORNO='{$numwp}'";
             $infos_offre = odbc_exec($this->odbc_conn, $pirate);
             $infos_offres = odbc_fetch_object($infos_offre);
             $this->view->infos_offres = $infos_offres;
-            echo  '<pre>', var_export($infos_offres),'</pre>';
+           // echo  '<pre>', var_export($infos_offres),'</pre>';
             $dateinit = $infos_offres->OBRGDT;
             $dateinit3 = substr($dateinit, 0, 4);
             $dateinit2 = substr($dateinit, 4, 2);
@@ -104,15 +104,19 @@ public function createAction()
             $dateinitf = array($dateinit1, $dateinit2, $dateinit3);
             $datefinal = implode('/', $dateinitf);
             $this->view->datefinal = $datefinal;
+            /*recuperation info createur de l'offre*/
             $user = $this->_auth->getStorage()->read();
             $zoneT = new Application_Model_DbTable_Zones();
             $zone = $zoneT->getZone($user->id_zone);
+            /*creation du tracking number*/
             $Xdistribs = new Application_Model_DbTable_Xdistrib();
             $trackingNumber = Application_Model_DbTable_Xdistrib::makeTrackingNumber($zone['nom_zone'], $Xdistribs->lastId(true));
             $this->view->trackingNumber = $trackingNumber;
              //echo  '<pre>', var_export($trackingNumber),'</pre>';
+            /*recuperation du numwp du createur de l'offre*/
             $query1 = "SELECT OOLINE.OBSMCD  as userwp FROM EIT.CVXCDTA.OOLINE OOLINE WHERE OOLINE.OBORNO='{$numwp}'";
             $numwp_user = odbc_fetch_array(odbc_exec($this->odbc_conn, $query1));
+            /*recuperation des donnees concernant le createur de l'offre*/
             $usertest = new Application_Model_DbTable_Users();
             $user_info = $usertest->getMovexUser($numwp_user['USERWP']);
             $this->view->user_info = $user_info;
@@ -122,8 +126,10 @@ public function createAction()
             $holonuser1 = $holonuser->getHolon($id_holon);
             $nom_holon = $holonuser1['nom_holon'];
             $this->view->holon = $nom_holon;
+            /*recuperation de la fonction et de la zone de tracking  utilisé pour l'envoi des mails */
             $fonctioncreateur = $user_info['id_fonction'];
             $zonetracking = substr($trackingNumber, 6, 2);
+            
             $query2 = "select OOLINE.OBORNO,OOLINE.OBCUNO,OOLINE.OBITNO,OOLINE.OBITDS,OOLINE.OBORQT,OOLINE.OBLNA2,OOLINE.OBNEPR,OOLINE.OBSAPR,OOLINE.OBELNO,OOLINE.OBRGDT,
                     OOLINE.OBLMDT,
                     OOLINE.OBSMCD
@@ -132,7 +138,7 @@ public function createAction()
 
             while ($resultat[] = odbc_fetch_array($resultats)) {
                     $this->view->resultat = $resultat;
-                  //  echo '<pre>',var_export($resultat),'</pre>';
+                   echo '<pre>',var_export($resultat),'</pre>';
                 }
             foreach ($this->view->resultat as $itnoarticle) {
                     $mmcono = "100";
