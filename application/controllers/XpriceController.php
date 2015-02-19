@@ -374,20 +374,20 @@ if($user->id_fonction == 3){
                     $holoncreateur = $user_info['id_holon'];
                     $clientsnom=trim($infos_client['OKCUNM']);
                     $params=array();
-                    $params['destinataireMail']=$user_info['email_user'];
-                    $params['url']="http://{$_SERVER['SERVER_NAME']}/xprice/consult/numwp/{$numwp}";
-                    $params['corpsMail']="Bonjour,\n"
-                                . "\n"
-                                . "Votre demande XPrice({$trackingNumber}/{$numwp}) a bien été envoyé.\n"
-                                . "pour la consulter veuillez vous rendre à l'adresse url : \n"
-                                . "%s"
-                                . "\n\n"
-                                . "Cordialement,\n"
-                                . "\n"
-                                . "--\n"
-                                . "Xsuite";
-                                $params['sujet']="TEST XPrice :Votre Offre  Xprice {$trackingNumber}/{$numwp} de {$user_info['nom_user']} pour $clientsnom";
-                                $this->sendEmail($params);
+//                    $params['destinataireMail']=$user_info['email_user'];
+//                    $params['url']="http://{$_SERVER['SERVER_NAME']}/xprice/consult/numwp/{$numwp}";
+//                    $params['corpsMail']="Bonjour,\n"
+//                                . "\n"
+//                                . "Votre demande XPrice({$trackingNumber}/{$numwp}) a bien été envoyé.\n"
+//                                . "pour la consulter veuillez vous rendre à l'adresse url : \n"
+//                                . "%s"
+//                                . "\n\n"
+//                                . "Cordialement,\n"
+//                                . "\n"
+//                                . "--\n"
+//                                . "Xsuite";
+//                                $params['sujet']="TEST XPrice :Votre Offre  Xprice {$trackingNumber}/{$numwp} de {$user_info['nom_user']} pour $clientsnom";
+//                                $this->sendEmail($params);
                     /*
                      * ici si itc envoie mail au leader en fonction du holon pour consultation
                      */
@@ -659,21 +659,21 @@ if($user->id_fonction == 3){
              */
             $emailVars = Zend_Registry::get('emailVars');
             if (isset($formData['validation']) && $formData['validation'] == "validee") {
-                $params1 = array();
-                $params1['destinataireMail'] = $info_user['email_user'] ;
-                $params1['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/consult/numwp/{$numwp}";
-                $params1['corpsMail'] = "Bonjour,\n"
-                        . "\n"
-                        . "Votre demande XPrice $tracking/$numwp a été validée par .\n"
-                        . "Vous pouvez la consulter à cette adresse url : \n"
-                        . "%s"
-                        . "\n\n"
-                        . "Cordialement,\n"
-                        . "\n"
-                        . "--\n"
-                        . "Prix fobfr.";
-                $params1['sujet'] = "TEST XPrice :la demande Xprice $numwp/$tracking pour le client $nomclients validée par votre chef de région.";
-                $this->sendEmail($params1);
+//                $params1 = array();
+//                $params1['destinataireMail'] = $info_user['email_user'] ;
+//                $params1['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/consult/numwp/{$numwp}";
+//                $params1['corpsMail'] = "Bonjour,\n"
+//                        . "\n"
+//                        . "Votre demande XPrice $tracking/$numwp a été validée par .\n"
+//                        . "Vous pouvez la consulter à cette adresse url : \n"
+//                        . "%s"
+//                        . "\n\n"
+//                        . "Cordialement,\n"
+//                        . "\n"
+//                        . "--\n"
+//                        . "Prix fobfr.";
+//                $params1['sujet'] = "TEST XPrice :la demande Xprice $numwp/$tracking pour le client $nomclients validée par votre chef de région.";
+//                $this->sendEmail($params1);
                 /*
                  * on recherche le chef de marche correspondant auquel la demande s'adresse
                  */
