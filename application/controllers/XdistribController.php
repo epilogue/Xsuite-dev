@@ -257,6 +257,9 @@ public function createAction()
                             $marge=$marges*100;
                             $margeupdate3=$margeupdate1->updateMarge($marge, $res['code_article'],$res['tracking_number_demande_xdistrib']);
                         }
+                        
+                        require ('library/PHPExcel/Classes/PHPExcel.php');
+                        $essai = new PHPExcel();
                         //exit();
             if ($this->getRequest()->isPost()) {
                     $formData = $this->getRequest()->getPost();
