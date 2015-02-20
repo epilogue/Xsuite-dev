@@ -72,9 +72,47 @@ class XdistribController extends Zend_Controller_Action
      }
     $this->view->recapitulatif = $recapitulatif2;
     }
+public function uploadnumwpAction(){
+    
+     $numwp = $this->getRequest()->getParam('numwp', null);
+        $form = new Application_Form_UploadDistrib();
+        $mmcono = "100";
+        $division = "FR0";
+        $facility = "I01";
+        $type = "3";
+        $warehouse = "I02";
+        $supplier = "I990001";
+        $agreement1 = "I000001";
+        $agreement2 = "I000002";
+        $agreement3 = "I000003";
+        if (!is_null($numwp)) {
+            $form->populate(array("num_offre_worplace" => $numwp));
+        }
+        if ($this->getRequest()->isPost()) {
+            $redirector = $this->_helper->getHelper('Redirector');
 
-public function createAction()
-    {
+            if ($form->isValid($this->getRequest()->getPost())) {
+
+                $query = "select
+	OOLINE.OBORNO as NBNUMWP,OOLINE.OBCUNO
+	FROM EIT.CVXCDTA.OOLINE OOLINE WHERE OOLINE.OBORNO = '{$_POST['num_offre_worplace']}' AND OOLINE.OBDIVI='FR0' and OOLINE.OBCONO='100'";
+                $results = odbc_exec($this->odbc_conn, $query);
+                $r = odbc_fetch_object($results);
+                if ($r->NBNUMWP === $_POST['num_offre_worplace']) {
+                    $redirector->gotoSimple('create', 'xdistrib', null, array('numwp' => $_POST['num_offre_worplace']));
+                } else {
+                    $flashMessenger = $this->_helper->getHelper('FlashMessenger');
+                    $message = "ce numéro d'offre n'a pas de concordance dans la base MOVEX";
+                    $flashMessenger->addMessage($message);
+                    $redirector->gotoSimple('numwp', 'xdistrib', null, array('numwp' => $_POST['num_offre_worplace']));
+                }
+            } else {
+                $form->populate($this->getRequest()->getPost());
+            }
+        }
+        $this->view->form = $form;
+}
+public function createAction(){
         $numwp = $this->getRequest()->getParam('numwp', null);
         $demandes_xdistrib = new Application_Model_DbTable_Xdistrib();
         $demande_xdistrib = $demandes_xdistrib->getNumwp($numwp);
