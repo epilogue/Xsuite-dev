@@ -166,12 +166,12 @@ public function createAction(){
             /*insertion dans la table temp_movex_distributeur*/
             $query1bis = "select * from EIT.MVXCDTA.OCUSMA OCUSMA where OCUSMA.OKCUNO = '$infos_offres->OBCUNO'";
             $infos_distributeur = odbc_fetch_array(odbc_exec($this->odbc_conn2, $query1bis));
-             echo  '<pre>', var_export($infos_distributeur),'</pre>';
+            // echo  '<pre>', var_export($infos_distributeur),'</pre>';
               $adresse = $infos_distributeur['OKCUA1'] . $infos_distributeur['OKCUA2'] . $infos_distributeur['OKCUA3'] . $infos_distributeur['OKCUA4'];
-              echo $adresse;
+              //echo $adresse;
             $query1ter = "select OOHEAD.OACHL1 from EIT.MVXCDTA.OOHEAD OOHEAD where OOHEAD.OACUNO = '$infos_offres->OBCUNO'";
             $numdistributeurwp = odbc_fetch_array(odbc_exec($this->odbc_conn2, $query1ter));
-            echo  '<pre>', var_export($numdistributeurwp['OACHL1']),'</pre>';
+           // echo  '<pre>', var_export($numdistributeurwp['OACHL1']),'</pre>';
             $query1quart = "select ZMCPJO.Z2MCL1  from EIT.SMCCDTA.ZMCPJO  ZMCPJO where ZMCPJO.Z2CUNO= '$infos_offres->OBCUNO' ";
             $industriewp = odbc_fetch_array(odbc_exec($this->odbc_conn3, $query1quart));
             //$this->view->industriewp = $industriewp ;
@@ -180,6 +180,7 @@ public function createAction(){
                     $industriewp['Z2MCL1'] = "SCI";
                 }
                 echo $industriewp['Z2MCL1'];
+                
                  if (isset($industriewp['Z2MCL1']) && $industriewp['Z2MCL1'] != '' && $industriewp['Z2MCL1'] != ' ' && $industriewp['Z2MCL1'] != '  ') {
                     $industry = new Application_Model_DbTable_Industry();
                     $info_industry = $industry->getMovexIndustry($industriewp['Z2MCL1']);
@@ -189,9 +190,9 @@ public function createAction(){
                     $industry = new Application_Model_DbTable_Industry();
                     $info_industry = $industry->getMovexIndustry($plop10);
                     $this->view->info_industry = $info_industry;
-                    echo '<pre>',var_export($info_industry),'</pre>';
+                   
                 }
-            
+             echo '<pre>',var_export($info_industry),'</pre>';
             $tempDistribs= 0;
             
             /*fin insertion insertion table temp_movex_distributeur*/
