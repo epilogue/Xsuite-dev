@@ -11,15 +11,17 @@
  *
  * @author frhubym
  */
-class Application_Model_DbTable_TempMovexOffre extends Zend_Db_Table_Abstract {
-    protected $_name = 'temp_movex_offre';
+class Application_Model_DbTable_TempMovexDistrib extends Zend_Db_Table_Abstract {
+    protected $_name = 'temp_movex_distrib';
     
-    public function createInfo($numwp,$date,$userwp,$numwp_distributeur){
+    public function createdistrib($numwp,$numwp_distributeur,$code_industry,$numwp_distributeur_10,$potentiel,$adresse){
          $data = array(
             'numwp' => $numwp,
-            'date' => $date,
-            'userwp' => $userwp,
-             'numwp_distrib'=>$numwp_distributeur
+             'numwp_distributeur'=>$numwp_distributeur,
+             'code_industry'=>$code_industry,
+             'numwp_distributeur_10'=>$numwp_distributeur_10,
+             'potentiel'=>$potentiel,
+             'adresse'=>$adresse
         );
         $this->insert($data);
         return $this;
