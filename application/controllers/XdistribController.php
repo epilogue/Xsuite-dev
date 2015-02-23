@@ -119,7 +119,7 @@ if (!empty($_FILES))
     // SHOW THE UPLOADED FILES
     print_r($_FILES);
 }
-    $filename=$_FILES[][];
+    $filename=$_POST['filename'];
     $destination="/datas/FilesDatas";
     if(move_uploaded_file($filename, $destination) == true){
         echo 'oki fichier';
