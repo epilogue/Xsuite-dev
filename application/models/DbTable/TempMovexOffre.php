@@ -16,9 +16,9 @@ class Application_Model_DbTable_TempMovexOffre extends Zend_Db_Table_Abstract {
     
     public function createInfo($numwp,$date,$userwp,$numwp_distributeur){
          $data = array(
-            'reference_article' => $numwp,
-            'code_article' => $date,
-            'description_article' => $userwp,
+            'numwp' => $numwp,
+            'date' => $date,
+            'userwp' => $userwp,
              'numwp_distrib'=>$numwp_distributeur
         );
         $this->insert($data);
