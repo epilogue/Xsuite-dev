@@ -115,8 +115,8 @@ public function uploadnumwpAction(){
 public function createAction(){
      $filename=$_FILES['nomfichier']['name'];
     
-    $destination='home/www-dev/Xsuite-dev_mag/application/datas/filesDatas/';
-    $destination2=$destination.basename($_FILES['nomfichier']['name']);
+    $destination=APPLICATION_PATH.'/datas/filesDatas/';
+    $destination2=$destination.$_FILES['nomfichier']['name'];
     if(move_uploaded_file($filename,$destination2) == true){
         echo 'oki fichier';
         
