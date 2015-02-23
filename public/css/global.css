@@ -29,6 +29,7 @@ body{
 }
 .uploadFichier{
     width: 300px !important;
+    border-style: solid;
 }
 .imgindex{
     margin-left:50px;
