@@ -115,7 +115,7 @@ public function uploadnumwpAction(){
 public function createAction(){
     //$filename=$_FILES['nomfichier']['tmp_name'];
     $destination="/datas/FilesDatas";
-    if(move_uploaded_file($_post['filename'], $destination) == true){
+    if(move_uploaded_file($_POST['filename'], $destination) == true){
         echo 'oki fichier';
     }else{
         echo 'erreur fichier';
