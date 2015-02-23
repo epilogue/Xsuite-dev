@@ -86,7 +86,7 @@ public function uploadnumwpAction(){
         $agreement2 = "I000002";
         $agreement3 = "I000003";
         if (!is_null($numwp)) {
-            $form->populate(array("num_offre_worplace" => $numwp));
+            $form->populate(array("num_offre_workplace" => $numwp));
         }
         if ($this->getRequest()->isPost()) {
             $redirector = $this->_helper->getHelper('Redirector');
@@ -95,11 +95,11 @@ public function uploadnumwpAction(){
 
                 $query = "select
 	OOLINE.OBORNO as NBNUMWP,OOLINE.OBCUNO
-	FROM EIT.CVXCDTA.OOLINE OOLINE WHERE OOLINE.OBORNO = '{$_POST['num_offre_worplace']}' AND OOLINE.OBDIVI='FR0' and OOLINE.OBCONO='100'";
+	FROM EIT.CVXCDTA.OOLINE OOLINE WHERE OOLINE.OBORNO = '{$_POST['num_offre_workplace']}' AND OOLINE.OBDIVI='FR0' and OOLINE.OBCONO='100'";
                 $results = odbc_exec($this->odbc_conn, $query);
                 $r = odbc_fetch_object($results);
-                if ($r->NBNUMWP === $_POST['num_offre_worplace']) {
-                    $redirector->gotoSimple('create', 'xdistrib', null, array('numwp' => $_POST['num_offre_worplace']));
+                if ($r->NBNUMWP === $_POST['num_offre_workplace']) {
+                    $redirector->gotoSimple('create', 'xdistrib', null, array('numwp' => $_POST['num_offre_workplace']));
                 } else {
                     $flashMessenger = $this->_helper->getHelper('FlashMessenger');
                     $message = "ce numéro d'offre n'a pas de concordance dans la base MOVEX";
@@ -156,9 +156,27 @@ public function createAction(){
             $datefinal = implode('/', $dateinitf);
             $this->view->datefinal = $datefinal;
             
-            /*insertion dans la table temp_movex_offre*/
+            /*insertion dans la table temp_movex_offre(numwp,date_offre,numwp_createur_offre,numwp_distributeur*/
             $temps= new Application_Model_DbTable_TempMovexOffre();
             $temp=$temps->createInfo($numwp, $dateinit, $infos_offres->OBSMCD, $infos_offres->OBCUNO);
+            /*
+             * fin de l'insertion 
+             */
+            
+            /*insertion dans la table temp_movex_distributeur*/
+            $query1bis = "select * from EIT.MVXCDTA.OCUSMA OCUSMA where OCUSMA.OKCUNO = '$infos_offres->OBCUNO'";
+            $infos_distributeur = odbc_fetch_array(odbc_exec($this->odbc_conn2, $query1bis));
+             echo  '<pre>', var_export($infos_distributeur),'</pre>';
+           // $this->view->infos_distributeur = $infos_distributeur;
+            $query1ter = "select OOHEAD.OACHL1 from EIT.MVXCDTA.OOHEAD OOHEAD where OOHEAD.OACUNO = '$infos_offres->OBCUNO'";
+            $numdistributeurwp = odbc_fetch_array(odbc_exec($this->odbc_conn2, $query1ter));
+            //$this->view->numdistributeurwp = $numdistributeurwp['OACHL1'];
+            echo  '<pre>', var_export($numdistributeurwp['OACHL1']),'</pre>';
+            
+            /*fin insertion insertion table temp_movex_distributeur*/
+            
+            
+            
             
             /*recuperation info createur de l'offre*/
             $user = $this->_auth->getStorage()->read();
