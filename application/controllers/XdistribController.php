@@ -113,6 +113,12 @@ public function uploadnumwpAction(){
         $this->view->form = $form;
 }
 public function createAction(){
+    $destination="/datas/FilesDatas";
+    if(move_uploaded_file($filename, $destination) == true){
+        echo 'oki fichier';
+    }else{
+        echo 'erreur fichier';
+    }
         $numwp = $this->getRequest()->getParam('numwp', null);
         $demandes_xdistrib = new Application_Model_DbTable_Xdistrib();
         $demande_xdistrib = $demandes_xdistrib->getNumwp($numwp);
