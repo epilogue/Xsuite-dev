@@ -4,7 +4,7 @@ class Application_Form_UploadDistrib extends Zend_Form {
 
     public function init() {
         $this->setMethod('post');
-        $this->setAction('/xdistrib/uploadnumwp');
+        $this->setAction('/xdistrib/create');
         $this->setAttrib("class", "little_form");
 
 
