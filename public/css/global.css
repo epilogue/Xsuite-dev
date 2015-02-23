@@ -30,6 +30,7 @@ body{
 .uploadFichier{
     width: 300px !important;
     border-style: solid;
+    border-width: 1px;
 }
 .imgindex{
     margin-left:50px;
@@ -703,11 +704,10 @@ span {
 }
 
 .little_form{
-    width: 300px;
+    width: 400px;
     margin-left: auto;
     margin-right: auto;
 }
-
 
 #formindex{
     width: 300px;
