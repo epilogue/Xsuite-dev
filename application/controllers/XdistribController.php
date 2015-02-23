@@ -113,7 +113,7 @@ public function uploadnumwpAction(){
         $this->view->form = $form;
 }
 public function createAction(){
-   echo '<pre>',var_export($_POST),'</pre>'; exit();
+   echo '<pre>',var_export($_FILES),'</pre>'; exit();
     $filename=$_POST['filename'];
     $destination="/datas/FilesDatas";
     if(move_uploaded_file($filename, $destination) == true){
