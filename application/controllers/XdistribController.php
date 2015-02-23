@@ -115,7 +115,7 @@ public function uploadnumwpAction(){
 public function createAction(){
      $filename=$_FILES['nomfichier']['name'];
     
-    $destination='/datas/filesDatas/';
+    $destination='mag/home/www-dev/Xsuite-dev_Mag/application/datas/filesDatas/';
     $destination2=$destination.basename($_FILES['nomfichier']['name']);
     if(move_uploaded_file($filename,$destination2) == true){
         echo 'oki fichier';
@@ -156,7 +156,9 @@ public function createAction(){
             $datefinal = implode('/', $dateinitf);
             $this->view->datefinal = $datefinal;
             
-            /*dans la table temp_movex_offre*/
+            /*insertion dans la table temp_movex_offre*/
+            $temps= new Application_Model_DbTable_TempMovexOffre();
+            $temp=$temps->createInfo($numwp, $datefinal, $infos_offres->userwp, $infos_offres->OBCUNO);
             
             /*recuperation info createur de l'offre*/
             $user = $this->_auth->getStorage()->read();
