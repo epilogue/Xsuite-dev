@@ -114,16 +114,14 @@ public function uploadnumwpAction(){
 }
 public function createAction(){
     $filename=$_FILES['filename'];
-    echo  $filename=$_FILES['filename']['tmp_name'];
+    echo  $filename=$_FILES['nomfichier']['name'];
     $destination="/datas/FilesDatas";
     if(move_uploaded_file($_POST['filename'], $destination) == true){
         echo 'oki fichier';
     }else{
         echo 'erreur fichier';
     }
-    var_dump($_POST);
-    var_dump($_FILES);
-        $numwp = $this->getRequest()->getParam('numwp', null);
+        $numwp = $this->getRequest()->getParam('num_offre_worplace', null);
         $demandes_xdistrib = new Application_Model_DbTable_Xdistrib();
         $demande_xdistrib = $demandes_xdistrib->getNumwp($numwp);
         if (!is_null($demande_xdistrib)) {
