@@ -143,7 +143,7 @@ public function createAction(){
 // requête d'informations de l'offre et on va enregistrer les infos  dans les  tables temp_movex 
         if (!is_null($numwp)) {
             /*recuperation numwp et date*/
-            $pirate = "select OOLINE.OBORNO,OOLINE.OBCUNO, OOLINE.OBRGDT, OOLINE.OBORNO, OOLINE.OBSMCD  as userwp from EIT.CVXCDTA.OOLINE OOLINE where OOLINE.OBORNO='{$numwp}'";
+            $pirate = "select OOLINE.OBORNO,OOLINE.OBCUNO, OOLINE.OBRGDT, OOLINE.OBORNO, OOLINE.OBSMCD from EIT.CVXCDTA.OOLINE OOLINE where OOLINE.OBORNO='{$numwp}'";
             $infos_offre = odbc_exec($this->odbc_conn, $pirate);
             $infos_offres = odbc_fetch_object($infos_offre);
             $this->view->infos_offres = $infos_offres;
@@ -158,7 +158,7 @@ public function createAction(){
             
             /*insertion dans la table temp_movex_offre*/
             $temps= new Application_Model_DbTable_TempMovexOffre();
-            $temp=$temps->createInfo($numwp, $datefinal, $infos_offres->userwp, $infos_offres->OBCUNO);
+            $temp=$temps->createInfo($numwp, $datefinal, $infos_offres->OBSMCD, $infos_offres->OBCUNO);
             
             /*recuperation info createur de l'offre*/
             $user = $this->_auth->getStorage()->read();
