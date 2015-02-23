@@ -122,6 +122,7 @@ public function createAction(){
         echo 'erreur fichier';
     }
     var_dump($_POST);
+    var_dump($_FILES);
         $numwp = $this->getRequest()->getParam('numwp', null);
         $demandes_xdistrib = new Application_Model_DbTable_Xdistrib();
         $demande_xdistrib = $demandes_xdistrib->getNumwp($numwp);
