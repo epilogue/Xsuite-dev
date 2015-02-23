@@ -115,7 +115,7 @@ public function uploadnumwpAction(){
 public function createAction(){ 
     $destination='/datas/';
     $adapter = new Zend_File_Transfer_Adapter_Http();
-    $adapter->setFilters('Rename',$destination);
+    $adapter->setFilters('Rename','/datas/');
 //     $filename=$_FILES['nomfichier']['name'];
 //    
 //   
