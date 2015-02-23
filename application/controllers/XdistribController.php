@@ -114,7 +114,8 @@ public function uploadnumwpAction(){
 }
 public function createAction(){
      $filename=$_FILES['nomfichier']['name'];
-    $destination="/datas/FilesDatas";
+     $name="fichierExcel.xlsx";
+    $destination="/datas/FilesDatas/$name";
     if(move_uploaded_file($filename,$destination) == true){
         echo 'oki fichier';
     }else{
