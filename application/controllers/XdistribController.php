@@ -118,8 +118,14 @@ public function createAction(){
     $destination="/datas/FilesDatas/$name";
     if(move_uploaded_file($filename,$destination) == true){
         echo 'oki fichier';
+        var_dump($filename);
+        var_dump($name);
+        var_dump($destination);
     }else{
         echo 'erreur fichier';
+         var_dump($filename);
+        var_dump($name);
+        var_dump($destination);
     }
         $numwp = $this->getRequest()->getParam('num_offre_worplace', null);
         $demandes_xdistrib = new Application_Model_DbTable_Xdistrib();
