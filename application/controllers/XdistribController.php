@@ -113,6 +113,13 @@ public function uploadnumwpAction(){
         $this->view->form = $form;
 }
 public function createAction(){
+    // IF A FILE HAS BEEN UPLOADED
+if (!empty($_FILES))
+{
+    // SHOW THE UPLOADED FILES
+    print_r($_FILES);
+}
+    $filename=$_FILES[][];
     $destination="/datas/FilesDatas";
     if(move_uploaded_file($filename, $destination) == true){
         echo 'oki fichier';
