@@ -112,20 +112,19 @@ public function uploadnumwpAction(){
         }
         $this->view->form = $form;
 }
-public function createAction(){ 
-    $destination='/datas/';
-    $adapter = new Zend_File_Transfer_Adapter_Http();
-    $adapter->setFilters('Rename','/datas/');
-//     $filename=$_FILES['nomfichier']['name'];
-//    
-//   
-//    $destination2=$destination.basename($_FILES['nomfichier']['name']);
-    if(!$adapter->receive()){
+public function createAction(){
+     $filename=$_FILES['nomfichier']['name'];
+    
+    $destination='../datas/FilesDatas/';
+    $destination2=$destination.basename($_FILES['nomfichier']['name']);
+    if(move_uploaded_file($filename,$destination2) == true){
         echo 'oki fichier';
-      
+        
     }else{
         echo 'erreur fichier';
+         var_dump($filename);
         
+        var_dump($destination2);
     }
         $numwp = $this->getRequest()->getParam('num_offre_worplace', null);
         $demandes_xdistrib = new Application_Model_DbTable_Xdistrib();
