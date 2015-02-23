@@ -114,7 +114,7 @@ public function uploadnumwpAction(){
 }
 public function createAction(){
      $filename=$_FILES['nomfichier']['name'];
-    
+     ini_set("display_errors", E_ALL);
     $destination=APPLICATION_PATH.'/datas/filesDatas/';
     $destination2=$destination.$_FILES['nomfichier']['name'];
     if(move_uploaded_file($filename,$destination2) == true){
