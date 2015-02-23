@@ -8,7 +8,7 @@ class Application_Form_UploadDistrib extends Zend_Form {
         $this->setAttrib("class", "little_form");
 
 
-        $num_offre_workplace = new Zend_Form_Element_Text('num_offre_worplace');
+        $num_offre_workplace = new Zend_Form_Element_Text('num_offre_workplace');
         $num_offre_workplace->setLabel("numéro d'offre workplace : ")
                 ->setRequired(TRUE)
                 ->setDescription("exemple: 00906XXXXXX")
