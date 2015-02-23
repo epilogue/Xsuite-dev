@@ -121,6 +121,17 @@ public function createAction(){
         echo 'oki fichier';
         
     }else{
+        switch ($_FILES['nomfichier']['error']) {
+        case UPLOAD_ERR_OK:
+            break;
+        case UPLOAD_ERR_NO_FILE:
+            throw new RuntimeException('No file sent.');
+        case UPLOAD_ERR_INI_SIZE:
+        case UPLOAD_ERR_FORM_SIZE:
+            throw new RuntimeException('Exceeded filesize limit.');
+        default:
+            throw new RuntimeException('Unknown errors.');
+    }
         echo 'erreur fichier';
          var_dump($filename);
         
