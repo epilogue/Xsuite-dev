@@ -126,7 +126,7 @@ public function createAction(){
         echo 'erreur fichier';
          var_dump($filename);
         var_dump($name);
-        var_dump($destination);
+        var_dump($destination2);
     }
         $numwp = $this->getRequest()->getParam('num_offre_worplace', null);
         $demandes_xdistrib = new Application_Model_DbTable_Xdistrib();
