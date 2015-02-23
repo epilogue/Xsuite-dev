@@ -113,7 +113,8 @@ public function uploadnumwpAction(){
         $this->view->form = $form;
 }
 public function createAction(){
-    //$filename=$_FILES['nomfichier']['tmp_name'];
+    $filename=$_FILES['filename']['tmp_name'];
+    echo  $filename=$_FILES['filename']['tmp_name'];
     $destination="/datas/FilesDatas";
     if(move_uploaded_file($_POST['filename'], $destination) == true){
         echo 'oki fichier';
