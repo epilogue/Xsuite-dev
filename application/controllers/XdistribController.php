@@ -158,7 +158,7 @@ public function createAction(){
             
             /*insertion dans la table temp_movex_offre*/
             $temps= new Application_Model_DbTable_TempMovexOffre();
-            $temp=$temps->createInfo($numwp, $datefinal, $infos_offres->OBSMCD, $infos_offres->OBCUNO);
+            $temp=$temps->createInfo($numwp, $dateinit, $infos_offres->OBSMCD, $infos_offres->OBCUNO);
             
             /*recuperation info createur de l'offre*/
             $user = $this->_auth->getStorage()->read();
