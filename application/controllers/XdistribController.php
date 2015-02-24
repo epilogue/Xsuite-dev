@@ -473,7 +473,10 @@ echo '<hr />';
 $sheetData = $objPHPExcel->getActiveSheet()->toArray(null,true,true,true);
 //echo '<pre>',var_export($sheetData),'</pre>';
 foreach($sheetData as $data){
-    echo $data;
+    foreach($data as $values){
+        echo $values;
+    }
+    
 } 
     }
     public function consultAction()
