@@ -471,12 +471,19 @@ $objPHPExcel = PHPExcel_IOFactory::load($inputFileName);
 echo '<hr />';
 
 $sheetData = $objPHPExcel->getActiveSheet()->toArray();
-foreach ($sheetData as $key => $value) {
-    
-    //echo '<pre>',var_export($value),'</pre>';
-    foreach ($value as $val) {
-        echo $val;
-    }
+
+for($page=0;$page<$objPHPExcel->getSheetCount();$page++)
+{
+   //on recupere la page courante
+   $sheet=$objPHPExcel->getSheet($page);
+ 
+   //pour chaque ligne
+    for($row=0;$row<$nbColDansFichier;$row++)
+   {
+     //ici on recupere avec la methode getCell le contenue des cellule
+     //exemple
+     $valCell=$sheet->getCell('C'.$row)->getValue();/*ici on recupere le contenue de la cellule C de la ligne $row*/
+   }
 }
 
 
