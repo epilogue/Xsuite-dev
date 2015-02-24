@@ -477,8 +477,13 @@ $objPHPExcel = PHPExcel_IOFactory::load($inputFileName);
 */
 $sheet = $objPHPExcel->getSheet(0);
 $rows=$objPHPExcel->getActiveSheet()->getHighestRow();
-for($row=6;$row<=$rows;$row++):
-    $nom_contact = $objPHPExcel->getActiveSheet()->getCellByColumnAndRow(2, 6)->getValue();
+for($row=0;$row<=$rows;$row++):
+    $plop1 = $objPHPExcel->getActiveSheet()->getCellByColumnAndRow(2,$row)->getValue();
+$plop2=$objPHPExcel->getActiveSheet()->getCellByColumnAndRow(2,$row)->getValue();
+$plop3=$objPHPExcel->getActiveSheet()->getCellByColumnAndRow(2,$row)->getValue();
+$plop4=$objPHPExcel->getActiveSheet()->getCellByColumnAndRow(2,$row)->getValue();
+$plop5=$objPHPExcel->getActiveSheet()->getCellByColumnAndRow(2,$row)->getValue();
+    $nom_contact = $objPHPExcel->getActiveSheet()->getCellByColumnAndRow(2,$row)->getValue();
     echo $nom_contact;
 endfor;
 
