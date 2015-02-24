@@ -476,7 +476,7 @@ $objPHPExcel = PHPExcel_IOFactory::load($inputFileName);
 * @var PHPExcel_Worksheet $sheet
 */
 $sheet = $objPHPExcel->getSheet(0);
-$plop=$sheet->setCellByColumnAndRow(6,2);
+$plop=$sheet->getCellByColumnAndRow(6,2);
  print_r($plop->getValue());
 echo '<table border="1">';
  
