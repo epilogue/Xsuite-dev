@@ -477,7 +477,9 @@ $objPHPExcel = PHPExcel_IOFactory::load($inputFileName);
 */
 $sheet = $objPHPExcel->getSheet(0);
 $plop=$sheet->getCellByColumnAndRow(2,6);
- print_r($plop->getValue());
+ //print_r($plop->getValue());
+ $plip=$plop->getValue();
+ echo $plip;
 //echo '<table border="1">';
 // 
 //// On boucle sur les lignes
