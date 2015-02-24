@@ -475,10 +475,10 @@ $sheetData = $objPHPExcel->getActiveSheet()->toArray(null,true,true,true);
 foreach($sheetData as $data){
     //echo '<pre>',var_export($data),'</pre>';
     foreach($data as $keys=>$values){
-       echo $values ;
+       $value[]=$values ;
     }
     
-}  echo $values ;
+}  var_dump($value) ;
     }
     public function consultAction()
     {
