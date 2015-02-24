@@ -476,25 +476,25 @@ $objPHPExcel = PHPExcel_IOFactory::load($inputFileName);
 * @var PHPExcel_Worksheet $sheet
 */
 $sheet = $objPHPExcel->getSheet(0);
-$plop=$sheet->getCellByColumnAndRow(6,2);
+$plop=$sheet->getCellByColumnAndRow(2,6);
  print_r($plop->getValue());
-echo '<table border="1">';
- 
-// On boucle sur les lignes
-foreach($sheet->getRowIterator() as $row) {
- 
-   echo '<tr>';
- 
-   // On boucle sur les cellule de la ligne
-   foreach ($row->getCellIterator() as $cell) {
-      echo '<td>';
-      print_r($cell->getValue());
-      echo '</td>';
-   }
- 
-   echo '</tr>';
-}
-echo '</table>'; 
+//echo '<table border="1">';
+// 
+//// On boucle sur les lignes
+//foreach($sheet->getRowIterator() as $row) {
+// 
+//   echo '<tr>';
+// 
+//   // On boucle sur les cellule de la ligne
+//   foreach ($row->getCellIterator() as $cell) {
+//      echo '<td>';
+//      print_r($cell->getValue());
+//      echo '</td>';
+//   }
+// 
+//   echo '</tr>';
+//}
+//echo '</table>'; 
 }
     public function consultAction()
     {
