@@ -476,10 +476,10 @@ $objPHPExcel = PHPExcel_IOFactory::load($inputFileName);
 * @var PHPExcel_Worksheet $sheet
 */
 $sheet = $objPHPExcel->getSheet(0);
-$plop=$sheet->getCellByColumnAndRow(2,6);
+$plop=$sheet->getCellByColumnAndRow(2,6)->getValue();
  //print_r($plop->getValue());
- $plip=$plop->getValue();
- echo $plip;
+ //$plip=$plop->getValue();
+ echo $plop;
 //echo '<table border="1">';
 // 
 //// On boucle sur les lignes
