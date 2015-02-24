@@ -486,7 +486,7 @@ $Excel = $XLSXDocument->load($inputFileName);
 // get all the row of my file
 $rowIterator = $Excel->getActiveSheet()->getRowIterator();
 //foreach($ as $row) {
- $cellIterator = $rowrowIterator->getCellIterator();
+ $cellIterator = $rowIterator->getCellIterator();
  // Loop all cells, even if it is not set
  $cellIterator->setIterateOnlyExistingCells(false);
  $rowIndex = $row->getRowIndex ();
