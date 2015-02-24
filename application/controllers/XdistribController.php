@@ -465,15 +465,8 @@ foreach($sheetData as $data){
 
 $inputFileName = APPLICATION_PATH.'/datas/filesDatas/demande.xlsx';
 echo 'Loading file ',pathinfo($inputFileName,PATHINFO_BASENAME),' using IOFactory to identify the format<br />';
-$objPHPExcel = PHPExcel_IOFactory::load($inputFileName);
 
 
-echo '<hr />';
-
-$sheetData = $objPHPExcel->getActiveSheet()->toArray();
-
-  
- // require_once '.Classes/PHPExcel/IOFactory.php';
  
 // Chargement du fichier Excel
 $objPHPExcel = PHPExcel_IOFactory::load($inputFileName);
@@ -492,15 +485,17 @@ foreach($sheet->getRowIterator() as $row) {
    echo '<tr>';
  
    // On boucle sur les cellule de la ligne
-   foreach ($row->getCellIterator() as $cell) {
-      echo '<td>';
-      print_r($cell->getValue());
-      echo '</td>';
+   foreach ($row->getCellIterator() as$key=> $cell) {
+//      echo '<td>';
+//      print_r($cell->getValue());
+//      echo '</td>';
+                print_r($cell[7]);
    }
  
    echo '</tr>';
 }
-echo '</table>';  }
+echo '</table>'; 
+}
     public function consultAction()
     {
         // action body
