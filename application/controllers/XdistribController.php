@@ -128,7 +128,7 @@ public function createAction(){
 include 'PHPExcel/Classes/PHPExcel/IOFactory.php';
 
 
-$inputFileName = './datas/filesDatas/demande.xlsx';
+$inputFileName = APPLICATION_PATH.'/datas/filesDatas/demande.xlsx';
 echo 'Loading file ',pathinfo($inputFileName,PATHINFO_BASENAME),' using IOFactory to identify the format<br />';
 $objPHPExcel = PHPExcel_IOFactory::load($inputFileName);
 
