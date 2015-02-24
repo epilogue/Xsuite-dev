@@ -113,6 +113,8 @@ public function uploadnumwpAction(){
         $this->view->form = $form;
 }
 public function createAction(){
+    
+    /* upload du fichier xlsx coorespondant à l'offre */
      $filename=$_FILES['nomfichier']['name'];
      ini_set("display_errors", E_ALL);
     $destination=APPLICATION_PATH.'/datas/filesDatas/';
@@ -121,27 +123,28 @@ public function createAction(){
     if(!$plop->receive()) {
 	var_dump($plop->getMessages());
 }
-//    $destination2=$destination.$_FILES['nomfichier']['name'];
-//    if(move_uploaded_file($filename,$destination2) == true){
-//        echo 'oki fichier';
-//        
-//    }else{
-//        switch ($_FILES['nomfichier']['error']) {
-//        case UPLOAD_ERR_OK:
-//            break;
-//        case UPLOAD_ERR_NO_FILE:
-//            throw new RuntimeException('No file sent.');
-//        case UPLOAD_ERR_INI_SIZE:
-//        case UPLOAD_ERR_FORM_SIZE:
-//            throw new RuntimeException('Exceeded filesize limit.');
-//        default:
-//            throw new RuntimeException('Unknown errors.');
-//    }
-//        echo 'erreur fichier';
-//         var_dump($filename);
-//        
-//        var_dump($destination2);
-//    }
+/*fin de l'upload  le fichier se trouve dans datas/filesDatas*/
+/*lecture du fichier xlsx utilisation de la librairie PHPExcel */
+include 'PHPExcel/Classes/PHPExcel/IOFactory.php';
+
+
+$inputFileName = 'datas/filesDatas/demande.xlsx';
+echo 'Loading file ',pathinfo($inputFileName,PATHINFO_BASENAME),' using IOFactory to identify the format<br />';
+$objPHPExcel = PHPExcel_IOFactory::load($inputFileName);
+
+
+echo '<hr />';
+
+$sheetData = $objPHPExcel->getActiveSheet()->toArray(null,true,true,true);
+var_dump($sheetData);
+
+
+
+/*fin de lecture du fichier xlsx*/
+/*insertion des données du fichier xlsx  dans les tables temporaires */
+/*fin de l'insertion des données dans les tables temporaires */
+/* début d'insertion des données movex dans les tables temporaires*/
+
         $numwp = $this->getRequest()->getParam('num_offre_workplace', null);
         $demandes_xdistrib = new Application_Model_DbTable_Xdistrib();
         $demande_xdistrib = $demandes_xdistrib->getNumwp($numwp);
@@ -212,6 +215,9 @@ public function createAction(){
             $tempDistribs= 0;
             
             /*fin insertion insertion table temp_movex_distributeur*/
+ /*fin de l'insertion des données movex dans les tables temporaires */
+            /* debut de requettage  pour affichage des informations  dans le phtml*/
+            /*fin de requettage pour l'affichage des infos dans le phtml*/
             
             
             
