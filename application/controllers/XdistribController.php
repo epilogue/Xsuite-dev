@@ -485,8 +485,8 @@ $Excel = $XLSXDocument->load($inputFileName);
 
 // get all the row of my file
 $rowIterator = $Excel->getActiveSheet()->getRowIterator();
-foreach($rowIterator as $row) {
- $cellIterator = $row->getCellIterator();
+//foreach($ as $row) {
+ $cellIterator = $rowrowIterator->getCellIterator();
  // Loop all cells, even if it is not set
  $cellIterator->setIterateOnlyExistingCells(false);
  $rowIndex = $row->getRowIndex ();
@@ -504,7 +504,7 @@ $array_data[$rowIndex][$cell->getColumn()] = $cell->getCalculatedValue();
    // affiche le contenu de la ligne pour la colonne a et la colonne b
    echo $array_data[$rowIndex]['A'].';'.$array_data[$rowIndex]['B'];
     }
-}
+//
     }
     public function consultAction()
     {
