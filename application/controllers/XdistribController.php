@@ -116,27 +116,32 @@ public function createAction(){
      $filename=$_FILES['nomfichier']['name'];
      ini_set("display_errors", E_ALL);
     $destination=APPLICATION_PATH.'/datas/filesDatas/';
-    $destination2=$destination.$_FILES['nomfichier']['name'];
-    if(move_uploaded_file($filename,$destination2) == true){
-        echo 'oki fichier';
-        
-    }else{
-        switch ($_FILES['nomfichier']['error']) {
-        case UPLOAD_ERR_OK:
-            break;
-        case UPLOAD_ERR_NO_FILE:
-            throw new RuntimeException('No file sent.');
-        case UPLOAD_ERR_INI_SIZE:
-        case UPLOAD_ERR_FORM_SIZE:
-            throw new RuntimeException('Exceeded filesize limit.');
-        default:
-            throw new RuntimeException('Unknown errors.');
-    }
-        echo 'erreur fichier';
-         var_dump($filename);
-        
-        var_dump($destination2);
-    }
+    $plop= new Zend_File_Transfer_Adapter_Http();
+    $plop->setDestination($destination);
+    if(!$plop->receive()) {
+	var_dump($plop->getMessages());
+}
+//    $destination2=$destination.$_FILES['nomfichier']['name'];
+//    if(move_uploaded_file($filename,$destination2) == true){
+//        echo 'oki fichier';
+//        
+//    }else{
+//        switch ($_FILES['nomfichier']['error']) {
+//        case UPLOAD_ERR_OK:
+//            break;
+//        case UPLOAD_ERR_NO_FILE:
+//            throw new RuntimeException('No file sent.');
+//        case UPLOAD_ERR_INI_SIZE:
+//        case UPLOAD_ERR_FORM_SIZE:
+//            throw new RuntimeException('Exceeded filesize limit.');
+//        default:
+//            throw new RuntimeException('Unknown errors.');
+//    }
+//        echo 'erreur fichier';
+//         var_dump($filename);
+//        
+//        var_dump($destination2);
+//    }
         $numwp = $this->getRequest()->getParam('num_offre_workplace', null);
         $demandes_xdistrib = new Application_Model_DbTable_Xdistrib();
         $demande_xdistrib = $demandes_xdistrib->getNumwp($numwp);
