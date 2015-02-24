@@ -476,7 +476,7 @@ $objPHPExcel = PHPExcel_IOFactory::load($inputFileName);
 * @var PHPExcel_Worksheet $sheet
 */
 //$sheet = $objPHPExcel->getSheet(0);
- print_r($sheet->getCellByColumnAndRow(2,6)->getValue()) ;
+ print_r($objPHPExcel->getCellByColumnAndRow(2,6)->getValue()) ;
 
 echo '<table border="1">';
  
