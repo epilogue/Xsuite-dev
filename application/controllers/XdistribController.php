@@ -475,8 +475,8 @@ $objPHPExcel = PHPExcel_IOFactory::load($inputFileName);
 * récupération de la première feuille du fichier Excel
 * @var PHPExcel_Worksheet $sheet
 */
-//$sheet = $objPHPExcel->getSheet(0);
- print_r($objPHPExcel->getCellByColumnAndRow(2,6)->getValue()) ;
+$sheet = $objPHPExcel->getSheet(0);
+ //print_r($objPHPExcel->getActiveSheet()->getCellByColumnAndRow(2,6)->getValue()) ;
 
 echo '<table border="1">';
  
