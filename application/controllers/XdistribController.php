@@ -472,7 +472,11 @@ echo '<hr />';
 
 $sheetData = $objPHPExcel->getActiveSheet()->toArray();
 foreach ($sheetData as $key => $value) {
+    
     echo '<pre>',var_export($value),'</pre>';
+    for ($index = 0; $index < count($value); $index++) {
+        echo $value[$index];
+    }
 }
 
 
