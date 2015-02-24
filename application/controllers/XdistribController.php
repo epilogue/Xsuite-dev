@@ -470,7 +470,7 @@ $objPHPExcel = PHPExcel_IOFactory::load($inputFileName);
 
 echo '<hr />';
 
-$sheetData = $objPHPExcel->getActiveSheet()->getRowIterator();
+$sheetData = $objPHPExcel->getActiveSheet()->getActiveCell();
 //
 echo '<pre>',  var_export($sheetData),'</pre>';
 
