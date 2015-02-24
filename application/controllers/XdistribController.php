@@ -472,22 +472,35 @@ echo '<hr />';
 
 $sheetData = $objPHPExcel->getActiveSheet()->toArray();
 
-for($page=0;$page<$objPHPExcel->getSheetCount();$page++)
-{
-   //on recupere la page courante
-   $sheet=$objPHPExcel->getSheet($page);
+  
+ // require_once '.Classes/PHPExcel/IOFactory.php';
  
-   //pour chaque ligne
-    for($row=0;$row<$nbColDansFichier;$row++)
-   {
-     //ici on recupere avec la methode getCell le contenue des cellule
-     //exemple
-     $valCell=$sheet->getCell('C'.$row)->getValue();/*ici on recupere le contenue de la cellule C de la ligne $row*/
+// Chargement du fichier Excel
+$objPHPExcel = PHPExcel_IOFactory::load($inputFileName);
+ 
+/**
+* récupération de la première feuille du fichier Excel
+* @var PHPExcel_Worksheet $sheet
+*/
+$sheet = $objPHPExcel->getSheet(0);
+ 
+echo '<table border="1">';
+ 
+// On boucle sur les lignes
+foreach($sheet->getRowIterator() as $row) {
+ 
+   echo '<tr>';
+ 
+   // On boucle sur les cellule de la ligne
+   foreach ($row->getCellIterator() as $cell) {
+      echo '<td>';
+      print_r($cell->getValue());
+      echo '</td>';
    }
+ 
+   echo '</tr>';
 }
-
-
-    }
+echo '</table>';  }
     public function consultAction()
     {
         // action body
