@@ -136,7 +136,10 @@ $objPHPExcel = PHPExcel_IOFactory::load($inputFileName);
 echo '<hr />';
 
 $sheetData = $objPHPExcel->getActiveSheet()->toArray(null,true,true,true);
-echo '<pre>',var_export($sheetData),'</pre>';
+//echo '<pre>',var_export($sheetData),'</pre>';
+foreach($sheetData as $data){
+    echo $data;
+}
 
 
 
@@ -454,6 +457,24 @@ echo '<pre>',var_export($sheetData),'</pre>';
 //                $redirector->gotoSimple('index', 'xdistrib');
                 }
             }
+    }
+    
+    public function readerAction(){
+       include 'PHPExcel/Classes/PHPExcel/IOFactory.php';
+
+
+$inputFileName = APPLICATION_PATH.'/datas/filesDatas/demande.xlsx';
+echo 'Loading file ',pathinfo($inputFileName,PATHINFO_BASENAME),' using IOFactory to identify the format<br />';
+$objPHPExcel = PHPExcel_IOFactory::load($inputFileName);
+
+
+echo '<hr />';
+
+$sheetData = $objPHPExcel->getActiveSheet()->toArray(null,true,true,true);
+//echo '<pre>',var_export($sheetData),'</pre>';
+foreach($sheetData as $data){
+    echo $data;
+} 
     }
     public function consultAction()
     {
