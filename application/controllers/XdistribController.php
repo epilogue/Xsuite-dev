@@ -480,6 +480,7 @@ $plop=$sheet->getCellByColumnAndRow(2,6)->getValue();
  //print_r($plop->getValue());
  //$plip=$plop->getValue();
  echo $plop;
+ echo 'ploptagadademerde';
 //echo '<table border="1">';
 // 
 //// On boucle sur les lignes
