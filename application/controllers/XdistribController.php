@@ -478,7 +478,7 @@ foreach($sheetData as $data){
        echo $values ;
     }
     
-} 
+}  echo $values ;
     }
     public function consultAction()
     {
