@@ -476,21 +476,34 @@ $objPHPExcel = PHPExcel_IOFactory::load($inputFileName);
 * @var PHPExcel_Worksheet $sheet
 */
 $sheet = $objPHPExcel->getSheet(0);
-echo '<table border="1">';
- 
+
+$i=0;
+$excellContent = array();
 // On boucle sur les lignes
 foreach($sheet->getRowIterator() as $row) {
- 
-   echo '<tr>';
- 
+    if($i<4) {
+        $i++;
+        continue;
+    }
+ $rowC = array();
    // On boucle sur les cellule de la ligne
    foreach ($row->getCellIterator() as $cell) {
-      echo '<td>';
-      print_r($cell->getValue());
-      echo '</td>';
+       $rowC[] = $cell->getValue();
    }
  
+ $excellContent[] = $rowC;
+}
+echo '<table border="1">';
+foreach ($excellContent as $key => $row) {
+   echo '<tr><td>key: '.$key.'</td>';
+   foreach ($row as $k => $cell) {
+      echo '<td>k: '.$k.'  ';
+      
+      print_r($cell);
+      echo '</td>';
+   }
    echo '</tr>';
+    
 }
 echo '</table>'; 
 }
