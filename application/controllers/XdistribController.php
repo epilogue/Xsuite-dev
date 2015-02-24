@@ -485,11 +485,10 @@ foreach($sheet->getRowIterator() as $row) {
    echo '<tr>';
  
    // On boucle sur les cellule de la ligne
-   foreach ($row->getCellIterator() as$key=> $cell) {
-//      echo '<td>';
-//      print_r($cell->getValue());
-//      echo '</td>';
-                print_r($cell[7]);
+   foreach ($row->getCellIterator() as $cell) {
+      echo '<td>';
+      print_r($cell->getValue());
+      echo '</td>';
    }
  
    echo '</tr>';
