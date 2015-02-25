@@ -468,7 +468,7 @@ foreach($excellContent as $key=>$row){
  }   
     
 }
-echo '<pre>',var_export($row),'</pre>';
+echo '<pre>',var_export($rows),'</pre>';
     }
     public function consultAction()
     {
