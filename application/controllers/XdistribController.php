@@ -536,77 +536,77 @@ foreach($sheet->getRowIterator() as $row) {
    echo '<pre>',var_export($distributeur),'</pre>';
   /* deuxième iteration  on va  recuperer les données  concernant les articles  on boucle tant qu'on a pas de ligne  vide  ou  que l'on ne rencontre pas ''concurrence''*/ 
    //$i=6;
-foreach($sheet->getRowIterator() as $row) {
-    if($i >14) {
-        $i++;
-        continue;
-    }
- $rowC = array();
-   // On boucle sur les cellule de la ligne
-   foreach ($row->getCellIterator() as $cell) {
-       $rowC[] = $cell->getValue();
-   }
- 
- $excellContent[] = $rowC;
-}
-foreach($excellContent as $key=>$row){
-    if($row[0]== NULL ||$row[0]=="CONCURRENCE"){
-   break; }else{   
-       $rows[]=$row;
- }   
-    
-}
-echo '<pre>',var_export($rows),'</pre>';
-
-/*troisieme iteration on va chercher 
- * le nom des concurrents les references
- *  articles le prix concurrent
- * le prix spé concurrent 
- */
-foreach($sheet->getRowIterator() as $row) {
-    if($i<14) {
-        $i++;
-        continue;
-    }
- $rowC = array();
-   // On boucle sur les cellule de la ligne
-   foreach ($row->getCellIterator() as $cell) {
-       $rowC[] = $cell->getValue();
-   }
- 
- $excellContent[] = $rowC;
-
-}//echo '<pre>', var_export($excellContent),'</pre>';
-foreach ($excellContent as $key=>$val){
-    $plopinette[]=trim($val[0]);
-    
-}$keydebut=array_search('Concurrents',$plopinette);
-$keyfin =array_search('Contexte de la demande (historique client, situation concurrentielle, évolution du compte, enjeux…)',$plopinette);
-//$keydebut=array_search('Concurrents',$excellContent[][0]);
-//echo '<table border="1">';
-//foreach ($excellContent as $key => $row) {
-//   echo '<tr><td>key: '.$key.'</td>';
-//   foreach ($row as $k => $cell) {
-//      echo '<td>k: '.$k.'  ';
-//      
-//      print_r($cell);
-//      echo '</td>';
+//foreach($sheet->getRowIterator() as $row) {
+//    if($i >14) {
+//        $i++;
+//        continue;
+//    }
+// $rowC = array();
+//   // On boucle sur les cellule de la ligne
+//   foreach ($row->getCellIterator() as $cell) {
+//       $rowC[] = $cell->getValue();
 //   }
-//   echo '</tr>';
+// 
+// $excellContent[] = $rowC;
+//}
+//foreach($excellContent as $key=>$row){
+//    if($row[0]== NULL ||$row[0]=="CONCURRENCE"){
+//   break; }else{   
+//       $rows[]=$row;
+// }   
 //    
 //}
-//echo '</table>';
-//$keydebut=array_search('Concurrents',$excellContent[0]);
-
-$debut = $keydebut+1;
-$fin=$keyfin;
-
-for($i=$debut;$i<$fin;$i++){
-    $row=$excellContent[$i];
-    $rows2[]=$row;
-}
-$rows3=array_filter($rows2);
-echo '<pre>',var_export($rows3),'</pre>';
+//echo '<pre>',var_export($rows),'</pre>';
+//
+///*troisieme iteration on va chercher 
+// * le nom des concurrents les references
+// *  articles le prix concurrent
+// * le prix spé concurrent 
+// */
+//foreach($sheet->getRowIterator() as $row) {
+//    if($i<14) {
+//        $i++;
+//        continue;
+//    }
+// $rowC = array();
+//   // On boucle sur les cellule de la ligne
+//   foreach ($row->getCellIterator() as $cell) {
+//       $rowC[] = $cell->getValue();
+//   }
+// 
+// $excellContent[] = $rowC;
+//
+//}//echo '<pre>', var_export($excellContent),'</pre>';
+//foreach ($excellContent as $key=>$val){
+//    $plopinette[]=trim($val[0]);
+//    
+//}$keydebut=array_search('Concurrents',$plopinette);
+//$keyfin =array_search('Contexte de la demande (historique client, situation concurrentielle, évolution du compte, enjeux…)',$plopinette);
+////$keydebut=array_search('Concurrents',$excellContent[][0]);
+////echo '<table border="1">';
+////foreach ($excellContent as $key => $row) {
+////   echo '<tr><td>key: '.$key.'</td>';
+////   foreach ($row as $k => $cell) {
+////      echo '<td>k: '.$k.'  ';
+////      
+////      print_r($cell);
+////      echo '</td>';
+////   }
+////   echo '</tr>';
+////    
+////}
+////echo '</table>';
+////$keydebut=array_search('Concurrents',$excellContent[0]);
+//
+//$debut = $keydebut+1;
+//$fin=$keyfin;
+//
+//for($i=$debut;$i<$fin;$i++){
+//    $row=$excellContent[$i];
+//    $rows2[]=$row;
+//}
+//$rows3=array_filter($rows2);
+//echo '<pre>',var_export($rows3),'</pre>';
 
 //
 //// On boucle sur les lignes
