@@ -461,9 +461,9 @@ foreach($sheet->getRowIterator() as $row) {
 //}
 //echo '</table>';
 foreach($excellContent as $key=>$row){
-    if($row[0]!= trim(" ")||$row[0]!= trim("CONCURRENCE")){
+    if($row[0]== NULL ||$row[0]=="CONCURRENCE"){
+   echo 'plop'; }else{   
   echo '<pre>',var_export($row),'</pre>'; 
-   continue;
  }   
     foreach($row as $k=>$cell){
  
