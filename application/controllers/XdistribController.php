@@ -460,7 +460,8 @@ foreach($sheet->getRowIterator() as $row) {
 //    
 //}
 //echo '</table>';
-foreach($excellContent as $key=>$row){if($excellContent[$key][0]!= trim(" ")||$excellContent[$key][0]!= trim("CONCURRENCE")){
+foreach($excellContent as $key=>$row){
+    if($row[0]!= trim(" ")||$row[0]!= trim("CONCURRENCE")){
   echo '<pre>',var_export($row),'</pre>'; 
  }   
     foreach($row as $k=>$cell){
