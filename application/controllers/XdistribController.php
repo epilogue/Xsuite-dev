@@ -169,7 +169,7 @@ foreach($sheet->getRowIterator() as $row) {
    echo '<pre>',var_export($client_final),'</pre>';
    echo '<pre>',var_export($distributeur),'</pre>';
   /* deuxième iteration  on va  recuperer les données  concernant les articles  on boucle tant qu'on a pas de ligne  vide  ou  que l'on ne rencontre pas ''concurrence''*/ 
-   //$i=6;
+
 foreach($sheet->getRowIterator() as $row) {
     if($i <14) {
         $i++;
@@ -535,27 +535,27 @@ foreach($sheet->getRowIterator() as $row) {
    echo '<pre>',var_export($distributeur),'</pre>';
   /* deuxième iteration  on va  recuperer les données  concernant les articles  on boucle tant qu'on a pas de ligne  vide  ou  que l'on ne rencontre pas ''concurrence''*/ 
    //$i=6;
-//foreach($sheet->getRowIterator() as $row) {
-//    if($i >14) {
-//        $i++;
-//        continue;
-//    }
-// $rowC = array();
-//   // On boucle sur les cellule de la ligne
-//   foreach ($row->getCellIterator() as $cell) {
-//       $rowC[] = $cell->getValue();
-//   }
-// 
-// $excellContent[] = $rowC;
-//}
-//foreach($excellContent as $key=>$row){
-//    if($row[0]== NULL ||$row[0]=="CONCURRENCE"){
-//   break; }else{   
-//       $rows[]=$row;
-// }   
-//    
-//}
-//echo '<pre>',var_export($rows),'</pre>';
+foreach($sheet->getRowIterator() as $row) {
+    if($i <14) {
+        $i++;
+        continue;
+    }
+ $rowC = array();
+   // On boucle sur les cellule de la ligne
+   foreach ($row->getCellIterator() as $cell) {
+       $rowC[] = $cell->getValue();
+   }
+ 
+ $excellContent[] = $rowC;
+}
+foreach($excellContent as $key=>$row){
+    if($row[0]== NULL ||$row[0]=="CONCURRENCE"){
+   break; }else{   
+       $rows[]=$row;
+ }   
+    
+}
+echo '<pre>',var_export($rows),'</pre>';
 //
 ///*troisieme iteration on va chercher 
 // * le nom des concurrents les references
