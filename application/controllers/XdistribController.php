@@ -471,6 +471,7 @@ foreach($sheet->getRowIterator() as $row) {
  $excellContent[] = $rowC;
 
 }echo '<pre>', var_export($excellContent),'</pre>';
+$keydebut=array_search('Concurrents',$excellContent[][0]);
 //echo '<table border="1">';
 //foreach ($excellContent as $key => $row) {
 //   echo '<tr><td>key: '.$key.'</td>';
