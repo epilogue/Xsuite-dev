@@ -582,22 +582,6 @@ foreach ($excellContent3 as $key=>$val){
     
 }$keydebut=array_search('Concurrents',$plopinette);
 $keyfin =array_search('Contexte de la demande (historique client, situation concurrentielle, évolution du compte, enjeux…)',$plopinette);
-//$keydebut=array_search('Concurrents',$excellContent[][0]);
-//echo '<table border="1">';
-//foreach ($excellContent as $key => $row) {
-//   echo '<tr><td>key: '.$key.'</td>';
-//   foreach ($row as $k => $cell) {
-//      echo '<td>k: '.$k.'  ';
-//      
-//      print_r($cell);
-//      echo '</td>';
-//   }
-//   echo '</tr>';
-//    
-//}
-//echo '</table>';
-//$keydebut=array_search('Concurrents',$excellContent[0]);
-
 $debut = $keydebut+1;
 $fin=$keyfin;
 
@@ -605,7 +589,6 @@ for($n=$debut;$n<$fin;$n++){
     $row1=$excellContent3[$n];
     $rows3[]=$row1;
 }
-//$rows4=array_filter($rows3);
 echo '<pre>',var_export($rows3),'</pre>';
 
 //
