@@ -472,7 +472,7 @@ foreach($sheet->getRowIterator() as $row) {
 
 }echo '<pre>', var_export($excellContent),'</pre>';
 foreach ($excellContent as $key=>$val){
-    $keydebut=array_search('Concurrents',$val);
+    $keydebut=array_search('Concurrents',$val[0]);
 }
 //$keydebut=array_search('Concurrents',$excellContent[][0]);
 //echo '<table border="1">';
