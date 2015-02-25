@@ -495,9 +495,11 @@ $debut = $keydebut+2;
 $fin=$keyfin;
 var_dump($fin);var_dump($debut);
 for($i=$debut;$i<$fin;$i++){
-    $row[]=$excellContent[$i];
+    $row=$excellContent[$i];
+    $rows2[]=$row;
 }
-echo '<pre>',var_export($row),'</pre>';
+
+echo '<pre>',var_export($rows2),'</pre>';
     }
     public function consultAction()
     {
