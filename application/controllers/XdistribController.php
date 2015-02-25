@@ -136,8 +136,10 @@ $objPHPExcel = PHPExcel_IOFactory::load($inputFileName);
 $sheet = $objPHPExcel->getSheet(0);
 $i=0;
 $excellContent = array();
-// On boucle sur les lignes
-/* on élimine les 4 premieres lignes qui ne contiennent pas de données nécessaires pour l'offre */
+/* premiere itération On boucle sur les lignes
+* on élimine les 4 premieres lignes qui ne contiennent pas de
+ *  données nécessaires pour l'offreet on va chercher les infos
+ *  concernants le contact smc le distributeur et le client final */
 foreach($sheet->getRowIterator() as $row) {
     if($i<4) {
         $i++;
@@ -166,8 +168,28 @@ foreach($sheet->getRowIterator() as $row) {
    var_dump($nomcontact) ;
    echo '<pre>',var_export($client_final),'</pre>';
    echo '<pre>',var_export($distributeur),'</pre>';
-
-
+  /* deuxième iteration  on va  recuperer les données  concernant les articles  on boucle tant qu'on a pas de ligne  vide  ou  que l'on ne rencontre pas ''concurrence''*/ 
+foreach($sheet->getRowIterator() as $row) {
+    if($i<14) {
+        $i++;
+        continue;
+    }
+ $rowC = array();
+   // On boucle sur les cellule de la ligne
+   foreach ($row->getCellIterator() as $cell) {
+       $rowC[] = $cell->getValue();
+   }
+ 
+ $excellContent[] = $rowC;
+}
+foreach($excellContent as $key=>$row){
+    if($row[0]== NULL ||$row[0]=="CONCURRENCE"){
+   break; }else{   
+       $rows[]=$row;
+ }   
+    
+}
+echo '<pre>',var_export($rows),'</pre>';
 
 /*fin de lecture du fichier xlsx*/
 /*insertion des données du fichier xlsx  dans les tables temporaires */
@@ -460,11 +482,16 @@ foreach($sheet->getRowIterator() as $row) {
 //    
 //}
 //echo '</table>';
+$rowhigher=$sheet->getHighestRow();
 foreach($excellContent as $key=>$row){
-    if($row[0]== NULL ||$row[0]=="CONCURRENCE"){
-   break; }else{   
-  //echo '<pre>',var_export($row),'</pre>'; 
-       $rows[]=$row;
+    if($row[0]=="CONCURRENCE"){
+    for($i=0;$i<$rowhigher;$i++) {
+        $rows[]=$row;
+    }
+    
+    }else{   
+  echo 'plop'; 
+       
  }   
     
 }
