@@ -136,7 +136,6 @@ $objPHPExcel = PHPExcel_IOFactory::load($inputFileName);
 $sheet = $objPHPExcel->getSheet(0);
 $i=0;
 $excellContent = array();
-$excellContent2 = array();
 /* premiere itération On boucle sur les lignes
 * on élimine les 4 premieres lignes qui ne contiennent pas de
  *  données nécessaires pour l'offreet on va chercher les infos
@@ -172,7 +171,7 @@ foreach($sheet->getRowIterator() as $row) {
   /* deuxième iteration  on va  recuperer les données  concernant les articles  on boucle tant qu'on a pas de ligne  vide  ou  que l'on ne rencontre pas ''concurrence''*/ 
    //$i=6;
 foreach($sheet->getRowIterator() as $row) {
-    if($i >14) {
+    if($i <14) {
         $i++;
         continue;
     }
