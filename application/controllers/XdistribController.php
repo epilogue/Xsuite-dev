@@ -482,7 +482,7 @@ foreach($sheet->getRowIterator() as $row) {
 //    
 //}
 //echo '</table>';
-$keydebut=array_search('Concurrents',$excellContent);
+$keydebut=array_search('Concurrents',$excellContent[][]);
 var_dump($keydebut);
     }
     public function consultAction()
