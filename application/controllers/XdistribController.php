@@ -202,29 +202,44 @@ foreach($sheet->getRowIterator() as $row) {
         $i++;
         continue;
     }
- $rowC2 = array();
+ $rowC = array();
    // On boucle sur les cellule de la ligne
    foreach ($row->getCellIterator() as $cell) {
-       $rowC2[] = $cell->getValue();
+       $rowC[] = $cell->getValue();
    }
  
- $excellContent2[] = $rowC2;
+ $excellContent[] = $rowC;
 
 }//echo '<pre>', var_export($excellContent),'</pre>';
-foreach ($excellContent2 as $key=>$val){
+foreach ($excellContent as $key=>$val){
     $plop[]=trim($val[0]);
     
-}
-$keydebut=array_search('Concurrents',$plop);
+}$keydebut=array_search('Concurrents',$plop);
 $keyfin =array_search('Contexte de la demande (historique client, situation concurrentielle, évolution du compte, enjeux…)',$plop);
+//$keydebut=array_search('Concurrents',$excellContent[][0]);
+//echo '<table border="1">';
+//foreach ($excellContent as $key => $row) {
+//   echo '<tr><td>key: '.$key.'</td>';
+//   foreach ($row as $k => $cell) {
+//      echo '<td>k: '.$k.'  ';
+//      
+//      print_r($cell);
+//      echo '</td>';
+//   }
+//   echo '</tr>';
+//    
+//}
+//echo '</table>';
+//$keydebut=array_search('Concurrents',$excellContent[0]);
 
 $debut = $keydebut+1;
 $fin=$keyfin;
+
 for($i=$debut;$i<$fin;$i++){
-    $row=$excellContent2[$i];
+    $row=$excellContent[$i];
     $rows2[]=$row;
 }
-//$rows3=array_filter($rows2);
+
 echo '<pre>',var_export($rows2),'</pre>';
 
 /*fin de lecture du fichier xlsx*/
