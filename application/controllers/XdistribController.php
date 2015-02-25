@@ -191,6 +191,42 @@ foreach($excellContent as $key=>$row){
 }
 echo '<pre>',var_export($rows),'</pre>';
 
+/*troisieme iteration on va chercher 
+ * le nom des concurrents les references
+ *  articles le prix concurrent
+ * le prix spé concurrent 
+ */
+foreach($sheet->getRowIterator() as $row) {
+    if($i<14) {
+        $i++;
+        continue;
+    }
+ $rowC = array();
+   // On boucle sur les cellule de la ligne
+   foreach ($row->getCellIterator() as $cell) {
+       $rowC[] = $cell->getValue();
+   }
+ 
+ $excellContent[] = $rowC;
+
+}//echo '<pre>', var_export($excellContent),'</pre>';
+foreach ($excellContent as $key=>$val){
+    $plop[]=trim($val[0]);
+    
+}$keydebut=array_search('Concurrents',$plop);
+$keyfin =array_search('Contexte de la demande (historique client, situation concurrentielle, évolution du compte, enjeux…)',$plop);
+
+$debut = $keydebut+1;
+$fin=$keyfin;
+for($i=$debut;$i<$fin;$i++){
+    $row=$excellContent[$i];
+    $rows2[]=$row;
+}
+$rows3=  array_filter($rows2,function($var){
+    return(!($var =='' || is_null($var)));
+});
+echo '<pre>',var_export($rows3),'</pre>';
+
 /*fin de lecture du fichier xlsx*/
 /*insertion des données du fichier xlsx  dans les tables temporaires */
 /*fin de l'insertion des données dans les tables temporaires */
@@ -474,7 +510,6 @@ foreach ($excellContent as $key=>$val){
     $plop[]=trim($val[0]);
     
 }$keydebut=array_search('Concurrents',$plop);
-$keynull=array_search(NULL,$plop);
 $keyfin =array_search('Contexte de la demande (historique client, situation concurrentielle, évolution du compte, enjeux…)',$plop);
 //$keydebut=array_search('Concurrents',$excellContent[][0]);
 //echo '<table border="1">';
@@ -496,7 +531,7 @@ $debut = $keydebut+1;
 $fin=$keyfin;
 
 var_dump($fin);var_dump($debut);var_dump($keynull);
-for($i=$debut;$i<$fin || $i<$keynull ;$i++){
+for($i=$debut;$i<$fin;$i++){
     $row=$excellContent[$i];
     $rows2[]=$row;
 }
