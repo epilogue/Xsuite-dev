@@ -568,7 +568,7 @@ foreach($sheet->getRowIterator() as $row) {
         $m++;
         continue;
     }
- $rowC = array();
+ $rowC3 = array();
    // On boucle sur les cellule de la ligne
    foreach ($row->getCellIterator() as $cell) {
        $rowC3[] = $cell->getValue();
@@ -605,8 +605,8 @@ for($n=$debut;$n<$fin;$n++){
     $row1=$excellContent3[$n];
     $rows3[]=$row1;
 }
-$rows4=array_filter($rows3);
-echo '<pre>',var_export($rows4),'</pre>';
+//$rows4=array_filter($rows3);
+echo '<pre>',var_export($rows3),'</pre>';
 
 //
 //// On boucle sur les lignes
