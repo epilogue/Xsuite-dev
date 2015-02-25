@@ -463,7 +463,7 @@ echo '</table>';
 foreach($excellContent as $key=>$row){
     foreach($row as $k=>$cell){
  if($excellContent[$key][0]!= trim(" ")||$excellContent[$key][0]!= trim("CONCURRENCE")){
- $article =$cell; 
+  print_r($cell); 
  }   
   }
   $articles[]=$article;
