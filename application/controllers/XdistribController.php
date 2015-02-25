@@ -482,20 +482,8 @@ foreach($sheet->getRowIterator() as $row) {
 //    
 //}
 //echo '</table>';
-$rowhigher=$sheet->getHighestRow();
-foreach($excellContent as $key=>$row){
-    if($row[0]=="CONCURRENCE"){
-    for($i=0;$i<$rowhigher;$i++) {
-        $rows[]=$row;
-    }
-    
-    }else{   
-  echo 'plop'; 
-       
- }   
-    
-}
-echo '<pre>',var_export($rows),'</pre>';
+$keydebut=array_search('Concurrents',$excellContent);
+var_dump($keydebut);
     }
     public function consultAction()
     {
