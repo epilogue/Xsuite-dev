@@ -470,10 +470,11 @@ foreach($sheet->getRowIterator() as $row) {
  
  $excellContent[] = $rowC;
 
-}echo '<pre>', var_export($excellContent),'</pre>';
+}//echo '<pre>', var_export($excellContent),'</pre>';
 foreach ($excellContent as $key=>$val){
-    $keydebut=array_search('Concurrents',$val[0]);
-}
+    $plop=$val[0];
+    
+}$keydebut=array_search('Concurrents',$plop);
 //$keydebut=array_search('Concurrents',$excellContent[][0]);
 //echo '<table border="1">';
 //foreach ($excellContent as $key => $row) {
