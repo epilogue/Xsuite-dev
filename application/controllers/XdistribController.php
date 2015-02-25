@@ -469,6 +469,7 @@ foreach($sheet->getRowIterator() as $row) {
    }
  
  $excellContent[] = $rowC;
+echo '<pre>', var_export($excellContent),'</pre>';
 }
 //echo '<table border="1">';
 //foreach ($excellContent as $key => $row) {
