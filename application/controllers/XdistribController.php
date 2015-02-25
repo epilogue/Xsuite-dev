@@ -460,15 +460,15 @@ foreach($sheet->getRowIterator() as $row) {
 //    
 //}
 //echo '</table>';
-foreach($excellContent as $key=>$row){
-    foreach($row as $k=>$cell){
- if($excellContent[$key][0]!= trim(" ")||$excellContent[$key][0]!= trim("CONCURRENCE")){
-  print_r($cell); 
+foreach($excellContent as $key=>$row){if($excellContent[$key][0]!= trim(" ")||$excellContent[$key][0]!= trim("CONCURRENCE")){
+  print_r($row); 
  }   
+    foreach($row as $k=>$cell){
+ 
   }
   
 }
-echo '<pre>',var_export($articles),'</pre>';
+//echo '<pre>',var_export($articles),'</pre>';
     }
     public function consultAction()
     {
