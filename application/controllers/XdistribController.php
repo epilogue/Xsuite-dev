@@ -475,6 +475,7 @@ foreach ($excellContent as $key=>$val){
     $plop[]=$val[0];
     
 }$keydebut=array_search('Concurrents',$plop);
+$keyfin =array_search('Contexte',$plop);
 //$keydebut=array_search('Concurrents',$excellContent[][0]);
 //echo '<table border="1">';
 //foreach ($excellContent as $key => $row) {
