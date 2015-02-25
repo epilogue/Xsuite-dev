@@ -465,6 +465,7 @@ foreach($sheet->getRowIterator() as $row) {
    // On boucle sur les cellule de la ligne
    foreach ($row->getCellIterator() as $cell) {
        $rowC[] = $cell->getValue();
+       $keydebut=array_search('Concurrents',$rowC);
    }
  
  $excellContent[] = $rowC;
@@ -482,7 +483,7 @@ foreach($sheet->getRowIterator() as $row) {
 //    
 //}
 //echo '</table>';
-$keydebut=array_search('Concurrents',$excellContent[0]);
+//$keydebut=array_search('Concurrents',$excellContent[0]);
 var_dump($keydebut);
     }
     public function consultAction()
