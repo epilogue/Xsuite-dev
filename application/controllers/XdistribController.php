@@ -474,7 +474,7 @@ foreach ($excellContent as $key=>$val){
     $plop[]=trim($val[0]);
     
 }$keydebut=array_search('Concurrents',$plop);
-$keynull=array_search('',trim($plop));
+$keynull=array_search('',$plop);
 $keyfin =array_search('Contexte de la demande (historique client, situation concurrentielle, évolution du compte, enjeux…)',$plop);
 //$keydebut=array_search('Concurrents',$excellContent[][0]);
 //echo '<table border="1">';
