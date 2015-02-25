@@ -435,7 +435,7 @@ $excellContent = array();
 // On boucle sur les lignes
 /* on élimine les 4 premieres lignes qui ne contiennent pas de données nécessaires pour l'offre */
 foreach($sheet->getRowIterator() as $row) {
-    if($i<4) {
+    if($i<14) {
         $i++;
         continue;
     }
