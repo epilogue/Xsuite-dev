@@ -463,14 +463,12 @@ foreach($sheet->getRowIterator() as $row) {
 foreach($excellContent as $key=>$row){
     if($row[0]== NULL ||$row[0]=="CONCURRENCE"){
    break; }else{   
-  echo '<pre>',var_export($row),'</pre>'; 
+  //echo '<pre>',var_export($row),'</pre>'; 
+       $rows[]=$row;
  }   
-    foreach($row as $k=>$cell){
- 
-  }
-  
+    
 }
-//echo '<pre>',var_export($articles),'</pre>';
+echo '<pre>',var_export($row),'</pre>';
     }
     public function consultAction()
     {
