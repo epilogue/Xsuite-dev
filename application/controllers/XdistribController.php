@@ -534,21 +534,21 @@ foreach($sheet->getRowIterator() as $row) {
    echo '<pre>',var_export($client_final),'</pre>';
    echo '<pre>',var_export($distributeur),'</pre>';
   /* deuxième iteration  on va  recuperer les données  concernant les articles  on boucle tant qu'on a pas de ligne  vide  ou  que l'on ne rencontre pas ''concurrence''*/ 
-   //$i=6;
+   $j=0;
 foreach($sheet->getRowIterator() as $row) {
-    if($i <14) {
-        $i++;
+    if($j <14) {
+        $j++;
         continue;
     }
- $rowC = array();
+ $rowC2 = array();
    // On boucle sur les cellule de la ligne
    foreach ($row->getCellIterator() as $cell) {
-       $rowC[] = $cell->getValue();
+       $rowC2[] = $cell->getValue();
    }
  
- $excellContent[] = $rowC;
+ $excellContent2[] = $rowC2;
 }
-foreach($excellContent as $key=>$row){
+foreach($excellContent2 as $key=>$row){
     if($row[0]== NULL ||$row[0]=="CONCURRENCE"){
    break; }else{   
        $rows[]=$row;
