@@ -435,7 +435,7 @@ $excellContent = array();
 // On boucle sur les lignes
 /* on élimine les 4 premieres lignes qui ne contiennent pas de données nécessaires pour l'offre */
 foreach($sheet->getRowIterator() as $row) {
-    if($i<13) {
+    if($i<14) {
         $i++;
         continue;
     }
@@ -460,8 +460,16 @@ foreach ($excellContent as $key => $row) {
     
 }
 echo '</table>';
-  
+foreach($excellContent as $key=>$row){
+    foreach($row as $k=>$cell){
+ if($excellContent[$key][0]!= trim(" ")||$excellContent[$key][0]!= trim("concurrence")){
+ $article =array($cell[0],$cell[1],$cell[2],$cell[3],$cell[5],$cell[6]); 
+ }   
+  }
+  $articles[]=$article;
 }
+echo '<pre>',var_export($articles),'</pre>';
+    }
     public function consultAction()
     {
         // action body
