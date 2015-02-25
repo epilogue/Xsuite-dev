@@ -222,8 +222,8 @@ for($i=$debut;$i<$fin;$i++){
     $row=$excellContent[$i];
     $rows2[]=$row;
 }
-$rows3=array_filter($rows2);
-echo '<pre>',var_export($rows3),'</pre>';
+//$rows3=array_filter($rows2);
+echo '<pre>',var_export($rows2),'</pre>';
 
 /*fin de lecture du fichier xlsx*/
 /*insertion des données du fichier xlsx  dans les tables temporaires */
