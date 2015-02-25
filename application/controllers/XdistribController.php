@@ -126,20 +126,46 @@ public function createAction(){
 /*fin de l'upload  le fichier se trouve dans datas/filesDatas*/
 /*lecture du fichier xlsx utilisation de la librairie PHPExcel */
 include 'PHPExcel/Classes/PHPExcel/IOFactory.php';
-
-
 $inputFileName = APPLICATION_PATH.'/datas/filesDatas/demande.xlsx';
-echo 'Loading file ',pathinfo($inputFileName,PATHINFO_BASENAME),' using IOFactory to identify the format<br />';
+//echo 'Loading file ',pathinfo($inputFileName,PATHINFO_BASENAME),' using IOFactory to identify the format<br />';
 $objPHPExcel = PHPExcel_IOFactory::load($inputFileName);
-
-
-echo '<hr />';
-
-$sheetData = $objPHPExcel->getActiveSheet()->toArray(null,true,true,true);
-//echo '<pre>',var_export($sheetData),'</pre>';
-foreach($sheetData as $data){
-    echo $data;
+/**
+* récupération de la première feuille du fichier Excel
+* @var PHPExcel_Worksheet $sheet
+*/
+$sheet = $objPHPExcel->getSheet(0);
+$i=0;
+$excellContent = array();
+// On boucle sur les lignes
+/* on élimine les 4 premieres lignes qui ne contiennent pas de données nécessaires pour l'offre */
+foreach($sheet->getRowIterator() as $row) {
+    if($i<4) {
+        $i++;
+        continue;
+    }
+ $rowC = array();
+   // On boucle sur les cellule de la ligne
+   foreach ($row->getCellIterator() as $cell) {
+       $rowC[] = $cell->getValue();
+   }
+ 
+ $excellContent[] = $rowC;
 }
+   $nomcontact=$excellContent[1][1];
+   $nom_distributeur=$excellContent[4][1];
+   $nom_client_final=$excellContent[4][6];
+   $numwp_client_final=$excellContent[4][8];
+   $code_postal_distributeur=$excellContent[5][1];
+   $ville_distributeur=$excellContent[5][3];
+   $code_postal_client_final=$excellContent[5][6];
+   $ville_client_final=$excellContent[5][8];
+   $contact_distributeur=$excellContent[6][1];
+   $potentiel_client_final=$excellContent[6][6];
+   $distributeur=array($nom_distributeur,$code_postal_distributeur,$ville_distributeur,$contact_distributeur);
+   $client_final=array($nom_client_final,$ville_client_final,$code_postal_client_final,$potentiel_client_final);
+   var_dump($nomcontact) ;
+   echo '<pre>',var_export($client_final),'</pre>';
+   echo '<pre>',var_export($distributeur),'</pre>';
 
 
 
@@ -394,10 +420,8 @@ foreach($sheetData as $data){
 
 
 $inputFileName = APPLICATION_PATH.'/datas/filesDatas/demande.xlsx';
-echo 'Loading file ',pathinfo($inputFileName,PATHINFO_BASENAME),' using IOFactory to identify the format<br />';
+//echo 'Loading file ',pathinfo($inputFileName,PATHINFO_BASENAME),' using IOFactory to identify the format<br />';
 
-
- 
 // Chargement du fichier Excel
 $objPHPExcel = PHPExcel_IOFactory::load($inputFileName);
  
@@ -406,10 +430,10 @@ $objPHPExcel = PHPExcel_IOFactory::load($inputFileName);
 * @var PHPExcel_Worksheet $sheet
 */
 $sheet = $objPHPExcel->getSheet(0);
-
 $i=0;
 $excellContent = array();
 // On boucle sur les lignes
+/* on élimine les 4 premieres lignes qui ne contiennent pas de données nécessaires pour l'offre */
 foreach($sheet->getRowIterator() as $row) {
     if($i<4) {
         $i++;
@@ -423,35 +447,20 @@ foreach($sheet->getRowIterator() as $row) {
  
  $excellContent[] = $rowC;
 }
-//echo '<table border="1">';
-//foreach ($excellContent as $key => $row) {
-//   echo '<tr><td>key: '.$key.'</td>';
-//   foreach ($row as $k => $cell) {
-//      echo '<td>k: '.$k.'  ';
-//      
-//      print_r($cell);
-//      echo '</td>';
-//   }
-//   echo '</tr>';
-//    
-//}
-//echo '</table>';
-   $nomcontact=$excellContent[1][1];
-   $nom_distributeur=$excellContent[4][1];
-   $nom_client_final=$excellContent[4][6];
-   $numwp_client_final=$excellContent[4][8];
-   $code_postal_distributeur=$excellContent[5][1];
-   $ville_distributeur=$excellContent[5][3];
-   $code_postal_client_final=$excellContent[5][6];
-   $ville_client_final=$excellContent[5][8];
-   $contact_distributeur=$excellContent[6][1];
-   $potentiel_client_final=$excellContent[6][6];
-   
-   $distributeur=array($nom_distributeur,$code_postal_distributeur,$ville_distributeur,$contact_distributeur);
-   $client_final=array($nom_client_final,$ville_client_final,$code_postal_client_final,$potentiel_client_final);
-   print_r($nomcontact) ;
-   var_dump($client_final);
-   var_dump($distributeur);
+echo '<table border="1">';
+foreach ($excellContent as $key => $row) {
+   echo '<tr><td>key: '.$key.'</td>';
+   foreach ($row as $k => $cell) {
+      echo '<td>k: '.$k.'  ';
+      
+      print_r($cell);
+      echo '</td>';
+   }
+   echo '</tr>';
+    
+}
+echo '</table>';
+  
 }
     public function consultAction()
     {
