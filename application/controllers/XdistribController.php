@@ -506,8 +506,63 @@ $objPHPExcel = PHPExcel_IOFactory::load($inputFileName);
 $sheet = $objPHPExcel->getSheet(0);
 $i=0;
 $excellContent = array();
-// On boucle sur les lignes
-/* on élimine les 4 premieres lignes qui ne contiennent pas de données nécessaires pour l'offre */
+foreach($sheet->getRowIterator() as $row) {
+    if($i<4) {
+        $i++;
+        continue;
+    }
+ $rowC = array();
+   // On boucle sur les cellule de la ligne
+   foreach ($row->getCellIterator() as $cell) {
+       $rowC[] = $cell->getValue();
+   }
+ 
+ $excellContent[] = $rowC;
+}
+   $nomcontact=$excellContent[1][1];
+   $nom_distributeur=$excellContent[4][1];
+   $nom_client_final=$excellContent[4][6];
+   $numwp_client_final=$excellContent[4][8];
+   $code_postal_distributeur=$excellContent[5][1];
+   $ville_distributeur=$excellContent[5][3];
+   $code_postal_client_final=$excellContent[5][6];
+   $ville_client_final=$excellContent[5][8];
+   $contact_distributeur=$excellContent[6][1];
+   $potentiel_client_final=$excellContent[6][6];
+   $distributeur=array($nom_distributeur,$code_postal_distributeur,$ville_distributeur,$contact_distributeur);
+   $client_final=array($nom_client_final,$ville_client_final,$code_postal_client_final,$potentiel_client_final);
+   var_dump($nomcontact) ;
+   echo '<pre>',var_export($client_final),'</pre>';
+   echo '<pre>',var_export($distributeur),'</pre>';
+  /* deuxième iteration  on va  recuperer les données  concernant les articles  on boucle tant qu'on a pas de ligne  vide  ou  que l'on ne rencontre pas ''concurrence''*/ 
+   //$i=6;
+foreach($sheet->getRowIterator() as $row) {
+    if($i >14) {
+        $i++;
+        continue;
+    }
+ $rowC = array();
+   // On boucle sur les cellule de la ligne
+   foreach ($row->getCellIterator() as $cell) {
+       $rowC[] = $cell->getValue();
+   }
+ 
+ $excellContent[] = $rowC;
+}
+foreach($excellContent as $key=>$row){
+    if($row[0]== NULL ||$row[0]=="CONCURRENCE"){
+   break; }else{   
+       $rows[]=$row;
+ }   
+    
+}
+echo '<pre>',var_export($rows),'</pre>';
+
+/*troisieme iteration on va chercher 
+ * le nom des concurrents les references
+ *  articles le prix concurrent
+ * le prix spé concurrent 
+ */
 foreach($sheet->getRowIterator() as $row) {
     if($i<14) {
         $i++;
@@ -523,10 +578,10 @@ foreach($sheet->getRowIterator() as $row) {
 
 }//echo '<pre>', var_export($excellContent),'</pre>';
 foreach ($excellContent as $key=>$val){
-    $plop[]=trim($val[0]);
+    $plopinette[]=trim($val[0]);
     
-}$keydebut=array_search('Concurrents',$plop);
-$keyfin =array_search('Contexte de la demande (historique client, situation concurrentielle, évolution du compte, enjeux…)',$plop);
+}$keydebut=array_search('Concurrents',$plopinette);
+$keyfin =array_search('Contexte de la demande (historique client, situation concurrentielle, évolution du compte, enjeux…)',$plopinette);
 //$keydebut=array_search('Concurrents',$excellContent[][0]);
 //echo '<table border="1">';
 //foreach ($excellContent as $key => $row) {
@@ -550,8 +605,56 @@ for($i=$debut;$i<$fin;$i++){
     $row=$excellContent[$i];
     $rows2[]=$row;
 }
+$rows3=array_filter($rows2);
+echo '<pre>',var_export($rows3),'</pre>';
 
-echo '<pre>',var_export($rows2),'</pre>';
+//
+//// On boucle sur les lignes
+///* on élimine les 4 premieres lignes qui ne contiennent pas de données nécessaires pour l'offre */
+//foreach($sheet->getRowIterator() as $row) {
+//    if($i<14) {
+//        $i++;
+//        continue;
+//    }
+// $rowC = array();
+//   // On boucle sur les cellule de la ligne
+//   foreach ($row->getCellIterator() as $cell) {
+//       $rowC[] = $cell->getValue();
+//   }
+// 
+// $excellContent[] = $rowC;
+//
+//}//echo '<pre>', var_export($excellContent),'</pre>';
+//foreach ($excellContent as $key=>$val){
+//    $plop[]=trim($val[0]);
+//    
+//}$keydebut=array_search('Concurrents',$plop);
+//$keyfin =array_search('Contexte de la demande (historique client, situation concurrentielle, évolution du compte, enjeux…)',$plop);
+////$keydebut=array_search('Concurrents',$excellContent[][0]);
+////echo '<table border="1">';
+////foreach ($excellContent as $key => $row) {
+////   echo '<tr><td>key: '.$key.'</td>';
+////   foreach ($row as $k => $cell) {
+////      echo '<td>k: '.$k.'  ';
+////      
+////      print_r($cell);
+////      echo '</td>';
+////   }
+////   echo '</tr>';
+////    
+////}
+////echo '</table>';
+////$keydebut=array_search('Concurrents',$excellContent[0]);
+//
+//$debut = $keydebut+1;
+//$fin=$keyfin;
+//
+//for($i=$debut;$i<$fin;$i++){
+//    $row=$excellContent[$i];
+//    $rows2[]=$row;
+//}
+//
+//echo '<pre>',var_export($rows2),'</pre>';
     }
     public function consultAction()
     {
