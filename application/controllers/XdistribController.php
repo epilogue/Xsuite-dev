@@ -492,6 +492,7 @@ $keyfin =array_search('Contexte',$plop);
 //echo '</table>';
 //$keydebut=array_search('Concurrents',$excellContent[0]);
 var_dump($keydebut);
+var_dump($keyfin);
     }
     public function consultAction()
     {
