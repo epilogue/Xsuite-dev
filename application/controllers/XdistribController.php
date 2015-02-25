@@ -465,7 +465,6 @@ foreach($sheet->getRowIterator() as $row) {
    // On boucle sur les cellule de la ligne
    foreach ($row->getCellIterator() as $cell) {
        $rowC[] = $cell->getValue();
-       $keydebut=array_search('Concurrents',$rowC);
    }
  
  $excellContent[] = $rowC;
@@ -491,8 +490,14 @@ $keyfin =array_search('Contexte de la demande (historique client, situation conc
 //}
 //echo '</table>';
 //$keydebut=array_search('Concurrents',$excellContent[0]);
-var_dump($keydebut);
-var_dump($keyfin);
+
+$debut = $keydebut+2;
+$fin=$keyfin;
+var_dump($fin);var_dump($debut);
+for($i=$debut;$i<$fin;$i++){
+    $row=$excellContent[$i];
+}
+echo '<pre>',var_export($row),'</pre>';
     }
     public function consultAction()
     {
