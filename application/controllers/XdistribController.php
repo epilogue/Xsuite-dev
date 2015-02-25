@@ -384,77 +384,7 @@ foreach($sheetData as $data){
                         //exit();
             if ($this->getRequest()->isPost()) {
                     $formData = $this->getRequest()->getPost();
-//                        /* insertion Clients
-//                        on regarde dans la base si le client existe */
-//                        $clients = new Application_Model_DbTable_Clients();
-//                        $client = $clients->getClientnumwp($formData['numclientwp']);
-//                        if(is_null($client)){
-//                            $newclient = $clients->createClient($formData['nom_client'], $formData['numclientwp'], $formData['adresse_client'], $idIndustryClient, $formData['potentiel']);
-//                        }
-//                       
-//
-//                        $numwpexist = $demandes_xdistrib->getNumwp($numwp);
-//                        $firstComment = null;
-//                        if (is_null($numwpexist)) {
-//                            $demande_xdistrib = $demandes_xdistrib->createXdistrib(
-//                            $numwp, $trackingNumber, null,null,$infos_offres->OBRGDT,null, $user_info['id_user'], null,null, $numdistributeurwp['OACHL1']);
-//                            $dbtValidationDemande = new Application_Model_DbTable_Validationsdemandexdistribs();
-//                            if (!is_null($formData['commentaire_demande_xdistrib']) && trim($formData['commentaire_demande_xdistrib']) != "") {
-//                                $now = new DateTime();
-//                                $validationDemande = $dbtValidationDemande->createValidation(
-//                                        "creation", $now->format('Y-m-d H:i:s'), "creation", $user_info['id_user'], $demande_xdistrib->lastId(), trim($formData['commentaire_demande_xdistrib']));
-//                                $firstComment = $dbtValidationDemande->lastId();
-//                            }
-//                        }
-                        
-//  /* Insertion dans les tables Articles  et  demande_Article_Xdistrib */
-//                    $articles_xdistrib = new Application_Model_DbTable_Articles();
-//                    $demandes_articles_xdistrib = new Application_Model_DbTable_DemandeArticlexdistrib();
-//                    foreach ($this->view->resultat as $resultarticle) {
-//                        $articleexist = $articles_xdistrib->getArticle($resultarticle['OBITNO']);
-//                        if (is_null($articleexist)) {
-//                            $articles_xdistrib = $articles_xdistrib->createArticle($resultarticle['OBITDS'], $resultarticle['OBITNO'], null);
-//                        }
-//                        $demande_article_xdistrib = $demandes_articles_xdistrib->createDemandeArticlexdistrib($resultarticle['OBSAPR'], $resultarticle['OBNEPR'],$formData['prixClientFinal'][trim($resultarticle['OBITNO'])], $resultarticle['OBORQT'], round(100 - ($resultarticle['OBNEPR'] * 100 / $resultarticle['OBSAPR']), 2), $infos_offres->OBRGDT,$resultarticle['OBNEPR'], round(100 - ($resultarticle['OBNEPR'] * 100 / $resultarticle['OBSAPR']), 2), null, null, null,$formData['MargeMoyenne'], $trackingNumber, $resultarticle['OBITNO'], $resultarticle['OBITDS'], $numwp,null);
-//                    }
-//                    foreach ($prixciffob as $key => $value) {
-//                        /* a ajouter
-//                         *  requete suivante : select MITBAL.MBPUIT as acquisition from eit.MVXCDTA.MITBAL MITBAL where MITBAL.MBITNO='$value->AJOBV2' ;
-//                            if $acquisition ==1 ou 3 prix fob = prix cif 
-//                         * if $acquisition == 2 cif =1.07*fob
-//                         * 
-//                         *                          */
-//                        $insertprix = new Application_Model_DbTable_DemandeArticlexdistrib();
-//                        $inserprix = $insertprix->InserPrixFob($value->AJPUPR, $value->AJOBV2, $numwp);
-//                    }
-//                    foreach($ $resultatacquis as $key=>$value){
-//                        $insertacquis= new Application_Model_DbTable_DemandeArticlexdistrib();
-//                        $inseracquis = $insertacquis->InserCodeAcquis($value->MBPUIT, $value->MBITNO, $numwp);
-//                    }
-//                    
-//                    $updatecif1 = new Application_Model_DbTable_DemandeArticlexdistrib();
-//                    $updatecif2 = $updatecif1->getDemandeArticlexdistrib($numwp);                   
-//                        foreach($updatecif2 as $result){
-//                            if($result['code_acquisition']=='2'){
-//                                $cifs= ($result['prix_fob_demande_article'])*1.07;
-//                                $cif=round($cifs,2);
-//                                $updatecif3 = $updatecif1->updatecif($cif, $result['code_article'], $result['tracking_number_demande_xprices']);
-//                            }
-//                           
-//                            
-//                        }
-//                        $margeupdate1=new Application_Model_DbTable_DemandeArticlexdistrib();
-//                        $margeupdate2=$margeupdate1->getDemandeArticlexdistrib($numwp);
-//                        foreach($margeupdate2 as $res){
-//                            $marges = 1-($res['prix_cif_demande_article']/$res['prix_accorde_demande_article']);
-//                            $marge=$marges*100;
-//                            $margeupdate3=$margeupdate1->updateMarge($marge, $res['code_article'],$result['tracking_number_demande_xdistrib']);
-//                        }
-//                    $flashMessenger = $this->_helper->getHelper('FlashMessenger');
-//                $message = "l'offre $numwp a été envoyé.";
-//                $flashMessenger->addMessage($message);
-//                $redirector = $this->_helper->getHelper('Redirector');
-//                $redirector->gotoSimple('index', 'xdistrib');
+
                 }
             }
     }
@@ -493,19 +423,35 @@ foreach($sheet->getRowIterator() as $row) {
  
  $excellContent[] = $rowC;
 }
-echo '<table border="1">';
-foreach ($excellContent as $key => $row) {
-   echo '<tr><td>key: '.$key.'</td>';
-   foreach ($row as $k => $cell) {
-      echo '<td>k: '.$k.'  ';
-      
-      print_r($cell);
-      echo '</td>';
-   }
-   echo '</tr>';
-    
-}
-echo '</table>'; 
+//echo '<table border="1">';
+//foreach ($excellContent as $key => $row) {
+//   echo '<tr><td>key: '.$key.'</td>';
+//   foreach ($row as $k => $cell) {
+//      echo '<td>k: '.$k.'  ';
+//      
+//      print_r($cell);
+//      echo '</td>';
+//   }
+//   echo '</tr>';
+//    
+//}
+//echo '</table>';
+   $nomcontact=$excellContent[1][1];
+   $nom_distributeur=$excellContent[4][1];
+   $nom_client_final=$excellContent[4][6];
+   $numwp_client_final=$excellContent[4][8];
+   $code_postal_distributeur=$excellContent[5][1];
+   $ville_distributeur=$excellContent[5][3];
+   $code_postal_client_final=$excellContent[5][6];
+   $ville_client_final=$excellContent[5][8];
+   $contact_distributeur=$excellContent[6][1];
+   $potentiel_client_final=$excellContent[6][6];
+   
+   $distributeur=array($nom_distributeur,$code_postal_distributeur,$ville_distributeur,$contact_distributeur);
+   $client_final=array($nom_client_final,$ville_client_final,$code_postal_client_final,$potentiel_client_final);
+   print_r($nomcontact) ;
+   var_dump($client_final);
+   var_dump($distributeur);
 }
     public function consultAction()
     {
