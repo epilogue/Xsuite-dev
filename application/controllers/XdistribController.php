@@ -136,6 +136,7 @@ $objPHPExcel = PHPExcel_IOFactory::load($inputFileName);
 $sheet = $objPHPExcel->getSheet(0);
 $i=0;
 $excellContent = array();
+$excellContent2 = array();
 /* premiere itération On boucle sur les lignes
 * on élimine les 4 premieres lignes qui ne contiennent pas de
  *  données nécessaires pour l'offreet on va chercher les infos
@@ -201,25 +202,26 @@ foreach($sheet->getRowIterator() as $row) {
         $i++;
         continue;
     }
- $rowC = array();
+ $rowC2 = array();
    // On boucle sur les cellule de la ligne
    foreach ($row->getCellIterator() as $cell) {
-       $rowC[] = $cell->getValue();
+       $rowC2[] = $cell->getValue();
    }
  
- $excellContent[] = $rowC;
+ $excellContent2[] = $rowC2;
 
 }//echo '<pre>', var_export($excellContent),'</pre>';
-foreach ($excellContent as $key=>$val){
+foreach ($excellContent2 as $key=>$val){
     $plop[]=trim($val[0]);
     
-}$keydebut=array_search('Concurrents',$plop);
+}
+$keydebut=array_search('Concurrents',$plop);
 $keyfin =array_search('Contexte de la demande (historique client, situation concurrentielle, évolution du compte, enjeux…)',$plop);
 
 $debut = $keydebut+1;
 $fin=$keyfin;
 for($i=$debut;$i<$fin;$i++){
-    $row=$excellContent[$i];
+    $row=$excellContent2[$i];
     $rows2[]=$row;
 }
 //$rows3=array_filter($rows2);
@@ -533,7 +535,7 @@ for($i=$debut;$i<$fin;$i++){
     $rows2[]=$row;
 }
 
-//echo '<pre>',var_export($rows2),'</pre>';
+echo '<pre>',var_export($rows2),'</pre>';
     }
     public function consultAction()
     {
