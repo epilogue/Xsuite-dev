@@ -462,8 +462,8 @@ foreach ($excellContent as $key => $row) {
 echo '</table>';
 foreach($excellContent as $key=>$row){
     foreach($row as $k=>$cell){
- if($excellContent[$key][0]!= trim(" ")||$excellContent[$key][0]!= trim("concurrence")){
- $article =array($cell[0],$cell[1],$cell[2],$cell[3],$cell[5],$cell[6]); 
+ if($excellContent[$key][0]!= trim(" ")||$excellContent[$key][0]!= trim("CONCURRENCE")){
+ $article =array($cell[$key][0],$cell[$key][1],$cell[$key][2],$cell[$key][3],$cell[$key][5],$cell[$key][6]); 
  }   
   }
   $articles[]=$article;
