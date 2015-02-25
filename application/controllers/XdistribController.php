@@ -495,7 +495,7 @@ $keyfin =array_search('Contexte de la demande (historique client, situation conc
 $debut = $keydebut+1;
 $fin=$keyfin;
 
-var_dump($fin);var_dump($debut);
+var_dump($fin);var_dump($debut);var_dump($keynull);
 for($i=$debut;$i<$fin || $i<$keynull ;$i++){
     $row=$excellContent[$i];
     $rows2[]=$row;
