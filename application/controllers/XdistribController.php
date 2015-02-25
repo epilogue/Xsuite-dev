@@ -472,7 +472,7 @@ foreach($sheet->getRowIterator() as $row) {
 
 }//echo '<pre>', var_export($excellContent),'</pre>';
 foreach ($excellContent as $key=>$val){
-    $plop[]=$val[0];
+    $plop[]=$val;
     
 }$keydebut=array_search('Concurrents',$plop);
 $keyfin =array_search('Contexte de la demande (historique client, situation concurrentielle, évolution du compte, enjeux…)',$plop);
