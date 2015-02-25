@@ -222,9 +222,7 @@ for($i=$debut;$i<$fin;$i++){
     $row=$excellContent[$i];
     $rows2[]=$row;
 }
-$rows3=array_filter($rows2,function($var){
-    return(!($var =='' || is_null($var)));
-});
+$rows3=array_filter($rows2);
 echo '<pre>',var_export($rows3),'</pre>';
 
 /*fin de lecture du fichier xlsx*/
