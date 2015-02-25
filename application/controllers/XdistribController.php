@@ -447,23 +447,23 @@ foreach($sheet->getRowIterator() as $row) {
  
  $excellContent[] = $rowC;
 }
-echo '<table border="1">';
-foreach ($excellContent as $key => $row) {
-   echo '<tr><td>key: '.$key.'</td>';
-   foreach ($row as $k => $cell) {
-      echo '<td>k: '.$k.'  ';
-      
-      print_r($cell);
-      echo '</td>';
-   }
-   echo '</tr>';
-    
-}
-echo '</table>';
+//echo '<table border="1">';
+//foreach ($excellContent as $key => $row) {
+//   echo '<tr><td>key: '.$key.'</td>';
+//   foreach ($row as $k => $cell) {
+//      echo '<td>k: '.$k.'  ';
+//      
+//      print_r($cell);
+//      echo '</td>';
+//   }
+//   echo '</tr>';
+//    
+//}
+//echo '</table>';
 foreach($excellContent as $key=>$row){
     foreach($row as $k=>$cell){
  if($excellContent[$key][0]!= trim(" ")||$excellContent[$key][0]!= trim("CONCURRENCE")){
-  print_r($cell[$k]); 
+  print_r($cell); 
  }   
   }
   
