@@ -159,13 +159,7 @@ foreach($sheet->getRowIterator() as $row) {
    $ville_client_final=$excellContent[5][8];
    $contact_distributeur=$excellContent[6][1];
    $potentiel_client_final=$excellContent[6][6];
-   
-   
-   /*insertion des donnees dans la table temporaire tempfichierdistribinfo*/
-   $tempinfodistrib= new Application_Model_DbTable_TempFichierDistribInfo();
-   $tempinfodistribs = $tempinfodistrib->createInfo($numwp, $nom_distributeur, $code_postal_distributeur, $ville_distributeur, $contact_distributeur, $nom_client_final, $numwp_client_final, $code_postal_client_final, $ville_client_final, $potentiel_client_final);
-       
-   
+ 
   /* deuxième iteration  on va  recuperer les données  concernant les articles  on boucle tant qu'on a pas de ligne  vide  ou  que l'on ne rencontre pas ''concurrence''*/ 
    $j=0;
 foreach($sheet->getRowIterator() as $row) {
@@ -188,13 +182,7 @@ foreach($excellContent2 as $key=>$row){
  }      
 }
 $rowsbis=array_filter(array_map('array_filter',$rows));
-echo '<pre>',var_export($rowsbis),'</pre>';
-$temparticledistrib = new Application_Model_DbTable_TempFichierDistribArticle();
-foreach($rowsbis as $value){
-$temparticledistribs = $temparticledistrib->createArticle($numwp, $value[0], $value[1], $value[2], $value[3], $value[5], $value[6]);
-}
 
-//
 ///*troisieme iteration on va chercher 
 // * le nom des concurrents les references
 // *  articles le prix concurrent
@@ -227,29 +215,23 @@ for($n=$debut;$n<$fin;$n++){
     $rows3[]=$row1;
 }
 $rows3bis=array_filter(array_map('array_filter',$rows3));
-echo '<pre>',var_export($rows3bis),'</pre>';
-$tempprixconcurrent = new Application_Model_DbTable_TempFicherDistribPrixConcurrent();
-foreach ($rows3bis as $value){
-$tempprixconcurrents=$tempprixconcurrent->createPrixConcurrent($numwp, $value[0], $value[1], $value[3], $value[5]);
-}
+
+/*iteration 4*/
 $p=0;
 foreach($sheet->getRowIterator() as $row) {
     if($p<14) {
         $p++;
         continue;
     }
- $rowC4 = array();
+     $rowC4 = array();
    // On boucle sur les cellule de la ligne
-   foreach ($row->getCellIterator() as $cell) {
+       foreach ($row->getCellIterator() as $cell) {
        $rowC4[] = $cell->getValue();
    }
- 
  $excellContent4[] = $rowC4;
-
-}//echo '<pre>', var_export($excellContent),'</pre>';
+}
 foreach ($excellContent4 as $key=>$val){
-    $plopinette1[]=trim($val[0]);
-    
+    $plopinette1[]=trim($val[0]);   
 }
 $keydebut1 =array_search('Contexte de la demande (historique client, situation concurrentielle, évolution du compte, enjeux…)',$plopinette1);
 $keyfin1 =array_search('Services associés apportés par le distributeur (stockage de sproduits, commandes par lot…)',$plopinette1);
@@ -261,7 +243,6 @@ for($q=$debut1;$q<$fin1;$q++){
     $rows6[]=$row5;
 }
 $rows6bis=array_filter(array_map('array_filter',$rows6));
-echo '<pre>',var_export($rows6bis),'</pre>';
 
 /*iteration 5 on va chercher les services associes */
 $r=0;
@@ -270,15 +251,13 @@ foreach($sheet->getRowIterator() as $row) {
         $r++;
         continue;
     }
- $rowC5 = array();
-   // On boucle sur les cellule de la ligne
-   foreach ($row->getCellIterator() as $cell) {
-       $rowC5[] = $cell->getValue();
-   }
- 
- $excellContent5[] = $rowC5;
-
-}//echo '<pre>', var_export($excellContent),'</pre>';
+     $rowC5 = array();
+       // On boucle sur les cellule de la ligne
+       foreach ($row->getCellIterator() as $cell) {
+           $rowC5[] = $cell->getValue();
+       }
+     $excellContent5[] = $rowC5;
+}
 foreach ($excellContent5 as $key=>$val){
     $plopinette2[]=trim($val[0]);
     }
@@ -291,14 +270,33 @@ for($t=$debut2;$t<$fin2;$t++){
     $row6=$excellContent5[$t];
     $rows7[]=$row6;
 }
-$rows7bis=array_filter(array_map('array_filter',$rows7));
-echo '<pre>',var_export($rows7bis),'</pre>';   
+$rows7bis=array_filter(array_map('array_filter',$rows7));  
 
-         $tempContexte= new Application_Model_DbTable_TempFichierContexte();
-         $tempContextes=$tempContexte->createContexte($numwp,$rows6bis[0][0] , $rows7bis[0][0]);
-/*fin de lecture du fichier xlsx*/
-/*insertion des données du fichier xlsx  dans les tables temporaires */
-/*fin de l'insertion des données dans les tables temporaires */
+         
+/*
+ * fin de lecture du fichier xlsx
+ */
+
+/*
+ * insertion des données du fichier xlsx  dans les tables temporaires
+ *
+ */
+        $tempinfodistrib= new Application_Model_DbTable_TempFichierDistribInfo();
+        $tempinfodistribs = $tempinfodistrib->createInfo($numwp, $nom_distributeur, $code_postal_distributeur, $ville_distributeur, $contact_distributeur, $nom_client_final, $numwp_client_final, $code_postal_client_final, $ville_client_final, $potentiel_client_final);
+        $temparticledistrib = new Application_Model_DbTable_TempFichierDistribArticle();
+        foreach($rowsbis as $value){
+            $temparticledistribs = $temparticledistrib->createArticle($numwp, $value[0], $value[1], $value[2], $value[3], $value[5], $value[6]);
+        }
+        $tempprixconcurrent = new Application_Model_DbTable_TempFicherDistribPrixConcurrent();
+        foreach ($rows3bis as $value){
+            $tempprixconcurrents=$tempprixconcurrent->createPrixConcurrent($numwp, $value[0], $value[1], $value[3], $value[5]);
+        }
+        
+        $tempContexte= new Application_Model_DbTable_TempFichierContexte();
+        $tempContextes=$tempContexte->createContexte($numwp,$rows6bis[0][0] , $rows7bis[0][0]);
+/*
+ * fin de l'insertion des données dans les tables temporaires
+ */
 /* début d'insertion des données movex dans les tables temporaires*/
 
         $numwp = $this->getRequest()->getParam('num_offre_workplace', null);
@@ -338,24 +336,20 @@ echo '<pre>',var_export($rows7bis),'</pre>';
              * fin de l'insertion 
              */
             
-            /*insertion dans la table temp_movex_distributeur*/
+            /*
+             * insertion dans la table temp_movex_distributeur
+             */
             $query1bis = "select * from EIT.MVXCDTA.OCUSMA OCUSMA where OCUSMA.OKCUNO = '$infos_offres->OBCUNO'";
             $infos_distributeur = odbc_fetch_array(odbc_exec($this->odbc_conn2, $query1bis));
-            // echo  '<pre>', var_export($infos_distributeur),'</pre>';
-              $adresse = $infos_distributeur['OKCUA1'] . $infos_distributeur['OKCUA2'] . $infos_distributeur['OKCUA3'] . $infos_distributeur['OKCUA4'];
-              //echo $adresse;
+            $adresse = $infos_distributeur['OKCUA1'] . $infos_distributeur['OKCUA2'] . $infos_distributeur['OKCUA3'] . $infos_distributeur['OKCUA4']; //echo $adresse;
             $query1ter = "select OOHEAD.OACHL1 from EIT.MVXCDTA.OOHEAD OOHEAD where OOHEAD.OACUNO = '$infos_offres->OBCUNO'";
             $numdistributeurwp = odbc_fetch_array(odbc_exec($this->odbc_conn2, $query1ter));
-           // echo  '<pre>', var_export($numdistributeurwp['OACHL1']),'</pre>';
             $query1quart = "select ZMCPJO.Z2MCL1  from EIT.SMCCDTA.ZMCPJO  ZMCPJO where ZMCPJO.Z2CUNO= '$infos_offres->OBCUNO' ";
             $industriewp = odbc_fetch_array(odbc_exec($this->odbc_conn3, $query1quart));
-            //$this->view->industriewp = $industriewp ;
             $industriewp['Z2MCL1'] = trim($industriewp['Z2MCL1']);
             if ($industriewp['Z2MCL1'] == "" || $industriewp['Z2MCL1'] == " ") {
                     $industriewp['Z2MCL1'] = "SCI";
                 }
-                echo $industriewp['Z2MCL1'];
-                
                  if (isset($industriewp['Z2MCL1']) && $industriewp['Z2MCL1'] != '' && $industriewp['Z2MCL1'] != ' ' && $industriewp['Z2MCL1'] != '  ') {
                     $industry = new Application_Model_DbTable_Industry();
                     $info_industry = $industry->getMovexIndustry($industriewp['Z2MCL1']);
@@ -364,13 +358,18 @@ echo '<pre>',var_export($rows7bis),'</pre>';
                     $plop10 = "SCI";
                     $industry = new Application_Model_DbTable_Industry();
                     $info_industry = $industry->getMovexIndustry($plop10);
-                    $this->view->info_industry = $info_industry;
-                   
+                    $this->view->info_industry = $info_industry;                   
                 }
-             echo '<pre>',var_export($info_industry),'</pre>';
-            $tempDistribs= 0;
+             $id_industry =$info_industry['id_industry'];
+             $numwp_distributeur5 = $infos_offres->OBCUNO;
+             $numwp_distributeur10 = $numdistributeurwp['OACHL1'];
+             $potentiel_distributeur=$infos_distributeur['OKCFC7'];
+             $tempDistribs=new Application_Model_DbTable_TempMovexDistrib();
+             $tempDistrib=$tempDistribs->createdistrib($numwp, $numwp_distributeur5, $id_industry, $numwp_distributeur10, $potentiel, $adresse);
             
-            /*fin insertion insertion table temp_movex_distributeur*/
+            /*
+             * fin insertion insertion table temp_movex_distributeur
+             */
  /*fin de l'insertion des données movex dans les tables temporaires */
             /* debut de requettage  pour affichage des informations  dans le phtml*/
             /*fin de requettage pour l'affichage des infos dans le phtml*/
