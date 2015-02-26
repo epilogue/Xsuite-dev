@@ -23,7 +23,7 @@ class Application_Model_DbTable_TempFichierDistribArticle extends Zend_Db_Table_
            'prix_achat_actuel'                => $prix_actuel_achat,
            'prix_achat_demande_distrib'       => $prix_achat_demande_distrib,
            'prix_achat_demande_client_final'  => $prix_achat_demande_client_final,
-           'remise_supplémentaire'            => $remise_supplementaire
+           'remise_supplementaire'            => $remise_supplementaire
         );
         $this->insert($data);
         return $this;   
