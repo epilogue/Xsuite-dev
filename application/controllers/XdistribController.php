@@ -570,7 +570,7 @@ echo '<pre>',var_export($rows3),'</pre>';
 $p=0;
 foreach($sheet->getRowIterator() as $row) {
     if($p<14) {
-        $m++;
+        $p++;
         continue;
     }
  $rowC4 = array();
