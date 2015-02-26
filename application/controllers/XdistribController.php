@@ -595,8 +595,8 @@ for($q=$debut1;$q<$fin1;$q++){
     $row5=$excellContent4[$q];
     $rows6[]=$row5;
 }
-$rows6=array_filter(array_map('array_filter',$rows6));
-echo '<pre>',var_export($rows6),'</pre>';
+$rows9=array_filter(array_map('array_filter',$rows6));
+echo '<pre>',var_export($rows9),'</pre>';
 
 /*iteration 5 on va chercher les services associes */
 $r=0;
