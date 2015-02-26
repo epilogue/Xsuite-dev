@@ -589,7 +589,7 @@ foreach ($excellContent4 as $key=>$val){
 $keydebut1 =array_search('Contexte de la demande (historique client, situation concurrentielle, évolution du compte, enjeux…)',$plopinette1);
 $keyfin1 =array_search('Services associés apportés par le distributeur (stockage de sproduits, commandes par lot…)',$plopinette1);
 $debut1 = $keydebut1+1;
-$fin1=$keyfin1;
+$fin1=$keyfin1-1;
 
 for($q=$debut1;$q<$fin1;$q++){
     $row5=$excellContent4[$q];
