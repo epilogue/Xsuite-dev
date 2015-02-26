@@ -294,6 +294,8 @@ for($t=$debut2;$t<$fin2;$t++){
 $rows7bis=array_filter(array_map('array_filter',$rows7));
 echo '<pre>',var_export($rows7bis),'</pre>';   
 
+         $tempContexte= new Application_Model_DbTable_TempFichierContexte();
+         $tempContextes=$tempContexte->createContexte($numwp,$rows6bis[0][0] , $rows7bis[0][0]);
 /*fin de lecture du fichier xlsx*/
 /*insertion des données du fichier xlsx  dans les tables temporaires */
 /*fin de l'insertion des données dans les tables temporaires */
