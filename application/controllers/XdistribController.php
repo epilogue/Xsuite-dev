@@ -230,7 +230,7 @@ $rows3bis=array_filter(array_map('array_filter',$rows3));
 echo '<pre>',var_export($rows3bis),'</pre>';
 $tempprixconcurrent = new Application_Model_DbTable_TempFicherDistribPrixConcurrent();
 foreach ($rows3bis as $value){
-$tempprixconcurrents=$tempprixconcurrent->createPrixConcurrent($numwp, $value[0], $value[1], $value[2], $value[3]);
+$tempprixconcurrents=$tempprixconcurrent->createPrixConcurrent($numwp, $value[0], $value[1], $value[3], $value[5]);
 }
 
 
