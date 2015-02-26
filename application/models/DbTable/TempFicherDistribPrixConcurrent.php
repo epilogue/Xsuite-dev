@@ -19,7 +19,7 @@ class Application_Model_DbTable_TempFicherDistribPrixConcurrent extends Zend_Db_
         $data = array(
             'numwp' =>$numwp,
             'concurrent'=>$concurrent,
-            'reference_produit_concurrent'=>$reference_produit_conccurent,
+            'reference_produit'=>$reference_produit_conccurent,
             'prix_tarif_concurrent' => $prix_tarif_concurrent,
             'prix_spe_accorde_concurrent' =>$prix_spe_accorde_concurrent
         );
