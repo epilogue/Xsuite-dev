@@ -566,6 +566,36 @@ for($n=$debut;$n<$fin;$n++){
     $rows3[]=$row1;
 }
 echo '<pre>',var_export($rows3),'</pre>';
+/*iteration 4 on va chercher le contexte */
+$p=0;
+foreach($sheet->getRowIterator() as $row) {
+    if($p<14) {
+        $m++;
+        continue;
+    }
+ $rowC4 = array();
+   // On boucle sur les cellule de la ligne
+   foreach ($row->getCellIterator() as $cell) {
+       $rowC4[] = $cell->getValue();
+   }
+ 
+ $excellContent4[] = $rowC4;
+
+}//echo '<pre>', var_export($excellContent),'</pre>';
+foreach ($excellContent4 as $key=>$val){
+    $plopinette1[]=trim($val[0]);
+    
+}
+$keydebut1 =array_search('Contexte de la demande (historique client, situation concurrentielle, évolution du compte, enjeux…)',$plopinette1);
+$keyfin1 =array_search('Services associés apportés par le distributeur (stockage de sproduits, commandes par lot…)',$plopinette1);
+$debut1 = $keydebut1+1;
+$fin1=$keyfin1;
+
+for($q=$debut1;$q<$fin1;$q++){
+    $row5=$excellContent4[$q];
+    $rows6[]=$row5;
+}
+echo '<pre>',var_export($rows6),'</pre>';
     }
     public function consultAction()
     {
