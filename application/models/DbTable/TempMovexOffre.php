@@ -22,8 +22,6 @@ class Application_Model_DbTable_TempMovexOffre extends Zend_Db_Table_Abstract {
              'numwp_distrib'=>$numwp_distributeur
         );
         $this->insert($data);
-        return $this;
-    
-        
+        return $this;   
     }
 }

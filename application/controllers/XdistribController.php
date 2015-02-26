@@ -125,6 +125,7 @@ public function createAction(){
 }
 /*fin de l'upload  le fichier se trouve dans datas/filesDatas*/
 /*lecture du fichier xlsx utilisation de la librairie PHPExcel */
+ $numwp = $this->getRequest()->getParam('num_offre_workplace', null);
 include 'PHPExcel/Classes/PHPExcel/IOFactory.php';
 $inputFileName = APPLICATION_PATH.'/datas/filesDatas/demande.xlsx';
 // Chargement du fichier Excel
@@ -158,10 +159,13 @@ foreach($sheet->getRowIterator() as $row) {
    $ville_client_final=$excellContent[5][8];
    $contact_distributeur=$excellContent[6][1];
    $potentiel_client_final=$excellContent[6][6];
-   $distributeur=array($nom_distributeur,$code_postal_distributeur,$ville_distributeur,$contact_distributeur);
-   $client_final=array($nom_client_final,$ville_client_final,$code_postal_client_final,$potentiel_client_final);
-   echo '<pre>',var_export($client_final),'</pre>';
-   echo '<pre>',var_export($distributeur),'</pre>';
+   
+   
+   /*insertion des donnees dans la table temporaire tempfichierdistribinfo*/
+   $tempinfodistrib= new Application_Model_DbTable_TempFichierDistribInfo();
+   $tempinfodistribs = $tempinfodistrib->createInfo($numwp, $nom_distributeur, $code_postal_distributeur, $ville_distributeur, $contact_distributeur, $nom_client_final, $numwp_client_final, $code_postal_client_final, $ville_client_final, $potentiel_client_final);
+       
+   
   /* deuxième iteration  on va  recuperer les données  concernant les articles  on boucle tant qu'on a pas de ligne  vide  ou  que l'on ne rencontre pas ''concurrence''*/ 
    $j=0;
 foreach($sheet->getRowIterator() as $row) {
