@@ -595,7 +595,7 @@ for($q=$debut1;$q<$fin1;$q++){
     $row5=$excellContent4[$q];
     $rows6[]=$row5;
 }
-$row6s=array_filter(array_map('array_filter',$rows6));
+$rows6=array_filter(array_map('array_filter',$rows6));
 echo '<pre>',var_export($rows6),'</pre>';
 
 /*iteration 5 on va chercher les services associes */
@@ -627,7 +627,9 @@ for($t=$debut2;$t<$fin2;$t++){
     $row6=$excellContent5[$t];
     $rows7[]=$row6;
 }
-echo '<pre>',var_export($rows7),'</pre>';
+
+echo '<pre>',var_export($rows7),'</pre>';    
+
     }
     public function consultAction()
     {
