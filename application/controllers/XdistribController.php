@@ -187,12 +187,13 @@ foreach($excellContent2 as $key=>$row){
        $rows[]=$row;
  }      
 }
-
+$rowsbis=array_filter(array_map('array_filter',$rows));
+echo '<pre>',var_export($rowsbis),'</pre>';
 $temparticledistrib = new Application_Model_DbTable_TempFichierDistribArticle();
-foreach($rows as $value){
-$temparticledistribs = $temparticledistrib->createArticle($numwp, $value[0], $value[1], $value[2], $value[3], $value[5], $value[6]);
+foreach($rowsbis as $value){
+$temparticledistribs = $temparticledistrib->createArticle($numwp, $value[0], $value[1], $value[2], $value[3], $value[4], $value[5]);
 }
-echo '<pre>',var_export($rows),'</pre>';
+
 //
 ///*troisieme iteration on va chercher 
 // * le nom des concurrents les references
@@ -225,7 +226,13 @@ for($n=$debut;$n<$fin;$n++){
     $row1=$excellContent3[$n];
     $rows3[]=$row1;
 }
-echo '<pre>',var_export($rows3),'</pre>';
+$rows3bis=array_filter(array_map('array_filter',$rows3));
+echo '<pre>',var_export($rows3bis),'</pre>';
+$tempprixconcurrent = new Application_Model_DbTable_TempFicherDistribPrixConcurrent();
+foreach ($rows3bis as $value){
+$tempprixconcurrents=$tempprixconcurrent->createPrixConcurrent($numwp, $value[0], $value[1], $value[2], $value[3]);
+}
+
 
 /*fin de lecture du fichier xlsx*/
 /*insertion des données du fichier xlsx  dans les tables temporaires */
