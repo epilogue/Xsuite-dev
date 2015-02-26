@@ -23,6 +23,8 @@ class Application_Model_DbTable_TempFicherDistribPrixConcurrent extends Zend_Db_
             'prix_tarif_concurrent' => $prix_tarif_concurrent,
             'prix_spe_accorde_concurrent' =>$prix_spe_accorde_concurrent
         );
+         $this->insert($data);
+        return $this;
     }
     //put your code here
 }

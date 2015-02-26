@@ -232,7 +232,67 @@ $tempprixconcurrent = new Application_Model_DbTable_TempFicherDistribPrixConcurr
 foreach ($rows3bis as $value){
 $tempprixconcurrents=$tempprixconcurrent->createPrixConcurrent($numwp, $value[0], $value[1], $value[3], $value[5]);
 }
+$p=0;
+foreach($sheet->getRowIterator() as $row) {
+    if($p<14) {
+        $p++;
+        continue;
+    }
+ $rowC4 = array();
+   // On boucle sur les cellule de la ligne
+   foreach ($row->getCellIterator() as $cell) {
+       $rowC4[] = $cell->getValue();
+   }
+ 
+ $excellContent4[] = $rowC4;
 
+}//echo '<pre>', var_export($excellContent),'</pre>';
+foreach ($excellContent4 as $key=>$val){
+    $plopinette1[]=trim($val[0]);
+    
+}
+$keydebut1 =array_search('Contexte de la demande (historique client, situation concurrentielle, évolution du compte, enjeux…)',$plopinette1);
+$keyfin1 =array_search('Services associés apportés par le distributeur (stockage de sproduits, commandes par lot…)',$plopinette1);
+$debut1 = $keydebut1+1;
+$fin1=$keyfin1-1;
+
+for($q=$debut1;$q<$fin1;$q++){
+    $row5=$excellContent4[$q];
+    $rows6[]=$row5;
+}
+$rows6bis=array_filter(array_map('array_filter',$rows6));
+echo '<pre>',var_export($rows6bis),'</pre>';
+
+/*iteration 5 on va chercher les services associes */
+$r=0;
+foreach($sheet->getRowIterator() as $row) {
+    if($r<14) {
+        $r++;
+        continue;
+    }
+ $rowC5 = array();
+   // On boucle sur les cellule de la ligne
+   foreach ($row->getCellIterator() as $cell) {
+       $rowC5[] = $cell->getValue();
+   }
+ 
+ $excellContent5[] = $rowC5;
+
+}//echo '<pre>', var_export($excellContent),'</pre>';
+foreach ($excellContent5 as $key=>$val){
+    $plopinette2[]=trim($val[0]);
+    }
+$keydebut2 =array_search('Services associés apportés par le distributeur (stockage de sproduits, commandes par lot…)',$plopinette2);
+$keyfin2 =array_search('Services associés apportés par le distributeur (stockage de sproduits, commandes par lot…)',$plopinette1);
+$debut2 = $keydebut2+1;
+$fin2=$keyfin2+2;
+
+for($t=$debut2;$t<$fin2;$t++){
+    $row6=$excellContent5[$t];
+    $rows7[]=$row6;
+}
+$rows7bis=array_filter(array_map('array_filter',$rows7));
+echo '<pre>',var_export($rows7bis),'</pre>';   
 
 /*fin de lecture du fichier xlsx*/
 /*insertion des données du fichier xlsx  dans les tables temporaires */
