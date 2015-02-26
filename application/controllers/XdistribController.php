@@ -622,7 +622,7 @@ $debut2 = $keydebut2+1;
 $fin2=$keyfin2+2;
 
 for($t=$debut2;$t<$fin2;$t++){
-    $row6=$excellContent5[$q];
+    $row6=$excellContent5[$t];
     $rows7[]=$row6;
 }
 echo '<pre>',var_export($rows7),'</pre>';
