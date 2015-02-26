@@ -191,7 +191,7 @@ $rowsbis=array_filter(array_map('array_filter',$rows));
 echo '<pre>',var_export($rowsbis),'</pre>';
 $temparticledistrib = new Application_Model_DbTable_TempFichierDistribArticle();
 foreach($rowsbis as $value){
-$temparticledistribs = $temparticledistrib->createArticle($numwp, $value[0], $value[1], $value[2], $value[3], $value[4], $value[5]);
+$temparticledistribs = $temparticledistrib->createArticle($numwp, $value[0], $value[1], $value[2], $value[3], $value[5], $value[6]);
 }
 
 //
