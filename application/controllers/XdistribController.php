@@ -187,6 +187,11 @@ foreach($excellContent2 as $key=>$row){
        $rows[]=$row;
  }      
 }
+
+$temparticledistrib = new Application_Model_DbTable_TempFichierDistribArticle();
+foreach($rows as $value){
+$temparticledistribs = $temparticledistrib->createArticle($numwp, $value[0], $value[1], $value[2], $value[3], $value[5], $value[6]);
+}
 echo '<pre>',var_export($rows),'</pre>';
 //
 ///*troisieme iteration on va chercher 
