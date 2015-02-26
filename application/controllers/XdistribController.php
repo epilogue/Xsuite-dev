@@ -507,6 +507,7 @@ foreach($sheet->getRowIterator() as $row) {
    $distributeur=array($nom_distributeur,$code_postal_distributeur,$ville_distributeur,$contact_distributeur);
    $client_final=array($nom_client_final,$ville_client_final,$code_postal_client_final,$potentiel_client_final);
    var_dump($nomcontact) ;
+   var_dump($client_final[0]);
    echo '<pre>',var_export($client_final),'</pre>';
    echo '<pre>',var_export($distributeur),'</pre>';
   /* deuxième iteration  on va  recuperer les données  concernant les articles  on boucle tant qu'on a pas de ligne  vide  ou  que l'on ne rencontre pas ''concurrence''*/ 
