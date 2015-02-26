@@ -531,7 +531,9 @@ foreach($excellContent2 as $key=>$row){
  }   
     
 }
-echo '<pre>',var_export($rows),'</pre>';
+$rowsbis=array_filter(array_map('array_filter',$rows));
+echo '<pre>',var_export($rowsbis),'</pre>';
+
 //
 ///*troisieme iteration on va chercher 
 // * le nom des concurrents les references
