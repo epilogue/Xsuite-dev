@@ -542,174 +542,174 @@ $rows7bis=array_filter(array_map('array_filter',$rows7));
     }
     
     public function readerAction(){
-       include 'PHPExcel/Classes/PHPExcel/IOFactory.php';
-
-
-$inputFileName = APPLICATION_PATH.'/datas/filesDatas/demande.xlsx';
-//echo 'Loading file ',pathinfo($inputFileName,PATHINFO_BASENAME),' using IOFactory to identify the format<br />';
-
-// Chargement du fichier Excel
-$objPHPExcel = PHPExcel_IOFactory::load($inputFileName);
- 
-/**
-* récupération de la première feuille du fichier Excel
-* @var PHPExcel_Worksheet $sheet
-*/
-$sheet = $objPHPExcel->getSheet(0);
-$i=0;
-$excellContent = array();
-foreach($sheet->getRowIterator() as $row) {
-    if($i<4) {
-        $i++;
-        continue;
-    }
- $rowC = array();
-   // On boucle sur les cellule de la ligne
-   foreach ($row->getCellIterator() as $cell) {
-       $rowC[] = $cell->getValue();
-   }
- 
- $excellContent[] = $rowC;
-}
-   $nomcontact=$excellContent[1][1];
-   $nom_distributeur=$excellContent[4][1];
-   $nom_client_final=$excellContent[4][6];
-   $numwp_client_final=$excellContent[4][8];
-   $code_postal_distributeur=$excellContent[5][1];
-   $ville_distributeur=$excellContent[5][3];
-   $code_postal_client_final=$excellContent[5][6];
-   $ville_client_final=$excellContent[5][8];
-   $contact_distributeur=$excellContent[6][1];
-   $potentiel_client_final=$excellContent[6][6];
-   $distributeur=array($nom_distributeur,$code_postal_distributeur,$ville_distributeur,$contact_distributeur);
-   $client_final=array($nom_client_final,$ville_client_final,$code_postal_client_final,$potentiel_client_final);
-   var_dump($nomcontact) ;
-   var_dump($client_final[0]);
-   echo '<pre>',var_export($client_final),'</pre>';
-   echo '<pre>',var_export($distributeur),'</pre>';
-  /* deuxième iteration  on va  recuperer les données  concernant les articles  on boucle tant qu'on a pas de ligne  vide  ou  que l'on ne rencontre pas ''concurrence''*/ 
-   $j=0;
-foreach($sheet->getRowIterator() as $row) {
-    if($j <14) {
-        $j++;
-        continue;
-    }
- $rowC2 = array();
-   // On boucle sur les cellule de la ligne
-   foreach ($row->getCellIterator() as $cell) {
-       $rowC2[] = $cell->getValue();
-   }
- 
- $excellContent2[] = $rowC2;
-}
-foreach($excellContent2 as $key=>$row){
-    if($row[0]== NULL ||$row[0]=="CONCURRENCE"){
-   break; }else{   
-       $rows[]=$row;
- }   
-    
-}
-$rowsbis=array_filter(array_map('array_filter',$rows));
-echo '<pre>',var_export($rowsbis),'</pre>';
-
+//       include 'PHPExcel/Classes/PHPExcel/IOFactory.php';
 //
-///*troisieme iteration on va chercher 
-// * le nom des concurrents les references
-// *  articles le prix concurrent
-// * le prix spé concurrent 
-// */
- $m=0;
-foreach($sheet->getRowIterator() as $row) {
-    if($m<14) {
-        $m++;
-        continue;
-    }
- $rowC3 = array();
-   // On boucle sur les cellule de la ligne
-   foreach ($row->getCellIterator() as $cell) {
-       $rowC3[] = $cell->getValue();
-   }
- 
- $excellContent3[] = $rowC3;
-
-}//echo '<pre>', var_export($excellContent),'</pre>';
-foreach ($excellContent3 as $key=>$val){
-    $plopinette[]=trim($val[0]);
-    
-}$keydebut=array_search('Concurrents',$plopinette);
-$keyfin =array_search('Contexte de la demande (historique client, situation concurrentielle, évolution du compte, enjeux…)',$plopinette);
-$debut = $keydebut+1;
-$fin=$keyfin;
-
-for($n=$debut;$n<$fin;$n++){
-    $row1=$excellContent3[$n];
-    $rows3[]=$row1;
-}
-$rows3bis=array_filter(array_map('array_filter',$rows3));
-echo '<pre>',var_export($rows3bis),'</pre>';
-/*iteration 4 on va chercher le contexte */
-$p=0;
-foreach($sheet->getRowIterator() as $row) {
-    if($p<14) {
-        $p++;
-        continue;
-    }
- $rowC4 = array();
-   // On boucle sur les cellule de la ligne
-   foreach ($row->getCellIterator() as $cell) {
-       $rowC4[] = $cell->getValue();
-   }
- 
- $excellContent4[] = $rowC4;
-
-}//echo '<pre>', var_export($excellContent),'</pre>';
-foreach ($excellContent4 as $key=>$val){
-    $plopinette1[]=trim($val[0]);
-    
-}
-$keydebut1 =array_search('Contexte de la demande (historique client, situation concurrentielle, évolution du compte, enjeux…)',$plopinette1);
-$keyfin1 =array_search('Services associés apportés par le distributeur (stockage de sproduits, commandes par lot…)',$plopinette1);
-$debut1 = $keydebut1+1;
-$fin1=$keyfin1-1;
-
-for($q=$debut1;$q<$fin1;$q++){
-    $row5=$excellContent4[$q];
-    $rows6[]=$row5;
-}
-$rows6bis=array_filter(array_map('array_filter',$rows6));
-echo '<pre>',var_export($rows6bis),'</pre>';
-
-/*iteration 5 on va chercher les services associes */
-$r=0;
-foreach($sheet->getRowIterator() as $row) {
-    if($r<14) {
-        $r++;
-        continue;
-    }
- $rowC5 = array();
-   // On boucle sur les cellule de la ligne
-   foreach ($row->getCellIterator() as $cell) {
-       $rowC5[] = $cell->getValue();
-   }
- 
- $excellContent5[] = $rowC5;
-
-}//echo '<pre>', var_export($excellContent),'</pre>';
-foreach ($excellContent5 as $key=>$val){
-    $plopinette2[]=trim($val[0]);
-    
-}
-$keydebut2 =array_search('Services associés apportés par le distributeur (stockage de sproduits, commandes par lot…)',$plopinette2);
-$keyfin2 =array_search('Services associés apportés par le distributeur (stockage de sproduits, commandes par lot…)',$plopinette1);
-$debut2 = $keydebut2+1;
-$fin2=$keyfin2+2;
-
-for($t=$debut2;$t<$fin2;$t++){
-    $row6=$excellContent5[$t];
-    $rows7[]=$row6;
-}
-$rows7bis=array_filter(array_map('array_filter',$rows7));
-echo '<pre>',var_export($rows7bis),'</pre>';    
+//
+//$inputFileName = APPLICATION_PATH.'/datas/filesDatas/demande.xlsx';
+////echo 'Loading file ',pathinfo($inputFileName,PATHINFO_BASENAME),' using IOFactory to identify the format<br />';
+//
+//// Chargement du fichier Excel
+//$objPHPExcel = PHPExcel_IOFactory::load($inputFileName);
+// 
+///**
+//* récupération de la première feuille du fichier Excel
+//* @var PHPExcel_Worksheet $sheet
+//*/
+//$sheet = $objPHPExcel->getSheet(0);
+//$i=0;
+//$excellContent = array();
+//foreach($sheet->getRowIterator() as $row) {
+//    if($i<4) {
+//        $i++;
+//        continue;
+//    }
+// $rowC = array();
+//   // On boucle sur les cellule de la ligne
+//   foreach ($row->getCellIterator() as $cell) {
+//       $rowC[] = $cell->getValue();
+//   }
+// 
+// $excellContent[] = $rowC;
+//}
+//   $nomcontact=$excellContent[1][1];
+//   $nom_distributeur=$excellContent[4][1];
+//   $nom_client_final=$excellContent[4][6];
+//   $numwp_client_final=$excellContent[4][8];
+//   $code_postal_distributeur=$excellContent[5][1];
+//   $ville_distributeur=$excellContent[5][3];
+//   $code_postal_client_final=$excellContent[5][6];
+//   $ville_client_final=$excellContent[5][8];
+//   $contact_distributeur=$excellContent[6][1];
+//   $potentiel_client_final=$excellContent[6][6];
+//   $distributeur=array($nom_distributeur,$code_postal_distributeur,$ville_distributeur,$contact_distributeur);
+//   $client_final=array($nom_client_final,$ville_client_final,$code_postal_client_final,$potentiel_client_final);
+//   var_dump($nomcontact) ;
+//   var_dump($client_final[0]);
+//   echo '<pre>',var_export($client_final),'</pre>';
+//   echo '<pre>',var_export($distributeur),'</pre>';
+//  /* deuxième iteration  on va  recuperer les données  concernant les articles  on boucle tant qu'on a pas de ligne  vide  ou  que l'on ne rencontre pas ''concurrence''*/ 
+//   $j=0;
+//foreach($sheet->getRowIterator() as $row) {
+//    if($j <14) {
+//        $j++;
+//        continue;
+//    }
+// $rowC2 = array();
+//   // On boucle sur les cellule de la ligne
+//   foreach ($row->getCellIterator() as $cell) {
+//       $rowC2[] = $cell->getValue();
+//   }
+// 
+// $excellContent2[] = $rowC2;
+//}
+//foreach($excellContent2 as $key=>$row){
+//    if($row[0]== NULL ||$row[0]=="CONCURRENCE"){
+//   break; }else{   
+//       $rows[]=$row;
+// }   
+//    
+//}
+//$rowsbis=array_filter(array_map('array_filter',$rows));
+//echo '<pre>',var_export($rowsbis),'</pre>';
+//
+////
+/////*troisieme iteration on va chercher 
+//// * le nom des concurrents les references
+//// *  articles le prix concurrent
+//// * le prix spé concurrent 
+//// */
+// $m=0;
+//foreach($sheet->getRowIterator() as $row) {
+//    if($m<14) {
+//        $m++;
+//        continue;
+//    }
+// $rowC3 = array();
+//   // On boucle sur les cellule de la ligne
+//   foreach ($row->getCellIterator() as $cell) {
+//       $rowC3[] = $cell->getValue();
+//   }
+// 
+// $excellContent3[] = $rowC3;
+//
+//}//echo '<pre>', var_export($excellContent),'</pre>';
+//foreach ($excellContent3 as $key=>$val){
+//    $plopinette[]=trim($val[0]);
+//    
+//}$keydebut=array_search('Concurrents',$plopinette);
+//$keyfin =array_search('Contexte de la demande (historique client, situation concurrentielle, évolution du compte, enjeux…)',$plopinette);
+//$debut = $keydebut+1;
+//$fin=$keyfin;
+//
+//for($n=$debut;$n<$fin;$n++){
+//    $row1=$excellContent3[$n];
+//    $rows3[]=$row1;
+//}
+//$rows3bis=array_filter(array_map('array_filter',$rows3));
+//echo '<pre>',var_export($rows3bis),'</pre>';
+///*iteration 4 on va chercher le contexte */
+//$p=0;
+//foreach($sheet->getRowIterator() as $row) {
+//    if($p<14) {
+//        $p++;
+//        continue;
+//    }
+// $rowC4 = array();
+//   // On boucle sur les cellule de la ligne
+//   foreach ($row->getCellIterator() as $cell) {
+//       $rowC4[] = $cell->getValue();
+//   }
+// 
+// $excellContent4[] = $rowC4;
+//
+//}//echo '<pre>', var_export($excellContent),'</pre>';
+//foreach ($excellContent4 as $key=>$val){
+//    $plopinette1[]=trim($val[0]);
+//    
+//}
+//$keydebut1 =array_search('Contexte de la demande (historique client, situation concurrentielle, évolution du compte, enjeux…)',$plopinette1);
+//$keyfin1 =array_search('Services associés apportés par le distributeur (stockage de sproduits, commandes par lot…)',$plopinette1);
+//$debut1 = $keydebut1+1;
+//$fin1=$keyfin1-1;
+//
+//for($q=$debut1;$q<$fin1;$q++){
+//    $row5=$excellContent4[$q];
+//    $rows6[]=$row5;
+//}
+//$rows6bis=array_filter(array_map('array_filter',$rows6));
+//echo '<pre>',var_export($rows6bis),'</pre>';
+//
+///*iteration 5 on va chercher les services associes */
+//$r=0;
+//foreach($sheet->getRowIterator() as $row) {
+//    if($r<14) {
+//        $r++;
+//        continue;
+//    }
+// $rowC5 = array();
+//   // On boucle sur les cellule de la ligne
+//   foreach ($row->getCellIterator() as $cell) {
+//       $rowC5[] = $cell->getValue();
+//   }
+// 
+// $excellContent5[] = $rowC5;
+//
+//}//echo '<pre>', var_export($excellContent),'</pre>';
+//foreach ($excellContent5 as $key=>$val){
+//    $plopinette2[]=trim($val[0]);
+//    
+//}
+//$keydebut2 =array_search('Services associés apportés par le distributeur (stockage de sproduits, commandes par lot…)',$plopinette2);
+//$keyfin2 =array_search('Services associés apportés par le distributeur (stockage de sproduits, commandes par lot…)',$plopinette1);
+//$debut2 = $keydebut2+1;
+//$fin2=$keyfin2+2;
+//
+//for($t=$debut2;$t<$fin2;$t++){
+//    $row6=$excellContent5[$t];
+//    $rows7[]=$row6;
+//}
+//$rows7bis=array_filter(array_map('array_filter',$rows7));
+//echo '<pre>',var_export($rows7bis),'</pre>';    
 
     }
     public function consultAction()
