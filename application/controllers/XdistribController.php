@@ -375,6 +375,9 @@ $rows7bis=array_filter(array_map('array_filter',$rows7));
                     OOLINE.OBSMCD
                     from EIT.CVXCDTA.OOLINE OOLINE WHERE OOLINE.OBORNO='{$numwp}' AND OOLINE.OBDIVI LIKE 'FR0' AND OOLINE.OBCONO=100";
             $resultats = odbc_exec($this->odbc_conn, $query2);
+            while ($resultat[] = odbc_fetch_array($resultats)) {
+                    $this->view->resultat = $resultat;
+                }
  /* recuperation du code acquisition , prif fob et cif*/
             foreach ($this->view->resultat as $itnoarticle) {
                     $mmcono = "100";
@@ -393,9 +396,7 @@ $rows7bis=array_filter(array_map('array_filter',$rows7));
                     $resultatsacquis=odbc_Exec($this->odbc_conn2, $acquis);
                     $resultatacquis[] = odbc_fetch_object($resultatsacquis);
                 }
-            while ($resultat[] = odbc_fetch_array($resultats)) {
-                    $this->view->resultat = $resultat;
-                }
+            
              $articles_xdistrib_temp = new Application_Model_DbTable_Articles();
                     $demandes_articles_xdistrib = new Application_Model_DbTable_TempMovexDemande();
                     foreach ($this->view->resultat as $resultarticle) {
@@ -408,21 +409,21 @@ $rows7bis=array_filter(array_map('array_filter',$rows7));
                     
                     /*insertion et update  prix fob et cif*/
                     foreach ($prixciffob as $key => $value) {
-                        $insertprix = new Application_Model_DbTable_DemandeArticlexdistrib();
+                        $insertprix = new Application_Model_DbTable_TempMovexDemande();
                         $inserprix = $insertprix->InserPrixFob($value->AJPUPR, $value->AJOBV2, $numwp);
                     }
                     foreach($resultatacquis as $key=>$value){
-                        $insertacquis= new Application_Model_DbTable_DemandeArticlexdistrib();
+                        $insertacquis= new Application_Model_DbTable_TempMovexDemande();
                         $inseracquis = $insertacquis->InserCodeAcquis($value->MBPUIT, $value->MBITNO, $numwp);
                     }
                     
-                    $updatecif1 = new Application_Model_DbTable_DemandeArticlexdistrib();
+                    $updatecif1 = new Application_Model_DbTable_TempMovexDemande();
                     $updatecif2 = $updatecif1->getDemandeArticlexdistrib($numwp);                   
                         foreach($updatecif2 as $result){
                             if($result['code_acquisition']=='2'){
-                                $cifs= ($result['prix_fob_demande_article'])*1.07;
+                                $cifs= ($result['prix_fob'])*1.07;
                                 $cif=round($cifs,2);
-                                $updatecif3 = $updatecif1->updatecif($cif, $result['code_article'], $result['tracking_number_demande_xdistrib']);
+                                $updatecif3 = $updatecif1->updatecif($cif, $result['code_article'], $numwp);
                             }
                                                      
                         }
