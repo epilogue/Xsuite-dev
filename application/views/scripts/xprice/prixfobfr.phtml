@@ -113,7 +113,7 @@ $this->headScript()->appendFile('/js/controllers/xprice/afficher_masquer_validat
                     <?php foreach ($this->info_demande_article_xprice as $k=>$result) { ?>
                         <tr>
                             <td><input readonly="readonly" value="<?php echo $result['code_article'] ?>"  name="<?php echo 'code_article[]'; ?>"></td>
-                            <td><?php echo $result['reference_article']; ?></td>
+                            <td style="width: 70px;"><?php echo $result['reference_article']; ?></td>
                             <td id="qt-<?php echo $k; ?>"><?php echo $result['quantite_demande_article']; ?></td>
                             <td id="pwp-<?php echo $k; ?>"><?php echo $result['prixwplace_demande_article']; ?></td>
                             <td id="pd-<?php echo $k; ?>"><?php echo $result['prix_demande_article']; ?></td>

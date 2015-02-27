@@ -320,7 +320,7 @@ $rows7bis=array_filter(array_map('array_filter',$rows7));
             $infos_offre = odbc_exec($this->odbc_conn, $pirate);
             $infos_offres = odbc_fetch_object($infos_offre);
             $this->view->infos_offres = $infos_offres;
-            echo  '<pre>', var_export($infos_offres),'</pre>';
+            //echo  '<pre>', var_export($infos_offres),'</pre>';
             $dateinit = $infos_offres->OBRGDT;
             $dateinit3 = substr($dateinit, 0, 4);
             $dateinit2 = substr($dateinit, 4, 2);
@@ -365,11 +365,74 @@ $rows7bis=array_filter(array_map('array_filter',$rows7));
              $numwp_distributeur10 = $numdistributeurwp['OACHL1'];
              $potentiel_distributeur=$infos_distributeur['OKCFC7'];
              $tempDistribs=new Application_Model_DbTable_TempMovexDistrib();
-             $tempDistrib=$tempDistribs->createdistrib($numwp, $numwp_distributeur5, $id_industry, $numwp_distributeur10, $potentiel, $adresse);
+             $tempDistrib=$tempDistribs->createdistrib($numwp, $numwp_distributeur5, $id_industry, $numwp_distributeur10, $potentiel_distributeur, $adresse);
             
             /*
              * fin insertion insertion table temp_movex_distributeur
              */
+              $query2 = "select OOLINE.OBORNO,OOLINE.OBCUNO,OOLINE.OBITNO,OOLINE.OBITDS,OOLINE.OBORQT,OOLINE.OBLNA2,OOLINE.OBNEPR,OOLINE.OBSAPR,OOLINE.OBELNO,OOLINE.OBRGDT,
+                    OOLINE.OBLMDT,
+                    OOLINE.OBSMCD
+                    from EIT.CVXCDTA.OOLINE OOLINE WHERE OOLINE.OBORNO='{$numwp}' AND OOLINE.OBDIVI LIKE 'FR0' AND OOLINE.OBCONO=100";
+            $resultats = odbc_exec($this->odbc_conn, $query2);
+ /* recuperation du code acquisition , prif fob et cif*/
+            foreach ($this->view->resultat as $itnoarticle) {
+                    $mmcono = "100";
+                    $division = "FR0";
+                    $facility = "I01";
+                    $type = "3";
+                    $warehouse = "I02";
+                    $supplier = "I990001";
+                    $agreement1 = "I000001";
+                    $agreement2 = "I000002";
+                    $agreement3 = "I000003";
+                    $query3 = "select * from EIT.MVXCDTA.MPAGRP MPAGRP where MPAGRP.AJCONO = '$mmcono' AND MPAGRP.AJSUNO = '$supplier' AND (MPAGRP.AJAGNB = '$agreement3'  OR MPAGRP.AJAGNB = '$agreement2' OR MPAGRP.AJAGNB = '$agreement1') AND MPAGRP.AJOBV2 = '{$itnoarticle['OBITNO']}' AND MPAGRP.AJOBV1 = '$division'  ORDER BY MPAGRP.AJAGNB";
+                    $resultats3 = odbc_Exec($this->odbc_conn2, $query3);
+                    $prixciffob[] = odbc_fetch_object($resultats3);
+                    $acquis= "select MITBAL.MBITNO, MITBAL.MBPUIT from EIT.MVXCDTA.MITBAL MITBAL where MITBAL.MBITNO ='{$itnoarticle['OBITNO']}'";
+                    $resultatsacquis=odbc_Exec($this->odbc_conn2, $acquis);
+                    $resultatacquis[] = odbc_fetch_object($resultatsacquis);
+                }
+            while ($resultat[] = odbc_fetch_array($resultats)) {
+                    $this->view->resultat = $resultat;
+                }
+             $articles_xdistrib_temp = new Application_Model_DbTable_Articles();
+                    $demandes_articles_xdistrib = new Application_Model_DbTable_TempMovexDemande();
+                    foreach ($this->view->resultat as $resultarticle) {
+                        $articleexist = $articles_xdistrib->getArticle($resultarticle['OBITNO']);
+                        if (is_null($articleexist)) {
+                            $articles_xdistrib = $articles_xdistrib->createArticle($resultarticle['OBITDS'], $resultarticle['OBITNO'], null);
+                        }
+                        $demande_article_xdistrib = $demandes_articles_xdistrib->createDemandeArticlexdistrib($resultarticle['OBSAPR'], $resultarticle['OBNEPR'],null, $resultarticle['OBORQT'], round(100 - ($resultarticle['OBNEPR'] * 100 / $resultarticle['OBSAPR']), 2), $infos_offres->OBRGDT,$resultarticle['OBNEPR'], round(100 - ($resultarticle['OBNEPR'] * 100 / $resultarticle['OBSAPR']), 2), null, null, null,null, $trackingNumber, $resultarticle['OBITNO'], $resultarticle['OBITDS'], $numwp,null);
+                    }
+                    
+                    /*insertion et update  prix fob et cif*/
+                    foreach ($prixciffob as $key => $value) {
+                        $insertprix = new Application_Model_DbTable_DemandeArticlexdistrib();
+                        $inserprix = $insertprix->InserPrixFob($value->AJPUPR, $value->AJOBV2, $numwp);
+                    }
+                    foreach($resultatacquis as $key=>$value){
+                        $insertacquis= new Application_Model_DbTable_DemandeArticlexdistrib();
+                        $inseracquis = $insertacquis->InserCodeAcquis($value->MBPUIT, $value->MBITNO, $numwp);
+                    }
+                    
+                    $updatecif1 = new Application_Model_DbTable_DemandeArticlexdistrib();
+                    $updatecif2 = $updatecif1->getDemandeArticlexdistrib($numwp);                   
+                        foreach($updatecif2 as $result){
+                            if($result['code_acquisition']=='2'){
+                                $cifs= ($result['prix_fob_demande_article'])*1.07;
+                                $cif=round($cifs,2);
+                                $updatecif3 = $updatecif1->updatecif($cif, $result['code_article'], $result['tracking_number_demande_xdistrib']);
+                            }
+                                                     
+                        }
+                        $margeupdate1=new Application_Model_DbTable_DemandeArticlexdistrib();
+                        $margeupdate2=$margeupdate1->getDemandeArticlexdistrib($numwp);
+                        foreach($margeupdate2 as $res){
+                            $marges = 1-($res['prix_cif_demande_article']/$res['prix_accorde_demande_article']);
+                            $marge=$marges*100;
+                            $margeupdate3=$margeupdate1->updateMarge($marge, $res['code_article'],$res['tracking_number_demande_xdistrib']);
+                        }
  /*fin de l'insertion des données movex dans les tables temporaires */
             /* debut de requettage  pour affichage des informations  dans le phtml*/
             /*fin de requettage pour l'affichage des infos dans le phtml*/
@@ -413,33 +476,8 @@ $rows7bis=array_filter(array_map('array_filter',$rows7));
              * date
              * identifiant
              */
-            $query2 = "select OOLINE.OBORNO,OOLINE.OBCUNO,OOLINE.OBITNO,OOLINE.OBITDS,OOLINE.OBORQT,OOLINE.OBLNA2,OOLINE.OBNEPR,OOLINE.OBSAPR,OOLINE.OBELNO,OOLINE.OBRGDT,
-                    OOLINE.OBLMDT,
-                    OOLINE.OBSMCD
-                    from EIT.CVXCDTA.OOLINE OOLINE WHERE OOLINE.OBORNO='{$numwp}' AND OOLINE.OBDIVI LIKE 'FR0' AND OOLINE.OBCONO=100";
-            $resultats = odbc_exec($this->odbc_conn, $query2);
-
-            while ($resultat[] = odbc_fetch_array($resultats)) {
-                    $this->view->resultat = $resultat;
-                }
-                /* recuperation du code acquisition , prif fob et cif*/
-            foreach ($this->view->resultat as $itnoarticle) {
-                    $mmcono = "100";
-                    $division = "FR0";
-                    $facility = "I01";
-                    $type = "3";
-                    $warehouse = "I02";
-                    $supplier = "I990001";
-                    $agreement1 = "I000001";
-                    $agreement2 = "I000002";
-                    $agreement3 = "I000003";
-                    $query3 = "select * from EIT.MVXCDTA.MPAGRP MPAGRP where MPAGRP.AJCONO = '$mmcono' AND MPAGRP.AJSUNO = '$supplier' AND (MPAGRP.AJAGNB = '$agreement3'  OR MPAGRP.AJAGNB = '$agreement2' OR MPAGRP.AJAGNB = '$agreement1') AND MPAGRP.AJOBV2 = '{$itnoarticle['OBITNO']}' AND MPAGRP.AJOBV1 = '$division'  ORDER BY MPAGRP.AJAGNB";
-                    $resultats3 = odbc_Exec($this->odbc_conn2, $query3);
-                    $prixciffob[] = odbc_fetch_object($resultats3);
-                    $acquis= "select MITBAL.MBITNO, MITBAL.MBPUIT from EIT.MVXCDTA.MITBAL MITBAL where MITBAL.MBITNO ='{$itnoarticle['OBITNO']}'";
-                    $resultatsacquis=odbc_Exec($this->odbc_conn2, $acquis);
-                    $resultatacquis[] = odbc_fetch_object($resultatsacquis);
-                }
+           
+               
             $this->view->prixciffob = $prixciffob;
             
              /*
@@ -493,43 +531,7 @@ $rows7bis=array_filter(array_map('array_filter',$rows7));
                         /*fin insertion distributeur*/
                         
              /* debut Insertion dans les tables Articles  et  demande_Article_Xdistrib */
-                    $articles_xdistrib = new Application_Model_DbTable_Articles();
-                    $demandes_articles_xdistrib = new Application_Model_DbTable_DemandeArticlexdistrib();
-                    foreach ($this->view->resultat as $resultarticle) {
-                        $articleexist = $articles_xdistrib->getArticle($resultarticle['OBITNO']);
-                        if (is_null($articleexist)) {
-                            $articles_xdistrib = $articles_xdistrib->createArticle($resultarticle['OBITDS'], $resultarticle['OBITNO'], null);
-                        }
-                        $demande_article_xdistrib = $demandes_articles_xdistrib->createDemandeArticlexdistrib($resultarticle['OBSAPR'], $resultarticle['OBNEPR'],null, $resultarticle['OBORQT'], round(100 - ($resultarticle['OBNEPR'] * 100 / $resultarticle['OBSAPR']), 2), $infos_offres->OBRGDT,$resultarticle['OBNEPR'], round(100 - ($resultarticle['OBNEPR'] * 100 / $resultarticle['OBSAPR']), 2), null, null, null,null, $trackingNumber, $resultarticle['OBITNO'], $resultarticle['OBITDS'], $numwp,null);
-                    }
                     
-                    /*insertion et update  prix fob et cif*/
-                    foreach ($prixciffob as $key => $value) {
-                        $insertprix = new Application_Model_DbTable_DemandeArticlexdistrib();
-                        $inserprix = $insertprix->InserPrixFob($value->AJPUPR, $value->AJOBV2, $numwp);
-                    }
-                    foreach($resultatacquis as $key=>$value){
-                        $insertacquis= new Application_Model_DbTable_DemandeArticlexdistrib();
-                        $inseracquis = $insertacquis->InserCodeAcquis($value->MBPUIT, $value->MBITNO, $numwp);
-                    }
-                    
-                    $updatecif1 = new Application_Model_DbTable_DemandeArticlexdistrib();
-                    $updatecif2 = $updatecif1->getDemandeArticlexdistrib($numwp);                   
-                        foreach($updatecif2 as $result){
-                            if($result['code_acquisition']=='2'){
-                                $cifs= ($result['prix_fob_demande_article'])*1.07;
-                                $cif=round($cifs,2);
-                                $updatecif3 = $updatecif1->updatecif($cif, $result['code_article'], $result['tracking_number_demande_xdistrib']);
-                            }
-                                                     
-                        }
-                        $margeupdate1=new Application_Model_DbTable_DemandeArticlexdistrib();
-                        $margeupdate2=$margeupdate1->getDemandeArticlexdistrib($numwp);
-                        foreach($margeupdate2 as $res){
-                            $marges = 1-($res['prix_cif_demande_article']/$res['prix_accorde_demande_article']);
-                            $marge=$marges*100;
-                            $margeupdate3=$margeupdate1->updateMarge($marge, $res['code_article'],$res['tracking_number_demande_xdistrib']);
-                        }
                         
 //                        require ('library/PHPExcel/Classes/PHPExcel.php');
 //                        $essai = new PHPExcel();
