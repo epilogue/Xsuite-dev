@@ -399,10 +399,10 @@ $rows7bis=array_filter(array_map('array_filter',$rows7));
              $articles_xdistrib_temp = new Application_Model_DbTable_Articles();
                     $demandes_articles_xdistrib = new Application_Model_DbTable_TempMovexDemande();
                     foreach ($this->view->resultat as $resultarticle) {
-                        $articleexist = $articles_xdistrib->getArticle($resultarticle['OBITNO']);
-                        if (is_null($articleexist)) {
-                            $articles_xdistrib = $articles_xdistrib->createArticle($resultarticle['OBITDS'], $resultarticle['OBITNO'], null);
-                        }
+//                        $articleexist = $articles_xdistrib->getArticle($resultarticle['OBITNO']);
+//                        if (is_null($articleexist)) {
+//                            $articles_xdistrib = $articles_xdistrib->createArticle($resultarticle['OBITDS'], $resultarticle['OBITNO'], null);
+//                        }
                         $demande_article_xdistrib = $demandes_articles_xdistrib->createDemandeTemp($resultarticle['OBITNO'],$resultarticle['OBITDS'],$resultarticle['OBSAPR'], $resultarticle['OBORQT'], $resultarticle['OBNEPR'],round(100 - ($resultarticle['OBNEPR'] * 100 / $resultarticle['OBSAPR']), 2),$resultarticle['OBNEPR'], round(100 - ($resultarticle['OBNEPR'] * 100 / $resultarticle['OBSAPR']), 2),$numwp,$resultarticle['OBNEPR'],round(100 - ($resultarticle['OBNEPR'] * 100 / $resultarticle['OBSAPR']), 2),null,null,null);
                     }
                     
