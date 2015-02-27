@@ -430,9 +430,9 @@ $rows7bis=array_filter(array_map('array_filter',$rows7));
                         $margeupdate1=new Application_Model_DbTable_DemandeArticlexdistrib();
                         $margeupdate2=$margeupdate1->getDemandeArticlexdistrib($numwp);
                         foreach($margeupdate2 as $res){
-                            $marges = 1-($res['prix_cif_demande_article']/$res['prix_accorde_demande_article']);
+                            $marges = 1-($res['prix_cif']/$res['prix_accorde']);
                             $marge=$marges*100;
-                            $margeupdate3=$margeupdate1->updateMarge($marge, $res['code_article'],$res['tracking_number_demande_xdistrib']);
+                            $margeupdate3=$margeupdate1->updateMarge($marge, $res['code_article'],$numwp);
                         }
  /*fin de l'insertion des données movex dans les tables temporaires */
             /* debut de requettage  pour affichage des informations  dans le phtml*/

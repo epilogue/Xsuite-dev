@@ -37,7 +37,7 @@ class Application_Model_DbTable_TempMovexDemande extends Zend_Db_Table_Abstract 
         $numwp = "$numwp";
         $prixciff = floatval($prixciff);
         $plop = $this->getAdapter();
-        $datas = array('prix_fob' => $prixciff, 'prix_cif_demande_article' => $prixciff);
+        $datas = array('prix_fob' => $prixciff, 'prix_cif' => $prixciff);
         $where = $plop->quoteInto('code_article = ?', $code_article)
                 . $plop->quoteInto('And numwp = ?', $numwp);
         $plop2 = $this->update($datas, $where);
