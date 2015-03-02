@@ -815,7 +815,6 @@ if($user->id_fonction == 3){
         $this->nom_validation = $nom_validation;
         $numwp = $this->getRequest()->getParam('numwp', null);
         $this->view->numwp = $numwp;
-        echo '<pre>',  var_export($numwp),'</pre>';
         /*
          * on va rechercher les informations concernant la demande _xprice
          */
