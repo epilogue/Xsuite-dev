@@ -115,6 +115,7 @@ public function uploadnumwpAction(){
 public function createAction(){
     
     /* upload du fichier xlsx coorespondant à l'offre */
+    echo plop;
      $filename=$_FILES['nomfichier']['name'];
      ini_set("display_errors", E_ALL);
     $destination=APPLICATION_PATH.'/datas/filesDatas/';
