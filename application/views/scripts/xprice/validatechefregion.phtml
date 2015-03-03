@@ -98,6 +98,16 @@ $this->headTitle($this->title);
                         <td><?php echo $result['remise_demande_article'] . "%"; ?></td>
                     </tr>
                 <?php } ?>
+                     <tr>
+                            <td colspan="2">total</td>
+                            <td colspan="2" ><input class="cab" id="cab-affiche"
+                               <?php $cab=0;foreach($this->info_demande_article_xprice as $result)
+                                {$cab+=($result['quantite_demande_article']*$result['prixwplace_demande_article']);
+                            
+                            } ?>value="<?php $cab2=number_format($cab,2,'.',' ');echo $cab2; ?>">
+                                <input id="cab" type="hidden" class="calculHidden" value="<?php echo $cab; ?>" >
+                            </td>
+                     </tr>
             </table>
             <br>
             <br>
