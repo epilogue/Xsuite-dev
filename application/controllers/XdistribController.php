@@ -432,7 +432,7 @@ $rows7bis=array_filter(array_map('array_filter',$rows7));
                         
       /* creation table temporaire pour  client */
                         
-                        $clientTemps= new Application_Model_DbTable_ClientTemp();
+                        $clientTemps= new Application_Model_DbTable_TempClient();
                         $clientTemp= $clientTemps->createTemp($numwp,$numwp_client_final,$code_postal_client_final,$potentiel_client_final,$ville_client_final,$nom_client_final);
  /*fin de l'insertion des données movex dans les tables temporaires */
             /* debut de requettage  pour affichage des informations  dans le phtml*/
