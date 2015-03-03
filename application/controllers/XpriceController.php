@@ -2014,7 +2014,7 @@ if($user->id_fonction == 3){
             $emailVars = Zend_Registry::get('emailVars');
 // var_dump($datas); exit();
           /* else {*/
-                $destinatairemail = "mhuby@smc-france.fr" /*$emailVars->listes->DBD*/;
+                $destinatairemail =$emailVars->listes->DBD;
                 if (!is_null($commentId)) {
                     $url = "http://{$_SERVER['SERVER_NAME']}/xprice/validatedbd/numwp/{$numwp}/com/{$commentId}";
                 } else {
