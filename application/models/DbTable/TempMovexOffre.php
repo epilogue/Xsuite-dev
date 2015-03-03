@@ -25,20 +25,20 @@ class Application_Model_DbTable_TempMovexOffre extends Zend_Db_Table_Abstract {
         return $this;   
     }
     public function getMovexUser($numwp){
-        $sql = "select users.nom_user,users.prenom_user,users.tel_user,users.email_user,users.numwp_user,holons.nom_holon"
+        $sql = "select users.nom_user,users.prenom_user,users.tel_user,users.email_user,users.numwp_user,holons.nom_holon "
                 . " from temp_movex_offre "
-                . " join users on temp_movex_offre.userwp = users.numwp_user"
-                . "join holons.id_holon = users.id_holon where temp_movex_offre.numwp = '$numwp'";
+                . " join users on temp_movex_offre.userwp = users.numwp_user "
+                . " join holons.id_holon = users.id_holon where temp_movex_offre.numwp = '$numwp'";
       $res= $this->getAdapter()->query($sql);
       $rest = $res->fetchObject();
       return $rest;
     }
     
     public function getDistrib($numwp){
-        $sql="select temp_fichier_distrib_info.distrib,temp_fichier_distrib_info.nom_contact_distrib,temp_fichier_distrib_info.ville_distrib,ctemp_fichier_distrib_info.codepostal_distrib,temp_movex_offre.numwp_distrib"
+        $sql="select temp_fichier_distrib_info.distrib,temp_fichier_distrib_info.nom_contact_distrib,temp_fichier_distrib_info.ville_distrib,ctemp_fichier_distrib_info.codepostal_distrib,temp_movex_offre.numwp_distrib "
                 . " from temp_movex_offre join temp_fichier_distrib_info "
-                . "join on temp_movex_offre.numwp = temp_fichier_distrib_info.numwp "
-                . "where temp_movex_offre.numwp = $numwp";
+                . " join on temp_movex_offre.numwp = temp_fichier_distrib_info.numwp "
+                . " where temp_movex_offre.numwp = $numwp";
         $res= $this->getAdapter()->query($sql);
       $rest = $res->fetchObject();
       return $rest;
