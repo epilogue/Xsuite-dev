@@ -162,8 +162,6 @@ if($user->id_fonction == 3){
             $flashMessenger = $this->_helper->getHelper('FlashMessenger');
             $message = "Cette offre a déjà été créée.";
             $flashMessenger->addMessage($message);
-//            $message = "Veuillez cliquer sur : <a href=\"/xprice/tracking\">'Xprice : Consulter'</a>.";
-//            $flashMessenger->addMessage($message);
             $redirector->gotoSimple('index', 'xprice');
         }
         $this->view->numwp = $numwp;
