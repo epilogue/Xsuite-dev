@@ -439,7 +439,7 @@ $rows7bis=array_filter(array_map('array_filter',$rows7));
             /*requete info_ vendeur, info_distrib,info_client*/ 
             /*recuperation des donnees concernant le createur de l'offre*/
             $user_infos = new Application_Model_DbTable_TempMovexOffre();
-            $user_info = $user_infos>getMovexUser($numwp);
+            $user_info = $user_infos->getMovexUser($numwp);
             $this->view->user_info = $user_info;
             echo  '<pre>', var_export($user_info),'</pre>';   
             $distrib_infos = new Application_Model_DbTable_TempMovexOffre();
