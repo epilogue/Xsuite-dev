@@ -11,20 +11,20 @@ $this->headScript()->appendFile('/js/controllers/xprice/popup.js');
     <h3>Demande en ligne pour Prix Spéciaux</h3> 
     <table class="enum">
         <tr>
-             <?php if($this->fonction == 5 || $this->fonction == 13 || $this->fonction ==10){?>
+             <?php if($this->fonction == 5 || $this->fonction == 13 || $this->fonction ==10 || $this->fonction ==29){?>
             <th>Commercial</th>
         <?php } ?>
             <th>Numéro Workplace</th>
             <th>Tracking number</th>
             <th>Nom Client</th>
             <th>Date demande</th>
-             <?php if($this->fonction == 5 || $this->fonction == 13){?>
+             <?php if($this->fonction == 5 || $this->fonction == 13 || $this->fonction ==29){?>
              <th>état validation</th>
         <?php } ?>
         </tr>
     <?php  foreach($this->recapitulatif as $k=>$result){
         ?><tr>
-            <?php if($this->fonction == 5 || $this->fonction == 13 || $this->fonction == 10){?>
+            <?php if($this->fonction == 5 || $this->fonction == 13 || $this->fonction == 10 || $this->fonction ==29){?>
              <td><?php echo $result['nom_user'];?></td>
         <?php } ?>
             <td><?php echo $result['num_workplace_demande_xprice']; ?></td>
