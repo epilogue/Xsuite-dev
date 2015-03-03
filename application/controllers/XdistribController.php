@@ -433,9 +433,16 @@ $rows7bis=array_filter(array_map('array_filter',$rows7));
       /* creation table temporaire pour  client */
                         
                         $clientTemps= new Application_Model_DbTable_ClientTemp();
-                        $clientTemp= $clientTemps->createTemp();
+                        $clientTemp= $clientTemps->createTemp($numwp,$numwp_client_final,$code_postal_client_final,$potentiel_client_final,$ville_client_final,$nom_client_final);
  /*fin de l'insertion des données movex dans les tables temporaires */
             /* debut de requettage  pour affichage des informations  dans le phtml*/
+            /*requete info_ vendeur, info_distrib,info_client*/ 
+            /*recuperation des donnees concernant le createur de l'offre*/
+            $user_infos = new Application_Model_DbTable_TempMovexOffre();
+            $user_info = $user_infos>getMovexUser($numwp);
+            $this->view->user_info = $user_info;
+            echo  '<pre>', var_export($user_info),'</pre>';               
+                        
             /*fin de requettage pour l'affichage des infos dans le phtml*/
  
             /*recuperation info createur de l'offre*/
