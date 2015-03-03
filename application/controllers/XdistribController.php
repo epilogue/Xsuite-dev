@@ -422,13 +422,13 @@ $rows7bis=array_filter(array_map('array_filter',$rows7));
                             }
                                                      
                         }
-                        $margeupdate1=new Application_Model_DbTable_TempMovexDemande();
-                        $margeupdate2=$margeupdate1->getDemandeArticlexdistrib($numwp);
-                        foreach($margeupdate2 as $res){
-                            $marges = 1-($res['prix_cif']/$res['prix_accorde']);
-                            $marge=$marges*100;
-                            $margeupdate3=$margeupdate1->updateMarge($marge, $res['code_article'],$numwp);
-                        }
+//                        $margeupdate1=new Application_Model_DbTable_TempMovexDemande();
+//                        $margeupdate2=$margeupdate1->getDemandeArticlexdistrib($numwp);
+//                        foreach($margeupdate2 as $res){
+//                            $marges = 1-($res['prix_cif']/$res['prix_accorde']);
+//                            $marge=$marges*100;
+//                            $margeupdate3=$margeupdate1->updateMarge($marge, $res['code_article'],$numwp);
+//                        }
                         
       /* creation table temporaire pour  client */
                         
