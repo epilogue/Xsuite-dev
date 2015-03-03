@@ -164,13 +164,13 @@ class Application_Model_DbTable_DemandeArticlexdistrib extends Zend_Db_Table_Abs
    return $plop2;
    
    }
-    public function updateMarge($marge, $code_article, $tracking_number) {
+    public function updateMarge($marge, $code_article, $numwp) {
         $code_article = "$code_article";
-        $tracking_number = "$tracking_number";
+        $numwp = "$numwp";
         $plop = $this->getAdapter();
         $datas = array('marge_demande_article' => $marge);
         $where = $plop->quoteInto('code_article = ?', $code_article)
-                . $plop->quoteInto(' And tracking_number_demande_xdistrib = ?', $tracking_number);
+                . $plop->quoteInto(' And num_workplace_demande_xdistrib = ?', $numwp);
         $plop2 = $this->update($datas, $where);
         return $plop2;
     }

@@ -14,7 +14,7 @@
 class Application_Model_DbTable_TempMovexDemande extends Zend_Db_Table_Abstract {
     protected $_name = 'temp_movex_demande';
     
-    function createDemandeTemp($code_article,$reference_article,$prix_tarif,$quantite,$prix_demande,$remise_demande,$numwp,$prix_accorde,$remise_accorde,$code_acquisition,$prix_fob,$prix_cif){
+    function createDemandeTemp($code_article,$reference_article,$prix_tarif,$quantite,$prix_demande,$remise_demande,$numwp,$prix_accorde,$remise_accorde,$code_acquisition,$prix_fob,$prix_cif,$marge){
         $data=array(
             'code_article'=>$code_article,
             'reference_article'=>$reference_article,
@@ -27,7 +27,8 @@ class Application_Model_DbTable_TempMovexDemande extends Zend_Db_Table_Abstract 
             'remise_accorde'=>$remise_accorde,
             'code_acquisition'=>$code_acquisition,
             'prix_fob'=>$prix_fob,
-            'prix_cif'=>$prix_cif);
+            'prix_cif'=>$prix_cif,
+            'marge'=>$marge);
         
         $this->insert($data);
         return $this;   
@@ -73,5 +74,14 @@ class Application_Model_DbTable_TempMovexDemande extends Zend_Db_Table_Abstract 
             return $rows->toArray();
         }
     }
-    //put your code here
+    public function updateMarge($marge, $code_article, $numwp) {
+        $code_article = "$code_article";
+        $numwp = "$numwp";
+        $plop = $this->getAdapter();
+        $datas = array('marge' => $marge);
+        $where = $plop->quoteInto('code_article = ?', $code_article)
+                . $plop->quoteInto('numwp = ?', $numwp);
+        $plop2 = $this->update($datas, $where);
+        return $plop2;
+    }
 }
