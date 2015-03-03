@@ -64,7 +64,7 @@ class XpriceController extends Zend_Controller_Action {
 
     public function indexAction() {
  $user = $this->_auth->getStorage()->read();
- echo $user;
+ echo $user->id_fonction;
   $holon =$user->id_holon; 
   $fonction = $user->id_fonction;
   $this->view->fonction=$fonction;
