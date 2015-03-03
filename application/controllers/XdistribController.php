@@ -441,8 +441,10 @@ $rows7bis=array_filter(array_map('array_filter',$rows7));
             $user_infos = new Application_Model_DbTable_TempMovexOffre();
             $user_info = $user_infos>getMovexUser($numwp);
             $this->view->user_info = $user_info;
-            echo  '<pre>', var_export($user_info),'</pre>';               
-                        
+            echo  '<pre>', var_export($user_info),'</pre>';   
+            $distrib_infos = new Application_Model_DbTable_TempMovexOffre();
+            $distrib_info=$distrib_infos->getDistrib($numwp);
+                     echo  '<pre>', var_export($distrib_info),'</pre>';   
             /*fin de requettage pour l'affichage des infos dans le phtml*/
  
             /*recuperation info createur de l'offre*/

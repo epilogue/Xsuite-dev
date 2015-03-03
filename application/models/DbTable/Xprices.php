@@ -10,7 +10,7 @@ class Application_Model_DbTable_Xprices extends Zend_Db_Table_Abstract {
             'tracking_number_demande_xprice' => $tracking_number_demande_xprice,
             'commentaire_demande_xprice' => $commentaire_demande_xprice,
             'date_demande_xprice' => $date_demande_xprice,
-            'justificatif_demande_xprice' => $justificatif_demande_xprice,
+            'justificatif_demande_xprice' =>  $justificatif_demande_xprice,
             'justificatif2_demande_xprice' => $justificatif2_demande_xprice,
             'justificatif3_demande_xprice' => $justificatif3_demande_xprice,
             'justificatif4_demande_xprice' => $justificatif4_demande_xprice,
