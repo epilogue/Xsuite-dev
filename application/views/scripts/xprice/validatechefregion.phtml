@@ -107,7 +107,7 @@ $this->headTitle($this->title);
                             } ?>value="<?php $cab2=number_format($cab,2,'.',' ');echo $cab2; ?>">
                                 <input id="cab" type="hidden" class="calculHidden" value="<?php echo $cab; ?>" >
                             </td>
-                            <td colspan="2">
+                            <td>
                                 <input class="cad" id="cad-affiche" 
                                        <?php $cad=0; foreach ( $this->info_demande_article_xprice as $result)
                                        {$cad+=($result['quantite_demande_article']*$result['prix_demande_article']); }?> value="<?php $cad2=number_format($cad,2,'.',' ');echo $cad2; ?>">
