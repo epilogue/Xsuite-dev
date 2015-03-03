@@ -113,6 +113,7 @@ $this->headTitle($this->title);
                                        {$cad+=($result['quantite_demande_article']*$result['prix_demande_article']); }?> value="<?php $cad2=number_format($cad,2,'.',' ');echo $cad2; ?>">
                                 <input id="cad" type="hidden" class="calculHidden" value="<?php echo $cad; ?>" >
                             </td>
+                            <td><input id="mo"  <?php $mo=100*(1-($cad/$cab));?> value="<?php echo round($mo,2)."%"; ?>"></td>
                      </tr>
             </table>
             <br>
