@@ -35,7 +35,7 @@ class Application_Model_DbTable_TempMovexOffre extends Zend_Db_Table_Abstract {
     }
     
     public function getDistrib($numwp){
-        $sql="select temp_fichier_distrib_info.distrib,temp_fichier_distrib_info.nom_contact_distrib,temp_fichier_distrib_info.ville_distrib,ctemp_fichier_distrib_info.codepostal_distrib,temp_movex_offre.numwp_distrib "
+        $sql="select temp_fichier_distrib_info.distrib,temp_fichier_distrib_info.nom_contact_distrib,temp_fichier_distrib_info.ville_distrib,temp_fichier_distrib_info.codepostal_distrib,temp_movex_offre.numwp_distrib "
                 . " from temp_movex_offre "
                 . " join  temp_fichier_distrib_info on temp_movex_offre.numwp = temp_fichier_distrib_info.numwp "
                 . " where temp_movex_offre.numwp = $numwp";
