@@ -449,8 +449,8 @@ $rows7bis=array_filter(array_map('array_filter',$rows7));
             /*fin de requettage pour l'affichage des infos dans le phtml*/
             $client_infos= new Application_Model_DbTable_TempMovexOffre();
             $client_info=$client_infos->getClientFinal($numwp);
-            $this->view->client_info=$client_info;
-
+            $this->view->client_info=$client_info[0];
+echo  '<pre>', var_export($client_info),'</pre>';  
            
             if ($this->getRequest()->isPost()) {
                     $formData = $this->getRequest()->getPost();
