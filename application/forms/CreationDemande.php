@@ -23,7 +23,6 @@ class Application_Form_CreationDemande  extends Zend_Form {
                     'label' => 'Démarche stratégique:',
                     'value' => -1,
                 ))
-                ->setRequired(true)
                 ->getElement('faible');
         $faibleoptions = array("-1" => "choisissez la démarche",
             0 => "concentration des efforts",
@@ -43,7 +42,7 @@ class Application_Form_CreationDemande  extends Zend_Form {
         /*
          * Ajout bouton radio pour envoi de mail 
          */
-        $listedifusion = $this->addElement("radio",'listedifusion',array('label'=>'mail région','value'=>'SC'))
+        $listedifusion = $this->addElement("radio",'listedifusion',array('label'=>'mail région','value'=>'SC','required'=>TRUE))
                 ->getElement('listedifusion');
         $listedifusionoptions = array('regionNord' => 'région Nord',
          'regionSud' => 'région Sud',
