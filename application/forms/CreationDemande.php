@@ -42,16 +42,19 @@ class Application_Form_CreationDemande  extends Zend_Form {
         /*
          * Ajout bouton radio pour envoi de mail 
          */
-        $listedifusion= Zend_Form_Element_Radio( 'test', array(
-    'label'=>'mail région',
-    'multiOptions'=>array(
-        'région Nord' => 'regionNord',
+        
+        $listedifusion = new Zend_Form_Element_Radio('listedifusion');
+        $listedifusion->setLabel('mail region:')
+              ->setRequired(true)
+                        ->setSeparator('')
+              ->setValue($options['profile']['listedifusion'])
+              ->setMultiOptions(array('région Nord' => 'regionNord',
          'région Sud' => 'regionSud',
          'région Est' => 'regionEst',
          'région Ouest' => 'regionOuest',
-        'grand compte' => 'SuiviCommande',
-    ),
-));
+        'grand compte' => 'SuiviCommande',))
+              ->addErrorMessage('sélectionnez une région ou  suivi de commande')
+              ->addValidator('NotEmpty');
         /*
          * bouton de soumission
          */
