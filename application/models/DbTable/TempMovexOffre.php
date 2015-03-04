@@ -29,9 +29,19 @@ class Application_Model_DbTable_TempMovexOffre extends Zend_Db_Table_Abstract {
                 . " from temp_movex_offre "
                 . " join users on temp_movex_offre.userwp = users.numwp_user "
                 . " join holons on  holons.id_holon = users.id_holon where temp_movex_offre.numwp = '$numwp'";
-      $res= $this->getAdapter()->query($sql);
-      $rest = $res->fetchObject();
-      return $rest;
+//      $res= $this->getAdapter()->query($sql);
+//      
+//      $rest = $res->fetchObject();
+//      return $rest;
+       $plop = $sql->query();
+        $result = $plop->fetchAll();
+        //var_dump($result);
+        //exit();
+        if (!$result) {
+            return null;
+        } else {
+            return $result;
+        }
     }
     
     public function getDistrib($numwp){
@@ -39,9 +49,18 @@ class Application_Model_DbTable_TempMovexOffre extends Zend_Db_Table_Abstract {
                 . " from temp_movex_offre "
                 . " join  temp_fichier_distrib_info on temp_movex_offre.numwp = temp_fichier_distrib_info.numwp "
                 . " where temp_movex_offre.numwp = $numwp";
-        $res= $this->getAdapter()->query($sql);
-      $rest = $res->fetchObject();
-      return $rest;
+//        $res= $this->getAdapter()->query($sql);
+//      $rest = $res->fetchObject();
+//      return $rest;
+         $plop = $sql->query();
+        $result = $plop->fetchAll();
+        //var_dump($result);
+        //exit();
+        if (!$result) {
+            return null;
+        } else {
+            return $result;
+        }
     }
     
     public function getClientFinal($numwp){
