@@ -1032,6 +1032,18 @@ if($user->id_fonction == 3){
             $commentId = $this->genererValidation($datasValidation);
 $mailServiceClient = new Application_Model_DbTable_Xprices();
 $mailServiceClients = $mailServiceClient->getServiceClient($numwp);
+echo '<pre>',  var_export($mailServiceClients),'</pre>';
+if($mailServiceClients== 'regionNord'){
+    $mailSC="regionnord@smc-france.fr";
+} elseif($mailServiceClients== 'regionSud'){
+    $mailSC="regionsud@smc-france.fr";
+}elseif($mailServiceClients== 'regionEst'){
+    $mailSC="regionest@smc-france.fr";
+}elseif($mailServiceClients== 'regionOuest'){
+    $mailSC="regionouest@smc-france.fr";
+}elseif ($mailServiceClients== 'grandcompte'){
+    $mailSC="SCommande@smc-france.fr";
+}
             $emailVars = Zend_Registry::get('emailVars');
             if (isset($datas['validation']) && $datas['validation'] == "validee") {
                 $params1 = array();
@@ -1077,7 +1089,7 @@ $mailServiceClients = $mailServiceClient->getServiceClient($numwp);
                 $params6 = array();
                     $params2['destinataireMail'] = $info_user['email_user'];
                     
-                    $params3['destinataireMail'] = $emailVars->listes->serviceClient ;
+                    $params3['destinataireMail'] = $mailSC ;
                      if (!is_null($commentId)) {
                     $params2['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/consult/numwp/{$numwp}/com/{$commentId}";
                     $params3['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/consult/numwp/{$numwp}";
