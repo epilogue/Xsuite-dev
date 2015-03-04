@@ -440,12 +440,12 @@ $rows7bis=array_filter(array_map('array_filter',$rows7));
             /*recuperation des donnees concernant le createur de l'offre*/
             $user_infos = new Application_Model_DbTable_TempMovexOffre();
             $user_info = $user_infos->getMovexUser($numwp);
-            $this->view->user_info = $user_info;
+            $this->view->user_info = $user_info[0];
             echo  '<pre>', var_export($user_info),'</pre>';   
             $distrib_infos = new Application_Model_DbTable_TempMovexOffre();
             $distrib_info=$distrib_infos->getDistrib($numwp);
                      echo  '<pre>', var_export($distrib_info),'</pre>';  
-                      $this->view->distrib_info = $distrib_info;
+                      $this->view->distrib_info = $distrib_info[0];
             /*fin de requettage pour l'affichage des infos dans le phtml*/
 
            
