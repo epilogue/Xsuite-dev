@@ -1032,16 +1032,18 @@ if($user->id_fonction == 3){
             $commentId = $this->genererValidation($datasValidation);
 $mailServiceClient = new Application_Model_DbTable_Xprices();
 $mailServiceClients = $mailServiceClient->getServiceClient($numwp);
-echo '<pre>',  var_export($mailServiceClients),'</pre>';
-if($mailServiceClient[0]['mail_service_client']== 'regionNord'){
+$num1=$mailServiceClients[0];
+$num2=$num1->mail_service_client;
+echo '<pre>',  var_export($num2),'</pre>';exit();
+if($mailServiceClients[0]['mail_service_client']== 'regionNord'){
     $mailSC="regionnord@smc-france.fr";
-} elseif($mailServiceClients== 'regionSud'){
+} elseif($mailServiceClients[0]['mail_service_client']== 'regionSud'){
     $mailSC="regionsud@smc-france.fr";
-}elseif($mailServiceClients== 'regionEst'){
+}elseif($mailServiceClients[0]['mail_service_client']== 'regionEst'){
     $mailSC="regionest@smc-france.fr";
-}elseif($mailServiceClients== 'regionOuest'){
+}elseif($mailServiceClients[0]['mail_service_client']== 'regionOuest'){
     $mailSC="regionouest@smc-france.fr";
-}elseif ($mailServiceClients== 'grandcompte'){
+}elseif ($mailServiceClients[0]['mail_service_client']== 'grandcompte'){
     $mailSC="SCommande@smc-france.fr";
 }
 
