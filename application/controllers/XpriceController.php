@@ -290,7 +290,7 @@ if($user->id_fonction == 3){
                     $firstComment = null;
                     if (is_null($numwpexist)) {
                         $demande_xprice = $demandes_xprice->createXprice(
-                                $numwp, $trackingNumber, $formData['commentaire_demande_article'], $infos_offres->OBRGDT, $formData['mini_demande_article'],$formData['concurrent_demande_article'],$formData['part_demande_article'],$formData['faible'], $user_info['id_user'], null, $numclientwp['OACHL1']);
+                                $numwp, $trackingNumber, $formData['commentaire_demande_article'], $infos_offres->OBRGDT, $formData['mini_demande_article'],$formData['concurrent_demande_article'],$formData['part_demande_article'],$formData['faible'], $user_info['id_user'], null, $numclientwp['OACHL1'],$formData['listedifusion']);
                         $dbtValidationDemande = new Application_Model_DbTable_Validationsdemandexprices();
                         if (!is_null($formData['commentaire_demande_article']) && trim($formData['commentaire_demande_article']) != "") {
                             $now = new DateTime();
@@ -1030,7 +1030,8 @@ if($user->id_fonction == 3){
             }
 
             $commentId = $this->genererValidation($datasValidation);
-
+$mailServiceClient = new Application_Model_DbTable_Xprices();
+$mailServiceClients = $mailServiceClient->getServiceClient($numwp);
             $emailVars = Zend_Registry::get('emailVars');
             if (isset($datas['validation']) && $datas['validation'] == "validee") {
                 $params1 = array();
@@ -1075,6 +1076,7 @@ if($user->id_fonction == 3){
                 $params5 = array();
                 $params6 = array();
                     $params2['destinataireMail'] = $info_user['email_user'];
+                    
                     $params3['destinataireMail'] = $emailVars->listes->serviceClient ;
                      if (!is_null($commentId)) {
                     $params2['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/consult/numwp/{$numwp}/com/{$commentId}";

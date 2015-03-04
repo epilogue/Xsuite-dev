@@ -4,7 +4,7 @@ class Application_Model_DbTable_Xprices extends Zend_Db_Table_Abstract {
 
     protected $_name = 'demande_xprices';
 
-    public function createXprice($num_workplace_demande_xprice, $tracking_number_demande_xprice, $commentaire_demande_xprice, $date_demande_xprice, $justificatif_demande_xprice,$justificatif2_demande_xprice,$justificatif3_demande_xprice,$justificatif4_demande_xprice, $id_user, $id_validation = null, $numwp_client) {
+    public function createXprice($num_workplace_demande_xprice, $tracking_number_demande_xprice, $commentaire_demande_xprice, $date_demande_xprice, $justificatif_demande_xprice,$justificatif2_demande_xprice,$justificatif3_demande_xprice,$justificatif4_demande_xprice, $id_user, $id_validation = null, $numwp_client,$mail_service_client) {
         $data = array(
             'num_workplace_demande_xprice' => $num_workplace_demande_xprice,
             'tracking_number_demande_xprice' => $tracking_number_demande_xprice,
@@ -16,13 +16,14 @@ class Application_Model_DbTable_Xprices extends Zend_Db_Table_Abstract {
             'justificatif4_demande_xprice' => $justificatif4_demande_xprice,
             'id_user' => $id_user,
             'id_validation' => $id_validation,
-            'numwp_client' => $numwp_client
+            'numwp_client' => $numwp_client,
+            'mail_service_client' =>$mail_service_client
         );
         $this->insert($data);
         return $this;
     }
 
-    public function updateXprice($id_demande_xprice, $num_workplace_demande_xprice, $tracking_number_demande_xprice, $commentaire_demande_xprice, $date_demande_xprice, $justificatif_demande_xprice,$justificatif2_demande_xprice,$justificatif3_demande_xprice,$justificatif4_demande_xprice, $id_user, $id_validation = null, $numwp_client) {
+    public function updateXprice($id_demande_xprice, $num_workplace_demande_xprice, $tracking_number_demande_xprice, $commentaire_demande_xprice, $date_demande_xprice, $justificatif_demande_xprice,$justificatif2_demande_xprice,$justificatif3_demande_xprice,$justificatif4_demande_xprice, $id_user, $id_validation = null, $numwp_client,$mail_service_client) {
 
         $data = array(
             'num_workplace_demande_xprice' => $num_workplace_demande_xprice,
@@ -35,7 +36,8 @@ class Application_Model_DbTable_Xprices extends Zend_Db_Table_Abstract {
             'justificatif4_demande_xprice' => $justificatif4_demande_xprice,
             'id_user' => $id_user,
             'id_validation' => $id_validation,
-            'numwp_client' => $numwp_client
+            'numwp_client' => $numwp_client,
+            'mail_service_client' => $mail_service_client
         );
         $this->update($data, 'id_demande_xprice=' . (int) $id_demande_xprice);
         return $this;
@@ -142,6 +144,17 @@ public function searchAll($tracking_number){
                     . " join users on users.id_user = demande_xprices.id_user"
                     . " where users.id_holon = '{$id_holon}'";
                     $res = $this->getAdapter()->query($sql);
+            $rest=$res->fetchAll();
+            if (!$rest) {
+                return null;
+            } else {
+                return $rest;
+            }
+        }
+        
+        public function getServiceClient($numwp){
+            $sql = "select mail_service_client from demande_xprices where num_workplace_demande_xprice = '$numwp'";
+             $res = $this->getAdapter()->query($sql);
             $rest=$res->fetchAll();
             if (!$rest) {
                 return null;
