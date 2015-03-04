@@ -42,7 +42,8 @@ class Application_Form_CreationDemande  extends Zend_Form {
         /*
          * Ajout bouton radio pour envoi de mail 
          */
-        $listedifusion = $this->addElement("radio",'listedifusion',array('label'=>'mail région','value'=>'SC','required'=>TRUE))
+        $listedifusion = $this->addElement("radio",'listedifusion',array('label'=>'mail région','value'=>'SC'))
+                ->setRequired(true)
                 ->getElement('listedifusion');
         $listedifusionoptions = array('regionNord' => 'région Nord',
          'regionSud' => 'région Sud',
