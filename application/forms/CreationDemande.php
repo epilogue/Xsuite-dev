@@ -21,7 +21,8 @@ class Application_Form_CreationDemande  extends Zend_Form {
 
         $faible = $this->addElement("select", 'faible', array(
                     'label' => 'Démarche stratégique:',
-                    'value' => -1
+                    'value' => -1,
+            'required'=>true
                 ))
                 ->getElement('faible');
         $faibleoptions = array("-1" => "choisissez la démarche",
@@ -48,7 +49,7 @@ class Application_Form_CreationDemande  extends Zend_Form {
          'regionSud' => 'région Sud',
          'regionEst' => 'région Est',
          'regionOuest' => 'région Ouest',
-        'grandcompte' => 'Suivi Commande');
+        'grandcompte' => 'Grand Compte');
         $listedifusion->addMultiOptions($listedifusionoptions);
         
         
