@@ -441,102 +441,14 @@ $rows7bis=array_filter(array_map('array_filter',$rows7));
             $user_infos = new Application_Model_DbTable_TempMovexOffre();
             $user_info = $user_infos->getMovexUser($numwp);
             $this->view->user_info = $user_info;
-           // echo  '<pre>', var_export($user_info),'</pre>';   
+            echo  '<pre>', var_export($user_info),'</pre>';   
             $distrib_infos = new Application_Model_DbTable_TempMovexOffre();
             $distrib_info=$distrib_infos->getDistrib($numwp);
-                     //echo  '<pre>', var_export($distrib_info),'</pre>';  
+                     echo  '<pre>', var_export($distrib_info),'</pre>';  
                       $this->view->distrib_info = $distrib_info;
             /*fin de requettage pour l'affichage des infos dans le phtml*/
  exit();
-            /*recuperation info createur de l'offre*/
-            $user = $this->_auth->getStorage()->read();
-            $zoneT = new Application_Model_DbTable_Zones();
-            $zone = $zoneT->getZone($user->id_zone);
-            /*creation du tracking number*/
-            $Xdistribs = new Application_Model_DbTable_Xdistrib();
-            $trackingNumber = Application_Model_DbTable_Xdistrib::makeTrackingNumber($zone['nom_zone'], $Xdistribs->lastId(true));
-            $this->view->trackingNumber = $trackingNumber;
-             //echo  '<pre>', var_export($trackingNumber),'</pre>';
-            /*recuperation du numwp du createur de l'offre*/
-            $query1 = "SELECT OOLINE.OBSMCD  as userwp FROM EIT.CVXCDTA.OOLINE OOLINE WHERE OOLINE.OBORNO='{$numwp}'";
-            $numwp_user = odbc_fetch_array(odbc_exec($this->odbc_conn, $query1));
-            /*recuperation des donnees concernant le createur de l'offre*/
-//            $usertest = new Application_Model_DbTable_Users();
-//            $user_info = $usertest->getMovexUser($numwp_user['USERWP']);
-//            $this->view->user_info = $user_info;
-//            //echo  '<pre>', var_export($user_info),'</pre>';
-//            $id_holon = $user_info['id_holon'];
-//            $holonuser = new Application_Model_DbTable_Holons();
-//            $holonuser1 = $holonuser->getHolon($id_holon);
-//            $nom_holon = $holonuser1['nom_holon'];
-//            $this->view->holon = $nom_holon;
-            /*recuperation de la fonction et de la zone de tracking  utilisé pour l'envoi des mails */
-            $fonctioncreateur = $user_info['id_fonction'];
-            $zonetracking = substr($trackingNumber, 6, 2);
-            /*recuperation des donnees concernant l'offre 
-             * numero offre
-             * numero client
-             * code article
-             * reference article
-             * quantite
-             * prix demandé
-             * prix tarif
-             * date
-             * identifiant
-             */
            
-               
-            $this->view->prixciffob = $prixciffob;
-            
-             /*
-             * à partir du code distributeur de la table ooline on va chercher dans la table ocusma
-             * les informations concernant le distributeur pour pouvoir les afficher dans la vue phtml
-             */
-            $query1bis = "select * from EIT.MVXCDTA.OCUSMA OCUSMA where OCUSMA.OKCUNO = '{$resultat[0]['OBCUNO']}'";
-            $infos_distributeur = odbc_fetch_array(odbc_exec($this->odbc_conn2, $query1bis));
-            $this->view->infos_distributeur = $infos_distributeur;
-            $query1ter = "select OOHEAD.OACHL1 from EIT.MVXCDTA.OOHEAD OOHEAD where OOHEAD.OACUNO = '{$resultat[0]['OBCUNO']}'";
-            $numdistributeurwp = odbc_fetch_array(odbc_exec($this->odbc_conn2, $query1ter));
-            $this->view->numdistributeurwp = $numdistributeurwp['OACHL1'];
-            
-            /*a partir d'ici on a toute les infos obligatoire pour enregistrer la demande Xdistrib*/
-            $demande_xdistrib = $demandes_xdistrib->createXdistrib(
-                            $numwp, $trackingNumber, null,null,$infos_offres->OBRGDT,null, $user_info['id_user'], null,null, $numdistributeurwp['OACHL1']); 
-            /* fin insertion demande_xdistrib */
-            /*recuperation code industry*/
-            $query1quart = "select ZMCPJO.Z2MCL1  from EIT.SMCCDTA.ZMCPJO  ZMCPJO where ZMCPJO.Z2CUNO= '{$resultat[0]['OBCUNO']}' ";
-            $industriewp = odbc_fetch_array(odbc_exec($this->odbc_conn3, $query1quart));
-            $this->view->industriewp = $industriewp ;
-            $industriewp['Z2MCL1'] = trim($industriewp['Z2MCL1']);
-            if ($industriewp['Z2MCL1'] == "" || $industriewp['Z2MCL1'] == " ") {
-                    $industriewp['Z2MCL1'] = "SCI";
-                }
-            /*
-             * information concernant  le projet industry auquel appartient le distributeur
-             *    donc à partir du code movex industry on va chercher dans la base xsuite
-             *  le nom de l'industrie auquel le distributeur appartient pour ensuite l'afficher dans la vue
-             */
-
-            if (isset($industriewp['Z2MCL1']) && $industriewp['Z2MCL1'] != '' && $industriewp['Z2MCL1'] != ' ' && $industriewp['Z2MCL1'] != '  ') {
-                    $industry = new Application_Model_DbTable_Industry();
-                    $info_industry = $industry->getMovexIndustry($industriewp['Z2MCL1']);
-                    $this->view->info_industry = $info_industry;
-                } else {
-                    $plop10 = "SCI";
-                    $industry = new Application_Model_DbTable_Industry();
-                    $info_industry = $industry->getMovexIndustry($plop10);
-                    $this->view->info_industry = $info_industry;
-                    echo '<pre>',var_export($info_industry),'</pre>';
-                }
-                $distributeurs = new Application_Model_DbTable_Distributeurs();
-                        $distributeur = $distributeurs->getDistributeurnumwp($numdistributeurwp['OACHL1']);
-
-                        $adresse_distributeur = $infos_distributeur['OKCUA1'] . $infos_distributeur['OKCUA2'] . $infos_distributeur['OKCUA3'] . $infos_distributeur['OKCUA4'];
-                        /*insertion distributeur dans la bdd */
-                        if (is_null($distributeur)) {
-                            $newdistributeur = $distributeurs->createDistributeur($infos_distributeur['OKCUNM'],null,null, $numdistributeurwp['OACHL1'],null, $adresse_distributeur,null, $info_industry['id_industry'], $infos_distributeur['OKCFC7']);
-                        }
-
             if ($this->getRequest()->isPost()) {
                     $formData = $this->getRequest()->getPost();
 
