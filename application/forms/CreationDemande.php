@@ -42,7 +42,7 @@ class Application_Form_CreationDemande  extends Zend_Form {
         /*
          * Ajout bouton radio pour envoi de mail 
          */
-        $listedifusion= $this->addElement('radio', 'test', array(
+        $listedifusion= Zend_Form_Element_Radio( 'test', array(
     'label'=>'mail région',
     'multiOptions'=>array(
         'région Nord' => 'regionNord',
@@ -70,7 +70,7 @@ class Application_Form_CreationDemande  extends Zend_Form {
              ->addElement($mini_demande_article)
              ->addElement($faible)
              ->addElement($commentaire_demande_article)
-                ->addElement($test);
+                ->addElement($listedifusion);
         
         /*
          * création des fieldsets
