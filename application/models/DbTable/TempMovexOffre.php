@@ -33,14 +33,12 @@ class Application_Model_DbTable_TempMovexOffre extends Zend_Db_Table_Abstract {
 //      
 //      $rest = $res->fetchObject();
 //      return $rest;
-       $plop = $sql->query();
-        $result = $plop->fetchAll();
-        //var_dump($result);
-        //exit();
-        if (!$result) {
+      $res = $this->getAdapter()->query($sql);
+        $rest=$res->fetchAll();
+        if (!$rest) {
             return null;
         } else {
-            return $result;
+            return $rest;
         }
     }
     
@@ -52,21 +50,23 @@ class Application_Model_DbTable_TempMovexOffre extends Zend_Db_Table_Abstract {
 //        $res= $this->getAdapter()->query($sql);
 //      $rest = $res->fetchObject();
 //      return $rest;
-         $plop = $sql->query();
-        $result = $plop->fetchAll();
-        //var_dump($result);
-        //exit();
-        if (!$result) {
+       $res = $this->getAdapter()->query($sql);
+        $rest=$res->fetchAll();
+        if (!$rest) {
             return null;
         } else {
-            return $result;
+            return $rest;
         }
     }
     
     public function getClientFinal($numwp){
         $sql="";
-       $res= $this->getAdapter()->query($sql);
-      $rest = $res->fetchObject();
-      return $rest; 
+      $res = $this->getAdapter()->query($sql);
+        $rest=$res->fetchAll();
+        if (!$rest) {
+            return null;
+        } else {
+            return $rest;
+        }
     }
 }
