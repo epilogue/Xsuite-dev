@@ -1032,10 +1032,10 @@ if($user->id_fonction == 3){
             $commentId = $this->genererValidation($datasValidation);
 $mailServiceClient = new Application_Model_DbTable_Xprices();
 $mailServiceClients = $mailServiceClient->getServiceClient($numwp);
-$num1=$mailServiceClients[0]; echo $num1;
+$num1=$mailServiceClients[0]; //echo $num1;
 $num2=$num1['mail_service_client'];
 //echo '<pre>',  var_export($num2),'</pre>';exit();
-if($num1== 'regionNord'){
+if($mailServiceClients[0]['mail_service_client']){
     $mailSC="regionnord@smc-france.fr";
 } elseif($mailServiceClients[0]['mail_service_client']== 'regionSud'){
     $mailSC="regionsud@smc-france.fr";
@@ -1046,8 +1046,6 @@ if($num1== 'regionNord'){
 }elseif ($mailServiceClients[0]['mail_service_client']== 'grandcompte'){
     $mailSC="SCommande@smc-france.fr";
 }
-
-echo '<pre>',var_export($mailSC),'</pre>'; exit();
             $emailVars = Zend_Registry::get('emailVars');
             if (isset($datas['validation']) && $datas['validation'] == "validee") {
                 $params1 = array();
