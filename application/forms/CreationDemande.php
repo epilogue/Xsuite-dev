@@ -47,7 +47,7 @@ class Application_Form_CreationDemande  extends Zend_Form {
         $listedifusion->setLabel('mail région:')
               ->setRequired(true)
                         ->setSeparator('')
-              ->setValueOptions(array('regionNord' => 'région Nord',
+              ->addMultiOptions(array('regionNord' => 'région Nord',
          'regionSud' => 'région Sud',
          'regionEst' => 'région Est',
          'regionOuest' => 'région Ouest',
