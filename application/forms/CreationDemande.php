@@ -49,7 +49,7 @@ class Application_Form_CreationDemande  extends Zend_Form {
          'regionEst' => 'région Est',
          'regionOuest' => 'région Ouest',
         'grandcompte' => 'Suivi Commande');
-        $listedifusion->addMultiOptions($faibleoptions);
+        $listedifusion->addMultiOptions($listedifusionoptions);
         
         
         /*
