@@ -1044,6 +1044,8 @@ if($mailServiceClients== 'regionNord'){
 }elseif ($mailServiceClients== 'grandcompte'){
     $mailSC="SCommande@smc-france.fr";
 }
+
+echo '<pre>',var_export($mailSC),'</pre>'; exit();
             $emailVars = Zend_Registry::get('emailVars');
             if (isset($datas['validation']) && $datas['validation'] == "validee") {
                 $params1 = array();
