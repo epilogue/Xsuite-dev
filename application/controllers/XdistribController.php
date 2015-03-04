@@ -441,10 +441,11 @@ $rows7bis=array_filter(array_map('array_filter',$rows7));
             $user_infos = new Application_Model_DbTable_TempMovexOffre();
             $user_info = $user_infos->getMovexUser($numwp);
             $this->view->user_info = $user_info;
-            echo  '<pre>', var_export($user_info),'</pre>';   
+           // echo  '<pre>', var_export($user_info),'</pre>';   
             $distrib_infos = new Application_Model_DbTable_TempMovexOffre();
             $distrib_info=$distrib_infos->getDistrib($numwp);
-                     echo  '<pre>', var_export($distrib_info),'</pre>';   
+                     //echo  '<pre>', var_export($distrib_info),'</pre>';  
+                      $this->view->distrib_info = $distrib_info;
             /*fin de requettage pour l'affichage des infos dans le phtml*/
  
             /*recuperation info createur de l'offre*/
@@ -460,15 +461,15 @@ $rows7bis=array_filter(array_map('array_filter',$rows7));
             $query1 = "SELECT OOLINE.OBSMCD  as userwp FROM EIT.CVXCDTA.OOLINE OOLINE WHERE OOLINE.OBORNO='{$numwp}'";
             $numwp_user = odbc_fetch_array(odbc_exec($this->odbc_conn, $query1));
             /*recuperation des donnees concernant le createur de l'offre*/
-            $usertest = new Application_Model_DbTable_Users();
-            $user_info = $usertest->getMovexUser($numwp_user['USERWP']);
-            $this->view->user_info = $user_info;
-            //echo  '<pre>', var_export($user_info),'</pre>';
-            $id_holon = $user_info['id_holon'];
-            $holonuser = new Application_Model_DbTable_Holons();
-            $holonuser1 = $holonuser->getHolon($id_holon);
-            $nom_holon = $holonuser1['nom_holon'];
-            $this->view->holon = $nom_holon;
+//            $usertest = new Application_Model_DbTable_Users();
+//            $user_info = $usertest->getMovexUser($numwp_user['USERWP']);
+//            $this->view->user_info = $user_info;
+//            //echo  '<pre>', var_export($user_info),'</pre>';
+//            $id_holon = $user_info['id_holon'];
+//            $holonuser = new Application_Model_DbTable_Holons();
+//            $holonuser1 = $holonuser->getHolon($id_holon);
+//            $nom_holon = $holonuser1['nom_holon'];
+//            $this->view->holon = $nom_holon;
             /*recuperation de la fonction et de la zone de tracking  utilisé pour l'envoi des mails */
             $fonctioncreateur = $user_info['id_fonction'];
             $zonetracking = substr($trackingNumber, 6, 2);
