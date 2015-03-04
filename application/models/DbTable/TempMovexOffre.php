@@ -40,7 +40,7 @@ class Application_Model_DbTable_TempMovexOffre extends Zend_Db_Table_Abstract {
                 . " join  temp_fichier_distrib_info on temp_movex_offre.numwp = temp_fichier_distrib_info.numwp "
                 . " where temp_movex_offre.numwp = $numwp";
         $res= $this->getAdapter()->query($sql);
-      $rest = $res->fetchArray();
+      $rest = $res->fetchObject();
       return $rest;
     }
     
