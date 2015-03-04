@@ -1032,8 +1032,8 @@ if($user->id_fonction == 3){
             $commentId = $this->genererValidation($datasValidation);
 $mailServiceClient = new Application_Model_DbTable_Xprices();
 $mailServiceClients = $mailServiceClient->getServiceClient($numwp);
-$num1=$mailServiceClients[0];
-$num2=$num1->mail_service_client;
+$num1=$mailServiceClients[0]; echo $num1;
+$num2=$num1['mail_service_client'];
 echo '<pre>',  var_export($num2),'</pre>';exit();
 if($mailServiceClients[0]['mail_service_client']== 'regionNord'){
     $mailSC="regionnord@smc-france.fr";
