@@ -45,13 +45,14 @@ class Application_Form_CreationDemande  extends Zend_Form {
         $listedifusion = $this->addElement("radio",'listedifusion',array('label'=>'mail région','value'=>'SC'))
                 
                 ->getElement('listedifusion');
-        $listedifusion->setRequired(true);
+       
         $listedifusionoptions = array('regionNord' => 'région Nord',
          'regionSud' => 'région Sud',
          'regionEst' => 'région Est',
          'regionOuest' => 'région Ouest',
         'grandcompte' => 'Grand Compte');
         $listedifusion->addMultiOptions($listedifusionoptions);
+        $listedifusion->setRequired();
         
         
         /*
