@@ -85,7 +85,7 @@ class Application_Form_CreationDemande  extends Zend_Form {
             "faible"
         ), 'justificatif', array('disableLoadDefaultDecorators' => true))
             ->addDisplayGroup(array("commentaire_demande_article"), 'commentaire', array('disableLoadDefaultDecorators' => true))
-                  ->addDisplayGroup(array("listediffusion"), 'Mail région', array('disableLoadDefaultDecorators' => true));
+            ->addDisplayGroup(array("listediffusion"), 'listediffusion', array('disableLoadDefaultDecorators' => true));
         
         $this->setDisplayGroupDecorators(array(
             'FormElements',
