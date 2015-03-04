@@ -44,15 +44,14 @@ class Application_Form_CreationDemande  extends Zend_Form {
          */
         
         $listedifusion = new Zend_Form_Element_Radio('listedifusion');
-        $listedifusion->setLabel('mail region:')
+        $listedifusion->setLabel('mail région:')
               ->setRequired(true)
                         ->setSeparator('')
-              ->setValue($options['profile']['listedifusion'])
-              ->setMultiOptions(array('région Nord' => 'regionNord',
-         'région Sud' => 'regionSud',
-         'région Est' => 'regionEst',
-         'région Ouest' => 'regionOuest',
-        'grand compte' => 'SuiviCommande',))
+              ->setValueOptions(array('regionNord' => 'région Nord',
+         'regionSud' => 'région Sud',
+         'regionEst' => 'région Est',
+         'regionOuest' => 'région Ouest',
+        'grandcompte' => 'Suivi Commande',))
               ->addErrorMessage('sélectionnez une région ou  suivi de commande')
               ->addValidator('NotEmpty');
         /*
@@ -85,7 +84,8 @@ class Application_Form_CreationDemande  extends Zend_Form {
             "mini_demande_article",
             "faible"
         ), 'justificatif', array('disableLoadDefaultDecorators' => true))
-            ->addDisplayGroup(array("commentaire_demande_article"), 'commentaire', array('disableLoadDefaultDecorators' => true));
+            ->addDisplayGroup(array("commentaire_demande_article"), 'commentaire', array('disableLoadDefaultDecorators' => true))
+                  ->addDisplayGroup(array("listediffusion"), 'Mail région', array('disableLoadDefaultDecorators' => true));
         
         $this->setDisplayGroupDecorators(array(
             'FormElements',
@@ -96,6 +96,9 @@ class Application_Form_CreationDemande  extends Zend_Form {
                 ->setAttrib("class", "field");
         $this->getDisplayGroup('commentaire')
                 ->setLegend("Commentaires")
+                ->setAttrib("class", "field");
+        $this->getDisplayGroup('listediffusion')
+                ->setLegend("Mail région")
                 ->setAttrib("class", "field");
         
         
