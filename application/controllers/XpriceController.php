@@ -1034,8 +1034,8 @@ $mailServiceClient = new Application_Model_DbTable_Xprices();
 $mailServiceClients = $mailServiceClient->getServiceClient($numwp);
 $num1=$mailServiceClients[0]; echo $num1;
 $num2=$num1['mail_service_client'];
-echo '<pre>',  var_export($num2),'</pre>';exit();
-if($mailServiceClients[0]['mail_service_client']== 'regionNord'){
+//echo '<pre>',  var_export($num2),'</pre>';exit();
+if($num1== 'regionNord'){
     $mailSC="regionnord@smc-france.fr";
 } elseif($mailServiceClients[0]['mail_service_client']== 'regionSud'){
     $mailSC="regionsud@smc-france.fr";
