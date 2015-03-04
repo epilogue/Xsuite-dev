@@ -42,18 +42,16 @@ class Application_Form_CreationDemande  extends Zend_Form {
         /*
          * Ajout bouton radio pour envoi de mail 
          */
-        
-        $listedifusion = new Zend_Form_Element_Radio('listedifusion');
-        $listedifusion->setLabel('mail région:')
-              ->setRequired(true)
-                        ->setSeparator('')
-              ->addMultiOptions(array('regionNord' => 'région Nord',
+        $listedifusion = $this->addElement("radio",'listedifusion',array('label'=>'mail région','value'=>'SC'))
+                ->getElement('listedifusion');
+        $listedifusionoptions = array('regionNord' => 'région Nord',
          'regionSud' => 'région Sud',
          'regionEst' => 'région Est',
          'regionOuest' => 'région Ouest',
-        'grandcompte' => 'Suivi Commande',))
-              ->addErrorMessage('sélectionnez une région ou  suivi de commande')
-              ->addValidator('NotEmpty');
+        'grandcompte' => 'Suivi Commande');
+        $listedifusion->addMultiOptions($faibleoptions);
+        
+        
         /*
          * bouton de soumission
          */
@@ -72,7 +70,7 @@ class Application_Form_CreationDemande  extends Zend_Form {
              ->addElement($mini_demande_article)
              ->addElement($faible)
              ->addElement($commentaire_demande_article)
-                ->addElement($listedifusion);
+             ->addElement($listedifusion);
         
         /*
          * création des fieldsets
@@ -85,7 +83,7 @@ class Application_Form_CreationDemande  extends Zend_Form {
             "faible"
         ), 'justificatif', array('disableLoadDefaultDecorators' => true))
             ->addDisplayGroup(array("commentaire_demande_article"), 'commentaire', array('disableLoadDefaultDecorators' => true))
-            ->addDisplayGroup(array("listedifusion"), 'listedifusion', array('disableLoadDefaultDecorators' => true));
+            ->addDisplayGroup(array("listedifusion"), 'listedifusions', array('disableLoadDefaultDecorators' => true));
         
         $this->setDisplayGroupDecorators(array(
             'FormElements',
@@ -97,7 +95,7 @@ class Application_Form_CreationDemande  extends Zend_Form {
         $this->getDisplayGroup('commentaire')
                 ->setLegend("Commentaires")
                 ->setAttrib("class", "field");
-        $this->getDisplayGroup('listedifusion')
+        $this->getDisplayGroup('listedifusions')
                 ->setLegend("Mail région")
                 ->setAttrib("class", "field");
         
