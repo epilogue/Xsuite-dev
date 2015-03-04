@@ -447,7 +447,7 @@ $rows7bis=array_filter(array_map('array_filter',$rows7));
                      echo  '<pre>', var_export($distrib_info),'</pre>';  
                       $this->view->distrib_info = $distrib_info;
             /*fin de requettage pour l'affichage des infos dans le phtml*/
- exit();
+
            
             if ($this->getRequest()->isPost()) {
                     $formData = $this->getRequest()->getPost();
