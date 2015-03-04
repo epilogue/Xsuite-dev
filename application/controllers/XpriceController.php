@@ -1042,6 +1042,8 @@ if($mailServiceClients[0]['mail_service_client']=='regionNord'){
     $mailSC="regionouest@smc-france.fr";
 }elseif ($mailServiceClients[0]['mail_service_client']== 'grandcompte'){
     $mailSC="SCommande@smc-france.fr";
+}elseif($mailServiceClients[0]['mail_service_client']=='' || $mailServiceClients[0]['mail_service_client']== NULL){
+    $mailSC=$emailVars->listes->serviceClient;
 }
             $emailVars = Zend_Registry::get('emailVars');
             if (isset($datas['validation']) && $datas['validation'] == "validee") {
@@ -1505,7 +1507,21 @@ if($mailServiceClients[0]['mail_service_client']=='regionNord'){
             }
 
             $commentId = $this->genererValidation($datasValidation);
-
+$mailServiceClient = new Application_Model_DbTable_Xprices();
+$mailServiceClients = $mailServiceClient->getServiceClient($numwp);
+if($mailServiceClients[0]['mail_service_client']=='regionNord'){
+    $mailSC="regionnord@smc-france.fr";
+} elseif($mailServiceClients[0]['mail_service_client']== 'regionSud'){
+    $mailSC="regionsud@smc-france.fr";
+}elseif($mailServiceClients[0]['mail_service_client']== 'regionEst'){
+    $mailSC="regionest@smc-france.fr";
+}elseif($mailServiceClients[0]['mail_service_client']== 'regionOuest'){
+    $mailSC="regionouest@smc-france.fr";
+}elseif ($mailServiceClients[0]['mail_service_client']== 'grandcompte'){
+    $mailSC="SCommande@smc-france.fr";
+}elseif($mailServiceClients[0]['mail_service_client']=='' || $mailServiceClients[0]['mail_service_client']== NULL){
+    $mailSC=$emailVars->listes->serviceClient;
+}
             $emailVars = Zend_Registry::get('emailVars');
             $params = array();
             $params1 =array();
