@@ -22,8 +22,8 @@ class Application_Form_CreationDemande  extends Zend_Form {
         $faible = $this->addElement("select", 'faible', array(
                     'label' => 'Démarche stratégique:',
                     'value' => -1,
-            'required'=>true
                 ))
+                ->setRequired(true)
                 ->getElement('faible');
         $faibleoptions = array("-1" => "choisissez la démarche",
             0 => "concentration des efforts",
