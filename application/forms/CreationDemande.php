@@ -35,9 +35,23 @@ class Application_Form_CreationDemande  extends Zend_Form {
          * fieldset commentaire
          */
         
+        
         $commentaire_demande_article = new Zend_Form_Element_Textarea('commentaire_demande_article');
         $commentaire_demande_article->setRequired(false);
         
+        /*
+         * Ajout bouton radio pour envoi de mail 
+         */
+        $listedifusion= $this->addElement('radio', 'test', array(
+    'label'=>'mail région',
+    'multiOptions'=>array(
+        'région Nord' => 'regionNord',
+         'région Sud' => 'regionSud',
+         'région Est' => 'regionEst',
+         'région Ouest' => 'regionOuest',
+        'grand compte' => 'SuiviCommande',
+    ),
+));
         /*
          * bouton de soumission
          */
@@ -55,7 +69,8 @@ class Application_Form_CreationDemande  extends Zend_Form {
              ->addElement($part_demande_article)
              ->addElement($mini_demande_article)
              ->addElement($faible)
-             ->addElement($commentaire_demande_article);
+             ->addElement($commentaire_demande_article)
+                ->addElement($test);
         
         /*
          * création des fieldsets
