@@ -85,35 +85,31 @@ $this->headTitle($this->title);
                 <table>
                     <tr>
                         <td>Nom:</td>
-                        <td><?php echo $this->client_info['nom_client_final']?></td>
+                        <td colspan="2"><?php echo $this->client_info['nom_client_final']?></td>
                     </tr>
                     <tr>
                         <td>Code Postal:</td>
-                        <td><?php echo $this->client_info['codepostal_client']?></td>
+                        <td  colspan="2"><?php echo $this->client_info['codepostal_client']?></td>
                     </tr>
                     <tr>
                         <td>Ville:</td>
-                        <td><?php echo $this->client_info['ville_client']?></td>
+                        <td colspan="2"><?php echo $this->client_info['ville_client']?></td>
                     </tr>
                     <tr>
                         <td>User Workplace:</td>
-                        <td><?php echo $this->client_info['numwp_client']?></td>
+                        <td colspan="2"><?php echo $this->client_info['numwp_client']?></td>
                     </tr>
                     <tr>
                         <td>Potentiel:</td>
-                        <td><?php echo $this->client_info['potentiel']?></td>
+                        <td colspan="2"><?php echo $this->client_info['potentiel']?></td>
                     </tr>
                      <tr>
                         <td>Projet:</td>
-                        <td><?php echo $this->client_info['nom_industry']?></td>
+                        <td colspan="2"><?php echo $this->client_info['nom_industry']?></td>
                     </tr>
                     <tr>
                         <td>Client cible PAC :</td>
-                        <td>Oui<input type="radio" name="pac" value="oui">Non<input type="radio" name="pac" value="non"></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
+                        <td>Oui<input type="radio" name="pac" value="oui"></td><td>Non<input type="radio" name="pac" value="non"></td>
                     </tr>
                 </table>
            </fieldset>
