@@ -411,6 +411,15 @@ textarea{
     margin-right:auto;
     border-color: #2A60AA;
 }
+field3{
+    width: 50%;
+    height: 75px;
+}
+
+.field3 td{
+    width: 75px;
+}
+
 fieldset legend{
     font-weight: bold;
     font-style: italic;
