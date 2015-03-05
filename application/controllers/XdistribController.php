@@ -431,9 +431,28 @@ $rows7bis=array_filter(array_map('array_filter',$rows7));
 //                        }
                         
       /* creation table temporaire pour  client */
-                        
+                         $queryClientFinal = "select ZMCPJO.Z2MCL1  from EIT.SMCCDTA.ZMCPJO  ZMCPJO where ZMCPJO.Z2CUNO= '$numwp_client_final' ";
+            $clientFinalwp = odbc_fetch_array(odbc_exec($this->odbc_conn3, $queryClientFinal));
+            $clientFinalwp['Z2MCL1'] = trim($clientFinalwp['Z2MCL1']);
+            if ($clientFinalwp['Z2MCL1'] == "" || $clientFinalwp['Z2MCL1'] == " ") {
+                    $clientFinalwp['Z2MCL1'] = "SCI";
+                }
+                 if (isset($clientFinalwp['Z2MCL1']) && $clientFinalwp['Z2MCL1'] != '' && $clientFinalwp['Z2MCL1'] != ' ' && $industriewp['Z2MCL1'] != '  ') {
+                    $industry = new Application_Model_DbTable_Industry();
+                    $info_industry_client_final= $industry->getMovexIndustry($clientFinalwp['Z2MCL1']);
+                    $this->view->info_industry_client_final = $info_industry_client_final;
+                } else {
+                    $plopClientFinal = "SCI";
+                    $industry = new Application_Model_DbTable_Industry();
+                    $info_industry_client_final = $industry->getMovexIndustry($plopClientFinal);
+                    $this->view->info_industry_client_final = $info_industry_client_final;                   
+                }
+                echo '<pre>',  var_export($info_industry_client_final),'</pre>';
+             $id_industry_client_final =$info_industry_client_final['id_industry'];
+                        $nom_industry=null;
+                        $id_industry=null;
                         $clientTemps= new Application_Model_DbTable_TempClient();
-                        $clientTemp= $clientTemps->createTemp($numwp,$numwp_client_final,$code_postal_client_final,$potentiel_client_final,$ville_client_final,$nom_client_final);
+                        $clientTemp= $clientTemps->createTemp($numwp,$numwp_client_final,$code_postal_client_final,$potentiel_client_final,$ville_client_final,$nom_industry,$id_industry,$nom_client_final);
  /*fin de l'insertion des données movex dans les tables temporaires */
             /* debut de requettage  pour affichage des informations  dans le phtml*/
             /*requete info_ vendeur, info_distrib,info_client*/ 
