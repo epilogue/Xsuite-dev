@@ -397,12 +397,11 @@ textarea{
     margin-left: 15px;
     border-color: #2A60AA;
 }
-.field_info_3{
-    width:900px;
-    height: 100px;
-    float: left;
-    margin-left: 15px;
-    border-color: #2A60AA;
+.pac{
+    width:150px;
+    height: 25px;
+    margin-left: 0px;
+   margin-bottom: 0px;
 }
 .field{
     width: 900px;
@@ -410,10 +409,6 @@ textarea{
     margin-left:auto;
     margin-right:auto;
     border-color: #2A60AA;
-}
-field3{
-    width: 500px;
-    height: 50px !important;
 }
 
 
