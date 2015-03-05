@@ -447,7 +447,7 @@ $rows7bis=array_filter(array_map('array_filter',$rows7));
                     $info_industry_client_final = $industry->getMovexIndustry($plopClientFinal);
                     $this->view->info_industry_client_final = $info_industry_client_final;                   
                 }
-                echo '<pre>',  var_export($info_industry_client_final),'</pre>';
+                //echo '<pre>',  var_export($info_industry_client_final),'</pre>';
              $id_industry_client_final =$info_industry_client_final['id_industry'];
                         $nom_industry=$info_industry_client_final['description_industry'];
                         $id_industry=null;
@@ -469,8 +469,9 @@ $rows7bis=array_filter(array_map('array_filter',$rows7));
             $client_infos= new Application_Model_DbTable_TempMovexOffre();
             $client_info=$client_infos->getClientFinal($numwp);
             $this->view->client_info=$client_info[0];
-echo  '<pre>', var_export($client_info),'</pre>';  
+//echo  '<pre>', var_export($client_info),'</pre>';  
            
+            
             if ($this->getRequest()->isPost()) {
                     $formData = $this->getRequest()->getPost();
 

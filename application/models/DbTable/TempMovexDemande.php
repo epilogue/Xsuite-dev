@@ -84,4 +84,7 @@ class Application_Model_DbTable_TempMovexDemande extends Zend_Db_Table_Abstract 
         $plop2 = $this->update($datas, $where);
         return $plop2;
     }
+    public function demande($numwp){
+        $sql = "select temp_movex_demande.code_article,temp_movex_demande.reference_article,temp_movex_demande.prix_tarif,temp_movex_demande.quantite,temp_fichier_distrib_article.prix_achat_actuel,temp_fichier_distrib_article.prix_achat_demande_distrib, temp_fichier_distrib_article.prix_achat_demande_client_final,temp_fichier_distrib_article.remise_supplementaire,temp_movex_offre.date, temp_movex_demande.prix_fob,temp_movex_demande.prix_cif";
+    }
 }
