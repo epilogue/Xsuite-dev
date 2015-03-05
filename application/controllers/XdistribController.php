@@ -449,7 +449,7 @@ $rows7bis=array_filter(array_map('array_filter',$rows7));
                 }
                 echo '<pre>',  var_export($info_industry_client_final),'</pre>';
              $id_industry_client_final =$info_industry_client_final['id_industry'];
-                        $nom_industry=null;
+                        $nom_industry=$info_industry_client_final['description_industry'];
                         $id_industry=null;
                         $clientTemps= new Application_Model_DbTable_TempClient();
                         $clientTemp= $clientTemps->createTemp($numwp,$numwp_client_final,$code_postal_client_final,$potentiel_client_final,$ville_client_final,$nom_industry,$id_industry,$nom_client_final);
