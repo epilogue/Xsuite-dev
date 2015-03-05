@@ -397,6 +397,13 @@ textarea{
     margin-left: 15px;
     border-color: #2A60AA;
 }
+.field_info_3{
+    width:900px;
+    height: 150px;
+    float: left;
+    margin-left: 15px;
+    border-color: #2A60AA;
+}
 .field{
     width: 900px;
     margin-bottom:25px;
