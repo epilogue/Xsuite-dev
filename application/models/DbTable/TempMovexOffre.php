@@ -60,7 +60,7 @@ class Application_Model_DbTable_TempMovexOffre extends Zend_Db_Table_Abstract {
     }
     
     public function getClientFinal($numwp){
-        $sql="select distinct temp_fichier_distrib_info.nom_client_final,temp_client.numwp_client,temp_client.codepostal_client,temp_client.ville_client,temp_client.potentiel from temp_movex_offre join temp_fichier_distrib_info  on temp_movex_offre.numwp=temp_fichier_distrib_info.numwp join temp_client on temp_movex_offre.numwp=temp_client.numwp where temp_movex_offre.numwp= $numwp";
+        $sql="select distinct temp_fichier_distrib_info.nom_client_final,temp_client.numwp_client,temp_client.codepostal_client,temp_client.ville_client,temp_client.potentiel,temp_client.nom_industry from temp_movex_offre join temp_fichier_distrib_info  on temp_movex_offre.numwp=temp_fichier_distrib_info.numwp join temp_client on temp_movex_offre.numwp=temp_client.numwp where temp_movex_offre.numwp= $numwp";
       $res = $this->getAdapter()->query($sql);
         $rest=$res->fetchAll();
         if (!$rest) {
