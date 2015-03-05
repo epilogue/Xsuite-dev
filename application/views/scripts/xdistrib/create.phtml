@@ -107,12 +107,16 @@ $this->headTitle($this->title);
                         <td>Projet:</td>
                         <td><?php echo $this->client_info['nom_industry']?></td>
                     </tr>
+                    <tr>
+                        <td>Client cible PAC :</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Oui<input type="radio" name="pac" value="oui"></td>
+                        <td>Non<input type="radio" name="pac" value="non"></td>
+                    </tr>
                 </table>
            </fieldset>
-            <fieldset class="field_info_3">
-                <legend>PLOP</legend>
-                <span> Client cible PAC <input type="radio" name="pac" value="oui">Oui<input type="radio" name="pac" value="non">Non </span>
-            </fieldset>
         </div>
     </form>
 </div>
