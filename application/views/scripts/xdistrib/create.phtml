@@ -76,11 +76,11 @@ $this->headTitle($this->title);
                     <tr>
                         <td>User Workplace:</td>
                         <td><?php echo $this->distrib_info['numwp_distrib'];?></td>
-                    </tr
+                    </tr>
                 </table>
-                            
+            </fieldset>             
             
-            <fieldset id="info_client" class="field_info"> </fieldset>
+            <fieldset id="info_client" class="field_info"> 
                 <legend>Informations Client Final</legend>
                 <table>
                     <tr>
@@ -104,87 +104,7 @@ $this->headTitle($this->title);
                         <td><?php echo $this->client_info['potentiel']?></td>
                     </tr>
                 </table>
-           
-        </div><!--
-        <div id="demandeArticle" class="workplace">
-        <fieldset class="field"><legend>Articles </legend>
-            <table id="article" class="enum">
-                <tr>
-                    <th>code article</th>
-                    <th>référence article</th>
-                    <th>quantité</th>
-                    <th>prix tarif</th>
-                    <th>prix demandé</th>
-                    <th>prix client final</th>
-                    <th>remise demandée</th>
-                    <th>total ligne</th>
-                    <th hidden="hidden">prix accordé</th>
-                    <th hidden="hidden">remise accordée</th>
-                    <th hidden="hidden">prix fob</th>
-                    <th hidden="hidden">prix cif</th>
-                </tr>
-                 <?php  foreach ($this->resultat as $result) { ?>
-                <tr>
-                    <td><?php echo $result['OBITNO'];?></td>
-                        <td><?php echo $result['OBITDS'];?></td>
-                        <td><?php echo (int)$result['OBORQT'];?></td>
-                        <td><?php echo round($result['OBSAPR'],2)."€";?></td>
-                        <td><?php echo round($result['OBNEPR'],2)."€";?></td>
-                        <td><input type="text" name ="prixClientFinal[<?php echo trim($result['OBITNO']);?>]"></td>
-                        <td><?php $margedemande=(($result['OBNEPR']*100)/$result['OBSAPR']); $margedef=100-$margedemande;echo round($margedef,2)."%"; ?></td>
-                        <td><?php echo round($result['OBLNA2'],2)."€";?></td>
-                        <td hidden="hidden"></td>
-                        <td hidden="hidden"></td>
-                        <td hidden="hidden"><?php echo $result['OBITNO'];?></td>
-                        <td hidden="hidden"><?php echo $result['OBITNO'];?></td>
-                </tr>
-                <?php } ?>
-            </table>
-            <br>
-            <br>
-            <span >
-                <h3> Marge moyenne Affaire(sur l'ensemble des produits SMC): <input readonly="readonly" value="<?php $obnal2=0; foreach ($this->resultat as $result){$margedemande=(($result['OBNEPR']*100)/$result['OBSAPR']);$margedef=100-$margedemande;$obnal2+=($margedef/count($this->resultat));}echo round($obnal2,2) ."%";?>" name="MargeMoyenne" ></h3>
-            </span>
+           </fieldset>
         </div>
-        <div id="concurrence" class="workplace">
-            <fieldset class="field"><legend>Concurrence</legend>
-                <table class="enum">
-                    <tr>
-                        <th>Concurrents</th>
-                        <th>Références produits</th>
-                        <th>Prix tarif concurrent</th>
-                        <th>Prix spécial accordé concurrent</th>
-                    </tr>
-                    <?php foreach($this->resultat as $result){ ?>
-                    <tr>
-                        <td><input type="text" name="concurrent"></td>
-                        <td><?php echo $result['OBITDS'];?></td>
-                        <td><input type="text" name="prix_tarif_concurrent"></td>
-                        <td><input type="text" name="prix_accorde_concurrent"></td>
-                    </tr>
-                    <?php } ?>
-                </table>
-            </fieldset>
-        </div>
-        <div class="workplace">
-            <fieldset class="field">
-                <legend>Contexte de la demande<span style=" font-style: italic;font-size: 9px;">(historique client, situation concurrentielle, évolution du compte , enjeux...)</span></legend>
-                <textarea rows="10" cols="25" name="contexte_demande"></textarea>
-            </fieldset>
-        </div>
-        <div class="workplace">
-            <fieldset class="field">
-                <legend>Services associés apportés par le distributeur<span style=" font-style: italic;font-size: 9px;">(stockage de produits, commandes par lot ...)</span></legend>
-                 <textarea rows="10" cols="25" name="service_associe"></textarea>
-            </fieldset>
-        </div>
-         <div id="comdemande" class="workplace">
-            <fieldset id="comdemande" class="field">
-                <legend>Commentaire Commercial</legend>
-                <textarea name="commentaire_demande_xdistrib"></textarea>
-            </fieldset>
-            
-        </div>
-        <input class="submit" type="submit" value="Envoyer Offre Xdistrib">-->
     </form>
 </div>
