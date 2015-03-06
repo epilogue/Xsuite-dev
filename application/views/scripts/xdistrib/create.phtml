@@ -149,11 +149,15 @@ $this->headTitle($this->title);
                 <legend>Concurrence</legend>
                 <table  id="concurrents" class="enum">
                     <tr>
-                        <td></td>
+                        <td>Concurrents</td>
+                        <td>Références Produits</td>
+                        <td>Prix Tarif CONCURRENT</td>
+                        <td>Prix spécial accordé CONCURRENT</td>
                     </tr>
+                    <?php foreach($concurrent_info as $value){ ?>
                     <tr>
                         <td></td>
-                    </tr>
+                    </tr> <?php } ?>
                 </table>
             </fieldset>
         </div>
@@ -161,11 +165,11 @@ $this->headTitle($this->title);
         <div id="contexte_service" class="workplace">
             <fieldset class="field">
                 <legend>Contexte de la demande</legend>
-                 <textarea name="contexte" cols="80" rows="7"></textarea>
+                 <textarea name="contexte" cols="120" rows="7"></textarea>
             </fieldset>
             <fieldset class="field">
                 <legend>Services Associés apportés par le distributeur</legend>
-                 <textarea name="service" cols="80" rows="7"></textarea>
+                 <textarea name="service" cols="120" rows="7"></textarea>
             </fieldset>
         </div>    
         <div class="clear"></div>
