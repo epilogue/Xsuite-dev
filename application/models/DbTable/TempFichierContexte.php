@@ -24,6 +24,16 @@ class Application_Model_DbTable_TempFichierContexte extends Zend_Db_Table_Abstra
          $this->insert($data);
         return $this;
     }
+     public function getAll($numwp){
+        $sql="select * from temp_fichier_contexte where temp_fichier_contexte.numwp = $numwp ";
+        $res = $this->getAdapter()->query($sql);
+        $rest=$res->fetchAll();
+        if (!$rest) {
+            return null;
+        } else {
+            return $rest;
+        }
+    }
     //put your code here
 }
     //put your code here
