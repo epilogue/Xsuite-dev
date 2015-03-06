@@ -459,25 +459,24 @@ $rows7bis=array_filter(array_map('array_filter',$rows7));
             /*recuperation des donnees concernant le createur de l'offre*/
             $user_infos = new Application_Model_DbTable_TempMovexOffre();
             $user_info = $user_infos->getMovexUser($numwp);
-            $this->view->user_info = $user_info[0];
-           // echo  '<pre>', var_export($user_info),'</pre>';   
+            $this->view->user_info = $user_info[0];  
             $distrib_infos = new Application_Model_DbTable_TempMovexOffre();
             $distrib_info=$distrib_infos->getDistrib($numwp);
-                    // echo  '<pre>', var_export($distrib_info),'</pre>';  
-                      $this->view->distrib_info = $distrib_info[0];
+            $this->view->distrib_info = $distrib_info[0];
             /*fin de requettage pour l'affichage des infos dans le phtml*/
             $client_infos= new Application_Model_DbTable_TempMovexOffre();
             $client_info=$client_infos->getClientFinal($numwp);
             $this->view->client_info=$client_info[0];
-//echo  '<pre>', var_export($client_info),'</pre>';  
            $article_infos = new Application_Model_DbTable_TempMovexDemande();
            $article_info= $article_infos->demande($numwp);
            $this->view->article_info=$article_info;
-           
            $concurrent_infos=new Application_Model_DbTable_TempFicherDistribPrixConcurrent();
            $concurrent_info=$concurrent_infos->getAll($numwp);
            $this->view->concurrent_info=$concurrent_info;
-            echo '<pre>',var_export($concurrent_info),'</pre>';
+           $context_infos=new Application_Model_DbTable_TempFicherContexte();
+           $context_info=$context_infos->getAll($numwp);
+           $this->view->context_info=$context_info[0]['contexte_demande'];
+            $this->view->service_info=$context_info[0]['services_associes'];
             if ($this->getRequest()->isPost()) {
                     $formData = $this->getRequest()->getPost();
 
