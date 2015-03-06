@@ -156,10 +156,10 @@ $this->headTitle($this->title);
                     </tr>
                     <?php foreach($concurrent_info as $val){ ?>
                     <tr>
-                        <td><?php echo $val['']; ?></td>
-                        <td><?php echo $val['']; ?></td>
-                        <td><?php echo $val['']; ?></td>
-                        <td><?php echo $val['']; ?></td>
+                        <td><?php echo $val['concurrent']; ?></td>
+                        <td><?php echo $val['reference_produit']; ?></td>
+                        <td><?php echo $val['prix_tarif_concurrent']; ?></td>
+                        <td><?php echo $val['prix_spe_accorde_concurrent']; ?></td>
                     </tr> <?php } ?>
                 </table>
             </fieldset>
