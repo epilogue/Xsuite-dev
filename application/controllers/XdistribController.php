@@ -286,7 +286,7 @@ $rows7bis=array_filter(array_map('array_filter',$rows7));
         $tempinfodistribs = $tempinfodistrib->createInfo($numwp, $nom_distributeur, $code_postal_distributeur, $ville_distributeur, $contact_distributeur, $nom_client_final, $numwp_client_final, $code_postal_client_final, $ville_client_final, $potentiel_client_final);
         $temparticledistrib = new Application_Model_DbTable_TempFichierDistribArticle();
         foreach($rowsbis as $value){
-            $temparticledistribs = $temparticledistrib->createArticle($numwp, $value[0], $value[1], $value[2], $value[3], $value[5], $value[6]);
+            $temparticledistribs = $temparticledistrib->createArticle($numwp, trim($value[0]), $value[1], $value[2], $value[3], $value[5], $value[6]);
         }
         $tempprixconcurrent = new Application_Model_DbTable_TempFicherDistribPrixConcurrent();
         foreach ($rows3bis as $value){
@@ -399,7 +399,7 @@ $rows7bis=array_filter(array_map('array_filter',$rows7));
                 }
                     $demandes_articles_xdistrib = new Application_Model_DbTable_TempMovexDemande();
                     foreach ($this->view->resultat as $resultarticle) {
-                        $demande_article_xdistrib = $demandes_articles_xdistrib->createDemandeTemp($resultarticle['OBITNO'],$resultarticle['OBITDS'],$resultarticle['OBSAPR'], $resultarticle['OBORQT'], $resultarticle['OBNEPR'],round(100 - ($resultarticle['OBNEPR'] * 100 / $resultarticle['OBSAPR']), 2),$numwp,$resultarticle['OBNEPR'], round(100 - ($resultarticle['OBNEPR'] * 100 / $resultarticle['OBSAPR']), 2),null,null,null,null);
+                        $demande_article_xdistrib = $demandes_articles_xdistrib->createDemandeTemp(trim($resultarticle['OBITNO']),trim($resultarticle['OBITDS']),$resultarticle['OBSAPR'], $resultarticle['OBORQT'], $resultarticle['OBNEPR'],round(100 - ($resultarticle['OBNEPR'] * 100 / $resultarticle['OBSAPR']), 2),$numwp,$resultarticle['OBNEPR'], round(100 - ($resultarticle['OBNEPR'] * 100 / $resultarticle['OBSAPR']), 2),null,null,null,null);
                     }
                     
                     /*insertion et update  prix fob et cif*/
@@ -470,8 +470,9 @@ $rows7bis=array_filter(array_map('array_filter',$rows7));
             $client_info=$client_infos->getClientFinal($numwp);
             $this->view->client_info=$client_info[0];
 //echo  '<pre>', var_export($client_info),'</pre>';  
-           
-            
+           $article_infos = new Application_Model_DbTable_TempMovexDemande();
+           $article_info= $article_infos->demande($numwp);
+            echo '<pre>',var_export($article_info),'</pre>';
             if ($this->getRequest()->isPost()) {
                     $formData = $this->getRequest()->getPost();
 

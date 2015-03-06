@@ -85,6 +85,13 @@ class Application_Model_DbTable_TempMovexDemande extends Zend_Db_Table_Abstract 
         return $plop2;
     }
     public function demande($numwp){
-        $sql = "select temp_movex_demande.code_article,temp_movex_demande.reference_article,temp_movex_demande.prix_tarif,temp_movex_demande.quantite,temp_fichier_distrib_article.prix_achat_actuel,temp_fichier_distrib_article.prix_achat_demande_distrib, temp_fichier_distrib_article.prix_achat_demande_client_final,temp_fichier_distrib_article.remise_supplementaire,temp_movex_offre.date, temp_movex_demande.prix_fob,temp_movex_demande.prix_cif";
+        $sql = "select temp_movex_demande.code_article,temp_movex_demande.reference_article,temp_movex_demande.prix_tarif,temp_movex_demande.quantite,temp_fichier_distrib_article.prix_achat_actuel,temp_fichier_distrib_article.prix_achat_demande_distrib, temp_fichier_distrib_article.prix_achat_demande_client_final,temp_fichier_distrib_article.remise_supplementaire,temp_movex_offre.date, temp_movex_demande.prix_fob,temp_movex_demande.prix_cif,temp_movex_demande.code_acquisition from temp_movex_demande join temp_fichier_distrib_article on temp_movex_demande.numwp = temp_fichier_distrib_article.numwp join temp_movex_offre on temp_movex_demande.numwp= temp_movex_offre.numwp where temp_movex_demande.numwp=$numwp and temp_fichier_distrib_article.reference_article=temp_movex_demande.reference_article";
+         $res = $this->getAdapter()->query($sql);
+        $rest=$res->fetchAll();
+        if (!$rest) {
+            return null;
+        } else {
+            return $rest;
+        }
     }
 }
