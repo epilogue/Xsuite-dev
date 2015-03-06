@@ -26,5 +26,14 @@ class Application_Model_DbTable_TempFicherDistribPrixConcurrent extends Zend_Db_
          $this->insert($data);
         return $this;
     }
-    //put your code here
+    public function getAll($numwp){
+        $sql="select * from temp_fichier_distrib_prix_concurrent where temp_fichier_distrib_prix_concurrent.numwp = $numwp ";
+        $res = $this->getAdapter()->query($sql);
+        $rest=$res->fetchAll();
+        if (!$rest) {
+            return null;
+        } else {
+            return $rest;
+        }
+    }
 }

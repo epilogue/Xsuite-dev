@@ -473,7 +473,11 @@ $rows7bis=array_filter(array_map('array_filter',$rows7));
            $article_infos = new Application_Model_DbTable_TempMovexDemande();
            $article_info= $article_infos->demande($numwp);
            $this->view->article_info=$article_info;
-            echo '<pre>',var_export($article_info),'</pre>';
+           
+           $concurrent_infos=new Application_Model_DbTable_TempFicherDistribPrixConcurrent();
+           $concurrent_info=$concurrent_infos->getAll($numwp);
+           $this->view->concurrent_info=$concurrent_info;
+            echo '<pre>',var_export($concurrent_info),'</pre>';
             if ($this->getRequest()->isPost()) {
                     $formData = $this->getRequest()->getPost();
 
