@@ -322,7 +322,6 @@ $rows7bis=array_filter(array_map('array_filter',$rows7));
             $infos_offre = odbc_exec($this->odbc_conn, $pirate);
             $infos_offres = odbc_fetch_object($infos_offre);
             $this->view->infos_offres = $infos_offres;
-            //echo  '<pre>', var_export($infos_offres),'</pre>';
             $dateinit = $infos_offres->OBRGDT;
             $dateinit3 = substr($dateinit, 0, 4);
             $dateinit2 = substr($dateinit, 4, 2);
@@ -432,7 +431,7 @@ $rows7bis=array_filter(array_map('array_filter',$rows7));
 //                        }
                         
       /* creation table temporaire pour  client */
-                         $queryClientFinal = "select ZMCPJO.Z2MCL1  from EIT.SMCCDTA.ZMCPJO  ZMCPJO where ZMCPJO.Z2CUNO= '$numwp_client_final' ";
+            $queryClientFinal = "select ZMCPJO.Z2MCL1  from EIT.SMCCDTA.ZMCPJO  ZMCPJO where ZMCPJO.Z2CUNO= '$numwp_client_final' ";
             $clientFinalwp = odbc_fetch_array(odbc_exec($this->odbc_conn3, $queryClientFinal));
             $clientFinalwp['Z2MCL1'] = trim($clientFinalwp['Z2MCL1']);
             if ($clientFinalwp['Z2MCL1'] == "" || $clientFinalwp['Z2MCL1'] == " ") {
@@ -461,7 +460,7 @@ $rows7bis=array_filter(array_map('array_filter',$rows7));
             $user_infos = new Application_Model_DbTable_TempMovexOffre();
             $user_info = $user_infos->getMovexUser($numwp);
             $this->view->user_info = $user_info[0];
-          $nom_zone = $user_info[0]['nom_zone'];
+            $nom_zone = $user_info[0]['nom_zone'];
             $distrib_infos = new Application_Model_DbTable_TempMovexOffre();
             $distrib_info=$distrib_infos->getDistrib($numwp);
             $this->view->distrib_info = $distrib_info[0];
@@ -486,9 +485,9 @@ $rows7bis=array_filter(array_map('array_filter',$rows7));
             }
             if ($this->getRequest()->isPost()) {
                     $formData = $this->getRequest()->getPost();
-                    echo '<pre>',var_export($formData),'</pre>'; exit();
+                    echo '<pre>',var_export($formData),'</pre>'; 
 
-                }
+                }exit();
     }
     
     public function readerAction(){
