@@ -477,6 +477,9 @@ $rows7bis=array_filter(array_map('array_filter',$rows7));
            $context_info=$context_infos->getAll($numwp);
            $this->view->context_info=$context_info[0]['contexte_demande'];
             $this->view->service_info=$context_info[0]['services_associes'];
+           $Xdistrib = new Application_Model_DbTable_Xdistrib();
+            $trackingNumber = Application_Model_DbTable_Xdistrib::makeTrackingNumber($zone['nom_zone'], $Xdistrib->lastId(true));
+            $this->view->trackingNumber = $trackingNumber;
             if ($this->getRequest()->isPost()) {
                     $formData = $this->getRequest()->getPost();
 
