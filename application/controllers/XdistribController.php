@@ -127,6 +127,7 @@ public function createAction(){
 /*fin de l'upload  le fichier se trouve dans datas/filesDatas*/
 /*lecture du fichier xlsx utilisation de la librairie PHPExcel */
  $numwp = $this->getRequest()->getParam('num_offre_workplace', null);
+ var_dump($numwp);
 include 'PHPExcel/Classes/PHPExcel/IOFactory.php';
 $inputFileName = APPLICATION_PATH.'/datas/filesDatas/demande.xlsx';
 // Chargement du fichier Excel
