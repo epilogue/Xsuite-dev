@@ -15,15 +15,13 @@ class Application_Model_DbTable_Distributeurs extends Zend_Db_Table_Abstract {
         }
     }
 
-    public function createDistributeur($nom_distributeur,$nom_contact_distributeur, $prenom_contact_distributeur, $numwp_distributeur,$agence_distributeur, $adresse_distributeur,$id_holon, $id_industry,$potentiel) {
+    public function createDistributeur($nom_distributeur,$contact_distributeur, $numwp_distributeur,$agence_distributeur, $code_postal_distributeur,$id_industry,$potentiel) {
         $data = array(
             'nom_distributeur' => $nom_distributeur,
-            'nom_contact_distributeur' => $nom_contact_distributeur,
-            'prenom_contact_distributeur' => $prenom_contact_distributeur,
+            'contact_distributeur' => $contact_distributeur,
             'numwp_distributeur' => $numwp_distributeur,
             'agence_distributeur' => $agence_distributeur,
-            'adresse_distributeur' => $adresse_distributeur,
-            'id_holon'=> $id_holon,
+            'code_postal_distributeur' => $code_postal_distributeur,
             'id_industry' => $id_industry,
             'potentiel' => $potentiel
         );
