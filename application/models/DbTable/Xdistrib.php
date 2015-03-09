@@ -45,7 +45,6 @@ class Application_Model_DbTable_Xdistrib extends Zend_Db_Table_Abstract {
             'num_workplace_demande_xdistrib' => $num_workplace_demande_xdistrib,
             'tracking_number_demande_xdistrib' => $tracking_number_demande_xdistrib,
             'contexte_demande'=>$contexte_demande,
-            'commentaire_demande_xdistrib' => $commentaire_demande_xdistrib,
             'date_demande_xdistrib' => $date_demande_xdistrib,
             'service_associe' => $service_associe,
             'id_user' => $id_user,
