@@ -482,7 +482,7 @@ public function uploadnumwpAction(){
         }
         if ($this->getRequest()->isPost()) {
             $Defxdistribs= new Application_Model_DbTable_Xdistrib();
-            $defxdistrib = $Defxdistribs->createXDistrib($numwp, $trackingNumber,$context_info[0]['contexte_demande'], $datefinal,$context_info[0]['services_associes'], $user_info[0]['id_user']);
+            $defxdistrib = $Defxdistribs->createXDistrib($numwp, $trackingNumber,$context_info[0]['contexte_demande'], $datefinal,$context_info[0]['services_associes'], $user_info[0]['id_user'],null,$numwp_client_final,$numwp_distributeur10);
         }
     }
     
