@@ -324,10 +324,11 @@ public function uploadnumwpAction(){
             $dateinit3 = substr($dateinit, 0, 4);
             $dateinit2 = substr($dateinit, 4, 2);
             $dateinit1 = substr($dateinit, 6, 2);
-            $dateinitf = array($dateinit1, $dateinit2, $dateinit3);
+            $dateinitf = array($dateinit1, $dateinit2,$dateinit3);
             $datefinal = implode('/', $dateinitf);
             $this->view->datefinal = $datefinal;
-
+            $datef=array($dateinit3, $dateinit2,$dateinit1) ;
+            $date=implode('-',$datef);
             /*insertion dans la table temp_movex_offre(numwp,date_offre,numwp_createur_offre,numwp_distributeur*/
             $temps= new Application_Model_DbTable_TempMovexOffre();
             $temp=$temps->createInfo($numwp, $dateinit, $infos_offres->OBSMCD, $infos_offres->OBCUNO);
@@ -482,7 +483,7 @@ public function uploadnumwpAction(){
         }
         if ($this->getRequest()->isPost()) {
             $Defxdistribs= new Application_Model_DbTable_Xdistrib();
-            $defxdistrib = $Defxdistribs->createXDistrib($numwp, $trackingNumber,$context_info[0]['contexte_demande'],$dateinit,$context_info[0]['services_associes'], $user_info[0]['id_user'],null,$numwp_client_final,$numwp_distributeur10);
+            $defxdistrib = $Defxdistribs->createXDistrib($numwp, $trackingNumber,$context_info[0]['contexte_demande'],$date,$context_info[0]['services_associes'], $user_info[0]['id_user'],null,$numwp_client_final,$numwp_distributeur10);
         }
     }
     
