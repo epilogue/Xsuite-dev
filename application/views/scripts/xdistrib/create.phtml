@@ -176,7 +176,7 @@ $this->headTitle($this->title);
         </div>    
         <div class="clear"></div>
      <form action ="" method ="post">
-         <input type="hidden" name="numwp" value="<?php echo $numwp; ?>">
+         <input type="hidden" name="numwp" value="<?php echo $this->infos_offres->OBORNO; ?>">
          <input type="hidden" name="id_user" value="<?php echo $this->user_info['id_user'];?>">
           <input type="hidden" name="nom_user" value="<?php echo $this->user_info['nom_user'];?>">
          <input class="submit" type="submit" value="envoyer la demande">
