@@ -485,8 +485,8 @@ $rows7bis=array_filter(array_map('array_filter',$rows7));
             }
              if ($this->getRequest()->isPost()) {
             
-             $value = $this->getRequest()->getPost();
-             echo '<pre>',var_export($values),'</pre>';
+             $tsouintsouin = $this->getRequest()->getPost();
+             echo '<pre>',var_export($tsouintsouin),'</pre>';
              }
     }
     
