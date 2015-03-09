@@ -482,6 +482,7 @@ $rows7bis=array_filter(array_map('array_filter',$rows7));
             $this->view->trackingNumber = $trackingNumber;
             if ($this->getRequest()->isPost()) {
                     $formData = $this->getRequest()->getPost();
+                    echo '<pre>',var_export($formData),'</pre>';
 
                 }
             }
