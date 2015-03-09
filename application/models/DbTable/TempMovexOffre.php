@@ -25,7 +25,7 @@ class Application_Model_DbTable_TempMovexOffre extends Zend_Db_Table_Abstract {
         return $this;   
     }
     public function getMovexUser($numwp){
-        $sql = "select distinct users.nom_user,users.prenom_user,users.tel_user,users.email_user,users.numwp_user,holons.nom_holon,holons.id_holon,zones.id_zone,zones.nom_zone "
+        $sql = "select distinct users.nom_user,users.prenom_user,users.tel_user,users.email_user,users.numwp_user,holons.nom_holon,holons.id_holon,zones.id_zone,zones.nom_zone,users.id_user "
                 . " from temp_movex_offre "
                 . " join users on temp_movex_offre.userwp = users.numwp_user "
                 . " join holons on  holons.id_holon = users.id_holon "
