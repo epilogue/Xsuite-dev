@@ -479,7 +479,7 @@ public function uploadnumwpAction(){
             $Xdistrib = new Application_Model_DbTable_Xdistrib();
             $trackingNumber = Application_Model_DbTable_Xdistrib::makeTrackingNumber($nom_zone, $Xdistrib->lastId(true));
             $this->view->trackingNumber = $trackingNumber;
-echo '<pre>',var_export($article_info),'</pre>';
+echo '<pre>',var_export($article_info),'</pre>';exit();
         }
         if ($this->getRequest()->isPost()) {
             $Defxdistribs= new Application_Model_DbTable_Xdistrib();
