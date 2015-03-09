@@ -447,7 +447,7 @@ public function uploadnumwpAction(){
                 //echo '<pre>',  var_export($info_industry_client_final),'</pre>';
             $id_industry_client_final =$info_industry_client_final['id_industry'];
             $nom_industry=$info_industry_client_final['description_industry'];
-            $id_industry=null;
+          
             $clientTemps= new Application_Model_DbTable_TempClient();
             $clientTemp= $clientTemps->createTemp($numwp,$numwp_client_final,$code_postal_client_final,$potentiel_client_final,$ville_client_final,$nom_industry,$id_industry,$nom_client_final);
         /*fin de l'insertion des données movex dans les tables temporaires */
@@ -481,8 +481,8 @@ public function uploadnumwpAction(){
 
         }
         if ($this->getRequest()->isPost()) {
-        $tsouintsouin = $this->getRequest()->getPost();
-        echo '<pre>',var_export($tsouintsouin),'</pre>';
+            $Defxdistribs= new Application_Model_DbTable_Xdistrib();
+            $defxdistrib = $Defxdistribs->createXDistrib($numwp, $trackingNumber,$context_info[0]['contexte_demande'], $datefinal,$context_info[0]['services_associes'], $user_info[0]['id_user']);
         }
     }
     
