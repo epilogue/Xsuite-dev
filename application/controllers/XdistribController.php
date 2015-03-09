@@ -461,7 +461,7 @@ $rows7bis=array_filter(array_map('array_filter',$rows7));
             $user_infos = new Application_Model_DbTable_TempMovexOffre();
             $user_info = $user_infos->getMovexUser($numwp);
             $this->view->user_info = $user_info[0];
-           echo '<pre>',  var_export($user_info),'</pre>';
+          $nom_zone = $user_info[0]['nom_zone'];
             $distrib_infos = new Application_Model_DbTable_TempMovexOffre();
             $distrib_info=$distrib_infos->getDistrib($numwp);
             $this->view->distrib_info = $distrib_info[0];
@@ -480,7 +480,7 @@ $rows7bis=array_filter(array_map('array_filter',$rows7));
            $this->view->context_info=$context_info[0]['contexte_demande'];
             $this->view->service_info=$context_info[0]['services_associes'];
            $Xdistrib = new Application_Model_DbTable_Xdistrib();
-            $trackingNumber = Application_Model_DbTable_Xdistrib::makeTrackingNumber($zone['nom_zone'], $Xdistrib->lastId(true));
+            $trackingNumber = Application_Model_DbTable_Xdistrib::makeTrackingNumber($nom_zone, $Xdistrib->lastId(true));
             $this->view->trackingNumber = $trackingNumber;
            
             }
