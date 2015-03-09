@@ -479,11 +479,16 @@ public function uploadnumwpAction(){
             $Xdistrib = new Application_Model_DbTable_Xdistrib();
             $trackingNumber = Application_Model_DbTable_Xdistrib::makeTrackingNumber($nom_zone, $Xdistrib->lastId(true));
             $this->view->trackingNumber = $trackingNumber;
-
+echo '<pre>',var_export($article_info),'</pre>';
         }
         if ($this->getRequest()->isPost()) {
             $Defxdistribs= new Application_Model_DbTable_Xdistrib();
             $defxdistrib = $Defxdistribs->createXDistrib($numwp, $trackingNumber,$context_info[0]['contexte_demande'],$date,$context_info[0]['services_associes'], $user_info[0]['id_user'],null,$numwp_client_final,$numwp_distributeur10);
+            $Defxdistribarticles= new Application_Model_DbTable_DemandeArticlexdistrib();
+            foreach($article_info as $art){
+                $Defxdistribarticle = $Defxdistribarticles->createDemandeArticlexdistrib($prixwplace_demande_article, $prix_demande_article, $prix_client_final, $quantite_demande_article, $remise_demande_article, $date_demande_xdistrib, $prix_accorde_demande_article, $remise_accorde_demande_article, $prix_fob_demande_article, $prix_cif_demande_article, $marge_demande_article, $marge_moyenne_demande, $tracking_number_demande_xdistrib, $code_article, $reference_article, $num_workplace_demande_xdistrib, $code_acquisition);
+            }
+            
         }
     }
     
