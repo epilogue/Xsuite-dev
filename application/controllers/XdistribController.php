@@ -115,7 +115,7 @@ public function uploadnumwpAction(){
     public function createAction(){
 
             /* upload du fichier xlsx coorespondant à l'offre */
-
+if($this->getRequest()->isPost()){
         $filename=$_FILES['nomfichier']['name'];
         ini_set("display_errors", E_ALL);
         $destination=APPLICATION_PATH.'/datas/filesDatas/';
@@ -497,6 +497,7 @@ public function uploadnumwpAction(){
        unlink($fichierdef);
        $tempClienttruns= new Application_Model_DbTable_TempClient();
        $tempClienttrun=$tempClienttruns->truncateAll();
+    }
     }
     public function maildispatchAction(){
   
