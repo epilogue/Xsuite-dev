@@ -377,7 +377,7 @@ if($this->getRequest()->isPost()){
                     OOLINE.OBSMCD
                     from EIT.CVXCDTA.OOLINE OOLINE WHERE OOLINE.OBORNO='{$numwp}' AND OOLINE.OBDIVI LIKE 'FR0' AND OOLINE.OBCONO=100";
             $resultats = odbc_exec($this->odbc_conn, $query2);
-            ;
+            
             while ($resultat[] = odbc_fetch_array($resultats)) {
                     $this->view->resultat = $resultat;
                     
