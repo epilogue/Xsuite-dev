@@ -405,7 +405,7 @@ if($this->getRequest()->isPost()){
 
             /*insertion et update  prix fob et cif*/
             foreach ($prixciffob as $key => $value) {
-                if($value->AJPUPR == NULL){
+                if(is_null($value->AJPUPR) || $value->AJPUPR ==''){
                     $insertprix = new Application_Model_DbTable_TempMovexDemande();
                     $inserprix = $insertprix->InserPrixFob(1, $value->AJOBV2, $numwp);  
                 }
