@@ -404,11 +404,12 @@ if($this->getRequest()->isPost()){
                 $demande_article_xdistrib = $demandes_articles_xdistrib->createDemandeTemp(trim($resultarticle['OBITNO']),trim($resultarticle['OBITDS']),$resultarticle['OBSAPR'], $resultarticle['OBORQT'], $resultarticle['OBNEPR'],round(100 - ($resultarticle['OBNEPR'] * 100 / $resultarticle['OBSAPR']), 2),$numwp,$resultarticle['OBNEPR'], round(100 - ($resultarticle['OBNEPR'] * 100 / $resultarticle['OBSAPR']), 2),null,null,null,null);
             }
 
-            /*insertion et update  prix fob et cif*/
+            /*insertion et update  prix fob et cif*/ 
             foreach ($prixciffob as $key => $value) {
-               
+                
+               if(!is_null($value)){ continue;}
                 $insertprix = new Application_Model_DbTable_TempMovexDemande();
-                $inserprix = $insertprix->InserPrixFob($value->AJPUPR, $value->AJOBV2, $numwp);
+               $inserprix = $insertprix->InserPrixFob($value->AJPUPR, $value->AJOBV2, $numwp);
             }
             foreach($resultatacquis as $key=>$value){
                 $insertacquis= new Application_Model_DbTable_TempMovexDemande();
