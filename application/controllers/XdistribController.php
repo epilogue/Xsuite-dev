@@ -405,24 +405,24 @@ if($this->getRequest()->isPost()){
             }
 
             /*insertion et update  prix fob et cif*/ 
-            foreach ($prixciffob as $key => $value) {
-                $insertprix = new Application_Model_DbTable_TempMovexDemande();
-               $inserprix = $insertprix->InserPrixFob($value->AJPUPR, $value->AJOBV2, $numwp);
-            }
-            foreach($resultatacquis as $key=>$value){
-                $insertacquis= new Application_Model_DbTable_TempMovexDemande();
-                $inseracquis = $insertacquis->InserCodeAcquis($value->MBPUIT, $value->MBITNO, $numwp);
-            }
-
-            $updatecif1 = new Application_Model_DbTable_TempMovexDemande();
-            $updatecif2 = $updatecif1->getDemandeArticlexdistrib($numwp);                   
-            foreach($updatecif2 as $result){
-                if($result['code_acquisition']=='2'){
-                    $cifs= ($result['prix_fob'])*1.07;
-                    $cif=round($cifs,2);
-                    $updatecif3 = $updatecif1->updatecif($cif, $result['code_article'], $numwp);
-                }
-            }
+//            foreach ($prixciffob as $key => $value) {
+//                $insertprix = new Application_Model_DbTable_TempMovexDemande();
+//               $inserprix = $insertprix->InserPrixFob($value->AJPUPR, $value->AJOBV2, $numwp);
+//            }
+//            foreach($resultatacquis as $key=>$value){
+//                $insertacquis= new Application_Model_DbTable_TempMovexDemande();
+//                $inseracquis = $insertacquis->InserCodeAcquis($value->MBPUIT, $value->MBITNO, $numwp);
+//            }
+//
+//            $updatecif1 = new Application_Model_DbTable_TempMovexDemande();
+//            $updatecif2 = $updatecif1->getDemandeArticlexdistrib($numwp);                   
+//            foreach($updatecif2 as $result){
+//                if($result['code_acquisition']=='2'){
+//                    $cifs= ($result['prix_fob'])*1.07;
+//                    $cif=round($cifs,2);
+//                    $updatecif3 = $updatecif1->updatecif($cif, $result['code_article'], $numwp);
+//                }
+//            }
         //                        $margeupdate1=new Application_Model_DbTable_TempMovexDemande();
         //                        $margeupdate2=$margeupdate1->getDemandeArticlexdistrib($numwp);
         //                        foreach($margeupdate2 as $res){
@@ -493,7 +493,7 @@ if($this->getRequest()->isPost()){
         $DefConcurrents = new Application_Model_DbTable_PrixConcurrent();
         foreach($concurrent_info as $con){
              $DefConcurrent = $DefConcurrents->create($con['concurrent'],$con['reference_produit'],$con['prix_tarif_concurrent'],$con['prix_spe_accorde_concurrent'],$con['numwp']);
-        }echo '<pre>',var_export($numwp),'</pre>';
+        }
        $defDistributeurs=new Application_Model_DbTable_Distributeurs();
        $defDistributeur=$defDistributeurs->createDistributeur($distrib_info[0]['distrib'], $distrib_info[0]['nom_contact_distrib'],$distrib_info[0]['numwp_distrib'],$distrib_info[0]['ville_distrib'],$distrib_info[0]['codepostal_distrib'], $id_industry,$potentiel_distributeur);
        $fichierdef=APPLICATION_PATH.'/datas/filesDatas/demande.xlsx';
