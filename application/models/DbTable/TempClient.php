@@ -28,13 +28,13 @@ class Application_Model_DbTable_TempClient extends Zend_Db_Table_Abstract {
         return $this;
    }
    public function truncateAll(){
-       $query = "TRUNCATE TABLE temp_client,"
-               . "TRUNCATE TABLE temp_fichier_contexte,"
-               . "TRUNCATE TABLE temp_fichier_distrib_article,"
-               . "TRUNCATE TABLE temp_fichier_distrib_info,"
-               . "TRUNCATE TABLE temp_fichier_distrib_prix_concurrent,"
-               . "TRUNCATE TABLE temp_movex_demande,temp_movex_distrib,"
-               . "TRUNCATE TABLE temp_movex_offre ";
+       $query = "TRUNCATE TABLE temp_client;"
+               . "TRUNCATE TABLE temp_fichier_contexte;"
+               . "TRUNCATE TABLE temp_fichier_distrib_article;"
+               . "TRUNCATE TABLE temp_fichier_distrib_info;"
+               . "TRUNCATE TABLE temp_fichier_distrib_prix_concurrent;"
+               . "TRUNCATE TABLE temp_movex_demande,temp_movex_distrib;"
+               . "TRUNCATE TABLE temp_movex_offre; ";
         $this->getAdapter()->query($query);
    }
     
