@@ -383,7 +383,7 @@ if($this->getRequest()->isPost()){
                     
                 }
         /* recuperation du code acquisition , prif fob et cif*/
-            foreach ($resultat as $itnoarticle) {
+            foreach ($this->view->resultat as $itnoarticle) {
                 $mmcono = "100";
                 $division = "FR0";
                 $facility = "I01";
