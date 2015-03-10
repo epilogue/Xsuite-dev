@@ -405,8 +405,14 @@ if($this->getRequest()->isPost()){
 
             /*insertion et update  prix fob et cif*/
             foreach ($prixciffob as $key => $value) {
+                if($value->AJPUPR == NULL){
+                   $insertprix = new Application_Model_DbTable_TempMovexDemande();
+                $inserprix = $insertprix->InserPrixFob(1, $value->AJOBV2, $numwp);  
+                }
+                else{
                 $insertprix = new Application_Model_DbTable_TempMovexDemande();
                 $inserprix = $insertprix->InserPrixFob($value->AJPUPR, $value->AJOBV2, $numwp);
+                }
             }
             foreach($resultatacquis as $key=>$value){
                 $insertacquis= new Application_Model_DbTable_TempMovexDemande();
@@ -471,7 +477,7 @@ if($this->getRequest()->isPost()){
             $article_infos = new Application_Model_DbTable_TempMovexDemande();
             $article_info= $article_infos->demande($numwp);
             $this->view->article_info=$article_info;
-            echo '<pre>',  var_export($article_info),'</pre>';
+            echo '<pre>',  var_export($article_info),'</pre>'; exit();
             $concurrent_infos=new Application_Model_DbTable_TempFicherDistribPrixConcurrent();
             $concurrent_info=$concurrent_infos->getAll($numwp);
             $this->view->concurrent_info=$concurrent_info;
