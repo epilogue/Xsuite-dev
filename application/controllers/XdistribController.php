@@ -492,7 +492,7 @@ public function uploadnumwpAction(){
              $DefConcurrent = $DefConcurrents->create($con['concurrent'],$con['reference_produit'],$con['prix_tarif_concurrent'],$con['prix_spe_accorde_concurrent'],$con['numwp']);
         }echo '<pre>',var_export($distrib_info),'</pre>';
        $defDistributeurs=new Application_Model_DbTable_Distributeurs();
-      // $defDistributeur=$defDistributeurs->createDistributeur($nom_distributeur, $contact_distributeur, $numwp_distributeur, $agence_distributeur, $code_postal_distributeur, $id_industry, $potentiel);
+       $defDistributeur=$defDistributeurs->createDistributeur($distrib_info[0]['distrib'], $distrib_info[0]['nom_contact_distrib'],$distrib_info[0]['numwp_distrib'],$distrib_info[0]['ville_distrib'],$distrib_info[0]['codepostal_distrib'], $id_industry,$potentiel_distributeur);
     }
     public function maildispatchAction(){
   
