@@ -503,8 +503,10 @@ if($this->getRequest()->isPost()){
     }
     }
     public function maildispatchAction(){
-  
-
+  if ($this->getRequest()->isPost()) {
+                $formData = $this->getRequest()->getPost();
+                echo '<pre>',var_export($formData),'</pre>';
+  }
     }
     public function readerAction(){
   
