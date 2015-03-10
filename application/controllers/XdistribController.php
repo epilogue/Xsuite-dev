@@ -493,6 +493,8 @@ public function uploadnumwpAction(){
         }echo '<pre>',var_export($distrib_info),'</pre>';
        $defDistributeurs=new Application_Model_DbTable_Distributeurs();
        $defDistributeur=$defDistributeurs->createDistributeur($distrib_info[0]['distrib'], $distrib_info[0]['nom_contact_distrib'],$distrib_info[0]['numwp_distrib'],$distrib_info[0]['ville_distrib'],$distrib_info[0]['codepostal_distrib'], $id_industry,$potentiel_distributeur);
+       $fichierdef=APPLICATION_PATH.'/datas/filesDatas/demande.xlsx';
+       unlink($fichierdef);
     }
     public function maildispatchAction(){
   
