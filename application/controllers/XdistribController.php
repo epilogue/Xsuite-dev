@@ -116,6 +116,7 @@ public function uploadnumwpAction(){
 
             /* upload du fichier xlsx coorespondant à l'offre */
 if($this->getRequest()->isPost()){
+        $numwp= $_POST['num_offre_workplace'];
         $filename=$_FILES['nomfichier']['name'];
         ini_set("display_errors", E_ALL);
         $destination=APPLICATION_PATH.'/datas/filesDatas/';
@@ -124,9 +125,10 @@ if($this->getRequest()->isPost()){
         if(!$plop->receive()) {
             var_dump($plop->getMessages());
         }
+        
         /*fin de l'upload  le fichier se trouve dans datas/filesDatas*/
         /*lecture du fichier xlsx utilisation de la librairie PHPExcel */
-         $numwp = $this->getRequest()->getParam('num_offre_workplace', null);
+        // $numwp = $this->getRequest()->getParam('num_offre_workplace', null);
 
         include 'PHPExcel/Classes/PHPExcel/IOFactory.php';
         $inputFileName = APPLICATION_PATH.'/datas/filesDatas/demande.xlsx';
@@ -299,7 +301,7 @@ if($this->getRequest()->isPost()){
          */
         /* début d'insertion des données movex dans les tables temporaires*/
 
-        $numwp = $this->getRequest()->getParam('num_offre_workplace', null);
+        //$numwp = $this->getRequest()->getParam('num_offre_workplace', null);
         $demandes_xdistrib = new Application_Model_DbTable_Xdistrib();
         $demande_xdistrib = $demandes_xdistrib->getNumwp($numwp);
         if (!is_null($demande_xdistrib)) {
@@ -491,7 +493,7 @@ if($this->getRequest()->isPost()){
         $DefConcurrents = new Application_Model_DbTable_PrixConcurrent();
         foreach($concurrent_info as $con){
              $DefConcurrent = $DefConcurrents->create($con['concurrent'],$con['reference_produit'],$con['prix_tarif_concurrent'],$con['prix_spe_accorde_concurrent'],$con['numwp']);
-        }echo '<pre>',var_export($distrib_info),'</pre>';
+        }echo '<pre>',var_export($numwp),'</pre>';
        $defDistributeurs=new Application_Model_DbTable_Distributeurs();
        $defDistributeur=$defDistributeurs->createDistributeur($distrib_info[0]['distrib'], $distrib_info[0]['nom_contact_distrib'],$distrib_info[0]['numwp_distrib'],$distrib_info[0]['ville_distrib'],$distrib_info[0]['codepostal_distrib'], $id_industry,$potentiel_distributeur);
        $fichierdef=APPLICATION_PATH.'/datas/filesDatas/demande.xlsx';
