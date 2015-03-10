@@ -378,7 +378,7 @@ if($this->getRequest()->isPost()){
                     from EIT.CVXCDTA.OOLINE OOLINE WHERE OOLINE.OBORNO='{$numwp}' AND OOLINE.OBDIVI LIKE 'FR0' AND OOLINE.OBCONO=100";
             $resultats = odbc_exec($this->odbc_conn, $query2);
             $resultat[] = odbc_fetch_array($resultats);
-            echo '<pre>',var_export($resultat),'</pre>'; exit();
+            echo '<pre>',var_export($resultat[]),'</pre>'; exit();
 //            while () {
 //                    $this->view->resultat = $resultat;
 //                    
