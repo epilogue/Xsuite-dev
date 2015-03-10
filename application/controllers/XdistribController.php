@@ -479,18 +479,19 @@ public function uploadnumwpAction(){
             $Xdistrib = new Application_Model_DbTable_Xdistrib();
             $trackingNumber = Application_Model_DbTable_Xdistrib::makeTrackingNumber($nom_zone, $Xdistrib->lastId(true));
             $this->view->trackingNumber = $trackingNumber;
-echo '<pre>',var_export($article_info),'</pre>';
         }
-        if ($this->getRequest()->isPost()) {
-            $Defxdistribs= new Application_Model_DbTable_Xdistrib();
-            $defxdistrib = $Defxdistribs->createXDistrib($numwp, $trackingNumber,$context_info[0]['contexte_demande'],$date,$context_info[0]['services_associes'], $user_info[0]['id_user'],null,$numwp_client_final,$numwp_distributeur10);
-            $Defxdistribarticles= new Application_Model_DbTable_DemandeArticlexdistrib();
-            foreach($article_info as $art){
-                $marge_demande_article = 1-($art['prix_cif']/$art['prix_achat_demande_distrib']);
-                $Defxdistribarticle = $Defxdistribarticles->createDemandeArticlexdistrib($art['prix_tarif'],$art['prix_achat_actuel'] ,$art['prix_achat_demande_distrib'], $art['prix_achat_demande_client_final'],$art['quantite'], $art['remise_supplementaire'], $art['date'],$art['prix_achat_demande_distrib'],$art['remise_supplementaire'], $art['prix_fob'], $art['prix_cif'], $marge_demande_article,$trackingNumber, $art['code_article'], $art['reference_article'], $numwp,$art['code_acquisition']);
-            }
-            
+        $Defxdistribs= new Application_Model_DbTable_Xdistrib();
+        $defxdistrib = $Defxdistribs->createXDistrib($numwp, $trackingNumber,$context_info[0]['contexte_demande'],$date,$context_info[0]['services_associes'], $user_info[0]['id_user'],null,$numwp_client_final,$numwp_distributeur10);
+        $Defxdistribarticles= new Application_Model_DbTable_DemandeArticlexdistrib();
+        foreach($article_info as $art){
+            $marge_demande_article = 100*(1-($art['prix_cif']/$art['prix_achat_demande_distrib']));
+            $Defxdistribarticle = $Defxdistribarticles->createDemandeArticlexdistrib($art['prix_tarif'],$art['prix_achat_actuel'] ,$art['prix_achat_demande_distrib'], $art['prix_achat_demande_client_final'],$art['quantite'], $art['remise_supplementaire'], $art['date'],$art['prix_achat_demande_distrib'],$art['remise_supplementaire'], $art['prix_fob'], $art['prix_cif'], $marge_demande_article,$trackingNumber, $art['code_article'], $art['reference_article'], $numwp,$art['code_acquisition']);
+        } echo '<pre>',var_export($concurrent_info),'</pre>';
+        $DefConcurrents = new Application_Model_DbTable_PrixConcurrent();
+        foreach($concurrent_info as $con){
+             $DefConcurrent = $DefConcurrents->create();
         }
+       
     }
     
     public function readerAction(){
