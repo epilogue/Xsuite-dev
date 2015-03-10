@@ -405,31 +405,31 @@ if($this->getRequest()->isPost()){
             }
 
             /*insertion et update  prix fob et cif*/ 
-//            foreach ($prixciffob as $key => $value) {
-//                $insertprix = new Application_Model_DbTable_TempMovexDemande();
-//               $inserprix = $insertprix->InserPrixFob($value->AJPUPR, $value->AJOBV2, $numwp);
-//            }
-//            foreach($resultatacquis as $key=>$value){
-//                $insertacquis= new Application_Model_DbTable_TempMovexDemande();
-//                $inseracquis = $insertacquis->InserCodeAcquis($value->MBPUIT, $value->MBITNO, $numwp);
-//            }
-//
-//            $updatecif1 = new Application_Model_DbTable_TempMovexDemande();
-//            $updatecif2 = $updatecif1->getDemandeArticlexdistrib($numwp);                   
-//            foreach($updatecif2 as $result){
-//                if($result['code_acquisition']=='2'){
-//                    $cifs= ($result['prix_fob'])*1.07;
-//                    $cif=round($cifs,2);
-//                    $updatecif3 = $updatecif1->updatecif($cif, $result['code_article'], $numwp);
-//                }
-//            }
-        //                        $margeupdate1=new Application_Model_DbTable_TempMovexDemande();
-        //                        $margeupdate2=$margeupdate1->getDemandeArticlexdistrib($numwp);
-        //                        foreach($margeupdate2 as $res){
-        //                            $marges = 1-($res['prix_cif']/$res['prix_accorde']);
-        //                            $marge=$marges*100;
-        //                            $margeupdate3=$margeupdate1->updateMarge($marge, $res['code_article'],$numwp);
-        //                        }
+            foreach ($prixciffob as $key => $value) {
+                $insertprix = new Application_Model_DbTable_TempMovexDemande();
+               $inserprix = $insertprix->InserPrixFob($value->AJPUPR, $value->AJOBV2, $numwp);
+            }
+            foreach($resultatacquis as $key=>$value){
+                $insertacquis= new Application_Model_DbTable_TempMovexDemande();
+                $inseracquis = $insertacquis->InserCodeAcquis($value->MBPUIT, $value->MBITNO, $numwp);
+            }
+
+            $updatecif1 = new Application_Model_DbTable_TempMovexDemande();
+            $updatecif2 = $updatecif1->getDemandeArticlexdistrib($numwp);                   
+            foreach($updatecif2 as $result){
+                if($result['code_acquisition']=='2'){
+                    $cifs= ($result['prix_fob'])*1.07;
+                    $cif=round($cifs,2);
+                    $updatecif3 = $updatecif1->updatecif($cif, $result['code_article'], $numwp);
+                }
+            }
+                                $margeupdate1=new Application_Model_DbTable_TempMovexDemande();
+                                $margeupdate2=$margeupdate1->getDemandeArticlexdistrib($numwp);
+                                foreach($margeupdate2 as $res){
+                                    $marges = 1-($res['prix_cif']/$res['prix_accorde']);
+                                    $marge=$marges*100;
+                                    $margeupdate3=$margeupdate1->updateMarge($marge, $res['code_article'],$numwp);
+                                }
 
         /* creation table temporaire pour  client */
             $queryClientFinal = "select ZMCPJO.Z2MCL1  from EIT.SMCCDTA.ZMCPJO  ZMCPJO where ZMCPJO.Z2CUNO= '$numwp_client_final' ";
