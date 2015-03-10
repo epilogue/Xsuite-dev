@@ -384,7 +384,6 @@ if($this->getRequest()->isPost()){
 //                }
         /* recuperation du code acquisition , prif fob et cif*/
             foreach ($resultat as $itnoarticle) {
-                 echo '<pre>',var_export($itnoarticle),'</pre>'; exit();
                 $mmcono = "100";
                 $division = "FR0";
                 $facility = "I01";
@@ -397,7 +396,7 @@ if($this->getRequest()->isPost()){
                 $query3 = "select * from EIT.MVXCDTA.MPAGRP MPAGRP where MPAGRP.AJCONO = '$mmcono' AND MPAGRP.AJSUNO = '$supplier' AND (MPAGRP.AJAGNB = '$agreement3'  OR MPAGRP.AJAGNB = '$agreement2' OR MPAGRP.AJAGNB = '$agreement1') AND MPAGRP.AJOBV2 = '{$itnoarticle['OBITNO']}' AND MPAGRP.AJOBV1 = '$division'  ORDER BY MPAGRP.AJAGNB";
                 $resultats3 = odbc_Exec($this->odbc_conn2, $query3);
                 $prixciffob[] = odbc_fetch_object($resultats3);
-                echo '<pre>',var_export($resultats3),'</pre>'; exit();
+                echo '<pre>',var_export($prixciffob),'</pre>'; exit();
                 $acquis= "select MITBAL.MBITNO, MITBAL.MBPUIT from EIT.MVXCDTA.MITBAL MITBAL where MITBAL.MBITNO ='{$itnoarticle['OBITNO']}'";
                 $resultatsacquis=odbc_Exec($this->odbc_conn2, $acquis);
                 $resultatacquis[] = odbc_fetch_object($resultatsacquis);
