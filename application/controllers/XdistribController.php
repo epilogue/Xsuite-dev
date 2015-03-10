@@ -423,13 +423,13 @@ if($this->getRequest()->isPost()){
                     $updatecif3 = $updatecif1->updatecif($cif, $result['code_article'], $numwp);
                 }
             }
-                                $margeupdate1=new Application_Model_DbTable_TempMovexDemande();
-                                $margeupdate2=$margeupdate1->getDemandeArticlexdistrib($numwp);
-                                foreach($margeupdate2 as $res){
-                                    $marges = 1-($res['prix_cif']/$res['prix_accorde']);
-                                    $marge=$marges*100;
-                                    $margeupdate3=$margeupdate1->updateMarge($marge, $res['code_article'],$numwp);
-                                }
+//                                $margeupdate1=new Application_Model_DbTable_TempMovexDemande();
+//                                $margeupdate2=$margeupdate1->getDemandeArticlexdistrib($numwp);
+//                                foreach($margeupdate2 as $res){
+//                                    $marges = 1-($res['prix_cif']/$res['prix_accorde']);
+//                                    $marge=$marges*100;
+//                                    $margeupdate3=$margeupdate1->updateMarge($marge, $res['code_article'],$numwp);
+//                                }
 
         /* creation table temporaire pour  client */
             $queryClientFinal = "select ZMCPJO.Z2MCL1  from EIT.SMCCDTA.ZMCPJO  ZMCPJO where ZMCPJO.Z2CUNO= '$numwp_client_final' ";
