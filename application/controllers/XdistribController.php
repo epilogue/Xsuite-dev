@@ -378,14 +378,13 @@ if($this->getRequest()->isPost()){
                     from EIT.CVXCDTA.OOLINE OOLINE WHERE OOLINE.OBORNO='{$numwp}' AND OOLINE.OBDIVI LIKE 'FR0' AND OOLINE.OBCONO=100";
             $resultats = odbc_exec($this->odbc_conn, $query2);
             $resultat[] = odbc_fetch_array($resultats);
-            $fraise=array($resultat);
-            echo '<pre>',var_export($fraise),'</pre>'; exit();
 //            while () {
 //                    $this->view->resultat = $resultat;
 //                    
 //                }
         /* recuperation du code acquisition , prif fob et cif*/
             foreach ($resultat as $itnoarticle) {
+                 echo '<pre>',var_export($itnoarticle),'</pre>'; exit();
                 $mmcono = "100";
                 $division = "FR0";
                 $facility = "I01";
