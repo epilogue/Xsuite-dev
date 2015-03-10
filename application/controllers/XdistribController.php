@@ -394,7 +394,7 @@ if($this->getRequest()->isPost()){
                 $agreement3 = "I000003";
                 $query3 = "select * from EIT.MVXCDTA.MPAGRP MPAGRP where MPAGRP.AJCONO = '$mmcono' AND MPAGRP.AJAGNB = '$agreement2' OR MPAGRP.AJAGNB = '$agreement1') AND MPAGRP.AJOBV2 = '{$itnoarticle['OBITNO']}' AND MPAGRP.AJOBV1 = '$division'  ORDER BY MPAGRP.AJAGNB";
                 $resultats3 = odbc_Exec($this->odbc_conn2, $query3);
-                $prixciffob[] = odbc_fetch_object($resultats3);
+                $prixciffob[] = odbc_fetch_object($resultats3); echo '<pre>',  var_export($prixciffob),'</pre>';
                 $acquis= "select MITBAL.MBITNO, MITBAL.MBPUIT from EIT.MVXCDTA.MITBAL MITBAL where MITBAL.MBITNO ='{$itnoarticle['OBITNO']}'";
                 $resultatsacquis=odbc_Exec($this->odbc_conn2, $acquis);
                 $resultatacquis[] = odbc_fetch_object($resultatsacquis);
@@ -406,7 +406,7 @@ if($this->getRequest()->isPost()){
 
             /*insertion et update  prix fob et cif*/
             foreach ($prixciffob as $key => $value) {
-                echo '<pre>',  var_export($value),'</pre>';
+               
                 $insertprix = new Application_Model_DbTable_TempMovexDemande();
                 $inserprix = $insertprix->InserPrixFob($value->AJPUPR, $value->AJOBV2, $numwp);
             }
