@@ -497,9 +497,9 @@ if($this->getRequest()->isPost()){
        $defDistributeurs=new Application_Model_DbTable_Distributeurs();
        $defDistributeur=$defDistributeurs->createDistributeur($distrib_info[0]['distrib'], $distrib_info[0]['nom_contact_distrib'],$distrib_info[0]['numwp_distrib'],$distrib_info[0]['ville_distrib'],$distrib_info[0]['codepostal_distrib'], $id_industry,$potentiel_distributeur);
        $fichierdef=APPLICATION_PATH.'/datas/filesDatas/demande.xlsx';
-       unlink($fichierdef);
-       $tempClienttruns= new Application_Model_DbTable_TempClient();
-       $tempClienttrun=$tempClienttruns->truncateAll();
+//       unlink($fichierdef);
+//       $tempClienttruns= new Application_Model_DbTable_TempClient();
+//       $tempClienttrun=$tempClienttruns->truncateAll();
     }
     }
     public function maildispatchAction(){
