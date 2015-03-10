@@ -487,10 +487,10 @@ public function uploadnumwpAction(){
             $marge_demande_article = 100*(1-($art['prix_cif']/$art['prix_achat_demande_distrib']));
             $Defxdistribarticle = $Defxdistribarticles->createDemandeArticlexdistrib($art['prix_tarif'],$art['prix_achat_actuel'] ,$art['prix_achat_demande_distrib'], $art['prix_achat_demande_client_final'],$art['quantite'], $art['remise_supplementaire'], $art['date'],$art['prix_achat_demande_distrib'],$art['remise_supplementaire'], $art['prix_fob'], $art['prix_cif'], $marge_demande_article,$trackingNumber, $art['code_article'], $art['reference_article'], $numwp,$art['code_acquisition']);
         } echo '<pre>',var_export($concurrent_info),'</pre>';
-        $DefConcurrents = new Application_Model_DbTable_PrixConcurrent();
-        foreach($concurrent_info as $con){
-             $DefConcurrent = $DefConcurrents->create();
-        }
+//        $DefConcurrents = new Application_Model_DbTable_PrixConcurrent();
+//        foreach($concurrent_info as $con){
+//             $DefConcurrent = $DefConcurrents->create();
+//        }
        
     }
     
