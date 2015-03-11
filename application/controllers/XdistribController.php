@@ -499,6 +499,8 @@ if($this->getRequest()->isPost()){
        
 
     }
+    $fichierdef=APPLICATION_PATH.'/datas/filesDatas/demande.xlsx';
+     unlink($fichierdef);
     }
     public function maildispatchAction(){
   if ($this->getRequest()->isPost()) {
