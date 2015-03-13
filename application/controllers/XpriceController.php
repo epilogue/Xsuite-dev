@@ -1853,7 +1853,7 @@ if($mailServiceClients[0]['mail_service_client']=='regionNord'){
 //            foreach ($formData as $datas) {
             $fobs = array_combine($datas['code_article'], $datas['prix_fob']);
             $cifs = array_combine($datas['code_article'], $datas['prix_cif']);
-            $marges = array_combine($datas['code_article'],$datas['marge_demande_article']);
+            $marges = array_combine($datas['code_article'],$datas['marge']);
 
             foreach ($cifs as $key => $value) {
                 $prixcifs = new Application_Model_DbTable_DemandeArticlexprices();
