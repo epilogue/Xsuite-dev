@@ -1034,7 +1034,7 @@ if($user->id_fonction == 3){
 $mailServiceClient = new Application_Model_DbTable_Xprices();
 $mailServiceClients = $mailServiceClient->getServiceClient($numwp);
 if($mailServiceClients[0]['mail_service_client']=='regionNord'){
-    $mailSC="regionnord@smc-france.fr";
+    $mailSC="mhuby@smc-france.fr";
 } elseif($mailServiceClients[0]['mail_service_client']== 'regionSud'){
     $mailSC="regionsud@smc-france.fr";
 }elseif($mailServiceClients[0]['mail_service_client']== 'regionEst'){
