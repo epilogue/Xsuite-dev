@@ -237,13 +237,14 @@ if($user->id_fonction == 3){
              * à partir du code client de la table ooline on va chercher dans la table ocusma
              * les informations concernant le client pour pouvoir les afficher dans la vue phtml
              */
-            $query1bis = "select * from EIT.MVXCDTA.OCUSMA OCUSMA where OCUSMA.OKCUNO = '{$resultat[0]['OBCUNO']}'";
+             $query1ter = "select * from EIT.MVXCDTA.OOHEAD OOHEAD where OOHEAD.OACUNO = '{$resultat[0]['OBCUNO']}'";
+            $numclientwp = odbc_fetch_array(odbc_exec($this->odbc_conn2, $query1ter));
+            $this->view->numclientwp = $numclientwp['OACHL1'];
+            $query1bis = "select * from EIT.MVXCDTA.OCUSMA OCUSMA where OCUSMA.OKCUNO = '{$numclientwp['OACHL1']}'";
             $infos_client = odbc_fetch_array(odbc_exec($this->odbc_conn2, $query1bis));
             $this->view->infos_client = $infos_client;
             echo '<pre>',var_export($infos_client),'</pre>';
-            $query1ter = "select * from EIT.MVXCDTA.OOHEAD OOHEAD where OOHEAD.OACUNO = '{$resultat[0]['OBCUNO']}'";
-            $numclientwp = odbc_fetch_array(odbc_exec($this->odbc_conn2, $query1ter));
-            $this->view->numclientwp = $numclientwp['OACHL1'];
+           
              echo '<pre>',var_export($numclientwp),'</pre>';
             $query1quart = "select ZMCPJO.Z2MCL1  from EIT.SMCCDTA.ZMCPJO  ZMCPJO where ZMCPJO.Z2CUNO= '{$resultat[0]['OBCUNO']}' ";
             $industriewp = odbc_fetch_array(odbc_exec($this->odbc_conn3, $query1quart));
