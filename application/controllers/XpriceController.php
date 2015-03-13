@@ -384,7 +384,7 @@ if($user->id_fonction == 3){
 //                                . "\n"
 //                                . "--\n"
 //                                . "Xsuite";
-//                                $params['sujet']="TEST XPrice :Votre Offre  Xprice {$trackingNumber}/{$numwp} de {$user_info['nom_user']} pour $clientsnom";
+//                                $params['sujet']=" XPrice :Votre Offre  Xprice {$trackingNumber}/{$numwp} de {$user_info['nom_user']} pour $clientsnom";
 //                                $this->sendEmail($params);
                     /*
                      * ici si itc envoie mail au leader en fonction du holon pour consultation
@@ -440,7 +440,7 @@ if($user->id_fonction == 3){
                                 . "--\n"
                                 . "Xsuite";
                         $mail2 = new Xsuite_Mail();
-                        $mail2->setSubject("TEST XPrice : Nouvelle Offre  Xprice {$trackingNumber}/{$numwp} à consulter de {$user_info['nom_user']} pour $clientsnom")
+                        $mail2->setSubject(" XPrice : Nouvelle Offre  Xprice {$trackingNumber}/{$numwp} à consulter de {$user_info['nom_user']} pour $clientsnom")
                                 ->setBodyText(sprintf($corpsMail2, $url2))
                                 ->addTo($destinataireMail2)
                                 ->send();
@@ -492,7 +492,7 @@ if($user->id_fonction == 3){
                                 . "--\n"
                                 . "Xsuite";
                         $mail1 = new Xsuite_Mail();
-                        $mail1->setSubject("TEST XPrice : Nouvelle Offre Xprice {$trackingNumber}/{$numwp} à valider de {$user_info['nom_user']} pour $clientsnom")
+                        $mail1->setSubject("XPrice : Nouvelle Offre Xprice {$trackingNumber}/{$numwp} à valider de {$user_info['nom_user']} pour $clientsnom")
                                 ->setBodyText(sprintf($corpsMail1, $url1))
                                 ->addTo($destinataireMail1)
                                 ->send();
@@ -518,7 +518,7 @@ if($user->id_fonction == 3){
                                     . "--\n"
                                     . "Xsuite";
                             $mail3 = new Xsuite_Mail();
-                            $mail3->setSubject("TEST XPrice : Nouvelle Offre Xprice {$trackingNumber}/{$numwp} à valider de {$user_info['nom_user']} pour $clientsnom")
+                            $mail3->setSubject(" XPrice : Nouvelle Offre Xprice {$trackingNumber}/{$numwp} à valider de {$user_info['nom_user']} pour $clientsnom")
                                     ->setBodyText(sprintf($corpsMail3, $url3))
                                     ->addTo($destinataireMail3)
                                     ->send();
@@ -695,7 +695,7 @@ if($user->id_fonction == 3){
                         . "\n"
                         . "--\n"
                         . "Xprice";
-                $params2['sujet'] = "TEST XPrice : Nouvelle demande Xprice $tracking/$numwp à valider de {$info_user['nom_user']} pour le client $nomclients.";
+                $params2['sujet'] = " XPrice : Nouvelle demande Xprice $tracking/$numwp à valider de {$info_user['nom_user']} pour le client $nomclients.";
                 $this->sendEmail($params2);
 
                 switch ($destIndustry) {
@@ -728,7 +728,7 @@ if($user->id_fonction == 3){
                         . "--\n"
                         . "Xprice";
                 $params3['destinataireMail'] = $destinataireMail2;
-                $params3['sujet'] = "TEST XPrice : Nouvelle demande Xprice $tracking/$numwp à consulter de {$info_user['nom_user']} pour le client $nomclients.";
+                $params3['sujet'] = " XPrice : Nouvelle demande Xprice $tracking/$numwp à consulter de {$info_user['nom_user']} pour le client $nomclients.";
                 $this->sendEmail($params3);
 
                 $flashMessenger = $this->_helper->getHelper('FlashMessenger');
@@ -753,7 +753,7 @@ if($user->id_fonction == 3){
                         . "\n"
                         . "--\n"
                         . "Xprice.";
-                $params1['sujet'] = "TEST XPrice :demande $tracking/$numwp refusée par votre chef de région.";
+                $params1['sujet'] = " XPrice :demande $tracking/$numwp refusée par votre chef de région.";
                 $this->sendEmail($params1);
 
                 $message = "la demande a été refusée.";
@@ -793,7 +793,7 @@ if($user->id_fonction == 3){
                         . "\n"
                         . "--\n"
                         . "Xprice.";
-                $params1['sujet'] = "TEST XPrice :demande Xprice $tracking/$numwp pour le client $nomclients en attente de réponse.";
+                $params1['sujet'] = " XPrice :demande Xprice $tracking/$numwp pour le client $nomclients en attente de réponse.";
                 $this->sendEmail($params1);
 
                 $flashMessenger = $this->_helper->getHelper('FlashMessenger');
@@ -1069,7 +1069,7 @@ if($mailServiceClients[0]['mail_service_client']=='regionNord'){
                         . "\n"
                         . "--\n"
                         . "dbd.";
-                $params1['sujet'] = " TEST XPrice :nouvelle demande Xprice $trackingNumber/$numwp à valider $numwp de {$info_user['nom_user']} pour le client $nomclients .";
+                $params1['sujet'] = "  XPrice :nouvelle demande Xprice $trackingNumber/$numwp à valider $numwp de {$info_user['nom_user']} pour le client $nomclients .";
                 
                 $this->sendEmail($params1);
             }
@@ -1108,7 +1108,7 @@ if($mailServiceClients[0]['mail_service_client']=='regionNord'){
                         . "\n"
                         . "--\n"
                         . "dbd.";
-                    $params2['sujet'] = "TEST XPrice :demande Xprice $trackingNumber/$numwp pour $nomclients validée par Directeur Business Developpement.";
+                    $params2['sujet'] = " XPrice :demande Xprice $trackingNumber/$numwp pour $nomclients validée par Directeur Business Developpement.";
                     $params3['corpsMail'] = "Bonjour,\n"
                         . "\n"
                         . "la demande Xprice $trackingNumber/$numwp de {$info_user['nom_user']} pour le client $nomclients a été validée par le dbd .\n"
@@ -1119,7 +1119,7 @@ if($mailServiceClients[0]['mail_service_client']=='regionNord'){
                         . "\n"
                         . "--\n"
                         . "dbd.";
-                $params3['sujet'] = " TEST XPrice : la demande Xprice $trackingNumber/$numwp de {$info_user['nom_user']} pour le client $nomclients a été validée .";
+                $params3['sujet'] = "  XPrice : la demande Xprice $trackingNumber/$numwp de {$info_user['nom_user']} pour le client $nomclients a été validée .";
                 
                 $this->sendEmail($params2);
                 $this->sendEmail($params3);
@@ -1169,7 +1169,7 @@ if($mailServiceClients[0]['mail_service_client']=='regionNord'){
                                 . "\n"
                                 . "--\n"
                                 . "Xsuite";
-                        $params4['sujet']="TEST XPrice :  Offre Xprice $trackingNumber/$numwp  de {$info_user['nom_user']} pour $nomclients validée par le DBD";
+                        $params4['sujet']=" XPrice :  Offre Xprice $trackingNumber/$numwp  de {$info_user['nom_user']} pour $nomclients validée par le DBD";
                       $this->sendEmail($params4);           
                     }
                 //envoi au cdr
@@ -1209,7 +1209,7 @@ if($mailServiceClients[0]['mail_service_client']=='regionNord'){
                                 . "\n"
                                 . "--\n"
                                 . "Xsuite";
-                        $params5['sujet']="TEST XPrice :Offre Xprice $trackingNumber/$numwp de {$user_info['nom_user']} pour $nomclients validée par le DBD";
+                        $params5['sujet']=" XPrice :Offre Xprice $trackingNumber/$numwp de {$user_info['nom_user']} pour $nomclients validée par le DBD";
                       $this->sendEmail($params5); 
                     }
                 switch ($destIndustry) {
@@ -1241,7 +1241,7 @@ if($mailServiceClients[0]['mail_service_client']=='regionNord'){
                         . "--\n"
                         . "Xprice";
                 $params6['destinataireMail'] = $destinataireMail2;
-                $params6['sujet'] = "TEST XPrice : La demande Xprice $trackingNumber/$numwp de {$info_user['nom_user']} pour le client $nomclients a été validée par le DBD.";
+                $params6['sujet'] = " XPrice : La demande Xprice $trackingNumber/$numwp de {$info_user['nom_user']} pour le client $nomclients a été validée par le DBD.";
                 $this->sendEmail($params6);
                    $flashMessenger = $this->_helper->getHelper('FlashMessenger');
                 $message = "l'offre $numwp  pour le client $nomclients a bien été validée.";
@@ -1269,7 +1269,7 @@ if($mailServiceClients[0]['mail_service_client']=='regionNord'){
                         . "\n"
                         . "--\n"
                         . "dbd.";
-                $params['sujet'] = "TEST XPrice :demande Xprice $trackingNumber/$numwp mise en attente par Directeur Business Developpement.";
+                $params['sujet'] = " XPrice :demande Xprice $trackingNumber/$numwp mise en attente par Directeur Business Developpement.";
                 $this->sendEmail($params);
 
                 $flashMessenger = $this->_helper->getHelper('FlashMessenger');
@@ -1295,7 +1295,7 @@ if($mailServiceClients[0]['mail_service_client']=='regionNord'){
                         . "\n"
                         . "--\n"
                         . "dbd.";
-                $params['sujet'] = " TEST XPrice :demande Xprice $trackingNumber/$numwp pour le client $nomclients non validée par dbd.";
+                $params['sujet'] = "  XPrice :demande Xprice $trackingNumber/$numwp pour le client $nomclients non validée par dbd.";
                 $this->sendEmail($params);
 
                 $flashMessenger = $this->_helper->getHelper('FlashMessenger');
@@ -1542,7 +1542,7 @@ if($mailServiceClients[0]['mail_service_client']=='regionNord'){
                         . "\n"
                         . "--\n"
                         . "Directeur Commercial.";
-                $params['sujet'] = "TEST XPrice :demande Xprice  $trackingNumber/$numwp pour le client $nomclients validée par Directeur Commercial.";
+                $params['sujet'] = " XPrice :demande Xprice  $trackingNumber/$numwp pour le client $nomclients validée par Directeur Commercial.";
                 $this->sendEmail($params);
                 $params1['destinataireMail'] =$emailVars->listes->serviceClient;
                 $params1['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/consult/numwp/{$numwp}";
@@ -1556,7 +1556,7 @@ if($mailServiceClients[0]['mail_service_client']=='regionNord'){
                         . "\n"
                         . "--\n"
                         . "Directeur Commercial.";
-                $params1['sujet'] = " TEST XPrice :demande Xprice $trackingNumber/$numwp pour le client $nomclients validée par Directeur Commercial.";
+                $params1['sujet'] = "  XPrice :demande Xprice $trackingNumber/$numwp pour le client $nomclients validée par Directeur Commercial.";
                 $this->sendEmail($params1);
 //envoi mail leader
                 if ($fonctioncreateur == "1") {
@@ -1604,7 +1604,7 @@ if($mailServiceClients[0]['mail_service_client']=='regionNord'){
                                 . "\n"
                                 . "--\n"
                                 . "Xsuite";
-                        $params2['sujet']="TEST XPrice :  Offre Xprice  $trackingNumber/$numwp  de {$user_info['nom_user']} pour $nomclients validée par le Dirco";
+                        $params2['sujet']=" XPrice :  Offre Xprice  $trackingNumber/$numwp  de {$user_info['nom_user']} pour $nomclients validée par le Dirco";
                       $this->sendEmail($params2);           
                     }
                     //envoi au cdr
@@ -1644,7 +1644,7 @@ if($mailServiceClients[0]['mail_service_client']=='regionNord'){
                                 . "\n"
                                 . "--\n"
                                 . "Xsuite";
-                        $params3['sujet']="TEST XPrice :Offre Xprice  $trackingNumber/$numwp de {$user_info['nom_user']} pour $nomclients validée par le Dirco";
+                        $params3['sujet']=" XPrice :Offre Xprice  $trackingNumber/$numwp de {$user_info['nom_user']} pour $nomclients validée par le Dirco";
                       $this->sendEmail($params3); 
                     }
                     switch ($destIndustry) {
@@ -1676,7 +1676,7 @@ if($mailServiceClients[0]['mail_service_client']=='regionNord'){
                         . "--\n"
                         . "Xprice";
                 $params4['destinataireMail'] = $destinataireMail2;
-                $params4['sujet'] = "TEST XPrice : La demande Xprice  $trackingNumber/$numwp de {$info_user['nom_user']} pour le client $nomclients a été validée par le Dirco.";
+                $params4['sujet'] = " XPrice : La demande Xprice  $trackingNumber/$numwp de {$info_user['nom_user']} pour le client $nomclients a été validée par le Dirco.";
                 $this->sendEmail($params4);
                  $params5['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/consult/numwp/{$numwp}";
                 $params5['corpsMail'] = "Bonjour,\n"
@@ -1690,7 +1690,7 @@ if($mailServiceClients[0]['mail_service_client']=='regionNord'){
                         . "--\n"
                         . "Xprice";
                 $params5['destinataireMail'] = $emailVars->listes->DBD;
-                $params5['sujet'] = "TEST XPrice : La demande Xprice $trackingNumber/$numwp de {$info_user['nom_user']} pour le client $nomclients a été validée par le Dirco.";
+                $params5['sujet'] = " XPrice : La demande Xprice $trackingNumber/$numwp de {$info_user['nom_user']} pour le client $nomclients a été validée par le Dirco.";
                 $this->sendEmail($params5);
                 $flashMessenger = $this->_helper->getHelper('FlashMessenger');
                 $message = "l'offre $numwp pour le client$nomclients a bien été validée.";
@@ -1716,7 +1716,7 @@ if($mailServiceClients[0]['mail_service_client']=='regionNord'){
                         . "\n"
                         . "--\n"
                         . "Directeur Commercial.";
-                $params['sujet'] = "TEST XPrice :demande $numwp pour le client $nomclients est mise en attente par le Directeur Commercial.";
+                $params['sujet'] = " XPrice :demande $numwp pour le client $nomclients est mise en attente par le Directeur Commercial.";
                 $this->sendEmail($params);
 
                 $flashMessenger = $this->_helper->getHelper('FlashMessenger');
@@ -1742,7 +1742,7 @@ if($mailServiceClients[0]['mail_service_client']=='regionNord'){
                         . "\n"
                         . "--\n"
                         . "Directeur Commercial.";
-                $params['sujet'] = "TEST XPrice :demande Xprice $trackingNumber/$numwp pour le client$nomclients non validée par Le Directeur Commercial.";
+                $params['sujet'] = " XPrice :demande Xprice $trackingNumber/$numwp pour le client$nomclients non validée par Le Directeur Commercial.";
                 $this->sendEmail($params);
                 $params5['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/consult/numwp/{$numwp}";
                 $params5['corpsMail'] = "Bonjour,\n"
@@ -1756,7 +1756,7 @@ if($mailServiceClients[0]['mail_service_client']=='regionNord'){
                         . "--\n"
                         . "Xprice";
                 $params5['destinataireMail'] = $emailVars->listes->DBD;
-                $params5['sujet'] = "TEST XPrice : La demande Xprice $trackingNumber/$numwp de {$info_user['nom_user']} pour le client $nomclients a été refusée par le Dirco.";
+                $params5['sujet'] = " XPrice : La demande Xprice $trackingNumber/$numwp de {$info_user['nom_user']} pour le client $nomclients a été refusée par le Dirco.";
                 $this->sendEmail($params5);
                 $flashMessenger = $this->_helper->getHelper('FlashMessenger');
                 $message = "l'offre $numwp pour le client $nomclients n'a pas été validée.";
@@ -1902,7 +1902,7 @@ if($mailServiceClients[0]['mail_service_client']=='regionNord'){
                     . "--\n"
                     . "Prix fobfr.";
             $mail = new Xsuite_Mail();
-            $mail->setSubject("TEST XPrice : Nouvelle demand Xprice $trackingNumber/$numwp de {$info_user['nom_user']} pour le client $nomclients à valider .")
+            $mail->setSubject(" XPrice : Nouvelle demand Xprice $trackingNumber/$numwp de {$info_user['nom_user']} pour le client $nomclients à valider .")
                     ->setBodyText(sprintf($corpsMail, $url))
                     ->addTo($Mailsupply)
                     ->send();
@@ -1917,7 +1917,7 @@ if($mailServiceClients[0]['mail_service_client']=='regionNord'){
                     . "--\n"
                     . "Prix fobfr.";
             $mail2 = new Xsuite_Mail();
-            $mail2->setSubject("TEST XPrice : Nouvelle demand Xprice $trackingNumber/$numwp de {$info_user['nom_user']} pour le client $nomclients à valider .")
+            $mail2->setSubject(" XPrice : Nouvelle demand Xprice $trackingNumber/$numwp de {$info_user['nom_user']} pour le client $nomclients à valider .")
                     ->setBodyText(sprintf($corpsMail2, $url))
                     ->addTo($Mailfobfr)
                     ->send();
@@ -2060,7 +2060,7 @@ if($mailServiceClients[0]['mail_service_client']=='regionNord'){
           /*}*/
             $emailVars = Zend_Registry::get('emailVars');
             $mail = new Xsuite_Mail();
-            $mail->setSubject("TEST XPrice : Nouvelle demande Xprice $trackingNumber/$numwp de {$info_user['nom_user']} pour le client $nomclients à valider.")
+            $mail->setSubject(" XPrice : Nouvelle demande Xprice $trackingNumber/$numwp de {$info_user['nom_user']} pour le client $nomclients à valider.")
                     ->setBodyText(sprintf($corpsMail, $url))
                     ->addTo($destinatairemail)
                     ->send();
@@ -2170,7 +2170,7 @@ if($mailServiceClients[0]['mail_service_client']=='regionNord'){
                     . "\n"
                     . "--\n"
                     . "Xprice.";
-            $params1['sujet'] = "TEST XPrice : réponse sur la demande Xprice  $tracking_number/$numwp pour le client $nomclients.";
+            $params1['sujet'] = " XPrice : réponse sur la demande Xprice  $tracking_number/$numwp pour le client $nomclients.";
             //echo '<pre>',  var_export($params1),'</pre>'; exit();
             $this->sendEmail($params1);
 
