@@ -240,6 +240,7 @@ if($user->id_fonction == 3){
             $query1bis = "select * from EIT.MVXCDTA.OCUSMA OCUSMA where OCUSMA.OKCUNO = '{$resultat[0]['OBCUNO']}'";
             $infos_client = odbc_fetch_array(odbc_exec($this->odbc_conn2, $query1bis));
             $this->view->infos_client = $infos_client;
+            echo '<pre>',var_export($infos_client),'</pre>';
             $query1ter = "select OOHEAD.OACHL1 from EIT.MVXCDTA.OOHEAD OOHEAD where OOHEAD.OACUNO = '{$resultat[0]['OBCUNO']}'";
             $numclientwp = odbc_fetch_array(odbc_exec($this->odbc_conn2, $query1ter));
             $this->view->numclientwp = $numclientwp['OACHL1'];
@@ -277,6 +278,7 @@ if($user->id_fonction == 3){
                     $clients = new Application_Model_DbTable_Clients();
                     $client = $clients->getClientnumwp($numclientwp['OACHL1']);
                     $potentiel=$infos_client['OKCFC7'];
+                    var_dump ($potentiel); exit();
                     $adresse_client = $infos_client['OKCUA1'] . $infos_client['OKCUA2'] . $infos_client['OKCUA3'] . $infos_client['OKCUA4'];
 
                     if (is_null($client)) {
