@@ -243,9 +243,6 @@ if($user->id_fonction == 3){
             $query1bis = "select * from EIT.MVXCDTA.OCUSMA OCUSMA where OCUSMA.OKCUNO = '{$numclientwp['OACHL1']}'";
             $infos_client = odbc_fetch_array(odbc_exec($this->odbc_conn2, $query1bis));
             $this->view->infos_client = $infos_client;
-            echo '<pre>',var_export($infos_client),'</pre>';
-           
-             echo '<pre>',var_export($numclientwp),'</pre>';
             $query1quart = "select ZMCPJO.Z2MCL1  from EIT.SMCCDTA.ZMCPJO  ZMCPJO where ZMCPJO.Z2CUNO= '{$resultat[0]['OBCUNO']}' ";
             $industriewp = odbc_fetch_array(odbc_exec($this->odbc_conn3, $query1quart));
             $this->view->industriewp = $industriewp;
