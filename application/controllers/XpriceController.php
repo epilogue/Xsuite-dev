@@ -277,7 +277,6 @@ if($user->id_fonction == 3){
                     $clients = new Application_Model_DbTable_Clients();
                     $client = $clients->getClientnumwp($numclientwp['OACHL1']);
                     $potentiel=$infos_client['OKCFC7'];
-                    var_dump ($potentiel); exit();
                     $adresse_client = $infos_client['OKCUA1'] . $infos_client['OKCUA2'] . $infos_client['OKCUA3'] . $infos_client['OKCUA4'];
 
                     if (is_null($client)) {
