@@ -73,7 +73,8 @@ class XdistribController extends Zend_Controller_Action
     $this->view->recapitulatif = $recapitulatif2;
     }
     public function createNoFile(){
-        
+         $numwp = $this->getRequest()->getParam('numwp', null);
+          $this->view->numwp = $numwp;
     }
 public function uploadnumwpAction(){
     
