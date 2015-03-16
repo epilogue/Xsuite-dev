@@ -81,27 +81,19 @@ $this->headTitle($this->title);
                 <table>
                     <tr>
                         <td>Nom:</td>
-                        <td colspan="2"><?php echo $this->client_info['nom_client_final']?></td>
+                        <td colspan="2"><?php echo trim($this->infos_client['OKCUNM'])?></td>
                     </tr>
                     <tr>
-                        <td>Code Postal:</td>
-                        <td><?php echo $this->client_info['codepostal_client']?></td>
-                    </tr>
-                    <tr>
-                        <td>Ville:</td>
-                        <td><?php echo $this->client_info['ville_client']?></td>
+                        <td>Code Postal/ville</td>
+                        <td><?php echo $this->infos_client['codepostal_client']?></td>
                     </tr>
                     <tr>
                         <td>User Workplace:</td>
-                        <td><?php echo $this->client_info['numwp_client']?></td>
-                    </tr>
-                    <tr>
-                        <td>Potentiel:</td>
-                        <td><?php echo $this->client_info['potentiel']?></td>
+                        <td><?php echo $this->infos_client['OKCUNO']?></td>
                     </tr>
                      <tr>
                         <td>Projet:</td>
-                        <td><?php echo $this->client_info['nom_industry']?></td>
+                        <td></td>
                     </tr>
                     <tr>
                         <td>Client cible PAC :</td>
