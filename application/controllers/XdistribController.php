@@ -98,12 +98,16 @@ class XdistribController extends Zend_Controller_Action
              *'OBSMCD -> id du contact (tc smc)'
              *'OBCHID-> FR--------(7lettres nom + premiere lettre prenom) créateur de la demande DD)
              */
+            $id_user=$infos_offres->OBSMCD;
             $nomdeb = trim($infos_offres->OBCHID);
             $nomdebu=substr($nomdeb,2,-1);
             $infodd=new Application_Model_DbTable_Users();
             $infos_dd=$infodd->getUserName($nomdebu);
-            echo '<pre>',var_export($infodd),'</pre>';
             $this->view->infos_dd=$infos_dd;
+            $infotc=new Application_Model_DbTable_Users();
+            $infos_tc = $infotc->getUser($id_user);
+            echo '<pre>',var_export($infos_tc),'</pre>';
+            $this->view->infos_tc=$infos_tc;
             $dateinit = $infos_offres->OBRGDT;
             $dateinit3 = substr($dateinit, 0, 4);
             $dateinit2 = substr($dateinit, 4, 2);
