@@ -98,7 +98,7 @@ class XdistribController extends Zend_Controller_Action
              *'OBSMCD -> id du contact (tc smc)'
              *'OBCHID-> FR--------(7lettres nom + premiere lettre prenom) créateur de la demande DD)
              */
-            $nomdeb = $infos_offres->OBCHID;
+            $nomdeb = trim($infos_offres->OBCHID);
             $nomdebu=substr($nomdeb,2,-1);
             $this->view->nomdeb=$nomdebu;
             $dateinit = $infos_offres->OBRGDT;
