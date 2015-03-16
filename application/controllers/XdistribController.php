@@ -106,7 +106,6 @@ class XdistribController extends Zend_Controller_Action
             $this->view->infos_dd=$infos_dd;
             $infotc=new Application_Model_DbTable_Users();
             $infos_tc = $infotc->getMovexUser($numwp_user);
-            echo '<pre>',var_export($infos_tc),'</pre>';
             $this->view->infos_tc=$infos_tc;
             $dateinit = $infos_offres->OBRGDT;
             $dateinit3 = substr($dateinit, 0, 4);
@@ -119,6 +118,23 @@ class XdistribController extends Zend_Controller_Action
             $query1bis = "select * from EIT.MVXCDTA.OCUSMA OCUSMA where OCUSMA.OKCUNO = '{$infos_offres->OBDLSP}'";
             $infos_client = odbc_fetch_array(odbc_exec($this->odbc_conn2, $query1bis));
             $this->view->infos_client=$infos_client;
+            $query1quart = "select ZMCPJO.Z2MCL1  from EIT.SMCCDTA.ZMCPJO  ZMCPJO where ZMCPJO.Z2CUNO= '{$infos_offres->OBDLSP}' ";
+            $industriewp = odbc_fetch_array(odbc_exec($this->odbc_conn3, $query1quart));
+            $this->view->industriewp = $industriewp;
+            $industriewp['Z2MCL1'] = trim($industriewp['Z2MCL1']);
+            if ($industriewp['Z2MCL1'] == "" || $industriewp['Z2MCL1'] == " ") {
+                $industriewp['Z2MCL1'] = "SCI";
+            }
+            if (isset($industriewp['Z2MCL1']) && $industriewp['Z2MCL1'] != '' && $industriewp['Z2MCL1'] != ' ' && $industriewp['Z2MCL1'] != '  ') {
+                $industry = new Application_Model_DbTable_Industry();
+                $info_industry = $industry->getMovexIndustry($industriewp['Z2MCL1']);
+                $this->view->info_industry = $info_industry;
+            } else {
+                $plop10 = "SCI";
+                $industry = new Application_Model_DbTable_Industry();
+                $info_industry = $industry->getMovexIndustry($plop10);
+                $this->view->info_industry = $info_industry;
+            }
             $querydisbis = "select * from EIT.MVXCDTA.OCUSMA OCUSMA where OCUSMA.OKCUNO = '{$infos_offres->OBCUNO}'";
             $infos_distrib = odbc_fetch_array(odbc_exec($this->odbc_conn2, $querydisbis));
             $this->view->infos_distrib=$infos_distrib;
