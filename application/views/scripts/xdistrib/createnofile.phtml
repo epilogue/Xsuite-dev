@@ -106,4 +106,29 @@ $this->headTitle($this->title);
            </fieldset>
         </div>
         <div class="clear"></div>
+        <div id="demandeArticle" class="workplace">
+            <fieldset class="field">
+                <legend>Produits</legend>
+                <table  id="article" class="enum">
+                    <tr>
+                        <td>Références produits</td>
+                        <td>Quantité</td>
+                        <td>Prix Achat actuel DISTRIBUTEUR</td>
+                        <td>Prix Achat demandé DISTRIBUTEUR</td>
+                        <td>Prix Achat CLIENT FINAL</td>
+                        <td>Remise supplémentaire DISTRIBUTEUR</td>
+                    </tr>
+                    <?php foreach($this->article_info as $value){ ?>
+                    <tr>
+                        <td><?php echo $value['reference_article']; ?></td>
+                        <td><?php echo $value['quantite']; ?></td>
+                        <td><?php echo $value['prix_achat_actuel']; ?></td>
+                        <td><?php echo $value['prix_achat_demande_distrib']; ?></td>
+                        <td><?php echo $value['prix_achat_demande_client_final']; ?></td>
+                        <td><?php echo $value['remise_supplementaire']; ?></td>
+                    </tr> <?php }?>
+                </table>
+            </fieldset>
+        </div>
+        <div class="clear"></div>
 </div>
