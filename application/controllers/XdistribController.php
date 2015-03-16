@@ -109,6 +109,7 @@ class XdistribController extends Zend_Controller_Action
              echo '<pre>', var_export($numclientwp2),'</pre>';
               $querydisbis = "select * from EIT.MVXCDTA.OCUSMA OCUSMA where OCUSMA.OKCUNO = '{$infos_offres->OBCUNO}'";
              $infos_distrib = odbc_fetch_array(odbc_exec($this->odbc_conn2, $querydisbis));
+             echo '<pre>', var_export($infos_distrib),'</pre>';
         }
     }
 public function uploadnumwpAction(){
