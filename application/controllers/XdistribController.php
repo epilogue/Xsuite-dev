@@ -135,6 +135,7 @@ class XdistribController extends Zend_Controller_Action
                 $info_industry = $industry->getMovexIndustry($plop10);
                 $this->view->info_industry = $info_industry;
             }
+            echo '<pre>',var_export($info_industry),'</pre>';
             $querydisbis = "select * from EIT.MVXCDTA.OCUSMA OCUSMA where OCUSMA.OKCUNO = '{$infos_offres->OBCUNO}'";
             $infos_distrib = odbc_fetch_array(odbc_exec($this->odbc_conn2, $querydisbis));
             $this->view->infos_distrib=$infos_distrib;
