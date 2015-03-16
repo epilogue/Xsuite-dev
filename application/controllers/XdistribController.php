@@ -73,8 +73,24 @@ class XdistribController extends Zend_Controller_Action
     $this->view->recapitulatif = $recapitulatif2;
     }
     public function createnofileAction(){
-         $numwp = $this->getRequest()->getParam('numwp', null);
-          $this->view->numwp = $numwp;
+        $numwp = $this->getRequest()->getParam('numwp', null);
+        /* on vérifie que la demande  n'existe pas */
+        $demandes_xdistrib = new Application_Model_DbTable_Xdistrib();
+        $demandeXdistrib = $demandes_xdistrib->getNumwp($numwp);
+        if (!is_null($demandeXdistrib)) {
+            $redirector = $this->_helper->getHelper('Redirector');
+            $flashMessenger = $this->_helper->getHelper('FlashMessenger');
+            $message = "Cette offre a déjà été créée.";
+            $flashMessenger->addMessage($message);
+            $redirector->gotoSimple('index', 'xdistrib');
+        }
+        $this->view->numwp = $numwp;
+        if (!is_null($numwp)) {
+            $sql = "select OOLINE.OBORNO, OOLINE.OBRGDT, OOLINE.OBORNO from EIT.CVXCDTA.OOLINE OOLINE where OOLINE.OBORNO='{$numwp}'";
+            $infos_offre = odbc_exec($this->odbc_conn, $ql);
+            $infos_offres = odbc_fetch_object($infos_offre);
+            echo '<pre>', var_export($infos_offres),'</pre>';
+        }
     }
 public function uploadnumwpAction(){
     
