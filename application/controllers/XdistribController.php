@@ -97,19 +97,26 @@ class XdistribController extends Zend_Controller_Action
              *'OBSMCD -> id du contact (tc smc)'
              *'OBCHID-> FR--------(7lettres nom + premiere lettre prenom) créateur de la demande DD)
              */
-             $user = $this->_auth->getStorage()->read();
-             $query1bis = "select * from EIT.MVXCDTA.OCUSMA OCUSMA where OCUSMA.OKCUNO = '{$infos_offres->OBDLSP}'";
-             $infos_client = odbc_fetch_array(odbc_exec($this->odbc_conn2, $query1bis));
-             echo '<pre>', var_export($infos_client),'</pre>';
-             $query1ter = "select * from EIT.MVXCDTA.OOHEAD OOHEAD where OOHEAD.OACUNO = '{$infos_offres->OBDLSP}'";
-             $numclientwp = odbc_fetch_array(odbc_exec($this->odbc_conn2, $query1ter));
-             echo '<pre>', var_export($numclientwp),'</pre>';
-              $querydis = "select * from EIT.MVXCDTA.OOHEAD OOHEAD where OOHEAD.OACUNO = '{$infos_offres->OBCUNO}'";
-             $numclientwp2 = odbc_fetch_array(odbc_exec($this->odbc_conn2, $querydis));
-             echo '<pre>', var_export($numclientwp2),'</pre>';
-              $querydisbis = "select * from EIT.MVXCDTA.OCUSMA OCUSMA where OCUSMA.OKCUNO = '{$infos_offres->OBCUNO}'";
-             $infos_distrib = odbc_fetch_array(odbc_exec($this->odbc_conn2, $querydisbis));
-             echo '<pre>', var_export($infos_distrib),'</pre>';
+            $dateinit = $infos_offres->OBRGDT;
+            $dateinit3 = substr($dateinit, 0, 4);
+            $dateinit2 = substr($dateinit, 4, 2);
+            $dateinit1 = substr($dateinit, 6, 2);
+            $dateinitf = array($dateinit1, $dateinit2, $dateinit3);
+            $datefinal = implode('/', $dateinitf);
+            $this->view->datefinal = $datefinal;
+            $user = $this->_auth->getStorage()->read();
+            $query1bis = "select * from EIT.MVXCDTA.OCUSMA OCUSMA where OCUSMA.OKCUNO = '{$infos_offres->OBDLSP}'";
+            $infos_client = odbc_fetch_array(odbc_exec($this->odbc_conn2, $query1bis));
+            echo '<pre>', var_export($infos_client),'</pre>';
+            $query1ter = "select * from EIT.MVXCDTA.OOHEAD OOHEAD where OOHEAD.OACUNO = '{$infos_offres->OBDLSP}'";
+            $numclientwp = odbc_fetch_array(odbc_exec($this->odbc_conn2, $query1ter));
+            echo '<pre>', var_export($numclientwp),'</pre>';
+            $querydis = "select * from EIT.MVXCDTA.OOHEAD OOHEAD where OOHEAD.OACUNO = '{$infos_offres->OBCUNO}'";
+            $numclientwp2 = odbc_fetch_array(odbc_exec($this->odbc_conn2, $querydis));
+            echo '<pre>', var_export($numclientwp2),'</pre>';
+            $querydisbis = "select * from EIT.MVXCDTA.OCUSMA OCUSMA where OCUSMA.OKCUNO = '{$infos_offres->OBCUNO}'";
+            $infos_distrib = odbc_fetch_array(odbc_exec($this->odbc_conn2, $querydisbis));
+            echo '<pre>', var_export($infos_distrib),'</pre>';
         }
     }
 public function uploadnumwpAction(){
