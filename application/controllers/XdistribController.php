@@ -89,7 +89,7 @@ class XdistribController extends Zend_Controller_Action
             $sql = "select * from EIT.CVXCDTA.OOLINE OOLINE where OOLINE.OBORNO='{$numwp}'";
             $infos_offre = odbc_exec($this->odbc_conn, $sql);
             $infos_offres = odbc_fetch_object($infos_offre);
-            echo '<pre>', var_export($infos_offres),'</pre>';
+           // echo '<pre>', var_export($infos_offres),'</pre>';
             $this->view->infos_offres=$infos_offres;
             /*
              *'OBDLSP-> numéro client final (10 chiffres)'
@@ -102,6 +102,7 @@ class XdistribController extends Zend_Controller_Action
             $nomdebu=substr($nomdeb,2,-1);
             $infodd=new Application_Model_DbTable_Users();
             $infos_dd=$infodd->getUserName($nomdebu);
+            echo '<pre>',var_export($infodd),'</pre>';
             $this->view->infos_dd=$infos_dd;
             $dateinit = $infos_offres->OBRGDT;
             $dateinit3 = substr($dateinit, 0, 4);
