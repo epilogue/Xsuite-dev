@@ -103,6 +103,7 @@ class XdistribController extends Zend_Controller_Action
              echo '<pre>', var_export($infos_client),'</pre>';
              $query1ter = "select * from EIT.MVXCDTA.OOHEAD OOHEAD where OOHEAD.OACUNO = '{$infos_offres->OBDLSP}'";
              $numclientwp = odbc_fetch_array(odbc_exec($this->odbc_conn2, $query1ter));
+             echo '<pre>', var_export($numclientwp),'</pre>';
         }
     }
 public function uploadnumwpAction(){
