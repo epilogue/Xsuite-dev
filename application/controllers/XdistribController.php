@@ -100,7 +100,9 @@ class XdistribController extends Zend_Controller_Action
              */
             $nomdeb = trim($infos_offres->OBCHID);
             $nomdebu=substr($nomdeb,2,-1);
-            $this->view->nomdeb=$nomdebu;
+            $infodd=new Application_Model_DbTable_Users();
+            $infos_dd=$infodd->getUserName($nomdebu);
+            $this->view->infos_dd=$infos_dd;
             $dateinit = $infos_offres->OBRGDT;
             $dateinit3 = substr($dateinit, 0, 4);
             $dateinit2 = substr($dateinit, 4, 2);

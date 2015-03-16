@@ -131,5 +131,14 @@ class Application_Model_DbTable_Users extends Zend_Db_Table_Abstract {
       $rest = $res->fetchObject();
       return $rest;
     }
-
+public function getUserName($name){
+    $sql ="select nom_user,prenom_user,email_user from users where nom_user like '{$name}' and id_fonction='6'";
+      $res = $this->getAdapter()->query($sql);
+        $rest=$res->fetchAll();
+        if (!$rest) {
+            return null;
+        } else {
+            return $rest;
+        }
+}
 }
