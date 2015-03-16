@@ -237,13 +237,12 @@ if($user->id_fonction == 3){
              * à partir du code client de la table ooline on va chercher dans la table ocusma
              * les informations concernant le client pour pouvoir les afficher dans la vue phtml
              */
-            $query1bis = "select * from EIT.MVXCDTA.OCUSMA OCUSMA where OCUSMA.OKCUNO = '{$resultat[0]['OBCUNO']}'";
-            $infos_client = odbc_fetch_array(odbc_exec($this->odbc_conn2, $query1bis));
-            $this->view->infos_client = $infos_client;
-            echo '<pre>',var_export($infos_client),'</pre>';
-            $query1ter = "select OOHEAD.OACHL1 from EIT.MVXCDTA.OOHEAD OOHEAD where OOHEAD.OACUNO = '{$resultat[0]['OBCUNO']}'";
+             $query1ter = "select * from EIT.MVXCDTA.OOHEAD OOHEAD where OOHEAD.OACUNO = '{$resultat[0]['OBCUNO']}'";
             $numclientwp = odbc_fetch_array(odbc_exec($this->odbc_conn2, $query1ter));
             $this->view->numclientwp = $numclientwp['OACHL1'];
+            $query1bis = "select * from EIT.MVXCDTA.OCUSMA OCUSMA where OCUSMA.OKCUNO = '{$numclientwp['OACHL1']}'";
+            $infos_client = odbc_fetch_array(odbc_exec($this->odbc_conn2, $query1bis));
+            $this->view->infos_client = $infos_client;
             $query1quart = "select ZMCPJO.Z2MCL1  from EIT.SMCCDTA.ZMCPJO  ZMCPJO where ZMCPJO.Z2CUNO= '{$resultat[0]['OBCUNO']}' ";
             $industriewp = odbc_fetch_array(odbc_exec($this->odbc_conn3, $query1quart));
             $this->view->industriewp = $industriewp;
@@ -278,7 +277,6 @@ if($user->id_fonction == 3){
                     $clients = new Application_Model_DbTable_Clients();
                     $client = $clients->getClientnumwp($numclientwp['OACHL1']);
                     $potentiel=$infos_client['OKCFC7'];
-                    var_dump ($potentiel); exit();
                     $adresse_client = $infos_client['OKCUA1'] . $infos_client['OKCUA2'] . $infos_client['OKCUA3'] . $infos_client['OKCUA4'];
 
                     if (is_null($client)) {
@@ -1855,7 +1853,7 @@ if($mailServiceClients[0]['mail_service_client']=='regionNord'){
 //            foreach ($formData as $datas) {
             $fobs = array_combine($datas['code_article'], $datas['prix_fob']);
             $cifs = array_combine($datas['code_article'], $datas['prix_cif']);
-            $marges = array_combine($datas['code_article'],$datas['marge_demande_article']);
+            $marges = array_combine($datas['code_article'],$datas['marge']);
 
             foreach ($cifs as $key => $value) {
                 $prixcifs = new Application_Model_DbTable_DemandeArticlexprices();

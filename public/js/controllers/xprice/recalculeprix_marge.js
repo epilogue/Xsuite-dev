@@ -102,4 +102,9 @@ $(document).ready(function (){
         $('input#margefob-'+k).val(margefob +'%');
          moyenneMargeFob();
     });
+    
+    $('#ouiFob').click(function(){
+        $('input.prixcif').change();
+        return true;
+    });
 });
