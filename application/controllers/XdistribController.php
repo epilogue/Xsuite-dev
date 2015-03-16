@@ -580,7 +580,7 @@ if($this->getRequest()->isPost()){
                 $results = odbc_exec($this->odbc_conn, $query);
                 $r = odbc_fetch_object($results);
                 if ($r->NBNUMWP === $_POST['num_offre_worplace']) {
-                    $redirector->gotoSimple('create', 'xdistrib', null, array('numwp' => $_POST['num_offre_worplace']));
+                    $redirector->gotoSimple('createNoFile', 'xdistrib', null, array('numwp' => $_POST['num_offre_worplace']));
                 } else {
                     $flashMessenger = $this->_helper->getHelper('FlashMessenger');
                     $message = "ce numéro d'offre n'a pas de concordance dans la base MOVEX";
