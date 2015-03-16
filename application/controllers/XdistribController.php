@@ -89,7 +89,7 @@ class XdistribController extends Zend_Controller_Action
             $sql = "select * from EIT.CVXCDTA.OOLINE OOLINE where OOLINE.OBORNO='{$numwp}'";
             $infos_offre = odbc_exec($this->odbc_conn, $sql);
             $infos_offres = odbc_fetch_object($infos_offre);
-            echo '<pre>', var_export($infos_offres),'</pre>';
+           // echo '<pre>', var_export($infos_offres),'</pre>';
             $this->view->infos_offres=$infos_offres;
             /*
              *'OBDLSP-> numéro client final (10 chiffres)'
@@ -108,10 +108,10 @@ class XdistribController extends Zend_Controller_Action
             $user = $this->_auth->getStorage()->read();
             $query1bis = "select * from EIT.MVXCDTA.OCUSMA OCUSMA where OCUSMA.OKCUNO = '{$infos_offres->OBDLSP}'";
             $infos_client = odbc_fetch_array(odbc_exec($this->odbc_conn2, $query1bis));
-            echo '<pre>', var_export($infos_client),'</pre>';
+           // echo '<pre>', var_export($infos_client),'</pre>';
             $query1ter = "select * from EIT.MVXCDTA.OOHEAD OOHEAD where OOHEAD.OACUNO = '{$infos_offres->OBDLSP}'";
             $numclientwp = odbc_fetch_array(odbc_exec($this->odbc_conn2, $query1ter));
-            echo '<pre>', var_export($numclientwp),'</pre>';
+            //echo '<pre>', var_export($numclientwp),'</pre>';
             $querydis = "select * from EIT.MVXCDTA.OOHEAD OOHEAD where OOHEAD.OACUNO = '{$infos_offres->OBCUNO}'";
             $numclientwp2 = odbc_fetch_array(odbc_exec($this->odbc_conn2, $querydis));
             echo '<pre>', var_export($numclientwp2),'</pre>';
