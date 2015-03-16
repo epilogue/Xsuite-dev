@@ -90,6 +90,17 @@ class XdistribController extends Zend_Controller_Action
             $infos_offre = odbc_exec($this->odbc_conn, $sql);
             $infos_offres = odbc_fetch_object($infos_offre);
             echo '<pre>', var_export($infos_offres),'</pre>';
+            /*
+             *'OBDLSP-> numéro client final (10 chiffres)'
+             *'OBCUNO-> numéro distributeur (5 chiffres)'
+             *'OBRGDT->date de l'offre'
+             *'OBSMCD -> id du contact (tc smc)'
+             *'OBCHID-> FR--------(7lettres nom + premiere lettre prenom) créateur de la demande DD)
+             */
+             $user = $this->_auth->getStorage()->read();
+             $query1bis = "select * from EIT.MVXCDTA.OCUSMA OCUSMA where OCUSMA.OKCUNO = '{$infos_offres->OBDLSP}'";
+             $infos_client = odbc_fetch_array(odbc_exec($this->odbc_conn2, $query1bis));
+             echo '<pre>', var_export($infos_client),'</pre>';
         }
     }
 public function uploadnumwpAction(){
@@ -106,6 +117,7 @@ public function uploadnumwpAction(){
         $agreement2 = "I000002";
         $agreement3 = "I000003";
         if (!is_null($numwp)) {
+            
             $form->populate(array("num_offre_workplace" => $numwp));
         }
         if ($this->getRequest()->isPost()) {
