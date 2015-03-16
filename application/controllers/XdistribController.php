@@ -99,7 +99,7 @@ class XdistribController extends Zend_Controller_Action
              *'OBCHID-> FR--------(7lettres nom + premiere lettre prenom) créateur de la demande DD)
              */
             $nomdeb = $infos_offres->OBCHID;
-            $nomdebu=substring($nomdeb,2,-1);
+            $nomdebu=substr($nomdeb,2,-1);
             $this->view->nomdeb=$nomdeb;
             $dateinit = $infos_offres->OBRGDT;
             $dateinit3 = substr($dateinit, 0, 4);
