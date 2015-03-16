@@ -87,7 +87,7 @@ class XdistribController extends Zend_Controller_Action
         $this->view->numwp = $numwp;
         if (!is_null($numwp)) {
             $sql = "select OOLINE.OBORNO, OOLINE.OBRGDT, OOLINE.OBORNO from EIT.CVXCDTA.OOLINE OOLINE where OOLINE.OBORNO='{$numwp}'";
-            $infos_offre = odbc_exec($this->odbc_conn, $ql);
+            $infos_offre = odbc_exec($this->odbc_conn, $sql);
             $infos_offres = odbc_fetch_object($infos_offre);
             echo '<pre>', var_export($infos_offres),'</pre>';
         }
