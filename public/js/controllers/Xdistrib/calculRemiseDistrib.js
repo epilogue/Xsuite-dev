@@ -14,7 +14,8 @@ $(document).ready(function (){
          var idT = $(this).attr('id').split('-');
          var k = idT[1];
          var pwp = parseFloat($('td#pwp-'+k).html());
-         var pad = Number(pwp-(( pwp*(parseFloat($(this).val())))/100));
+         var rad=parseFloat($(this).val());
+         var pad = Number(pwp-(Number(pwp*rad)/100).toFixed(2));
           $('input#pad-'+k).val(pad); 
           $(this).val(parseFloat($(this).val())+'%');
      });
