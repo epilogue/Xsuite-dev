@@ -733,6 +733,9 @@ span {
 
 .distaffi{
     border:1px solid black !important;
+    height:30px;
+    margin-left:5px;
+    width:75px;
 }
 
 
