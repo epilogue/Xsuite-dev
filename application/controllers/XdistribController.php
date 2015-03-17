@@ -99,6 +99,7 @@ class XdistribController extends Zend_Controller_Action
              */
             $numwp_user=$infos_offres->OBSMCD;
             $nomdeb = trim($infos_offres->OBCHID);
+            echo '<pre>',  var_dump($nomdeb),'</pre>'; exit();
             $nomdebu=substr($nomdeb,2,-1);
             $infodd=new Application_Model_DbTable_Users();
             $infos_dd=$infodd->getUserName($nomdebu);
