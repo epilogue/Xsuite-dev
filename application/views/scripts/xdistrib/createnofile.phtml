@@ -118,14 +118,14 @@ $this->headTitle($this->title);
                         <td>Prix Achat CLIENT FINAL</td>
                         <td>Remise supplémentaire DISTRIBUTEUR</td>
                     </tr>
-                    <?php foreach($this->article_info as $value){ ?>
+                    <?php foreach($this->affiche_offre as $value){ ?>
                     <tr>
-                        <td><?php echo $value['reference_article']; ?></td>
-                        <td><?php echo $value['quantite']; ?></td>
-                        <td><?php echo $value['prix_achat_actuel']; ?></td>
-                        <td><?php echo $value['prix_achat_demande_distrib']; ?></td>
+                        <td><?php echo $value['OBITDS']; ?></td>
+                        <td><?php echo $value['OBQRQT']; ?></td>
+                        <td></td>
+                        <td><?php echo $value['OBNEPR']; ?></td>
                         <td><input type="text" name="prix_achat_client_final" id="prix_achat_client_final" ></td>
-                        <td><?php echo $value['remise_supplementaire']; ?></td>
+                        <td></td>
                     </tr> <?php }?>
                 </table>
             </fieldset>

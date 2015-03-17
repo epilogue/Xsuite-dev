@@ -90,8 +90,8 @@ class XdistribController extends Zend_Controller_Action
             $infos_offre = odbc_exec($this->odbc_conn, $sql);
             $infos_offres = odbc_fetch_object($infos_offre);
            ;
-           while ( $info_offre[] = odbc_fetch_array($infos_offre)) {
-                echo '<pre>', var_export($info_offre),'</pre>';
+           while ( $affiche_offre[] = odbc_fetch_array($infos_offre)) {
+                $this->view->affiche_offre =$affiche_offre;
             }
             
             $this->view->infos_offres=$infos_offres;
