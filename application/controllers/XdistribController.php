@@ -139,18 +139,13 @@ class XdistribController extends Zend_Controller_Action
             $this->view->infos_distrib=$infos_distrib;   
             
             $sqlaffiche = "select
-                OOLINE.OBORNO,
-                OOLINE.OBCUNO,
                 OOLINE.OBITNO,
                 OOLINE.OBITDS,
                 OOLINE.OBORQT,
                 OOLINE.OBLNA2,
                 OOLINE.OBNEPR,
                 OOLINE.OBSAPR,
-                OOLINE.OBELNO,
-                OOLINE.OBRGDT,
-                OOLINE.OBLMDT,
-                OOLINE.OBSMCD
+                OOLINE.OBELNO
                 from EIT.CVXCDTA.OOLINE OOLINE WHERE OOLINE.OBORNO='{$numwp}'";
                 $affiche_offre[]=odbc_fetch_array(odbc_exec($this->odbc_conn, $sqlaffiche));
          echo '<pre>', var_export($affiche_offre),'</pre>';
