@@ -146,7 +146,7 @@ class XdistribController extends Zend_Controller_Action
                 OOLINE.OBNEPR,
                 OOLINE.OBSAPR,
                 OOLINE.OBELNO
-                from EIT.CVXCDTA.OOLINE OOLINE WHERE OOLINE.OBORNO='{$numwp}'";
+                from EIT.CVXCDTA.OOLINE OOLINE WHERE OOLINE.OBORNO='{$numwp}'  AND OOLINE.OBDIVI LIKE 'FR0' AND OOLINE.OBCONO=100";
                 $affiche_offre[]=odbc_fetch_array(odbc_exec($this->odbc_conn, $sqlaffiche));
          echo '<pre>', var_export($affiche_offre),'</pre>';
         }
