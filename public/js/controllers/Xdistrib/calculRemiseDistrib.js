@@ -14,7 +14,7 @@ $(document).ready(function (){
          var idT = $(this).attr('id').split('-');
          var k = idT[1];
          var pwp = parseFloat($('td#pwp-'+k).html());
-         var rad=parseFloat($(this).val());
+         var rad = parseFloat($(this).val());
          var inter=Number(pwp*rad);
          var pad = Number(pwp-(inter/100).toFixed(2));
           $('input#pad-'+k).val(pad); 
