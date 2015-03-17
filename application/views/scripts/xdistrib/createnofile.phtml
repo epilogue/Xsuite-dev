@@ -121,16 +121,16 @@ $this->headTitle($this->title);
                         <td>Prix Achat CLIENT FINAL</td>
                         <td>Remise supplémentaire DISTRIBUTEUR</td>
                     </tr>
-                    <?php foreach($this->affiche_offre as $value){ ?>
+                    <?php foreach($this->affiche_offre as $k=>$value){ ?>
                     <tr>
                         <td><?php echo $value['OBITDS']; ?></td>
                         <td><?php echo round($value['OBORQT'],2); ?></td>
-                        <td><?php echo round($value['OBSAPR'],2)?></td>
-                        <td><input class="distaffi" name="remiseA" id="remiseA"></td>
-                        <td><input class="distaffi" name="prixAchatActuel" id="prixAchatActuel"></td>
+                        <td id="pwp-<?php echo $k?>;"><?php echo round($value['OBSAPR'],2)?></td>
+                        <td><input style="background-color: #74aaca;" class="rad" name="remiseA[]" id="remiseA-<?php echo $k;?>"></td>
+                        <td><input style="background-color: #74aaca;" class="pad" name="prixAchatActuel[]" id="prixAchatActuel-<?php echo $k;?>"></td>
                         <td><?php echo round($value['OBNEPR'],2); ?></td>
-                        <td><input class="distaffi" type="text" name="prix_achat_client_final" id="Prix_achat_client_final" ></td>
-                        <td><?php  $remiseB =(100-((100* $value['OBNEPR'])/$value['OBSAPR'])); echo round($remiseB,2).'%';?></td>
+                        <td><input class="distaffi" type="text" name="prix_achat_client_final[]" id="Prix_achat_client_final" ></td>
+                        <td><?php  $remiseB =(100-((100* $value['OBNEPR'])/$value['OBSAPR']));?><input type="text" name="remiseB[]" value="<?php echo round($remiseB,2).'%';?>"</td>
                     </tr> <?php }?>
                 </table>
             </fieldset>
