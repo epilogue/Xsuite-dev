@@ -15,7 +15,7 @@ $(document).ready(function (){
          var k = idT[1];
          var pwp = parseFloat($('td#pwp-'+k).html());
          var pad = Number(pwp-(( pwp*(parseFloat($(this).val())))/100));
-          $('input#pad-'+k).val(pad); 
+          $('input#paprixAchatActuel-'+k).val(pad); 
           $(this).val(parseFloat($(this).val())+'%');
      });
 });
