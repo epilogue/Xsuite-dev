@@ -8,23 +8,24 @@ $this->headTitle($this->title);
 ?>
 <div id="plop3" class="contenu">
     <h2>Création d'une offre Xprice-distrib</h2>
-    <div id="workplace" class="workplace">
-        <fieldset id="wp" class="field">
-            <legend>Informations offre</legend>
-            <table class="table_info">
-                <tr>
-                    <td>Numéro workplace de l'offre :</td>
-                    <td><?php echo $this->infos_offres->OBORNO; ?></td>
-                </tr>
-                <tr>
-                    <td>Date de l'offre workplace :</td>
-                    <td><?php echo  $this->datefinal; ?></td>
-                </tr>
-            </table>
-        </fieldset>
-    </div>
-    <div class="clear"></div>
-    <div id="information2" class="workplace2">
+    <form>
+        <div id="workplace" class="workplace">
+            <fieldset id="wp" class="field">
+                <legend>Informations offre</legend>
+                <table class="table_info">
+                    <tr>
+                        <td>Numéro workplace de l'offre :</td>
+                        <td><?php echo $this->infos_offres->OBORNO; ?></td>
+                    </tr>
+                    <tr>
+                        <td>Date de l'offre workplace :</td>
+                        <td><?php echo  $this->datefinal; ?></td>
+                    </tr>
+                </table>
+            </fieldset>
+        </div>
+        <div class="clear"></div>
+        <div id="information2" class="workplace2">
             <fieldset id="info_user" class="field_info_2">
                 <legend>Informations<br>Commercial</legend>
                 <table>
@@ -75,7 +76,7 @@ $this->headTitle($this->title);
                     </tr>
                 </table>
             </fieldset>             
-            
+
             <fieldset id="info_client" class="field_info_2"> 
                 <legend>Informations<br>Client Final</legend>
                 <table>
@@ -105,7 +106,7 @@ $this->headTitle($this->title);
                 </table>
            </fieldset>
         </div>
-        <div class="clear"></div>
+            <div class="clear"></div>
         <div id="demandeArticle" class="workplace">
             <fieldset class="field">
                 <legend>Produits</legend>
@@ -135,4 +136,17 @@ $this->headTitle($this->title);
             </fieldset>
         </div>
         <div class="clear"></div>
+        <div id="contexte_service" class="workplace">
+            <fieldset class="field">
+                <legend>Contexte de la demande</legend>
+                 <textarea name="contexte" cols="120" rows="7"></textarea>
+            </fieldset>
+            <fieldset class="field">
+                <legend>Services Associés apportés par le distributeur</legend>
+                 <textarea name="service" cols="120" rows="7"></textarea>
+            </fieldset>
+        </div>    
+        <div class="clear"></div>
+         <input class="submit" type="submit" value="envoyer la demande">
+    </form>
 </div>
