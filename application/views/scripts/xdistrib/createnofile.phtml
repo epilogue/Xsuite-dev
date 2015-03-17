@@ -113,6 +113,8 @@ $this->headTitle($this->title);
                     <tr>
                         <td>Références produits</td>
                         <td>Quantité</td>
+                        <td>Prix Tarif</td>
+                        <td>Remise Contractuelle</td>
                         <td>Prix Achat actuel DISTRIBUTEUR</td>
                         <td>Prix Achat demandé DISTRIBUTEUR</td>
                         <td>Prix Achat CLIENT FINAL</td>
@@ -122,9 +124,11 @@ $this->headTitle($this->title);
                     <tr>
                         <td><?php echo $value['OBITDS']; ?></td>
                         <td><?php echo round($value['OBORQT'],2); ?></td>
-                        <td></td>
+                        <td><?php echo $value['OBSAPR']?></td>
+                        <td><input class="distaffi" name="remiseA" id="remiseA"></td>
+                        <td><input class="distaffi" name="prixAchatActuel" id="prixAchatActuel"></td>
                         <td><?php echo round($value['OBNEPR'],2); ?></td>
-                        <td><input type="text" name="prix_achat_client_final" ></td>
+                        <td><input class="distaffi" type="text" name="prix_achat_client_final" id="Prix_achat_client_final" ></td>
                         <td></td>
                     </tr> <?php }?>
                 </table>
