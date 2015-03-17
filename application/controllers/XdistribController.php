@@ -89,11 +89,6 @@ class XdistribController extends Zend_Controller_Action
             $sql = "select * from EIT.CVXCDTA.OOLINE OOLINE where OOLINE.OBORNO='{$numwp}'";
             $infos_offre = odbc_exec($this->odbc_conn, $sql);
             $infos_offres = odbc_fetch_object($infos_offre);
-           ;
-           while ( $affiche_offre[] = odbc_fetch_array($infos_offre)) {
-                $this->view->affiche_offre =$affiche_offre;
-            }
-            
             $this->view->infos_offres=$infos_offres;
             /*
              *'OBDLSP-> numéro client final (10 chiffres)'
@@ -141,7 +136,24 @@ class XdistribController extends Zend_Controller_Action
             }
             $querydisbis = "select * from EIT.MVXCDTA.OCUSMA OCUSMA where OCUSMA.OKCUNO = '{$infos_offres->OBCUNO}'";
             $infos_distrib = odbc_fetch_array(odbc_exec($this->odbc_conn2, $querydisbis));
-            $this->view->infos_distrib=$infos_distrib;     
+            $this->view->infos_distrib=$infos_distrib;   
+            
+            $sqlaffiche = "select
+                OOLINE.OBORNO,
+                OOLINE.OBCUNO,
+                OOLINE.OBITNO,
+                OOLINE.OBITDS,
+                OOLINE.OBORQT,
+                OOLINE.OBLNA2,
+                OOLINE.OBNEPR,
+                OOLINE.OBSAPR,
+                OOLINE.OBELNO,
+                OOLINE.OBRGDT,
+                OOLINE.OBLMDT,
+                OOLINE.OBSMCD
+                from EIT.CVXCDTA.OOLINE OOLINE WHERE OOLINE.OBORNO='{$numwp}'";
+                $affiche_offre=odbc_fetch_array(odbc_exec($this->odbc_conn, $affiche_offre));
+         echo '<pre>', var_export($affiche_offre),'</pre>';
         }
     }
 public function uploadnumwpAction(){
