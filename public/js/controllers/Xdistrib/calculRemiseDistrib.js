@@ -32,7 +32,7 @@ $(document).ready(function (){
          var pad = parseFloat($(this).val());
          var inter1= Number(pad*100);
          var inter3= Number(inter1/pwp);
-         var rad = Number(100 - inter3);
+         var rad = Number(100 - inter3).toFixed(2);
          $('input#rad-'+k).val(rad);
           $(this).val(parseFloat($(this).val()));
          
