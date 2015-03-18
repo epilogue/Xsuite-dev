@@ -16,7 +16,8 @@ $(document).ready(function (){
          var pwp = parseFloat($('td#pwp-'+k).html());
          var rad = parseFloat($(this).val());
          var inter=Number(pwp*rad);
-         var pad = Number(pwp-(inter/100).toFixed(2));
+         var inter2=Number(inter/100);
+         var pad = Number(pwp-inter2);
           $('input#pad-'+k).val(pad); 
           $(this).val(parseFloat($(this).val())+'%');
      });
