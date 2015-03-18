@@ -592,8 +592,6 @@ if($this->getRequest()->isPost()){
   if ($this->getRequest()->isPost()) {
                 $formData = $this->getRequest()->getPost();
                 echo '<pre>',var_export($formData),'</pre>';
-                $fichierdef=APPLICATION_PATH.'/datas/filesDatas/demande.xlsx';
-     unlink($fichierdef);
        $tempClienttruns= new Application_Model_DbTable_TempClient();
        $tempClienttrun=$tempClienttruns->truncateAll();
   }
