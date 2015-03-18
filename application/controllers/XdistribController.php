@@ -217,7 +217,7 @@ if($this->getRequest()->isPost()){
         // $numwp = $this->getRequest()->getParam('num_offre_workplace', null);
 
         include 'PHPExcel/Classes/PHPExcel/IOFactory.php';
-        $inputFileName = APPLICATION_PATH.'/datas/filesDatas/demande.xlsx';
+        $inputFileName = APPLICATION_PATH.'/datas/filesDatas/'.$filename;
         // Chargement du fichier Excel
         $objPHPExcel = PHPExcel_IOFactory::load($inputFileName);
         /**
