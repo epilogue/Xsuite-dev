@@ -14,11 +14,11 @@ $this->headTitle($this->title);
         </tr>
     <?php  foreach($this->recapitulatif as $k=>$result){
         ?><tr>
-            <td><?php echo $result['num_workplace_demande_xprice']; ?></td>
-            <td><?php echo $result['tracking_number_demande_xprice']; ?></td>
+            <td><?php echo $result['num_workplace_demande_xdistrib']; ?></td>
+            <td><?php echo $result['tracking_number_demande_xdistrib']; ?></td>
             <td><?php echo $result['nom_client']; ?></td>
-             <td><?php echo $result['date_demande_xprice']; ?></td>
-             <td><a href="<?php echo $this->url(array("controller"=>"xprice","action"=>"consult","numwp"=>$result['num_workplace_demande_xprice']));?>" <button class="retour" id="historique-<?php echo $k; ?>">historique</button></a>
+             <td><?php echo $result['date_demande_xdistrib']; ?></td>
+             <td><a href="<?php echo $this->url(array("controller"=>"xdistrib","action"=>"consult","numwp"=>$result['num_workplace_demande_xdistrib']));?>" <button class="retour" id="historique-<?php echo $k; ?>">historique</button></a>
              </td>
 </tr>
    <?php }?>
