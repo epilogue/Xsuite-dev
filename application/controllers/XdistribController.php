@@ -48,7 +48,7 @@ class XdistribController extends Zend_Controller_Action
          $recapitulatif2 = $recapitulatif1->searchByUser($user->id_user);
          $this->view->recapitulatif = $recapitulatif2;        
      }
-
+echo '<pre>',  var_export($recapitulatif2),'</pre>';
  if($user->id_fonction == 10){
      switch ($holon){
          case 2:
