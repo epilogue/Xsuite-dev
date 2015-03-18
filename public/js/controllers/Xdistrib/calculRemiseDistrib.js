@@ -33,7 +33,7 @@ $(document).ready(function (){
          var inter1= Number(pad*100);
          var inter3= Number(inter1/pwp);
          var rad = Number(100 - inter3).toFixed(2);
-         $('input#rad-'+k).val(rad);
+         $('input#rad-'+k).val(rad)+'%';
           $(this).val(parseFloat($(this).val()));
          
      });
