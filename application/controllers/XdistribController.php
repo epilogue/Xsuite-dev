@@ -585,7 +585,7 @@ if($this->getRequest()->isPost()){
        
 
     }
-    $fichierdef=APPLICATION_PATH.'/datas/filesDatas/demande.xlsx';
+    $fichierdef=APPLICATION_PATH.'/datas/filesDatas/'.$filename;
      unlink($fichierdef);
     }
     public function maildispatchAction(){
