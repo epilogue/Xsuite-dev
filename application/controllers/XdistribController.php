@@ -619,28 +619,42 @@ if($this->getRequest()->isPost()){
         echo '<pre>',var_export($formData),'</pre>';
         echo '<pre>',var_export($user_connect),'</pre>';
         $numwp=$formData['numwp'];
+        $nom_client=$formData['nom_client'];
+        $nom_distrib=$formData['nom_distrib'];
+        $trackingNumber=$formData['trackingNumber'];
+        $zonetracking = substr($trackingNumber, 6, 2);
         $destinataire=$formData['info_dd'];
         $params1=array();
         $params=array();
-//                    $params['url']="http://{$_SERVER['SERVER_NAME']}/xprice/consult/numwp/{$numwp}";
-//                    $params['corpsMail']="Bonjour,\n"
-//                                . "\n"
-//                                . "Votre demande XPrice({$trackingNumber}/{$numwp}) a bien été envoyé.\n"
-//                                . "pour la consulter veuillez vous rendre à l'adresse url : \n"
-//                                . "%s"
-//                                . "\n\n"
-//                                . "Cordialement,\n"
-//                                . "\n"
-//                                . "--\n"
-//                                . "Xsuite";
-//                                $params['sujet']=" XPrice :Votre Offre  Xprice {$trackingNumber}/{$numwp} de {$user_info['nom_user']} pour $clientsnom";
-//                                $this->sendEmail($params);
-        if($user_connect->id_fonction == 6){
-             $params['destinataireMail']=="maildrv";
+        if($user_connect->id_fonction == "6"){
+            switch ($zonetracking) {
+                case "QA":
+                    $destinataireMail1 = $emailVars->listes->QA;
+                    break;
+                case "QC":
+                    $destinataireMail1 = $emailVars->listes->CDRNORD;
+                    break;
+                case "QF":
+                    $destinataireMail1 = $emailVars->listes->CDRNORD;
+                    break;
+                case "QE":
+                    $destinataireMail1 = $emailVars->listes->CDREST;
+                    break;
+                case "QH":
+                    $destinataireMail1 = $emailVars->listes->CDREST;
+                    break;
+                case "QI":
+                    $destinataireMail1 = $emailVars->listes->CDROUEST;
+                    break;
+                case "QK":
+                    $destinataireMail1 = $emailVars->listes->CDROUEST;
+                    break;
+            }
+             $params['destinataireMail']==$destinataireMail1;
              $params['url']="http://{$_SERVER['SERVER_NAME']}/xdistrib/validatedrv/numwp/{$numwp}";
              $params['corpsMail']="Bonjour,\n"
                                 . "\n"
-                                . "la demande XDistrib({$trackingNumber}/{$numwp}) de {$info_user['nom_user']} {$info_user['prenom_user']}  pour  a bien été envoyé.\n"
+                                . "la demande XDistrib({$trackingNumber}/{$numwp}) de {$info_user['nom_user']} {$info_user['prenom_user']}  pour {$nom_distrib}/{$nom_client} est à valider.\n"
                                 . "pour la valider veuillez vous rendre à l'adresse url : \n"
                                 . "%s"
                                 . "\n\n"
@@ -648,12 +662,26 @@ if($this->getRequest()->isPost()){
                                 . "\n"
                                 . "--\n"
                                . "Xsuite";
-             $params['sujet']=" XDistrib :L' Offre  XDistrib {$trackingNumber}/{$numwp} de {$user_info['nom_user']} pour $clientsnom";
+             $params['sujet']=" XDistrib :L' offre XDistrib {$trackingNumber}/{$numwp} de {$info_user['nom_user']} {$info_user['prenom_user']} pour {$nom_distrib}/{$nom_client} est à valider";
+            $this->sendEmail($params);
         }
-        elseif($user_connect->id_fonction == 1 ||$user_connect->id_fonction== 2 ||$user_connect->id_fonction == 3 ){
-             $params1['destinataireMail']=$destinataire;
+        elseif($user_connect->id_fonction == "1" || $user_connect->id_fonction== "2" || $user_connect->id_fonction == "3" ){
+            $params1['destinataireMail']=$destinataire;
+            $params1['url']="http://{$_SERVER['SERVER_NAME']}/xdistrib/validatedd/numwp/{$numwp}";
+            $params1['corpsMail']="Bonjour,\n"
+                        . "\n"
+                        . "la demande XDistrib({$trackingNumber}/{$numwp}) de {$info_user['nom_user']} {$info_user['prenom_user']}  pour {$nom_distrib}/{$nom_client} est à valider.\n"
+                        . "pour la valider veuillez vous rendre à l'adresse url : \n"
+                        . "%s"
+                        . "\n\n"
+                        . "Cordialement,\n"
+                        . "\n"
+                        . "--\n"
+                       . "Xsuite";
+            $params1['sujet']=" XDistrib :L'offre XDistrib {$trackingNumber}/{$numwp} de {$info_user['nom_user']} {$info_user['prenom_user']} pour {$nom_distrib}/{$nom_client} est à valider";
+            $this->sendEmail($params1);
         }
-       $params1['url']="http://{$_SERVER['SERVER_NAME']}/xdistrib/validatedd/numwp/{$numwp}";  
+       
   }
     }
     public function readerAction(){
