@@ -171,7 +171,23 @@ $this->headTitle($this->title);
             </fieldset>
             <fieldset class="field">
                 <legend>Services Associés apportés par le distributeur</legend>
-                 <textarea name="service" cols="120" rows="7"><?php echo $this->service_info ;?></textarea>
+                <table>
+                    <tr>
+                        <td><input type="checkbox" name="produitdedie" value="1">Stock produit dédié</td>
+                        <td><input type="checkbox" name="ecatalogue" value="1">E-catalogue</td>
+                        <td><input type="checkbox" name="journeetech" value="1">Journée technique sur site client</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" name="accescom" value="1">Accès commercial sur site</td>
+                        <td><input type="checkbox" name="identconc" value="1">Identification concurrence</td>
+                        <td><input type="checkbox" name="interlocuteur" value="1">Interlocuteurs connus(préconisateurs, décisionnaires)</td>
+                    </tr>
+                </table>
+                <fieldset>
+                    <legend>Autres</legend>
+                    <p>ex : nb de visites prévues sur le site, référencement des produits SMC dans la base du clients…</p>
+                    <textarea name="contexte" cols="120" rows="7"></textarea>
+                </fieldset>
             </fieldset>
         </div>    
         <div class="clear"></div>
