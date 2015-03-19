@@ -613,7 +613,7 @@ if($this->getRequest()->isPost()){
        $info_user = $infos_users->getUser($id_user);
        echo '<pre>',var_export($formData),'</pre>';
        echo '<pre>',var_export($info_user),'</pre>';
-       $destinataire=$formData['email_user'];
+       $destinataire=$formData['info_dd'];
   }
     }
     public function readerAction(){
