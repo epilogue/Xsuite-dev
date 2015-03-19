@@ -585,7 +585,8 @@ if($this->getRequest()->isPost()){
         }
        $defDistributeurs=new Application_Model_DbTable_Distributeurs();
        $defDistributeur=$defDistributeurs->createDistributeur($distrib_info[0]['distrib'], $distrib_info[0]['nom_contact_distrib'],$distrib_info[0]['numwp_distrib'],$distrib_info[0]['ville_distrib'],$distrib_info[0]['codepostal_distrib'], $id_industry,$potentiel_distributeur);
-       
+       $zone_dd = substr($nom_zone,0,2);
+       echo '<pre>',  var_dump($zone_dd),'</pre>';
 
     }
     $fichierdef = APPLICATION_PATH.'/datas/filesDatas/'.$filename;
