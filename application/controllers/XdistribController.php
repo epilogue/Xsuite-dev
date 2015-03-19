@@ -403,7 +403,7 @@ if($this->getRequest()->isPost()){
         // requête d'informations de l'offre et on va enregistrer les infos  dans les  tables temp_movex 
         if (!is_null($numwp)) {
             /*recuperation numwp et date*/
-            $pirate = "select OOLINE.OBORNO,OOLINE.OBCUNO, OOLINE.OBRGDT, OOLINE.OBORNO, OOLINE.OBSMCD from EIT.CVXCDTA.OOLINE OOLINE where OOLINE.OBORNO='{$numwp}'";
+            $pirate = "select OOLINE.OBCHID,OOLINE.OBORNO,OOLINE.OBCUNO, OOLINE.OBRGDT, OOLINE.OBORNO, OOLINE.OBSMCD from EIT.CVXCDTA.OOLINE OOLINE where OOLINE.OBORNO='{$numwp}'";
             $infos_offre = odbc_exec($this->odbc_conn, $pirate);
             $infos_offres = odbc_fetch_object($infos_offre);
             $this->view->infos_offres = $infos_offres;
