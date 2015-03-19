@@ -597,6 +597,8 @@ if($this->getRequest()->isPost()){
      unlink($fichierdef);
     }
     public function maildispatchAction(){
+         $user_connect = $this->_auth->getStorage()->read();
+         echo '<pre>',  var_export($user_connect),'</pre>';
   if ($this->getRequest()->isPost()) {
                 $formData = $this->getRequest()->getPost();
                
@@ -611,6 +613,7 @@ if($this->getRequest()->isPost()){
        $info_user = $infos_users->getUser($id_user);
        echo '<pre>',var_export($formData),'</pre>';
        echo '<pre>',var_export($info_user),'</pre>';
+       $destinataire=$formData['email_user'];
   }
     }
     public function readerAction(){
