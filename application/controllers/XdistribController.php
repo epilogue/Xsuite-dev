@@ -475,8 +475,7 @@ if($this->getRequest()->isPost()){
             $resultats = odbc_exec($this->odbc_conn, $query2);
             
             while ($resultat[] = odbc_fetch_array($resultats)) {
-                    $this->view->resultat = $resultat;
-                    
+                    $this->view->resultat = $resultat;    
                 }
         /* recuperation du code acquisition , prif fob et cif*/
             foreach ($this->view->resultat as $itnoarticle) {
@@ -616,8 +615,8 @@ if($this->getRequest()->isPost()){
         $infos_users= new Application_Model_DbTable_Users();
         $id_user = $formData['id_user'];
         $info_user = $infos_users->getUser($id_user);
-        echo '<pre>',var_export($formData),'</pre>';
-        echo '<pre>',var_export($user_connect),'</pre>';
+//        echo '<pre>',var_export($formData),'</pre>';
+//        echo '<pre>',var_export($user_connect),'</pre>';
         $numwp=$formData['numwp'];
         $nom_client=$formData['nom_client'];
         $nom_distrib=$formData['nom_distrib'];
@@ -664,25 +663,26 @@ if($this->getRequest()->isPost()){
                                . "Xsuite";
              $params['sujet']=" XDistrib :L' offre XDistrib {$trackingNumber}/{$numwp} de {$info_user['nom_user']} {$info_user['prenom_user']} pour {$nom_distrib}/{$nom_client} est à valider";
             $this->sendEmail($params);
+            }
+            elseif($user_connect->id_fonction == "1" || $user_connect->id_fonction== "2" || $user_connect->id_fonction == "3" ){
+                $params1['destinataireMail']="mhuby@smc-france.fr";//$destinataire;
+                $params1['url']="http://{$_SERVER['SERVER_NAME']}/xdistrib/validatedd/numwp/{$numwp}";
+                $params1['corpsMail']="Bonjour,\n"
+                            . "\n"
+                            . "la demande XDistrib({$trackingNumber}/{$numwp}) de {$info_user['nom_user']} {$info_user['prenom_user']}  pour {$nom_distrib}/{$nom_client} est à valider.\n"
+                            . "pour la valider veuillez vous rendre à l'adresse url : \n"
+                            . "%s"
+                            . "\n\n"
+                            . "Cordialement,\n"
+                            . "\n"
+                            . "--\n"
+                           . "Xsuite";
+                $params1['sujet']=" XDistrib :L'offre XDistrib {$trackingNumber}/{$numwp} de {$info_user['nom_user']} {$info_user['prenom_user']} pour {$nom_distrib}/{$nom_client} est à valider";
+                $this->sendEmail($params1);
+            }    
+            $redirector = $this->_helper->getHelper('Redirector');
+            $redirector->gotoSimple('index', 'xdistrib');
         }
-        elseif($user_connect->id_fonction == "1" || $user_connect->id_fonction== "2" || $user_connect->id_fonction == "3" ){
-            $params1['destinataireMail']=$destinataire;
-            $params1['url']="http://{$_SERVER['SERVER_NAME']}/xdistrib/validatedd/numwp/{$numwp}";
-            $params1['corpsMail']="Bonjour,\n"
-                        . "\n"
-                        . "la demande XDistrib({$trackingNumber}/{$numwp}) de {$info_user['nom_user']} {$info_user['prenom_user']}  pour {$nom_distrib}/{$nom_client} est à valider.\n"
-                        . "pour la valider veuillez vous rendre à l'adresse url : \n"
-                        . "%s"
-                        . "\n\n"
-                        . "Cordialement,\n"
-                        . "\n"
-                        . "--\n"
-                       . "Xsuite";
-            $params1['sujet']=" XDistrib :L'offre XDistrib {$trackingNumber}/{$numwp} de {$info_user['nom_user']} {$info_user['prenom_user']} pour {$nom_distrib}/{$nom_client} est à valider";
-            $this->sendEmail($params1);
-        }
-       
-  }
     }
     public function readerAction(){
   
