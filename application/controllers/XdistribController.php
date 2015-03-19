@@ -550,6 +550,7 @@ if($this->getRequest()->isPost()){
             $user_info = $user_infos->getMovexUser($numwp);
             $this->view->user_info = $user_info[0];
             $nom_zone = $user_info[0]['nom_zone'];
+            echo '<pre>',var_export($user_info),'</pre>';
             $distrib_infos = new Application_Model_DbTable_TempMovexOffre();
             $distrib_info=$distrib_infos->getDistrib($numwp);
             $this->view->distrib_info = $distrib_info[0];
@@ -604,7 +605,7 @@ if($this->getRequest()->isPost()){
        $id_user = $formData['id_user'];
        $info_user = $infos_users->getUser($id_user);
        echo '<pre>',var_export($formData),'</pre>';
-        echo '<pre>',var_export($info_user),'</pre>';
+       echo '<pre>',var_export($info_user),'</pre>';
   }
     }
     public function readerAction(){
