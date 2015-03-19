@@ -622,6 +622,7 @@ if($this->getRequest()->isPost()){
         $nom_distrib=$formData['nom_distrib'];
         $trackingNumber=$formData['trackingNumber'];
         $zonetracking = substr($trackingNumber, 6, 2);
+        echo '<pre>',  var_dump($zonetracking),'</pre>';
         $destinataire=$formData['info_dd'];
         $params1=array();
         $params=array();
@@ -649,6 +650,7 @@ if($this->getRequest()->isPost()){
                     $destinataireMail1 = $emailVars->listes->CDROUEST;
                     break;
             }
+            echo '<pre>',  var_dump($destinataireMail1),'</pre>';
              $params['destinataireMail']=$destinataireMail1;
              $params['url']="http://{$_SERVER['SERVER_NAME']}/xdistrib/validatedrv/numwp/{$numwp}";
              $params['corpsMail']="Bonjour,\n"
@@ -679,9 +681,10 @@ if($this->getRequest()->isPost()){
                            . "Xsuite";
                 $params1['sujet']=" XDistrib :L'offre XDistrib {$trackingNumber}/{$numwp} de {$info_user['nom_user']} {$info_user['prenom_user']} pour {$nom_distrib}/{$nom_client} est à valider";
                 $this->sendEmail($params1);
+                echo '</pre>',  var_dump($params1['destinataireMail']),'</pre>';
             }    
-            $redirector = $this->_helper->getHelper('Redirector');
-            $redirector->gotoSimple('index', 'xdistrib');
+//            $redirector = $this->_helper->getHelper('Redirector');
+//            $redirector->gotoSimple('index', 'xdistrib');
         }
     }
     public function readerAction(){
