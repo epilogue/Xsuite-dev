@@ -593,9 +593,18 @@ if($this->getRequest()->isPost()){
     public function maildispatchAction(){
   if ($this->getRequest()->isPost()) {
                 $formData = $this->getRequest()->getPost();
-                echo '<pre>',var_export($formData),'</pre>';
+               
        $tempClienttruns= new Application_Model_DbTable_TempClient();
-       $tempClienttrun=$tempClienttruns->truncateAll();
+       $tempClienttrun=$tempClienttruns->truncateAll(); 
+       /*on va chercher des infos sur le user
+        * si id_fonction =1 ou =2 alors envoi mail pour validation au dd de la zone 
+        * si id_fonction =6 alors envoi mail pour validation au drv de la zone 
+        */
+       $infos_users= new Application_Model_DbTable_Users();
+       $id_user = $formData['id_user'];
+       $info_user = $infos_users->getUser($id_user);
+       echo '<pre>',var_export($formData),'</pre>';
+        echo '<pre>',var_export($info_user),'</pre>';
   }
     }
     public function readerAction(){
