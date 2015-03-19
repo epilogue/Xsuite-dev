@@ -621,7 +621,7 @@ if($this->getRequest()->isPost()){
         $nom_client=$formData['nom_client'];
         $nom_distrib=$formData['nom_distrib'];
         $trackingNumber=$formData['trackingNumber'];
-        $zonetracking = substr($trackingNumber, 6, 2);
+        $zonetracking = substr($trackingNumber, 7, 2);
         echo '<pre>',  var_dump($zonetracking),'</pre>';
         $destinataire=$formData['info_dd'];
         $params1=array();
