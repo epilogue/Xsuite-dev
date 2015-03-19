@@ -762,5 +762,12 @@ if($this->getRequest()->isPost()){
         }
         $this->view->form = $form;
     }
+    
+    public function validateddAction(){
+        
+    }
+    public function validatedrvAction(){
+        
+    }
 }
 
