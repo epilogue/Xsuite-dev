@@ -30,7 +30,13 @@ class XdistribController extends Zend_Controller_Action
             echo "pas d'accès à la base de données ZEUCDTA";
         }
     }
-
+     protected function sendEmail($params) {
+        $mail = new Xsuite_Mail();
+        $mail->setSubject($params['sujet'])
+                ->setBodyText(sprintf($params['corpsMail'], $params['url']))
+                ->addTo($params['destinataireMail'])
+                ->send();
+    }
     public function indexAction()
     {
         /*
@@ -598,22 +604,56 @@ if($this->getRequest()->isPost()){
     }
     public function maildispatchAction(){
          $user_connect = $this->_auth->getStorage()->read();
-         echo '<pre>',  var_export($user_connect),'</pre>';
   if ($this->getRequest()->isPost()) {
-                $formData = $this->getRequest()->getPost();
+        $formData = $this->getRequest()->getPost();
                
-       $tempClienttruns= new Application_Model_DbTable_TempClient();
-       $tempClienttrun=$tempClienttruns->truncateAll(); 
-       /*on va chercher des infos sur le user
+        $tempClienttruns= new Application_Model_DbTable_TempClient();
+        $tempClienttrun=$tempClienttruns->truncateAll(); 
+        /*on va chercher des infos sur le user
         * si id_fonction =1 ou =2 alors envoi mail pour validation au dd de la zone 
         * si id_fonction =6 alors envoi mail pour validation au drv de la zone 
         */
-       $infos_users= new Application_Model_DbTable_Users();
-       $id_user = $formData['id_user'];
-       $info_user = $infos_users->getUser($id_user);
-       echo '<pre>',var_export($formData),'</pre>';
-       echo '<pre>',var_export($info_user),'</pre>';
-       $destinataire=$formData['info_dd'];
+        $infos_users= new Application_Model_DbTable_Users();
+        $id_user = $formData['id_user'];
+        $info_user = $infos_users->getUser($id_user);
+        echo '<pre>',var_export($formData),'</pre>';
+        echo '<pre>',var_export($user_connect),'</pre>';
+        $numwp=$formData['numwp'];
+        $destinataire=$formData['info_dd'];
+        $params1=array();
+        $params=array();
+//                    $params['url']="http://{$_SERVER['SERVER_NAME']}/xprice/consult/numwp/{$numwp}";
+//                    $params['corpsMail']="Bonjour,\n"
+//                                . "\n"
+//                                . "Votre demande XPrice({$trackingNumber}/{$numwp}) a bien été envoyé.\n"
+//                                . "pour la consulter veuillez vous rendre à l'adresse url : \n"
+//                                . "%s"
+//                                . "\n\n"
+//                                . "Cordialement,\n"
+//                                . "\n"
+//                                . "--\n"
+//                                . "Xsuite";
+//                                $params['sujet']=" XPrice :Votre Offre  Xprice {$trackingNumber}/{$numwp} de {$user_info['nom_user']} pour $clientsnom";
+//                                $this->sendEmail($params);
+        if($user_connect->id_fonction == 6){
+             $params['destinataireMail']=="maildrv";
+             $params['url']="http://{$_SERVER['SERVER_NAME']}/xdistrib/validatedrv/numwp/{$numwp}";
+             $params['corpsMail']="Bonjour,\n"
+                                . "\n"
+                                . "la demande XDistrib({$trackingNumber}/{$numwp}) de {$info_user['nom_user']} {$info_user['prenom_user']}  pour  a bien été envoyé.\n"
+                                . "pour la valider veuillez vous rendre à l'adresse url : \n"
+                                . "%s"
+                                . "\n\n"
+                                . "Cordialement,\n"
+                                . "\n"
+                                . "--\n"
+                               . "Xsuite";
+             $params['sujet']=" XDistrib :L' Offre  XDistrib {$trackingNumber}/{$numwp} de {$user_info['nom_user']} pour $clientsnom";
+        }
+        elseif($user_connect->id_fonction == 1 ||$user_connect->id_fonction== 2 ||$user_connect->id_fonction == 3 ){
+             $params1['destinataireMail']=$destinataire;
+        }
+       $params1['url']="http://{$_SERVER['SERVER_NAME']}/xdistrib/validatedd/numwp/{$numwp}";  
   }
     }
     public function readerAction(){

@@ -191,14 +191,16 @@ $this->headTitle($this->title);
                 </fieldset>
             </fieldset>
         </div>    
-        <div class="clear"></div>
-     
-         <input type="hidden" name="numwp" value="<?php echo $this->infos_offres->OBORNO; ?>">
-         <input type="hidden" name="id_user" value="<?php echo $this->user_info['id_user'];?>">
-          <input type="hidden" name="nom_user" value="<?php echo $this->user_info['nom_user'];?>">
-          <input type="hidden" name="nom_holon" value="<?php echo $this->user_info['nom_holon']; ?>">
-          <input type="hidden" name="info_dd" value="<?php echo $this->infos_dd->email_user;?>">
-         <input class="submit" type="submit" value="envoyer la demande">
+        <div class="clear"></div>    
+        <input type="hidden" name="numwp" value="<?php echo $this->infos_offres->OBORNO; ?>">
+        <input type="hidden" name="id_user" value="<?php echo $this->user_info['id_user'];?>">
+        <input type="hidden" name="nom_user" value="<?php echo $this->user_info['nom_user'];?>">
+        <input type="hidden" name="nom_holon" value="<?php echo $this->user_info['nom_holon']; ?>">
+        <input type="hidden" name="info_dd" value="<?php echo $this->infos_dd->email_user;?>">
+        <input type="hidden" name="nom_client" value="<?php echo $this->client_info['nom_client_final']?>">
+        <input type="hidden" name="nom_distrib" value="<?php echo $this->distrib_info['distrib'];?>">
+        <input type="hidden" name="tracking" value="<?php echo $this->trackingNumber; ?>">
+        <input class="submit" type="submit" value="envoyer la demande">
     </form>
 </div>
 <div class="clear"></div>
