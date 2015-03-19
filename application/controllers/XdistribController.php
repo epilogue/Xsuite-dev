@@ -603,6 +603,7 @@ if($this->getRequest()->isPost()){
     }
     public function maildispatchAction(){
          $user_connect = $this->_auth->getStorage()->read();
+          $emailVars = Zend_Registry::get('emailVars');
   if ($this->getRequest()->isPost()) {
         $formData = $this->getRequest()->getPost();
                
