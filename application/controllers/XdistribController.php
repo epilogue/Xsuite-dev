@@ -649,7 +649,7 @@ if($this->getRequest()->isPost()){
                     $destinataireMail1 = $emailVars->listes->CDROUEST;
                     break;
             }
-             $params['destinataireMail']==$destinataireMail1;
+             $params['destinataireMail']=$destinataireMail1;
              $params['url']="http://{$_SERVER['SERVER_NAME']}/xdistrib/validatedrv/numwp/{$numwp}";
              $params['corpsMail']="Bonjour,\n"
                                 . "\n"
