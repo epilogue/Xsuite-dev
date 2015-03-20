@@ -54,7 +54,9 @@ class XdistribController extends Zend_Controller_Action
          $this->view->recapitulatif = $recapitulatif2;        
      }
      if($user->id_fonction == 6){
-         
+         $recapitulatif1 = new Application_Model_DbTable_Xdistrib();
+         $recapitulatif2 = $recapitulatif1->searchforDD($user->id_user);
+         $this->view->recapitulatif = $recapitulatif2;    
      }
     if($user->id_fonction == 10){
          switch ($holon){
@@ -563,7 +565,7 @@ if($this->getRequest()->isPost()){
             $user_info = $user_infos->getMovexUser($numwp);
             $this->view->user_info = $user_info[0];
             $nom_zone = $user_info[0]['nom_zone'];
-            echo '<pre>',var_export($user_info),'</pre>';
+//            echo '<pre>',var_export($user_info),'</pre>';
             $distrib_infos = new Application_Model_DbTable_TempMovexOffre();
             $distrib_info=$distrib_infos->getDistrib($numwp);
             $this->view->distrib_info = $distrib_info[0];
