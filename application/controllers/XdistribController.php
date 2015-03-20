@@ -704,6 +704,7 @@ if($this->getRequest()->isPost()){
         $infos_demande_xdistrib= new Application_Model_DbTable_Xdistrib();
         $info_demande_xdistrib = $infos_demande_xdistrib->getNumwp($numwp);
         echo '<pre>', var_export($info_demande_xdistrib),'</pre>';
+        $this->view->info_demande_xdistrib=$info_demande_xdistrib;
     }
     public function trackingAction(){
          $track = $this->getRequest()->getParam('tracking_number_demande_xdistrib', null);
