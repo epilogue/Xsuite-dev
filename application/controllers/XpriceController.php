@@ -1865,6 +1865,13 @@ if($mailServiceClients[0]['mail_service_client']=='regionNord'){
                 }
              $redirector = $this->_helper->getHelper('Redirector');
         $redirector->gotoSimple('index', 'index');}
+        else {
+            $this->view->messages = array_merge(
+                $this->_helper->flashMessenger->getMessages(),
+                $this->_helper->flashMessenger->getCurrentMessages()
+            );
+            $this->_helper->flashMessenger->clearCurrentMessages();
+        }
         }
         if ($this->getRequest()->isPost()) {
             $date_validationfobfr = date("Y-m-d H:i:s");
