@@ -133,7 +133,7 @@ class Application_Model_DbTable_Users extends Zend_Db_Table_Abstract {
     }
     public function getUserName($name){
     $name="$name";
-    $sql ="select nom_user,prenom_user,email_user from users where nom_user like '{$name}%' and id_fonction= 6 ";
+    $sql ="select nom_user,prenom_user,email_user,id_user from users where nom_user like '{$name}%' and id_fonction= 6 ";
       $res = $this->getAdapter()->query($sql);
        $rest = $res->fetchObject();
         if (!$rest) {

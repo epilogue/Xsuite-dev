@@ -53,21 +53,24 @@ class XdistribController extends Zend_Controller_Action
          $recapitulatif2 = $recapitulatif1->searchByUser($user->id_user);
          $this->view->recapitulatif = $recapitulatif2;        
      }
- if($user->id_fonction == 10){
-     switch ($holon){
-         case 2:
-             $tracking1="SP-FR-QC";
-             $tracking2="SP-FR-QF";
-             break;
-         case 3:
-             $tracking1="SP-FR-QE";
-             $tracking2="SP-FR-QH";            
-             break;
-         case 4:
-            $tracking1="SP-FR-QI";
-            $tracking2="SP-FR-QK";            
-             break;
-         }
+     if($user->id_fonction == 6){
+         
+     }
+    if($user->id_fonction == 10){
+         switch ($holon){
+             case 2:
+                 $tracking1="SP-FR-QC";
+                 $tracking2="SP-FR-QF";
+                 break;
+             case 3:
+                 $tracking1="SP-FR-QE";
+                 $tracking2="SP-FR-QH";            
+                 break;
+             case 4:
+                $tracking1="SP-FR-QI";
+                $tracking2="SP-FR-QK";            
+                 break;
+             }
          $recapitulatif1 = new Application_Model_DbTable_Xdistrib();
          $recapitulatif2=$recapitulatif1->searchByCDR($tracking1,$tracking2);
      }

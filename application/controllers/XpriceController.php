@@ -1934,7 +1934,7 @@ if($mailServiceClients[0]['mail_service_client']=='regionNord'){
     public function validatesupplyAction() {
         $user = $this->_auth->getStorage()->read();
 // var_dump($user);
-        $nom_validation = "fobfr";
+        $nom_validation = "supply";
         $numwp = $this->getRequest()->getParam('numwp', null);
 // var_dump($numwp);
         $this->view->numwp = $numwp;
@@ -2000,6 +2000,23 @@ if($mailServiceClients[0]['mail_service_client']=='regionNord'){
 //                $this->view->info_prixfobfr = $info_prixfobfr;
 //            }
 //        }
+        /*bloquage de la demande déjà validée */
+        
+        $blocages=new Application_Model_DbTable_Validationsdemandexprices();
+        $blocage = $blocages->getValidation($nom_validation, $info_demande_xprice['id_demande_xprice']);
+        //var_dump($blocage);
+        foreach ($blocage as $blocs){
+        $bloc = $blocs['etat_validation'];
+        
+        if($bloc == "validée"){
+            if($bloc=="validée"){
+                $flashMessenger = $this->_helper->getHelper('FlashMessenger');
+                $message1 = "vous avez déjà validée cette offre.";
+                $flashMessenger->addMessage($message1);    
+            }    
+            $redirector = $this->_helper->getHelper('Redirector');
+            $redirector->gotoSimple('index', 'index');}
+        }
         if ($this->getRequest()->isPost()) {
             $date_validation_supply = date("Y-m-d H:i:s");
             echo $date_validation_supply;
