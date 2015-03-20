@@ -2204,7 +2204,7 @@ if($mailServiceClients[0]['mail_service_client']=='regionNord'){
 //echo '<pre>',  var_export($info_demande_xprice),'<pre>';
         $user_id = $info_demande_xprice['id_user'];
         /*info client*/
-//        $this->view->info_demande_xprice = $info_demande_xprice;
+        $this->view->info_demande_xprice = $info_demande_xprice;
 //         $anneeencours_1 = date('Y')-2;
 //        $querycaencours_1="select 
 //        Sum(ZMCCSS.ZCSN01+ZMCCSS.ZCSN02+ZMCCSS.ZCSN03+ZMCCSS.ZCSN04+ZMCCSS.ZCSN05+ZMCCSS.ZCSN06+ZMCCSS.ZCSN07+ZMCCSS.ZCSN08+ZMCCSS.ZCSN09+ZMCCSS.ZCSN10+ZMCCSS.ZCSN11+ZMCCSS.ZCSN12) as CA_LY
