@@ -1864,7 +1864,7 @@ if($mailServiceClients[0]['mail_service_client']=='regionNord'){
                 $flashMessenger->addMessage($message1);
                 }
              $redirector = $this->_helper->getHelper('Redirector');
-        $redirector->gotoSimple('index', 'index');}
+        $redirector->gotoSimple('xprice', 'index');}
         else {
             $this->view->messages = array_merge(
                 $this->_helper->flashMessenger->getMessages(),
