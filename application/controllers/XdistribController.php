@@ -699,7 +699,11 @@ if($this->getRequest()->isPost()){
     }
     public function consultAction()
     {
-        // action body
+        $numwp = $this->getRequest()->getParam('numwp', null);
+        $this->view->numwp = $numwp;
+        $infos_demande_xdistrib= new Application_Model_DbTable_Xdistrib();
+        $info_demande_xdistrib = $infos_demande_xdistrib->getNumwp($numwp);
+        echo '<pre>', var_export($info_demande_xdistrib),'</pre>';
     }
     public function trackingAction(){
          $track = $this->getRequest()->getParam('tracking_number_demande_xdistrib', null);
