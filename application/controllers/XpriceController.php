@@ -628,6 +628,38 @@ if($user->id_fonction == 3){
         $info_demande_article_xprice = $infos_demande_article_xprice->getDemandeArticlexprice($numwp);
         $this->view->info_demande_article_xprice = $info_demande_article_xprice;
         $nomclients = trim($info_client['nom_client']);
+        $blocages=new Application_Model_DbTable_Validationsdemandexprices();
+        $validationdbd="dbd";
+        $blocage = $blocages->getValidation( $validationdbd, $info_demande_xprice['id_demande_xprice']);
+        //var_dump($blocage);
+        foreach ($blocage as $blocs){
+        $bloc = $blocs['etat_validation'];
+        
+        if($bloc == "validee" || $bloc =="nonValide" || $bloc=="fermee"){
+            if($bloc=="validee"){
+                $flashMessenger = $this->_helper->getHelper('FlashMessenger');
+                $message1 = "vous avez déjà validée cette offre.";
+                $flashMessenger->addMessage($message1);}    
+                elseif($bloc=="nonValide"){
+                 $flashMessenger = $this->_helper->getHelper('FlashMessenger');
+                $message1 = "cette offre a déjà été refusée.";
+                $flashMessenger->addMessage($message1);
+                }
+                elseif($bloc=="fermee"){
+                $flashMessenger = $this->_helper->getHelper('FlashMessenger');
+                $message1 = "cette offre est fermée.";
+                $flashMessenger->addMessage($message1);
+                }
+             $redirector = $this->_helper->getHelper('Redirector');
+        $redirector->gotoSimple('index', 'xprice');}
+        else {
+            $this->view->messages = array_merge(
+                $this->_helper->flashMessenger->getMessages(),
+                $this->_helper->flashMessenger->getCurrentMessages()
+            );
+            $this->_helper->flashMessenger->clearCurrentMessages();
+        }
+        }
         if ($this->getRequest()->isPost()) {
             $date_validation = date("Y-m-d H:i:s");
             $this->view->date_validation = $date_validation;
