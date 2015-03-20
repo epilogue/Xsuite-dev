@@ -1583,7 +1583,7 @@ if($mailServiceClients[0]['mail_service_client']=='regionNord'){
                         . "Directeur Commercial.";
                 $params['sujet'] = " XPrice :demande Xprice  $trackingNumber/$numwp pour le client $nomclients validée par Directeur Commercial.";
                 $this->sendEmail($params);
-                $params1['destinataireMail'] =$emailVars->listes->serviceClient;
+                $params1['destinataireMail'] =$mailSC;
                 $params1['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/consult/numwp/{$numwp}";
                 $params1['corpsMail'] = "Bonjour,\n"
                         . "\n"
