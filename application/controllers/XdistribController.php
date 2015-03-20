@@ -706,7 +706,7 @@ if($this->getRequest()->isPost()){
        $dateinit=$info_demande_xdistrib['date_demande_xdistrib'];
         $date = DateTime::createFromFormat('Y-m-d', $dateinit);
         $dateplop = $date->format('d/m/Y');
-       
+       $this->view->dateplop=$dateplop;
         $this->view->info_demande_xdistrib=$info_demande_xdistrib;
         echo '<pre>', var_export($info_demande_xdistrib),'</pre>';
     } 
