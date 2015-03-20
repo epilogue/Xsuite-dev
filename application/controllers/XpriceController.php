@@ -979,7 +979,14 @@ if($user->id_fonction == 3){
                 $flashMessenger->addMessage($message1);
                 }
              $redirector = $this->_helper->getHelper('Redirector');
-        $redirector->gotoSimple('index', 'index');}
+        $redirector->gotoSimple('index', 'xprice');}
+        else {
+            $this->view->messages = array_merge(
+                $this->_helper->flashMessenger->getMessages(),
+                $this->_helper->flashMessenger->getCurrentMessages()
+            );
+            $this->_helper->flashMessenger->clearCurrentMessages();
+        }
         }
         $nomclients= trim($info_client['nom_client']);
         if ($this->getRequest()->isPost()) {
@@ -2056,7 +2063,14 @@ if($mailServiceClients[0]['mail_service_client']=='regionNord'){
                 $flashMessenger->addMessage($message1);
                 }
              $redirector = $this->_helper->getHelper('Redirector');
-        $redirector->gotoSimple('index', 'index');}
+        $redirector->gotoSimple('index', 'xprice');}
+        else {
+            $this->view->messages = array_merge(
+                $this->_helper->flashMessenger->getMessages(),
+                $this->_helper->flashMessenger->getCurrentMessages()
+            );
+            $this->_helper->flashMessenger->clearCurrentMessages();
+        }
         }
         if ($this->getRequest()->isPost()) {
             $date_validation_supply = date("Y-m-d H:i:s");
