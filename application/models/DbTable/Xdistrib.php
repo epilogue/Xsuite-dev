@@ -40,7 +40,7 @@ class Application_Model_DbTable_Xdistrib extends Zend_Db_Table_Abstract {
             return $row->toArray();
         }
     }
-    public function createXDistrib($num_workplace_demande_xdistrib, $tracking_number_demande_xdistrib,$contexte_demande, $date_demande_xdistrib, $service_associe, $id_user, $id_validation = null, $numwp_client,$numwp_distributeur) {
+    public function createXDistrib($num_workplace_demande_xdistrib, $tracking_number_demande_xdistrib,$contexte_demande, $date_demande_xdistrib, $service_associe, $id_user,$id_dd, $id_validation = null, $numwp_client,$numwp_distributeur) {
         $data = array(
             'num_workplace_demande_xdistrib' => $num_workplace_demande_xdistrib,
             'tracking_number_demande_xdistrib' => $tracking_number_demande_xdistrib,
@@ -48,6 +48,7 @@ class Application_Model_DbTable_Xdistrib extends Zend_Db_Table_Abstract {
             'date_demande_xdistrib' => $date_demande_xdistrib,
             'service_associe' => $service_associe,
             'id_user' => $id_user,
+            'id_dd'=>$id_dd,
             'id_validation' => $id_validation,
             'numwp_client' => $numwp_client,
             'numwp_distributeur' =>$numwp_distributeur
