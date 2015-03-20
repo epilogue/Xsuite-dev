@@ -1770,7 +1770,7 @@ if($mailServiceClients[0]['mail_service_client']=='regionNord'){
     public function prixfobfrAction() {
         $user = $this->_auth->getStorage()->read();
 // var_dump($user);
-
+       
         $numwp = $this->getRequest()->getParam('numwp', null);
         $this->view->numwp = $numwp;
         /*
@@ -1841,7 +1841,31 @@ if($mailServiceClients[0]['mail_service_client']=='regionNord'){
             $this->view->infos_prixfobfr = $infos_prixfobfr;
 // echo '<pre>',  var_export($infos_prixfobfr),'<pre>';                exit();
         }
-
+        $blocages=new Application_Model_DbTable_Validationsdemandexprices();
+        $validationdbd="dbd";
+        $blocage = $blocages->getValidation( $validationdbd, $info_demande_xprice['id_demande_xprice']);
+        //var_dump($blocage);
+        foreach ($blocage as $blocs){
+        $bloc = $blocs['etat_validation'];
+        
+        if($bloc == "validee" || $bloc =="nonValide" || $bloc=="fermee"){
+            if($bloc=="validee"){
+                $flashMessenger = $this->_helper->getHelper('FlashMessenger');
+                $message1 = "vous avez déjà validée cette offre.";
+                $flashMessenger->addMessage($message1);}    
+                elseif($bloc=="nonValide"){
+                 $flashMessenger = $this->_helper->getHelper('FlashMessenger');
+                $message1 = "cette offre a déjà été refusée.";
+                $flashMessenger->addMessage($message1);
+                }
+                elseif($bloc=="fermee"){
+                $flashMessenger = $this->_helper->getHelper('FlashMessenger');
+                $message1 = "cette offre est fermée.";
+                $flashMessenger->addMessage($message1);
+                }
+             $redirector = $this->_helper->getHelper('Redirector');
+        $redirector->gotoSimple('index', 'index');}
+        }
         if ($this->getRequest()->isPost()) {
             $date_validationfobfr = date("Y-m-d H:i:s");
             $this->view->date_validationfobfr = $date_validationfobfr;
@@ -2003,19 +2027,29 @@ if($mailServiceClients[0]['mail_service_client']=='regionNord'){
         /*bloquage de la demande déjà validée */
         
         $blocages=new Application_Model_DbTable_Validationsdemandexprices();
-        $blocage = $blocages->getValidation($nom_validation, $info_demande_xprice['id_demande_xprice']);
+        $validationdbd="dbd";
+        $blocage = $blocages->getValidation( $validationdbd, $info_demande_xprice['id_demande_xprice']);
         //var_dump($blocage);
         foreach ($blocage as $blocs){
         $bloc = $blocs['etat_validation'];
         
-        if($bloc == "validée"){
-            if($bloc=="validée"){
+        if($bloc == "validee" || $bloc =="nonValide" || $bloc=="fermee"){
+            if($bloc=="validee"){
                 $flashMessenger = $this->_helper->getHelper('FlashMessenger');
                 $message1 = "vous avez déjà validée cette offre.";
-                $flashMessenger->addMessage($message1);    
-            }    
-            $redirector = $this->_helper->getHelper('Redirector');
-            $redirector->gotoSimple('index', 'index');}
+                $flashMessenger->addMessage($message1);}    
+                elseif($bloc=="nonValide"){
+                 $flashMessenger = $this->_helper->getHelper('FlashMessenger');
+                $message1 = "cette offre a déjà été refusée.";
+                $flashMessenger->addMessage($message1);
+                }
+                elseif($bloc=="fermee"){
+                $flashMessenger = $this->_helper->getHelper('FlashMessenger');
+                $message1 = "cette offre est fermée.";
+                $flashMessenger->addMessage($message1);
+                }
+             $redirector = $this->_helper->getHelper('Redirector');
+        $redirector->gotoSimple('index', 'index');}
         }
         if ($this->getRequest()->isPost()) {
             $date_validation_supply = date("Y-m-d H:i:s");
