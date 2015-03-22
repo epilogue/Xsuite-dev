@@ -1,0 +1,193 @@
+<?php
+$this->title = 'Xprice/consultchefmarche';
+$this->headTitle($this->title);
+$this->headScript()->appendFile('/js/controllers/xprice/affiche_masque_commentaire_chef_marche.js');
+?>
+<div id="contenu" class="contenu">
+    <h2>Consultation Offre Workplace par le chef de marché</h2>
+    <div id="workplace" class="workplace">
+        <fieldset id="wp" class="field">
+            <legend>Informations offre</legend>
+            <table class="table_info">
+                <tr>
+                    <td>Numéro workplace de l'offre :</td>
+                    <td><?php echo $this->numwp; ?></td>
+                </tr>
+                <tr>
+                    <td>Date de l'offre workplace :</td>
+                    <td><?php echo $this->dateplop; ?></td>
+                </tr>
+                <tr>
+                    <td>Tracking number :</td>
+                    <td><?php echo $this->info_demande_xprice['tracking_number_demande_xprice']; ?></td>
+                </tr>
+            </table>
+        </fieldset>
+    </div>
+    <div class="clear"></div>
+    <div id="information" class="workplace">
+        <fieldset id="info_user" class="field_info">
+            <legend>Informations Commercial</legend>
+            <table>
+                <tr>
+                    <td>Nom:</td>
+                    <td><?php echo $this->info_user['nom_user']; ?></td>
+                </tr>
+                <tr>
+                    <td>Prénom:</td>
+                    <td><?php echo $this->info_user['prenom_user']; ?></td>
+                </tr>
+                <tr>
+                    <td>Email:</td>
+                    <td><?php echo $this->info_user['email_user']; ?></td>
+                </tr>
+                <tr>
+                    <td>Téléphone:</td>
+                    <td><?php echo $this->info_user['tel_user']; ?></td>
+                </tr>
+                <tr>
+                    <td>Holon:</td>
+                    <td><?php echo $this->holon; ?></td>
+                </tr>
+                <tr>
+                    <td>User workplace:</td>
+                    <td><?php echo $this->info_user['numwp_user']; ?></td>
+                </tr>
+            </table>
+        </fieldset>
+        <fieldset id="info_client" class="field_info">
+            <legend>Informations Client</legend>
+            <table>
+                <tr>
+                    <td>Nom:</td>
+                    <td><?php echo $this->info_client['nom_client']; ?></td>
+                </tr>
+                <tr>
+                    <td>User Workplace:</td>
+                    <td><?php echo $this->info_client['numwp_client']; ?></td>
+                </tr>
+                <tr>
+                    <td>Projet industrie:</td>
+                    <td><?php echo $this->nom_industrie['nom_industry'] ?></td>
+                </tr>
+                <tr>
+                    <td>Potentiel:</td>
+                    <td><?php echo $this->info_client['potentiel']; ?></td>
+                </tr>
+            </table>
+        </fieldset>
+    </div>
+    <div class="clear"></div>
+    <div id="demandeArticle" class="workplace">
+        <fieldset class="field"><legend>Articles </legend>
+            <table id="article" class="enum">
+                <tr>
+                    <th>code article</th>
+                    <th>référence article</th>
+                    <th>quantité</th>
+                    <th>prix tarif</th>
+                    <th>prix demandé</th>
+                    <th>remise demandée</th>
+                </tr>
+                <?php foreach ($this->info_demande_article_xprice as $result) { ?>
+                    <tr>
+                        <td><?php echo $result['code_article']; ?></td>
+                        <td><?php echo $result['reference_article']; ?></td>
+                        <td><?php echo $result['quantite_demande_article']; ?></td>
+                        <td><?php echo $result['prixwplace_demande_article'] . "€"; ?></td>
+                        <td><?php echo $result['prix_demande_article'] . "€"; ?></td>
+                        <td><?php echo $result['remise_demande_article'] . "%"; ?></td>
+                    </tr>
+                <?php } ?>
+                     <tr>
+                            <td colspan="2">total</td>
+                            <td colspan="2" ><input class="cab" id="cab-affiche"
+                               <?php $cab=0;foreach($this->info_demande_article_xprice as $result)
+                                {$cab+=($result['quantite_demande_article']*$result['prixwplace_demande_article']);
+                            
+                            } ?>value="<?php $cab2=number_format($cab,2,'.',' ');echo $cab2; ?>">
+                                <input id="cab" type="hidden" class="calculHidden" value="<?php echo $cab; ?>" >
+                            </td>
+                            <td>
+                                <input class="cad" id="cad-affiche" 
+                                       <?php $cad=0; foreach ( $this->info_demande_article_xprice as $result)
+                                       {$cad+=($result['quantite_demande_article']*$result['prix_demande_article']); }?> value="<?php $cad2=number_format($cad,2,'.',' ');echo $cad2; ?>">
+                                <input id="cad" type="hidden" class="calculHidden" value="<?php echo $cad; ?>" >
+                            </td>
+                            <td><input id="mo"  <?php $mo=100*(1-($cad/$cab));?> value="<?php echo round($mo,2)."%"; ?>"></td>
+                     </tr>
+            </table>
+            <br>
+            <br>
+            
+        </fieldset>
+    </div>
+    <div class="clear"></div>
+     <div id ='just_demande' class="workplace">
+        <fieldset id = 'justif_user' class="field">
+            <legend>Justificatif de la demande</legend>
+           <table class="enum">
+                <tr>
+                    <th>Concurrent visé</th>
+                    <th>Parts de marché smc</th>
+                    <th>Minimum de commande</th>
+                    <th>Démarche stratégique</th>
+                </tr>
+                <tr>
+                    <td> <?php echo $this->info_demande_xprice['justificatif2_demande_xprice']; ?></td>
+                    <td> <?php echo $this->info_demande_xprice['justificatif3_demande_xprice'] ?></td>
+                    <td> <?php echo $this->info_demande_xprice['justificatif_demande_xprice'] ?></td>
+                    <td> <?php if($this->info_demande_xprice['justificatif4_demande_xprice'] == 0) {echo 'concentration des efforts' ;} elseif($this->info_demande_xprice['justificatif4_demande_xprice'] == 1){ echo 'attaquer le faible';}elseif($this->info_demande_xprice['justificatif4_demande_xprice'] ==2 ){ echo 'globalisation';} ?></td>
+                </tr>
+            </table>
+        </fieldset>
+    </div>
+    <div class="clear"></div>
+    <div id='commentaire' class="workplace">
+        <fieldset id='comm_user' class="field"><legend>Commentaires</legend>
+            <table class="enum">
+    <!--            <tr>
+                    <td>Commmentaire Commercial</td>
+                    <td></td>
+                </tr>-->
+                <?php foreach (@$this->validations as $key => $value) { ?>
+                    <tr>
+                        <td>Commentaire <?php echo strtolower($this->usersValidations[$key]['fonction']); ?></td>
+                        <td><?php echo $value['date_validation']; ?></td>
+                        <td><?php echo nl2br($value['commentaire']); ?></td>
+                    </tr>
+                <?php } ?>
+            </table>
+        </fieldset>
+    </div>
+    <div class="clear"></div>
+    <div>
+        <button id="Buttoncom" class="submit" value="comm" name="comm" type="button">laisser un commentaire</button>
+    </div>
+    <div id="commentaire_chef_marche">
+        <form method="post">
+            <div id="cdr" class="workplace">
+                <fieldset class="field">
+                    <legend>Commentaire chef de marché</legend>
+                    <textarea name="commentaire_chefmarche" cols="75" rows="10"></textarea>
+                    <?php
+                    if (!is_null($this->commentId)) {
+                        ?>
+                        <input type="hidden" name="comcm" value="<?php echo $this->commentId; ?>">
+                        <?php
+                    }
+                    ?>
+                </fieldset>
+            </div>
+            <div id="comcm" class="workplace">
+                <input type="hidden" name="validation" value="<?php echo $this->etat_en_cours; ?>"><input type="hidden" name="nom_validation" value="comcm"><br>
+               <input type="hidden" name="date_validation" value="<?php echo date("Y-m-d H:i:s") ?>"><br>
+               <input type="hidden" name="cdr" value="<?php echo $this->cdr; ?>"><br>
+               <input type="hidden" name="tracking" value="<?php echo $this->info_demande_xprice['tracking_number_demande_xprice']; ?>">
+            </div>
+            <input class="submit" type="submit" value="enregistrer votre commentaire">
+        </form>
+    </div>
+    <div class="clear"></div>
+</div>
+<div class="clear"></div>

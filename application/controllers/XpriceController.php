@@ -1048,14 +1048,15 @@ if($user->id_fonction == 3){
           
             foreach ($marge as $key => $value2) {
                 $margesmc = substr($value2,0,-1);
-                if ($margesmc < 10 || $margesmc == 0) {
+                if ($margesmc < 0) {
                     $margemin = true;
                    
                 } 
             }
-            if($margemin==false){
+            if($margemin==false || $datas['mamo'] >10){
                 $datas['validation']="fermee";
             }
+            echo '<pre>',var_export($datas['validation']),'</pre>'; exit();
             $nouvelle_validation = new Application_Model_DbTable_Validationsxprice();
             $nouv_validation = $nouvelle_validation->createValidation(
                     $nom_validation, $date_validation, $datas['validation'], $datas['commentaire_dbd'], $user->id_user, $datas['tracking']);
@@ -2288,7 +2289,7 @@ if($mailServiceClients[0]['mail_service_client']=='regionNord'){
 
     public function consultAction() {
         $user = $this->_auth->getStorage()->read();
-         $this->view->utilisateur=$user->id_fonction;
+        $this->view->utilisateur=$user->id_fonction;
         $tiltop = $user->id_user;
         $this->view->cdr = $tiltop;
         $numwp = $this->getRequest()->getParam('numwp', null);
@@ -2479,7 +2480,7 @@ if($mailServiceClients[0]['mail_service_client']=='regionNord'){
     
     public function consultlibreAction() {
         $user = $this->_auth->getStorage()->read();
-         $this->view->utilisateur=$user->id_fonction;
+        $this->view->utilisateur=$user->id_fonction;
         $tiltop = $user->id_user;
         $this->view->cdr = $tiltop;
         $tracking = $this->getRequest()->getParam('tracking', null);
@@ -2649,4 +2650,96 @@ if($mailServiceClients[0]['mail_service_client']=='regionNord'){
     public function recapAction(){
 
     } 
+    public function consultchefmarcheAction(){
+        $user = $this->_auth->getStorage()->read();
+        $this->view->utilisateur=$user->id_fonction;
+        echo '<pre>',var_export($user),'</pre>';
+        $tiltop = $user->id_user;
+        $this->view->cm = $tiltop;
+        $numwp = $this->getRequest()->getParam('numwp', null);
+        $this->view->numwp = $numwp;
+        $infos_demande_xprice = new Application_Model_DbTable_Xprices();
+        $info_demande_xprice = $infos_demande_xprice->getNumwp($numwp);
+        /*
+         * on va rechercher les informations concernant la demande _xprice
+         */
+        $infos_demande_xprice = new Application_Model_DbTable_Xprices();
+        $info_demande_xprice = $infos_demande_xprice->getNumwp($numwp);
+//echo '<pre>',  var_export($info_demande_xprice),'<pre>';
+        $user_id = $info_demande_xprice['id_user'];
+        $infos_user = new Application_Model_DbTable_Users();
+        $info_user = $infos_user->getUserDemande($info_demande_xprice['id_user']);
+        $id_holon=$info_user['id_holon'];
+        $holonuser = new Application_Model_DbTable_Holons();
+        $holonuser1 = $holonuser->getHolon($id_holon);
+        $nom_holon = $holonuser1['nom_holon'];
+        $this->view->holon = $nom_holon;
+        $this->view->info_demande_xprice = $info_demande_xprice;
+        $date = DateTime::createFromFormat('Y-m-d', $info_demande_xprice['date_demande_xprice']);
+        $dateplop = $date->format('d/m/Y');
+        $this->view->dateplop = $dateplop;
+        $info_user = $infos_user->getUserDemande($user_id);
+ /*
+         * chargement des validations avec leurs commentaires
+         */
+        $dbtValidationsDemandesXprices = new Application_Model_DbTable_Validationsdemandexprices();
+        $validationsDemandesXprices = $dbtValidationsDemandesXprices->getAllValidation($info_demande_xprice['id_demande_xprice']);
+        
+        $plopatt=count($validationsDemandesXprices)-1;
+        
+        $etat_en_cours=$validationsDemandesXprices[$plopatt]['etat_validation'];
+        $this->view->etat_en_cours=$etat_en_cours;
+        
+        $this->view->validations = $validationsDemandesXprices;
+        $usersValidations = array();
+
+        foreach (@$validationsDemandesXprices as $key => $validationDemandeXprice) {
+            $userValidationInfos = $infos_user->getFonctionLabel($validationDemandeXprice['id_user']);
+            $usersValidations[$key]['fonction'] = $userValidationInfos['description_fonction'];
+        }
+        $this->view->usersValidations = $usersValidations;
+        /*
+         * Fin du chargement des validations
+         */
+        $this->view->info_user = $info_user;
+        $infos_client = new Application_Model_DbTable_Clients();
+        $info_client = $infos_client->getClientnumwp($info_demande_xprice['numwp_client']);
+        $this->view->info_client = $info_client;
+        $noms_industrie = new Application_Model_DbTable_Industry();
+        $nom_industrie = $noms_industrie->getIndustry($info_client['id_industry']);
+        $this->view->nom_industrie = $nom_industrie;
+        $infos_demande_article_xprice = new Application_Model_DbTable_DemandeArticlexprices();
+        $info_demande_article_xprice = $infos_demande_article_xprice->getDemandeArticlexprice($numwp);
+        $this->view->info_demande_article_xprice = $info_demande_article_xprice;
+        $nomclients = trim($info_client['nom_client']);
+        
+        
+        if ($this->getRequest()->isPost()) {
+            
+            $date_validation = date("Y-m-d H:i:s");
+            $this->view->date_validation = $date_validation;
+            $nom_validation = "comcm";
+            $formData = $this->getRequest()->getPost();
+
+            $nouvelle_validation = new Application_Model_DbTable_Validationsxprice();
+            $nouv_validation = $nouvelle_validation->createValidation($formData['nom_validation'], $formData['date_validation'], $etat_en_cours, $formData['commentaire_chefmarche'], $user->id_user, $formData['tracking']);
+            $valid_id_valid = new Application_Model_DbTable_Validationsxprice();
+            $valid_id_valids = $valid_id_valid->getValidation($formData['nom_validation'], $formData['tracking']);
+
+            $datasValidation = array(
+                'nom_validation' => $nom_validation, 'validation' => $etat_en_cours,
+                'commentaire' => $formData['commentaire_chefmarche'],
+                'id_user' => $user->id_user, 'id_demande_xprice' => $info_demande_xprice['id_demande_xprice']
+            );
+           
+            $commentId = $this->genererValidation($datasValidation);
+            $flashMessenger = $this->_helper->getHelper('FlashMessenger');
+                $message = "votre commentaire a bien été enregistré.";
+                $flashMessenger->addMessage($message);
+                $redirector = $this->_helper->getHelper('Redirector');
+                $redirector->gotoSimple('index', 'xprice');
+        }
+
+    
+    }
 }
