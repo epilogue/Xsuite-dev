@@ -628,11 +628,11 @@ if($this->getRequest()->isPost()){
         $numwpexist = $demandes_xdistrib->getNumwp($numwp);
                     $firstComment = null;
                     if (is_null($numwpexist)) {
-                        $dbtValidationDemande = new Application_Model_DbTable_Validationsdemandexprices();
+                        $dbtValidationDemande = new Application_Model_DbTable_Validationsdemandexdistribs();
                         if (!is_null($formData['contexte']) && trim($formData['contexte']) != "") {
                             $now = new DateTime();
                             $validationDemande = $dbtValidationDemande->createValidation(
-                                    "creation", $now->format('Y-m-d H:i:s'), "creation", $user_info['id_user'], $demande_xprice->lastId(), null);
+                                    "creation", $now->format('Y-m-d H:i:s'), "creation", $id_user, $demandes_xdistrib->lastId(), null);
                             $firstComment = $dbtValidationDemande->lastId();
                         }
                     }  
