@@ -556,7 +556,7 @@ if($this->getRequest()->isPost()){
             $clientTemp= $clientTemps->createTemp($numwp,$numwp_client_final,$code_postal_client_final,$potentiel_client_final,$ville_client_final,$nom_industry,$id_industry,$nom_client_final);
             
             $clientDEF= new Application_Model_DbTable_ClientDistrib();
-            $clientDefs= $clientDEF->createClientDistrib($numwp,$numwp_client_final,$code_postal_client_final,$potentiel_client_final,$ville_client_final,$nom_industry,$id_industry,$nom_client_final);
+            $clientDefs= $clientDEF->createClientDistrib($numwp,$numwp_client_final,$code_postal_client_final,$potentiel_client_final,$ville_client_final,$nom_industry,$id_industry,$nom_client_final,null);
         /*fin de l'insertion des données movex dans les tables temporaires */
             /* debut de requettage  pour affichage des informations  dans le phtml*/
             /*requete info_ vendeur, info_distrib,info_client*/ 

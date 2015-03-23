@@ -748,7 +748,7 @@ if($user->id_fonction == 3){
                         break;
                 }
                 $params3 = array();
-                $params3['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/consult/numwp/{$numwp}";
+                $params3['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/consultchefmarche/numwp/{$numwp}";
                 $params3['corpsMail'] = "Bonjour,\n"
                         . "\n"
                         . "Vous avez une nouvelle demande XPrice $tracking/$numwp à consulter de {$info_user['nom_user']} pour le client $nomclients.\n"
