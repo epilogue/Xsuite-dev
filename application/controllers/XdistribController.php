@@ -632,7 +632,7 @@ if($this->getRequest()->isPost()){
                         if (!is_null($formData['contexte']) && trim($formData['contexte']) != "") {
                             $now = new DateTime();
                             $validationDemande = $dbtValidationDemande->createValidation(
-                                   null,$demandes_xdistrib->lastId(),$id_user, "creation", $now->format('Y-m-d H:i:s'), "creation", null);
+                                   null,$demandes_xdistrib->lastId(),$user_connect->id_user, "creation", $now->format('Y-m-d H:i:s'), "creation", null);
                             $firstComment = $dbtValidationDemande->lastId();
                         }
                     }  
