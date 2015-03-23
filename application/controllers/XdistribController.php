@@ -611,7 +611,7 @@ if($this->getRequest()->isPost()){
           $emailVars = Zend_Registry::get('emailVars');
   if ($this->getRequest()->isPost()) {
         $formData = $this->getRequest()->getPost();
-               echo '<pre>',  var_export($user_connect),'</pre>';
+        echo '<pre>',  var_export($formdata),'</pre>';
         $tempClienttruns= new Application_Model_DbTable_TempClient();
         $tempClienttrun=$tempClienttruns->truncateAll(); 
         /*on va chercher des infos sur le user
@@ -626,20 +626,17 @@ if($this->getRequest()->isPost()){
         $nom_distrib=$formData['nom_distrib'];
         $demandes_xdistrib = new Application_Model_DbTable_Xdistrib();
         $numwpexist = $demandes_xdistrib->getNumwp($numwp);
-                    $firstComment = null;
-                    if (!is_null($numwpexist)) {
-                        $dbtValidationDemande = new Application_Model_DbTable_Validationsdemandexdistribs();
-                        if (!is_null($formData['contexte']) && trim($formData['contexte']) != "") {
-                            $now = new DateTime();
-                            $validationDemande = $dbtValidationDemande->createValidation(
-                                   null,$demandes_xdistrib->lastId(),$user_connect->id_user, "creation", $now->format('Y-m-d H:i:s'), "creation", null);
-                            $firstComment = $dbtValidationDemande->lastId();
-                        }
-                    }  
+        $firstComment = null;
+        if (!is_null($numwpexist)) {
+            $dbtValidationDemande = new Application_Model_DbTable_Validationsdemandexdistribs();
+            if (!is_null($formData['contexte']) && trim($formData['contexte']) != "") {
+                $now = new DateTime();
+                $validationDemande = $dbtValidationDemande->createValidation(null,$demandes_xdistrib->lastId(),$user_connect->id_user, "creation", $now->format('Y-m-d H:i:s'), "creation", null);
+                $firstComment = $dbtValidationDemande->lastId();
+            }
+        }  
         $trackingNumber=$formData['trackingNumber'];
         $zonetracking = substr($trackingNumber, 7, 2);
-        
-        echo '<pre>',  var_dump($zonetracking),'</pre>';
         $destinataire=$formData['info_dd'];
         $params1=array();
         $params=array();
@@ -667,7 +664,6 @@ if($this->getRequest()->isPost()){
                     $destinataireMail1 = $emailVars->listes->CDROUEST;
                     break;
             }
-            echo '<pre>',  var_dump($destinataireMail1),'</pre>';
              $params['destinataireMail']=$destinataireMail1;
              $params['url']="http://{$_SERVER['SERVER_NAME']}/xdistrib/validatedrv/numwp/{$numwp}";
              $params['corpsMail']="Bonjour,\n"
