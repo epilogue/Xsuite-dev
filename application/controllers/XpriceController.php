@@ -367,7 +367,7 @@ if($user->id_fonction == 3){
                      * si ITC ou KAM alors envoie mail pour consultation au leader et au chef de région
                      * si leader  et dd envoie mail au chef de région.
                      */
-                    $destIndustry = $info_industry['id_industry'];
+                    $destIndustry =intval($info_industry['id_industry']) ;
                     var_dump($destIndustry);
                     $emailVars = Zend_Registry::get('emailVars');
                     //$fonctioncreateur = $user_info['id_fonction'];
@@ -418,7 +418,7 @@ if($user->id_fonction == 3){
                         . "--\n"
                         . "Xprice";
                 $params4['destinataireMail'] = $destinataireMail4;
-                $params4['sujet'] = " XPrice : Nouvelle demande Xprice $tracking/$numwp à consulter de {$info_user['nom_user']} pour le client $nomclients.";
+                $params4['sujet'] = " XPrice : Nouvelle demande Xprice {$trackingNumber}/{$numwp} à consulter de {$user_info['nom_user']} pour $clientsnom.";
                 var_dump($params4);exit();
                 $this->sendEmail($params4);
                     /*
