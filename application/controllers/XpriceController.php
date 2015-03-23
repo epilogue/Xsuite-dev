@@ -406,7 +406,6 @@ if($user->id_fonction == 3){
                         $destinataireMail4 = $emailVars->listes->environnementEnergie;
                         break;
                 }
-                $params4 = array();
                 $params4['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/consultchefmarche/numwp/{$numwp}";
                 $params4['corpsMail'] = "Bonjour,\n"
                         . "\n"
@@ -420,6 +419,7 @@ if($user->id_fonction == 3){
                         . "Xprice";
                 $params4['destinataireMail'] = $destinataireMail4;
                 $params4['sujet'] = " XPrice : Nouvelle demande Xprice $tracking/$numwp à consulter de {$info_user['nom_user']} pour le client $nomclients.";
+                var_dump($params4);exit();
                 $this->sendEmail($params4);
                     /*
                      * ici si itc envoie mail au leader en fonction du holon pour consultation
