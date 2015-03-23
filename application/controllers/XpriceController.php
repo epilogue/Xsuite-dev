@@ -367,6 +367,7 @@ if($user->id_fonction == 3){
                      * si ITC ou KAM alors envoie mail pour consultation au leader et au chef de région
                      * si leader  et dd envoie mail au chef de région.
                      */
+                        $destIndustry = $info_industry['id_industry'];
                     $emailVars = Zend_Registry::get('emailVars');
                     //$fonctioncreateur = $user_info['id_fonction'];
                     $holoncreateur = $user_info['id_holon'];
@@ -386,6 +387,39 @@ if($user->id_fonction == 3){
 //                                . "Xsuite";
 //                                $params['sujet']=" XPrice :Votre Offre  Xprice {$trackingNumber}/{$numwp} de {$user_info['nom_user']} pour $clientsnom";
 //                                $this->sendEmail($params);
+                    $params4=array();
+                    switch ($destIndustry) {
+                    case ($destIndustry > 0 && $destIndustry < 77 ):
+                        $destinataireMail4 = $emailVars->listes->carIndustries1;
+                        break;
+                    case ($destIndustry > 76 && $destIndustry < 138 ):
+                        $destinataireMail4 = $emailVars->listes->LifeandScience;
+                        break;
+                    case ($destIndustry > 137 && $destIndustry < 272 ):
+                        $destinataireMail4 = $emailVars->listes->Electronique;
+                        break;
+                    case ($destIndustry > 271 && $destIndustry < 314 ):
+                        $destinataireMail4 = $emailVars->listes->foodIndustries;
+                        break;
+                    case ($destIndustry > 313 && $destIndustry <= 415 ):
+                        $destinataireMail4 = $emailVars->listes->environnementEnergie;
+                        break;
+                }
+                $params4 = array();
+                $params4['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/consultchefmarche/numwp/{$numwp}";
+                $params4['corpsMail'] = "Bonjour,\n"
+                        . "\n"
+                        . "Vous avez une nouvelle demande XPrice $tracking/$numwp à consulter de {$info_user['nom_user']} pour le client $nomclients.\n"
+                        . "Veuillez vous rendre à l'adresse url : \n"
+                        . "%s"
+                        . "\n\n"
+                        . "Cordialement,\n"
+                        . "\n"
+                        . "--\n"
+                        . "Xprice";
+                $params4['destinataireMail'] = $destinataireMail4;
+                $params4['sujet'] = " XPrice : Nouvelle demande Xprice $tracking/$numwp à consulter de {$info_user['nom_user']} pour le client $nomclients.";
+                $this->sendEmail($params4);
                     /*
                      * ici si itc envoie mail au leader en fonction du holon pour consultation
                      */
