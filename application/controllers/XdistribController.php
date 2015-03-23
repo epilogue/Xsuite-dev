@@ -611,6 +611,7 @@ if($this->getRequest()->isPost()){
           $emailVars = Zend_Registry::get('emailVars');
   if ($this->getRequest()->isPost()) {
         $formData = $this->getRequest()->getPost();
+         $numwp=$formData['numwp']; 
         echo '<pre>',  var_export($formData),'</pre>';
         $tempClienttruns= new Application_Model_DbTable_TempClient();
         $tempClienttrun=$tempClienttruns->truncateAll(); 
@@ -618,10 +619,11 @@ if($this->getRequest()->isPost()){
         * si id_fonction =1 ou =2 alors envoi mail pour validation au dd de la zone 
         * si id_fonction =6 alors envoi mail pour validation au drv de la zone 
         */
+        $info_service=new Application_Model_DbTable_ServiceDistrib();
+        $infos_services=$info_service->createServiceDistrib($formData['numwp'], $formData['produitdedie'], $formData['ecatalogue'], $formData['journeetech'], $formData['accescom'], $formData['identconc'], $formData['interlocuteur'], $formData['service__associe']);
         $infos_users= new Application_Model_DbTable_Users();
         $id_user = $formData['id_user'];
         $info_user = $infos_users->getUser($id_user);
-        $numwp=$formData['numwp']; 
         $nom_client=$formData['nom_client'];
         $nom_distrib=$formData['nom_distrib'];
         $demandes_xdistrib = new Application_Model_DbTable_Xdistrib();
