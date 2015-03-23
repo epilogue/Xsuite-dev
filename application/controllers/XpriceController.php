@@ -368,7 +368,7 @@ if($user->id_fonction == 3){
                      * si leader  et dd envoie mail au chef de région.
                      */
                     $destIndustry =intval($info_industry['id_industry']) ;
-                    var_dump($destIndustry);
+                  
                     $emailVars = Zend_Registry::get('emailVars');
                     //$fonctioncreateur = $user_info['id_fonction'];
                     $holoncreateur = $user_info['id_holon'];
@@ -419,7 +419,7 @@ if($user->id_fonction == 3){
                         . "Xprice";
                 $params4['destinataireMail'] = $destinataireMail4;
                 $params4['sujet'] = " XPrice : Nouvelle demande Xprice {$trackingNumber}/{$numwp} à consulter de {$user_info['nom_user']} pour $clientsnom.";
-                var_dump($params4);
+               
                 $this->sendEmail($params4);
                     /*
                      * ici si itc envoie mail au leader en fonction du holon pour consultation
@@ -764,39 +764,6 @@ if($user->id_fonction == 3){
                         . "Xprice";
                 $params2['sujet'] = " XPrice : Nouvelle demande Xprice $tracking/$numwp à valider de {$info_user['nom_user']} pour le client $nomclients.";
                 $this->sendEmail($params2);
-
-                switch ($destIndustry) {
-                    case ($destIndustry > 0 && $destIndustry < 77 ):
-                        $destinataireMail2 = $emailVars->listes->carIndustries1;
-                        break;
-                    case ($destIndustry > 76 && $destIndustry < 138 ):
-                        $destinataireMail2 = $emailVars->listes->LifeandScience;
-                        break;
-                    case ($destIndustry > 137 && $destIndustry < 272 ):
-                        $destinataireMail2 = $emailVars->listes->Electronique;
-                        break;
-                    case ($destIndustry > 271 && $destIndustry < 314 ):
-                        $destinataireMail2 = $emailVars->listes->foodIndustries;
-                        break;
-                    case ($destIndustry > 313 && $destIndustry <= 415 ):
-                        $destinataireMail2 = $emailVars->listes->environnementEnergie;
-                        break;
-                }
-                $params3 = array();
-                $params3['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/consultchefmarche/numwp/{$numwp}";
-                $params3['corpsMail'] = "Bonjour,\n"
-                        . "\n"
-                        . "Vous avez une nouvelle demande XPrice $tracking/$numwp à consulter de {$info_user['nom_user']} pour le client $nomclients.\n"
-                        . "Veuillez vous rendre à l'adresse url : \n"
-                        . "%s"
-                        . "\n\n"
-                        . "Cordialement,\n"
-                        . "\n"
-                        . "--\n"
-                        . "Xprice";
-                $params3['destinataireMail'] = $destinataireMail2;
-                $params3['sujet'] = " XPrice : Nouvelle demande Xprice $tracking/$numwp à consulter de {$info_user['nom_user']} pour le client $nomclients.";
-                $this->sendEmail($params3);
 
                 $flashMessenger = $this->_helper->getHelper('FlashMessenger');
                 $message = "la demande a été validée.";
@@ -2688,7 +2655,7 @@ if($mailServiceClients[0]['mail_service_client']=='regionNord'){
     public function consultchefmarcheAction(){
         $user = $this->_auth->getStorage()->read();
         $this->view->utilisateur=$user->id_fonction;
-        echo '<pre>',var_export($user),'</pre>';
+      
         $tiltop = $user->id_user;
         $this->view->cm = $tiltop;
         $numwp = $this->getRequest()->getParam('numwp', null);
