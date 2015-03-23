@@ -611,7 +611,7 @@ if($this->getRequest()->isPost()){
           $emailVars = Zend_Registry::get('emailVars');
   if ($this->getRequest()->isPost()) {
         $formData = $this->getRequest()->getPost();
-               echo '<pre>',  var_export($formData),'</pre>';
+               echo '<pre>',  var_export($user_connect),'</pre>';
         $tempClienttruns= new Application_Model_DbTable_TempClient();
         $tempClienttrun=$tempClienttruns->truncateAll(); 
         /*on va chercher des infos sur le user
