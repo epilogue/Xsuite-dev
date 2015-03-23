@@ -627,7 +627,7 @@ if($this->getRequest()->isPost()){
         $demandes_xdistrib = new Application_Model_DbTable_Xdistrib();
         $numwpexist = $demandes_xdistrib->getNumwp($numwp);
                     $firstComment = null;
-                    if (is_null($numwpexist)) {
+                    if (!is_null($numwpexist)) {
                         $dbtValidationDemande = new Application_Model_DbTable_Validationsdemandexdistribs();
                         if (!is_null($formData['contexte']) && trim($formData['contexte']) != "") {
                             $now = new DateTime();
