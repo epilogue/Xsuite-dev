@@ -409,7 +409,7 @@ if($user->id_fonction == 3){
                 $params4['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/consultchefmarche/numwp/{$numwp}";
                 $params4['corpsMail'] = "Bonjour,\n"
                         . "\n"
-                        . "Vous avez une nouvelle demande XPrice $tracking/$numwp à consulter de {$info_user['nom_user']} pour le client $nomclients.\n"
+                        . "Vous avez une nouvelle demande XPrice {$trackingNumber}/{$numwp} à consulter de {$user_info['nom_user']} pour $clientsnom.\n"
                         . "Veuillez vous rendre à l'adresse url : \n"
                         . "%s"
                         . "\n\n"
