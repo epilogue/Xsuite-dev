@@ -368,7 +368,7 @@ if($user->id_fonction == 3){
                      * si leader  et dd envoie mail au chef de région.
                      */
                     $destIndustry = $info_industry['id_industry'];
-                    var_dump($destIndustry);
+                    var_dump($destIndustry);exit();
                     $emailVars = Zend_Registry::get('emailVars');
                     //$fonctioncreateur = $user_info['id_fonction'];
                     $holoncreateur = $user_info['id_holon'];
