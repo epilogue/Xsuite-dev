@@ -419,7 +419,7 @@ if($user->id_fonction == 3){
                         . "Xprice";
                 $params4['destinataireMail'] = $destinataireMail4;
                 $params4['sujet'] = " XPrice : Nouvelle demande Xprice {$trackingNumber}/{$numwp} à consulter de {$user_info['nom_user']} pour $clientsnom.";
-                var_dump($params4);exit();
+                var_dump($params4);
                 $this->sendEmail($params4);
                     /*
                      * ici si itc envoie mail au leader en fonction du holon pour consultation
