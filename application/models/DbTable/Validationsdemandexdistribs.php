@@ -4,15 +4,16 @@ class Application_Model_DbTable_Validationsdemandexdistribs extends Zend_Db_Tabl
 
     protected $_name = 'validations_demande_xdistrib';
 
-    public function createValidation($nom_validation, $date_validation, $etat_validation, $id_user, $id_demande_xdistrib, $commentaire = null, $validations_demande_xdistrib_id = null) {
-        $data = array(
+    public function createValidation( $validations_demande_xdistrib_id = null, $id_demande_xdistrib, $id_user, $nom_validation, $date_validation, $etat_validation,  $commentaire = null) {
+        $data = array( 
+            'validations_demande_xdistrib_id' => $validations_demande_xdistrib_id,
+            'id_demande_xdistrib' => $id_demande_xdistrib,
+            'id_user' => $id_user,
             'nom_validation' => $nom_validation,
             'date_validation' => $date_validation,
             'etat_validation' => $etat_validation,
-            'id_user' => $id_user,
-            'id_demande_xdistrib' => $id_demande_xdistrib,
             'commentaire' => $commentaire,
-            'validations_demande_xdistrib_id' => $validations_demande_xdistrib_id
+           
         );
         $this->insert($data);
         return $this;
