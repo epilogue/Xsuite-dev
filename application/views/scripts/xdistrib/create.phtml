@@ -107,13 +107,6 @@ $this->headTitle($this->title);
                         <td>Projet:</td>
                         <td><?php echo $this->client_info['nom_industry']?></td>
                     </tr>
-                    <tr>
-                        <td>Client cible PAC :</td>
-                        <td>
-                            <span class="pac"><input type="radio" name="pac" value="oui">Oui</span>
-                            <span class="pac"><input type="radio" name="pac" value="non">Non</span>
-                        </td>
-                    </tr>
                 </table>
            </fieldset>
         </div>
@@ -174,6 +167,14 @@ $this->headTitle($this->title);
             <fieldset class="field">
                 <legend>Services Associés apportés par le distributeur</legend>
                 <table>
+                    
+                    <tr>
+                        <td>Client cible PAC :</td>
+                        <td>
+                            <span class="pac"><input type="radio" name="pac" value="oui">Oui</span>
+                            <span class="pac"><input type="radio" name="pac" value="non">Non</span>
+                        </td>
+                    </tr>
                     <tr>
                         <td><input type="checkbox" name="produitdedie" value="Stock produit dédié">Stock produit dédié</td>
                         <td><input type="checkbox" name="ecatalogue" value="E-catalogue">E-catalogue</td>
