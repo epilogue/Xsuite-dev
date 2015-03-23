@@ -164,12 +164,13 @@ $this->headTitle($this->title);
             </fieldset>
         </div>
         <div class="clear"></div>
+     <form action ="maildispatch" method ="post">
         <div id="contexte_service" class="workplace">
             <fieldset class="field">
                 <legend>Contexte de la demande</legend>
                  <textarea name="contexte" cols="120" rows="7"><?php echo $this->context_info;?></textarea>
             </fieldset>
-        <form action ="maildispatch" method ="post">
+       
             <fieldset class="field">
                 <legend>Services Associés apportés par le distributeur</legend>
                 <table>

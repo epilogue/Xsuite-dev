@@ -621,13 +621,24 @@ if($this->getRequest()->isPost()){
         $infos_users= new Application_Model_DbTable_Users();
         $id_user = $formData['id_user'];
         $info_user = $infos_users->getUser($id_user);
-//        echo '<pre>',var_export($formData),'</pre>';
-//        echo '<pre>',var_export($user_connect),'</pre>';
-        $numwp=$formData['numwp'];
+        $numwp=$formData['numwp']; 
         $nom_client=$formData['nom_client'];
         $nom_distrib=$formData['nom_distrib'];
+        $demandes_xdistrib = new Application_Model_DbTable_Xdistrib();
+        $numwpexist = $demandes_xdistrib->getNumwp($numwp);
+                    $firstComment = null;
+                    if (is_null($numwpexist)) {
+                        $dbtValidationDemande = new Application_Model_DbTable_Validationsdemandexprices();
+                        if (!is_null($formData['contexte']) && trim($formData['contexte']) != "") {
+                            $now = new DateTime();
+                            $validationDemande = $dbtValidationDemande->createValidation(
+                                    "creation", $now->format('Y-m-d H:i:s'), "creation", $user_info['id_user'], $demande_xprice->lastId(), null);
+                            $firstComment = $dbtValidationDemande->lastId();
+                        }
+                    }  
         $trackingNumber=$formData['trackingNumber'];
         $zonetracking = substr($trackingNumber, 7, 2);
+        
         echo '<pre>',  var_dump($zonetracking),'</pre>';
         $destinataire=$formData['info_dd'];
         $params1=array();
