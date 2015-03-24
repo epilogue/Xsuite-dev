@@ -37,6 +37,10 @@ body{
     padding-left: 50px;
 }
 
+.dis {
+    border-style: none;
+}
+
 #header{
     width: 1024px;
     height: 150px;
