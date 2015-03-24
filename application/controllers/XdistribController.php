@@ -282,6 +282,7 @@ if($this->getRequest()->isPost()){
             }      
         }
         $rowsbis=array_filter(array_map('array_filter',$rows));
+       echo '<pre>', var_export($rowsbis),'</pre>';
 
         ///*troisieme iteration on va chercher 
         // * le nom des concurrents les references
@@ -384,7 +385,7 @@ if($this->getRequest()->isPost()){
         $tempinfodistribs = $tempinfodistrib->createInfo($numwp, $nom_distributeur, $code_postal_distributeur, $ville_distributeur, $contact_distributeur, $nom_client_final, $numwp_client_final, $code_postal_client_final, $ville_client_final, $potentiel_client_final);
         $temparticledistrib = new Application_Model_DbTable_TempFichierDistribArticle();
         foreach($rowsbis as $value){
-            $temparticledistribs = $temparticledistrib->createArticle($numwp, trim($value[0]), $value[1], $value[2], $value[3], $value[5], $value[6]);
+            $temparticledistribs = $temparticledistrib->createArticle($numwp, trim($value[0]), $value[1], $value[2], $value[3], $value[5], $value[6],$value[7]);
         }
         $tempprixconcurrent = new Application_Model_DbTable_TempFicherDistribPrixConcurrent();
         foreach ($rows3bis as $value){
@@ -593,7 +594,7 @@ if($this->getRequest()->isPost()){
         $Defxdistribarticles= new Application_Model_DbTable_DemandeArticlexdistrib();
         foreach($article_info as $art){
             $marge_demande_article = 100*(1-($art['prix_cif']/$art['prix_achat_demande_distrib']));
-            $Defxdistribarticle = $Defxdistribarticles->createDemandeArticlexdistrib($art['prix_tarif'],$art['prix_achat_actuel'] ,$art['prix_achat_demande_distrib'], $art['prix_achat_demande_client_final'],$art['quantite'], $art['remise_supplementaire'], $art['date'],$art['prix_achat_demande_distrib'],$art['remise_supplementaire'], $art['prix_fob'], $art['prix_cif'], $marge_demande_article,$trackingNumber, $art['code_article'], $art['reference_article'], $numwp,$art['code_acquisition']);
+            $Defxdistribarticle = $Defxdistribarticles->createDemandeArticlexdistrib($art['prix_tarif'],$art['prix_achat_actuel'] ,$art['prix_achat_demande_distrib'], $art['prix_achat_demande_client_final'],$art['quantite'], $art['remise_supplementaire'], $art['serie'],$art['date'],$art['prix_achat_demande_distrib'],$art['remise_supplementaire'], $art['prix_fob'], $art['prix_cif'], $marge_demande_article,$trackingNumber, $art['code_article'], $art['reference_article'], $numwp,$art['code_acquisition']);
         } 
         $DefConcurrents = new Application_Model_DbTable_PrixConcurrent();
         foreach($concurrent_info as $con){

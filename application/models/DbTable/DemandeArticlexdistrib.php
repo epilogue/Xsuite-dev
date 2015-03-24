@@ -4,7 +4,7 @@ class Application_Model_DbTable_DemandeArticlexdistrib extends Zend_Db_Table_Abs
 
     protected $_name = 'demande_article_xdistrib';
 
-    public function createDemandeArticlexdistrib($prix_tarif,$prix_achat_actuel,$prix_demande_article,$prix_client_final, $quantite_demande_article, $remise_demande_article, $date_demande_xdistrib, $prix_accorde_demande_article, $remise_accorde_demande_article, $prix_fob_demande_article, $prix_cif_demande_article, $marge_demande_article, $tracking_number_demande_xdistrib, $code_article, $reference_article, $num_workplace_demande_xdistrib,$code_acquisition) {
+    public function createDemandeArticlexdistrib($prix_tarif,$prix_achat_actuel,$prix_demande_article,$prix_client_final, $quantite_demande_article, $remise_demande_article, $serie,$date_demande_xdistrib, $prix_accorde_demande_article, $remise_accorde_demande_article, $prix_fob_demande_article, $prix_cif_demande_article, $marge_demande_article, $tracking_number_demande_xdistrib, $code_article, $reference_article, $num_workplace_demande_xdistrib,$code_acquisition) {
         $data = array(
             'prix_tarif' => $prix_tarif,
             'prix_achat_actuel' =>$prix_achat_actuel,
@@ -12,6 +12,7 @@ class Application_Model_DbTable_DemandeArticlexdistrib extends Zend_Db_Table_Abs
             'prix_client_final'=>$prix_client_final,
             'quantite_demande_article' => $quantite_demande_article,
             'remise_demande_article' => $remise_demande_article,
+            'serie'=>$serie,
             'date_demande_xdistrib' => $date_demande_xdistrib,
             'prix_accorde_demande_article' => $prix_accorde_demande_article,
             'remise_accorde_demande_article' => $remise_accorde_demande_article,
