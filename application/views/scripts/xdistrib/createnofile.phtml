@@ -16,11 +16,11 @@ $this->headTitle($this->title);
                 <table class="table_info">
                     <tr>
                         <td>Numéro workplace de l'offre :</td>
-                        <td><?php echo $this->infos_offres->OBORNO; ?></td>
+                        <td><input type="text" name="numwp" value="<?php echo $this->infos_offres->OBORNO; ?>"></td>
                     </tr>
                     <tr>
                         <td>Date de l'offre workplace :</td>
-                        <td><?php echo  $this->datefinal; ?></td>
+                        <td><input type="text" name="date_offre" value="<?php echo  $this->datefinal; ?>"></td>
                     </tr>
                 </table>
             </fieldset>
@@ -32,27 +32,27 @@ $this->headTitle($this->title);
                 <table>
                     <tr>
                         <td>Nom du TC SMC:</td>
-                        <td><?php echo $this->infos_tc['nom_user']?></td>
+                        <td><input type="text" name="nom_tc" value="<?php echo $this->infos_tc['nom_user']?>"></td>
                     </tr>
                     <tr>
                         <td>Prénom du TC SMC:</td>
-                        <td><?php echo $this->infos_tc['prenom_user']?></td>
+                        <td><input type="text" name="prenom_tc" value="<?php echo $this->infos_tc['prenom_user']?>"></td>
                     </tr>
                     <tr>
                         <td>Email du TC SMC:</td>
-                        <td><?php echo $this->infos_tc['email_user']?></td>
+                        <td><input type="text" name="email_tc" value="<?php echo $this->infos_tc['email_user']?>"></td>
                     </tr>
                     <tr>
                         <td>Nom du DD SMC:</td>
-                        <td><?php echo $this->infos_dd->nom_user; ?></td>
+                        <td><input type="text" name="nom_distrib" value="<?php echo $this->infos_dd->nom_user; ?>"></td>
                     </tr>
                     <tr>
                         <td>Prénom du DD SMC :</td>
-                        <td><?php echo $this->infos_dd->prenom_user; ?></td>
+                        <td><input type="text" name="prenom_distrib" value="<?php echo $this->infos_dd->prenom_user; ?>"></td>
                     </tr>
                     <tr>
                         <td>Email du DD SMC:</td>
-                        <td><?php echo $this->infos_dd->email_user; ?></td>
+                        <td><input type="text" name="email_distrib" value="<?php echo $this->infos_dd->email_user; ?>"></td>
                     </tr>
                 </table>
             </fieldset>
@@ -61,19 +61,19 @@ $this->headTitle($this->title);
                 <table>
                     <tr>
                         <td>Nom:</td>
-                        <td><?php echo trim($this->infos_distrib['OKCUNM']);?></td>
+                        <td><input type="text" value="<?php echo trim($this->infos_distrib['OKCUNM']);?>" name="nom_distrib"></td>
                     </tr>
                     <tr>
                         <td>Prénom Nom du contact:</td>
-                        <td></td>
+                        <td><input type="text" value="" name="contact_distrib"></td>
                     </tr>
                     <tr>
                         <td>code postal/Ville:</td>
-                        <td><?php echo $this->infos_distrib['OKCUA4'];?></td>
+                        <td><input type="text" name="code_postal_ville" value="<?php echo $this->infos_distrib['OKCUA4'];?>"></td>
                     </tr>
                     <tr>
                         <td>User Workplace:</td>
-                        <td><?php echo $this->infos_distrib['OKCUNO'];?></td>
+                        <td><input type="text" name="numwp_distrib" value="<?php echo $this->infos_distrib['OKCUNO'];?>"></td>
                     </tr>
                 </table>
             </fieldset>             
@@ -83,19 +83,19 @@ $this->headTitle($this->title);
                 <table>
                     <tr>
                         <td>Nom:</td>
-                        <td colspan="2"><?php echo trim($this->infos_client['OKCUNM'])?></td>
+                        <td colspan="2"><input type="text" name="nom_client" value="<?php echo trim($this->infos_client['OKCUNM'])?>"></td>
                     </tr>
                     <tr>
                         <td>Code Postal/ville</td>
-                        <td><?php echo $this->infos_client['OKCUA4']?></td>
+                        <td><input type="text" name="codepostal_client" value="<?php echo $this->infos_client['OKCUA4']?>"></td>
                     </tr>
                     <tr>
                         <td>User Workplace:</td>
-                        <td><?php echo $this->infos_client['OKCUNO']?></td>
+                        <td><input type="text" name="numwp_client" value="<?php echo $this->infos_client['OKCUNO']?>"></td>
                     </tr>
                      <tr>
                         <td>Projet:</td>
-                        <td><?php echo $this->info_industry['nom_industry'] ;?></td>
+                        <td><input type="text" name="code_industry_client" value="<?php echo $this->info_industry['nom_industry'] ;?>"></td>
                     </tr>
                     <tr>
                         <td>Client cible PAC :</td>
@@ -125,8 +125,8 @@ $this->headTitle($this->title);
                     </tr>
                     <?php foreach($this->affiche_offre as $k=>$value){ ?>
                     <tr>
-                        <td><?php echo $value['OBITDS']; ?></td>
-                        <td><?php echo round($value['OBORQT'],2); ?></td>
+                        <td><input type="text" name="" value=""><?php echo $value['OBITDS']; ?></td>
+                        <td><input type="text" name="" value=""><?php echo round($value['OBORQT'],2); ?></td>
                         <td id="pwp-<?php echo $k?>"><?php echo round($value['OBSAPR'],2)?></td>
                         <td><input style="background-color: #74aaca;height:30px; width:80px;margin-left:10px;" class="rad" name="remiseA[]" id="rad-<?php echo $k ;?>" value=""></td>
                         <td><input style="background-color: #74aaca;height:30px; width:80px;margin-left:10px;" class="pad" name="prixAchatActuel[]" id="pad-<?php echo $k ;?>" value=""></td>
