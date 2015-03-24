@@ -125,9 +125,9 @@ $this->headTitle($this->title);
                     </tr>
                     <?php foreach($this->affiche_offre as $k=>$value){ ?>
                     <tr>
-                        <td><input type="text" name="" value=""><?php echo $value['OBITDS']; ?></td>
-                        <td><input type="text" name="" value=""><?php echo round($value['OBORQT'],2); ?></td>
-                        <td id="pwp-<?php echo $k?>"><?php echo round($value['OBSAPR'],2)?></td>
+                        <td><input type="text" name="ref_produit[]" value="<?php echo $value['OBITDS']; ?>"></td>
+                        <td><input type="text" name="quantite[]" value="<?php echo round($value['OBORQT'],2); ?>"></td>
+                        <td id="pwp-<?php echo $k?>"><input type="text" name="prix_tarif[]" value="<?php echo round($value['OBSAPR'],2)?>"></td>
                         <td><input style="background-color: #74aaca;height:30px; width:80px;margin-left:10px;" class="rad" name="remiseA[]" id="rad-<?php echo $k ;?>" value=""></td>
                         <td><input style="background-color: #74aaca;height:30px; width:80px;margin-left:10px;" class="pad" name="prixAchatActuel[]" id="pad-<?php echo $k ;?>" value=""></td>
                         <td><?php echo round($value['OBNEPR'],2); ?></td>
