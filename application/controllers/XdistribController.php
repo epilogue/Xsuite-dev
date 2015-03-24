@@ -166,10 +166,7 @@ class XdistribController extends Zend_Controller_Action
              $this->view->affiche_offre=$affiche_offre;
          }
     }
-       if ($this->getRequest()->isPost()) {
-       $formData = $this->getRequest()->getPost();
-       echo '<pre>',var_export($formData),'</pre>';
-       }
+       
     }
 public function uploadnumwpAction(){
     
@@ -708,7 +705,10 @@ if($this->getRequest()->isPost()){
         }
     }
     public function readerAction(){
-  
+  if ($this->getRequest()->isPost()) {
+       $formData = $this->getRequest()->getPost();
+       echo '<pre>',var_export($formData),'</pre>';
+       }
 
     }
     public function consultAction()
