@@ -9,18 +9,18 @@ $this->headTitle($this->title);
 ?>
 <div id="plop3" class="contenu">
     <h2>Création d'une offre Xprice-distrib</h2>
-    <form method="post">
+    <form method="post" action="">
         <div id="workplace" class="workplace">
             <fieldset id="wp" class="field">
                 <legend>Informations offre</legend>
                 <table class="table_info">
                     <tr>
                         <td>Numéro workplace de l'offre :</td>
-                        <td><input class="dis" type="text" name="numwp" value="<?php echo $this->infos_offres->OBORNO; ?>"></td>
+                        <td><?php echo $this->infos_offres->OBORNO; ?></td>
                     </tr>
                     <tr>
                         <td>Date de l'offre workplace :</td>
-                        <td><input class="dis" type="text" name="date_offre" value="<?php echo  $this->datefinal; ?>"></td>
+                        <td><?php echo  $this->datefinal; ?></td>
                     </tr>
                 </table>
             </fieldset>
@@ -32,27 +32,27 @@ $this->headTitle($this->title);
                 <table>
                     <tr>
                         <td>Nom du TC SMC:</td>
-                        <td><input class="dis" type="text" name="nom_tc" value="<?php echo $this->infos_tc['nom_user']?>"></td>
+                        <td><?php echo $this->infos_tc['nom_user']?></td>
                     </tr>
                     <tr>
                         <td>Prénom du TC SMC:</td>
-                        <td><input class="dis" type="text" name="prenom_tc" value="<?php echo $this->infos_tc['prenom_user']?>"></td>
+                        <td><?php echo $this->infos_tc['prenom_user']?></td>
                     </tr>
                     <tr>
                         <td>Email du TC SMC:</td>
-                        <td><input class="dis" type="text" name="email_tc" value="<?php echo $this->infos_tc['email_user']?>"></td>
+                        <td><?php echo $this->infos_tc['email_user']?></td>
                     </tr>
                     <tr>
                         <td>Nom du DD SMC:</td>
-                        <td><input class="dis" type="text" name="nom_distrib" value="<?php echo $this->infos_dd->nom_user; ?>"></td>
+                        <td><?php echo $this->infos_dd->nom_user; ?></td>
                     </tr>
                     <tr>
                         <td>Prénom du DD SMC :</td>
-                        <td><input class="dis" type="text" name="prenom_distrib" value="<?php echo $this->infos_dd->prenom_user; ?>"></td>
+                        <td><?php echo $this->infos_dd->prenom_user; ?></td>
                     </tr>
                     <tr>
                         <td>Email du DD SMC:</td>
-                        <td><input class="dis" type="text" name="email_distrib" value="<?php echo $this->infos_dd->email_user; ?>"></td>
+                        <td><?php echo $this->infos_dd->email_user; ?></td>
                     </tr>
                 </table>
             </fieldset>
@@ -61,19 +61,19 @@ $this->headTitle($this->title);
                 <table>
                     <tr>
                         <td>Nom:</td>
-                        <td><input class="dis" type="text" value="<?php echo trim($this->infos_distrib['OKCUNM']);?>" name="nom_distrib"></td>
+                        <td><?php echo trim($this->infos_distrib['OKCUNM']);?></td>
                     </tr>
                     <tr>
                         <td>Prénom Nom du contact:</td>
-                        <td><input type="text" value="" name="contact_distrib"></td>
+                        <td></td>
                     </tr>
                     <tr>
                         <td>code postal/Ville:</td>
-                        <td><input class="dis" type="text" name="code_postal_ville" value="<?php echo $this->infos_distrib['OKCUA4'];?>"></td>
+                        <td><?php echo $this->infos_distrib['OKCUA4'];?></td>
                     </tr>
                     <tr>
                         <td>User Workplace:</td>
-                        <td><input class="dis" type="text" name="numwp_distrib" value="<?php echo $this->infos_distrib['OKCUNO'];?>"></td>
+                        <td><?php echo $this->infos_distrib['OKCUNO'];?></td>
                     </tr>
                 </table>
             </fieldset>             
@@ -83,19 +83,19 @@ $this->headTitle($this->title);
                 <table>
                     <tr>
                         <td>Nom:</td>
-                        <td colspan="2"><input class="dis" type="text" name="nom_client" value="<?php echo trim($this->infos_client['OKCUNM'])?>"></td>
+                        <td colspan="2"><?php echo trim($this->infos_client['OKCUNM'])?></td>
                     </tr>
                     <tr>
                         <td>Code Postal/ville</td>
-                        <td><input class="dis" type="text" name="codepostal_client" value="<?php echo $this->infos_client['OKCUA4']?>"></td>
+                        <td><?php echo $this->infos_client['OKCUA4']?></td>
                     </tr>
                     <tr>
                         <td>User Workplace:</td>
-                        <td><input class="dis" type="text" name="numwp_client" value="<?php echo $this->infos_client['OKCUNO']?>"></td>
+                        <td><?php echo $this->infos_client['OKCUNO']?></td>
                     </tr>
                      <tr>
                         <td>Projet:</td>
-                        <td><input class="dis" type="text" name="code_industry_client" value="<?php echo $this->info_industry['nom_industry'] ;?>"></td>
+                        <td><?php echo $this->info_industry['nom_industry'] ;?></td>
                     </tr>
                     <tr>
                         <td>Client cible PAC :</td>
@@ -125,9 +125,9 @@ $this->headTitle($this->title);
                     </tr>
                     <?php foreach($this->affiche_offre as $k=>$value){ ?>
                     <tr>
-                        <td><input type="text" name="ref_produit[]" value="<?php echo $value['OBITDS']; ?>"></td>
-                        <td><input type="text" name="quantite[]" value="<?php echo round($value['OBORQT'],2); ?>"></td>
-                        <td id="pwp-<?php echo $k?>"><input type="text" name="prix_tarif[]" value="<?php echo round($value['OBSAPR'],2)?>"></td>
+                        <td><?php echo $value['OBITDS']; ?></td>
+                        <td><?php echo round($value['OBORQT'],2); ?></td>
+                        <td id="pwp-<?php echo $k?>"><?php echo round($value['OBSAPR'],2)?></td>
                         <td><input style="background-color: #74aaca;height:30px; width:80px;margin-left:10px;" class="rad" name="remiseA[]" id="rad-<?php echo $k ;?>" value=""></td>
                         <td><input style="background-color: #74aaca;height:30px; width:80px;margin-left:10px;" class="pad" name="prixAchatActuel[]" id="pad-<?php echo $k ;?>" value=""></td>
                         <td><?php echo round($value['OBNEPR'],2); ?></td>
