@@ -153,12 +153,12 @@ $this->headTitle($this->title);
                         <td>Prix Tarif CONCURRENT</td>
                         <td>Prix spécial accordé CONCURRENT</td>
                     </tr>
-                    <?php  for( $j=0;$j<$i+1; $j++){?>
+                    <?php  for( $j=0;$j<$i; $j++){?>
                     <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td><input type="text" name="nom_concurrent"></td>
+                        <td><input type="text" name="reference_produit"></td>
+                        <td><input type="text" name="prix_tarif"></td>
+                        <td><input type="text" name="prix_spe"></td>
                     </tr> <?php }?>
                 </table>
             </fieldset>
