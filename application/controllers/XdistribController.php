@@ -148,10 +148,9 @@ class XdistribController extends Zend_Controller_Action
             $querydisbis = "select * from EIT.MVXCDTA.OCUSMA OCUSMA where OCUSMA.OKCUNO = '{$infos_offres->OBCUNO}'";
             $infos_distrib = odbc_fetch_array(odbc_exec($this->odbc_conn2, $querydisbis));
             $this->view->infos_distrib=$infos_distrib;   
-            echo '<pre>', var_export($infos_distrib),'</pre>';
              $query1quart2 = "select * from EIT.SMCCDTA.ZMCPJO  ZMCPJO where ZMCPJO.Z2CUNO= '{$infos_offres->OBCUNO}' ";
             $industriewp4 = odbc_fetch_array(odbc_exec($this->odbc_conn3, $query1quart2));
-             echo '<pre>', var_export($industriewp4),'</pre>';
+            
             $sqlaffiche = "select
                 OOLINE.OBITNO,
                 OOLINE.OBITDS,
@@ -166,7 +165,9 @@ class XdistribController extends Zend_Controller_Action
          while( $affiche_offre[]=odbc_fetch_array($affiche_offres)){
              $this->view->affiche_offre=$affiche_offre;
          }
-        }
+    }
+       if ($this->getRequest()->isPost()) {
+       $formData = $this->getRequest()->getPost();}
     }
 public function uploadnumwpAction(){
     
