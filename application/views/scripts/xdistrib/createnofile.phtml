@@ -121,6 +121,7 @@ $this->headTitle($this->title);
                         <td>Prix Achat demandé DISTRIBUTEUR</td>
                         <td>Prix Achat CLIENT FINAL</td>
                         <td>Remise supplémentaire DISTRIBUTEUR</td>
+                        <td>Remise référence ou série</td>
                     </tr>
                     <?php foreach($this->affiche_offre as $k=>$value){ ?>
                     <tr>
@@ -132,6 +133,10 @@ $this->headTitle($this->title);
                         <td><?php echo round($value['OBNEPR'],2); ?></td>
                         <td><input style="background-color: #74aaca;height:30px; width:80px;margin-left:10px;" type="text" name="prix_achat_client_final[]" id="Prix_achat_client_final" ></td>
                         <td><?php  $remiseB =(100-((100* $value['OBNEPR'])/$value['OBSAPR']));?><input type="text" name="remiseB[]" value="<?php echo round($remiseB,2).'%';?>"</td>
+                        <td>
+                            <span class="pac"><input type="radio" name="serie" value="référence">Remise référence</span>
+                            <span class="pac"><input type="radio" name="serie" value="série">Remise série</span>
+                        </td>
                     </tr> <?php }?>
                 </table>
             </fieldset>

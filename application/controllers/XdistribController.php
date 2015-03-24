@@ -622,7 +622,7 @@ if($this->getRequest()->isPost()){
         * si id_fonction =6 alors envoi mail pour validation au drv de la zone 
         */
         $info_service=new Application_Model_DbTable_ServiceDistrib();
-        $infos_services=$info_service->createServiceDistrib($formData['numwp'], $formData['produitdedie'], $formData['ecatalogue'], $formData['journeetech'], $formData['accescom'], $formData['identconc'], $formData['interlocuteur'], $formData['service__associe']);
+        $infos_services=$info_service->createServiceDistrib($formData['numwp'], $formData['produitdedie'], $formData['ecatalogue'], $formData['journeetech'], $formData['accescom'], $formData['identconc'], $formData['interlocuteur'], $formData['service_associe']);
         $infos_users= new Application_Model_DbTable_Users();
         $id_user = $formData['id_user'];
         $info_user = $infos_users->getUser($id_user);
