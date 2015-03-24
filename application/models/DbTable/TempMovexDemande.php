@@ -93,6 +93,7 @@ class Application_Model_DbTable_TempMovexDemande extends Zend_Db_Table_Abstract 
                 . "temp_fichier_distrib_article.prix_achat_demande_distrib,"
                 . "temp_fichier_distrib_article.prix_achat_demande_client_final,"
                 . "temp_fichier_distrib_article.remise_supplementaire,"
+                . "temp_fichier_distrib_article.serie,"
                 . "temp_movex_offre.date,"
                 . "temp_movex_demande.prix_fob,"
                 . "temp_movex_demande.prix_cif,"
