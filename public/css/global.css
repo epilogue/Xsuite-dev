@@ -39,6 +39,7 @@ body{
 
 .dis {
     border-style: none;
+    width: 100px;
 }
 
 #header{
