@@ -50,7 +50,8 @@ class Application_Form_CreationDemande  extends Zend_Form {
          'regionSud' => 'région Sud',
          'regionEst' => 'région Est',
          'regionOuest' => 'région Ouest',
-        'grandcompte' => 'Grand Compte');
+        'grandcompte' => 'Grand Compte',
+            'export' => 'Export');
         $listedifusion->addMultiOptions($listedifusionoptions);
         $listedifusion->setRequired();
         
