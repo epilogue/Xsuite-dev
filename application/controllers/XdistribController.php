@@ -703,7 +703,7 @@ if($this->getRequest()->isPost()){
                 $params1['url']="http://{$_SERVER['SERVER_NAME']}/xdistrib/validatedd/numwp/{$numwp}";
                 $params1['corpsMail']="Bonjour,\n"
                             . "\n"
-                            . "la demande XDistrib({$trackingNumber}/{$numwp}) de {$info_user['nom_user']} {$info_user['prenom_user']}  pour {$nom_distrib}/{$nom_client} est à valider.\n"
+                            . "la demande XDistrib({$trackingNumber}/{$numwp}) de {$info_user['nom_user']} {$info_user['prenom_user']}  pour {$nom_distrib}/{$nom_client} est à valider {$mail_dd}.\n"
                             . "pour la valider veuillez vous rendre à l'adresse url : \n"
                             . "%s"
                             . "\n\n"
