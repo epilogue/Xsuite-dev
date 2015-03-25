@@ -168,7 +168,7 @@ class XdistribController extends Zend_Controller_Action
     }
        if ($this->getRequest()->isPost()) {
        $formData = $this->getRequest()->getPost();
-       $result=array_merge($formData['reference'],$formData['quantite'],$formData['prix_tarif_dis']);
+       $result=  array_intersect_key($formData['reference'],$formData['quantite'],$formData['prix_tarif_dis']);
 //       $redirector = $this->_helper->getHelper('Redirector');
 //            $flashMessenger = $this->_helper->getHelper('FlashMessenger');
 //            $message = "votre offre  a bien été créée.";
