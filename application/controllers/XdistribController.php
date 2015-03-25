@@ -81,7 +81,7 @@ class XdistribController extends Zend_Controller_Action
          $recapitulatif2=$recapitulatif1->searchforDBD();
      }
     $this->view->recapitulatif = $recapitulatif2;
-    echo '<pre>',var_export($recapitulatif2),'</pre>';
+    //echo '<pre>',var_export($recapitulatif2),'</pre>';
     }
     public function createnofileAction(){
         $numwp = $this->getRequest()->getParam('numwp', null);
@@ -168,7 +168,7 @@ class XdistribController extends Zend_Controller_Action
     }
        if ($this->getRequest()->isPost()) {
        $formData = $this->getRequest()->getPost();
-       echo '<pre>',var_export($formData),'</pre>';
+      // echo '<pre>',var_export($formData),'</pre>';
        }
     }
 public function uploadnumwpAction(){
@@ -285,7 +285,7 @@ if($this->getRequest()->isPost()){
             }      
         }
         $rowsbis=array_filter(array_map('array_filter',$rows));
-       echo '<pre>', var_export($rowsbis),'</pre>';
+//       echo '<pre>', var_export($rowsbis),'</pre>';
 
         ///*troisieme iteration on va chercher 
         // * le nom des concurrents les references
@@ -617,7 +617,7 @@ if($this->getRequest()->isPost()){
   if ($this->getRequest()->isPost()) {
         $formData = $this->getRequest()->getPost();
          $numwp=$formData['numwp']; 
-        echo '<pre>',  var_export($formData),'</pre>';
+//        echo '<pre>',  var_export($formData),'</pre>';
         $tempClienttruns= new Application_Model_DbTable_TempClient();
         $tempClienttrun=$tempClienttruns->truncateAll(); 
         /*on va chercher des infos sur le user
@@ -701,7 +701,7 @@ if($this->getRequest()->isPost()){
                            . "Xsuite";
                 $params1['sujet']=" XDistrib :L'offre XDistrib {$trackingNumber}/{$numwp} de {$info_user['nom_user']} {$info_user['prenom_user']} pour {$nom_distrib}/{$nom_client} est à valider";
                 $this->sendEmail($params1);
-                echo '</pre>',  var_dump($params1['destinataireMail']),'</pre>';
+//                echo '</pre>',  var_dump($params1['destinataireMail']),'</pre>';
             }    
 //            $redirector = $this->_helper->getHelper('Redirector');
 //            $redirector->gotoSimple('index', 'xdistrib');
@@ -722,7 +722,7 @@ if($this->getRequest()->isPost()){
         $dateplop = $date->format('d/m/Y');
        $this->view->dateplop=$dateplop;
         $this->view->info_demande_xdistrib=$info_demande_xdistrib;
-        echo '<pre>', var_export($info_demande_xdistrib),'</pre>';
+//        echo '<pre>', var_export($info_demande_xdistrib),'</pre>';
     } 
     public function trackingAction(){
          $track = $this->getRequest()->getParam('tracking_number_demande_xdistrib', null);
@@ -737,7 +737,7 @@ if($this->getRequest()->isPost()){
             if ($form->isValid($this->getRequest()->getPost())) {
                 $tracksearch= new Application_Model_DbTable_Xdistrib();
                 $r=$tracksearch->getTracking($track);
-                echo '<pre>',  var_export($r),'<pre>'; 
+//                echo '<pre>',  var_export($r),'<pre>'; 
                 if ($r['tracking_number_demande_xdistrib'] == $_POST['tracking_number_demande_xdistrib']) {
                     $redirector->gotoSimple('consultlibre', 'xdistrib', null, array('tracking' => $_POST['tracking_number_demande_xdistrib']));
                 } else {
