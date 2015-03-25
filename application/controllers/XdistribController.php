@@ -168,6 +168,12 @@ class XdistribController extends Zend_Controller_Action
     }
        if ($this->getRequest()->isPost()) {
        $formData = $this->getRequest()->getPost();
+       
+       $redirector = $this->_helper->getHelper('Redirector');
+            $flashMessenger = $this->_helper->getHelper('FlashMessenger');
+            $message = "votre offre  a bien été créée.";
+            $flashMessenger->addMessage($message);
+            $redirector->gotoSimple('index', 'xdistrib');
       // echo '<pre>',var_export($formData),'</pre>';
        }
     }
