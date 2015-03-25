@@ -1051,13 +1051,12 @@ if($user->id_fonction == 3){
             foreach ($marge as $key => $value2) {
                 $margesmc = substr($value2,0,-1);
                 if ($margesmc < 0) {
-                    $margemin = true;
-                   
+                    $margemin = true;   
                 } 
             }
-//            if($margemin==false || $datas['mamo'] >10){
-//               // $datas['validation']="fermee";
-//            }
+            if($margemin==false && $datas['mamo'] >10 && $datas['validation']="validee" || $datas['validation']="NonValide" ){
+                $datas['validation']="fermee";
+            }
             //echo '<pre>',var_export($datas['validation']),'</pre>'; exit();
             $nouvelle_validation = new Application_Model_DbTable_Validationsxprice();
             $nouv_validation = $nouvelle_validation->createValidation(
@@ -1095,7 +1094,7 @@ elseif($mailServiceClients[0]['mail_service_client']== 'export'){
                 $params1 = array();
                 
                 
-                 if ($margemin == true){
+                 if ($margemin == true and $datas['mamo']< 10){
                  // $params['destinataireMail'] = $info_user['email_user'] ;
                   $params1['destinataireMail'] = $emailVars->listes->Dirco;
                 if (!is_null($commentId)) {
