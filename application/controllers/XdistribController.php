@@ -627,7 +627,7 @@ if($this->getRequest()->isPost()){
         $formData = $this->getRequest()->getPost();
          $numwp=$formData['numwp']; 
        
-       echo '<pre>',  var_export($formData),'</pre>';
+       echo '<pre>',  var_export($formData),'</pre>';exit();
         $tempClienttruns= new Application_Model_DbTable_TempClient();
         $tempClienttrun=$tempClienttruns->truncateAll(); 
         /*on va chercher des infos sur le user
