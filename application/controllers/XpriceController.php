@@ -1055,9 +1055,9 @@ if($user->id_fonction == 3){
                    
                 } 
             }
-            if($margemin==false || $datas['mamo'] >10){
-                $datas['validation']="fermee";
-            }
+//            if($margemin==false || $datas['mamo'] >10){
+//               // $datas['validation']="fermee";
+//            }
             //echo '<pre>',var_export($datas['validation']),'</pre>'; exit();
             $nouvelle_validation = new Application_Model_DbTable_Validationsxprice();
             $nouv_validation = $nouvelle_validation->createValidation(
@@ -1086,6 +1086,9 @@ if($mailServiceClients[0]['mail_service_client']=='regionNord'){
     $mailSC="SCommande@smc-france.fr";
 }elseif($mailServiceClients[0]['mail_service_client']=='' || $mailServiceClients[0]['mail_service_client']== NULL){
     $mailSC=$emailVars->listes->serviceClient;
+}
+elseif($mailServiceClients[0]['mail_service_client']== 'export'){
+    $mailSC="export@smc-france.fr";
 }
             $emailVars = Zend_Registry::get('emailVars');
             if (isset($datas['validation']) && $datas['validation'] == "validee") {
