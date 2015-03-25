@@ -626,6 +626,9 @@ if($this->getRequest()->isPost()){
   if ($this->getRequest()->isPost()) {
         $formData = $this->getRequest()->getPost();
          $numwp=$formData['numwp']; 
+       
+         $mailinfo_dd= new Application_Model_DbTable_Users();
+         $mail_dd =$formData['info_dd'];
 //        echo '<pre>',  var_export($formData),'</pre>';
         $tempClienttruns= new Application_Model_DbTable_TempClient();
         $tempClienttrun=$tempClienttruns->truncateAll(); 
@@ -696,7 +699,7 @@ if($this->getRequest()->isPost()){
             $this->sendEmail($params);
             }
             elseif($user_connect->id_fonction == "1" || $user_connect->id_fonction== "2" || $user_connect->id_fonction == "3" ){
-                $params1['destinataireMail']="mhuby@smc-france.fr";//$destinataire;
+                $params1['destinataireMail']="mhuby@smc-france.fr";//$mail_dd;
                 $params1['url']="http://{$_SERVER['SERVER_NAME']}/xdistrib/validatedd/numwp/{$numwp}";
                 $params1['corpsMail']="Bonjour,\n"
                             . "\n"
