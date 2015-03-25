@@ -627,8 +627,6 @@ if($this->getRequest()->isPost()){
         $formData = $this->getRequest()->getPost();
          $numwp=$formData['numwp']; 
        
-         $mailinfo_dd= new Application_Model_DbTable_Users();
-         $mail_dd =$formData['info_dd'];
 //        echo '<pre>',  var_export($formData),'</pre>';
         $tempClienttruns= new Application_Model_DbTable_TempClient();
         $tempClienttrun=$tempClienttruns->truncateAll(); 
@@ -703,7 +701,7 @@ if($this->getRequest()->isPost()){
                 $params1['url']="http://{$_SERVER['SERVER_NAME']}/xdistrib/validatedd/numwp/{$numwp}";
                 $params1['corpsMail']="Bonjour,\n"
                             . "\n"
-                            . "la demande XDistrib({$trackingNumber}/{$numwp}) de {$info_user['nom_user']} {$info_user['prenom_user']}  pour {$nom_distrib}/{$nom_client} est à valider {$mail_dd}.\n"
+                            . "la demande XDistrib({$trackingNumber}/{$numwp}) de {$destinataire}/{$info_user['nom_user']} {$info_user['prenom_user']}  pour {$nom_distrib}/{$nom_client} est à valider .\n"
                             . "pour la valider veuillez vous rendre à l'adresse url : \n"
                             . "%s"
                             . "\n\n"
