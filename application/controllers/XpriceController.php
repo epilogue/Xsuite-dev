@@ -1057,7 +1057,9 @@ if($user->id_fonction == 3){
             if($margemin==false && $datas['mamo'] >10 && $datas['validation']="validee" || $datas['validation']="NonValide" ){
                 $datas['validation']="fermee";
             }
-            //echo '<pre>',var_export($datas['validation']),'</pre>'; exit();
+          echo  '<pre>',var_export($datas['validation']),'</pre>';
+          echo '<pre>',var_export($margemin),'</pre>';
+          echo '<pre>', var_export($datas['mamo']),'</pre>';exit();
             $nouvelle_validation = new Application_Model_DbTable_Validationsxprice();
             $nouv_validation = $nouvelle_validation->createValidation(
                     $nom_validation, $date_validation, $datas['validation'], $datas['commentaire_dbd'], $user->id_user, $datas['tracking']);
