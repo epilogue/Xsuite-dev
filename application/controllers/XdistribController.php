@@ -168,7 +168,8 @@ class XdistribController extends Zend_Controller_Action
     }
        if ($this->getRequest()->isPost()) {
        $formData = $this->getRequest()->getPost();
-       $result=  array_intersect_key($formData['reference'],$formData['quantite'],$formData['prix_tarif_dis']);
+       $result= array_combine($formData['reference'],$formData['quantite']);
+      $result2=  array_combine( $formData['reference'],$formData['prix_tarif_dis']);
 //       $redirector = $this->_helper->getHelper('Redirector');
 //            $flashMessenger = $this->_helper->getHelper('FlashMessenger');
 //            $message = "votre offre  a bien été créée.";
@@ -176,6 +177,7 @@ class XdistribController extends Zend_Controller_Action
 //            $redirector->gotoSimple('index', 'xdistrib');
        echo '<pre>',var_export($formData),'</pre>';
         echo '<pre>',var_export($result),'</pre>';
+        echo '<pre>',var_export($result2),'</pre>';
        }
     }
 public function uploadnumwpAction(){
