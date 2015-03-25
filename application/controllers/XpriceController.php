@@ -1059,7 +1059,8 @@ if($user->id_fonction == 3){
             }
           echo  '<pre>',var_export($datas['validation']),'</pre>';
           echo '<pre>',var_export($margemin),'</pre>';
-          echo '<pre>', var_export($datas['mamo']),'</pre>';
+          $mamo=  substr($datas['mamo'], -1);
+          echo '<pre>', var_export($mamo),'</pre>';
           exit();
             $nouvelle_validation = new Application_Model_DbTable_Validationsxprice();
             $nouv_validation = $nouvelle_validation->createValidation(
