@@ -1073,22 +1073,22 @@ if($user->id_fonction == 3){
             $commentId = $this->genererValidation($datasValidation);
 $mailServiceClient = new Application_Model_DbTable_Xprices();
 $mailServiceClients = $mailServiceClient->getServiceClient($numwp);
-if($mailServiceClients[0]['mail_service_client']=='regionNord'){
-    $mailSC="regionnord@smc-france.fr";
-} elseif($mailServiceClients[0]['mail_service_client']== 'regionSud'){
-    $mailSC="regionsud@smc-france.fr";
-}elseif($mailServiceClients[0]['mail_service_client']== 'regionEst'){
-    $mailSC="regionest@smc-france.fr";
-}elseif($mailServiceClients[0]['mail_service_client']== 'regionOuest'){
-    $mailSC="regionouest@smc-france.fr";
-}elseif ($mailServiceClients[0]['mail_service_client']== 'grandcompte'){
-    $mailSC="SCommande@smc-france.fr";
-}elseif($mailServiceClients[0]['mail_service_client']=='' || $mailServiceClients[0]['mail_service_client']== NULL){
-    $mailSC=$emailVars->listes->serviceClient;
-}
-elseif($mailServiceClients[0]['mail_service_client']== 'export'){
-    $mailSC="export@smc-france.fr";
-}
+//if($mailServiceClients[0]['mail_service_client']=='regionNord'){
+//    $mailSC="regionnord@smc-france.fr";
+//} elseif($mailServiceClients[0]['mail_service_client']== 'regionSud'){
+//    $mailSC="regionsud@smc-france.fr";
+//}elseif($mailServiceClients[0]['mail_service_client']== 'regionEst'){
+//    $mailSC="regionest@smc-france.fr";
+//}elseif($mailServiceClients[0]['mail_service_client']== 'regionOuest'){
+//    $mailSC="regionouest@smc-france.fr";
+//}elseif ($mailServiceClients[0]['mail_service_client']== 'grandcompte'){
+//    $mailSC="SCommande@smc-france.fr";
+//}elseif($mailServiceClients[0]['mail_service_client']=='' || $mailServiceClients[0]['mail_service_client']== NULL){
+//    $mailSC=$emailVars->listes->serviceClient;
+//}
+//elseif($mailServiceClients[0]['mail_service_client']== 'export'){
+//    $mailSC="export@smc-france.fr";
+//}
             $emailVars = Zend_Registry::get('emailVars');
             if (isset($datas['validation']) && $datas['validation'] == "validee") {
                 $params1 = array();
@@ -1134,7 +1134,7 @@ elseif($mailServiceClients[0]['mail_service_client']== 'export'){
                 $params6 = array();
                     $params2['destinataireMail'] = $info_user['email_user'];
                     
-                    $params3['destinataireMail'] = $mailSC ;
+                    $params3['destinataireMail'] =/* $mailSC;*/ "mhuby@smc-france.fr";
                      if (!is_null($commentId)) {
                     $params2['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/consult/numwp/{$numwp}/com/{$commentId}";
                     $params3['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/consult/numwp/{$numwp}";
