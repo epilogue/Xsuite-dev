@@ -811,6 +811,11 @@ if($this->getRequest()->isPost()){
         $this->view->numwp = $numwp; 
         $infos_demande_xdistrib = new Application_Model_DbTable_Xdistrib();
         $info_demande_xdistrib = $infos_demande_xdistrib->getNumwp($numwp);
+        $this->view->info_demande_xdistrib=$info_demande_xdistrib;
+        $dateinit=$info_demande_xdistrib['date_demande_xdistrib'];
+        $date = DateTime::createFromFormat('Y-m-d', $dateinit);
+        $dateplop = $date->format('d/m/Y');
+        $this->view->dateplop=$dateplop;
         echo '<pre>',var_export($info_demande_xdistrib),'<pre>';
     }
     public function validatedrvAction(){
