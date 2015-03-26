@@ -24,90 +24,118 @@ $this->headTitle($this->title);
         </fieldset>
     </div>
     <div class="clear"></div>
-        <div id="information2" class="workplace2">
-            <fieldset id="info_user" class="field_info_2">
-                <legend>Informations<br>Commercial</legend>
-                <table>
-                    <tr>
-                        <td>Nom:</td>
-                        <td><?php echo $this->user_info['nom_user'];?></td>
-                    </tr>
-                    <tr>
-                        <td>Prénom:</td>
-                        <td><?php echo $this->user_info['prenom_user'];?></td>
-                    </tr>
-                    <tr>
-                        <td>Email:</td>
-                        <td><?php echo $this->user_info['email_user'];?></td>
-                    </tr>
-                    <tr>
-                        <td>Téléphone:</td>
-                        <td><?php echo $this->user_info['tel_user'];?></td>
-                    </tr>
-                    <tr>
-                        <td>Holon:</td>
-                        <td><?php echo $this->nom_holon['nom_holon']; ?></td>
-                    </tr>
-                    <tr>
-                        <td>User workplace:</td>
-                        <td><?php echo $this->user_info['numwp_user'];?></td>
-                    </tr>
-                </table>
-            </fieldset>
-            <fieldset id="info_distributeur" class="field_info_2" >
-                <legend>Informations<br>Distributeur</legend>
-                <table>
-                    <tr>
-                        <td>Nom:</td>
-                        <td><?php echo $this->distrib_info['nom_distributeur'];?></td>
-                    </tr>
-                    <tr>
-                        <td>Prénom Nom du contact:</td>
-                        <td><?php echo $this->distrib_info['contact_distributeur'];?></td>
-                    </tr>
-                    <tr>
-                        <td>Ville:</td>
-                        <td><?php echo $this->distrib_info['agence_distributeur'];?></td>
-                    </tr>
-                    <tr>
-                        <td>Code Postal:</td>
-                        <td><?php echo $this->distrib_info['code_postal_distributeur'];?></td>
-                    </tr>
-                    <tr>
-                        <td>User Workplace:</td>
-                        <td><?php echo $this->distrib_info['numwp_distributeur'];?></td>
-                    </tr>
-                </table>
-            </fieldset>             
-            
-            <fieldset id="info_client" class="field_info_2"> 
-                <legend>Informations<br>Client Final</legend>
-                <table>
-                    <tr>
-                        <td>Nom:</td>
-                        <td colspan="2"><?php echo $this->client_info['nom_client']?></td>
-                    </tr>
-                    <tr>
-                        <td>Code Postal:</td>
-                        <td><?php echo $this->client_info['codepostal_client']?></td>
-                    </tr>
-                    <tr>
-                        <td>Ville:</td>
-                        <td><?php echo $this->client_info['ville_client']?></td>
-                    </tr>
-                    <tr>
-                        <td>User Workplace:</td>
-                        <td><?php echo $this->client_info['numwp_client']?></td>
-                    </tr>
-                    <tr>
-                        <td>Potentiel:</td>
-                        <td><?php echo $this->client_info['potentiel']?></td>
-                    </tr>
-                     <tr>
-                        <td>Projet:</td>
-                        <td><?php echo $this->client_info['nom_industry']?></td>
-                    </tr>
-                </table>
-           </fieldset>
-        </div>
+    <div id="information2" class="workplace2">
+        <fieldset id="info_user" class="field_info_2">
+            <legend>Informations<br>Commercial</legend>
+            <table>
+                <tr>
+                    <td>Nom:</td>
+                    <td><?php echo $this->user_info['nom_user'];?></td>
+                </tr>
+                <tr>
+                    <td>Prénom:</td>
+                    <td><?php echo $this->user_info['prenom_user'];?></td>
+                </tr>
+                <tr>
+                    <td>Email:</td>
+                    <td><?php echo $this->user_info['email_user'];?></td>
+                </tr>
+                <tr>
+                    <td>Téléphone:</td>
+                    <td><?php echo $this->user_info['tel_user'];?></td>
+                </tr>
+                <tr>
+                    <td>Holon:</td>
+                    <td><?php echo $this->nom_holon['nom_holon']; ?></td>
+                </tr>
+                <tr>
+                    <td>User workplace:</td>
+                    <td><?php echo $this->user_info['numwp_user'];?></td>
+                </tr>
+            </table>
+        </fieldset>
+        <fieldset id="info_distributeur" class="field_info_2" >
+            <legend>Informations<br>Distributeur</legend>
+            <table>
+                <tr>
+                    <td>Nom:</td>
+                    <td><?php echo $this->distrib_info['nom_distributeur'];?></td>
+                </tr>
+                <tr>
+                    <td>Prénom Nom du contact:</td>
+                    <td><?php echo $this->distrib_info['contact_distributeur'];?></td>
+                </tr>
+                <tr>
+                    <td>Ville:</td>
+                    <td><?php echo $this->distrib_info['agence_distributeur'];?></td>
+                </tr>
+                <tr>
+                    <td>Code Postal:</td>
+                    <td><?php echo $this->distrib_info['code_postal_distributeur'];?></td>
+                </tr>
+                <tr>
+                    <td>User Workplace:</td>
+                    <td><?php echo $this->distrib_info['numwp_distributeur'];?></td>
+                </tr>
+            </table>
+        </fieldset>             
+
+        <fieldset id="info_client" class="field_info_2"> 
+            <legend>Informations<br>Client Final</legend>
+            <table>
+                <tr>
+                    <td>Nom:</td>
+                    <td colspan="2"><?php echo $this->client_info['nom_client']?></td>
+                </tr>
+                <tr>
+                    <td>Code Postal:</td>
+                    <td><?php echo $this->client_info['codepostal_client']?></td>
+                </tr>
+                <tr>
+                    <td>Ville:</td>
+                    <td><?php echo $this->client_info['ville_client']?></td>
+                </tr>
+                <tr>
+                    <td>User Workplace:</td>
+                    <td><?php echo $this->client_info['numwp_client']?></td>
+                </tr>
+                <tr>
+                    <td>Potentiel:</td>
+                    <td><?php echo $this->client_info['potentiel']?></td>
+                </tr>
+                 <tr>
+                    <td>Projet:</td>
+                    <td><?php echo $this->client_info['nom_industry']?></td>
+                </tr>
+            </table>
+       </fieldset>
+    </div>
+     <div class="clear"></div>
+    <div id="demandeArticle" class="workplace">
+        <fieldset class="field">
+            <legend>Produits</legend>
+            <table  id="article" class="enum">
+                <tr>
+                    <td>Références produits</td>
+                    <td>Quantité</td>
+                    <td>Prix Achat actuel DISTRIBUTEUR</td>
+                    <td>Prix Achat demandé DISTRIBUTEUR</td>
+                    <td>Prix Achat CLIENT FINAL</td>
+                    <td>Remise supplémentaire DISTRIBUTEUR</td>
+                    <td>Remise référence ou série</td>
+                </tr>
+                <?php foreach($this->article_info as $value){ ?>
+                <tr>
+                    <td><?php echo $value['reference_article']; ?></td>
+                    <td><?php echo $value['quantite']; ?></td>
+                    <td><?php echo $value['prix_achat_actuel']; ?></td>
+                    <td><?php echo $value['prix_achat_demande_distrib']; ?></td>
+                    <td><?php echo $value['prix_achat_demande_client_final']; ?></td>
+                    <td><?php echo $value['remise_supplementaire']; ?></td>
+                    <td><?php echo $value['serie']; ?></td>
+                </tr> <?php }?>
+            </table>
+        </fieldset>
+    </div>
+    <div class="clear"></div>
 </div>

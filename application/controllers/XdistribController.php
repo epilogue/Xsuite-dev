@@ -824,6 +824,9 @@ if($this->getRequest()->isPost()){
         $holon_nom=$nom_holon->getHolon($user_info['id_holon']);
         $info_client=new Application_Model_DbTable_ClientDistrib();
         $client_info=$info_client->getClientdistrib($info_demande_xdistrib['numwp_client']);
+        $info_article=new Application_Model_DbTable_DemandeArticlexdistrib();
+        $article_info= $info_article->getDemandeArticlexdistrib($numwp);
+        $this->view->article_info=$article_info;
         $this->view->nom_holon=$holon_nom;
         $this->view->client_info=$client_info;
         $this->view->user_info=$user_info;
