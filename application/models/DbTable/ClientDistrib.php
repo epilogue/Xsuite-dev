@@ -31,5 +31,15 @@ class Application_Model_DbTable_ClientDistrib extends Zend_Db_Table_Abstract {
     
 
 }
+public function getClientdistrib($numwp_client){
+    $numwp_client = "$numwp_client";
+        $row = $this->fetchRow("numwp_client = '{$numwp_client}'");
+        if (!$row) {
+            //throw new Exception("could not find row $numwp_distributeur");
+            return null;
+        } else {
+            return $row->toArray();
+        }
+}
 }
 

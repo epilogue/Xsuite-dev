@@ -602,7 +602,7 @@ if($this->getRequest()->isPost()){
             $this->view->trackingNumber = $trackingNumber;
         }
         $Defxdistribs= new Application_Model_DbTable_Xdistrib();
-        $defxdistrib = $Defxdistribs->createXDistrib($numwp, $trackingNumber,$context_info[0]['contexte_demande'],$date,$context_info[0]['services_associes'], $user_info[0]['id_user'],$infos_dd->id_user,null,$numwp_client_final,$numwp_distributeur10);
+        $defxdistrib = $Defxdistribs->createXDistrib($numwp, $trackingNumber,$context_info[0]['contexte_demande'],$date,$context_info[0]['services_associes'], $user_info[0]['id_user'],$infos_dd->id_user,null,$numwp_client_final,$numwp_distributeur5);
         $Defxdistribarticles= new Application_Model_DbTable_DemandeArticlexdistrib();
         foreach($article_info as $art){
             $marge_demande_article = 100*(1-($art['prix_cif']/$art['prix_achat_demande_distrib']));
@@ -811,12 +811,22 @@ if($this->getRequest()->isPost()){
         $this->view->numwp = $numwp; 
         $infos_demande_xdistrib = new Application_Model_DbTable_Xdistrib();
         $info_demande_xdistrib = $infos_demande_xdistrib->getNumwp($numwp);
-        $this->view->info_demande_xdistrib=$info_demande_xdistrib;
         $dateinit=$info_demande_xdistrib['date_demande_xdistrib'];
         $date = DateTime::createFromFormat('Y-m-d', $dateinit);
         $dateplop = $date->format('d/m/Y');
         $this->view->dateplop=$dateplop;
+        $info_distrib=new Application_Model_DbTable_Distributeurs();
+        $distrib_info=$info_distrib->getDistributeurnumwp($info_demande_xdistrib['numwp_distributeur']);
+        $info_user=new Application_Model_DbTable_Users;
+        $user_info=$info_user->getUser($info_demande_xdistrib['id_user']);
+        $info_client=new Application_Model_DbTable_ClientDistrib();
+        $client_info=$info_client->getClientdistrib($info_demande_xdistrib['numwp_client']);
+        $this->view->client_info=$client_info;
+        $this->view->user_info=$user_info;
+        $this->view->distrib_info=$distrib_info;
+        $this->view->info_demande_xdistrib=$info_demande_xdistrib;
         echo '<pre>',var_export($info_demande_xdistrib),'<pre>';
+        
     }
     public function validatedrvAction(){
         
