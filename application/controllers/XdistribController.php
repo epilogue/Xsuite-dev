@@ -826,6 +826,9 @@ if($this->getRequest()->isPost()){
         $client_info=$info_client->getClientdistrib($info_demande_xdistrib['numwp_client']);
         $info_article=new Application_Model_DbTable_DemandeArticlexdistrib();
         $article_info= $info_article->getDemandeArticlexdistrib($numwp);
+        $info_concurrent=new Application_Model_DbTable_PrixConcurrent();
+        $concurrent_info=$info_concurrent->getConcurrent($numwp);
+        $this->view->concurrent_info=$concurrent_info;
         $this->view->article_info=$article_info;
         $this->view->nom_holon=$holon_nom;
         $this->view->client_info=$client_info;

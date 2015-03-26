@@ -138,4 +138,25 @@ $this->headTitle($this->title);
         </fieldset>
     </div>
     <div class="clear"></div>
+    <div id="concurrent" class="workplace">
+            <fieldset  class="field">
+                <legend>Concurrence</legend>
+                <table  id="concurrents" class="enum">
+                    <tr>
+                        <td>Concurrents</td>
+                        <td>Références Produits</td>
+                        <td>Prix Tarif CONCURRENT</td>
+                        <td>Prix spécial accordé CONCURRENT</td>
+                    </tr>
+                    <?php foreach($this->concurrent_info as $val){ ?>
+                    <tr>
+                        <td><?php echo $val['nom_concurrent']; ?></td>
+                        <td><?php echo $val['reference_article']; ?></td>
+                        <td><?php echo $val['prix_concurrent']; ?></td>
+                        <td><?php echo $val['prix_special_concurrent']; ?></td>
+                    </tr> <?php } ?>
+                </table>
+            </fieldset>
+        </div>
+        <div class="clear"></div>
 </div>
