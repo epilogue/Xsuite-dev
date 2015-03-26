@@ -815,8 +815,9 @@ if($this->getRequest()->isPost()){
         $date = DateTime::createFromFormat('Y-m-d', $dateinit);
         $dateplop = $date->format('d/m/Y');
         $this->view->dateplop=$dateplop;
+        $numwp_dis=  substr($info_demande_xdistrib['numwp_distributeur'], 0, 5);
         $info_distrib=new Application_Model_DbTable_Distributeurs();
-        $distrib_info=$info_distrib->getDistributeurnumwp($info_demande_xdistrib['numwp_distributeur']);
+        $distrib_info=$info_distrib->getDistributeurnumwp($numwp_dis);
         $info_user=new Application_Model_DbTable_Users;
         $user_info=$info_user->getUser($info_demande_xdistrib['id_user']);
         $info_client=new Application_Model_DbTable_ClientDistrib();
