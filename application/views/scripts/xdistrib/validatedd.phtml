@@ -3,24 +3,24 @@ $this->title = 'Xdistrib/accueil';
 $this->headTitle($this->title);
 ?>
 <div class="contenu">
-    <h2>Xdistrib</h2>
-    <h3>Demande en ligne pour Prix Spéciaux</h3> 
-    <table class="enum">
-        <tr>
-            <th>Numéro Workplace</th>
-            <th>Tracking number</th>
-            <th>Nom Client</th>
-            <th>Date demande</th>
-        </tr>
-    <?php  foreach($this->recapitulatif as $k=>$result){
-        ?><tr>
-            <td><?php echo $result['num_workplace_demande_xprice']; ?></td>
-            <td><?php echo $result['tracking_number_demande_xprice']; ?></td>
-            <td><?php echo $result['nom_client']; ?></td>
-             <td><?php echo $result['date_demande_xprice']; ?></td>
-             <td><a href="<?php echo $this->url(array("controller"=>"xprice","action"=>"consult","numwp"=>$result['num_workplace_demande_xprice']));?>" <button class="retour" id="historique-<?php echo $k; ?>">historique</button></a>
-             </td>
-</tr>
-   <?php }?>
-    </table>
+    <h2>Validation de l'offre XDISTRIB par le DD</h2>
+    <div id="workplace" class="workplace">
+        <fieldset id="wp" class="field">
+            <legend>Informations offre</legend>
+            <table class="table_info">
+                <tr>
+                    <td>Numéro workplace de l'offre :</td>
+                    <td><?php echo $this->numwp; ?></td>
+                </tr>
+                <tr>
+                    <td>Date de l'offre workplace :</td>
+                    <td><?php echo $this->dateplop; ?></td>
+                </tr>
+                <tr>
+                    <td>Tracking number :</td>
+                    <td><?php echo $this->info_demande_xdistrib['tracking_number_demande_xdistrib']; ?></td>
+                </tr>
+            </table>
+        </fieldset>
+    </div>
 </div>
