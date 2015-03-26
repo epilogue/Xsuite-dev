@@ -816,6 +816,7 @@ if($this->getRequest()->isPost()){
         $dateplop = $date->format('d/m/Y');
         $this->view->dateplop=$dateplop;
         $numwp_dis=  substr($info_demande_xdistrib['numwp_distributeur'], 0, 5);
+        var_dump($numwp_dis);
         $info_distrib=new Application_Model_DbTable_Distributeurs();
         $distrib_info=$info_distrib->getDistributeurnumwp($numwp_dis);
         $info_user=new Application_Model_DbTable_Users;
