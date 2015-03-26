@@ -127,11 +127,11 @@ $this->headTitle($this->title);
                 <?php foreach($this->article_info as $value){ ?>
                 <tr>
                     <td><?php echo $value['reference_article']; ?></td>
-                    <td><?php echo $value['quantite']; ?></td>
+                    <td><?php echo $value['quantite_demande_article']; ?></td>
                     <td><?php echo $value['prix_achat_actuel']; ?></td>
-                    <td><?php echo $value['prix_achat_demande_distrib']; ?></td>
-                    <td><?php echo $value['prix_achat_demande_client_final']; ?></td>
-                    <td><?php echo $value['remise_supplementaire']; ?></td>
+                    <td><?php echo $value['prix_demande_article']; ?></td>
+                    <td><?php echo $value['prix_client_final']; ?></td>
+                    <td><?php echo $value['remise_demande_article']; ?></td>
                     <td><?php echo $value['serie']; ?></td>
                 </tr> <?php }?>
             </table>
