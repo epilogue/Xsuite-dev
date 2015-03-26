@@ -567,7 +567,7 @@ if($this->getRequest()->isPost()){
             $nom_industry=$info_industry_client_final['description_industry'];
           
             $clientTemps= new Application_Model_DbTable_TempClient();
-            $clientTemp= $clientTemps->createTemp($numwp,$numwp_distributeur10,$code_postal_client_final,$potentiel_client_final,$ville_client_final,$nom_industry,$id_industry,$nom_client_final);
+            $clientTemp= $clientTemps->createTemp($numwp,$numwp_client_final,$code_postal_client_final,$potentiel_client_final,$ville_client_final,$nom_industry,$id_industry,$nom_client_final);
             
             $clientDEF= new Application_Model_DbTable_ClientDistrib();
             $clientDefs= $clientDEF->createClientDistrib($numwp,$numwp_client_final,$code_postal_client_final,$potentiel_client_final,$ville_client_final,$nom_industry,$id_industry,$nom_client_final,null);
