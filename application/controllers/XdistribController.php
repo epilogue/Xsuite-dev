@@ -816,13 +816,15 @@ if($this->getRequest()->isPost()){
         $dateplop = $date->format('d/m/Y');
         $this->view->dateplop=$dateplop;
         $numwp_dis=  substr($info_demande_xdistrib['numwp_distributeur'], 0, 6);
-        var_dump($numwp_dis);
         $info_distrib=new Application_Model_DbTable_Distributeurs();
         $distrib_info=$info_distrib->getDistributeurnumwp($numwp_dis);
         $info_user=new Application_Model_DbTable_Users;
         $user_info=$info_user->getUser($info_demande_xdistrib['id_user']);
+        $nom_holon=new Application_Model_DbTable_Holons();
+        $holon_nom=$nom_holon->getHolon($user_info['id_holon']);
         $info_client=new Application_Model_DbTable_ClientDistrib();
         $client_info=$info_client->getClientdistrib($info_demande_xdistrib['numwp_client']);
+        $this->view->nom_holon=$holon_nom;
         $this->view->client_info=$client_info;
         $this->view->user_info=$user_info;
         $this->view->distrib_info=$distrib_info;
