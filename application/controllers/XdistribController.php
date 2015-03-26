@@ -602,7 +602,7 @@ if($this->getRequest()->isPost()){
             $this->view->trackingNumber = $trackingNumber;
         }
         $Defxdistribs= new Application_Model_DbTable_Xdistrib();
-        $defxdistrib = $Defxdistribs->createXDistrib($numwp, $trackingNumber,$context_info[0]['contexte_de$numwp_distributeur10mande'],$date,$context_info[0]['services_associes'], $user_info[0]['id_user'],$infos_dd->id_user,null,$numwp_distributeur10,$numwp_client_final);
+        $defxdistrib = $Defxdistribs->createXDistrib($numwp, $trackingNumber,$context_info[0]['contexte_demande'],$date,$context_info[0]['services_associes'], $user_info[0]['id_user'],$infos_dd->id_user,null,$numwp_distributeur10,$numwp_client_final);
         $Defxdistribarticles= new Application_Model_DbTable_DemandeArticlexdistrib();
         foreach($article_info as $art){
             $marge_demande_article = 100*(1-($art['prix_cif']/$art['prix_achat_demande_distrib']));
