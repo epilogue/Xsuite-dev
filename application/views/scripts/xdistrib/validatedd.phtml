@@ -99,10 +99,6 @@ $this->headTitle($this->title);
                     <td>User Workplace:</td>
                     <td><?php echo $this->client_info['numwp_client']?></td>
                 </tr>
-                <tr>
-                    <td>Potentiel:</td>
-                    <td><?php echo $this->client_info['potentiel']?></td>
-                </tr>
                  <tr>
                     <td>Projet:</td>
                     <td><?php echo $this->client_info['nom_industry']?></td>
@@ -120,8 +116,7 @@ $this->headTitle($this->title);
                     <td>Quantité</td>
                     <td>Prix Achat actuel DISTRIBUTEUR</td>
                     <td>Prix Achat demandé DISTRIBUTEUR</td>
-                    <td>Prix Achat CLIENT FINAL</td>
-                    <td>Remise supplémentaire DISTRIBUTEUR</td>
+                    <td>Prix Conseillé CLIENT FINAL</td>
                     <td>Remise référence ou série</td>
                 </tr>
                 <?php foreach($this->article_info as $value){ ?>
@@ -131,7 +126,6 @@ $this->headTitle($this->title);
                     <td><?php echo $value['prix_achat_actuel']; ?></td>
                     <td><?php echo $value['prix_demande_article']; ?></td>
                     <td><?php echo $value['prix_client_final']; ?></td>
-                    <td><?php echo $value['remise_demande_article']; ?></td>
                     <td><?php echo $value['serie']; ?></td>
                 </tr> <?php }?>
             </table>
@@ -162,9 +156,40 @@ $this->headTitle($this->title);
          <div id="contexte_service" class="workplace">
             <fieldset class="field">
                 <legend>Contexte de la demande</legend>
+                <?php  foreach($this->contexte_info as $contexte){?>
+                <p><?php echo $contexte;?></p><?php } ?>
                 <table class='enum'>
-                    <tr></tr>
+                    
+                    <tr><?php foreach($this->service_info as $key=>$value) { if($value != null && $key != "id_service_distrib" && $key != "numwp" ){?>
+                    <td><?php echo $value;} ?></td> <?php } ?>
+                    </tr>
                 </table>
             </fieldset>
          </div>
+         <div class="clear"></div>
+         
+             <div id="dd" class="workplace">
+                 <form method="post">
+                     <fieldset class="field">
+                    <legend>Commentaire Distributeur</legend>
+                    <textarea name="commentaire_distrib" cols="75" rows="10"></textarea>
+                    <?php
+                    if (!is_null($this->commentId)) {
+                        ?>
+                        <input type="hidden" name="reponse" value="<?php echo $this->commentId; ?>">
+                        <?php
+                    }
+                    ?>
+                </fieldset>
+            </div>
+            <div id="valid_dd" class="workplace">
+                <input type="radio" name="validation" value="nonValide"> La demande n'est pas validée <input type="hidden" name="nom_validation" value="validation_cdr"><br>
+                <input type="radio" name="validation" value="validee"> La demande est validée <input type="hidden" name="date_validation" value="<?php echo date("Y-m-d H:i:s") ?>"><br>
+                <input type="radio" checked="checked" name="validation" value="enAttente">  en attente de réponse<input type="hidden" name="cdr" value="<?php echo $this->cdr; ?>"><br>
+               <input type="hidden" name="tracking" value="<?php echo $this->info_demande_xdistrib['tracking_number_demande_xdistrib']; ?>">
+            </div>
+            <input class="submit" type="submit" value="enregistrer statut offre">
+                 </form>
+             </div>
+         
 </div>

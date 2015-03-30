@@ -18,5 +18,12 @@ class Application_Model_DbTable_ServiceDistrib extends Zend_Db_Table_Abstract {
         $this->insert($data);
         return $this;
     }
-
+    public function getService($numwp){
+        $row = $this->fetchRow("numwp = '{$numwp}'");
+        if (!$row) {
+            return null;
+        } else {
+            return $row->toArray();
+        }
+    }
 }
