@@ -588,8 +588,8 @@ if($this->getRequest()->isPost()){
             $this->view->client_info=$client_info[0];
             $article_infos = new Application_Model_DbTable_TempMovexDemande();
             $article_info= $article_infos->demande($numwp);
-            var_dump($numwp);
-            echo '<pre>',  var_export($article_info),'</pre>'; exit();
+            //var_dump($numwp);
+            //echo '<pre>',  var_export($article_info),'</pre>'; exit();
             $this->view->article_info=$article_info;
             $concurrent_infos=new Application_Model_DbTable_TempFicherDistribPrixConcurrent();
             $concurrent_info=$concurrent_infos->getAll($numwp);
@@ -836,7 +836,7 @@ if($this->getRequest()->isPost()){
         $this->view->user_info=$user_info;
         $this->view->distrib_info=$distrib_info;
         $this->view->info_demande_xdistrib=$info_demande_xdistrib;
-        echo '<pre>',var_export($info_demande_xdistrib),'<pre>';
+       // echo '<pre>',var_export($info_demande_xdistrib),'<pre>';
         
     }
     public function validatedrvAction(){
