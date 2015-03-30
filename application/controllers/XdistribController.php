@@ -934,7 +934,7 @@ if($this->getRequest()->isPost()){
             $this->view->date_validation = $date_validation;
             $nom_validation = "dd";
             $formData = $this->getRequest()->getPost();
-echo '<pre>',  var_export($formData),'</pre>';
+//echo '<pre>',  var_export($formData),'</pre>';
             $nouvelle_validation = new Application_Model_DbTable_Validationsxdistrib();
             $nouv_validation = $nouvelle_validation->createValidation($formData['nom_validation'], $formData['date_validation'], $formData['validation'], $formData['commentaire_dd'], $formData['tiltop'], $formData['tracking']);
             $valid_id_valid = new Application_Model_DbTable_Validationsxdistrib();
