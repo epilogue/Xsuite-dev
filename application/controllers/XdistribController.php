@@ -271,7 +271,6 @@ if($this->getRequest()->isPost()){
         $code_postal_client_final=$excellContent[5][6];
         $ville_client_final=$excellContent[5][8];
         $contact_distributeur=$excellContent[6][1];
-        $potentiel_client_final=$excellContent[6][6];
 
           /* deuxième iteration  on va  recuperer les données  concernant les articles  on boucle tant qu'on a pas de ligne  vide  ou  que l'on ne rencontre pas ''concurrence''*/ 
         $j=0;
@@ -346,7 +345,7 @@ if($this->getRequest()->isPost()){
             $plopinette1[]=trim($val[0]);   
         }
         $keydebut1 =array_search('Contexte de la demande (historique client, situation concurrentielle, évolution du compte, enjeux…)',$plopinette1);
-        $keyfin1 =array_search('Services associés apportés par le distributeur (stockage de sproduits, commandes par lot…)',$plopinette1);
+        $keyfin1 =array_search('Services associés du distributeur',$plopinette1);
         $debut1 = $keydebut1+1;
         $fin1=$keyfin1-1;
 
@@ -373,8 +372,8 @@ if($this->getRequest()->isPost()){
         foreach ($excellContent5 as $key=>$val){
             $plopinette2[]=trim($val[0]);
         }
-        $keydebut2 =array_search('Services associés apportés par le distributeur (stockage de sproduits, commandes par lot…)',$plopinette2);
-        $keyfin2 =array_search('Services associés apportés par le distributeur (stockage de sproduits, commandes par lot…)',$plopinette1);
+        $keydebut2 =array_search('Services associés du distributeur',$plopinette2);
+        $keyfin2 =array_search('Services associés du distributeur',$plopinette1);
         $debut2 = $keydebut2+1;
         $fin2=$keyfin2+2;
 
@@ -394,10 +393,10 @@ if($this->getRequest()->isPost()){
          *
          */
         $tempinfodistrib= new Application_Model_DbTable_TempFichierDistribInfo();
-        $tempinfodistribs = $tempinfodistrib->createInfo($numwp, $nom_distributeur, $code_postal_distributeur, $ville_distributeur, $contact_distributeur, $nom_client_final, $numwp_client_final, $code_postal_client_final, $ville_client_final, $potentiel_client_final);
+        $tempinfodistribs = $tempinfodistrib->createInfo($numwp, $nom_distributeur, $code_postal_distributeur, $ville_distributeur, $contact_distributeur, $nom_client_final, $numwp_client_final, $code_postal_client_final, $ville_client_final);
         $temparticledistrib = new Application_Model_DbTable_TempFichierDistribArticle();
         foreach($rowsbis as $value){
-            $temparticledistribs = $temparticledistrib->createArticle($numwp, trim($value[0]), $value[1], $value[2], $value[3], $value[5], $value[6],$value[7]);
+            $temparticledistribs = $temparticledistrib->createArticle($numwp, trim($value[0]), $value[1], $value[2], $value[3], $value[5], $value[6]);
         }
         $tempprixconcurrent = new Application_Model_DbTable_TempFicherDistribPrixConcurrent();
         foreach ($rows3bis as $value){
@@ -567,10 +566,10 @@ if($this->getRequest()->isPost()){
             $nom_industry=$info_industry_client_final['description_industry'];
           
             $clientTemps= new Application_Model_DbTable_TempClient();
-            $clientTemp= $clientTemps->createTemp($numwp,$numwp_client_final,$code_postal_client_final,$potentiel_client_final,$ville_client_final,$nom_industry,$id_industry,$nom_client_final);
+            $clientTemp= $clientTemps->createTemp($numwp,$numwp_client_final,$code_postal_client_final,$ville_client_final,$nom_industry,$id_industry,$nom_client_final);
             
             $clientDEF= new Application_Model_DbTable_ClientDistrib();
-            $clientDefs= $clientDEF->createClientDistrib($numwp,$numwp_client_final,$code_postal_client_final,$potentiel_client_final,$ville_client_final,$nom_industry,$id_industry,$nom_client_final,null);
+            $clientDefs= $clientDEF->createClientDistrib($numwp,$numwp_client_final,$code_postal_client_final,$ville_client_final,$nom_industry,$id_industry,$nom_client_final,null);
         /*fin de l'insertion des données movex dans les tables temporaires */
             /* debut de requettage  pour affichage des informations  dans le phtml*/
             /*requete info_ vendeur, info_distrib,info_client*/ 
@@ -606,7 +605,7 @@ if($this->getRequest()->isPost()){
         $Defxdistribarticles= new Application_Model_DbTable_DemandeArticlexdistrib();
         foreach($article_info as $art){
             $marge_demande_article = 100*(1-($art['prix_cif']/$art['prix_achat_demande_distrib']));
-            $Defxdistribarticle = $Defxdistribarticles->createDemandeArticlexdistrib($art['prix_tarif'],$art['prix_achat_actuel'] ,$art['prix_achat_demande_distrib'], $art['prix_achat_demande_client_final'],$art['quantite'], $art['remise_supplementaire'], $art['serie'],$art['date'],$art['prix_achat_demande_distrib'],$art['remise_supplementaire'], $art['prix_fob'], $art['prix_cif'], $marge_demande_article,$trackingNumber, $art['code_article'], $art['reference_article'], $numwp,$art['code_acquisition']);
+            $Defxdistribarticle = $Defxdistribarticles->createDemandeArticlexdistrib($art['prix_tarif'],$art['prix_achat_actuel'] ,$art['prix_achat_demande_distrib'], $art['prix_achat_demande_client_final'],$art['quantite'],$art['serie'],$art['date'], $art['prix_fob'], $art['prix_cif'], $marge_demande_article,$trackingNumber, $art['code_article'], $art['reference_article'], $numwp,$art['code_acquisition']);
         } 
         $DefConcurrents = new Application_Model_DbTable_PrixConcurrent();
         foreach($concurrent_info as $con){

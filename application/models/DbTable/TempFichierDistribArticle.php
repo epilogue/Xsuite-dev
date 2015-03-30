@@ -15,7 +15,7 @@ class Application_Model_DbTable_TempFichierDistribArticle extends Zend_Db_Table_
    
     protected $_name ='temp_fichier_distrib_article';
     
-    public function createArticle($numwp,$reference_article,$quantite,$prix_actuel_achat,$prix_achat_demande_distrib,$prix_achat_demande_client_final,$remise_supplementaire,$serie){
+    public function createArticle($numwp,$reference_article,$quantite,$prix_actuel_achat,$prix_achat_demande_distrib,$prix_achat_demande_client_final,$serie){
          $data = array(
            'numwp'                            => $numwp,
            'reference_article'                => $reference_article,
@@ -23,7 +23,6 @@ class Application_Model_DbTable_TempFichierDistribArticle extends Zend_Db_Table_
            'prix_achat_actuel'                => $prix_actuel_achat,
            'prix_achat_demande_distrib'       => $prix_achat_demande_distrib,
            'prix_achat_demande_client_final'  => $prix_achat_demande_client_final,
-           'remise_supplementaire'            => $remise_supplementaire,
              'serie'                          => $serie
         );
         $this->insert($data);

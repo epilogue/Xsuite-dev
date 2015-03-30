@@ -14,13 +14,11 @@
 class Application_Model_DbTable_TempClient extends Zend_Db_Table_Abstract {
    protected $_name = 'temp_client';
    
-   public function createTemp($numwp,$numwp_client,$codepostal_client,$potentiel,$ville_client,$nom_industry,$id_industry,$nom_client){
+   public function createTemp($numwp,$numwp_client,$codepostal_client,$ville_client,$nom_industry,$id_industry,$nom_client){
       $data = array('numwp' =>$numwp,
           'numwp_client'=>$numwp_client,
           'codepostal_client'=>$codepostal_client,
-          'potentiel'=>$potentiel,
           'ville_client'=>$ville_client,
-          
           'nom_industry'=>$nom_industry,
           'id_industry'=>$id_industry,
           'nom_client'=>$nom_client);
