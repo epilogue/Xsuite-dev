@@ -89,7 +89,7 @@ class XdistribController extends Zend_Controller_Action
         $commentaire = (!is_null($datas['commentaire']) && trim($datas['commentaire']) != "") ? trim($datas['commentaire']) : null;
         $validations_demande_xdistrib_id = (array_key_exists('reponse', $datas) && trim($datas['reponse']) != "") ? $datas['reponse'] : null;
         $dbtValidation->createValidation(
-                $datas['nom_validation'], $now->format('Y-m-d H:i:s'), $datas['validation'], $datas['id_user'], $datas['id_demande_xprice'], $commentaire, $validations_demande_xdistrib_id);
+                $validations_demande_xdistrib_id,$datas['id_demande_xdistrib'],$datas['tiltop'],$datas['nom_validation'], $now->format('Y-m-d H:i:s'), $datas['validation'],  $commentaire );
         if (!is_null($commentaire)) {
             return $dbtValidation->lastId();
         } else {
