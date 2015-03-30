@@ -838,6 +838,7 @@ if($this->getRequest()->isPost()){
         $user = $this->_auth->getStorage()->read();
         $tiltop = $user->id_user;
         $this->view->dd = $tiltop;
+        $this->view->tiltop=$tiltop;
         $numwp = $this->getRequest()->getParam('numwp', null);
         $this->view->numwp = $numwp; 
         $infos_demande_xdistrib = new Application_Model_DbTable_Xdistrib();
