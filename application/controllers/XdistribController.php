@@ -943,7 +943,7 @@ echo '<pre>',  var_export($formData),'</pre>';
             $datasValidation = array(
                 'nom_validation' => $nom_validation, 'validation' => $formData['validation'],
                 'commentaire' => $formData['commentaire_dd'],
-                'id_user' => $formData['tiltop'], 'id_demande_xdistrib' => $info_demande_xdistrib['id_demande_xdistrib']
+                'tiltop' => $formData['tiltop'], 'id_demande_xdistrib' => $info_demande_xdistrib['id_demande_xdistrib']
             );
             if (array_key_exists('reponse', $formData)) {
                 $datasValidation['reponse'] = $formData['reponse'];
