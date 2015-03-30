@@ -922,14 +922,14 @@ if($this->getRequest()->isPost()){
             $formData = $this->getRequest()->getPost();
 
             $nouvelle_validation = new Application_Model_DbTable_Validationsxdistrib();
-            $nouv_validation = $nouvelle_validation->createValidation($formData['nom_validation'], $formData['date_validation'], $formData['validation'], $formData['commentaire_dd'], $formData['dd'], $formData['tracking']);
+            $nouv_validation = $nouvelle_validation->createValidation($formData['nom_validation'], $formData['date_validation'], $formData['validation'], $formData['commentaire_dd'], $formData['tiltop'], $formData['tracking']);
             $valid_id_valid = new Application_Model_DbTable_Validationsxdistrib();
             $valid_id_valids = $valid_id_valid->getValidation($formData['nom_validation'], $formData['tracking']);
 
             $datasValidation = array(
                 'nom_validation' => $nom_validation, 'validation' => $formData['validation'],
                 'commentaire' => $formData['commentaire_dd'],
-                'id_user' => $formData['dd'], 'id_demande_xdistrib' => $info_demande_xdistrib['id_demande_xdistrib']
+                'id_user' => $formData['tiltop'], 'id_demande_xdistrib' => $info_demande_xdistrib['id_demande_xdistrib']
             );
             if (array_key_exists('reponse', $formData)) {
                 $datasValidation['reponse'] = $formData['reponse'];
