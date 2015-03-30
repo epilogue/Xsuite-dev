@@ -83,6 +83,19 @@ class XdistribController extends Zend_Controller_Action
     $this->view->recapitulatif = $recapitulatif2;
     //echo '<pre>',var_export($recapitulatif2),'</pre>';
     }
+     protected function genererValidation($datas) {
+        $dbtValidation = new Application_Model_DbTable_Validationsdemandexdistrib();
+        $now = new Datetime();
+        $commentaire = (!is_null($datas['commentaire']) && trim($datas['commentaire']) != "") ? trim($datas['commentaire']) : null;
+        $validations_demande_xdistrib_id = (array_key_exists('reponse', $datas) && trim($datas['reponse']) != "") ? $datas['reponse'] : null;
+        $dbtValidation->createValidation(
+                $datas['nom_validation'], $now->format('Y-m-d H:i:s'), $datas['validation'], $datas['id_user'], $datas['id_demande_xprice'], $commentaire, $validations_demande_xdistrib_id);
+        if (!is_null($commentaire)) {
+            return $dbtValidation->lastId();
+        } else {
+            return null;
+        }
+    }
     public function createnofileAction(){
         $numwp = $this->getRequest()->getParam('numwp', null);
         /* on vérifie que la demande  n'existe pas */
