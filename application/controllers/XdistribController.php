@@ -89,7 +89,7 @@ class XdistribController extends Zend_Controller_Action
         $commentaire = (!is_null($datas['commentaire']) && trim($datas['commentaire']) != "") ? trim($datas['commentaire']) : null;
         $validations_demande_xdistrib_id = (array_key_exists('reponse', $datas) && trim($datas['reponse']) != "") ? $datas['reponse'] : null;
         $dbtValidation->createValidation(
-                $validations_demande_xdistrib_id,$datas['id_demande_xdistrib'],$datas['dd'],$datas['nom_validation'], $now->format('Y-m-d H:i:s'), $datas['validation'],  $commentaire );
+                $validations_demande_xdistrib_id,$datas['id_demande_xdistrib'],$datas['tiltop'],$datas['nom_validation'], $now->format('Y-m-d H:i:s'), $datas['validation'],  $commentaire );
         if (!is_null($commentaire)) {
             return $dbtValidation->lastId();
         } else {
@@ -602,7 +602,7 @@ if($this->getRequest()->isPost()){
             $article_infos = new Application_Model_DbTable_TempMovexDemande();
             $article_info= $article_infos->demande($numwp);
             //var_dump($numwp);
-            echo '<pre>',  var_export($article_info),'</pre>'; 
+            //echo '<pre>',  var_export($article_info),'</pre>'; 
             $this->view->article_info=$article_info;
             $concurrent_infos=new Application_Model_DbTable_TempFicherDistribPrixConcurrent();
             $concurrent_info=$concurrent_infos->getAll($numwp);
@@ -766,7 +766,7 @@ if($this->getRequest()->isPost()){
     public function trackingAction(){
          $track = $this->getRequest()->getParam('tracking_number_demande_xdistrib', null);
         $form = new Application_Form_TrackingSearchDistrib();
-        echo $track;
+        //echo $track;
         if (!is_null($track)) {
             $form->populate(array("tracking_number_demande_xdistrib" => $track));
         }
@@ -934,7 +934,7 @@ if($this->getRequest()->isPost()){
             $this->view->date_validation = $date_validation;
             $nom_validation = "dd";
             $formData = $this->getRequest()->getPost();
-
+echo '<pre>',  var_export($formData),'</pre>';
             $nouvelle_validation = new Application_Model_DbTable_Validationsxdistrib();
             $nouv_validation = $nouvelle_validation->createValidation($formData['nom_validation'], $formData['date_validation'], $formData['validation'], $formData['commentaire_dd'], $formData['tiltop'], $formData['tracking']);
             $valid_id_valid = new Application_Model_DbTable_Validationsxdistrib();
