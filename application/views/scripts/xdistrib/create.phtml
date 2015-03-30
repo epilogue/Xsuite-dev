@@ -120,8 +120,7 @@ $this->headTitle($this->title);
                         <td>Quantité</td>
                         <td>Prix Achat actuel DISTRIBUTEUR</td>
                         <td>Prix Achat demandé DISTRIBUTEUR</td>
-                        <td>Prix Achat CLIENT FINAL</td>
-                        <td>Remise supplémentaire DISTRIBUTEUR</td>
+                        <td>Prix Conseillé CLIENT FINAL</td>
                         <td>Remise référence ou série</td>
                     </tr>
                     <?php foreach($this->article_info as $value){ ?>
@@ -131,7 +130,6 @@ $this->headTitle($this->title);
                         <td><?php echo $value['prix_achat_actuel']; ?></td>
                         <td><?php echo $value['prix_achat_demande_distrib']; ?></td>
                         <td><?php echo $value['prix_achat_demande_client_final']; ?></td>
-                        <td><?php echo $value['remise_supplementaire']; ?></td>
                         <td><?php echo $value['serie']; ?></td>
                     </tr> <?php }?>
                 </table>
