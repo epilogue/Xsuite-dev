@@ -589,7 +589,7 @@ if($this->getRequest()->isPost()){
             $article_infos = new Application_Model_DbTable_TempMovexDemande();
             $article_info= $article_infos->demande($numwp);
             //var_dump($numwp);
-            echo '<pre>',  var_export($article_info),'</pre>'; 
+            echo '<pre>',  var_export($article_info),'</pre>'; exit();
             $this->view->article_info=$article_info;
             $concurrent_infos=new Application_Model_DbTable_TempFicherDistribPrixConcurrent();
             $concurrent_info=$concurrent_infos->getAll($numwp);
@@ -607,7 +607,22 @@ if($this->getRequest()->isPost()){
         $Defxdistribarticles= new Application_Model_DbTable_DemandeArticlexdistrib();
         foreach($article_info as $art){
             $marge_demande_article = 100*(1-($art['prix_cif']/$art['prix_achat_demande_distrib']));
-            $Defxdistribarticle = $Defxdistribarticles->createDemandeArticlexdistrib($art['prix_tarif'],$art['prix_achat_actuel'] ,$art['prix_achat_demande_distrib'], $art['prix_achat_demande_client_final'],$art['quantite'],$art['serie'],$art['date'], $art['prix_fob'], $art['prix_cif'], $marge_demande_article,$trackingNumber, $art['code_article'], $art['reference_article'], $numwp,$art['code_acquisition']);
+            $Defxdistribarticle = $Defxdistribarticles->createDemandeArticlexdistrib(
+                    $art['prix_tarif'],
+                    $art['prix_achat_actuel'] ,
+                    $art['prix_achat_demande_distrib'],
+                    $art['prix_achat_demande_client_final'],
+                    $art['quantite'],
+                    $art['serie'],
+                    $art['date'], 
+                    $art['prix_fob'], 
+                    $art['prix_cif'],
+                    $marge_demande_article,
+                    $trackingNumber,
+                    $art['code_article'],
+                    $art['reference_article'],
+                    $numwp,
+                    $art['code_acquisition']);
         } 
         $DefConcurrents = new Application_Model_DbTable_PrixConcurrent();
         foreach($concurrent_info as $con){
