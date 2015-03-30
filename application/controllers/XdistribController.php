@@ -514,7 +514,7 @@ if($this->getRequest()->isPost()){
             }
             $demandes_articles_xdistrib = new Application_Model_DbTable_TempMovexDemande();
             foreach ($this->view->resultat as $resultarticle) {
-                $demande_article_xdistrib = $demandes_articles_xdistrib->createDemandeTemp(trim($resultarticle['OBITNO']),trim($resultarticle['OBITDS']),$resultarticle['OBSAPR'], $resultarticle['OBORQT'], $resultarticle['OBNEPR'],round(100 - ($resultarticle['OBNEPR'] * 100 / $resultarticle['OBSAPR']), 2),$numwp,$resultarticle['OBNEPR'], round(100 - ($resultarticle['OBNEPR'] * 100 / $resultarticle['OBSAPR']), 2),null,null,null,null);
+                $demande_article_xdistrib = $demandes_articles_xdistrib->createDemandeTemp(trim($resultarticle['OBITNO']),trim($resultarticle['OBITDS']),$resultarticle['OBSAPR'], $resultarticle['OBORQT'], $resultarticle['OBNEPR'],$numwp,$resultarticle['OBNEPR'], round(100 - ($resultarticle['OBNEPR'] * 100 / $resultarticle['OBSAPR']), 2),null,null,null,null);
             }
 
             /*insertion et update  prix fob et cif*/ 
@@ -588,6 +588,7 @@ if($this->getRequest()->isPost()){
             $this->view->client_info=$client_info[0];
             $article_infos = new Application_Model_DbTable_TempMovexDemande();
             $article_info= $article_infos->demande($numwp);
+            var_dump($numwp);
             echo '<pre>',  var_export($article_info),'</pre>'; exit();
             $this->view->article_info=$article_info;
             $concurrent_infos=new Application_Model_DbTable_TempFicherDistribPrixConcurrent();
