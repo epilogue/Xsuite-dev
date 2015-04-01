@@ -25,4 +25,68 @@ $this->headTitle($this->title);
         </fieldset>
     </div>
     <div class="clear"></div>
+    <div class="clear"></div>
+    <div id="information" class="workplace">
+        <fieldset id="info_user" class="field_info">
+            <legend>Informations Commercial</legend>
+            <table>
+                <tr>
+                    <td>Nom:</td>
+                    <td><?php echo $this->info_user['nom_user']; ?></td>
+                </tr>
+                <tr>
+                    <td>Prénom:</td>
+                    <td><?php echo $this->info_user['prenom_user']; ?></td>
+                </tr>
+                <tr>
+                    <td>Email:</td>
+                    <td><?php echo $this->info_user['email_user']; ?></td>
+                </tr>
+                <tr>
+                    <td>Téléphone:</td>
+                    <td><?php echo $this->info_user['tel_user']; ?></td>
+                </tr>
+                <tr>
+                    <td>Holon:</td>
+                    <td><?php echo $this->holon; ?></td>
+                </tr>
+                <tr>
+                    <td>User workplace:</td>
+                    <td><?php echo $this->info_user['numwp_user']; ?></td>
+                </tr>
+            </table>
+        </fieldset>
+        <fieldset id="info_client" class="field_info">
+            <legend>Informations Client</legend>
+            <table>
+                <tr>
+                    <td>Nom:</td>
+                    <td><?php echo $this->info_client['nom_client']; ?></td>
+                </tr>
+                <tr>
+                    <td>User Workplace:</td>
+                    <td><?php echo $this->info_client['numwp_client']; ?></td>
+                </tr>
+                <tr>
+                    <td>Projet industrie:</td>
+                    <td><?php echo $this->nom_industrie['nom_industry'] ?></td>
+                </tr>
+                <tr>
+                    <td>Potentiel:</td>
+                    <td><?php echo $this->info_client['potentiel']; ?></td>
+                </tr>
+                <?php if($this->utilisateur =='5' or $this->utilisateur== '13' or $this->utilisateur== '29'){ ?>
+               <tr>
+                    <td>CA total N-1 réalisé par le client:</td>
+                    <td><?php echo number_format($this->caencoursClient_1,2,'.',' '); ?></td>
+                </tr>
+                <tr>
+                    <td>CA cumulé à date sur l'année en cours :</td>
+                    <td><?php echo number_format($this->caencoursClient,2,'.',' '); ?></td>
+                </tr>
+                <?php } ?>
+            </table>
+        </fieldset>
+    </div>
+    <div class="clear"></div>
 </div>
