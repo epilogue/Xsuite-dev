@@ -32,19 +32,19 @@ $this->headTitle($this->title);
             <table>
                 <tr>
                     <td>Nom:</td>
-                    <td><?php echo $this->info_user['nom_user']; ?></td>
+                    <td><?php echo $this->user_info['nom_user']; ?></td>
                 </tr>
                 <tr>
                     <td>Prénom:</td>
-                    <td><?php echo $this->info_user['prenom_user']; ?></td>
+                    <td><?php echo $this->user_info['prenom_user']; ?></td>
                 </tr>
                 <tr>
                     <td>Email:</td>
-                    <td><?php echo $this->info_user['email_user']; ?></td>
+                    <td><?php echo $this->user_info['email_user']; ?></td>
                 </tr>
                 <tr>
                     <td>Téléphone:</td>
-                    <td><?php echo $this->info_user['tel_user']; ?></td>
+                    <td><?php echo $this->user_info['tel_user']; ?></td>
                 </tr>
                 <tr>
                     <td>Holon:</td>
@@ -52,7 +52,7 @@ $this->headTitle($this->title);
                 </tr>
                 <tr>
                     <td>User workplace:</td>
-                    <td><?php echo $this->info_user['numwp_user']; ?></td>
+                    <td><?php echo $this->user_info['numwp_user']; ?></td>
                 </tr>
             </table>
         </fieldset>
@@ -61,11 +61,11 @@ $this->headTitle($this->title);
             <table>
                 <tr>
                     <td>Nom:</td>
-                    <td><?php echo $this->info_client['nom_client']; ?></td>
+                    <td><?php echo $this->client_info['nom_client']; ?></td>
                 </tr>
                 <tr>
                     <td>User Workplace:</td>
-                    <td><?php echo $this->info_client['numwp_client']; ?></td>
+                    <td><?php echo $this->client_info['numwp_client']; ?></td>
                 </tr>
                 <tr>
                     <td>Projet industrie:</td>
@@ -73,7 +73,7 @@ $this->headTitle($this->title);
                 </tr>
                 <tr>
                     <td>Potentiel:</td>
-                    <td><?php echo $this->info_client['potentiel']; ?></td>
+                    <td><?php echo $this->client_info['potentiel']; ?></td>
                 </tr>
                 <?php if($this->utilisateur =='5' or $this->utilisateur== '13' or $this->utilisateur== '29'){ ?>
                <tr>
