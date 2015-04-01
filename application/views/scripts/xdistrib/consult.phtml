@@ -26,67 +26,147 @@ $this->headTitle($this->title);
     </div>
     <div class="clear"></div>
     <div class="clear"></div>
-    <div id="information" class="workplace">
-        <fieldset id="info_user" class="field_info">
-            <legend>Informations Commercial</legend>
+    <div id="information2" class="workplace2">
+        <fieldset id="info_user" class="field_info_2">
+            <legend>Informations<br>Commercial</legend>
             <table>
                 <tr>
                     <td>Nom:</td>
-                    <td><?php echo $this->user_info['nom_user']; ?></td>
+                    <td><?php echo $this->user_info['nom_user'];?></td>
                 </tr>
                 <tr>
                     <td>Prénom:</td>
-                    <td><?php echo $this->user_info['prenom_user']; ?></td>
+                    <td><?php echo $this->user_info['prenom_user'];?></td>
                 </tr>
                 <tr>
                     <td>Email:</td>
-                    <td><?php echo $this->user_info['email_user']; ?></td>
+                    <td><?php echo $this->user_info['email_user'];?></td>
                 </tr>
                 <tr>
                     <td>Téléphone:</td>
-                    <td><?php echo $this->user_info['tel_user']; ?></td>
+                    <td><?php echo $this->user_info['tel_user'];?></td>
                 </tr>
                 <tr>
                     <td>Holon:</td>
-                    <td><?php echo $this->holon; ?></td>
+                    <td><?php echo $this->nom_holon['nom_holon']; ?></td>
                 </tr>
                 <tr>
                     <td>User workplace:</td>
-                    <td><?php echo $this->user_info['numwp_user']; ?></td>
+                    <td><?php echo $this->user_info['numwp_user'];?></td>
                 </tr>
             </table>
         </fieldset>
-        <fieldset id="info_client" class="field_info">
-            <legend>Informations Client</legend>
+        <fieldset id="info_distributeur" class="field_info_2" >
+            <legend>Informations<br>Distributeur</legend>
             <table>
                 <tr>
                     <td>Nom:</td>
-                    <td><?php echo $this->client_info['nom_client']; ?></td>
+                    <td><?php echo $this->distrib_info['nom_distributeur'];?></td>
+                </tr>
+                <tr>
+                    <td>Prénom Nom du contact:</td>
+                    <td><?php echo $this->distrib_info['contact_distributeur'];?></td>
+                </tr>
+                <tr>
+                    <td>Ville:</td>
+                    <td><?php echo $this->distrib_info['agence_distributeur'];?></td>
+                </tr>
+                <tr>
+                    <td>Code Postal:</td>
+                    <td><?php echo $this->distrib_info['code_postal_distributeur'];?></td>
                 </tr>
                 <tr>
                     <td>User Workplace:</td>
-                    <td><?php echo $this->client_info['numwp_client']; ?></td>
+                    <td><?php echo $this->distrib_info['numwp_distributeur'];?></td>
+                </tr>
+            </table>
+        </fieldset>             
+
+        <fieldset id="info_client" class="field_info_2"> 
+            <legend>Informations<br>Client Final</legend>
+            <table>
+                <tr>
+                    <td>Nom:</td>
+                    <td colspan="2"><?php echo $this->client_info['nom_client']?></td>
                 </tr>
                 <tr>
-                    <td>Projet industrie:</td>
-                    <td><?php echo $this->nom_industrie['nom_industry'] ?></td>
+                    <td>Code Postal:</td>
+                    <td><?php echo $this->client_info['codepostal_client']?></td>
                 </tr>
                 <tr>
-                    <td>Potentiel:</td>
-                    <td><?php echo $this->client_info['potentiel']; ?></td>
-                </tr>
-                <?php if($this->utilisateur =='5' or $this->utilisateur== '13' or $this->utilisateur== '29'){ ?>
-               <tr>
-                    <td>CA total N-1 réalisé par le client:</td>
-                    <td><?php echo number_format($this->caencoursClient_1,2,'.',' '); ?></td>
+                    <td>Ville:</td>
+                    <td><?php echo $this->client_info['ville_client']?></td>
                 </tr>
                 <tr>
-                    <td>CA cumulé à date sur l'année en cours :</td>
-                    <td><?php echo number_format($this->caencoursClient,2,'.',' '); ?></td>
+                    <td>User Workplace:</td>
+                    <td><?php echo $this->client_info['numwp_client']?></td>
                 </tr>
-                <?php } ?>
+                 <tr>
+                    <td>Projet:</td>
+                    <td><?php echo $this->client_info['nom_industry']?></td>
+                </tr>
+            </table>
+       </fieldset>
+    </div>
+     <div class="clear"></div>
+    <div id="demandeArticle" class="workplace">
+        <fieldset class="field">
+            <legend>Produits</legend>
+            <table  id="article" class="enum">
+                <tr>
+                    <td>Références produits</td>
+                    <td>Quantité</td>
+                    <td>Prix Achat actuel DISTRIBUTEUR</td>
+                    <td>Prix Achat demandé DISTRIBUTEUR</td>
+                    <td>Prix Conseillé CLIENT FINAL</td>
+                    <td>Remise référence ou série</td>
+                </tr>
+                <?php foreach($this->article_info as $value){ ?>
+                <tr>
+                    <td><?php echo $value['reference_article']; ?></td>
+                    <td><?php echo $value['quantite_demande_article']; ?></td>
+                    <td><?php echo $value['prix_achat_actuel']; ?></td>
+                    <td><?php echo $value['prix_demande_article']; ?></td>
+                    <td><?php echo $value['prix_client_final']; ?></td>
+                    <td><?php echo $value['serie']; ?></td>
+                </tr> <?php }?>
             </table>
         </fieldset>
     </div>
     <div class="clear"></div>
+    <div id="concurrent" class="workplace">
+            <fieldset  class="field">
+                <legend>Concurrence</legend>
+                <table  id="concurrents" class="enum">
+                    <tr>
+                        <td>Concurrents</td>
+                        <td>Références Produits</td>
+                        <td>Prix Tarif CONCURRENT</td>
+                        <td>Prix spécial accordé CONCURRENT</td>
+                    </tr>
+                    <?php foreach($this->concurrent_info as $val){ ?>
+                    <tr>
+                        <td><?php echo $val['nom_concurrent']; ?></td>
+                        <td><?php echo $val['reference_article']; ?></td>
+                        <td><?php echo $val['prix_concurrent']; ?></td>
+                        <td><?php echo $val['prix_special_concurrent']; ?></td>
+                    </tr> <?php } ?>
+                </table>
+            </fieldset>
+        </div>
+        <div class="clear"></div>
+         <div id="contexte_service" class="workplace">
+            <fieldset class="field">
+                <legend>Contexte de la demande</legend>
+                <?php  foreach($this->contexte_info as $contexte){?>
+                <p><?php echo $contexte;?></p><?php } ?>
+                <table class='enum'>
+                    
+                    <tr><?php foreach($this->service_info as $key=>$value) { if($value != null && $key != "id_service_distrib" && $key != "numwp" ){?>
+                    <td><?php echo $value;} ?></td> <?php } ?>
+                    </tr>
+                </table>
+            </fieldset>
+         </div>
+         <div class="clear"></div>
 </div>
