@@ -75,5 +75,29 @@ class Application_Model_DbTable_Validationsdemandexdistrib extends Zend_Db_Table
             return false;
         }
     }
-
+ public function searchFermeture($numwp){
+            $sql = "SELECT etat_validation,demande_xdistrib.num_workplace_demande_xdistrib 
+                FROM validations_demande_xdistrib
+            join demande_xdistrib on demande_xdistrib.id_demande_xdistrib= validations_demande_xdistrib.id_demande_xdistrib
+             WHERE demande_xdistrib.num_workplace_demande_xdistrib =$numwp ";
+            
+             $res = $this->getAdapter()->query($sql);
+            $rest=$res->fetchAll();
+            if (!$rest) {
+                return null;
+            } else {
+                return $rest;
+            }
+        }
+        public function getValidForEncours($numwp){
+            $sql="SELECT nom_validation,etat_validation FROM validations_demande_xdistrib
+join demande_xdistrib on demande_xdistrib.id_demande_xdistrib =validations_demande_xdistrib.id_demande_xdistrib where num_workplace_demande_xdistrib = $numwp";
+             $res = $this->getAdapter()->query($sql);
+            $rest=$res->fetchAll();
+            if (!$rest) {
+                return null;
+            } else {
+                return $rest;
+            }
+        }
 }

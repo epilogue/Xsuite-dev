@@ -756,12 +756,38 @@ if($this->getRequest()->isPost()){
         $this->view->numwp = $numwp;
         $infos_demande_xdistrib= new Application_Model_DbTable_Xdistrib();
         $info_demande_xdistrib = $infos_demande_xdistrib->getNumwp($numwp);
-       $dateinit=$info_demande_xdistrib['date_demande_xdistrib'];
+        $dateinit=$info_demande_xdistrib['date_demande_xdistrib'];
         $date = DateTime::createFromFormat('Y-m-d', $dateinit);
         $dateplop = $date->format('d/m/Y');
-       $this->view->dateplop=$dateplop;
+        $ferme = new Application_Model_DbTable_Validationsdemandexdistrib();
+        $fermeture = $ferme->searchFermeture($numwp);
+        foreach($fermeture as $ferm){
+            $plop1 = $ferm;
+        }
+        
+        $nomvalidationrecherche = "cdr";
+        $tracking = $info_demande_xdistrib['tracking_number_demande_xdistrib'];
+        $recherchevalidation = new Application_Model_DbTable_Validationsxdistrib();
+        $recherchesvalidation = $recherchevalidation->getValidation($nomvalidationrecherche, $tracking);
+        $infos_user = new Application_Model_DbTable_Users();
+        /*
+         * chargement des validations avec leurs commentaires
+         */
+        $dbtValidationsDemandesXdistrib = new Application_Model_DbTable_Validationsdemandexdistrib();
+        $validationsDemandesXdistrib = $dbtValidationsDemandesXdistrib->getAllValidation($info_demande_xdistrib['id_demande_xdistrib']);
+
+        $this->view->validations = $validationsDemandesXdistrib;
+        //echo'<pre>',  var_export($validationsDemandesXprices),'</pre>';
+        $usersValidations = array();
+
+        foreach (@$validationsDemandesXdistrib as $key => $validationDemandeXdistri) {
+            $userValidationInfos = $infos_user->getFonctionLabel($validationDemandeXdistri['id_user']);
+            $usersValidations[$key]['fonction'] =$userValidationInfos['prenom_user'].' ' .$userValidationInfos['nom_user'];
+        }
+        $this->view->usersValidations = $usersValidations;
+        $this->view->fermeturevalide=$plop1['etat_validation'];
+        $this->view->dateplop=$dateplop;
         $this->view->info_demande_xdistrib=$info_demande_xdistrib;
-//        echo '<pre>', var_export($info_demande_xdistrib),'</pre>';
     } 
     public function trackingAction(){
          $track = $this->getRequest()->getParam('tracking_number_demande_xdistrib', null);
