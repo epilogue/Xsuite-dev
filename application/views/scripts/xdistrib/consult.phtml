@@ -1,6 +1,8 @@
 <?php
 $this->title = 'Xdistrib/visualisation';
 $this->headTitle($this->title);
+$this->headScript()->appendFile('/js/controllers/xprice/affiche_masque_commentaires.js');
+$this->headScript()->appendFile('/js/controllers/xprice/afficher_masquer_validations.js');
 ?>
 <div id="plop3" class="contenu">
     <h2>Consultation de l'offre Xdistrib : <?php echo $this->numwp; ?></h2>
