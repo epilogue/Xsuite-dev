@@ -190,6 +190,7 @@ if($user->id_fonction == 3){
 //requete 1 pour remplir  les données du commercial à partir du numwp
             $query1 = "SELECT OOLINE.OBSMCD  as userwp FROM EIT.CVXCDTA.OOLINE OOLINE WHERE OOLINE.OBORNO='{$numwp}'";
             $numwp_user = odbc_fetch_array(odbc_exec($this->odbc_conn, $query1));
+            echo '<pre>',  var_export($numwp_user),'</pre>'; exit();
             $usertest = new Application_Model_DbTable_Users();
             $user_info = $usertest->getMovexUser($numwp_user['USERWP']);
             $this->view->user_info = $user_info;
