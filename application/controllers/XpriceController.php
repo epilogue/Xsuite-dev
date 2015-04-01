@@ -193,7 +193,6 @@ if($user->id_fonction == 3){
 //            echo '<pre>',  var_export($numwp_user),'</pre>'; exit();
             $usertest = new Application_Model_DbTable_Users();
             $user_info = $usertest->getMovexUser($numwp_user['USERWP']);
-            echo '<pre>',  var_export($user_info),'</pre>'; exit();
             $this->view->user_info = $user_info;
             $id_holon = $user_info['id_holon'];
             $holonuser = new Application_Model_DbTable_Holons();
