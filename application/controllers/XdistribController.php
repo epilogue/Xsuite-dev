@@ -440,10 +440,11 @@ if($this->getRequest()->isPost()){
         // requête d'informations de l'offre et on va enregistrer les infos  dans les  tables temp_movex 
         if (!is_null($numwp)) {
             /*recuperation numwp et date*/
-            $pirate = "select OOLINE.OBCHID,OOLINE.OBORNO,OOLINE.OBCUNO, OOLINE.OBRGDT, OOLINE.OBORNO, OOLINE.OBSMCD from EIT.CVXCDTA.OOLINE OOLINE where OOLINE.OBORNO='{$numwp}'";
+            $pirate = "select OOLINE.OBCHID,OOLINE.OBORNO,OOLINE.OBCUNO, OOLINE.OBRGDT, OOLINE.OBDLSP, OOLINE.OBSMCD from EIT.CVXCDTA.OOLINE OOLINE where OOLINE.OBORNO='{$numwp}'";
             $infos_offre = odbc_exec($this->odbc_conn, $pirate);
             $infos_offres = odbc_fetch_object($infos_offre);
             $this->view->infos_offres = $infos_offres;
+            echo '<pre>',  var_export($infos_offres),'</pre>'; (exit);
             $nomdeb = trim($infos_offres->OBCHID);
             $nomdebu=substr($nomdeb,2,-1);
             $infodd=new Application_Model_DbTable_Users();
@@ -1153,6 +1154,9 @@ if($this->getRequest()->isPost()){
          }
     }
     public function validatedrvAction(){
+        
+    }
+    public function consultchefmarche(){
         
     }
 }

@@ -1,0 +1,194 @@
+<?php
+$this->title = 'Xdistrib/consultation';
+$this->headTitle($this->title);
+?>
+<div id="plop" class="contenu">
+    <h2>Consultation de l'offre Xdistrib : <?php $numwp?></h2>
+    <div id="workplace" class="workplace">
+        <fieldset id="wp" class="field">
+            <legend>Informations offre</legend>
+            <table class="table_info">
+                <tr>
+                    <td>Numéro workplace de l'offre :</td>
+                    <td><?php echo $this->numwp; ?></td>
+                </tr>
+                <tr>
+                    <td>Date de l'offre workplace :</td>
+                    <td><?php echo $this->dateplop; ?></td>
+                </tr>
+                <tr>
+                    <td>Tracking number :</td>
+                    <td><?php echo $this->info_demande_xdistrib['tracking_number_demande_xdistrib']; ?></td>
+                </tr>
+            </table>
+        </fieldset>
+    </div>
+    <div class="clear"></div>
+    <div id="information2" class="workplace2">
+        <fieldset id="info_user" class="field_info_2">
+            <legend>Informations<br>Commercial</legend>
+            <table>
+                <tr>
+                    <td>Nom:</td>
+                    <td><?php echo $this->user_info['nom_user'];?></td>
+                </tr>
+                <tr>
+                    <td>Prénom:</td>
+                    <td><?php echo $this->user_info['prenom_user'];?></td>
+                </tr>
+                <tr>
+                    <td>Email:</td>
+                    <td><?php echo $this->user_info['email_user'];?></td>
+                </tr>
+                <tr>
+                    <td>Téléphone:</td>
+                    <td><?php echo $this->user_info['tel_user'];?></td>
+                </tr>
+                <tr>
+                    <td>Holon:</td>
+                    <td><?php echo $this->nom_holon['nom_holon']; ?></td>
+                </tr>
+                <tr>
+                    <td>User workplace:</td>
+                    <td><?php echo $this->user_info['numwp_user'];?></td>
+                </tr>
+            </table>
+        </fieldset>
+        <fieldset id="info_distributeur" class="field_info_2" >
+            <legend>Informations<br>Distributeur</legend>
+            <table>
+                <tr>
+                    <td>Nom:</td>
+                    <td><?php echo $this->distrib_info['nom_distributeur'];?></td>
+                </tr>
+                <tr>
+                    <td>Prénom Nom du contact:</td>
+                    <td><?php echo $this->distrib_info['contact_distributeur'];?></td>
+                </tr>
+                <tr>
+                    <td>Ville:</td>
+                    <td><?php echo $this->distrib_info['agence_distributeur'];?></td>
+                </tr>
+                <tr>
+                    <td>Code Postal:</td>
+                    <td><?php echo $this->distrib_info['code_postal_distributeur'];?></td>
+                </tr>
+                <tr>
+                    <td>User Workplace:</td>
+                    <td><?php echo $this->distrib_info['numwp_distributeur'];?></td>
+                </tr>
+            </table>
+        </fieldset>             
+
+        <fieldset id="info_client" class="field_info_2"> 
+            <legend>Informations<br>Client Final</legend>
+            <table>
+                <tr>
+                    <td>Nom:</td>
+                    <td colspan="2"><?php echo $this->client_info['nom_client']?></td>
+                </tr>
+                <tr>
+                    <td>Code Postal:</td>
+                    <td><?php echo $this->client_info['codepostal_client']?></td>
+                </tr>
+                <tr>
+                    <td>Ville:</td>
+                    <td><?php echo $this->client_info['ville_client']?></td>
+                </tr>
+                <tr>
+                    <td>User Workplace:</td>
+                    <td><?php echo $this->client_info['numwp_client']?></td>
+                </tr>
+                 <tr>
+                    <td>Projet:</td>
+                    <td><?php echo $this->client_info['nom_industry']?></td>
+                </tr>
+            </table>
+       </fieldset>
+    </div>
+     <div class="clear"></div>
+    <div id="demandeArticle" class="workplace">
+        <fieldset class="field">
+            <legend>Produits</legend>
+            <table  id="article" class="enum">
+                <tr>
+                    <td>Références produits</td>
+                    <td>Quantité</td>
+                    <td>Prix Achat actuel DISTRIBUTEUR</td>
+                    <td>Prix Achat demandé DISTRIBUTEUR</td>
+                    <td>Prix Conseillé CLIENT FINAL</td>
+                    <td>Remise référence ou série</td>
+                </tr>
+                <?php foreach($this->article_info as $value){ ?>
+                <tr>
+                    <td><?php echo $value['reference_article']; ?></td>
+                    <td><?php echo $value['quantite_demande_article']; ?></td>
+                    <td><?php echo $value['prix_achat_actuel']; ?></td>
+                    <td><?php echo $value['prix_demande_article']; ?></td>
+                    <td><?php echo $value['prix_client_final']; ?></td>
+                    <td><?php echo $value['serie']; ?></td>
+                </tr> <?php }?>
+            </table>
+        </fieldset>
+    </div>
+    <div class="clear"></div>
+    <div id="concurrent" class="workplace">
+            <fieldset  class="field">
+                <legend>Concurrence</legend>
+                <table  id="concurrents" class="enum">
+                    <tr>
+                        <td>Concurrents</td>
+                        <td>Références Produits</td>
+                        <td>Prix Tarif CONCURRENT</td>
+                        <td>Prix spécial accordé CONCURRENT</td>
+                    </tr>
+                    <?php foreach($this->concurrent_info as $val){ ?>
+                    <tr>
+                        <td><?php echo $val['nom_concurrent']; ?></td>
+                        <td><?php echo $val['reference_article']; ?></td>
+                        <td><?php echo $val['prix_concurrent']; ?></td>
+                        <td><?php echo $val['prix_special_concurrent']; ?></td>
+                    </tr> <?php } ?>
+                </table>
+            </fieldset>
+        </div>
+        <div class="clear"></div>
+         <div id="contexte_service" class="workplace">
+            <fieldset class="field">
+                <legend>Contexte de la demande</legend>
+                <?php  foreach($this->contexte_info as $contexte){?>
+                <p><?php echo $contexte;?></p><?php } ?>
+                <table class='enum'>
+                    
+                    <tr><?php foreach($this->service_info as $key=>$value) { if($value != null && $key != "id_service_distrib" && $key != "numwp" ){?>
+                    <td><?php echo $value;} ?></td> <?php } ?>
+                    </tr>
+                </table>
+            </fieldset>
+         </div>
+        <div id="commentaire_chef_marche">
+        <form method="post">
+            <div id="cdr" class="workplace">
+                <fieldset class="field">
+                    <legend>Commentaire chef de marché</legend>
+                    <textarea name="commentaire_chefmarche" cols="75" rows="10"></textarea>
+                    <?php
+                    if (!is_null($this->commentId)) {
+                        ?>
+                        <input type="hidden" name="comcm" value="<?php echo $this->commentId; ?>">
+                        <?php
+                    }
+                    ?>
+                </fieldset>
+            </div>
+            <div id="comcm" class="workplace">
+                <input type="hidden" name="validation" value="<?php echo $this->etat_en_cours; ?>"><input type="hidden" name="nom_validation" value="comcm"><br>
+               <input type="hidden" name="date_validation" value="<?php echo date("Y-m-d H:i:s") ?>"><br>
+               <input type="hidden" name="cdr" value="<?php echo $this->cdr; ?>"><br>
+               <input type="hidden" name="tracking" value="<?php echo $this->info_demande_xprice['tracking_number_demande_xprice']; ?>">
+            </div>
+            <input class="submit" type="submit" value="enregistrer votre commentaire">
+        </form>
+    </div>
+    <div class="clear"></div>
+</div>
