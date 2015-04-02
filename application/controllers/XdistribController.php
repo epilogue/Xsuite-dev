@@ -406,7 +406,7 @@ if($this->getRequest()->isPost()){
          *
          */
         $tempinfodistrib= new Application_Model_DbTable_TempFichierDistribInfo();
-        $tempinfodistribs = $tempinfodistrib->createInfo($numwp, $nom_distributeur, $code_postal_distributeur, $ville_distributeur, $contact_distributeur, $nom_client_final, $numwp_client_final, $code_postal_client_final, $ville_client_final);
+        $tempinfodistribs = $tempinfodistrib->createInfo($numwp, $nom_distributeur, $code_postal_distributeur, $ville_distributeur, $contact_distributeur, $nom_client_final, $infos_offres->OBDLSP, $code_postal_client_final, $ville_client_final);
         $temparticledistrib = new Application_Model_DbTable_TempFichierDistribArticle();
         foreach($rowsbis as $value){
             $temparticledistribs = $temparticledistrib->createArticle($numwp, trim($value[0]), $value[1], $value[2], $value[3], $value[5], $value[6]);
@@ -580,10 +580,10 @@ if($this->getRequest()->isPost()){
             $nom_industry=$info_industry_client_final['description_industry'];
           
             $clientTemps= new Application_Model_DbTable_TempClient();
-            $clientTemp= $clientTemps->createTemp($numwp,$numwp_client_final,$code_postal_client_final,$ville_client_final,$nom_industry,$id_industry,$nom_client_final);
+            $clientTemp= $clientTemps->createTemp($numwp,$infos_offres->OBDLSP,$code_postal_client_final,$ville_client_final,$nom_industry,$id_industry,$nom_client_final);
             
             $clientDEF= new Application_Model_DbTable_ClientDistrib();
-            $clientDefs= $clientDEF->createClientDistrib($numwp,$numwp_client_final,$code_postal_client_final,$ville_client_final,$nom_industry,$id_industry,$nom_client_final,null);
+            $clientDefs= $clientDEF->createClientDistrib($numwp,$infos_offres->OBDLSP,$code_postal_client_final,$ville_client_final,$nom_industry,$id_industry,$nom_client_final,null);
         /*fin de l'insertion des données movex dans les tables temporaires */
             /* debut de requettage  pour affichage des informations  dans le phtml*/
             /*requete info_ vendeur, info_distrib,info_client*/ 
@@ -617,7 +617,7 @@ if($this->getRequest()->isPost()){
             $this->view->trackingNumber = $trackingNumber;
         }
         $Defxdistribs= new Application_Model_DbTable_Xdistrib();
-        $defxdistrib = $Defxdistribs->createXDistrib($numwp, $trackingNumber,$context_info[0]['contexte_demande'],$date,$context_info[0]['services_associes'], $user_info[0]['id_user'],$infos_dd->id_user,null,$numwp_client_final,$numwp_distributeur5);
+        $defxdistrib = $Defxdistribs->createXDistrib($numwp, $trackingNumber,$context_info[0]['contexte_demande'],$date,$context_info[0]['services_associes'], $user_info[0]['id_user'],$infos_dd->id_user,null,$infos_offres->OBDLSP,$numwp_distributeur5);
         $Defxdistribarticles= new Application_Model_DbTable_DemandeArticlexdistrib();
         foreach($article_info as $art){
             $marge_demande_article = 100*(1-($art['prix_cif']/$art['prix_achat_demande_distrib']));
