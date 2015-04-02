@@ -1210,7 +1210,7 @@ if($this->getRequest()->isPost()){
         $usersValidations = array();
 
         foreach (@$validationsDemandesXdistrib as $key => $validationDemandeXdistrib) {
-            $userValidationInfos = $infos_user->getFonctionLabel($validationDemandeXdistrib['id_user']);
+            $userValidationInfos = $info_user->getFonctionLabel($validationDemandeXdistrib['id_user']);
             $usersValidations[$key]['fonction'] = $userValidationInfos['description_fonction'];
         }
         $this->view->usersValidations = $usersValidations;
