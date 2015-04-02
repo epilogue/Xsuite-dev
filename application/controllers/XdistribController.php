@@ -406,7 +406,7 @@ if($this->getRequest()->isPost()){
          *
          */
         $tempinfodistrib= new Application_Model_DbTable_TempFichierDistribInfo();
-        $tempinfodistribs = $tempinfodistrib->createInfo($numwp, $nom_distributeur, $code_postal_distributeur, $ville_distributeur, $contact_distributeur, $nom_client_final, $infos_offres->OBDLSP, $code_postal_client_final, $ville_client_final);
+        $tempinfodistribs = $tempinfodistrib->createInfo($numwp, $nom_distributeur, $code_postal_distributeur, $ville_distributeur, $contact_distributeur, $nom_client_final, $numwp_client_final, $code_postal_client_final, $ville_client_final);
         $temparticledistrib = new Application_Model_DbTable_TempFichierDistribArticle();
         foreach($rowsbis as $value){
             $temparticledistribs = $temparticledistrib->createArticle($numwp, trim($value[0]), $value[1], $value[2], $value[3], $value[5], $value[6]);
