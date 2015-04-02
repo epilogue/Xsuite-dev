@@ -1221,15 +1221,15 @@ if($this->getRequest()->isPost()){
             $nom_validation = "comcm";
             $formData = $this->getRequest()->getPost();
 
-            $nouvelle_validation = new Application_Model_DbTable_Validationsxprice();
+            $nouvelle_validation = new Application_Model_DbTable_Validationsxdistrib();
             $nouv_validation = $nouvelle_validation->createValidation($formData['nom_validation'], $formData['date_validation'], $etat_en_cours, $formData['commentaire_chefmarche'], $user->id_user, $formData['tracking']);
-            $valid_id_valid = new Application_Model_DbTable_Validationsxprice();
+            $valid_id_valid = new Application_Model_DbTable_Validationsxdistrib();
             $valid_id_valids = $valid_id_valid->getValidation($formData['nom_validation'], $formData['tracking']);
 
             $datasValidation = array(
                 'nom_validation' => $nom_validation, 'validation' => $etat_en_cours,
                 'commentaire' => $formData['commentaire_chefmarche'],
-                'id_user' => $user->id_user, 'id_demande_xprice' => $info_demande_xprice['id_demande_xprice']
+                'tiltop' => $user->id_user, 'id_demande_xdistrib' => $info_demande_xdistrib['id_demande_xdistrib']
             );
            
             $commentId = $this->genererValidation($datasValidation);
