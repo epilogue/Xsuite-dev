@@ -444,7 +444,7 @@ if($this->getRequest()->isPost()){
             $infos_offre = odbc_exec($this->odbc_conn, $pirate);
             $infos_offres = odbc_fetch_object($infos_offre);
             $this->view->infos_offres = $infos_offres;
-            echo '<pre>',  var_export($infos_offres),'</pre>'; (exit);
+//            echo '<pre>',  var_export($infos_offres),'</pre>'; (exit);
             $nomdeb = trim($infos_offres->OBCHID);
             $nomdebu=substr($nomdeb,2,-1);
             $infodd=new Application_Model_DbTable_Users();
