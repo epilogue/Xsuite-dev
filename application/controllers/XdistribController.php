@@ -1156,7 +1156,7 @@ if($this->getRequest()->isPost()){
     public function validatedrvAction(){
         
     }
-    public function consultchefmarche(){
+    public function consultchefmarcheAction(){
         $user = $this->_auth->getStorage()->read();
         $tiltop = $user->id_user;
         $this->view->cm = $tiltop;
