@@ -1196,6 +1196,49 @@ if($this->getRequest()->isPost()){
         $this->view->user_info=$user_info;
         $this->view->distrib_info=$distrib_info;
         $this->view->info_demande_xdistrib=$info_demande_xdistrib;
+        
+        
+        $dbtValidationsDemandesXdistribs = new Application_Model_DbTable_Validationsdemandexdistrib();
+        $validationsDemandesXdistrib = $dbtValidationsDemandesXdistribs->getAllValidation($info_demande_xdistrib['id_demande_xdistrib']);
+        
+        $plopatt=count($validationsDemandesXdistrib)-1;
+        
+        $etat_en_cours=$validationsDemandesXdistrib[$plopatt]['etat_validation'];
+        $this->view->etat_en_cours=$etat_en_cours;
+        
+        $this->view->validations = $validationsDemandesXdistrib;
+        $usersValidations = array();
+
+        foreach (@$validationsDemandesXdistrib as $key => $validationDemandeXdistrib) {
+            $userValidationInfos = $infos_user->getFonctionLabel($validationDemandeXdistrib['id_user']);
+            $usersValidations[$key]['fonction'] = $userValidationInfos['description_fonction'];
+        }
+        $this->view->usersValidations = $usersValidations;
+        if ($this->getRequest()->isPost()) {
+            
+            $date_validation = date("Y-m-d H:i:s");
+            $this->view->date_validation = $date_validation;
+            $nom_validation = "comcm";
+            $formData = $this->getRequest()->getPost();
+
+            $nouvelle_validation = new Application_Model_DbTable_Validationsxprice();
+            $nouv_validation = $nouvelle_validation->createValidation($formData['nom_validation'], $formData['date_validation'], $etat_en_cours, $formData['commentaire_chefmarche'], $user->id_user, $formData['tracking']);
+            $valid_id_valid = new Application_Model_DbTable_Validationsxprice();
+            $valid_id_valids = $valid_id_valid->getValidation($formData['nom_validation'], $formData['tracking']);
+
+            $datasValidation = array(
+                'nom_validation' => $nom_validation, 'validation' => $etat_en_cours,
+                'commentaire' => $formData['commentaire_chefmarche'],
+                'id_user' => $user->id_user, 'id_demande_xprice' => $info_demande_xprice['id_demande_xprice']
+            );
+           
+            $commentId = $this->genererValidation($datasValidation);
+            $flashMessenger = $this->_helper->getHelper('FlashMessenger');
+                $message = "votre commentaire a bien été enregistré.";
+                $flashMessenger->addMessage($message);
+                $redirector = $this->_helper->getHelper('Redirector');
+                $redirector->gotoSimple('index', 'xprice');
+        }
     }
 }
 
