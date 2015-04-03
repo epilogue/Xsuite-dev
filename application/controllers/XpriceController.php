@@ -117,7 +117,7 @@ if($user->id_fonction == 3){
          unset($recapitulatif2);
          foreach($r as $value){
          echo '<pre>', var_export($value),'</pre>'; 
-             if(preg_match($value['tracking_number_demande_xprice'] ,$tracking1)==1 || preg_match($value['tracking_number_demande_xprice'] ,$tracking2)==1 ) {
+             if(preg_match($tracking1,$value['tracking_number_demande_xprice'])==1 || preg_match($tracking2,$value['tracking_number_demande_xprice'] )==1 ) {
                  $plopr[] =$value; 
              }
          }
