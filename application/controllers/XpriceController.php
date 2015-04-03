@@ -104,6 +104,7 @@ if($user->id_fonction == 3){
          }
          $recapitulatif1 = new Application_Model_DbTable_Xprices();
          $recapitulatif2=$recapitulatif1->searchByCDR($tracking1,$tracking2);
+          echo '<pre>', var_export($recapitulatif2),'</pre>';
          $r = array();
          for ($index = 0; $index < count($recapitulatif2); $index++) {
              if(($index +1) > count($recapitulatif2)-1) {
@@ -116,6 +117,7 @@ if($user->id_fonction == 3){
          }
          unset($recapitulatif2);
          $recapitulatif2 = $r;
+         echo '<pre>', var_export($r),'</pre>'; 
      }
      
      if($user->id_fonction == 5 || $user->id_fonction == 13 || $user->id_fonction == 29 || $user->id_fonction == 23 || $user->id_fonction == 32){
