@@ -106,7 +106,7 @@ if($user->id_fonction == 3){
          $recapitulatif2=$recapitulatif1->searchByCDR($tracking1,$tracking2);
      }
      
-     if($user->id_fonction == 5 || $user->id_fonction == 13 || $user->id_fonction == 29){
+     if($user->id_fonction == 5 || $user->id_fonction == 13 || $user->id_fonction == 29 || $user->id_fonction == 23 || $user->id_fonction == 32){
          $recapitulatif1 = new Application_Model_DbTable_Xprices;
          $recapitulatif2=$recapitulatif1->searchforDBD();
          $r = array();
@@ -123,7 +123,6 @@ if($user->id_fonction == 3){
          $recapitulatif2 = $r;
      }
     $this->view->recapitulatif = $recapitulatif2;
-    echo '<pre>',  var_export($recapitulatif2),'</pre>';
 }
 
     public function numwpAction() {
