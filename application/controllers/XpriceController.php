@@ -117,10 +117,12 @@ if($user->id_fonction == 3){
          unset($recapitulatif2);
          foreach($r as $value){
          echo '<pre>', var_export($value),'</pre>'; 
-             //if($value['tracking_number'] == $tracking1 || $value['tracking_number'] ) 
+             if(preg_match($value['tracking_number'] ,$tracking1)==1 || preg_match($value['tracking_number'] ,$tracking2)==1 ) {
+                 $plopr[] =$value; 
+             }
          }
          $recapitulatif2 = $r;
-//         echo '<pre>', var_export($r),'</pre>'; 
+         echo '<pre>', var_export($plopr),'</pre>'; 
      }
      
      if($user->id_fonction == 5 || $user->id_fonction == 13 || $user->id_fonction == 29 || $user->id_fonction == 23 || $user->id_fonction == 32){
