@@ -100,7 +100,7 @@ public function searchAll($tracking_number){
         $sql="select demande_xprices.id_demande_xprice, demande_xprices.num_workplace_demande_xprice,demande_xprices.tracking_number_demande_xprice,clients.nom_client,demande_xprices.date_demande_xprice from demande_xprices "
                 . " join clients on clients.numwp_client = demande_xprices.numwp_client "
                   . " join validations_demande_xprices  on validations_demande_xprices.id_demande_xprice = demande_xprices.id_demande_xprice "
-                . " where demande_xprices.id_user = $id order by demande_xprices.date_demande_xprice desc";
+                . " where demande_xprices.id_user = $id order by demande_xprices.date_demande_xprice desc, validations_demande_xprices.date_validation asc";
         $res = $this->getAdapter()->query($sql);
         $rest=$res->fetchAll();
         if (!$rest) {
