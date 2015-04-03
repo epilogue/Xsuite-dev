@@ -35,7 +35,7 @@ $this->headScript()->appendFile('/js/controllers/xprice/popup.js');
              <td>en cours</td><?php } else{ ?>
              <td><?php echo $result['etat_validation'];?></td>
         <?php }  ?>
-             <td><a href="<?php echo $this->url(array("controller"=>"xprice","action"=>"consult","numwp"=>$result['num_workplace_demande_xprice']));?>" <button class="retour" id="validate-<?php echo $k; ?>">Valider</button></a>
+             <td><a href="<?php echo $this->url(array("controller"=>"xprice","action"=>"consult","numwp"=>$result['num_workplace_demande_xprice']));?>" <button class="retour" id="historique-<?php echo $k; ?>">historique</button></a>
              </td>
               <?php if($this->fonction == 5 || $this->fonction ==29 ){?>
              <td><a href="<?php echo $this->url(array("controller"=>"xprice","action"=>"validatedbd","numwp"=>$result['num_workplace_demande_xprice']));?>" <button class="retour" id="validate-<?php echo $k; ?>">Valider</button></a></td>
