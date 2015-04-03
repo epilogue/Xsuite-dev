@@ -121,7 +121,7 @@ if($user->id_fonction == 3){
                  $plopr[] =$value; 
              }
          }
-         $recapitulatif2 = $r;
+         $recapitulatif2 = $plopr;
          echo '<pre>', var_export($plopr),'</pre>'; 
      }
      
