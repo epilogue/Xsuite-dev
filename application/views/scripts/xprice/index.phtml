@@ -22,7 +22,7 @@ $this->headScript()->appendFile('/js/controllers/xprice/popup.js');
         </tr>
     <?php  foreach($this->recapitulatif as $k=>$result){
         ?><tr>
-            <?php if($this->fonction == 5 || $this->fonction == 13 || $this->fonction == 10 || $this->fonction ==29){?>
+            <?php if($this->fonction == 5 || $this->fonction == 13 || $this->fonction == 10 || $this->fonction ==29 ||$this->id_fonction==23 || $this->id_fonction==32){?>
              <td><?php echo $result['nom_user'];?></td>
         <?php } ?>
             <td><?php echo $result['num_workplace_demande_xprice']; ?></td>
