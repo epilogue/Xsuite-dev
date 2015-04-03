@@ -122,7 +122,7 @@ if($user->id_fonction == 3){
              }
          }
          $recapitulatif2 = $plopr;
-         echo '<pre>', var_export($plopr),'</pre>'; 
+        // echo '<pre>', var_export($plopr),'</pre>'; 
      }
      
      if($user->id_fonction == 5 || $user->id_fonction == 13 || $user->id_fonction == 29 || $user->id_fonction == 23 || $user->id_fonction == 32){
