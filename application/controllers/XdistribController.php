@@ -1273,7 +1273,7 @@ if($this->getRequest()->isPost()){
             if (isset($formData['validation']) && $formData['validation'] == "validee"){
                 $emailVars = Zend_Registry::get('emailVars');
                 $params1=array();
-                $destinataireMail1=$emailVars->listes->dbd;
+                $destinataireMail1=$emailVars->listes->fobfr;
                 if (!is_null($firstComment)) {
                     $url1 = "http://{$_SERVER['SERVER_NAME']}/xdistrib/validatedbd/numwp/{$numwp}/com/{$firstComment}";
                 } else {
