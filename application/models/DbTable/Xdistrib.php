@@ -81,7 +81,7 @@ class Application_Model_DbTable_Xdistrib extends Zend_Db_Table_Abstract {
     }
     public function searchByCDR($tracking1,$tracking2){
          
-        $sql="select demande_xdistrib.id_demande_xdistrib, demande_xdistrib.num_workplace_demande_xdistrib,demande_xdistrib.tracking_number_demande_xdistrib,clients.nom_client,demande_xdsitrib.date_demande_xdistrib from demande_xdistrib "
+        $sql="select demande_xdistrib.id_demande_xdistrib, demande_xdistrib.num_workplace_demande_xdistrib,demande_xdistrib.tracking_number_demande_xdistrib,clients.nom_client,demande_xdistrib.date_demande_xdistrib from demande_xdistrib "
                 . "join clients on clients.numwp_client = demande_xdistrib.numwp_client "
                 . "join users on users.id_user = demande_xdistrib.id_user"
                 
