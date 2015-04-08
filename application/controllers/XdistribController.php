@@ -1452,7 +1452,7 @@ if($this->getRequest()->isPost()){
         $this->view->numwp = $numwp; 
         $info_article=new Application_Model_DbTable_DemandeArticlexdistrib();
         $ploparticle = $info_article->ploparticle($numwp);
-        echo 'pre' , var_export($ploparticle),'</pre>';
+        echo '<pre>' , var_export($ploparticle),'</pre>';
         $mmcono = "100";
         $division = "FR0";
         $facility = "I01";
@@ -1462,9 +1462,11 @@ if($this->getRequest()->isPost()){
         $agreement1 = "I000001";
         $agreement2 = "I000002";
         $agreement3 = "I000003";
-        $query3 = "select * from EIT.MVXCDTA.MPAGRP MPAGRP where MPAGRP.AJCONO = '$mmcono' AND MPAGRP.AJSUNO = '$supplier' AND (MPAGRP.AJAGNB = '$agreement3'  OR MPAGRP.AJAGNB = '$agreement2' OR MPAGRP.AJAGNB = '$agreement1') AND MPAGRP.AJOBV2 = '{$val['code_article']}' AND MPAGRP.AJOBV1 = '$division'  ORDER BY MPAGRP.AJAGNB";
+        foreach($ploparticle as $code_article){
+        $query3 = "select * from EIT.MVXCDTA.MPAGRP MPAGRP where MPAGRP.AJCONO = '$mmcono' AND MPAGRP.AJSUNO = '$supplier' AND (MPAGRP.AJAGNB = '$agreement3'  OR MPAGRP.AJAGNB = '$agreement2' OR MPAGRP.AJAGNB = '$agreement1') AND MPAGRP.AJOBV2 = '{$code_article}' AND MPAGRP.AJOBV1 = '$division'  ORDER BY MPAGRP.AJAGNB";
         $resultats3 = odbc_Exec($this->odbc_conn2, $query3);
-        $prixciffob[] = odbc_fetch_object($resultats3);
+        $prixciffob= odbc_fetch_array($resultats3);}
+         echo '<pre>' , var_export($prixciffob),'</pre>';
         $infos_demande_xdistrib = new Application_Model_DbTable_Xdistrib();
         $info_demande_xdistrib = $infos_demande_xdistrib->getNumwp($numwp);
         $dateinit=$info_demande_xdistrib['date_demande_xdistrib'];
