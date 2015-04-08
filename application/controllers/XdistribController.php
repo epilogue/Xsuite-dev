@@ -658,8 +658,8 @@ if($this->getRequest()->isPost()){
   if ($this->getRequest()->isPost()) {
         $formData = $this->getRequest()->getPost();
          $numwp=$formData['numwp']; 
-//        $tempClienttruns= new Application_Model_DbTable_TempClient();
-//        $tempClienttrun=$tempClienttruns->truncateAll(); 
+        $tempClienttruns= new Application_Model_DbTable_TempClient();
+        $tempClienttrun=$tempClienttruns->truncateAll(); 
         /*on va chercher des infos sur le user
         * si id_fonction =1 ou =2 alors envoi mail pour validation au dd de la zone 
         * si id_fonction =6 alors envoi mail pour validation au drv de la zone 
@@ -1447,9 +1447,24 @@ if($this->getRequest()->isPost()){
     public function validatefobfrAction(){
         $user = $this->_auth->getStorage()->read();
         $tiltop = $user->id_user;
-        $this->view->cm = $tiltop;
+        $this->view->fobfr = $tiltop;
         $numwp = $this->getRequest()->getParam('numwp', null);
         $this->view->numwp = $numwp; 
+        $info_article=new Application_Model_DbTable_DemandeArticlexdistrib();
+        $ploparticle = $info_article->ploparticle($numwp);
+        echo 'pre' , var_export($ploparticle),'</pre>';
+        $mmcono = "100";
+        $division = "FR0";
+        $facility = "I01";
+        $type = "3";
+        $warehouse = "I02";
+        $supplier = "I990001";
+        $agreement1 = "I000001";
+        $agreement2 = "I000002";
+        $agreement3 = "I000003";
+        $query3 = "select * from EIT.MVXCDTA.MPAGRP MPAGRP where MPAGRP.AJCONO = '$mmcono' AND MPAGRP.AJSUNO = '$supplier' AND (MPAGRP.AJAGNB = '$agreement3'  OR MPAGRP.AJAGNB = '$agreement2' OR MPAGRP.AJAGNB = '$agreement1') AND MPAGRP.AJOBV2 = '{$val['code_article']}' AND MPAGRP.AJOBV1 = '$division'  ORDER BY MPAGRP.AJAGNB";
+        $resultats3 = odbc_Exec($this->odbc_conn2, $query3);
+        $prixciffob[] = odbc_fetch_object($resultats3);
         $infos_demande_xdistrib = new Application_Model_DbTable_Xdistrib();
         $info_demande_xdistrib = $infos_demande_xdistrib->getNumwp($numwp);
         $dateinit=$info_demande_xdistrib['date_demande_xdistrib'];

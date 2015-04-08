@@ -174,6 +174,15 @@ class Application_Model_DbTable_DemandeArticlexdistrib extends Zend_Db_Table_Abs
         $plop2 = $this->update($datas, $where);
         return $plop2;
     }
-    
+    public function ploparticle($numwp){
+       $sql="select code_article from demande_article xdistrib where num_workplace_demande_xdistrib =$numwp"; 
+        $res = $this->getAdapter()->query($sql);
+        $rest=$res->fetchAll();
+        if (!$rest) {
+            return null;
+        } else {
+            return $rest;
+        }
+    } 
 }
 
