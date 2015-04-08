@@ -658,8 +658,8 @@ if($this->getRequest()->isPost()){
   if ($this->getRequest()->isPost()) {
         $formData = $this->getRequest()->getPost();
          $numwp=$formData['numwp']; 
-        $tempClienttruns= new Application_Model_DbTable_TempClient();
-        $tempClienttrun=$tempClienttruns->truncateAll(); 
+//        $tempClienttruns= new Application_Model_DbTable_TempClient();
+//        $tempClienttrun=$tempClienttruns->truncateAll(); 
         /*on va chercher des infos sur le user
         * si id_fonction =1 ou =2 alors envoi mail pour validation au dd de la zone 
         * si id_fonction =6 alors envoi mail pour validation au drv de la zone 
