@@ -3,7 +3,7 @@ $this->title = 'Xdistrib/accueil';
 $this->headTitle($this->title);
 ?>
 <div class="contenu">
-    <h2>Validation de l'offre XDISTRIB par le DD</h2>
+    <h2>Validation de l'offre XDISTRIB par FOBfr</h2>
     <div id="workplace" class="workplace">
         <fieldset id="wp" class="field">
             <legend>Informations offre</legend>
@@ -127,6 +127,9 @@ $this->headTitle($this->title);
                     <td><?php echo $value['prix_demande_article']; ?></td>
                     <td><?php echo $value['prix_client_final']; ?></td>
                     <td><?php echo $value['serie']; ?></td>
+                    <td><?php echo $value['prix_fob_demande_article']; ?></td>
+                    <td><?php echo $value['prix_cif_demande_article']; ?></
+                    <td><?php echo $value['marge_demande_article']; ?></td>
                 </tr> <?php }?>
             </table>
         </fieldset>
@@ -171,8 +174,8 @@ $this->headTitle($this->title);
              <div id="dd" class="workplace">
                  <form method="post">
                      <fieldset class="field">
-                    <legend>Commentaire Distributeur</legend>
-                    <textarea name="commentaire_dd" cols="75" rows="10"></textarea>
+                    <legend>Commentaire FOBFR</legend>
+                    <textarea name="commentaire_fobfr" cols="75" rows="10"></textarea>
                     <?php
                     if (!is_null($this->commentId)) {
                         ?>
@@ -183,9 +186,9 @@ $this->headTitle($this->title);
                 </fieldset>
             </div>
             <div id="valid_dd" class="workplace">
-                <input type="radio" name="validation" value="nonValide"> La demande n'est pas validée <input type="hidden" name="nom_validation" value="validation_dd"><br>
+                <input type="radio" name="validation" value="nonValide"> La demande n'est pas validée <input type="hidden" name="nom_validation" value="validation_fobfr"><br>
                 <input type="radio" name="validation" value="validee"> La demande est validée <input type="hidden" name="date_validation" value="<?php echo date("Y-m-d H:i:s") ?>"><br>
-                <input type="radio" checked="checked" name="validation" value="enAttente">  en attente de réponse<input type="hidden" name="dd" value="<?php echo $this->dd; ?>"><br>
+                <input type="radio" checked="checked" name="validation" value="enAttente">  en attente de réponse<input type="hidden" name="fobfr" value="<?php echo $this->fobfr; ?>"><br>
                <input type="hidden" name="tracking" value="<?php echo $this->info_demande_xdistrib['tracking_number_demande_xdistrib']; ?>">
                <input type="hidden" name="tiltop" value="<?php echo $this->tiltop; ?>">
             </div>
