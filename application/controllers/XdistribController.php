@@ -1275,9 +1275,9 @@ if($this->getRequest()->isPost()){
                 $params1=array();
                 $destinataireMail1=$emailVars->listes->fobfr;
                 if (!is_null($firstComment)) {
-                    $url1 = "http://{$_SERVER['SERVER_NAME']}/xdistrib/validatedbd/numwp/{$numwp}/com/{$firstComment}";
+                    $url1 = "http://{$_SERVER['SERVER_NAME']}/xdistrib/validatefobfr/numwp/{$numwp}/com/{$firstComment}";
                 } else {
-                    $url1 = "http://{$_SERVER['SERVER_NAME']}/xdistrib/validatedbd/numwp/{$numwp}";
+                    $url1 = "http://{$_SERVER['SERVER_NAME']}/xdistrib/validatefobfr/numwp/{$numwp}";
                 }
                 $corpsMail1 = "Bonjour,\n"
                         . "\n"
