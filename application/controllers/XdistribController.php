@@ -1444,6 +1444,46 @@ if($this->getRequest()->isPost()){
                 $redirector->gotoSimple('index', 'xprice');
         }
     }
-    
+    public function validatefobfrAction(){
+        $user = $this->_auth->getStorage()->read();
+        $tiltop = $user->id_user;
+        $this->view->cm = $tiltop;
+        $numwp = $this->getRequest()->getParam('numwp', null);
+        $this->view->numwp = $numwp; 
+        $infos_demande_xdistrib = new Application_Model_DbTable_Xdistrib();
+        $info_demande_xdistrib = $infos_demande_xdistrib->getNumwp($numwp);
+        $dateinit=$info_demande_xdistrib['date_demande_xdistrib'];
+        $date = DateTime::createFromFormat('Y-m-d', $dateinit);
+        $dateplop = $date->format('d/m/Y');
+        $this->view->dateplop=$dateplop;
+        $numwp_dis=  substr($info_demande_xdistrib['numwp_distributeur'], 0, 6);
+        $info_distrib=new Application_Model_DbTable_Distributeurs();
+        $distrib_info=$info_distrib->getDistributeurnumwp($numwp_dis);
+        $info_user=new Application_Model_DbTable_Users;
+        $user_info=$info_user->getUser($info_demande_xdistrib['id_user']);
+        $nom_holon=new Application_Model_DbTable_Holons();
+        $holon_nom=$nom_holon->getHolon($user_info['id_holon']);
+        $info_client=new Application_Model_DbTable_ClientDistrib();
+        $client_info=$info_client->getClientdistrib($info_demande_xdistrib['numwp_client']);
+        $info_article=new Application_Model_DbTable_DemandeArticlexdistrib();
+        $article_info= $info_article->getDemandeArticlexdistrib($numwp);
+        $info_concurrent=new Application_Model_DbTable_PrixConcurrent();
+        $concurrent_info=$info_concurrent->getConcurrent($numwp);
+        $info_contexte = new Application_Model_DbTable_Xdistrib();
+        $contexte_info1= $info_contexte->getContext($numwp);
+        $contexte_info2=$contexte_info1[0];
+        $contexte_info=$contexte_info2;
+        $info_service = new Application_Model_DbTable_ServiceDistrib();
+        $service_info = $info_service->getService($numwp);
+        $this->view->service_info=$service_info;
+        $this->view->contexte_info = $contexte_info;
+        $this->view->concurrent_info=$concurrent_info;
+        $this->view->article_info=$article_info;
+        $this->view->nom_holon=$holon_nom;
+        $this->view->client_info=$client_info;
+        $this->view->user_info=$user_info;
+        $this->view->distrib_info=$distrib_info;
+        $this->view->info_demande_xdistrib=$info_demande_xdistrib;
+    }
 }
 
