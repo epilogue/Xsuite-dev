@@ -1464,8 +1464,8 @@ if($this->getRequest()->isPost()){
         $agreement3 = "I000003";
         foreach($ploparticle as $key=>$value){
         $query3 = "select * from EIT.MVXCDTA.MPAGRP MPAGRP where MPAGRP.AJCONO = '$mmcono' AND MPAGRP.AJSUNO = '$supplier' AND (MPAGRP.AJAGNB = '$agreement3'  OR MPAGRP.AJAGNB = '$agreement2' OR MPAGRP.AJAGNB = '$agreement1') AND MPAGRP.AJOBV2 = '{$value['code_article']}' AND MPAGRP.AJOBV1 = '$division'  ORDER BY MPAGRP.AJAGNB";
-        echo $query3;
-        $resultats3 = odbc_Exec($this->odbc_conn2, $query3);
+       $resultats3 = odbc_Exec($this->odbc_conn2, $query3);
+       var_dump($resultats3);
         $prixciffob= odbc_fetch_array($resultats3);}
          echo '<pre>' , var_export($prixciffob),'</pre>';
         $infos_demande_xdistrib = new Application_Model_DbTable_Xdistrib();
