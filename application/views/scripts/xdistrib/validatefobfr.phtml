@@ -190,9 +190,10 @@ $this->headScript()->appendFile('/js/controllers/xprice/recalculeprix_marge.js')
                             } echo $Cfob ."€"?>
                         </td>
                         <td>
-                            Cout CIF: <input id="ccif"<?php $Ccif=0; foreach($this->article_info as $value){
-                                $Ccif+=($value['quantite_demande_article']*$value['prix_cif_demande_article']);
-                            }?> value="<?php echo $Ccif ."€"?>">
+                            <input  id="ccif-affiche"<?php $Ccif=0; foreach($this->article_info as $result){
+                                    $Ccif+=($result['quantite_demande_article']*$result['prix_cif_demande_article']);
+                                }?> value="<?php echo number_format($Ccif, 2, '.', ' '); ?>">
+                                <input id="ccif" type="hidden" class="calculHidden" value="<?php echo $Ccif; ?>">
                         </td>
                         <td>marge moyenne <input id="mamofob" <?php $mamofob = 100*(1-($Ccif/$tpd))?> value ="<?php echo round($mamofob,2)."%";?>"></td>
                         </tr>
