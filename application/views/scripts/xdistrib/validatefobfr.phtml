@@ -177,21 +177,21 @@ $this->headScript()->appendFile('/js/controllers/xprice/recalculeprix_marge.js')
                     <tr>
                         <td colspan="7">total</td>
                         <input type ="hidden" class="cab" id="cab"
-                           <?php $cab=0;foreach($this->article_info as $result)
-                            {$cab+=($result['quantite_demande_article']*$result['prix_achat_actuel']);
+                           <?php $cab=0;foreach($this->article_info as $value)
+                            {$cab+=($value['quantite_demande_article']*$value['prix_achat_actuel']);
 
                         } ?>value="<?php echo $cab; ?>">
-                        <input  class="tpd" id="tpd" <?php  $tpd = 0; foreach($this->article_info as $result){
-                            $tpd+=($result['quantite_demande_article']*$result['prix_demande_article']);}?> value ="<?php echo $tpd ?>" >
+                        <input  class="tpd" id="tpd" <?php  $tpd = 0; foreach($this->article_info as $value){
+                            $tpd+=($value['quantite_demande_article']*$value['prix_demande_article']);}?> value ="<?php echo $tpd ?>" >
 
                         <td >
-                            Cout FOB: <?php $Cfob=0; foreach($this->article_info as $result){
-                                $Cfob+=($result['quantite_demande_article']*$result['prix_fob_demande_article']);
+                            Cout FOB: <?php $Cfob=0; foreach($this->article_info as $value){
+                                $Cfob+=($value['quantite_demande_article']*$value['prix_fob_demande_article']);
                             } echo $Cfob ."€"?>
                         </td>
                         <td>
-                            Cout CIF: <input id="ccif"<?php $Ccif=0; foreach($this->article_info as $result){
-                                $Ccif+=($result['quantite_demande_article']*$result['prix_cif_demande_article']);
+                            Cout CIF: <input id="ccif"<?php $Ccif=0; foreach($this->article_info as $value){
+                                $Ccif+=($value['quantite_demande_article']*$value['prix_cif_demande_article']);
                             }?> value="<?php echo $Ccif ."€"?>">
                         </td>
                         <td>marge moyenne <input id="mamofob" <?php $mamofob = 100*(1-($Ccif/$tpd))?> value ="<?php echo round($mamofob,2)."%";?>"></td>
