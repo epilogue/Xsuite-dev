@@ -112,11 +112,11 @@ $(document).ready(function (){
         calculTotal();
         moyenne();
         moyenneMarge();
-        
+        calculTotalcif();
     });
     
     $('#ouiFob').click(function(){
-        $('input.prixcif').change();calculTotalcif();
+        $('input.prixcif').change();
         return true;
     });
 });
