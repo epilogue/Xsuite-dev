@@ -41,7 +41,7 @@ function moyenneMargeFob(){
     });
     var tpd = parseFloat($('input#tpd').val());
     
-    var moymafob = 100*(1- (total /tpd));
+    var moymafob = 100*(1- (total /tpd)).toFixed(4);
 //    $("input#mamofob").val(defaultFormat(moymafob) +'%');
     $("input#mamofob").val(moymafob+'%');
 }
