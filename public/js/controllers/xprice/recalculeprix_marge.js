@@ -38,7 +38,7 @@ function moyenneMargeFob(){
     var ccif = parseFloat($('input#ccif').val());
     var tpd = parseFloat($('input#tpd').val());
     
-    var moymafob = 100*(1- (ccif /tpd)).toFixed(2);
+    var moymafob = (1- (ccif /tpd)).toFixed(2);
 //    $("input#mamofob").val(defaultFormat(moymafob) +'%');
     $("input#mamofob").val(moymafob+'%');
 }
