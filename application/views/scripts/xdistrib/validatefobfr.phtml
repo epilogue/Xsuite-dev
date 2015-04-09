@@ -181,16 +181,16 @@ $this->headScript()->appendFile('/js/controllers/xprice/recalculeprix_marge.js')
                             {$cab+=($result['quantite_demande_article']*$result['prix_achat_actuel']);
 
                         } ?>value="<?php echo $cab; ?>">
-                        <input type="hidden" class="tpd" id="tpd" <?php  $tpd = 0; foreach($this->info_demande_article_xprice as $result){
+                        <input type="hidden" class="tpd" id="tpd" <?php  $tpd = 0; foreach($this->article_info as $result){
                             $tpd+=($result['quantite_demande_article']*$result['prix_demande_article']);}?> value ="<?php echo $tpd ?>" >
 
                         <td >
-                            Cout FOB: <?php $Cfob=0; foreach($this->info_demande_article_xprice as $result){
+                            Cout FOB: <?php $Cfob=0; foreach($this->article_info as $result){
                                 $Cfob+=($result['quantite_demande_article']*$result['prix_fob_demande_article']);
                             } echo $Cfob ."€"?>
                         </td>
                         <td>
-                            Cout CIF: <input id="ccif"<?php $Ccif=0; foreach($this->info_demande_article_xprice as $result){
+                            Cout CIF: <input id="ccif"<?php $Ccif=0; foreach($this->article_info as $result){
                                 $Ccif+=($result['quantite_demande_article']*$result['prix_cif_demande_article']);
                             }?> value="<?php echo $Ccif ."€"?>">
                         </td>
