@@ -100,6 +100,25 @@ $(document).ready(function (){
         moyenne();
         moyenneMarge();
     });
+     $('input.margefob').change(function (){
+        var idT = $(this).attr('id').split('-');
+        var k = idT[1];
+        var qt = parseFloat($('td#qt-'+k).html());
+        var pwp = parseFloat($('td#pwp-'+k).html());
+        var cif = parseFloat($('td#prixcif-'+k).html());
+        var ma = parseFloat($(this).val());
+        var pda = Number(cif/(1-(ma/100))).toFixed(2);
+        $('input#pda-'+k).val(pda);
+        var caa=((Number(cif/(1-(ma/100))))*qt);
+        $('input#caa-'+k).val(caa);
+        $(this).val(parseFloat($(this).val())+'%');
+        var ra = Number(100-(Number(pda))*100/pwp).toFixed(2);
+        $('input#ra-'+k).val(ra);
+        
+        calculTotal();
+        moyenne();
+        moyenneMarge();
+    });
     $('input.prixcif').change(function(){
         var idT = $(this).attr('id').split('-');
         var k = idT[1];
@@ -108,11 +127,12 @@ $(document).ready(function (){
         $(this).val(parseFloat($(this).val())+'€'); 
         var margefob = Number(100*(1-(prixcif/pd))).toFixed(2);
         $('input#margefob-'+k).val(margefob +'%');
-         moyenneMargeFob();
+        
         calculTotal();
         moyenne();
         moyenneMarge();
         calculTotalcif();
+        moyenneMargeFob();
     });
     
     $('#ouiFob').click(function(){

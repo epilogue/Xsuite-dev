@@ -182,7 +182,7 @@ $this->headScript()->appendFile('/js/numFormat.js');
                             {$cab+=($value['quantite_demande_article']*$value['prix_achat_actuel']);
 
                         } ?>value="<?php echo $cab; ?>">
-                        <input  class="tpd" id="tpd" <?php  $tpd = 0; foreach($this->article_info as $value){
+                        <input type ="hidden" class="tpd" id="tpd" <?php  $tpd = 0; foreach($this->article_info as $value){
                             $tpd+=($value['quantite_demande_article']*$value['prix_demande_article']);}?> value ="<?php echo $tpd ?>" >
 
                         <td >
