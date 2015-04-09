@@ -109,14 +109,14 @@ $(document).ready(function (){
         var margefob = Number(100*(1-(prixcif/pd))).toFixed(2);
         $('input#margefob-'+k).val(margefob +'%');
          moyenneMargeFob();
-          calculTotal();
+        calculTotal();
         moyenne();
         moyenneMarge();
-        calculTotalcif();
+        
     });
     
     $('#ouiFob').click(function(){
-        $('input.prixcif').change();
+        $('input.prixcif').change();calculTotalcif();
         return true;
     });
 });
