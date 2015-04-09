@@ -112,6 +112,7 @@ $this->headTitle($this->title);
             <legend>Produits</legend>
             <table  id="article" class="enum">
                 <tr>
+                    <td>Code Article</td>
                     <td>Références produits</td>
                     <td>Quantité</td>
                     <td>Prix Achat actuel DISTRIBUTEUR</td>
@@ -122,17 +123,18 @@ $this->headTitle($this->title);
                     <td>Prix cif</td>
                     <td>marge</td>
                 </tr>
-                <?php foreach($this->article_info as $value){ ?>
+                <?php foreach($this->article_info as $k=>$value){ ?>
                 <tr>
-                    <td><?php echo $value['reference_article']; ?></td>
-                    <td><?php echo $value['quantite_demande_article']; ?></td>
-                    <td><?php echo $value['prix_achat_actuel']; ?></td>
-                    <td><?php echo $value['prix_demande_article']; ?></td>
+                    <td><input readonly="readonly" value="<?php echo $value['code_article'] ?>"  name="<?php echo 'code_article[]'; ?>"></td>
+                    <td style="width: 70px;"><?php echo $value['reference_article']; ?></td>
+                    <td id="qt-<?php echo $k; ?>"><?php echo $value['quantite_demande_article']; ?></td>
+                    <td id="pwp-<?php echo $k; ?>"><?php echo $value['prix_achat_actuel']; ?></td>
+                    <td id="pd-<?php echo $k; ?>"><?php echo $value['prix_demande_article']; ?></td>
                     <td><?php echo $value['prix_client_final']; ?></td>
                     <td><?php echo $value['serie']; ?></td>
-                    <td><?php echo $value['prix_fob_demande_article']; ?></td>
-                    <td><?php echo $value['prix_cif_demande_article']; ?></td>
-                    <td><?php echo $value['marge_demande_article']; ?></td>
+                    <td><input id="prixfob" style="background-color: #74aaca;" type="text" name="prix_fob[]" value="<?php echo $value['prix_fob_demande_article']; ?>"></td>
+                    <td><input  class="prixcif" id="prixcif-<?php echo $k;?>" style="background-color: #74aaca;" type="text" name="prix_cif[]" value="<?php echo $value['prix_cif_demande_article']; ?>"></td>
+                    <td><input class="margefob" id="margefob-<?php echo $k;?>" <?php $margefob=100*(1-($value['prix_cif_demande_article']/$value['prix_demande_article']));?> value="<?php  echo round($margefob,2)."%" ;?>" name="marge[]"></td></td>
                 </tr> <?php }?>
             </table>
         </fieldset>

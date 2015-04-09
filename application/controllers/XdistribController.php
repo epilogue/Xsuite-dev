@@ -1068,9 +1068,9 @@ if($this->getRequest()->isPost()){
                     //
                     //echo '<pre>',  var_export($destinataireMail1),'</pre>'; exit();
                 if (!is_null($firstComment)) {
-                    $url1 = "http://{$_SERVER['SERVER_NAME']}/xdistrib/validatechefregion/numwp/{$numwp}/com/{$firstComment}";
+                    $url1 = "http://{$_SERVER['SERVER_NAME']}/xdistrib/validatedrv/numwp/{$numwp}/com/{$firstComment}";
                 } else {
-                    $url1 = "http://{$_SERVER['SERVER_NAME']}/xdistrib/validatechefregion/numwp/{$numwp}";
+                    $url1 = "http://{$_SERVER['SERVER_NAME']}/xdistrib/validatedrv/numwp/{$numwp}";
                 }
                 $corpsMail1 = "Bonjour,\n"
                         . "\n"
