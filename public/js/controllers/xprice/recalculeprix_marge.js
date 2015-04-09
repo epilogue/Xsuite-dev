@@ -11,7 +11,7 @@ function calculTotalcif() {
     $("input.prixcif").each(function (i, e){
         total += parseFloat($(e).val());
     });
-   // $("#caat-affiche").val(defaultFormat(total));
+    $("#ccif-affiche").val(defaultFormat(total));
     $("#ccif").val(Number(total).toFixed(2));
 }
 function moyenne(){
