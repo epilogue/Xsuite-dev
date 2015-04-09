@@ -6,6 +6,14 @@ function calculTotal() {
     $("#caat-affiche").val(defaultFormat(total));
     $("#caat").val(Number(total).toFixed(2));
 }
+function calculTotalcif() {
+    var total = 0;
+    $("input.prixcif").each(function (i, e){
+        total += parseFloat($(e).val());
+    });
+    $("#caat-affiche").val(defaultFormat(total));
+    $("#ccif").val(Number(total).toFixed(2));
+}
 function moyenne(){
     var aa = 0;
     $("input.caa").each(function (i, e){
