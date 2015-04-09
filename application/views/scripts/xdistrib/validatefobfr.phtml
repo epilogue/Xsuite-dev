@@ -181,7 +181,7 @@ $this->headScript()->appendFile('/js/controllers/xprice/recalculeprix_marge.js')
                             {$cab+=($result['quantite_demande_article']*$result['prix_achat_actuel']);
 
                         } ?>value="<?php echo $cab; ?>">
-                        <input type="hidden" class="tpd" id="tpd" <?php  $tpd = 0; foreach($this->article_info as $result){
+                        <input  class="tpd" id="tpd" <?php  $tpd = 0; foreach($this->article_info as $result){
                             $tpd+=($result['quantite_demande_article']*$result['prix_demande_article']);}?> value ="<?php echo $tpd ?>" >
 
                         <td >
