@@ -112,6 +112,7 @@ $(document).ready(function (){
           calculTotal();
         moyenne();
         moyenneMarge();
+        calculTotalcif();
     });
     
     $('#ouiFob').click(function(){
