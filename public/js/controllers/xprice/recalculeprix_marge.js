@@ -39,8 +39,8 @@ function moyenneMargeFob(){
     $("input.prixcif").each(function (i, e){
         total += parseFloat($(e).val());
     });
-    $("#ccif-affiche").val(defaultFormat(total));
-    $("#ccif").val(Number(total).toFixed(2));
+//    $("#ccif-affiche").val(defaultFormat(total));
+//    $("#ccif").val(Number(total).toFixed(2));
     //var ccif = parseFloat($('input#ccif').val());
     var tpd = parseFloat($('input#tpd').val());
     
