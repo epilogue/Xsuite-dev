@@ -101,6 +101,9 @@ $(document).ready(function (){
         var margefob = Number(100*(1-(prixcif/pd))).toFixed(2);
         $('input#margefob-'+k).val(margefob +'%');
          moyenneMargeFob();
+          calculTotal();
+        moyenne();
+        moyenneMarge();
     });
     
     $('#ouiFob').click(function(){
