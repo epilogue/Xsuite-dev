@@ -35,10 +35,16 @@ function moyenneMarge(){
 }
 
 function moyenneMargeFob(){
-    var ccif = parseFloat($('input#ccif').val());
+     var total = 0;
+    $("input.prixcif").each(function (i, e){
+        total += parseFloat($(e).val());
+    });
+    $("#ccif-affiche").val(defaultFormat(total));
+    $("#ccif").val(Number(total).toFixed(2));
+    //var ccif = parseFloat($('input#ccif').val());
     var tpd = parseFloat($('input#tpd').val());
     
-    var moymafob = (1- (ccif /tpd)).toFixed(2);
+    var moymafob = 100*(1- (total /tpd)).toFixed(2);
 //    $("input#mamofob").val(defaultFormat(moymafob) +'%');
     $("input#mamofob").val(moymafob+'%');
 }
