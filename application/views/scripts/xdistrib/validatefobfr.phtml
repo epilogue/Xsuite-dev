@@ -175,10 +175,10 @@ $this->headScript()->appendFile('/js/controllers/xprice/recalculeprix_marge.js')
                         <td><input class="margefob" id="margefob-<?php echo $k;?>" <?php $margefob=100*(1-($value['prix_cif_demande_article']/$value['prix_demande_article']));?> value="<?php  echo round($margefob,2)."%" ;?>" name="marge[]"></td></td>
                     </tr> <?php }?>
                     <tr>
-                        <td colspan="6">total</td>
+                        <td colspan="7">total</td>
                         <input type ="hidden" class="cab" id="cab"
                            <?php $cab=0;foreach($this->article_info as $result)
-                            {$cab+=($result['quantite_demande_article']*$result['prixwplace_demande_article']);
+                            {$cab+=($result['quantite_demande_article']*$result['prix_achat_actuel']);
 
                         } ?>value="<?php echo $cab; ?>">
                         <input type="hidden" class="tpd" id="tpd" <?php  $tpd = 0; foreach($this->info_demande_article_xprice as $result){
