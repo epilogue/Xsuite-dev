@@ -1,6 +1,7 @@
 <?php
 $this->title = 'Xdistrib/accueil';
 $this->headTitle($this->title);
+$this->headScript()->appendFile('/js/controllers/xprice/recalculeprix_marge.js');
 ?>
 <div class="contenu">
     <h2>Validation de l'offre XDISTRIB par FOBfr</h2>
@@ -106,99 +107,120 @@ $this->headTitle($this->title);
             </table>
        </fieldset>
     </div>
-     <div class="clear"></div>
-    <div id="demandeArticle" class="workplace">
-        <fieldset class="field">
-            <legend>Produits</legend>
-            <table  id="article" class="enum">
+    <div class="clear"></div>
+    <div id="concurrent" class="workplace">
+        <fieldset  class="field">
+            <legend>Concurrence</legend>
+            <table  id="concurrents" class="enum">
                 <tr>
-                    <td>Code Article</td>
-                    <td>Références produits</td>
-                    <td>Quantité</td>
-                    <td>Prix Achat actuel DISTRIBUTEUR</td>
-                    <td>Prix Achat demandé DISTRIBUTEUR</td>
-                    <td>Prix Conseillé CLIENT FINAL</td>
-                    <td>Remise référence ou série</td>
-                    <td>Prif fob</td>
-                    <td>Prix cif</td>
-                    <td>marge</td>
+                    <td>Concurrents</td>
+                    <td>Références Produits</td>
+                    <td>Prix Tarif CONCURRENT</td>
+                    <td>Prix spécial accordé CONCURRENT</td>
                 </tr>
-                <?php foreach($this->article_info as $k=>$value){ ?>
+                <?php foreach($this->concurrent_info as $val){ ?>
                 <tr>
-                    <td><input readonly="readonly" value="<?php echo $value['code_article'] ?>"  name="<?php echo 'code_article[]'; ?>"></td>
-                    <td style="width: 70px;"><?php echo $value['reference_article']; ?></td>
-                    <td id="qt-<?php echo $k; ?>"><?php echo $value['quantite_demande_article']; ?></td>
-                    <td id="pwp-<?php echo $k; ?>"><?php echo $value['prix_achat_actuel']; ?></td>
-                    <td id="pd-<?php echo $k; ?>"><?php echo $value['prix_demande_article']; ?></td>
-                    <td><?php echo $value['prix_client_final']; ?></td>
-                    <td><?php echo $value['serie']; ?></td>
-                    <td><input id="prixfob" style="background-color: #74aaca;" type="text" name="prix_fob[]" value="<?php echo $value['prix_fob_demande_article']; ?>"></td>
-                    <td><input  class="prixcif" id="prixcif-<?php echo $k;?>" style="background-color: #74aaca;" type="text" name="prix_cif[]" value="<?php echo $value['prix_cif_demande_article']; ?>"></td>
-                    <td><input class="margefob" id="margefob-<?php echo $k;?>" <?php $margefob=100*(1-($value['prix_cif_demande_article']/$value['prix_demande_article']));?> value="<?php  echo round($margefob,2)."%" ;?>" name="marge[]"></td></td>
-                </tr> <?php }?>
+                    <td><?php echo $val['nom_concurrent']; ?></td>
+                    <td><?php echo $val['reference_article']; ?></td>
+                    <td><?php echo $val['prix_concurrent']; ?></td>
+                    <td><?php echo $val['prix_special_concurrent']; ?></td>
+                </tr> <?php } ?>
             </table>
         </fieldset>
     </div>
     <div class="clear"></div>
-    <div id="concurrent" class="workplace">
-            <fieldset  class="field">
-                <legend>Concurrence</legend>
-                <table  id="concurrents" class="enum">
+     <div id="contexte_service" class="workplace">
+        <fieldset class="field">
+            <legend>Contexte de la demande</legend>
+            <?php  foreach($this->contexte_info as $contexte){?>
+            <p><?php echo $contexte;?></p><?php } ?>
+            <table class='enum'>
+
+                <tr><?php foreach($this->service_info as $key=>$value) { if($value != null && $key != "id_service_distrib" && $key != "numwp" ){?>
+                <td><?php echo $value;} ?></td> <?php } ?>
+                </tr>
+            </table>
+        </fieldset>
+     </div>
+     <div class="clear"></div>
+     <div class="clear"></div>
+     <form method="post">
+        <div id="demandeArticle" class="workplace">
+            <fieldset class="field">
+                <legend>Produits</legend>
+                <table  id="article" class="enum">
                     <tr>
-                        <td>Concurrents</td>
-                        <td>Références Produits</td>
-                        <td>Prix Tarif CONCURRENT</td>
-                        <td>Prix spécial accordé CONCURRENT</td>
+                        <td>Code Article</td>
+                        <td>Références produits</td>
+                        <td>Quantité</td>
+                        <td>Prix Achat actuel DISTRIBUTEUR</td>
+                        <td>Prix Achat demandé DISTRIBUTEUR</td>
+                        <td>Prix Conseillé CLIENT FINAL</td>
+                        <td>Remise référence ou série</td>
+                        <td>Prif fob</td>
+                        <td>Prix cif</td>
+                        <td>marge</td>
                     </tr>
-                    <?php foreach($this->concurrent_info as $val){ ?>
+                    <?php foreach($this->article_info as $k=>$value){ ?>
                     <tr>
-                        <td><?php echo $val['nom_concurrent']; ?></td>
-                        <td><?php echo $val['reference_article']; ?></td>
-                        <td><?php echo $val['prix_concurrent']; ?></td>
-                        <td><?php echo $val['prix_special_concurrent']; ?></td>
-                    </tr> <?php } ?>
+                        <td><input readonly="readonly" value="<?php echo $value['code_article'] ?>"  name="<?php echo 'code_article[]'; ?>"></td>
+                        <td style="width: 70px;"><?php echo $value['reference_article']; ?></td>
+                        <td id="qt-<?php echo $k; ?>"><?php echo $value['quantite_demande_article']; ?></td>
+                        <td id="pwp-<?php echo $k; ?>"><?php echo $value['prix_achat_actuel']; ?></td>
+                        <td id="pd-<?php echo $k; ?>"><?php echo $value['prix_demande_article']; ?></td>
+                        <td><?php echo $value['prix_client_final']; ?></td>
+                        <td><?php echo $value['serie']; ?></td>
+                        <td><input id="prixfob" style="background-color: #74aaca;" type="text" name="prix_fob[]" value="<?php echo $value['prix_fob_demande_article']; ?>"></td>
+                        <td><input  class="prixcif" id="prixcif-<?php echo $k;?>" style="background-color: #74aaca;" type="text" name="prix_cif[]" value="<?php echo $value['prix_cif_demande_article']; ?>"></td>
+                        <td><input class="margefob" id="margefob-<?php echo $k;?>" <?php $margefob=100*(1-($value['prix_cif_demande_article']/$value['prix_demande_article']));?> value="<?php  echo round($margefob,2)."%" ;?>" name="marge[]"></td></td>
+                    </tr> <?php }?>
+                    <tr>
+                        <td colspan="6">total</td>
+                        <input type ="hidden" class="cab" id="cab"
+                           <?php $cab=0;foreach($this->article_info as $result)
+                            {$cab+=($result['quantite_demande_article']*$result['prixwplace_demande_article']);
+
+                        } ?>value="<?php echo $cab; ?>">
+                        <input type="hidden" class="tpd" id="tpd" <?php  $tpd = 0; foreach($this->info_demande_article_xprice as $result){
+                            $tpd+=($result['quantite_demande_article']*$result['prix_demande_article']);}?> value ="<?php echo $tpd ?>" >
+
+                        <td >
+                            Cout FOB: <?php $Cfob=0; foreach($this->info_demande_article_xprice as $result){
+                                $Cfob+=($result['quantite_demande_article']*$result['prix_fob_demande_article']);
+                            } echo $Cfob ."€"?>
+                        </td>
+                        <td>
+                            Cout CIF: <input id="ccif"<?php $Ccif=0; foreach($this->info_demande_article_xprice as $result){
+                                $Ccif+=($result['quantite_demande_article']*$result['prix_cif_demande_article']);
+                            }?> value="<?php echo $Ccif ."€"?>">
+                        </td>
+                        <td>marge moyenne <input id="mamofob" <?php $mamofob = 100*(1-($Ccif/$tpd))?> value ="<?php echo round($mamofob,2)."%";?>"></td>
+                        </tr>
                 </table>
             </fieldset>
         </div>
-        <div class="clear"></div>
-         <div id="contexte_service" class="workplace">
-            <fieldset class="field">
-                <legend>Contexte de la demande</legend>
-                <?php  foreach($this->contexte_info as $contexte){?>
-                <p><?php echo $contexte;?></p><?php } ?>
-                <table class='enum'>
-                    
-                    <tr><?php foreach($this->service_info as $key=>$value) { if($value != null && $key != "id_service_distrib" && $key != "numwp" ){?>
-                    <td><?php echo $value;} ?></td> <?php } ?>
-                    </tr>
-                </table>
-            </fieldset>
-         </div>
-         <div class="clear"></div>
-         
-             <div id="dd" class="workplace">
-                 <form method="post">
-                     <fieldset class="field">
-                    <legend>Commentaire FOBFR</legend>
-                    <textarea name="commentaire_fobfr" cols="75" rows="10"></textarea>
-                    <?php
-                    if (!is_null($this->commentId)) {
-                        ?>
-                        <input type="hidden" name="reponse" value="<?php echo $this->commentId; ?>">
-                        <?php
-                    }
+         <div id="dd" class="workplace">
+             <fieldset class="field">
+                <legend>Commentaire FOBFR</legend>
+                <textarea name="commentaire_fobfr" cols="75" rows="10"></textarea>
+                <?php
+                if (!is_null($this->commentId)) {
                     ?>
-                </fieldset>
-            </div>
-            <div id="valid_dd" class="workplace">
-                <input type="radio" name="validation" value="nonValide"> La demande n'est pas validée <input type="hidden" name="nom_validation" value="validation_fobfr"><br>
-                <input type="radio" name="validation" value="validee"> La demande est validée <input type="hidden" name="date_validation" value="<?php echo date("Y-m-d H:i:s") ?>"><br>
-                <input type="radio" checked="checked" name="validation" value="enAttente">  en attente de réponse<input type="hidden" name="fobfr" value="<?php echo $this->fobfr; ?>"><br>
-               <input type="hidden" name="tracking" value="<?php echo $this->info_demande_xdistrib['tracking_number_demande_xdistrib']; ?>">
-               <input type="hidden" name="tiltop" value="<?php echo $this->tiltop; ?>">
-            </div>
-            <input class="submit" type="submit" value="enregistrer statut offre">
-                 </form>
-             </div>
+                    <input type="hidden" name="reponse" value="<?php echo $this->commentId; ?>">
+                    <?php
+                }
+                ?>
+            </fieldset>
+        </div>
+        <div id="valid_dd" class="workplace">
+            <input type="radio" name="validation" value="nonValide"> La demande n'est pas validée <input type="hidden" name="nom_validation" value="validation_fobfr"><br>
+            <input type="radio" name="validation" value="validee"> La demande est validée <input type="hidden" name="date_validation" value="<?php echo date("Y-m-d H:i:s") ?>"><br>
+            <input type="radio" checked="checked" name="validation" value="enAttente">  en attente de réponse<input type="hidden" name="fobfr" value="<?php echo $this->fobfr; ?>"><br>
+           <input type="hidden" name="tracking" value="<?php echo $this->info_demande_xdistrib['tracking_number_demande_xdistrib']; ?>">
+           <input type="hidden" name="tiltop" value="<?php echo $this->tiltop; ?>">
+        </div>
+        <input class="submit" type="submit" value="enregistrer statut offre">
+     </form>
+     </div>
          
 </div>
