@@ -316,7 +316,7 @@ if($user->id_fonction == 3){
                     $adresse_client = $infos_client['OKCUA1'] . $infos_client['OKCUA2'] . $infos_client['OKCUA3'] . $infos_client['OKCUA4'];
 
                     if (is_null($client)) {
-                        $newclient = $clients->createClient($infos_client['OKCUNM'], $numclientwp['OACHL1'], $adresse_client, $info_industry['id_industry'], $potentiel);
+                        $newclient = $clients->createClient($infos_client['OKCUNM'], $numclientwp2, $adresse_client, $info_industry['id_industry'], $potentiel);
                     }
                     
 // et ensuite  on insert dans la table demande_xprices
