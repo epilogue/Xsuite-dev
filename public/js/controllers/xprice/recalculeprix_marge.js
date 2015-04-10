@@ -146,7 +146,15 @@ $(document).ready(function (){
         calculTotalcif();
         moyenneMargeFob();
     });
-    
+     $('input.prixfob').change(function(){
+        var idT = $(this).attr('id').split('-');
+        var k = idT[1];
+        var pd = parseFloat($('td#pd-'+k).html());
+        var prixfob = parseFloat($(this).val());
+         $(this).val(parseFloat($(this).val())+'€'); 
+         calculTotalfob();
+          });
+          
     $('#ouiFob').click(function(){
         $('input.prixcif').change();
         return true;
