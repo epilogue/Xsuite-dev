@@ -274,7 +274,7 @@ if($user->id_fonction == 3){
             $numclientwp = odbc_fetch_array(odbc_exec($this->odbc_conn2, $query1ter));
             $numwpclient2 = $resultat[0]['OBDLSP'];
             $this->view->numclientwp =  $numwpclient2 ;/*-$numclientwp['OACHL1'];*/
-            $query1bis = "select * from EIT.MVXCDTA.OCUSMA OCUSMA where OCUSMA.OKCUNO = '{$numclientwp2}'";
+            $query1bis = "select * from EIT.MVXCDTA.OCUSMA OCUSMA where OCUSMA.OKCUNO = '{$numwpclient2}'";
             $infos_client = odbc_fetch_array(odbc_exec($this->odbc_conn2, $query1bis));
             $this->view->infos_client = $infos_client;
             $query1quart = "select ZMCPJO.Z2MCL1  from EIT.SMCCDTA.ZMCPJO  ZMCPJO where ZMCPJO.Z2CUNO= '{$resultat[0]['OBCUNO']}' ";
@@ -311,12 +311,12 @@ if($user->id_fonction == 3){
                     $emailVars = Zend_Registry::get('emailVars');
 //alors si le client n'existe pas ' on insert d'abord dans la table client
                     $clients = new Application_Model_DbTable_Clients();
-                    $client = $clients->getClientnumwp($numclientwp2);
+                    $client = $clients->getClientnumwp($numwpclient2);
                     $potentiel=$infos_client['OKCFC7'];
                     $adresse_client = $infos_client['OKCUA1'] . $infos_client['OKCUA2'] . $infos_client['OKCUA3'] . $infos_client['OKCUA4'];
 
                     if (is_null($client)) {
-                        $newclient = $clients->createClient($infos_client['OKCUNM'], $numclientwp2, $adresse_client, $info_industry['id_industry'], $potentiel);
+                        $newclient = $clients->createClient($infos_client['OKCUNM'], $numwpclient2, $adresse_client, $info_industry['id_industry'], $potentiel);
                     }
                     
 // et ensuite  on insert dans la table demande_xprices
