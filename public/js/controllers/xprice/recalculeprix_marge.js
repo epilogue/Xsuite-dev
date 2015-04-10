@@ -14,6 +14,15 @@ function calculTotalcif() {
     $("#ccif-affiche").val(defaultFormat(total));
     $("#ccif").val(Number(total).toFixed(2));
 }
+
+function calculTotalfob() {
+    var total = 0;
+    $("input.prixfob").each(function (i, e){
+        total += parseFloat($(e).val());
+    });
+    $("#cfob-affiche").val(defaultFormat(total));
+    $("#cfob").val(Number(total).toFixed(2));
+}
 function moyenne(){
     var aa = 0;
     $("input.caa").each(function (i, e){

@@ -186,9 +186,10 @@ $this->headScript()->appendFile('/js/numFormat.js');
                             $tpd+=($value['quantite_demande_article']*$value['prix_demande_article']);}?> value ="<?php echo $tpd ?>" >
 
                         <td >
-                            Cout FOB: <?php $Cfob=0; foreach($this->article_info as $value){
+                            <input id="cfob-affiche"<?php $Cfob=0; foreach($this->article_info as $value){
                                 $Cfob+=($value['quantite_demande_article']*$value['prix_fob_demande_article']);
-                            } echo $Cfob ."€"?>
+                            }?> value="<?php echo number_format($Cfob, 2, '.', ' '); ?>">
+                            <input id="cfob" type="hidden" class="calculHidden" value="<?php echo $Cfob; ?>">
                         </td>
                         <td>
                             <input  id="ccif-affiche"<?php $Ccif=0; foreach($this->article_info as $result){
