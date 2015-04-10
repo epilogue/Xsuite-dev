@@ -237,7 +237,7 @@ if($user->id_fonction == 3){
              * on va chercher les informations concernant les articles dans la table ooline à partir du numwp
              * pour pouvoir ensuite les afficher dans la vue à l'aide d'un foreach
              */
-            $query2 = "select OOLINE.OBORNO,OOLINE.OBCUNO,OOLINE.OBITNO,OOLINE.OBITDS,OOLINE.OBORQT,OOLINE.OBLNA2,OOLINE.OBNEPR,OOLINE.OBSAPR,OOLINE.OBELNO,OOLINE.OBRGDT,
+            $query2 = "select OOLINE.OBDLSP,OOLINE.OBORNO,OOLINE.OBCUNO,OOLINE.OBITNO,OOLINE.OBITDS,OOLINE.OBORQT,OOLINE.OBLNA2,OOLINE.OBNEPR,OOLINE.OBSAPR,OOLINE.OBELNO,OOLINE.OBRGDT,
                     OOLINE.OBLMDT,
                     OOLINE.OBSMCD
                     from EIT.CVXCDTA.OOLINE OOLINE WHERE OOLINE.OBORNO='{$numwp}' AND OOLINE.OBDIVI LIKE 'FR0' AND OOLINE.OBCONO=100";
@@ -246,6 +246,7 @@ if($user->id_fonction == 3){
             while ($resultat[] = odbc_fetch_array($resultats)) {
                 $this->view->resultat = $resultat;
             }
+            echo '<pre>',  var_export($resultat),'</pre>';
             /* aller chercher prix fob prix cif sur la base MVCDXTA en utilisant les tables KOPCDT(date) KOITNO ( code article) et KO ( prix cif)
              *
              */foreach ($this->view->resultat as $itnoarticle) {
@@ -278,6 +279,8 @@ if($user->id_fonction == 3){
             $query1quart = "select ZMCPJO.Z2MCL1  from EIT.SMCCDTA.ZMCPJO  ZMCPJO where ZMCPJO.Z2CUNO= '{$resultat[0]['OBCUNO']}' ";
             $industriewp = odbc_fetch_array(odbc_exec($this->odbc_conn3, $query1quart));
             $this->view->industriewp = $industriewp;
+            echo '<pre>',var_export($numclientwp),'</pre>';
+            echo '<pre>',var_export($infos_client),'</pre>';
             $industriewp['Z2MCL1'] = trim($industriewp['Z2MCL1']);
             if ($industriewp['Z2MCL1'] == "" || $industriewp['Z2MCL1'] == " ") {
                 $industriewp['Z2MCL1'] = "SCI";
