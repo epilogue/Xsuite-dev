@@ -246,7 +246,7 @@ if($user->id_fonction == 3){
             while ($resultat[] = odbc_fetch_array($resultats)) {
                 $this->view->resultat = $resultat;
             }
-            echo '<pre>',  var_export($resultat),'</pre>';
+            //echo '<pre>',  var_export($resultat),'</pre>';
             /* aller chercher prix fob prix cif sur la base MVCDXTA en utilisant les tables KOPCDT(date) KOITNO ( code article) et KO ( prix cif)
              *
              */foreach ($this->view->resultat as $itnoarticle) {
@@ -280,8 +280,8 @@ if($user->id_fonction == 3){
             $query1quart = "select ZMCPJO.Z2MCL1  from EIT.SMCCDTA.ZMCPJO  ZMCPJO where ZMCPJO.Z2CUNO= '{$resultat[0]['OBCUNO']}' ";
             $industriewp = odbc_fetch_array(odbc_exec($this->odbc_conn3, $query1quart));
             $this->view->industriewp = $industriewp;
-            echo '<pre>',var_export($numclientwp),'</pre>';
-            echo '<pre>',var_export($infos_client),'</pre>';
+           // echo '<pre>',var_export($numclientwp),'</pre>';
+            //echo '<pre>',var_export($infos_client),'</pre>';
             $industriewp['Z2MCL1'] = trim($industriewp['Z2MCL1']);
             if ($industriewp['Z2MCL1'] == "" || $industriewp['Z2MCL1'] == " ") {
                 $industriewp['Z2MCL1'] = "SCI";
@@ -311,7 +311,7 @@ if($user->id_fonction == 3){
                     $emailVars = Zend_Registry::get('emailVars');
 //alors si le client n'existe pas ' on insert d'abord dans la table client
                     $clients = new Application_Model_DbTable_Clients();
-                    $client = $clients->getClientnumwp($numclientwp['OACHL1']);
+                    $client = $clients->getClientnumwp($numclientwp2);
                     $potentiel=$infos_client['OKCFC7'];
                     $adresse_client = $infos_client['OKCUA1'] . $infos_client['OKCUA2'] . $infos_client['OKCUA3'] . $infos_client['OKCUA4'];
 
