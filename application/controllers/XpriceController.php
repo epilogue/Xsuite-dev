@@ -274,7 +274,7 @@ if($user->id_fonction == 3){
             $numclientwp = odbc_fetch_array(odbc_exec($this->odbc_conn2, $query1ter));
             $numwpclient2 = $resultat[0]['OBDLSP'];
             $this->view->numclientwp =  $numwpclient2 ;/*-$numclientwp['OACHL1'];*/
-            $query1bis = "select * from EIT.MVXCDTA.OCUSMA OCUSMA where OCUSMA.OKCUNO = '{$numclientwp['OACHL1']}'";
+            $query1bis = "select * from EIT.MVXCDTA.OCUSMA OCUSMA where OCUSMA.OKCUNO = '{$numclientwp2}'";
             $infos_client = odbc_fetch_array(odbc_exec($this->odbc_conn2, $query1bis));
             $this->view->infos_client = $infos_client;
             $query1quart = "select ZMCPJO.Z2MCL1  from EIT.SMCCDTA.ZMCPJO  ZMCPJO where ZMCPJO.Z2CUNO= '{$resultat[0]['OBCUNO']}' ";
