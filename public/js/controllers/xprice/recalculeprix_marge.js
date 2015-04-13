@@ -132,10 +132,11 @@ $(document).ready(function (){
     $('input.prixcif').change(function(){
         var idT = $(this).attr('id').split('-');
         var k = idT[1];
+          var qt = parseFloat($('td#qt-'+k).html());
         var pd = parseFloat($('td#pd-'+k).html());
         var prixcif = parseFloat($(this).val());
         $(this).val(parseFloat($(this).val())+'€'); 
-        var totcif=prixcif*qt;
+        var totcif=Number(prixcif*qt).toFixed(2);
         var margefob = Number(100*(1-(prixcif/pd))).toFixed(2);
         $('input#margefob-'+k).val(margefob +'%');
         $('input#totcif-'+k).val(totcif);
@@ -147,7 +148,7 @@ $(document).ready(function (){
     });
      $('input.prixfob').change(function(){
         var idT = $(this).attr('id').split('-');
-        var k = idT[1];
+        var k = idT[1];  var qt = parseFloat($('td#qt-'+k).html());
         var pd = parseFloat($('td#pd-'+k).html());
         var prixfob = parseFloat($(this).val());
          $(this).val(parseFloat($(this).val())+'€'); 
