@@ -1485,6 +1485,124 @@ if($this->getRequest()->isPost()){
         $this->view->user_info=$user_info;
         $this->view->distrib_info=$distrib_info;
         $this->view->info_demande_xdistrib=$info_demande_xdistrib;
+        $blocages=new Application_Model_DbTable_Validationsdemandexprices();
+        $validationdbd="dbd";
+        $blocage = $blocages->getValidation( $validationdbd, $info_demande_xprice['id_demande_xprice']);
+        //var_dump($blocage);
+        foreach ($blocage as $blocs){
+        $bloc = $blocs['etat_validation'];
+            if($bloc == "validee" || $bloc =="nonValide" || $bloc=="fermee"){
+                if($bloc=="validee"){
+                    $flashMessenger = $this->_helper->getHelper('FlashMessenger');
+                    $message1 = "vous avez déjà validée cette offre.";
+                    $flashMessenger->addMessage($message1);}    
+                elseif($bloc=="nonValide"){
+                    $flashMessenger = $this->_helper->getHelper('FlashMessenger');
+                    $message1 = "cette offre a déjà été refusée.";
+                    $flashMessenger->addMessage($message1);
+                    }
+                elseif($bloc=="fermee"){
+                    $flashMessenger = $this->_helper->getHelper('FlashMessenger');
+                    $message1 = "cette offre est fermée.";
+                    $flashMessenger->addMessage($message1);
+                    }
+                $redirector = $this->_helper->getHelper('Redirector');
+                $redirector->gotoSimple('index', 'xdistrib');}
+            else {
+                $this->view->messages = array_merge(
+                    $this->_helper->flashMessenger->getMessages(),
+                    $this->_helper->flashMessenger->getCurrentMessages()
+                );
+                $this->_helper->flashMessenger->clearCurrentMessages();
+            }
+        }
+        if ($this->getRequest()->isPost()) {
+            $date_validationfobfr = date("Y-m-d H:i:s");
+            $this->view->date_validationfobfr = $date_validationfobfr;
+            $etat = "validée";
+            $nom_validationfobfr = "fobfr";
+            $formData = $this->getRequest()->getPost();
+            $datas = $this->getRequest()->getPost();
+            $nomclients=trim($info_client['nom_client']);
+//            foreach ($formData as $datas) {
+            $fobs = array_combine($datas['code_article'], $datas['prix_fob']);
+            $cifs = array_combine($datas['code_article'], $datas['prix_cif']);
+            $marges = array_combine($datas['code_article'],$datas['marge']);
+
+            foreach ($cifs as $key => $value) {
+                $prixcifs = new Application_Model_DbTable_DemandeArticlexprices();
+                $prixcif = $prixcifs->updatecif($value, $key, $datas['tracking_number']);
+            }
+            foreach ($fobs as $key => $value) {
+                $prixfobs = new Application_Model_DbTable_DemandeArticlexprices();
+                $prixfob = $prixcifs->updatefob($value, $key, $datas['tracking_number']);
+            }
+            foreach ($marges as $key => $value){
+                $margeinit = new Application_Model_DbTable_DemandeArticlexprices();
+                $marge= $margeinit->insertMarge($value, $key, $datas['tracking_number']);
+            }
+            $validations = new Application_Model_DbTable_Validationsxprice();
+            $validation = $validations->createValidation($nom_validationfobfr, $date_validationfobfr, $etat, $datas['commentaire_fobfr'], $user->id_user, $datas['tracking_number']);
+
+            $datasValidation = array(
+                'nom_validation' => $nom_validationfobfr, 'validation' => $etat,
+                'commentaire' => $formData['commentaire_fobfr'],
+                'id_user' => $user->id_user, 'id_demande_xprice' => $info_demande_xprice['id_demande_xprice']
+            );
+//            echo "<pre>", var_export($datasValidation, true), "</pre>";
+//            exit();
+            if (array_key_exists('reponse', $formData)) {
+                $datasValidation['reponse'] = $formData['reponse'];
+            }
+
+            $commentId = $this->genererValidation($datasValidation);
+//            }
+            $emailVars = Zend_Registry::get('emailVars');
+            $Mailsupply = $emailVars->listes->supplychain;
+            $Mailfobfr = $emailVars->listes->fobfr;
+            if (!is_null($commentId)) {
+                $url = "http://{$_SERVER['SERVER_NAME']}/xprice/validatesupply/numwp/{$numwp}/com/{$commentId}";
+            } else {
+                $url = "http://{$_SERVER['SERVER_NAME']}/xprice/validatesupply/numwp/{$numwp}";
+            }
+            $corpsMail = "Bonjour,\n"
+                    . "\n"
+                    . "Vous avez une nouvelle demande XPrice $trackingNumber/$numwp de {$info_user['nom_user']} pour le client $nomclients à valider.\n"
+                    . "Veuillez vous rendre à l'adresse url : \n"
+                    . "%s"
+                    . "\n\n"
+                    . "Cordialement,\n"
+                    . "\n"
+                    . "--\n"
+                    . "Prix fobfr.";
+            $mail = new Xsuite_Mail();
+            $mail->setSubject(" XPrice : Nouvelle demand Xprice $trackingNumber/$numwp de {$info_user['nom_user']} pour le client $nomclients à valider .")
+                    ->setBodyText(sprintf($corpsMail, $url))
+                    ->addTo($Mailsupply)
+                    ->send();
+            $corpsMail2 = "Bonjour,\n"
+                    . "\n"
+                    . "Vous avez une nouvelle demande XPrice $trackingNumber/$numwp de {$info_user['nom_user']} pour le client $nomclients à valider.\n"
+                    . "Veuillez vous rendre à l'adresse url : \n"
+                    . "%s"
+                    . "\n\n"
+                    . "Cordialement,\n"
+                    . "\n"
+                    . "--\n"
+                    . "Prix fobfr.";
+            $mail2 = new Xsuite_Mail();
+            $mail2->setSubject(" XPrice : Nouvelle demand Xprice $trackingNumber/$numwp de {$info_user['nom_user']} pour le client $nomclients à valider .")
+                    ->setBodyText(sprintf($corpsMail2, $url))
+                    ->addTo($Mailfobfr)
+                    ->send();
+            $flashMessenger = $this->_helper->getHelper('FlashMessenger');
+            $message = "les prix fob et cif  ont bien été enregistrés.";
+            $flashMessenger->addMessage($message);
+            $redirector = $this->_helper->getHelper('Redirector');
+            $redirector->gotoSimple('index', 'xprice');
+        } else {
+
+        }
     }
 }
 
