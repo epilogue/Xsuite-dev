@@ -44,13 +44,10 @@ function moyenneMarge(){
 }
 
 function moyenneMargeFob(){
-     var total = 0;
-    $("input.prixcif").each(function (i, e){
-        total += parseFloat($(e).val());
-    });
-    var tpd = parseFloat($('input#tpd').val());
-    
-    var moymafob = 100*(1- (total /tpd)).toFixed(4);
+   
+    var cab = parseFloat($('input#cab').val());
+    var ccif = parseFloat($('input#ccif').val());
+    var moymafob = 100*(1- (ccif /cab)).toFixed(4);
 //    $("input#mamofob").val(defaultFormat(moymafob) +'%');
     $("input#mamofob").val(moymafob+'%');
 }
