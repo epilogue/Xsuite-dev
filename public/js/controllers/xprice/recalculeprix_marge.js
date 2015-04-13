@@ -1,15 +1,21 @@
 function calculTotal() {
     var total = 0;
+     var idT = $(this).attr('id').split('-');
+     var k = idT[1];
+     var qt = parseFloat($('td#qt-'+k).html());
     $("input.caa").each(function (i, e){
-        total += parseFloat($(e).val());
+        total += parseFloat($(e).val()*qt);
     });
     $("#caat-affiche").val(defaultFormat(total));
     $("#caat").val(Number(total).toFixed(2));
 }
 function calculTotalcif() {
     var total = 0;
+     var idT = $(this).attr('id').split('-');
+     var k = idT[1];
+     var qt = parseFloat($('td#qt-'+k).html());
     $("input.prixcif").each(function (i, e){
-        total += parseFloat($(e).val());
+        total += parseFloat($(e).val()*qt);
     });
     $("#ccif-affiche").val(defaultFormat(total));
     $("#ccif").val(Number(total).toFixed(2));
