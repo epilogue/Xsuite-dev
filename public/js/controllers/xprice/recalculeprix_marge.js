@@ -148,10 +148,13 @@ $(document).ready(function (){
     });
      $('input.prixfob').change(function(){
         var idT = $(this).attr('id').split('-');
-        var k = idT[1];  var qt = parseFloat($('td#qt-'+k).html());
+        var k = idT[1];
+        var qt = parseFloat($('td#qt-'+k).html());
         var pd = parseFloat($('td#pd-'+k).html());
         var prixfob = parseFloat($(this).val());
+         var totfob=Number(prixfob*qt).toFixed(2);
          $(this).val(parseFloat($(this).val())+'€'); 
+          $('input#totfob-'+k).val(totfob);
          calculTotalfob();
           });
           
