@@ -18,7 +18,7 @@ function calculTotalcif() {
 
 function calculTotalfob() {
     var total = 0;
-    $("input.prixfob").each(function (i, e){
+    $("input.totfob").each(function (i, e){
         total += parseFloat($(e).val());
     });
     $("#cfob-affiche").val(defaultFormat(total));
