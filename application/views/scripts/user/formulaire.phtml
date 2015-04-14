@@ -1,0 +1,45 @@
+
+<h1>Utilisateurs</h1>
+<?php 
+$this->title ='utilisateurs Xsuite';
+$this->headTitle($this->title);
+?>
+<div id="tableIndex">
+    <fieldset>
+        <legend>Vos coordon&eacute;es</legend>
+        <table id="userIndex">
+            <tr>
+                <td>Votre nom:</td>
+                <td><input type="text" name="nom" value="" id="nom"></td>
+            </tr>
+             <tr>
+                <td>Votre prénom:</td>
+                <td><input type="text" name="prenom" value="" id="prenom"></td>
+            </tr>
+             <tr>
+                <td>Votre age:</td>
+                <td><input type="text" name="age" value="" id="age"></td>
+            </tr>
+             <tr>
+                <td>Votre numéro de t&eacute;l&eacute;phone:</td>
+                <td><input type="tel" name="tel" value="" id="tel" required="required"></td>
+            </tr>
+             <tr>
+                <td>Votre adresse mail:</td>
+                <td><input type="email" name="email" value="" id="email" required="required"></td>
+            </tr>
+        </table>
+    </fieldset>
+    <fieldset>
+        <legend>Votre candidature :</legend>
+        <table>
+            <tr>
+                <td>
+                    <label for="question1">Êtes-vous mobile (déménagement) ? Si oui sur quelles régions ou départements ? </label>
+                    <br /><textarea name="question1" id="question1" rows="2" cols="80"></textarea>
+                </td>
+            </tr>
+        </table>
+    </fieldset>
+    
+</div>

@@ -5,7 +5,7 @@ $this->headScript()->appendFile('/js/controllers/xprice/recalculeprix_marge.js')
 $this->headScript()->appendFile('/js/numFormat.js');
 ?>
 <div class="contenu">
-    <h2>Validation de l'offre XDISTRIB par supply chain manager</h2>
+    <h2>Validation de l'offre XDISTRIB par DBD</h2>
     <div id="workplace" class="workplace">
         <fieldset id="wp" class="field">
             <legend>Informations offre</legend>
@@ -157,9 +157,12 @@ $this->headScript()->appendFile('/js/numFormat.js');
                         <td>Prix Achat actuel DISTRIBUTEUR</td>
                         <td>Prix Achat demandé DISTRIBUTEUR</td>
                         <td>Prix Conseillé CLIENT FINAL</td>
+                        <td>Remise demandée</td>
                         <td>Remise référence ou série</td>
                         <td>Prif fob</td>
                         <td>Prix cif</td>
+                        <td>prix accordé</td>
+                        <td>remise accordée</td>
                         <td>marge</td>
                     </tr>
                     <?php foreach($this->article_info as $k=>$value){ ?>
