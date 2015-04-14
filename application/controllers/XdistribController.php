@@ -1548,7 +1548,7 @@ if($this->getRequest()->isPost()){
             $datasValidation = array(
                 'nom_validation' => $nom_validationfobfr, 'validation' => $etat,
                 'commentaire' => $formData['commentaire_fobfr'],
-                'id_user' => $user->id_user, 'id_demande_xdistrib' => $info_demande_xdistrib['id_demande_xdistrib']
+                'tiltop' => $datas['fobfr'], 'id_demande_xdistrib' => $info_demande_xdistrib['id_demande_xdistrib']
             );
 //            echo "<pre>", var_export($datasValidation, true), "</pre>";
 //            exit();
