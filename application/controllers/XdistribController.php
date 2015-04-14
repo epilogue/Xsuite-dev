@@ -1360,6 +1360,7 @@ if($this->getRequest()->isPost()){
             }
          }
     }
+    
     public function consultchefmarcheAction(){
         $user = $this->_auth->getStorage()->read();
         $tiltop = $user->id_user;
@@ -1603,6 +1604,147 @@ if($this->getRequest()->isPost()){
             $redirector->gotoSimple('index', 'xdistrib');
         } else {
 
+        }
+    }
+        public function validatesupplyAction(){
+        $user = $this->_auth->getStorage()->read();
+        $tiltop = $user->id_user;
+        $this->view->supply = $tiltop;
+        $numwp = $this->getRequest()->getParam('numwp', null);
+        $this->view->numwp = $numwp; 
+        
+        $infos_demande_xdistrib = new Application_Model_DbTable_Xdistrib();
+        $info_demande_xdistrib = $infos_demande_xdistrib->getNumwp($numwp);
+        $dateinit=$info_demande_xdistrib['date_demande_xdistrib'];
+        $date = DateTime::createFromFormat('Y-m-d', $dateinit);
+        $dateplop = $date->format('d/m/Y');
+        $this->view->dateplop=$dateplop;
+        $numwp_dis=  substr($info_demande_xdistrib['numwp_distributeur'], 0, 6);
+        $info_distrib=new Application_Model_DbTable_Distributeurs();
+        $distrib_info=$info_distrib->getDistributeurnumwp($numwp_dis);
+        $info_user=new Application_Model_DbTable_Users;
+        $user_info=$info_user->getUser($info_demande_xdistrib['id_user']);
+        $nom_holon=new Application_Model_DbTable_Holons();
+        $holon_nom=$nom_holon->getHolon($user_info['id_holon']);
+        $info_client=new Application_Model_DbTable_ClientDistrib();
+        $client_info=$info_client->getClientdistrib($info_demande_xdistrib['numwp_client']);
+        $info_article=new Application_Model_DbTable_DemandeArticlexdistrib();
+        $article_info= $info_article->getDemandeArticlexdistrib($numwp);
+        $info_concurrent=new Application_Model_DbTable_PrixConcurrent();
+        $concurrent_info=$info_concurrent->getConcurrent($numwp);
+        $info_contexte = new Application_Model_DbTable_Xdistrib();
+        $contexte_info1= $info_contexte->getContext($numwp);
+        $contexte_info2=$contexte_info1[0];
+        $contexte_info=$contexte_info2;
+        $info_service = new Application_Model_DbTable_ServiceDistrib();
+        $service_info = $info_service->getService($numwp);
+        $this->view->service_info=$service_info;
+        $this->view->contexte_info = $contexte_info;
+        $this->view->concurrent_info=$concurrent_info;
+        $this->view->article_info=$article_info;
+        $this->view->nom_holon=$holon_nom;
+        $this->view->client_info=$client_info;
+        $this->view->user_info=$user_info;
+        $this->view->distrib_info=$distrib_info;
+        $this->view->info_demande_xdistrib=$info_demande_xdistrib;
+        $blocages=new Application_Model_DbTable_Validationsdemandexdistrib();
+        $validationdbd="dbd";
+        $blocage = $blocages->getValidation( $validationdbd, $info_demande_xdistrib['id_demande_xdistrib']);
+        //var_dump($blocage);
+        foreach ($blocage as $blocs){
+        $bloc = $blocs['etat_validation'];
+            if($bloc == "validee" || $bloc =="nonValide" || $bloc=="fermee"){
+                if($bloc=="validee"){
+                    $flashMessenger = $this->_helper->getHelper('FlashMessenger');
+                    $message1 = "vous avez déjà validée cette offre.";
+                    $flashMessenger->addMessage($message1);}    
+                elseif($bloc=="nonValide"){
+                    $flashMessenger = $this->_helper->getHelper('FlashMessenger');
+                    $message1 = "cette offre a déjà été refusée.";
+                    $flashMessenger->addMessage($message1);
+                    }
+                elseif($bloc=="fermee"){
+                    $flashMessenger = $this->_helper->getHelper('FlashMessenger');
+                    $message1 = "cette offre est fermée.";
+                    $flashMessenger->addMessage($message1);
+                    }
+                $redirector = $this->_helper->getHelper('Redirector');
+                $redirector->gotoSimple('index', 'xdistrib');}
+            else {
+                $this->view->messages = array_merge(
+                    $this->_helper->flashMessenger->getMessages(),
+                    $this->_helper->flashMessenger->getCurrentMessages()
+                );
+                $this->_helper->flashMessenger->clearCurrentMessages();
+            }
+        }
+        if ($this->getRequest()->isPost()) {
+            $date_validationsupply = date("Y-m-d H:i:s");
+            $this->view->date_validationsupply = $date_validationsupply;
+            $etat = "validée";
+            $nom_validationsupply = "supply";
+            $formData = $this->getRequest()->getPost();
+            $datas = $this->getRequest()->getPost();
+            echo  '<pre>',var_export($datas),'</pre>';
+            $nomclients=trim($client_info['nom_client']);
+//            foreach ($formData as $datas) {
+            $fobs = array_combine($datas['code_article'], $datas['prix_fob']);
+            $cifs = array_combine($datas['code_article'], $datas['prix_cif']);
+            $marges = array_combine($datas['code_article'],$datas['marge']);
+
+            foreach ($cifs as $key => $value) {
+                $prixcifs = new Application_Model_DbTable_DemandeArticlexdistrib();
+                $prixcif = $prixcifs->updatecif($value, $key, $datas['tracking']);
+            }
+            foreach ($fobs as $key => $value) {
+                $prixfobs = new Application_Model_DbTable_DemandeArticlexdistrib();
+                $prixfob = $prixcifs->updatefob($value, $key, $datas['tracking']);
+            }
+            foreach ($marges as $key => $value){
+                $margeinit = new Application_Model_DbTable_DemandeArticlexdistrib();
+                $marge= $margeinit->insertMarge($value, $key, $datas['tracking']);
+            }
+            $validations = new Application_Model_DbTable_Validationsxdistrib();
+            $validation = $validations->createValidation($datas['nom_validation'], $datas['date_validation'], $datas['validation'], $datas['commentaire_supply'], $datas['supply'], $datas['tracking']);
+
+            $datasValidation = array(
+                'nom_validation' => $nom_validationsupply, 'validation' => $etat,
+                'commentaire' => $formData['commentaire_supply'],
+                'tiltop' => $datas['supply'], 'id_demande_xdistrib' => $info_demande_xdistrib['id_demande_xdistrib']
+            );
+            if (array_key_exists('reponse', $formData)) {
+                $datasValidation['reponse'] = $formData['reponse'];
+            }
+
+            $commentId = $this->genererValidation($datasValidation);
+            $emailVars = Zend_Registry::get('emailVars');
+            $destinatairemail =$emailVars->listes->DBD;
+                if (!is_null($commentId)) {
+                    $url = "http://{$_SERVER['SERVER_NAME']}/xdistrib/validatedbd/numwp  {$datas['tracking']}/{$numwp}/com/{$commentId}";
+                } else {
+                    $url = "http://{$_SERVER['SERVER_NAME']}/xdistrib/validatedbd/numwp {$datas['tracking']}/{$numwp}";
+                }
+                $corpsMail = "Bonjour,\n"
+                        . "\n"
+                        . "Vous avez une nouvelle demande XDistrib {$datas['tracking']} /$numwp de  {$user_info['nom_user']} pour le client $nomclients à valider.\n"
+                        . "Veuillez vous rendre à l'adresse url : \n"
+                        . "%s"
+                        . "\n\n"
+                        . "Cordialement,\n"
+                        . "\n"
+                        . "--\n"
+                        . "Supply Chain Manager.";
+            $emailVars = Zend_Registry::get('emailVars');
+            $mail = new Xsuite_Mail();
+            $mail->setSubject(" XPrice : Nouvelle demande Xprice /$numwp de {$user_info['nom_user']} pour le client $nomclients à valider.")
+                    ->setBodyText(sprintf($corpsMail, $url))
+                    ->addTo($destinatairemail)
+                    ->send();
+            $flashMessenger = $this->_helper->getHelper('FlashMessenger');
+            $message = "les prix fob et cif  sont bien validés.";
+            $flashMessenger->addMessage($message);
+            $redirector = $this->_helper->getHelper('Redirector');
+            $redirector->gotoSimple('index', 'xdistrib');
         }
     }
 }
