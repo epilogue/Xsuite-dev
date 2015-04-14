@@ -1685,9 +1685,7 @@ if($this->getRequest()->isPost()){
             $nom_validationsupply = "supply";
             $formData = $this->getRequest()->getPost();
             $datas = $this->getRequest()->getPost();
-            echo  '<pre>',var_export($datas),'</pre>';
             $nomclients=trim($client_info['nom_client']);
-//            foreach ($formData as $datas) {
             $fobs = array_combine($datas['code_article'], $datas['prix_fob']);
             $cifs = array_combine($datas['code_article'], $datas['prix_cif']);
             $marges = array_combine($datas['code_article'],$datas['marge']);
@@ -1720,13 +1718,13 @@ if($this->getRequest()->isPost()){
             $emailVars = Zend_Registry::get('emailVars');
             $destinatairemail =$emailVars->listes->DBD;
                 if (!is_null($commentId)) {
-                    $url = "http://{$_SERVER['SERVER_NAME']}/xdistrib/validatedbd/numwp  {$datas['tracking']}/{$numwp}/com/{$commentId}";
+                    $url = "http://{$_SERVER['SERVER_NAME']}/xdistrib/validatedbd/numwp/{$numwp}/com/{$commentId}";
                 } else {
-                    $url = "http://{$_SERVER['SERVER_NAME']}/xdistrib/validatedbd/numwp {$datas['tracking']}/{$numwp}";
+                    $url = "http://{$_SERVER['SERVER_NAME']}/xdistrib/validatedbd/numwp/{$numwp}";
                 }
                 $corpsMail = "Bonjour,\n"
                         . "\n"
-                        . "Vous avez une nouvelle demande XDistrib {$datas['tracking']} /$numwp de  {$user_info['nom_user']} pour le client $nomclients à valider.\n"
+                        . "Vous avez une nouvelle demande XDistrib {$datas['tracking']}/$numwp de  {$user_info['nom_user']} pour le client $nomclients à valider.\n"
                         . "Veuillez vous rendre à l'adresse url : \n"
                         . "%s"
                         . "\n\n"
@@ -1736,7 +1734,7 @@ if($this->getRequest()->isPost()){
                         . "Supply Chain Manager.";
             $emailVars = Zend_Registry::get('emailVars');
             $mail = new Xsuite_Mail();
-            $mail->setSubject(" XPrice : Nouvelle demande Xprice /$numwp de {$user_info['nom_user']} pour le client $nomclients à valider.")
+            $mail->setSubject(" Xdistrib: Nouvelle demande Xdistrib {$datas['tracking']}/$numwp de {$user_info['nom_user']} pour le client $nomclients à valider.")
                     ->setBodyText(sprintf($corpsMail, $url))
                     ->addTo($destinatairemail)
                     ->send();
