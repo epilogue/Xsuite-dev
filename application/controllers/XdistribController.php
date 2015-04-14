@@ -1568,7 +1568,7 @@ if($this->getRequest()->isPost()){
             }
             $corpsMail = "Bonjour,\n"
                     . "\n"
-                    . "Vous avez une nouvelle demande Xdistrib {$datas['tracking']}/$numwp de {$info_user['nom_user']} pour le client $nomclients à valider.\n"
+                    . "Vous avez une nouvelle demande Xdistrib {$datas['tracking']}/$numwp de {$user_info['nom_user']} pour le client{$client_info['nom_client']} à valider.\n"
                     . "Veuillez vous rendre à l'adresse url : \n"
                     . "%s"
                     . "\n\n"
@@ -1577,13 +1577,13 @@ if($this->getRequest()->isPost()){
                     . "--\n"
                     . "Prix fobfr.";
             $mail = new Xsuite_Mail();
-            $mail->setSubject(" XPrice : Nouvelle demand Xdistrib {$datas['tracking']}/$numwp de {$info_user['nom_user']} pour le client $nomclients à valider .")
+            $mail->setSubject(" XPrice : Nouvelle demand Xdistrib {$datas['tracking']}/$numwp de {$user_info['nom_user']} pour le client {$client_info['nom_client']} à valider .")
                     ->setBodyText(sprintf($corpsMail, $url))
                     ->addTo($Mailsupply)
                     ->send();
             $corpsMail2 = "Bonjour,\n"
                     . "\n"
-                    . "Vous avez une nouvelle demande Xdistrib {$datas['tracking']}/$numwp de {$info_user['nom_user']} pour le client $nomclients à valider.\n"
+                    . "Vous avez une nouvelle demande Xdistrib {$datas['tracking']}/$numwp de {$user_info['nom_user']} pour le client{$client_info['nom_client']} à valider.\n"
                     . "Veuillez vous rendre à l'adresse url : \n"
                     . "%s"
                     . "\n\n"
@@ -1592,7 +1592,7 @@ if($this->getRequest()->isPost()){
                     . "--\n"
                     . "Prix fobfr.";
             $mail2 = new Xsuite_Mail();
-            $mail2->setSubject(" XPrice : Nouvelle demand Xdistrib {$datas['tracking']}/$numwp de {$info_user['nom_user']} pour le client $nomclients à valider .")
+            $mail2->setSubject(" XPrice : Nouvelle demand Xdistrib {$datas['tracking']}/$numwp de {$user_info['nom_user']} pour le client {$client_info['nom_client']} à valider .")
                     ->setBodyText(sprintf($corpsMail2, $url))
                     ->addTo($Mailfobfr)
                     ->send();
