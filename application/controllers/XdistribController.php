@@ -1543,7 +1543,7 @@ if($this->getRequest()->isPost()){
                 $marge= $margeinit->insertMarge($value, $key, $datas['tracking']);
             }
             $validations = new Application_Model_DbTable_Validationsxdistrib();
-            $validation = $validations->createValidation($nom_validationfobfr, $date_validationfobfr, $etat, $datas['commentaire_fobfr'], $user->id_user, $datas['tracking']);
+            $validation = $validations->createValidation($datas['nom_validation'], $datas['date_validation'], $datas['validation'], $datas['commentaire_fobfr'], $datas['fobfr'], $datas['tracking']);
 
             $datasValidation = array(
                 'nom_validation' => $nom_validationfobfr, 'validation' => $etat,
