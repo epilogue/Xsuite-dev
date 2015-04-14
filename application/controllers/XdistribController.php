@@ -1485,7 +1485,7 @@ if($this->getRequest()->isPost()){
         $this->view->user_info=$user_info;
         $this->view->distrib_info=$distrib_info;
         $this->view->info_demande_xdistrib=$info_demande_xdistrib;
-        $blocages=new Application_Model_DbTable_Validationsdemandexprices();
+        $blocages=new Application_Model_DbTable_Validationsdemandexdistrib();
         $validationdbd="dbd";
         $blocage = $blocages->getValidation( $validationdbd, $info_demande_xdistrib['id_demande_xdistrib']);
         //var_dump($blocage);
