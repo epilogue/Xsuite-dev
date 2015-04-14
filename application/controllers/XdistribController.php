@@ -1532,18 +1532,18 @@ if($this->getRequest()->isPost()){
 
             foreach ($cifs as $key => $value) {
                 $prixcifs = new Application_Model_DbTable_DemandeArticlexdistrib();
-                $prixcif = $prixcifs->updatecif($value, $key, $datas['tracking_number']);
+                $prixcif = $prixcifs->updatecif($value, $key, $datas['tracking']);
             }
             foreach ($fobs as $key => $value) {
                 $prixfobs = new Application_Model_DbTable_DemandeArticlexdistrib();
-                $prixfob = $prixcifs->updatefob($value, $key, $datas['tracking_number']);
+                $prixfob = $prixcifs->updatefob($value, $key, $datas['tracking']);
             }
             foreach ($marges as $key => $value){
                 $margeinit = new Application_Model_DbTable_DemandeArticlexdistrib();
-                $marge= $margeinit->insertMarge($value, $key, $datas['tracking_number']);
+                $marge= $margeinit->insertMarge($value, $key, $datas['tracking']);
             }
             $validations = new Application_Model_DbTable_Validationsxdistrib();
-            $validation = $validations->createValidation($nom_validationfobfr, $date_validationfobfr, $etat, $datas['commentaire_fobfr'], $user->id_user, $datas['tracking_number']);
+            $validation = $validations->createValidation($nom_validationfobfr, $date_validationfobfr, $etat, $datas['commentaire_fobfr'], $user->id_user, $datas['tracking']);
 
             $datasValidation = array(
                 'nom_validation' => $nom_validationfobfr, 'validation' => $etat,
