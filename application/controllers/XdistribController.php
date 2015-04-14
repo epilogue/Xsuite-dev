@@ -655,7 +655,7 @@ if($this->getRequest()->isPost()){
     public function maildispatchAction(){
          $user_connect = $this->_auth->getStorage()->read();
           $emailVars = Zend_Registry::get('emailVars');
-  if ($this->getRequest()->isPost()) {
+      if ($this->getRequest()->isPost()) {
         $formData = $this->getRequest()->getPost();
          $numwp=$formData['numwp']; 
         $tempClienttruns= new Application_Model_DbTable_TempClient();
@@ -1487,7 +1487,7 @@ if($this->getRequest()->isPost()){
         $this->view->info_demande_xdistrib=$info_demande_xdistrib;
         $blocages=new Application_Model_DbTable_Validationsdemandexprices();
         $validationdbd="dbd";
-        $blocage = $blocages->getValidation( $validationdbd, $info_demande_xprice['id_demande_xprice']);
+        $blocage = $blocages->getValidation( $validationdbd, $info_demande_xdistrib['id_demande_xdistrib']);
         //var_dump($blocage);
         foreach ($blocage as $blocs){
         $bloc = $blocs['etat_validation'];
@@ -1523,31 +1523,32 @@ if($this->getRequest()->isPost()){
             $nom_validationfobfr = "fobfr";
             $formData = $this->getRequest()->getPost();
             $datas = $this->getRequest()->getPost();
-            $nomclients=trim($info_client['nom_client']);
+            echo  '<pre>',var_export($datas),'</pre>';
+            $nomclients=trim($client_info['nom_client']);
 //            foreach ($formData as $datas) {
             $fobs = array_combine($datas['code_article'], $datas['prix_fob']);
             $cifs = array_combine($datas['code_article'], $datas['prix_cif']);
             $marges = array_combine($datas['code_article'],$datas['marge']);
 
             foreach ($cifs as $key => $value) {
-                $prixcifs = new Application_Model_DbTable_DemandeArticlexprices();
+                $prixcifs = new Application_Model_DbTable_DemandeArticlexdistrib();
                 $prixcif = $prixcifs->updatecif($value, $key, $datas['tracking_number']);
             }
             foreach ($fobs as $key => $value) {
-                $prixfobs = new Application_Model_DbTable_DemandeArticlexprices();
+                $prixfobs = new Application_Model_DbTable_DemandeArticlexdistrib();
                 $prixfob = $prixcifs->updatefob($value, $key, $datas['tracking_number']);
             }
             foreach ($marges as $key => $value){
-                $margeinit = new Application_Model_DbTable_DemandeArticlexprices();
+                $margeinit = new Application_Model_DbTable_DemandeArticlexdistrib();
                 $marge= $margeinit->insertMarge($value, $key, $datas['tracking_number']);
             }
-            $validations = new Application_Model_DbTable_Validationsxprice();
+            $validations = new Application_Model_DbTable_Validationsxdistrib();
             $validation = $validations->createValidation($nom_validationfobfr, $date_validationfobfr, $etat, $datas['commentaire_fobfr'], $user->id_user, $datas['tracking_number']);
 
             $datasValidation = array(
                 'nom_validation' => $nom_validationfobfr, 'validation' => $etat,
                 'commentaire' => $formData['commentaire_fobfr'],
-                'id_user' => $user->id_user, 'id_demande_xprice' => $info_demande_xprice['id_demande_xprice']
+                'id_user' => $user->id_user, 'id_demande_xdistrib' => $info_demande_xdistrib['id_demande_xdistrib']
             );
 //            echo "<pre>", var_export($datasValidation, true), "</pre>";
 //            exit();
@@ -1561,13 +1562,13 @@ if($this->getRequest()->isPost()){
             $Mailsupply = $emailVars->listes->supplychain;
             $Mailfobfr = $emailVars->listes->fobfr;
             if (!is_null($commentId)) {
-                $url = "http://{$_SERVER['SERVER_NAME']}/xprice/validatesupply/numwp/{$numwp}/com/{$commentId}";
+                $url = "http://{$_SERVER['SERVER_NAME']}/xdistrib/validatesupply/numwp/{$numwp}/com/{$commentId}";
             } else {
-                $url = "http://{$_SERVER['SERVER_NAME']}/xprice/validatesupply/numwp/{$numwp}";
+                $url = "http://{$_SERVER['SERVER_NAME']}/xdistrib/validatesupply/numwp/{$numwp}";
             }
             $corpsMail = "Bonjour,\n"
                     . "\n"
-                    . "Vous avez une nouvelle demande XPrice $trackingNumber/$numwp de {$info_user['nom_user']} pour le client $nomclients à valider.\n"
+                    . "Vous avez une nouvelle demande Xdistrib $trackingNumber/$numwp de {$info_user['nom_user']} pour le client $nomclients à valider.\n"
                     . "Veuillez vous rendre à l'adresse url : \n"
                     . "%s"
                     . "\n\n"
@@ -1576,13 +1577,13 @@ if($this->getRequest()->isPost()){
                     . "--\n"
                     . "Prix fobfr.";
             $mail = new Xsuite_Mail();
-            $mail->setSubject(" XPrice : Nouvelle demand Xprice $trackingNumber/$numwp de {$info_user['nom_user']} pour le client $nomclients à valider .")
+            $mail->setSubject(" XPrice : Nouvelle demand Xdistrib $trackingNumber/$numwp de {$info_user['nom_user']} pour le client $nomclients à valider .")
                     ->setBodyText(sprintf($corpsMail, $url))
                     ->addTo($Mailsupply)
                     ->send();
             $corpsMail2 = "Bonjour,\n"
                     . "\n"
-                    . "Vous avez une nouvelle demande XPrice $trackingNumber/$numwp de {$info_user['nom_user']} pour le client $nomclients à valider.\n"
+                    . "Vous avez une nouvelle demande Xdistrib $trackingNumber/$numwp de {$info_user['nom_user']} pour le client $nomclients à valider.\n"
                     . "Veuillez vous rendre à l'adresse url : \n"
                     . "%s"
                     . "\n\n"
@@ -1591,7 +1592,7 @@ if($this->getRequest()->isPost()){
                     . "--\n"
                     . "Prix fobfr.";
             $mail2 = new Xsuite_Mail();
-            $mail2->setSubject(" XPrice : Nouvelle demand Xprice $trackingNumber/$numwp de {$info_user['nom_user']} pour le client $nomclients à valider .")
+            $mail2->setSubject(" XPrice : Nouvelle demand Xdistrib $trackingNumber/$numwp de {$info_user['nom_user']} pour le client $nomclients à valider .")
                     ->setBodyText(sprintf($corpsMail2, $url))
                     ->addTo($Mailfobfr)
                     ->send();
@@ -1599,7 +1600,7 @@ if($this->getRequest()->isPost()){
             $message = "les prix fob et cif  ont bien été enregistrés.";
             $flashMessenger->addMessage($message);
             $redirector = $this->_helper->getHelper('Redirector');
-            $redirector->gotoSimple('index', 'xprice');
+            $redirector->gotoSimple('index', 'xdistrib');
         } else {
 
         }
