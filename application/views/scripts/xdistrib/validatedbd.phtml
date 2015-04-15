@@ -180,8 +180,8 @@ $this->headScript()->appendFile('/js/numFormat.js');
                         <td><input class="ma" id="ma-<?php echo $k;?>" <?php $margefob=100*(1-($value['prix_cif_demande_article']/$value['prix_demande_article']));?> value="<?php  echo round($margefob,2)."%" ;?>" name="marge[]"></td></td>
                     </tr> <?php }?>
                     <tr>
-                            <td colspan="2">total</td>
-                            <td colspan="2" ><input class="cab" id="cab-affiche"
+                            <td colspan="3">total</td>
+                            <td><input class="cab" id="cab-affiche"
                                <?php $cab=0;foreach($this->article_info as $result)
                                 {$cab+=($result['quantite_demande_article']*$result['prixwplace_demande_article']);
                             
@@ -189,6 +189,7 @@ $this->headScript()->appendFile('/js/numFormat.js');
                                 <input type="hidden" id="cab" class="calculHidden" value="<?php echo $cab; ?>">
                             </td>
                             <td></td>
+                             <td></td>
                              <td></td>
                             <td >
                                  <?php $Cfob=0; foreach($this->article_info as $result){
