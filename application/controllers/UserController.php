@@ -64,8 +64,6 @@ class UserController extends Zend_Controller_Action {
     public function deleteAction() {
 
     }
-public function formulaireAction(){
-  
-}
+
 }
 
