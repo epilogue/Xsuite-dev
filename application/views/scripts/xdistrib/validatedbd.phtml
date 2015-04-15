@@ -183,7 +183,7 @@ $this->headScript()->appendFile('/js/numFormat.js');
                             <td colspan="3">total</td>
                             <td><input class="cab" id="cab-affiche"
                                <?php $cab=0;foreach($this->article_info as $result)
-                                {$cab+=($result['quantite_demande_article']*$result['prixwplace_demande_article']);
+                                {$cab+=($result['quantite_demande_article']*$result['prix_achat_actuel']);
                             
                             } ?>value="<?php echo number_format($cab, 2, '.', ' '); ?>">
                                 <input type="hidden" id="cab" class="calculHidden" value="<?php echo $cab; ?>">
