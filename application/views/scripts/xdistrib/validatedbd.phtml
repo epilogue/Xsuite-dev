@@ -177,7 +177,7 @@ $this->headScript()->appendFile('/js/numFormat.js');
                         <td><input  class="prixcif" id="prixcif-<?php echo $k;?>" type="text" name="prix_cif[]" value="<?php echo $value['prix_cif_demande_article']; ?>"></td><input class="totcif" type="hidden" id="totcif-<?php echo $k;?>" value ="<?php echo $value['quantite_demande_article']*$value['prix_cif_demande_article']; ?>">
                          <td><input class="pda" id="pda-<?php echo $k; ?>" value="<?php echo $value['prix_accorde_demande_article']; ?>" name="<?php echo 'prix_accorde_article[]' ?>" style="background-color: #74aaca;"></td>
                         <td><input class="ra" id="ra-<?php echo $k; ?>" value="<?php echo $value['remise_accorde_demande_article'] . "%"; ?>" name="<?php echo 'remise_accorde_article[]' ?>" style="background-color: #74aaca;"></td>
-                        <td><input class="ma" id="ma-<?php echo $k;?>" <?php $margefob=100*(1-($value['prix_cif_demande_article']/$value['prix_demande_article']));?> value="<?php  echo round($margefob,2)."%" ;?>" name="marge[]"></td>
+                        <td><input class="ma" id="ma-<?php echo $k;?>" <?php $ma=100*(1-($value['prix_cif_demande_article']/$value['prix_accorde_demande_article']));?> value="<?php  echo round($ma,2)."%" ;?>" name="marge[]"></td>
                         <td><input type="hidden"  class="caa" id="caa-<?php echo $k;?>"  value="<?php echo round((($value['prix_accorde_demande_article'])*$value['quantite_demande_article']),2); ?>" name="caa" style="background-color:yellow;"></td>
                     </tr> <?php }?>
                     <tr>
