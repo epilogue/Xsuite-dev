@@ -188,7 +188,12 @@ $this->headScript()->appendFile('/js/numFormat.js');
                             } ?>value="<?php echo number_format($cab, 2, '.', ' '); ?>">
                                 <input type="hidden" id="cab" class="calculHidden" value="<?php echo $cab; ?>">
                             </td>
-                            <td></td>
+                            <td><input class="cad" id="cad-affiche"
+                               <?php $cad=0;foreach($this->article_info as $result)
+                                {$cad+=($result['quantite_demande_article']*$result['prix_demande_article']);
+                            
+                            } ?>value="<?php echo number_format($cad, 2, '.', ' '); ?>">
+                                <input type="hidden" id="cad" class="calculHidden" value="<?php echo $cad; ?>"></td>
                              <td></td>
                              <td></td>
                             <td >
