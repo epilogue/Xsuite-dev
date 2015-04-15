@@ -192,14 +192,14 @@ $this->headScript()->appendFile('/js/numFormat.js');
                                <?php $cad=0;foreach($this->article_info as $result)
                                 {$cad+=($result['quantite_demande_article']*$result['prix_demande_article']);
                             
-                            } ?>value="<?php echo number_format($caf, 2, '.', ' '); ?>">
-                                <input type="hidden" id="caf" class="calculHidden" value="<?php echo $caf; ?>"></td>
+                            } ?>value="<?php echo number_format($cad, 2, '.', ' '); ?>">
+                                <input type="hidden" id="cad" class="calculHidden" value="<?php echo $cad; ?>"></td>
                              <td><input class="caf" id="caf-affiche"
                                <?php $caf=0;foreach($this->article_info as $result)
                                 {$caf+=($result['quantite_demande_article']*$result['prix_client_final']);
                             
-                            } ?>value="<?php echo number_format($cad, 2, '.', ' '); ?>">
-                                <input type="hidden" id="cad" class="calculHidden" value="<?php echo $cad; ?>"></td>
+                            } ?>value="<?php echo number_format($caf, 2, '.', ' '); ?>">
+                                <input type="hidden" id="caf" class="calculHidden" value="<?php echo $caf; ?>"></td>
                              <td></td>
                             <td >
                                  <?php $Cfob=0; foreach($this->article_info as $result){
