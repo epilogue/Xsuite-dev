@@ -2160,7 +2160,7 @@ if($this->getRequest()->isPost()){
                         . "--\n"
                         . "Xdistrib";
                 $params6['destinataireMail'] = $destinataireMail2;
-                $params6['sujet'] = " Xdistrib : La demande Xdistrib $tracking/$numwp de {$info_user['nom_user']} pour le client $nomclients a été validée par le DBD.";
+                $params6['sujet'] = " Xdistrib : La demande Xdistrib $tracking/$numwp de {$user_info['nom_user']} pour le client $nomclients a été validée par le DBD.";
                 $this->sendEmail($params6);
                    $flashMessenger = $this->_helper->getHelper('FlashMessenger');
                 $message = "l'offre $numwp  pour le client $nomclients a bien été validée.";
