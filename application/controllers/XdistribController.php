@@ -1909,7 +1909,7 @@ if($this->getRequest()->isPost()){
             $emailVars = Zend_Registry::get('emailVars');
             $prix_accordes = array_combine($datas['code_article'], $datas['prix_accorde_article']);
             $remise_accordes = array_combine($datas['code_article'], $datas['remise_accorde_article']);
-            $marge = array_combine($datas['code_article'],$datas['marge_demande_article']); 
+            $marge = array_combine($datas['code_article'],$datas['marge']); 
             foreach ($remise_accordes as $key => $value) {
                 $remisesDirco = new Application_Model_DbTable_DemandeArticlexdistrib();
                 $remiseDirco = $remisesDirco->insertRemiseAccorde($value, $key, $datas['tracking']);
