@@ -1936,8 +1936,19 @@ if($this->getRequest()->isPost()){
                  $datas['validation']="nonValide";
             }
             $nouvelle_validation = new Application_Model_DbTable_Validationsxdistrib();
-            $nouv_validation = $nouvelle_validation->createValidation($nom_validation, $date_validation, $datas['validation'], $datas['commentaire_dbd'], $user->id_user, $datas['tracking']);
-            $datasValidation = array('nom_validation' => $nom_validation, 'validation' => $datas['validation'], 'commentaire' => $datas['commentaire_dbd'],'id_user' => $user->id_user, 'id_demande_xdistrib' => $info_demande_xdistrib['id_demande_xdistrib']);
+            $nouv_validation = $nouvelle_validation->createValidation(
+                    $nom_validation,
+                    $date_validation,
+                    $datas['validation'],
+                    $datas['commentaire_dbd'],
+                    $tiltop,
+                    $datas['tracking']);
+            $datasValidation = array(
+                'nom_validation' => $nom_validation,
+                'validation' => $datas['validation'],
+                'commentaire' => $datas['commentaire_dbd'],
+                'id_user' => $tiltop,
+                'id_demande_xdistrib' => $info_demande_xdistrib['id_demande_xdistrib']);
             if (array_key_exists('reponse', $datas)) {
                 $datasValidation['reponse'] = $datas['reponse'];
             }
