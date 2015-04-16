@@ -1066,6 +1066,7 @@ if($user->id_fonction == 3){
             $this->nom_validation = $nom_validation;
             $datas = $this->getRequest()->getPost();
            // echo '<pre>',var_export($datas),'</pre>';exit();
+           $etatValide= $datas['validation'];
             $prix_accordes = array_combine($datas['code_article'], $datas['prix_accorde_article']);
             $remise_accordes = array_combine($datas['code_article'], $datas['remise_accorde_article']);
             $marge = array_combine($datas['code_article'],$datas['marge_demande_article']); 
@@ -1094,7 +1095,7 @@ if($user->id_fonction == 3){
             if($margemin==false && $datas['mamo'] >10 && $datas['validation']="validee"){
                 $datas['validation']="fermee";
             }else{
-                 $datas['validation']=$ $datas['validation'];
+                 $datas['validation']= $etatValide;
             }
           echo  '<pre>',var_export($datas['validation']),'</pre>';exit();
 //          echo '<pre>',var_export($margemin),'</pre>';
