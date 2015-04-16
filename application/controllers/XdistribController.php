@@ -1748,7 +1748,7 @@ if($this->getRequest()->isPost()){
     public function validatedbdAction(){
         $user = $this->_auth->getStorage()->read();
         $tiltop = $user->id_user;
-        $this->view->supply = $tiltop;
+        $this->view->dbd = $tiltop;
         $numwp = $this->getRequest()->getParam('numwp', null);
         $this->view->numwp = $numwp; 
         $nom_validation = 'dbd';
