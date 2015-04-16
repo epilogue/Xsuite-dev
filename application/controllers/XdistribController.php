@@ -1820,7 +1820,7 @@ if($this->getRequest()->isPost()){
          * chargement des validations avec leurs commentaires
          */
         $dbtValidationsDemandesXdistrib = new Application_Model_DbTable_Validationsdemandexdistrib();
-        $validationsDemandesXdistrib = $dbtValidationsDemandesXdistrib->getAllValidation($info_demande_xdistrib['id_demande_xprice']);
+        $validationsDemandesXdistrib = $dbtValidationsDemandesXdistrib->getAllValidation($info_demande_xdistrib['id_demande_xdistrib']);
 
         $this->view->validations = $validationsDemandesXdistrib;
         $usersValidations = array();
