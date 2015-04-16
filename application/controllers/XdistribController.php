@@ -2023,10 +2023,10 @@ if($this->getRequest()->isPost()){
                         . "\n"
                         . "--\n"
                         . "dbd.";
-                    $params2['sujet'] = " XDistrib :demande Xdistrib $trackingNumber/$numwp pour $nomclients validée par Directeur Business Developpement.";
+                    $params2['sujet'] = " XDistrib :demande Xdistrib $tracking/$numwp pour $nomclients validée par Directeur Business Developpement.";
                     $params3['corpsMail'] = "Bonjour,\n"
                         . "\n"
-                        . "la demande Xdistrib $trackingNumber/$numwp de {$info_user['nom_user']} pour le client $nomclients a été validée par le dbd .\n"
+                        . "la demande Xdistrib $tracking/$numwp de {$info_user['nom_user']} pour le client $nomclients a été validée par le dbd .\n"
                         . "Vous pouvez la consulter à cette adresse url : \n"
                         . "%s"
                         . "\n\n"
@@ -2034,7 +2034,7 @@ if($this->getRequest()->isPost()){
                         . "\n"
                         . "--\n"
                         . "dbd.";
-                $params3['sujet'] = "  XDistrib : la demande Xdistrib $trackingNumber/$numwp de {$info_user['nom_user']} pour le client $nomclients a été validée .";
+                $params3['sujet'] = "  XDistrib : la demande Xdistrib $tracking/$numwp de {$info_user['nom_user']} pour le client $nomclients a été validée .";
                 
                 $this->sendEmail($params2);
                 $this->sendEmail($params3);
@@ -2076,7 +2076,7 @@ if($this->getRequest()->isPost()){
 
                          $params4['corpsMail'] = "Bonjour,\n"
                                 . "\n"
-                                . "la demande Xdistrib $trackingNumber/$numwp de {$info_user['nom_user']} pour le client $nomclients a été validée par le DBD.\n"
+                                . "la demande Xdistrib $tracking/$numwp de {$info_user['nom_user']} pour le client $nomclients a été validée par le DBD.\n"
                                 . "Pour consulter la demande veuillez vous rendre à l'adresse url : \n"
                                 . "%s"
                                 . "\n\n"
@@ -2084,7 +2084,7 @@ if($this->getRequest()->isPost()){
                                 . "\n"
                                 . "--\n"
                                 . "Xsuite";
-                        $params4['sujet']=" XDistrib :  Offre Xdistrib $trackingNumber/$numwp  de {$info_user['nom_user']} pour $nomclients validée par le DBD";
+                        $params4['sujet']=" XDistrib :  Offre Xdistrib $tracking/$numwp  de {$info_user['nom_user']} pour $nomclients validée par le DBD";
                       $this->sendEmail($params4);           
                     }
                 //envoi au cdr
@@ -2116,7 +2116,7 @@ if($this->getRequest()->isPost()){
 
                          $params5['corpsMail'] = "Bonjour,\n"
                                 . "\n"
-                                . "la demande Xdistrib $trackingNumber/$numwp de {$info_user['nom_user']} pour le client $nomclients a été validée par le DBD.\n"
+                                . "la demande Xdistrib $tracking/$numwp de {$info_user['nom_user']} pour le client $nomclients a été validée par le DBD.\n"
                                 . "Pour consulter la demande veuillez vous rendre à l'adresse url : \n"
                                 . "%s"
                                 . "\n\n"
@@ -2124,7 +2124,7 @@ if($this->getRequest()->isPost()){
                                 . "\n"
                                 . "--\n"
                                 . "Xsuite";
-                        $params5['sujet']=" XDistrib :Offre Xdistrib $trackingNumber/$numwp de {$user_info['nom_user']} pour $nomclients validée par le DBD";
+                        $params5['sujet']=" XDistrib :Offre Xdistrib$tracking/$numwp de {$user_info['nom_user']} pour $nomclients validée par le DBD";
                       $this->sendEmail($params5); 
                     }
                 switch ($destIndustry) {
@@ -2148,7 +2148,7 @@ if($this->getRequest()->isPost()){
                 $params6['corpsMail'] = "Bonjour,\n"
                         . "\n"
                         . "la demande XDistrib $numwp de {$info_user['nom_user']} pour le client $nomclients a été validée par le DBD.\n"
-                        . "Pour consulter la demande Xdistrib $trackingNumber/$numwp veuillez vous rendre à l'adresse url : \n"
+                        . "Pour consulter la demande Xdistrib $tracking/$numwp veuillez vous rendre à l'adresse url : \n"
                         . "%s"
                         . "\n\n"
                         . "Cordialement,\n"
