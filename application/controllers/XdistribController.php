@@ -2090,6 +2090,7 @@ if($this->getRequest()->isPost()){
                       $this->sendEmail($params4);           
                     }
                 //envoi au cdr
+                $zonetracking = substr($tracking, 7, 2);
                 if ($fonctioncreateur == "1" or $fonctioncreateur == "2" or $fonctioncreateur == "3") {
                         switch ($zonetracking) {
                             case "QA":
