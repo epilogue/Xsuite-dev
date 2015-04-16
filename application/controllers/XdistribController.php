@@ -1776,6 +1776,7 @@ if($this->getRequest()->isPost()){
         $contexte_info2=$contexte_info1[0];
         $contexte_info=$contexte_info2;
         $nomclients=$client_info['nom_client'];
+        $fonctioncreateur = $user_info['id_fonction'];
         $info_service = new Application_Model_DbTable_ServiceDistrib();
         $service_info = $info_service->getService($numwp);
         $this->view->service_info=$service_info;
@@ -2149,7 +2150,7 @@ if($this->getRequest()->isPost()){
                 $params6['url'] = "http://{$_SERVER['SERVER_NAME']}/xdistrib/consult/numwp/{$numwp}";
                 $params6['corpsMail'] = "Bonjour,\n"
                         . "\n"
-                        . "la demande XDistrib $numwp de {$info_user['nom_user']} pour le client $nomclients a été validée par le DBD.\n"
+                        . "la demande XDistrib $numwp de {$user_info['nom_user']} pour le client $nomclients a été validée par le DBD.\n"
                         . "Pour consulter la demande Xdistrib $tracking/$numwp veuillez vous rendre à l'adresse url : \n"
                         . "%s"
                         . "\n\n"
