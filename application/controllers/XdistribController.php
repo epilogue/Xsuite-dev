@@ -77,7 +77,7 @@ class XdistribController extends Zend_Controller_Action
          $recapitulatif2=$recapitulatif1->searchByCDR($tracking1,$tracking2);
      }
       if($user->id_fonction == 5 || $user->id_fonction == 13){
-         $recapitulatif1 = new Application_Model_DbTable_Xprices;
+         $recapitulatif1 = new Application_Model_DbTable_Xdistribs;
          $recapitulatif2=$recapitulatif1->searchforDBD();
      }
     $this->view->recapitulatif = $recapitulatif2;
@@ -804,7 +804,7 @@ if($this->getRequest()->isPost()){
         $validationsDemandesXdistrib = $dbtValidationsDemandesXdistrib->getAllValidation($info_demande_xdistrib['id_demande_xdistrib']);
 
         $this->view->validations = $validationsDemandesXdistrib;
-        //echo'<pre>',  var_export($validationsDemandesXprices),'</pre>';
+        //echo'<pre>',  var_export($validationsDemandesXdistribs),'</pre>';
         $usersValidations = array();
 
         foreach (@$validationsDemandesXdistrib as $key => $validationDemandeXdistri) {
@@ -1113,7 +1113,7 @@ if($this->getRequest()->isPost()){
                 $flashMessenger = $this->_helper->getHelper('FlashMessenger');
                 $flashMessenger->addMessage($message);
                 $redirector = $this->_helper->getHelper('Redirector');
-                $redirector->gotoSimple('index', 'xprice');
+                $redirector->gotoSimple('index', 'xdistrib');
             }
             elseif (isset($formData['validation']) && $formData['validation'] == "enAttente") {
                 $idvalidhisto = new Application_Model_DbTable_Validationsxdistrib();
@@ -1125,7 +1125,7 @@ if($this->getRequest()->isPost()){
 
                 $params3 = array();
                 $params3['destinataireMail'] = $info_user['email_user'];
-//                $params1['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/update/numwp/{$numwp}/histo/{$lasthisto[0]['id_histo_commentaire']}";
+//                $params1['url'] = "http://{$_SERVER['SERVER_NAME']}/xdistrib/update/numwp/{$numwp}/histo/{$lasthisto[0]['id_histo_commentaire']}";
                 if (!is_null($commentId)) {
                     $params3['url'] = "http://{$_SERVER['SERVER_NAME']}/xdistrib/update/numwp/{$numwp}/com/{$commentId}";
                 } else {
@@ -1320,7 +1320,7 @@ if($this->getRequest()->isPost()){
                 $flashMessenger = $this->_helper->getHelper('FlashMessenger');
                 $flashMessenger->addMessage($message);
                 $redirector = $this->_helper->getHelper('Redirector');
-                $redirector->gotoSimple('index', 'xprice');
+                $redirector->gotoSimple('index', 'xdistrib');
             }
             elseif (isset($formData['validation']) && $formData['validation'] == "enAttente") {
                 $idvalidhisto = new Application_Model_DbTable_Validationsxdistrib();
@@ -1332,7 +1332,7 @@ if($this->getRequest()->isPost()){
 
                 $params3 = array();
                 $params3['destinataireMail'] = $info_user['email_user'];
-//                $params1['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/update/numwp/{$numwp}/histo/{$lasthisto[0]['id_histo_commentaire']}";
+//                $params1['url'] = "http://{$_SERVER['SERVER_NAME']}/xdistrib/update/numwp/{$numwp}/histo/{$lasthisto[0]['id_histo_commentaire']}";
                 if (!is_null($commentId)) {
                     $params3['url'] = "http://{$_SERVER['SERVER_NAME']}/xdistrib/update/numwp/{$numwp}/com/{$commentId}";
                 } else {
@@ -1442,7 +1442,7 @@ if($this->getRequest()->isPost()){
                 $message = "votre commentaire a bien été enregistré.";
                 $flashMessenger->addMessage($message);
                 $redirector = $this->_helper->getHelper('Redirector');
-                $redirector->gotoSimple('index', 'xprice');
+                $redirector->gotoSimple('index', 'xdistrib');
         }
     }
     public function validatefobfrAction(){
@@ -1578,7 +1578,7 @@ if($this->getRequest()->isPost()){
                     . "--\n"
                     . "Prix fobfr.";
             $mail = new Xsuite_Mail();
-            $mail->setSubject(" XPrice : Nouvelle demand Xdistrib {$datas['tracking']}/$numwp de {$user_info['nom_user']} pour le client {$client_info['nom_client']} à valider .")
+            $mail->setSubject(" Xdistrib : Nouvelle demand Xdistrib {$datas['tracking']}/$numwp de {$user_info['nom_user']} pour le client {$client_info['nom_client']} à valider .")
                     ->setBodyText(sprintf($corpsMail, $url))
                     ->addTo($Mailsupply)
                     ->send();
@@ -1593,7 +1593,7 @@ if($this->getRequest()->isPost()){
                     . "--\n"
                     . "Prix fobfr.";
             $mail2 = new Xsuite_Mail();
-            $mail2->setSubject(" XPrice : Nouvelle demand Xdistrib {$datas['tracking']}/$numwp de {$user_info['nom_user']} pour le client {$client_info['nom_client']} à valider .")
+            $mail2->setSubject(" Xdistrib : Nouvelle demand Xdistrib {$datas['tracking']}/$numwp de {$user_info['nom_user']} pour le client {$client_info['nom_client']} à valider .")
                     ->setBodyText(sprintf($corpsMail2, $url))
                     ->addTo($Mailfobfr)
                     ->send();
@@ -1807,7 +1807,7 @@ if($this->getRequest()->isPost()){
                         $flashMessenger->addMessage($message1);
                     }
                     $redirector = $this->_helper->getHelper('Redirector');
-                    $redirector->gotoSimple('index', 'xprice');}
+                    $redirector->gotoSimple('index', 'xdistrib');}
             else {
                     $this->view->messages = array_merge(
                         $this->_helper->flashMessenger->getMessages(),
@@ -1906,6 +1906,7 @@ if($this->getRequest()->isPost()){
             $this->nom_validation = $nom_validation;
             $datas = $this->getRequest()->getPost();
             $tracking=$datas['tracking'];
+            $emailVars = Zend_Registry::get('emailVars');
             $prix_accordes = array_combine($datas['code_article'], $datas['prix_accorde_article']);
             $remise_accordes = array_combine($datas['code_article'], $datas['remise_accorde_article']);
             $marge = array_combine($datas['code_article'],$datas['marge_demande_article']); 
@@ -1941,7 +1942,7 @@ if($this->getRequest()->isPost()){
                 $datasValidation['reponse'] = $datas['reponse'];
             }
             $commentId = $this->genererValidation($datasValidation);
-            $mailServiceClient = new Application_Model_DbTable_Xprices();
+            $mailServiceClient = new Application_Model_DbTable_Xdistribs();
             $mailServiceClients = $mailServiceClient->getServiceClient($numwp);
             if($mailServiceClients[0]['mail_service_client']=='regionNord'){
                 $mailSC="regionnord@smc-france.fr";
@@ -1959,7 +1960,6 @@ if($this->getRequest()->isPost()){
             elseif($mailServiceClients[0]['mail_service_client']== 'export'){
                 $mailSC="export@smc-france.fr";
             }
-            $emailVars = Zend_Registry::get('emailVars');
             if (isset($datas['validation']) && $datas['validation'] == "validee") {
                 $params1 = array();
                 if ($margemin == true and $datas['mamo']< 10){
@@ -1980,7 +1980,7 @@ if($this->getRequest()->isPost()){
                             . "\n"
                             . "--\n"
                             . "dbd.";
-                    $params1['sujet'] = "  XPrice :nouvelle demande Xdistrib $tracking/$numwp à valider $numwp de {$info_user['nom_user']} pour le client $nomclients .";
+                    $params1['sujet'] = "  Xdistrib :nouvelle demande Xdistrib $tracking/$numwp à valider $numwp de {$info_user['nom_user']} pour le client $nomclients .";
 
                     $this->sendEmail($params1);
                 }
@@ -1988,7 +1988,230 @@ if($this->getRequest()->isPost()){
                 $message = "l'offre $numwp  pour le client $nomclients a bien été validée.";
                 $flashMessenger->addMessage($message);
                 $redirector = $this->_helper->getHelper('Redirector');
-                $redirector->gotoSimple('index', 'xprice');
+                $redirector->gotoSimple('index', 'xdistrib');
+            }
+            elseif(isset($datas['validation']) && $datas['validation'] == "fermee"){
+                     /*envoi de mail au tc, au cdr, au leader, au cm et au service client.*/
+                $params2 = array();
+                $params3 = array();
+                $params4 = array();
+                $params5 = array();
+                $params6 = array();
+                    $params2['destinataireMail'] = $info_user['email_user'];
+                    
+                    $params3['destinataireMail'] =$mailSC; /*"mhuby@smc-france.fr";*/
+                     if (!is_null($commentId)) {
+                    $params2['url'] = "http://{$_SERVER['SERVER_NAME']}/xdistrib/consult/numwp/{$numwp}/com/{$commentId}";
+                    $params3['url'] = "http://{$_SERVER['SERVER_NAME']}/xdistrib/consult/numwp/{$numwp}";
+                    } else {
+                    $params2['url'] = "http://{$_SERVER['SERVER_NAME']}/xdistrib/consult/numwp/{$numwp}";
+                    $params3['url'] = "http://{$_SERVER['SERVER_NAME']}/xdistrib/consult/numwp/{$numwp}";
+                    }
+                    $params2['corpsMail'] = "Bonjour,\n"
+                        . "\n"
+                        . "Votre demande Xdistrib $trackingNumber/$numwp a été validée par le Directeur Business Developpement .\n"
+                        . "Vous pouvez la consulter à cette adresse url : \n"
+                        . "%s"
+                        . "\n\n"
+                        . "Cordialement,\n"
+                        . "\n"
+                        . "--\n"
+                        . "dbd.";
+                    $params2['sujet'] = " XDistrib :demande Xdistrib $trackingNumber/$numwp pour $nomclients validée par Directeur Business Developpement.";
+                    $params3['corpsMail'] = "Bonjour,\n"
+                        . "\n"
+                        . "la demande Xdistrib $trackingNumber/$numwp de {$info_user['nom_user']} pour le client $nomclients a été validée par le dbd .\n"
+                        . "Vous pouvez la consulter à cette adresse url : \n"
+                        . "%s"
+                        . "\n\n"
+                        . "Cordialement,\n"
+                        . "\n"
+                        . "--\n"
+                        . "dbd.";
+                $params3['sujet'] = "  XDistrib : la demande Xdistrib $trackingNumber/$numwp de {$info_user['nom_user']} pour le client $nomclients a été validée .";
+                
+                $this->sendEmail($params2);
+                $this->sendEmail($params3);
+                //envoi au leader 
+                if ($fonctioncreateur == "1") {
+                        switch ($id_holon) {
+                            case "5":
+                                $params4['destinataireMail'] = $emailVars->listes->leaderis01;
+                                break;
+                            case "6":
+                                $params4['destinataireMail'] = $emailVars->listes->leaderis03;
+                                break;
+                            case "8":
+                                $params4['destinataireMail'] = $emailVars->listes->leaderiw01;
+                                break;
+                            case "9":
+                                $params4['destinataireMail'] = $emailVars->listes->leaderiw02;
+                                break;
+                            case "10":
+                                $params4['destinataireMail'] = $emailVars->listes->leaderiw03;
+                                break;
+                            case "11":
+                                $params4['destinataireMail'] = $emailVars->listes->leaderis02;
+                                break;
+                            case "14":
+                                $params4['destinataireMail'] = $emailVars->listes->leaderiw04;
+                                break;
+                            case "18":
+                                $params4['destinataireMail'] = $emailVars->listes->leaderin01;
+                                break;
+                            case "19":
+                                $params4['destinataireMail'] = $emailVars->listes->leaderin02;
+                                break;
+                            case "20":
+                                $params4['destinataireMail'] = $emailVars->listes->leaderin03;
+                                break;
+                        }
+                         $params4['url'] = "http://{$_SERVER['SERVER_NAME']}/xdistrib/consult/numwp/{$numwp}";
+
+                         $params4['corpsMail'] = "Bonjour,\n"
+                                . "\n"
+                                . "la demande Xdistrib $trackingNumber/$numwp de {$info_user['nom_user']} pour le client $nomclients a été validée par le DBD.\n"
+                                . "Pour consulter la demande veuillez vous rendre à l'adresse url : \n"
+                                . "%s"
+                                . "\n\n"
+                                . "Cordialement,\n"
+                                . "\n"
+                                . "--\n"
+                                . "Xsuite";
+                        $params4['sujet']=" XDistrib :  Offre Xdistrib $trackingNumber/$numwp  de {$info_user['nom_user']} pour $nomclients validée par le DBD";
+                      $this->sendEmail($params4);           
+                    }
+                //envoi au cdr
+                if ($fonctioncreateur == "1" or $fonctioncreateur == "2" or $fonctioncreateur == "3") {
+                        switch ($zonetracking) {
+                            case "QA":
+                               $params5['destinataireMail'] = $emailVars->listes->QA;
+                                break;
+                            case "QC":
+                                $params5['destinataireMail'] = $emailVars->listes->CDRNORD;
+                                break;
+                            case "QF":
+                                $params5['destinataireMail'] = $emailVars->listes->CDRNORD;
+                                break;
+                            case "QE":
+                                $params5['destinataireMail'] = $emailVars->listes->CDREST;
+                                break;
+                            case "QH":
+                                $params5['destinataireMail'] = $emailVars->listes->CDREST;
+                                break;
+                            case "QI":
+                                $params5['destinataireMail'] = $emailVars->listes->CDROUEST;
+                                break;
+                            case "QK":
+                                $params5['destinataireMail'] = $emailVars->listes->CDROUEST;
+                                break;
+                        }
+                        $params5['url'] = "http://{$_SERVER['SERVER_NAME']}/xdistrib/consult/numwp/{$numwp}";
+
+                         $params5['corpsMail'] = "Bonjour,\n"
+                                . "\n"
+                                . "la demande Xdistrib $trackingNumber/$numwp de {$info_user['nom_user']} pour le client $nomclients a été validée par le DBD.\n"
+                                . "Pour consulter la demande veuillez vous rendre à l'adresse url : \n"
+                                . "%s"
+                                . "\n\n"
+                                . "Cordialement,\n"
+                                . "\n"
+                                . "--\n"
+                                . "Xsuite";
+                        $params5['sujet']=" XDistrib :Offre Xdistrib $trackingNumber/$numwp de {$user_info['nom_user']} pour $nomclients validée par le DBD";
+                      $this->sendEmail($params5); 
+                    }
+                switch ($destIndustry) {
+                    case ($destIndustry > 0 && $destIndustry < 77 ):
+                        $destinataireMail2 = $emailVars->listes->carindustries1;
+                        break;
+                    case ($destIndustry > 76 && $destIndustry < 138 ):
+                        $destinataireMail2 = $emailVars->listes->lifeandscience;
+                        break;
+                    case ($destIndustry > 137 && $destIndustry < 272 ):
+                        $destinataireMail2 = $emailVars->listes->electronique;
+                        break;
+                    case ($destIndustry > 271 && $destIndustry < 314 ):
+                        $destinataireMail2 = $emailVars->listes->foodindustries;
+                        break;
+                    case ($destIndustry > 313 && $destIndustry <= 415 ):
+                        $destinataireMail2 = $emailVars->listes->environnementenergie;
+                        break;
+                }
+                $params6['url'] = "http://{$_SERVER['SERVER_NAME']}/xdistrib/consult/numwp/{$numwp}";
+                $params6['corpsMail'] = "Bonjour,\n"
+                        . "\n"
+                        . "la demande XDistrib $numwp de {$info_user['nom_user']} pour le client $nomclients a été validée par le DBD.\n"
+                        . "Pour consulter la demande Xdistrib $trackingNumber/$numwp veuillez vous rendre à l'adresse url : \n"
+                        . "%s"
+                        . "\n\n"
+                        . "Cordialement,\n"
+                        . "\n"
+                        . "--\n"
+                        . "Xdistrib";
+                $params6['destinataireMail'] = $destinataireMail2;
+                $params6['sujet'] = " Xdistrib : La demande Xdistrib $tracking/$numwp de {$info_user['nom_user']} pour le client $nomclients a été validée par le DBD.";
+                $this->sendEmail($params6);
+                   $flashMessenger = $this->_helper->getHelper('FlashMessenger');
+                $message = "l'offre $numwp  pour le client $nomclients a bien été validée.";
+                $flashMessenger->addMessage($message);
+                $redirector = $this->_helper->getHelper('Redirector');
+                $redirector->gotoSimple('index', 'xdistrib'); 
+                
+                 }
+                
+            elseif (isset($datas['validation']) && $datas['validation'] == 'enAttente') {
+                $params = array();
+                $params['destinataireMail'] = $info_user['email_user'];
+                if (!is_null($commentId)) {
+                    $params['url'] = "http://{$_SERVER['SERVER_NAME']}/xdistrib/update/numwp/{$numwp}/com/{$commentId}";
+                } else {
+                    $params['url'] = "http://{$_SERVER['SERVER_NAME']}/xdistrib/update/numwp/{$numwp}";
+                }
+                $params['corpsMail'] = "Bonjour,\n"
+                        . "\n"
+                        . "Votre demande Xdistrib $tracking/$numwp pour le client $nomclients est en attente de réponse à la question posée par dbd .\n"
+                        . "Vous pouvez la consulter à cette adresse url : \n"
+                        . "%s"
+                        . "\n\n"
+                        . "Cordialement,\n"
+                        . "\n"
+                        . "--\n"
+                        . "dbd.";
+                $params['sujet'] = " Xdistrib :demande Xdistrib $tracking/$numwp mise en attente par Directeur Business Developpement.";
+                $this->sendEmail($params);
+
+                $flashMessenger = $this->_helper->getHelper('FlashMessenger');
+                $message = "l'offre $numwp est en attente de réponse du commercial.";
+                $flashMessenger->addMessage($message);
+                $redirector = $this->_helper->getHelper('Redirector');
+                $redirector->gotoSimple('index', 'xdistrib');
+            } elseif (isset($datas['validation']) && $datas['validation'] == 'nonValide') {
+                $params = array();
+                $params['destinataireMail'] = $info_user['email_user'];
+                if (!is_null($commentId)) {
+                    $params['url'] = "http://{$_SERVER['SERVER_NAME']}/xdistrib/consult/numwp/{$numwp}/com/{$commentId}";
+                } else {
+                    $params['url'] = "http://{$_SERVER['SERVER_NAME']}/xdistrib/consult/numwp/{$numwp}";
+                }
+                $params['corpsMail'] = "Bonjour,\n"
+                        . "\n"
+                        . "Votre demande Xdistrib $tracking/$numwp pour le client $nomclients est non validée par dbd .\n"
+                        . "Vous pouvez la consulter à cette adresse url : \n"
+                        . "%s"
+                        . "\n\n"
+                        . "Cordialement,\n"
+                        . "\n"
+                        . "--\n"
+                        . "dbd.";
+                $params['sujet'] = "  Xdistrib :demande Xdistrib $tracking/$numwp pour le client $nomclients non validée par dbd.";
+                $this->sendEmail($params);
+
+                $flashMessenger = $this->_helper->getHelper('FlashMessenger');
+                $message = "l'offre $numwp n'a pas été validée.";
+                $flashMessenger->addMessage($message);
+                $redirector = $this->_helper->getHelper('Redirector');
+                $redirector->gotoSimple('index', 'xdistrib');
             }
         }
     }
