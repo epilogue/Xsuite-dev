@@ -1819,19 +1819,19 @@ if($this->getRequest()->isPost()){
          /*
          * chargement des validations avec leurs commentaires
          */
-        $dbtValidationsDemandesXprices = new Application_Model_DbTable_Validationsdemandexprices();
-        $validationsDemandesXprices = $dbtValidationsDemandesXprices->getAllValidation($info_demande_xprice['id_demande_xprice']);
+        $dbtValidationsDemandesXdistrib = new Application_Model_DbTable_Validationsdemandexdistrib();
+        $validationsDemandesXdistrib = $dbtValidationsDemandesXdistrib->getAllValidation($info_demande_xdistrib['id_demande_xprice']);
 
-        $this->view->validations = $validationsDemandesXprices;
+        $this->view->validations = $validationsDemandesXdistrib;
         $usersValidations = array();
 
-        foreach (@$validationsDemandesXprices as $key => $validationDemandeXprice) {
-            $userValidationInfos = $infos_user->getFonctionLabel($validationDemandeXprice['id_user']);
+        foreach (@$validationsDemandesXdistrib as $key => $validationDemandeXdistrib) {
+            $userValidationInfos = $infos_user->getFonctionLabel($validationDemandeXdistrib['id_user']);
             $usersValidations[$key]['fonction'] = $userValidationInfos['prenom_user'].' ' .$userValidationInfos['nom_user'];
         }
         $this->view->usersValidations = $usersValidations;
         /*essai valid en cours*/
-        $encours = new Application_Model_DbTable_Validationsdemandexprices();
+        $encours = new Application_Model_DbTable_Validationsdemandexdistrib();
         $encours1 = $encours->getValidForEncours($numwp);
        $i = (count($encours1)-1);
        $plop2=$encours1[$i]['etat_validation'] ;
