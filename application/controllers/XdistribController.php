@@ -1947,7 +1947,7 @@ if($this->getRequest()->isPost()){
                 $datasValidation['reponse'] = $datas['reponse'];
             }
             $commentId = $this->genererValidation($datasValidation);
-            $mailServiceClient = new Application_Model_DbTable_Xdistribs();
+            $mailServiceClient = new Application_Model_DbTable_Xdistrib();
             $mailServiceClients = $mailServiceClient->getServiceClient($numwp);
             if($mailServiceClients[0]['mail_service_client']=='regionNord'){
                 $mailSC="regionnord@smc-france.fr";
