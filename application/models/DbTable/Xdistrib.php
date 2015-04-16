@@ -132,4 +132,14 @@ class Application_Model_DbTable_Xdistrib extends Zend_Db_Table_Abstract {
         }
          
      }
+     public function getServiceClient($numwp){
+            $sql = "select mail_service_client from demande_xdistrib where num_workplace_demande_xdistrib= '$numwp'";
+             $res = $this->getAdapter()->query($sql);
+            $rest=$res->fetchAll();
+            if (!$rest) {
+                return null;
+            } else {
+                return $rest;
+            }
+        }
 }

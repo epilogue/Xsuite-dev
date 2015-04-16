@@ -1947,24 +1947,25 @@ if($this->getRequest()->isPost()){
                 $datasValidation['reponse'] = $datas['reponse'];
             }
             $commentId = $this->genererValidation($datasValidation);
-            $mailServiceClient = new Application_Model_DbTable_Xdistrib();
-            $mailServiceClients = $mailServiceClient->getServiceClient($numwp);
-            if($mailServiceClients[0]['mail_service_client']=='regionNord'){
-                $mailSC="regionnord@smc-france.fr";
-            } elseif($mailServiceClients[0]['mail_service_client']== 'regionSud'){
-                $mailSC="regionsud@smc-france.fr";
-            }elseif($mailServiceClients[0]['mail_service_client']== 'regionEst'){
-                $mailSC="regionest@smc-france.fr";
-            }elseif($mailServiceClients[0]['mail_service_client']== 'regionOuest'){
-                $mailSC="regionouest@smc-france.fr";
-            }elseif ($mailServiceClients[0]['mail_service_client']== 'grandcompte'){
-                $mailSC="SCommande@smc-france.fr";
-            }elseif($mailServiceClients[0]['mail_service_client']=='' || $mailServiceClients[0]['mail_service_client']== NULL){
-                $mailSC=$emailVars->listes->serviceClient;
-            }
-            elseif($mailServiceClients[0]['mail_service_client']== 'export'){
-                $mailSC="export@smc-france.fr";
-            }
+//            $mailServiceClient = new Application_Model_DbTable_Xdistrib();
+//            $mailServiceClients = $mailServiceClient->getServiceClient($numwp);
+//            if($mailServiceClients[0]['mail_service_client']=='regionNord'){
+//                $mailSC="regionnord@smc-france.fr";
+//            } elseif($mailServiceClients[0]['mail_service_client']== 'regionSud'){
+//                $mailSC="regionsud@smc-france.fr";
+//            }elseif($mailServiceClients[0]['mail_service_client']== 'regionEst'){
+//                $mailSC="regionest@smc-france.fr";
+//            }elseif($mailServiceClients[0]['mail_service_client']== 'regionOuest'){
+//                $mailSC="regionouest@smc-france.fr";
+//            }elseif ($mailServiceClients[0]['mail_service_client']== 'grandcompte'){
+//                $mailSC="SCommande@smc-france.fr";
+//            }elseif($mailServiceClients[0]['mail_service_client']=='' || $mailServiceClients[0]['mail_service_client']== NULL){
+//                $mailSC=$emailVars->listes->serviceClient;
+//            }
+//            elseif($mailServiceClients[0]['mail_service_client']== 'export'){
+//                $mailSC="export@smc-france.fr";
+//            }
+            $mailSC="mhuby@smc-france.fr";
             if (isset($datas['validation']) && $datas['validation'] == "validee") {
                 $params1 = array();
                 if ($margemin == true and $datas['mamo']< 10){
