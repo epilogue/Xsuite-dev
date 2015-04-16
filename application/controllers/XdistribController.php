@@ -1899,6 +1899,47 @@ if($this->getRequest()->isPost()){
         /*
          * Fin du chargement des validations
          */
+        if ($this->getRequest()->isPost()) {
+            $date_validation = date("Y-m-d H:i:s");
+            $this->view->date_validation = $date_validation;
+            $nom_validation = 'dbd';
+            $this->nom_validation = $nom_validation;
+            $datas = $this->getRequest()->getPost();
+            $prix_accordes = array_combine($datas['code_article'], $datas['prix_accorde_article']);
+            $remise_accordes = array_combine($datas['code_article'], $datas['remise_accorde_article']);
+            $marge = array_combine($datas['code_article'],$datas['marge_demande_article']); 
+            foreach ($remise_accordes as $key => $value) {
+                $remisesDirco = new Application_Model_DbTable_DemandeArticlexdistrib();
+                $remiseDirco = $remisesDirco->insertRemiseAccorde($value, $key, $datas['tracking']);
+            }
+            foreach ($prix_accordes as $key => $value) {
+                $prixDirco = new Application_Model_DbTable_DemandeArticlexdistrib();
+                $priDirco = $prixDirco->insertPrixAccorde($value, $key, $datas['tracking']);
+            }
+            foreach($marge as $key=>$value){
+                $margeinit=new Application_Model_DbTable_DemandeArticlexdistrib();
+                $marges = $margeinit->updateMarge($value,$key,$datas['tracking']);
+            }
+            $margemin = false;
+            foreach ($marge as $key => $value2) {
+                $margesmc = substr($value2,0,-1);
+                if ($margesmc < 0) {
+                    $margemin = true;   
+                } 
+            }
+            $mamo=  substr($datas['mamo'], 0,-1);
+            if($margemin==false && $mamo >10 && $datas['validation']=="validee"){
+                $datas['validation']="fermee";
+            }elseif($margemin==false && $mamo >10 && $datas['validation']=="nonValide"){
+                 $datas['validation']="nonValide";
+            }
+            $nouvelle_validation = new Application_Model_DbTable_Validationsxdistrib();
+            $nouv_validation = $nouvelle_validation->createValidation($nom_validation, $date_validation, $datas['validation'], $datas['commentaire_dbd'], $user->id_user, $datas['tracking']);
+            $datasValidation = array('nom_validation' => $nom_validation, 'validation' => $datas['validation'], 'commentaire' => $datas['commentaire_dbd'],'id_user' => $user->id_user, 'id_demande_xdistrib' => $info_demande_xdistrib['id_demande_xdistrib']);
+            if (array_key_exists('reponse', $datas)) {
+                $datasValidation['reponse'] = $datas['reponse'];
+            }
+        }
     }
 }
 
