@@ -1935,7 +1935,7 @@ if($this->getRequest()->isPost()){
             }elseif($margemin==false && $mamo >10 && $datas['validation']=="nonValide"){
                  $datas['validation']="nonValide";
             }
-            $nouvelle_validation = new Application_Model_DbTable_Validationsxdistrib();
+            $validations = new Application_Model_DbTable_Validationsxdistrib();
              $validation = $validations->createValidation($datas['nom_validation'], $datas['date_validation'], $datas['validation'], $datas['commentaire_dbd'], $datas['dbd'], $datas['tracking']);
 
             $datasValidation = array(
