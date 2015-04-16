@@ -2035,7 +2035,7 @@ if($this->getRequest()->isPost()){
                         . "\n"
                         . "--\n"
                         . "dbd.";
-                $params3['sujet'] = "  XDistrib : la demande Xdistrib $tracking/$numwp de {$info_user['nom_user']} pour le client $nomclients a été validée .";
+                $params3['sujet'] = "  XDistrib : la demande Xdistrib $tracking/$numwp de {$user_info['nom_user']} pour le client $nomclients a été validée .";
                 
                 $this->sendEmail($params2);
                 $this->sendEmail($params3);
