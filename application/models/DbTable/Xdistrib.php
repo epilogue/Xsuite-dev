@@ -99,7 +99,7 @@ class Application_Model_DbTable_Xdistrib extends Zend_Db_Table_Abstract {
         $sql="select demande_xdistrib.id_demande_xdistrib, demande_xdistrib.num_workplace_demande_xdistrib,demande_xdistrib.tracking_number_demande_xdistrib,clients.nom_client,demande_xdistrib.date_demande_xdistrib from demande_xdistrib"
                 . " join clients on clients.numwp_client = demande_xdistrib.numwp_client"
                 . " join users on users.id_user = demande_xdistrib.id_user"
-                . " join validations_demande_xdistrib  on validations_demande_xdistrib.id_demande_xprice = demande_xdistrib.id_demande_xdistrib "
+                . " join validations_demande_xdistrib  on validations_demande_xdistrib.id_demande_xdistrib = demande_xdistrib.id_demande_xdistrib "
                 . " where validations_demande_xdistrib.nom_validation like 'dbd'  and validations_demande_xdistrib.etat_validation like 'enAttente' order by demande_xdistrib.date_demande_xdistrib desc";
    $res = $this->getAdapter()->query($sql);
         $rest=$res->fetchAll();
