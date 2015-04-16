@@ -1094,8 +1094,8 @@ if($user->id_fonction == 3){
             }
             if($margemin==false && $datas['mamo'] >10 && $datas['validation']="validee"){
                 $datas['validation']="fermee";
-            }else{
-                 $datas['validation']= $etatValide;
+            }elseif($margemin==false && $datas['mamo'] >10 && $datas['validation']="nonValide"){
+                 $datas['validation']="nonValide";
             }
           echo  '<pre>',var_export($datas['validation']),'</pre>';exit();
 //          echo '<pre>',var_export($margemin),'</pre>';
