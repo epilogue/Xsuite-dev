@@ -2128,6 +2128,7 @@ if($this->getRequest()->isPost()){
                         $params5['sujet']=" XDistrib :Offre Xdistrib$tracking/$numwp de {$user_info['nom_user']} pour $nomclients validée par le DBD";
                       $this->sendEmail($params5); 
                     }
+                     $destIndustry = $client_info['id_industry'];
                 switch ($destIndustry) {
                     case ($destIndustry > 0 && $destIndustry < 77 ):
                         $destinataireMail2 = $emailVars->listes->carindustries1;
