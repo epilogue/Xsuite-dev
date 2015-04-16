@@ -1905,6 +1905,7 @@ if($this->getRequest()->isPost()){
             $nom_validation = 'dbd';
             $this->nom_validation = $nom_validation;
             $datas = $this->getRequest()->getPost();
+            $tracking=$datas['tracking'];
             $prix_accordes = array_combine($datas['code_article'], $datas['prix_accorde_article']);
             $remise_accordes = array_combine($datas['code_article'], $datas['remise_accorde_article']);
             $marge = array_combine($datas['code_article'],$datas['marge_demande_article']); 
@@ -1938,6 +1939,56 @@ if($this->getRequest()->isPost()){
             $datasValidation = array('nom_validation' => $nom_validation, 'validation' => $datas['validation'], 'commentaire' => $datas['commentaire_dbd'],'id_user' => $user->id_user, 'id_demande_xdistrib' => $info_demande_xdistrib['id_demande_xdistrib']);
             if (array_key_exists('reponse', $datas)) {
                 $datasValidation['reponse'] = $datas['reponse'];
+            }
+            $commentId = $this->genererValidation($datasValidation);
+            $mailServiceClient = new Application_Model_DbTable_Xprices();
+            $mailServiceClients = $mailServiceClient->getServiceClient($numwp);
+            if($mailServiceClients[0]['mail_service_client']=='regionNord'){
+                $mailSC="regionnord@smc-france.fr";
+            } elseif($mailServiceClients[0]['mail_service_client']== 'regionSud'){
+                $mailSC="regionsud@smc-france.fr";
+            }elseif($mailServiceClients[0]['mail_service_client']== 'regionEst'){
+                $mailSC="regionest@smc-france.fr";
+            }elseif($mailServiceClients[0]['mail_service_client']== 'regionOuest'){
+                $mailSC="regionouest@smc-france.fr";
+            }elseif ($mailServiceClients[0]['mail_service_client']== 'grandcompte'){
+                $mailSC="SCommande@smc-france.fr";
+            }elseif($mailServiceClients[0]['mail_service_client']=='' || $mailServiceClients[0]['mail_service_client']== NULL){
+                $mailSC=$emailVars->listes->serviceClient;
+            }
+            elseif($mailServiceClients[0]['mail_service_client']== 'export'){
+                $mailSC="export@smc-france.fr";
+            }
+            $emailVars = Zend_Registry::get('emailVars');
+            if (isset($datas['validation']) && $datas['validation'] == "validee") {
+                $params1 = array();
+                if ($margemin == true and $datas['mamo']< 10){
+                    $params1['destinataireMail'] = $emailVars->listes->Dirco;
+                    if (!is_null($commentId)) {
+                        $params1['url'] = "http://{$_SERVER['SERVER_NAME']}/xdistrib/validatedirco/numwp/{$numwp}";
+                    } else {
+                        $params1['url'] = "http://{$_SERVER['SERVER_NAME']}/xdistrib/validatedirco/numwp/{$numwp}";
+                    }
+
+                    $params1['corpsMail'] = "Bonjour,\n"
+                            . "\n"
+                            . "Vous avez une nouvelle demande Xdistrib $tracking/$numwp de {$user_info['nom_user']} pour le client $nomclients à valider .\n"
+                            . "Vous pouvez la valider à cette adresse url : \n"
+                            . "%s"
+                            . "\n\n"
+                            . "Cordialement,\n"
+                            . "\n"
+                            . "--\n"
+                            . "dbd.";
+                    $params1['sujet'] = "  XPrice :nouvelle demande Xdistrib $tracking/$numwp à valider $numwp de {$info_user['nom_user']} pour le client $nomclients .";
+
+                    $this->sendEmail($params1);
+                }
+                $flashMessenger = $this->_helper->getHelper('FlashMessenger');
+                $message = "l'offre $numwp  pour le client $nomclients a bien été validée.";
+                $flashMessenger->addMessage($message);
+                $redirector = $this->_helper->getHelper('Redirector');
+                $redirector->gotoSimple('index', 'xprice');
             }
         }
     }
