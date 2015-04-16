@@ -1865,34 +1865,34 @@ if($this->getRequest()->isPost()){
            $encoursFonction="chef de région";
            $encoursNom="encours";
        }
-       elseif($plop2=="enAttente"){
-           switch ($plop3) {
-               case "reponse":
-                  $encoursFonction=$info_user['nom_user'].' '. $info_user['prenom_user'];
-                $encoursNom="encours"; 
-                break;
-            case "cdr":
-                $encoursFonction="chef de région";
-                $encoursNom="encours";
-                break;
-            case "fobfr":
-                 $encoursFonction="Nicolas Thouin";
-                $encoursNom="encours";
-                break;
-            
-            case "supply":
-                 $encoursFonction="Emmanuel Jourdain";
-                $encoursNom="encours";
-                break;
-            
-            case "dbd":
-                 $encoursFonction="Alexandre Bauer";
-                $encoursNom="encours";
-                break;
-            default:
-                break;
+    elseif($plop2=="enAttente"){
+        switch ($plop3) {
+        case "reponse":
+        $encoursFonction=$info_user['nom_user'].' '. $info_user['prenom_user'];
+        $encoursNom="encours"; 
+        break;
+        case "cdr":
+        $encoursFonction="chef de région";
+        $encoursNom="encours";
+        break;
+        case "fobfr":
+        $encoursFonction="Nicolas Thouin";
+        $encoursNom="encours";
+        break;
+
+        case "supply":
+        $encoursFonction="Emmanuel Jourdain";
+        $encoursNom="encours";
+        break;
+
+        case "dbd":
+        $encoursFonction="Alexandre Bauer";
+        $encoursNom="encours";
+        break;
+        default:
+        break;
         }
-       }
+   }
         $this->view->encoursFonction = $encoursFonction;
         $this->view->encoursNom=$encoursNom;
         /*fin essai valid en cours*/
