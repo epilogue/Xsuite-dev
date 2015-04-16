@@ -145,6 +145,20 @@ $this->headScript()->appendFile('/js/controllers/xprice/afficher_masquer_validat
         </fieldset>
      </div>
      <div class="clear"></div>
+     <div id="commentaire" class="workplace">
+        <fieldset class="field">
+            <legend>Commentaires</legend>
+            <table class="enum">
+                <?php foreach (@$this->validations as $key => $value) { ?>
+                    <tr>
+                        <td>Commentaire <?php echo strtolower($this->usersValidations[$key]['fonction']); ?></td>
+                        <td><?php echo $value['date_validation']; ?></td>
+                        <td><?php echo nl2br($value['commentaire']); ?></td>
+                    </tr>
+                <?php } ?>
+            </table>
+        </fieldset>
+    </div>
      <div class="clear"></div>
      <form method="post">
         <div id="demandeArticle" class="workplace">
