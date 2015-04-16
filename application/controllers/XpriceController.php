@@ -1065,7 +1065,7 @@ if($user->id_fonction == 3){
             $nom_validation = 'dbd';
             $this->nom_validation = $nom_validation;
             $datas = $this->getRequest()->getPost();
-            echo '<pre>',var_export($datas),'</pre>';exit();
+           // echo '<pre>',var_export($datas),'</pre>';exit();
             $prix_accordes = array_combine($datas['code_article'], $datas['prix_accorde_article']);
             $remise_accordes = array_combine($datas['code_article'], $datas['remise_accorde_article']);
             $marge = array_combine($datas['code_article'],$datas['marge_demande_article']); 
