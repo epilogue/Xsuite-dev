@@ -2003,7 +2003,7 @@ if($this->getRequest()->isPost()){
                 $params4 = array();
                 $params5 = array();
                 $params6 = array();
-                    $params2['destinataireMail'] = $info_user['email_user'];
+                    $params2['destinataireMail'] =/*$user_info['email_user'];*/ "mhuby@smc-france.fr";
                     
                     $params3['destinataireMail'] =$mailSC; /*"mhuby@smc-france.fr";*/
                      if (!is_null($commentId)) {
@@ -2168,7 +2168,7 @@ if($this->getRequest()->isPost()){
                 
             elseif (isset($datas['validation']) && $datas['validation'] == 'enAttente') {
                 $params = array();
-                $params['destinataireMail'] = $info_user['email_user'];
+                $params['destinataireMail'] = /*$user_info['email_user'];*/ "mhuby@smc-france.fr";
                 if (!is_null($commentId)) {
                     $params['url'] = "http://{$_SERVER['SERVER_NAME']}/xdistrib/update/numwp/{$numwp}/com/{$commentId}";
                 } else {
@@ -2194,7 +2194,7 @@ if($this->getRequest()->isPost()){
                 $redirector->gotoSimple('index', 'xdistrib');
             } elseif (isset($datas['validation']) && $datas['validation'] == 'nonValide') {
                 $params = array();
-                $params['destinataireMail'] = $info_user['email_user'];
+                $params['destinataireMail'] =/*$user_info['email_user'];*/ "mhuby@smc-france.fr";
                 if (!is_null($commentId)) {
                     $params['url'] = "http://{$_SERVER['SERVER_NAME']}/xdistrib/consult/numwp/{$numwp}/com/{$commentId}";
                 } else {
