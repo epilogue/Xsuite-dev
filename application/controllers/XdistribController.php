@@ -1775,6 +1775,7 @@ if($this->getRequest()->isPost()){
         $contexte_info1= $info_contexte->getContext($numwp);
         $contexte_info2=$contexte_info1[0];
         $contexte_info=$contexte_info2;
+        $nomclients=$client_info['nom_client'];
         $info_service = new Application_Model_DbTable_ServiceDistrib();
         $service_info = $info_service->getService($numwp);
         $this->view->service_info=$service_info;
@@ -2015,7 +2016,7 @@ if($this->getRequest()->isPost()){
                     }
                     $params2['corpsMail'] = "Bonjour,\n"
                         . "\n"
-                        . "Votre demande Xdistrib $trackingNumber/$numwp a été validée par le Directeur Business Developpement .\n"
+                        . "Votre demande Xdistrib $tracking/$numwp a été validée par le Directeur Business Developpement .\n"
                         . "Vous pouvez la consulter à cette adresse url : \n"
                         . "%s"
                         . "\n\n"
@@ -2026,7 +2027,7 @@ if($this->getRequest()->isPost()){
                     $params2['sujet'] = " XDistrib :demande Xdistrib $tracking/$numwp pour $nomclients validée par Directeur Business Developpement.";
                     $params3['corpsMail'] = "Bonjour,\n"
                         . "\n"
-                        . "la demande Xdistrib $tracking/$numwp de {$info_user['nom_user']} pour le client $nomclients a été validée par le dbd .\n"
+                        . "la demande Xdistrib $tracking/$numwp de {$user_info['nom_user']} pour le client $nomclients a été validée par le dbd .\n"
                         . "Vous pouvez la consulter à cette adresse url : \n"
                         . "%s"
                         . "\n\n"
@@ -2084,7 +2085,7 @@ if($this->getRequest()->isPost()){
                                 . "\n"
                                 . "--\n"
                                 . "Xsuite";
-                        $params4['sujet']=" XDistrib :  Offre Xdistrib $tracking/$numwp  de {$info_user['nom_user']} pour $nomclients validée par le DBD";
+                        $params4['sujet']=" XDistrib :  Offre Xdistrib $tracking/$numwp  de {$user_info['nom_user']} pour $nomclients validée par le DBD";
                       $this->sendEmail($params4);           
                     }
                 //envoi au cdr
@@ -2116,7 +2117,7 @@ if($this->getRequest()->isPost()){
 
                          $params5['corpsMail'] = "Bonjour,\n"
                                 . "\n"
-                                . "la demande Xdistrib $tracking/$numwp de {$info_user['nom_user']} pour le client $nomclients a été validée par le DBD.\n"
+                                . "la demande Xdistrib $tracking/$numwp de {$user_info['nom_user']} pour le client $nomclients a été validée par le DBD.\n"
                                 . "Pour consulter la demande veuillez vous rendre à l'adresse url : \n"
                                 . "%s"
                                 . "\n\n"
