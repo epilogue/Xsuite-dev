@@ -1751,7 +1751,7 @@ if($this->getRequest()->isPost()){
         $this->view->supply = $tiltop;
         $numwp = $this->getRequest()->getParam('numwp', null);
         $this->view->numwp = $numwp; 
-        
+        $nom_validation = 'dbd';
         $infos_demande_xdistrib = new Application_Model_DbTable_Xdistrib();
         $info_demande_xdistrib = $infos_demande_xdistrib->getNumwp($numwp);
         $dateinit=$info_demande_xdistrib['date_demande_xdistrib'];
@@ -1786,6 +1786,36 @@ if($this->getRequest()->isPost()){
         $this->view->user_info=$user_info;
         $this->view->distrib_info=$distrib_info;
         $this->view->info_demande_xdistrib=$info_demande_xdistrib;
+        $this->nom_validation = $nom_validation;
+        $blocages=new Application_Model_DbTable_Validationsdemandexdistrib();
+        $blocage = $blocages->getValidation($nom_validation, $info_demande_xdistrib['id_demande_xdistrib']);
+        foreach ($blocage as $blocs){
+            $bloc = $blocs['etat_validation'];
+            if($bloc == "validee" || $bloc =="nonValide" || $bloc=="fermee"){
+                if($bloc=="validee"){
+                        $flashMessenger = $this->_helper->getHelper('FlashMessenger');
+                        $message1 = "vous avez déjà validée cette offre.";
+                        $flashMessenger->addMessage($message1);}    
+                    elseif($bloc=="nonValide"){
+                         $flashMessenger = $this->_helper->getHelper('FlashMessenger');
+                        $message1 = "cette offre a déjà été refusée.";
+                        $flashMessenger->addMessage($message1);
+                    }
+                    elseif($bloc=="fermee"){
+                        $flashMessenger = $this->_helper->getHelper('FlashMessenger');
+                        $message1 = "cette offre est fermée.";
+                        $flashMessenger->addMessage($message1);
+                    }
+                    $redirector = $this->_helper->getHelper('Redirector');
+                    $redirector->gotoSimple('index', 'xprice');}
+            else {
+                    $this->view->messages = array_merge(
+                        $this->_helper->flashMessenger->getMessages(),
+                        $this->_helper->flashMessenger->getCurrentMessages()
+                    );
+                    $this->_helper->flashMessenger->clearCurrentMessages();
+            }
+        }   
     }
 }
 
