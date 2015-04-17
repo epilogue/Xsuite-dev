@@ -47,6 +47,7 @@ class XdistribController extends Zend_Controller_Action
          * DBD et Dirco  toutes les offres 
          */
      $user = $this->_auth->getStorage()->read();
+    echo '<pre>',var_expor($user),'</pre>';
      $holon =$user->id_holon; 
      if ($user->id_fonction == 1 || $user->id_fonction==2){
          $recapitulatif1 = new Application_Model_DbTable_Xdistrib();
