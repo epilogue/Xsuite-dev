@@ -81,7 +81,7 @@ class XdistribController extends Zend_Controller_Action
          $recapitulatif2=$recapitulatif1->searchforDBD();
      }
     $this->view->recapitulatif = $recapitulatif2;
-    //echo '<pre>',var_export($recapitulatif2),'</pre>';
+    echo '<pre>',var_export($recapitulatif2),'</pre>';
     }
      protected function genererValidation($datas) {
         $dbtValidation = new Application_Model_DbTable_Validationsdemandexdistrib();
