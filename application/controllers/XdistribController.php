@@ -77,7 +77,7 @@ class XdistribController extends Zend_Controller_Action
          $recapitulatif1 = new Application_Model_DbTable_Xdistrib();
          $recapitulatif2=$recapitulatif1->searchByCDR($tracking1,$tracking2);
      }
-      if($user->id_fonction == 5 || $user->id_fonction == 13){
+      if($user->id_fonction =="5"|| $user->id_fonction == 13){
          $recapitulatif1 = new Application_Model_DbTable_Xdistrib;
          $recapitulatif2=$recapitulatif1->searchforDBD();
      }
