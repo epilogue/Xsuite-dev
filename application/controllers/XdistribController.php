@@ -80,6 +80,18 @@ class XdistribController extends Zend_Controller_Action
       if($user->id_fonction =="5"|| $user->id_fonction == 13){
          $recapitulatif1 = new Application_Model_DbTable_Xdistrib;
          $recapitulatif2=$recapitulatif1->searchforDBD();
+         $r = array();
+         for ($index = 0; $index < count($recapitulatif2); $index++) {
+             if(($index +1) > count($recapitulatif2)-1) {
+                 $r[] = $recapitulatif2[$index];
+             } else {
+                 if($recapitulatif2[$index]['num_workplace_demande_xdistrib'] != $recapitulatif2[$index+1]['num_workplace_demande_xdistrib']) {
+                     $r[] = $recapitulatif2[$index];
+                 }
+             }
+         }
+         unset($recapitulatif2);
+         $recapitulatif2 = $r;
      }
     $this->view->recapitulatif = $recapitulatif2;
     echo '<pre>',var_export($recapitulatif2),'</pre>';
@@ -576,7 +588,7 @@ if($this->getRequest()->isPost()){
                 $info_industry_client_final = $industry->getMovexIndustry($plopClientFinal);
                 $this->view->info_industry_client_final = $info_industry_client_final;                   
             }
-            echo '<pre>',  var_export($infos_offres->OBDLSP),'</pre>';
+//            echo '<pre>',  var_export($infos_offres->OBDLSP),'</pre>';
             $id_industry_client_final =$info_industry_client_final['id_industry'];
             $nom_industry=$info_industry_client_final['description_industry'];
           
