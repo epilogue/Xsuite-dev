@@ -576,7 +576,7 @@ if($this->getRequest()->isPost()){
                 $info_industry_client_final = $industry->getMovexIndustry($plopClientFinal);
                 $this->view->info_industry_client_final = $info_industry_client_final;                   
             }
-                //echo '<pre>',  var_export($info_industry_client_final),'</pre>';
+            echo '<pre>',  var_export($infos_offres->OBDLSP),'</pre>';
             $id_industry_client_final =$info_industry_client_final['id_industry'];
             $nom_industry=$info_industry_client_final['description_industry'];
           
