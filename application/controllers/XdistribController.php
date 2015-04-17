@@ -50,7 +50,7 @@ class XdistribController extends Zend_Controller_Action
     //echo '<pre>',var_export($user),'</pre>';
      $holon =$user->id_holon; 
      $fonction=$user->id_fonction;
-     var_dump($fonction);
+     //var_dump($fonction);
      $this->view->fonction=$fonction;
      if ($user->id_fonction == 1 || $user->id_fonction==2){
          $recapitulatif1 = new Application_Model_DbTable_Xdistrib();
