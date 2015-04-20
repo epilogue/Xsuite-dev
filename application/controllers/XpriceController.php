@@ -1018,8 +1018,8 @@ if($user->id_fonction == 3){
         $this->view->info_client = $info_client;
         echo '<pre>',var_export('$info_client'),'</pre>';
         $noms_industrie = new Application_Model_DbTable_Industry();
-        $nom_industrie = $noms_industrie->getIndustry($info_client['id_industry']);
-        $destIndustry = $info_client['id_industry'];
+        $nom_industrie = $noms_industrie->getIndustry($info_client[0]['id_industry']);
+        $destIndustry = $info_client[0]['id_industry'];
         $this->view->nom_industrie = $nom_industrie;
         $infos_validation = new Application_Model_DbTable_Validationsxprice();
         $info_validation = $infos_validation->getAllValidation($info_demande_xprice['tracking_number_demande_xprice']);
@@ -1061,7 +1061,7 @@ if($user->id_fonction == 3){
             $this->_helper->flashMessenger->clearCurrentMessages();
         }
         }
-        $nomclients= trim($info_client['nom_client']);
+        $nomclients= trim($info_client[0]['nom_client']);
         if ($this->getRequest()->isPost()) {
             $date_validation = date("Y-m-d H:i:s");
             $this->view->date_validation = $date_validation;
