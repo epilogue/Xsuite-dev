@@ -693,14 +693,14 @@ if($user->id_fonction == 3){
         $infos_client = new Application_Model_DbTable_Clients();
         $info_client = $infos_client->getClientnumwp($numwp_client);
         echo '<pre>',var_export($info_client),'</pre>';
-        $this->view->info_client = $info_client;
+        $this->view->info_client = $info_client[0];
         $noms_industrie = new Application_Model_DbTable_Industry();
-        $nom_industrie = $noms_industrie->getIndustry($info_client->id_industry);
+        $nom_industrie = $noms_industrie->getIndustry($info_client[0]['id_industry']);
         $this->view->nom_industrie = $nom_industrie;
         $infos_demande_article_xprice = new Application_Model_DbTable_DemandeArticlexprices();
         $info_demande_article_xprice = $infos_demande_article_xprice->getDemandeArticlexprice($numwp);
         $this->view->info_demande_article_xprice = $info_demande_article_xprice;
-        $nomclients = trim($info_client['nom_client']);
+        $nomclients = trim($info_client[0]['nom_client']);
         $blocages=new Application_Model_DbTable_Validationsdemandexprices();
         $validationdbd="dbd";
         $blocage = $blocages->getValidation( $validationdbd, $info_demande_xprice['id_demande_xprice']);
