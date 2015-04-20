@@ -246,7 +246,7 @@ if($user->id_fonction == 3){
             while ($resultat[] = odbc_fetch_array($resultats)) {
                 $this->view->resultat = $resultat;
             }
-            //echo '<pre>',  var_export($resultat),'</pre>';
+            echo '<pre>',  var_export($resultat),'</pre>';
             /* aller chercher prix fob prix cif sur la base MVCDXTA en utilisant les tables KOPCDT(date) KOITNO ( code article) et KO ( prix cif)
              *
              */foreach ($this->view->resultat as $itnoarticle) {
@@ -270,12 +270,13 @@ if($user->id_fonction == 3){
              * à partir du code client de la table ooline on va chercher dans la table ocusma
              * les informations concernant le client pour pouvoir les afficher dans la vue phtml
              */
-             $query1ter = "select * from EIT.MVXCDTA.OOHEAD OOHEAD where OOHEAD.OACUNO = '{$resultat[0]['OBCUNO']}'";
+             $query1ter = "select * from EIT.MVXCDTA.OOHEAD OOHEAD where OOHEAD.OACUNO = '{$resultat[0]['OBDLSP']}'";
             $numclientwp = odbc_fetch_array(odbc_exec($this->odbc_conn2, $query1ter));
             $numwpclient2 = $resultat[0]['OBDLSP'];
             $this->view->numclientwp =  $numwpclient2 ;/*-$numclientwp['OACHL1'];*/
             $query1bis = "select * from EIT.MVXCDTA.OCUSMA OCUSMA where OCUSMA.OKCUNO = '{$numwpclient2}'";
             $infos_client = odbc_fetch_array(odbc_exec($this->odbc_conn2, $query1bis));
+            echo 'pre',var_export($infos_client),'</pre>';
             $this->view->infos_client = $infos_client;
             $query1quart = "select ZMCPJO.Z2MCL1  from EIT.SMCCDTA.ZMCPJO  ZMCPJO where ZMCPJO.Z2CUNO= '{$resultat[0]['OBCUNO']}' ";
             $industriewp = odbc_fetch_array(odbc_exec($this->odbc_conn3, $query1quart));
