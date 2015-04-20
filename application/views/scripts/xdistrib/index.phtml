@@ -31,18 +31,18 @@ $this->headTitle($this->title);
              <td>en cours</td><?php } else{ ?>
              <td><?php echo $result['etat_validation'];?></td>
         <?php }  ?>
-             <td><a href="<?php echo $this->url(array("controller"=>"xdistrib","action"=>"consult","numwp"=>$result['num_workplace_demande_xprice']));?>" <button class="retour" id="historique-<?php echo $k; ?>">historique</button></a>
+             <td><a href="<?php echo $this->url(array("controller"=>"xdistrib","action"=>"consult","numwp"=>$result['num_workplace_demande_xdistrib']));?>" <button class="retour" id="historique-<?php echo $k; ?>">historique</button></a>
              </td>
               <?php if($this->fonction == 5 || $this->fonction ==29 ){?>
-             <td><a href="<?php echo $this->url(array("controller"=>"xdistrib","action"=>"validatedbd","numwp"=>$result['num_workplace_demande_xprice']));?>" <button class="retour" id="validate-<?php echo $k; ?>">Valider</button></a></td>
+             <td><a href="<?php echo $this->url(array("controller"=>"xdistrib","action"=>"validatedbd","numwp"=>$result['num_workplace_demande_xdistrib']));?>" <button class="retour" id="validate-<?php echo $k; ?>">Valider</button></a></td>
         <?php } elseif($this->fonction == 13){?>
-             <td><a href="<?php echo $this->url(array("controller"=>"xdistrib","action"=>"validatedirco","numwp"=>$result['num_workplace_demande_xprice']));?>" <button class="retour" id="validate-<?php echo $k; ?>">Valider</button></a></td>
+             <td><a href="<?php echo $this->url(array("controller"=>"xdistrib","action"=>"validatedirco","numwp"=>$result['num_workplace_demande_xdistrib']));?>" <button class="retour" id="validate-<?php echo $k; ?>">Valider</button></a></td>
         <?php } elseif( $this->fonction == 10 ){?>
-             <td><a href="<?php echo $this->url(array("controller"=>"xdistrib","action"=>"validatedrv","numwp"=>$result['num_workplace_demande_xprice']));?>" <button class="retour" id="validate-<?php echo $k; ?>">Valider</button></a></td>
+             <td><a href="<?php echo $this->url(array("controller"=>"xdistrib","action"=>"validatedrv","numwp"=>$result['num_workplace_demande_xdistrib']));?>" <button class="retour" id="validate-<?php echo $k; ?>">Valider</button></a></td>
         <?php } elseif($this->fonction == 32){?>
-             <td><a href="<?php echo $this->url(array("controller"=>"xdistrib","action"=>"validatesupply","numwp"=>$result['num_workplace_demande_xprice']));?>" <button class="retour" id="validate-<?php echo $k; ?>">Valider</button></a></td>
+             <td><a href="<?php echo $this->url(array("controller"=>"xdistrib","action"=>"validatesupply","numwp"=>$result['num_workplace_demande_xdistrib']));?>" <button class="retour" id="validate-<?php echo $k; ?>">Valider</button></a></td>
         <?php }elseif($this->fonction == 23){?>
-             <td><a href="<?php echo $this->url(array("controller"=>"xdistrib","action"=>"validatefobfr","numwp"=>$result['num_workplace_demande_xprice']));?>" <button class="retour" id="validate-<?php echo $k; ?>">Valider</button></a></td>
+             <td><a href="<?php echo $this->url(array("controller"=>"xdistrib","action"=>"validatefobfr","numwp"=>$result['num_workplace_demande_xdistrib']));?>" <button class="retour" id="validate-<?php echo $k; ?>">Valider</button></a></td>
         <?php } ?>
 </tr>
    <?php }?>
