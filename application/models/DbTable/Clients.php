@@ -5,12 +5,13 @@ class Application_Model_DbTable_Clients extends Zend_Db_Table_Abstract {
     protected $_name = 'clients';
 
     public function getClientnumwp($numwp_client) {
-        $row = $this->fetchRow("numwp_client = {$numwp_client}");
-        if (!$row) {
-            //throw new Exception("could not find row $numwp_client");
+       $sql="select * from clients where clients.numwp_client = $numwp_client";
+        $res = $this->getAdapter()->query($sql);
+        $rest=$res->fetchAll();
+        if (!$rest) {
             return null;
         } else {
-            return $row->toArray();
+            return $rest;
         }
     }
 
