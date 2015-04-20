@@ -1537,12 +1537,12 @@ elseif($mailServiceClients[0]['mail_service_client']== 'export'){
 //        $pourcent_progress=round(100-((100*$CA_LY)/$CA_YTD),2).'%';
 //        $this->view->pourcent_progress=$pourcent_progress;
         $infos_client = new Application_Model_DbTable_Clients();
-        $info_client = $infos_client->getClientnumwp($info_demande_xprice['numwp_client']);
+        $info_client = $infos_client->getClientnumwp($info_demande_xprice[0]['numwp_client']);
         echo '<pre>',var_export($info_client),'</pre>';
         $this->view->info_client = $info_client;
         $noms_industrie = new Application_Model_DbTable_Industry();
-        $nom_industrie = $noms_industrie->getIndustry($info_client['id_industry']);
-        $destIndustry = $info_client['id_industry'];
+        $nom_industrie = $noms_industrie->getIndustry($info_client[0]['id_industry']);
+        $destIndustry = $info_client[0]['id_industry'];
         $this->view->nom_industrie = $nom_industrie;
         $infos_validation = new Application_Model_DbTable_Validationsxprice();
         $info_validation = $infos_validation->getAllValidation($info_demande_xprice['tracking_number_demande_xprice']);
