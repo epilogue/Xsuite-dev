@@ -1015,7 +1015,7 @@ if($user->id_fonction == 3){
 //        $this->view->pourcent_progress=$pourcent_progress;
         $infos_client = new Application_Model_DbTable_Clients();
         $info_client = $infos_client->getClientnumwp($info_demande_xprice['numwp_client']);
-        $this->view->info_client = $info_client;
+        $this->view->info_client = $info_client[0];
         echo '<pre>',var_export('$info_client'),'</pre>';
         $noms_industrie = new Application_Model_DbTable_Industry();
         $nom_industrie = $noms_industrie->getIndustry($info_client[0]['id_industry']);
