@@ -1016,6 +1016,7 @@ if($user->id_fonction == 3){
         $infos_client = new Application_Model_DbTable_Clients();
         $info_client = $infos_client->getClientnumwp($info_demande_xprice['numwp_client']);
         $this->view->info_client = $info_client;
+        echo '<pre>',var_export('$info_client'),'</pre>';
         $noms_industrie = new Application_Model_DbTable_Industry();
         $nom_industrie = $noms_industrie->getIndustry($info_client['id_industry']);
         $destIndustry = $info_client['id_industry'];
