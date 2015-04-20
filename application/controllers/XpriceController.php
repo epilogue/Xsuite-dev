@@ -892,7 +892,7 @@ if($user->id_fonction == 3){
         $info_demande_xprice = $infos_demande_xprice->getNumwp($numwp);
         $this->view->info_demande_xprice = $info_demande_xprice;
         $date = DateTime::createFromFormat('Y-m-d', $info_demande_xprice['date_demande_xprice']);
-        //$dateplop = $date->format('d/m/Y');
+        $dateplop = $date->format('d/m/Y');
         $this->view->dateplop = $dateplop;
         $infos_user = new Application_Model_DbTable_Users();
         $info_user = $infos_user->getUserDemande($info_demande_xprice['id_user']);
