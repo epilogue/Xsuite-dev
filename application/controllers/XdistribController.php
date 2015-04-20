@@ -2241,7 +2241,7 @@ if($this->getRequest()->isPost()){
             }
         }
     }
-    public function validatedirco(){
+    public function validatedircoAction(){
         $user = $this->_auth->getStorage()->read();
         $tiltop = $user->id_user;
         $this->view->dbd = $tiltop;
