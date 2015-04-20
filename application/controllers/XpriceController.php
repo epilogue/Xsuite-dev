@@ -651,6 +651,7 @@ echo '<pre>',  var_export($info_demande_xprice),'<pre>';
         $user_id = $info_demande_xprice['id_user'];
         $infos_user = new Application_Model_DbTable_Users();
         $info_user = $infos_user->getUserDemande($info_demande_xprice['id_user']);
+        $numwp_client=$info_demande_xprice['numwp_client'];
         $id_holon=$info_user['id_holon'];
         $holonuser = new Application_Model_DbTable_Holons();
         $holonuser1 = $holonuser->getHolon($id_holon);
@@ -690,7 +691,7 @@ echo '<pre>',  var_export($info_demande_xprice),'<pre>';
 
         $this->view->info_user = $info_user;
         $infos_client = new Application_Model_DbTable_Clients();
-        $info_client = $infos_client->getClientnumwp($info_demande_xprice['numwp_client']);
+        $info_client = $infos_client->getClientnumwp($numwp_client);
         echo '<pre>',var_export($info_client),'</pre>';
         $this->view->info_client = $info_client;
         $noms_industrie = new Application_Model_DbTable_Industry();
