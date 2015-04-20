@@ -327,7 +327,7 @@ if($user->id_fonction == 3){
                     $firstComment = null;
                     if (is_null($numwpexist)) {
                         $demande_xprice = $demandes_xprice->createXprice(
-                                $numwp, $trackingNumber, $formData['commentaire_demande_article'], $infos_offres->OBRGDT, $formData['mini_demande_article'],$formData['concurrent_demande_article'],$formData['part_demande_article'],$formData['faible'], $user_info['id_user'], null, $numclientwp['OACHL1'],$formData['listedifusion']);
+                                $numwp, $trackingNumber, $formData['commentaire_demande_article'], $infos_offres->OBRGDT, $formData['mini_demande_article'],$formData['concurrent_demande_article'],$formData['part_demande_article'],$formData['faible'], $user_info['id_user'], null, $numwpclient2,$formData['listedifusion']);
                         $dbtValidationDemande = new Application_Model_DbTable_Validationsdemandexprices();
                         if (!is_null($formData['commentaire_demande_article']) && trim($formData['commentaire_demande_article']) != "") {
                             $now = new DateTime();
