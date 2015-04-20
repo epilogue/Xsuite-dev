@@ -246,7 +246,7 @@ if($user->id_fonction == 3){
             while ($resultat[] = odbc_fetch_array($resultats)) {
                 $this->view->resultat = $resultat;
             }
-            echo '<pre>',  var_export($resultat),'</pre>';
+//            echo '<pre>',  var_export($resultat),'</pre>';
             /* aller chercher prix fob prix cif sur la base MVCDXTA en utilisant les tables KOPCDT(date) KOITNO ( code article) et KO ( prix cif)
              *
              */foreach ($this->view->resultat as $itnoarticle) {
@@ -276,7 +276,7 @@ if($user->id_fonction == 3){
             $this->view->numclientwp =  $numwpclient2 ;/*-$numclientwp['OACHL1'];*/
             $query1bis = "select * from EIT.MVXCDTA.OCUSMA OCUSMA where OCUSMA.OKCUNO = '{$numwpclient2}'";
             $infos_client = odbc_fetch_array(odbc_exec($this->odbc_conn2, $query1bis));
-            echo 'pre',var_export($infos_client),'</pre>';
+//            echo 'pre',var_export($infos_client),'</pre>';
             $this->view->infos_client = $infos_client;
             $query1quart = "select ZMCPJO.Z2MCL1  from EIT.SMCCDTA.ZMCPJO  ZMCPJO where ZMCPJO.Z2CUNO= '{$resultat[0]['OBCUNO']}' ";
             $industriewp = odbc_fetch_array(odbc_exec($this->odbc_conn3, $query1quart));
@@ -648,7 +648,6 @@ if($user->id_fonction == 3){
          */
         $infos_demande_xprice = new Application_Model_DbTable_Xprices();
         $info_demande_xprice = $infos_demande_xprice->getNumwp($numwp);
-echo '<pre>',  var_export($info_demande_xprice),'<pre>';
         $user_id = $info_demande_xprice['id_user'];
         $infos_user = new Application_Model_DbTable_Users();
         $info_user = $infos_user->getUserDemande($info_demande_xprice['id_user']);
