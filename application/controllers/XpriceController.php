@@ -647,7 +647,7 @@ if($user->id_fonction == 3){
          */
         $infos_demande_xprice = new Application_Model_DbTable_Xprices();
         $info_demande_xprice = $infos_demande_xprice->getNumwp($numwp);
-//echo '<pre>',  var_export($info_demande_xprice),'<pre>';
+echo '<pre>',  var_export($info_demande_xprice),'<pre>';
         $user_id = $info_demande_xprice['id_user'];
         $infos_user = new Application_Model_DbTable_Users();
         $info_user = $infos_user->getUserDemande($info_demande_xprice['id_user']);
