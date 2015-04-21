@@ -1347,7 +1347,7 @@ if($this->getRequest()->isPost()){
                 $lasthisto = $lastidhisto->getHistorique($formData['tracking'], $lastidvalid[0]['id_validation']);
 
                 $params3 = array();
-                $params3['destinataireMail'] = $info_user['email_user'];
+                $params3['destinataireMail'] =/* $user_info['email_user'];*/" mhuby@smc-france.fr";
 //                $params1['url'] = "http://{$_SERVER['SERVER_NAME']}/xdistrib/update/numwp/{$numwp}/histo/{$lasthisto[0]['id_histo_commentaire']}";
                 if (!is_null($commentId)) {
                     $params3['url'] = "http://{$_SERVER['SERVER_NAME']}/xdistrib/update/numwp/{$numwp}/com/{$commentId}";
