@@ -2724,7 +2724,7 @@ if($this->getRequest()->isPost()){
         $this->view->date_offre = $dateplop;
         $id_commercial = $info['id_user'];
         $numwp_client = $info['numwp_client'];
-        $info_client = new Application_Model_DbTable_Clients;
+        $info_client = new Application_Model_DbTable_ClientDistrib;
         $infos_client = $info_client->getClientnumwp($numwp_client);
         $info_commercial = new Application_Model_DbTable_Users();
         $infos_commercial = $info_commercial->getUser($id_commercial);
