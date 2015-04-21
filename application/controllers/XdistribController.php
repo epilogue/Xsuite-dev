@@ -776,10 +776,7 @@ if($this->getRequest()->isPost()){
 //            $redirector->gotoSimple('index', 'xdistrib');
         }
     }
-    public function readerAction(){
-  
-
-    }
+    public function readerAction(){}
     public function consultAction()
     {
         $numwp = $this->getRequest()->getParam('numwp', null);
@@ -873,9 +870,7 @@ if($this->getRequest()->isPost()){
         }
         $this->view->form = $form;
     }
-    public function consultlibreAction(){
-        
-    }
+    public function consultlibreAction(){}
     public function numwpAction(){
         $numwp = $this->getRequest()->getParam('numwp', null);
         $form = new Application_Form_NumwpDistrib();
@@ -2706,6 +2701,9 @@ if($this->getRequest()->isPost()){
                 $redirector->gotoSimple('index', 'xdistrib');
             }
         }
+    }
+    public function updateAction(){
+        
     }
 }
 
