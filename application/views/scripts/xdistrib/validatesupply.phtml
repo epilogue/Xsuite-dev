@@ -215,14 +215,8 @@ $this->headScript()->appendFile('/js/numFormat.js');
                 ?>
             </fieldset>
         </div>
-        <div id="valid_dd" class="workplace">
-            <input type="radio" name="validation" value="nonValide"> La demande n'est pas validée <input type="hidden" name="nom_validation" value="validation_supply"><br>
-            <input type="radio" name="validation" value="validee"> La demande est validée <input type="hidden" name="date_validation" value="<?php echo date("Y-m-d H:i:s") ?>"><br>
-            <input type="radio" checked="checked" name="validation" value="enAttente">  en attente de réponse<input type="hidden" name="supply" value="<?php echo $this->supply; ?>"><br>
-           <input type="hidden" name="tracking" value="<?php echo $this->info_demande_xdistrib['tracking_number_demande_xdistrib']; ?>">
-           <input type="hidden" name="tiltop" value="<?php echo $this->tiltop; ?>">
-        </div>
-        <input class="submit" type="submit" value="enregistrer statut offre">
+      <div class="clear"></div>
+        <input class="submit" type="submit" value="validation prix fob">
      </form>
      </div>
          
