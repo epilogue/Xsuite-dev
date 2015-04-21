@@ -2495,6 +2495,7 @@ if($mailServiceClients[0]['mail_service_client']=='regionNord'){
         $infos_client = new Application_Model_DbTable_Clients();
         var_dump($info_demande_xprice['numwp_client']);
         $info_client = $infos_client->getClientnumwp($info_demande_xprice['numwp_client']);
+        echo '<pre>',var_export($info_client),'</pre>';
         $this->view->info_client = $info_client[0];
         $noms_industrie = new Application_Model_DbTable_Industry();
         $nom_industrie = $noms_industrie->getIndustry($info_client[0]['id_industry']);
