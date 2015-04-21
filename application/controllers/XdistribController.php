@@ -1331,7 +1331,7 @@ if($this->getRequest()->isPost()){
             }
             elseif(isset($formData['validation']) && $formData['validation'] == "nonValide") {
                 $params2 = array();
-                $params2['destinataireMail'] = $info_user['email_user'] ;
+                $params2['destinataireMail'] = $user_info['email_user'] ;
                 $params2['url'] = "http://{$_SERVER['SERVER_NAME']}/xdistrib/consult/numwp/{$numwp}";
                 $params2['corpsMail'] = "Bonjour,\n"
                         . "\n"
@@ -1379,7 +1379,7 @@ if($this->getRequest()->isPost()){
                         . "--\n"
                         . "XDistrib.";
                 $params3['sujet'] = " XDistrib:demande XDistrib $tracking/$numwp pour le client {$client_info['nom_client']} en attente de réponse.";
-                $this->sendEmail($params1);
+                $this->sendEmail($params3);
 
                 $flashMessenger = $this->_helper->getHelper('FlashMessenger');
                 $message = "la demande est en attente de réponse du commercial.";
