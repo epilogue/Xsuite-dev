@@ -2762,7 +2762,7 @@ if($this->getRequest()->isPost()){
             $datasValidation = array(
                 'nom_validation' => $nom_validation, 'validation' => "enAttente",
                 'commentaire' => $formData['reponse_comm'],
-                'id_user' => $user->id_user, 'id_demande_xdistrib' => $info_demande_xdistrib['id_demande_xdistrib']
+                'tiltop' => $user->id_user, 'id_demande_xdistrib' => $info_demande_xdistrib['id_demande_xdistrib']
             );
             if (array_key_exists('reponse', $formData)) {
                 $datasValidation['reponse'] = $formData['reponse'];
