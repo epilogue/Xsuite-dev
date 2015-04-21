@@ -109,8 +109,7 @@ class XdistribController extends Zend_Controller_Action
         // echo '<pre>', var_export($value),'</pre>'; 
          //    if(preg_match($tracking1,$value['tracking_number_demande_xdistrib'])|| preg_match($tracking2,$value['tracking_number_demande_xdistrib'] ) ) {
            if($tracking == $tracking1 or $tracking==$tracking2){
-               $plopr=array();
-             $plopr =$value; 
+              echo $value; 
              }
          }
          $recapitulatif2 = $plopr;
