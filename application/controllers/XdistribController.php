@@ -91,7 +91,7 @@ class XdistribController extends Zend_Controller_Action
             $tracking2='/SPD-FR-QK/';            
              break;
          }
-         $recapitulatif1 = new Application_Model_DbTable_Xdistrb();
+         $recapitulatif1 = new Application_Model_DbTable_Xdistrib();
          $recapitulatif2=$recapitulatif1->searchforDBD();
          $r = array();
          for ($index = 0; $index < count($recapitulatif2); $index++) {
