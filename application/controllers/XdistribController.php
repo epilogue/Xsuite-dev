@@ -2713,7 +2713,7 @@ if($this->getRequest()->isPost()){
         $this->view->histo_rep = $histo_rep;
         $param = $this->getRequest();
 //        echo '<pre>',var_export($param),'<pre>'; exit();
-        $infos = new Application_Model_DbTable_Xprices();
+        $infos = new Application_Model_DbTable_Xdistrib();
         $info = $infos->getNumwp($numwp);
         $id_demande_xdistrib = $info['id_demande_xdistrib'];
         $tracking_number = $info['tracking_number_demande_xdistrib'];
@@ -2740,7 +2740,7 @@ if($this->getRequest()->isPost()){
         $info_demande_article_xdistrib = $infos_demande_article_xdistrib->getDemandeArticlexdistrib($numwp);
         $this->view->info_demande_article_xdistrib = $info_demande_article_xdistrib;
         /* recupération des commentaires concernant la demande */
-        $infos_demande_xdistrib = new Application_Model_DbTable_Xprices();
+        $infos_demande_xdistrib = new Application_Model_DbTable_Xdistrib();
         $info_demande_xdistrib = $infos_demande_xdistrib->getNumwp($numwp);
 
         $commentairesoffre = new Application_Model_DbTable_Validationsdemandexdistrib();
