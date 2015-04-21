@@ -112,7 +112,7 @@ class XdistribController extends Zend_Controller_Action
               echo $value; 
              }
          }
-         $recapitulatif2 = $plopr;
+         $recapitulatif2 = $value;
      }
       if($user->id_fonction ==5|| $user->id_fonction == 13){
          $recapitulatif1 = new Application_Model_DbTable_Xdistrib;
