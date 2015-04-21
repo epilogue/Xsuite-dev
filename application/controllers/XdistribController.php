@@ -91,7 +91,25 @@ class XdistribController extends Zend_Controller_Action
                  break;
              }
          $recapitulatif1 = new Application_Model_DbTable_Xdistrib();
-         $recapitulatif2=$recapitulatif1->searchByCDR($tracking1,$tracking2);
+         $recapitulatif2=$recapitulatif1->searchforDBD();
+          $r = array();
+         for ($index = 0; $index < count($recapitulatif2); $index++) {
+             if(($index +1) > count($recapitulatif2)-1) {
+                 $r[] = $recapitulatif2[$index];
+             } else {
+                 if($recapitulatif2[$index]['num_workplace_demande_xdistrib'] != $recapitulatif2[$index+1]['num_workplace_demande_xdistrib']) {
+                     $r[] = $recapitulatif2[$index];
+                 }
+             }
+         }
+         unset($recapitulatif2);
+         foreach($r as $value){
+         //echo '<pre>', var_export($value),'</pre>'; 
+             if(preg_match($tracking1,$value['tracking_number_demande_xdistrib'])==1 || preg_match($tracking2,$value['tracking_number_demande_xdistrib'] )==1 ) {
+                 $plopr[] =$value; 
+             }
+         }
+         $recapitulatif2 = $plopr;
      }
       if($user->id_fonction ==5|| $user->id_fonction == 13){
          $recapitulatif1 = new Application_Model_DbTable_Xdistrib;
