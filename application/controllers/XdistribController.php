@@ -2726,13 +2726,14 @@ if($this->getRequest()->isPost()){
         $numwp_client = $info['numwp_client'];
         $info_client = new Application_Model_DbTable_ClientDistrib;
         $infos_client = $info_client->getClientnumwp($numwp_client);
+        echo '<pre>',var_export($infos_client),'</pre>';
         $info_commercial = new Application_Model_DbTable_Users();
         $infos_commercial = $info_commercial->getUser($id_commercial);
         $tests = new Application_Model_DbTable_DemandeArticlexdistrib();
         $test = $tests->sommePrixDemandeArticle($numwp);
         $this->view->montant_total = $test->total;
-        $this->view->infos_client = $infos_client;
-        $nomclients=trim($infos_client['nom_client']);
+        $this->view->infos_client = $infos_client[0];
+        $nomclients=trim($infos_client[0]['nom_client']);
         $noms_industrie = new Application_Model_DbTable_Industry();
         $nom_industrie = $noms_industrie->getIndustry($infos_client['id_industry']);
         $this->view->nom_industrie = $nom_industrie;
