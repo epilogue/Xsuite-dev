@@ -108,6 +108,7 @@ class XdistribController extends Zend_Controller_Action
          echo '<pre>', var_export($value),'</pre>'; 
              if(preg_match($tracking1,$value['tracking_number_demande_xdistrib'])|| preg_match($tracking2,$value['tracking_number_demande_xdistrib'] ) ) {
                  $plopr[] =$value; 
+                 var_dump($plopr);
              }
          }
          $recapitulatif2 = $plopr;
