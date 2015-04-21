@@ -78,16 +78,16 @@ class XdistribController extends Zend_Controller_Action
     if($user->id_fonction == 10){
          switch ($holon){
              case 2:
-                 $tracking1="SP-FR-QC";
-                 $tracking2="SP-FR-QF";
+                 $tracking1="SPD-FR-QC";
+                 $tracking2="SPD-FR-QF";
                  break;
              case 3:
-                 $tracking1="SP-FR-QE";
-                 $tracking2="SP-FR-QH";            
+                 $tracking1="SPD-FR-QE";
+                 $tracking2="SPD-FR-QH";            
                  break;
              case 4:
-                $tracking1="SP-FR-QI";
-                $tracking2="SP-FR-QK";            
+                $tracking1="SPD-FR-QI";
+                $tracking2="SPD-FR-QK";            
                  break;
              }
          $recapitulatif1 = new Application_Model_DbTable_Xdistrib();
@@ -1567,7 +1567,7 @@ if($this->getRequest()->isPost()){
             $nom_validationfobfr = "fobfr";
             $formData = $this->getRequest()->getPost();
             $datas = $this->getRequest()->getPost();
-            echo  '<pre>',var_export($datas),'</pre>';
+//            echo  '<pre>',var_export($datas),'</pre>';
             $nomclients=trim($client_info['nom_client']);
 //            foreach ($formData as $datas) {
             $fobs = array_combine($datas['code_article'], $datas['prix_fob']);
