@@ -79,11 +79,11 @@ class XdistribController extends Zend_Controller_Action
          switch ($holon){
              case 2:
                  $tracking1='/SPD-FR-QC/';
-                 $tracking2="SPD-FR-QF";
+                 $tracking2='/SPD-FR-QF/';
                  break;
              case 3:
-                 $tracking1="SPD-FR-QE";
-                 $tracking2="SPD-FR-QH";            
+                 $tracking1='/SPD-FR-QE/';
+                 $tracking2='/SPD-FR-QH/';            
                  break;
              case 4:
                 $tracking1='/SPD-FR-QI/';
