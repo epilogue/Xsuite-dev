@@ -92,7 +92,7 @@ class XdistribController extends Zend_Controller_Action
              }
          $recapitulatif1 = new Application_Model_DbTable_Xdistrib();
          $recapitulatif2=$recapitulatif1->searchforDBD();
-         echo '<pre>',var_export($recapitulatif2),'</pre>';
+//         echo '<pre>',var_export($recapitulatif2),'</pre>';
           $r = array();
          for ($index = 0; $index < count($recapitulatif2); $index++) {
              if(($index +1) > count($recapitulatif2)-1) {
