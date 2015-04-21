@@ -1563,6 +1563,7 @@ if($this->getRequest()->isPost()){
             $date_validationfobfr = date("Y-m-d H:i:s");
             $this->view->date_validationfobfr = $date_validationfobfr;
             $etat = "validée";
+            $this->view->etat=$etat;
             $nom_validationfobfr = "fobfr";
             $formData = $this->getRequest()->getPost();
             $datas = $this->getRequest()->getPost();
@@ -1586,7 +1587,7 @@ if($this->getRequest()->isPost()){
                 $marge= $margeinit->insertMarge($value, $key, $datas['tracking']);
             }
             $validations = new Application_Model_DbTable_Validationsxdistrib();
-            $validation = $validations->createValidation($datas['nom_validation'], $datas['date_validation'], $datas['validation'], $datas['commentaire_fobfr'], $datas['fobfr'], $datas['tracking']);
+            $validation = $validations->createValidation($datas['nom_validation'], $datas['date_validation'], $etat, $datas['commentaire_fobfr'], $datas['fobfr'], $datas['tracking']);
 
             $datasValidation = array(
                 'nom_validation' => $nom_validationfobfr, 'validation' => $etat,
