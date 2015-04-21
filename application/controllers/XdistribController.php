@@ -29,6 +29,19 @@ class XdistribController extends Zend_Controller_Action
         if (!$this->odbc_conn4) {
             echo "pas d'accès à la base de données ZEUCDTA";
         }
+        
+        $comId = $this->getRequest()->getParam('com', null);
+        if (!is_null($comId)) {
+            $comId = intval($comId);
+            $dbtValidation = new Application_Model_DbTable_Validationsdemandexdistrib();
+            if ($dbtValidation->checkId($comId) == true) {
+                $this->view->commentId = $comId;
+            } else {
+                $this->view->commentId = null;
+            }
+        } else {
+            $this->view->commentId = null;
+        }
     }
      protected function sendEmail($params) {
         $mail = new Xsuite_Mail();
