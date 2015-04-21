@@ -79,16 +79,16 @@ class XdistribController extends Zend_Controller_Action
       if($user->id_fonction == 10){
      switch ($holon){
          case 2:
-             $tracking1='/SPD-FR-QC/';
-             $tracking2='/SPD-FR-QF/';
+             $tracking1="SPD-FR-QC";
+             $tracking2="SPD-FR-QF";
              break;
          case 3:
-             $tracking1='/SPD-FR-QE/';
-             $tracking2='/SPD-FR-QH/';            
+             $tracking1="SPD-FR-QE";
+             $tracking2="SPD-FR-QH";            
              break;
          case 4:
-            $tracking1='/SPD-FR-QI/';
-            $tracking2='/SPD-FR-QK/';            
+            $tracking1="SPD-FR-QI";
+            $tracking2="SPD-FR-QK";            
              break;
          }
          $recapitulatif1 = new Application_Model_DbTable_Xdistrib();
