@@ -2470,7 +2470,7 @@ if($this->getRequest()->isPost()){
                 $params['url'] = "http://{$_SERVER['SERVER_NAME']}/xdistrib/consult/numwp/{$numwp}";
                 $params['corpsMail'] = "Bonjour,\n"
                         . "\n"
-                        . "Votre demande XPrice $trackingNumber/$numwp pour le client $nomclients a été validée par le Directeur Commercial .\n"
+                        . "Votre demande Xdistrib $trackingNumber/$numwp pour le client $nomclients a été validée par le Directeur Commercial .\n"
                         . "Vous pouvez la consulter à cette adresse url : \n"
                         . "%s"
                         . "\n\n"
@@ -2484,7 +2484,7 @@ if($this->getRequest()->isPost()){
                 $params1['url'] = "http://{$_SERVER['SERVER_NAME']}/xdistrib/consult/numwp/{$numwp}";
                 $params1['corpsMail'] = "Bonjour,\n"
                         . "\n"
-                        . "la demande XPrice $trackingNumber/$numwp pour le client $nomclients a été validée par le Directeur Commercial .\n"
+                        . "la demande Xdistrib $trackingNumber/$numwp pour le client $nomclients a été validée par le Directeur Commercial .\n"
                         . "Vous pouvez la consulter à cette adresse url : \n"
                         . "%s"
                         . "\n\n"
@@ -2492,7 +2492,7 @@ if($this->getRequest()->isPost()){
                         . "\n"
                         . "--\n"
                         . "Directeur Commercial.";
-                $params1['sujet'] = "  XPrice :demande Xdistrib $trackingNumber/$numwp pour le client $nomclients validée par Directeur Commercial.";
+                $params1['sujet'] = "  Xdistrib :demande Xdistrib $trackingNumber/$numwp pour le client $nomclients validée par Directeur Commercial.";
                 $this->sendEmail($params1);
 //envoi mail leader
                 if ($fonctioncreateur == "1") {
@@ -2603,7 +2603,7 @@ if($this->getRequest()->isPost()){
                 $params4['url'] = "http://{$_SERVER['SERVER_NAME']}/xdistrib/consult/numwp/{$numwp}";
                 $params4['corpsMail'] = "Bonjour,\n"
                         . "\n"
-                        . "la demande XPrice $trackingNumber/$numwp de {$info_user['nom_user']} pour le client $nomclients a été validée par le Dirco.\n"
+                        . "la demande Xdistrib $trackingNumber/$numwp de {$info_user['nom_user']} pour le client $nomclients a été validée par le Dirco.\n"
                         . "Pour consulter la demande veuillez vous rendre à l'adresse url : \n"
                         . "%s"
                         . "\n\n"
@@ -2617,7 +2617,7 @@ if($this->getRequest()->isPost()){
                  $params5['url'] = "http://{$_SERVER['SERVER_NAME']}/xdistrib/consult/numwp/{$numwp}";
                 $params5['corpsMail'] = "Bonjour,\n"
                         . "\n"
-                        . "la demande XPrice $trackingNumber/$numwp de {$info_user['nom_user']} pour le client $nomclients a été validée par le Dirco.\n"
+                        . "la demande Xdistrib $trackingNumber/$numwp de {$info_user['nom_user']} pour le client $nomclients a été validée par le Dirco.\n"
                         . "Pour consulter la demande veuillez vous rendre à l'adresse url : \n"
                         . "%s"
                         . "\n\n"
@@ -2644,7 +2644,7 @@ if($this->getRequest()->isPost()){
                 }
                 $params['corpsMail'] = "Bonjour,\n"
                         . "\n"
-                        . "Votre demande XPrice $trackingNumber/$numwp est en attente de réponse à la question posée par le Directeur Commercial .\n"
+                        . "Votre demande Xdistrib $trackingNumber/$numwp est en attente de réponse à la question posée par le Directeur Commercial .\n"
                         . "Vous pouvez la consulter à cette adresse url : \n"
                         . "%s"
                         . "\n\n"
@@ -2670,7 +2670,7 @@ if($this->getRequest()->isPost()){
                 }
                 $params['corpsMail'] = "Bonjour,\n"
                         . "\n"
-                        . "Votre demande XPrice $trackingNumber/$numwp pour le client $nomclients n'est pas validée par le Directeur Commercial .\n"
+                        . "Votre demande Xdistrib $trackingNumber/$numwp pour le client $nomclients n'est pas validée par le Directeur Commercial .\n"
                         . "Vous pouvez la consulter à cette adresse url : \n"
                         . "%s"
                         . "\n\n"
@@ -2683,7 +2683,7 @@ if($this->getRequest()->isPost()){
                 $params5['url'] = "http://{$_SERVER['SERVER_NAME']}/xdistrib/consult/numwp/{$numwp}";
                 $params5['corpsMail'] = "Bonjour,\n"
                         . "\n"
-                        . "la demande XPrice $trackingNumber/$numwp de {$info_user['nom_user']} pour le client $nomclients a été refusée par le Dirco.\n"
+                        . "la demande Xdistrib $trackingNumber/$numwp de {$info_user['nom_user']} pour le client $nomclients a été refusée par le Dirco.\n"
                         . "Pour consulter la demande veuillez vous rendre à l'adresse url : \n"
                         . "%s"
                         . "\n\n"
@@ -2703,7 +2703,113 @@ if($this->getRequest()->isPost()){
         }
     }
     public function updateAction(){
-        
+         $user = $this->_auth->getStorage()->read();
+       // echo '<pre>',  var_export($user),'</pre>';
+        $this->view->utilisateur=$user->id_fonction;
+        $numwp = $this->getRequest()->getParam('numwp', null);
+        $comId = $this->getRequest()->getParam('com', null);
+        $this->view->commentId = $comId;
+        $histo_rep = $this->getRequest()->getParam('histo', null);
+        $this->view->histo_rep = $histo_rep;
+        $param = $this->getRequest();
+//        echo '<pre>',var_export($param),'<pre>'; exit();
+        $infos = new Application_Model_DbTable_Xprices();
+        $info = $infos->getNumwp($numwp);
+        $id_demande_xdistrib = $info['id_demande_xdistrib'];
+        $tracking_number = $info['tracking_number_demande_xdistrib'];
+        $this->view->tracking_number = $tracking_number;
+        $date_offre = $info['date_demande_xdistrib'];
+        $date = DateTime::createFromFormat('Y-m-d', $date_offre);
+        $dateplop = $date->format('d/m/Y');
+        $this->view->date_offre = $dateplop;
+        $id_commercial = $info['id_user'];
+        $numwp_client = $info['numwp_client'];
+        $info_client = new Application_Model_DbTable_Clients;
+        $infos_client = $info_client->getClientnumwp($numwp_client);
+        $info_commercial = new Application_Model_DbTable_Users();
+        $infos_commercial = $info_commercial->getUser($id_commercial);
+        $tests = new Application_Model_DbTable_DemandeArticlexdistrib();
+        $test = $tests->sommePrixDemandeArticle($numwp);
+        $this->view->montant_total = $test->total;
+        $this->view->infos_client = $infos_client;
+        $nomclients=trim($infos_client['nom_client']);
+        $noms_industrie = new Application_Model_DbTable_Industry();
+        $nom_industrie = $noms_industrie->getIndustry($infos_client['id_industry']);
+        $this->view->nom_industrie = $nom_industrie;
+        $infos_demande_article_xdistrib = new Application_Model_DbTable_DemandeArticlexdistrib();
+        $info_demande_article_xdistrib = $infos_demande_article_xdistrib->getDemandeArticlexdistrib($numwp);
+        $this->view->info_demande_article_xdistrib = $info_demande_article_xdistrib;
+        /* recupération des commentaires concernant la demande */
+        $infos_demande_xdistrib = new Application_Model_DbTable_Xprices();
+        $info_demande_xdistrib = $infos_demande_xdistrib->getNumwp($numwp);
+
+        $commentairesoffre = new Application_Model_DbTable_Validationsdemandexdistrib();
+        $commentaireoffre = $commentairesoffre->getAllValidation($id_demande_xdistrib);
+        $this->view->commentaire = $commentaireoffre;
+        $usersCommentaires = array();
+
+        foreach (@$commentaireoffre as $key => $commoffre) {
+            $userCommInfos = $info_commercial->getFonctionLabel($commoffre['id_user']);
+            $usersCommentaires[$key]['fonction'] = $userCommInfos['description_fonction'];
+        }
+        $this->view->usersCommentaires = $usersCommentaires;
+
+        if ($this->getRequest()->isPost()) {
+            $nom_validation = "reponse";
+            $formData = $this->getRequest()->getPost();
+
+            $datasValidation = array(
+                'nom_validation' => $nom_validation, 'validation' => "enAttente",
+                'commentaire' => $formData['reponse_comm'],
+                'id_user' => $user->id_user, 'id_demande_xdistrib' => $info_demande_xdistrib['id_demande_xdistrib']
+            );
+            if (array_key_exists('reponse', $formData)) {
+                $datasValidation['reponse'] = $formData['reponse'];
+            }
+
+            $commentId = $this->genererValidation($datasValidation);
+
+            $question = $commentairesoffre->getValidationById($comId);
+            $users = new Application_Model_DbTable_Users();
+
+            $destReponse = $users->getUser($question['id_user']);
+            //echo '<pre>',  var_export($destReponse),'</pre>'; 
+            $fonctions = array(
+                13 => "dirco",
+                10 => "chefregion",
+                5 => "dbd",
+                20=> "chefmarche"
+            );
+            $idF = $destReponse['id_fonction'];
+            $params1 = array();
+            $params1['destinataireMail'] =$destReponse['email_user'];
+//                $params1['url'] = "http://{$_SERVER['SERVER_NAME']}/xdistrib/update/numwp/{$numwp}/histo/{$lasthisto[0]['id_histo_commentaire']}";
+            if (!is_null($commentId)) {
+                $params1['url'] = "http://{$_SERVER['SERVER_NAME']}/xdistrib/validate{$fonctions[$idF]}/numwp/{$numwp}/com/{$commentId}";
+            } else {
+                $params1['url'] = "http://{$_SERVER['SERVER_NAME']}/xdistrib/validate{$fonctions[$idF]}/numwp/{$numwp}";
+            }
+
+            $params1['corpsMail'] = "Bonjour,\n"
+                    . "\n"
+                    . "Une réponse a été apportée à la question que vous avez posé sur demande Xdistrib $tracking_number/$numwp.\n"
+                    . "Veuillez vous rendre à l'adresse url : \n"
+                    . "%s"
+                    . "\n\n"
+                    . "Cordialement,\n"
+                    . "\n"
+                    . "--\n"
+                    . "Xdistrib.";
+            $params1['sujet'] = " Xdistrib : réponse sur la demande Xdistrib  $tracking_number/$numwp pour le client $nomclients.";
+            //echo '<pre>',  var_export($params1),'</pre>'; exit();
+            $this->sendEmail($params1);
+
+            $flashMessenger = $this->_helper->getHelper('FlashMessenger');
+            $message = "la demande est en attente de réponse du {$fonctions[$idF]}.";
+            $flashMessenger->addMessage($message);
+            $redirector = $this->_helper->getHelper('Redirector');
+            $redirector->gotoSimple('index', 'xdistrib');
+        }
     }
 }
 

@@ -1,5 +1,5 @@
 <?php
-$this->title = 'Xprice/update';
+$this->title = 'Xdistrib/update';
 $this->headTitle($this->title);
 $this->headScript()->appendFile('/js/controllers/xprice/afficher_masquer_details.js');
 ?>
@@ -42,7 +42,7 @@ $this->headScript()->appendFile('/js/controllers/xprice/afficher_masquer_details
                     <th>Remises accordées</th>
                     <th>Marge</th><?php } else {}?>
                 </tr>
-                <?php foreach ($this->info_demande_article_xprice as $result) { ?>
+                <?php foreach ($this->info_demande_article_xdistrib as $result) { ?>
                     <tr>
                         <td><?php echo $result['code_article']; ?></td>
                         <td><?php echo $result['reference_article']; ?></td>
