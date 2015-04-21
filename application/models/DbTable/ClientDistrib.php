@@ -14,6 +14,16 @@
 class Application_Model_DbTable_ClientDistrib extends Zend_Db_Table_Abstract {
    protected $_name = 'client_distrib';
    
+    public function getClientnumwp($numwp_client) {
+       $sql="select * from client_distrib where client_distrib.numwp_client like '{$numwp_client}'";
+        $res = $this->getAdapter()->query($sql);
+        $rest=$res->fetchAll();
+        if (!$rest) {
+            return null;
+        } else {
+            return $rest;
+        }
+    }
    public function createClientDistrib($numwp,$numwp_client,$codepostal_client,$ville_client,$nom_industry,$id_industry,$nom_client,$client_pac=null){
       $data = array('numwp' =>$numwp,
           'numwp_client'=>$numwp_client,
