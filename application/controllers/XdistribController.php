@@ -107,11 +107,10 @@ class XdistribController extends Zend_Controller_Action
          //foreach($r as $value){
          //echo '<pre>', var_export($r[0]['tracking_number_demande_xdistrib']),'</pre>'; 
              if(substr($r[0]['tracking_number_demande_xdistrib'],0,9)==  $tracking1 || substr($r[0]['tracking_number_demande_xdistrib'],0,9)==$tracking2) {
-                 $plopr =$r[0]; 
+                 $recapitulatif2 =$r[0]; 
              }
          //}
-         $recapitulatif2 = $plopr;
-         echo '<pre>', var_export($plopr),'</pre>'; 
+         echo '<pre>', var_export($recapitulatif2),'</pre>'; 
      }
       if($user->id_fonction ==5|| $user->id_fonction == 13){
          $recapitulatif1 = new Application_Model_DbTable_Xdistrib;
