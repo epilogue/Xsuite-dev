@@ -215,8 +215,14 @@ $this->headScript()->appendFile('/js/numFormat.js');
                 ?>
             </fieldset>
         </div>
-       <div class="clear"></div>
-        <input class="submit" type="submit" value="validation prix fob">
+        <div id="valid_dd" class="workplace">
+            <input type="hidden" name="nom_validation" value="validation_fobfr"><br>
+            <input type="hidden" name="date_validation" value="<?php echo date("Y-m-d H:i:s") ?>"><br>
+            <input type="hidden" name="fobfr" value="<?php echo $this->fobfr; ?>"><br>
+           <input type="hidden" name="tracking" value="<?php echo $this->info_demande_xdistrib['tracking_number_demande_xdistrib']; ?>">
+           <input type="hidden" name="tiltop" value="<?php echo $this->tiltop; ?>">
+        </div>
+        <input class="submit" type="submit" value="enregistrer statut offre">
      </form>
      </div>
          
