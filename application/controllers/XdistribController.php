@@ -2735,7 +2735,7 @@ if($this->getRequest()->isPost()){
         $this->view->infos_client = $infos_client[0];
         $nomclients=trim($infos_client[0]['nom_client']);
         $noms_industrie = new Application_Model_DbTable_Industry();
-        $nom_industrie = $noms_industrie->getIndustry($infos_client['id_industry']);
+        $nom_industrie = $noms_industrie->getIndustry($infos_client[0]['id_industry']);
         $this->view->nom_industrie = $nom_industrie;
         $infos_demande_article_xdistrib = new Application_Model_DbTable_DemandeArticlexdistrib();
         $info_demande_article_xdistrib = $infos_demande_article_xdistrib->getDemandeArticlexdistrib($numwp);
