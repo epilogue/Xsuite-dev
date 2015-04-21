@@ -75,25 +75,25 @@ class XdistribController extends Zend_Controller_Action
          $recapitulatif2 = $recapitulatif1->searchforDD($user->id_user);
          $this->view->recapitulatif = $recapitulatif2;    
      }
-    if($user->id_fonction == 10){
-         switch ($holon){
-             case 2:
-                 $tracking1="QC";
-                 $tracking2="QF";
-                 break;
-             case 3:
-                 $tracking1="QE";
-                 $tracking2="QH";            
-                 break;
-             case 4:
-                $tracking1="QI";
-                $tracking2="QK";            
-                 break;
-             }
-         $recapitulatif1 = new Application_Model_DbTable_Xdistrib();
+   
+      if($user->id_fonction == 10){
+     switch ($holon){
+         case 2:
+             $tracking1='/SPD-FR-QC/';
+             $tracking2='/SPD-FR-QF/';
+             break;
+         case 3:
+             $tracking1='/SPD-FR-QE/';
+             $tracking2='/SPD-FR-QH/';            
+             break;
+         case 4:
+            $tracking1='/SPD-FR-QI/';
+            $tracking2='/SPD-FR-QK/';            
+             break;
+         }
+         $recapitulatif1 = new Application_Model_DbTable_Xdistrb();
          $recapitulatif2=$recapitulatif1->searchforDBD();
-//         echo '<pre>',var_export($recapitulatif2),'</pre>';
-          $r = array();
+         $r = array();
          for ($index = 0; $index < count($recapitulatif2); $index++) {
              if(($index +1) > count($recapitulatif2)-1) {
                  $r[] = $recapitulatif2[$index];
@@ -103,16 +103,15 @@ class XdistribController extends Zend_Controller_Action
                  }
              }
          }
-         unset($recapitulatif2); echo '<pre>', var_export($r),'</pre>'; 
+         unset($recapitulatif2);
          foreach($r as $value){
-             $tracking=substr($value['tracking_number_demande_xdistrib'],7,2);
-        
-         //    if(preg_match($tracking1,$value['tracking_number_demande_xdistrib'])|| preg_match($tracking2,$value['tracking_number_demande_xdistrib'] ) ) {
-           if($tracking == $tracking1 or $tracking==$tracking2){
-              echo $value; 
+         //echo '<pre>', var_export($value),'</pre>'; 
+             if(preg_match($tracking1,$value['tracking_number_demande_xdistrib'])==1 || preg_match($tracking2,$value['tracking_number_demande_xdistrib'] )==1 ) {
+                 $plopr[] =$value; 
              }
          }
-         $recapitulatif2 = $value;
+         $recapitulatif2 = $plopr;
+        // echo '<pre>', var_export($plopr),'</pre>'; 
      }
       if($user->id_fonction ==5|| $user->id_fonction == 13){
          $recapitulatif1 = new Application_Model_DbTable_Xdistrib;
