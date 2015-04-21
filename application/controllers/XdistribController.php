@@ -1655,7 +1655,6 @@ if($this->getRequest()->isPost()){
         $this->view->supply = $tiltop;
         $numwp = $this->getRequest()->getParam('numwp', null);
         $this->view->numwp = $numwp; 
-        
         $infos_demande_xdistrib = new Application_Model_DbTable_Xdistrib();
         $info_demande_xdistrib = $infos_demande_xdistrib->getNumwp($numwp);
         $dateinit=$info_demande_xdistrib['date_demande_xdistrib'];
@@ -1746,7 +1745,7 @@ if($this->getRequest()->isPost()){
                 $marge= $margeinit->insertMarge($value, $key, $datas['tracking']);
             }
             $validations = new Application_Model_DbTable_Validationsxdistrib();
-            $validation = $validations->createValidation($datas['nom_validation'], $datas['date_validation'], $datas['validation'], $datas['commentaire_supply'], $datas['supply'], $datas['tracking']);
+            $validation = $validations->createValidation($datas['nom_validation'], $datas['date_validation'], $etat, $datas['commentaire_supply'], $datas['supply'], $datas['tracking']);
 
             $datasValidation = array(
                 'nom_validation' => $nom_validationsupply, 'validation' => $etat,
