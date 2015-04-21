@@ -2494,9 +2494,9 @@ if($mailServiceClients[0]['mail_service_client']=='regionNord'){
         $this->view->info_user = $info_user;
         $infos_client = new Application_Model_DbTable_Clients();
         $info_client = $infos_client->getClientnumwp($info_demande_xprice['numwp_client']);
-        $this->view->info_client = $info_client;
+        $this->view->info_client = $info_client[0];
         $noms_industrie = new Application_Model_DbTable_Industry();
-        $nom_industrie = $noms_industrie->getIndustry($info_client['id_industry']);
+        $nom_industrie = $noms_industrie->getIndustry($info_client[0]['id_industry']);
         $this->view->nom_industrie = $nom_industrie;
         $infos_demande_article_xprice = new Application_Model_DbTable_DemandeArticlexprices();
         $info_demande_article_xprice = $infos_demande_article_xprice->getDemandeArticlexprice($numwp);
