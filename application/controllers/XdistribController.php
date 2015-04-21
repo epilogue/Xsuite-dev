@@ -104,15 +104,14 @@ class XdistribController extends Zend_Controller_Action
              }
          }
          unset($recapitulatif2);
-         foreach($r as $value){
-             $tracking=substr($value['tracking_number_demande_xdistrib'],7,2);
+             $tracking=substr($r['tracking_number_demande_xdistrib'],7,2);
         // echo '<pre>', var_export($value),'</pre>'; 
          //    if(preg_match($tracking1,$value['tracking_number_demande_xdistrib'])|| preg_match($tracking2,$value['tracking_number_demande_xdistrib'] ) ) {
            if($tracking == $tracking1 or $tracking==$tracking2){
-             $plopr[] =$value; 
+             $plopr[] =$r; 
            echo '<pre>',      var_export($plopr),'</pre>';
              }
-         }
+         
          $recapitulatif2 = $plopr;
      }
       if($user->id_fonction ==5|| $user->id_fonction == 13){
