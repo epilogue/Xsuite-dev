@@ -103,10 +103,10 @@ class XdistribController extends Zend_Controller_Action
                  }
              }
          }
-         unset($recapitulatif2);
+         unset($recapitulatif2); echo '<pre>', var_export($r),'</pre>'; 
          foreach($r as $value){
              $tracking=substr($value['tracking_number_demande_xdistrib'],7,2);
-        // echo '<pre>', var_export($value),'</pre>'; 
+        
          //    if(preg_match($tracking1,$value['tracking_number_demande_xdistrib'])|| preg_match($tracking2,$value['tracking_number_demande_xdistrib'] ) ) {
            if($tracking == $tracking1 or $tracking==$tracking2){
               echo $value; 
