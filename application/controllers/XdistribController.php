@@ -92,6 +92,7 @@ class XdistribController extends Zend_Controller_Action
              }
          $recapitulatif1 = new Application_Model_DbTable_Xdistrib();
          $recapitulatif2=$recapitulatif1->searchforDBD();
+         echo '<pre>',var_export($recapitulatif2),'</pre>';
           $r = array();
          for ($index = 0; $index < count($recapitulatif2); $index++) {
              if(($index +1) > count($recapitulatif2)-1) {
@@ -104,7 +105,7 @@ class XdistribController extends Zend_Controller_Action
          }
          unset($recapitulatif2);
          foreach($r as $value){
-         //echo '<pre>', var_export($value),'</pre>'; 
+         echo '<pre>', var_export($value),'</pre>'; 
              if(preg_match($tracking1,$value['tracking_number_demande_xdistrib'])==1 || preg_match($tracking2,$value['tracking_number_demande_xdistrib'] )==1 ) {
                  $plopr[] =$value; 
              }
