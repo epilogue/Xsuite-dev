@@ -78,16 +78,16 @@ class XdistribController extends Zend_Controller_Action
     if($user->id_fonction == 10){
          switch ($holon){
              case 2:
-                 $tracking1='/SPD-FR-QC/';
-                 $tracking2='/SPD-FR-QF/';
+                 $tracking1="QC";
+                 $tracking2="QF";
                  break;
              case 3:
-                 $tracking1='/SPD-FR-QE/';
-                 $tracking2='/SPD-FR-QH/';            
+                 $tracking1="QE";
+                 $tracking2="QH";            
                  break;
              case 4:
-                $tracking1='/SPD-FR-QI/';
-                $tracking2='/SPD-FR-QK/';            
+                $tracking1="QI";
+                $tracking2="QK";            
                  break;
              }
          $recapitulatif1 = new Application_Model_DbTable_Xdistrib();
@@ -105,9 +105,11 @@ class XdistribController extends Zend_Controller_Action
          }
          unset($recapitulatif2);
          foreach($r as $value){
-         echo '<pre>', var_export($value),'</pre>'; 
-             if(preg_match($tracking1,$value['tracking_number_demande_xdistrib'])|| preg_match($tracking2,$value['tracking_number_demande_xdistrib'] ) ) {
-                 $plopr[] =$value; 
+             $tracking=substr($value['tracking_number_demande_xdistrib'],7,2);
+        // echo '<pre>', var_export($value),'</pre>'; 
+         //    if(preg_match($tracking1,$value['tracking_number_demande_xdistrib'])|| preg_match($tracking2,$value['tracking_number_demande_xdistrib'] ) ) {
+           if($tracking == $tracking1 or $tracking==$tracking2){
+             $plopr[] =$value; 
                  var_dump($plopr);
              }
          }
