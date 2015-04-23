@@ -113,7 +113,7 @@ join validations_demande_xdistrib on validations_demande_xdistrib.id_demande_xdi
                 . "join client_distrib on client_distrib.numwp_client = demande_xdistrib.numwp_client"
                   . " join validations_demande_xdistrib on validations_demande_xdistrib.id_demande_xdistrib = demande_xdistrib.id_demande_xdistrib "
                   . " join users on users.id_user=demande_xdistrib.id_user "
-                . " where demande_xdistrib.id_dd =$id order by demande_xdistrib.id_demande_xdistrib";
+                . " where demande_xdistrib.id_dd =$id order by demande_xdistrib.date_demande_xdistrib desc";
         $res = $this->getAdapter()->query($sql);
         $rest=$res->fetchAll();
         if (!$rest) {
