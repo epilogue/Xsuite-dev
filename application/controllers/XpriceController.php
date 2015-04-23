@@ -1218,22 +1218,22 @@ elseif($mailServiceClients[0]['mail_service_client']== 'export'){
                 //envoi au leader 
                 if ($fonctioncreateur == "1") {
                         switch ($id_holon) {
-                            case "5":
+                            case 5:
                                 $params4['destinataireMail'] = $emailVars->listes->leaderis01;
                                 break;
-                            case "6":
+                            case 6:
                                 $params4['destinataireMail'] = $emailVars->listes->leaderis03;
                                 break;
-                            case "8":
+                            case 8:
                                 $params4['destinataireMail'] = $emailVars->listes->leaderiw01;
                                 break;
-                            case "9":
+                            case 9:
                                 $params4['destinataireMail'] = $emailVars->listes->leaderiw02;
                                 break;
-                            case "10":
+                            case 10:
                                 $params4['destinataireMail'] = $emailVars->listes->leaderiw03;
                                 break;
-                            case "11":
+                            case 11:
                                 $params4['destinataireMail'] = $emailVars->listes->leaderis02;
                                 break;
                             case "14":
@@ -1245,8 +1245,11 @@ elseif($mailServiceClients[0]['mail_service_client']== 'export'){
                             case "19":
                                 $params4['destinataireMail'] = $emailVars->listes->leaderin02;
                                 break;
-                            case "20":
+                            case 20:
                                 $params4['destinataireMail'] = $emailVars->listes->leaderin03;
+                                break;
+                             case 31:
+                                $params4['destinataireMail'] = $emailVars->listes->leaderiw08;
                                 break;
                         }
                          $params4['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/consult/numwp/{$numwp}";
@@ -1301,7 +1304,7 @@ elseif($mailServiceClients[0]['mail_service_client']== 'export'){
                                 . "\n"
                                 . "--\n"
                                 . "Xsuite";
-                        $params5['sujet']=" XPrice :Offre Xprice $trackingNumber/$numwp de {$user_info['nom_user']} pour $nomclients validée par le DBD";
+                        $params5['sujet']=" XPrice :Offre Xprice $trackingNumber/$numwp de {$info_user['nom_user']} pour $nomclients validée par le DBD";
                       $this->sendEmail($params5); 
                     }
                 switch ($destIndustry) {
