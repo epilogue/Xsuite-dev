@@ -73,7 +73,18 @@ class XdistribController extends Zend_Controller_Action
      if($user->id_fonction == 6){
          $recapitulatif1 = new Application_Model_DbTable_Xdistrib();
          $recapitulatif2 = $recapitulatif1->searchforDD($user->id_user);
-         $this->view->recapitulatif = $recapitulatif2;    
+         $r = array();
+         for ($index = 0; $index < count($recapitulatif2); $index++) {
+             if(($index +1) > count($recapitulatif2)-1) {
+                 $r[] = $recapitulatif2[$index];
+             } else {
+                 if($recapitulatif2[$index]['num_workplace_demande_xdistrib'] != $recapitulatif2[$index+1]['num_workplace_demande_xdistrib']) {
+                     $r[] = $recapitulatif2[$index];
+                 }
+             }
+         }
+         unset($recapitulatif2);
+         $recapitulatif2 = $r;    
      }
    
       if($user->id_fonction == 10){
