@@ -88,24 +88,23 @@ class XdistribController extends Zend_Controller_Action
          $recapitulatif2 = $r;    
      }
    
-      if($user->id_fonction == 10){
+     if($user->id_fonction == 10){
      switch ($holon){
          case 2:
-             $tracking1="SPD-FR-QC";
-             $tracking2="SPD-FR-QF";
+             $tracking1='/SP-FR-QC/';
+             $tracking2='/SP-FR-QF/';
              break;
          case 3:
-             $tracking1="SPD-FR-QE";
-             $tracking2="SPD-FR-QH";            
+             $tracking1='/SP-FR-QE/';
+             $tracking2='/SP-FR-QH/';            
              break;
          case 4:
-            $tracking1="SPD-FR-QI";
-            $tracking2="SPD-FR-QK";            
+            $tracking1='/SP-FR-QI/';
+            $tracking2='/SP-FR-QK/';            
              break;
          }
-         $recapitulatif1 = new Application_Model_DbTable_Xdistrib();
+         $recapitulatif1 = new Application_Model_DbTable_Xprices();
          $recapitulatif2=$recapitulatif1->searchforDBD();
-         echo '<pre>',var_export($recapitulatif2),'</pre>';
          $r = array();
          for ($index = 0; $index < count($recapitulatif2); $index++) {
              if(($index +1) > count($recapitulatif2)-1) {
@@ -116,14 +115,15 @@ class XdistribController extends Zend_Controller_Action
                  }
              }
          }
-         echo '<pre>',var_export($r),'</pre>';
          unset($recapitulatif2);
-        $trac= substr($r[0]['tracking_number_demande_xdistrib'],0,9);
-         
-             if($trac = $tracking1 ||$trac=$tracking2) {
-                 $plopr[] =$r[0]; 
+         foreach($r as $value){
+         //echo '<pre>', var_export($value),'</pre>'; 
+             if(preg_match($tracking1,$value['tracking_number_demande_xdistrib'])==1 || preg_match($tracking2,$value['tracking_number_demande_xdistrib'] )==1 ) {
+                 $plopr[] =$value; 
              }
-         $recapitulatif2=$plopr;
+         }
+         $recapitulatif2 = $plopr;
+        // echo '<pre>', var_export($plopr),'</pre>'; 
      }
       if($user->id_fonction ==5|| $user->id_fonction == 13 || $user->id_fonction == 29 || $user->id_fonction == 23 || $user->id_fonction == 32){
          $recapitulatif1 = new Application_Model_DbTable_Xdistrib;
