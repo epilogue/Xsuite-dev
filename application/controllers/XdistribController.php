@@ -116,6 +116,7 @@ class XdistribController extends Zend_Controller_Action
                  }
              }
          }
+         echo '<pre>',var_export($r),'</pre>';
          unset($recapitulatif2);
         $trac= substr($r[0]['tracking_number_demande_xdistrib'],0,9);
          
