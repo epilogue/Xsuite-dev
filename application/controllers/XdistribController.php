@@ -2511,7 +2511,7 @@ if($this->getRequest()->isPost()){
             $params4=  array();
             $params5 = array();
             if (isset($formData['validation']) && $formData['validation'] == "fermee") {
-                $params['destinataireMail'] = $info_user['email_user'];
+                $params['destinataireMail'] = /*$info_user['email_user'];*/ "mhuby@smc-france.fr";
                 $params['url'] = "http://{$_SERVER['SERVER_NAME']}/xdistrib/consult/numwp/{$numwp}";
                 $params['corpsMail'] = "Bonjour,\n"
                         . "\n"
