@@ -2297,7 +2297,7 @@ if($this->getRequest()->isPost()){
     public function validatedircoAction(){
         $user = $this->_auth->getStorage()->read();
         $tiltop = $user->id_user;
-        $this->view->dbd = $tiltop;
+        $this->view->dirco = $tiltop;
         $numwp = $this->getRequest()->getParam('numwp', null);
         $this->view->numwp = $numwp; 
         $nom_validation = 'dirco';
