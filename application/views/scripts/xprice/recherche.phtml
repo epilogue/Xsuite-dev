@@ -1,0 +1,13 @@
+<?php
+$this->title = 'Xprice/recherche';
+$this->headTitle($this->title);
+$this->headScript()->appendFile('/js/multipleselect.js');
+?>
+
+<select name="liste_client" id="liste_client">
+
+<?php foreach($result as $value)
+{?>
+<option><?php $value['nomclient']?></option>
+<?php }?>
+</select>
