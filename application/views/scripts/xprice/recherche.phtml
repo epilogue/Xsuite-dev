@@ -6,7 +6,7 @@ $this->headScript()->appendFile('/js/multipleselect.js');
 
 <select name="liste_client" id="liste_client">
 
-<?php foreach($result as $value)
+<?php foreach($this->result as $value)
 {?>
 <option><?php echo $value['nom_client']; ?></option>
 <?php }?>
