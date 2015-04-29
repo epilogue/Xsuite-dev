@@ -8,6 +8,6 @@ $this->headScript()->appendFile('/js/multipleselect.js');
 
 <?php foreach($result as $value)
 {?>
-<option><?php $value['nomclient']?></option>
+<option><?php echo $value['nomclient']?></option>
 <?php }?>
 </select>
