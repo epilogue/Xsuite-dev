@@ -11,3 +11,5 @@ $this->headScript()->appendFile('/js/multipleselect.js');
 <option><?php echo $value['nom_client']; ?></option>
 <?php }?>
 </select>
+<?php foreach($result as $value)
+{ echo $value['nom_client']; }?>
