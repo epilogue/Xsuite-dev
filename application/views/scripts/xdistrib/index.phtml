@@ -39,7 +39,7 @@ $this->headTitle($this->title);
              <td><a href="<?php echo $this->url(array("controller"=>"xdistrib","action"=>"validatedrv","numwp"=>$result['num_workplace_demande_xdistrib']));?>" <button class="retour" id="validate-<?php echo $k; ?>">Valider</button></a></td>
         <?php } elseif($this->fonction == 32){?>
              <td><a href="<?php echo $this->url(array("controller"=>"xdistrib","action"=>"validatesupply","numwp"=>$result['num_workplace_demande_xdistrib']));?>" <button class="retour" id="validate-<?php echo $k; ?>">Valider</button></a></td>
-         <?php } elseif($this->fonction == 6){?>
+         <?php } elseif($this->fonction == 6  and $this->createur != $result['id_user']){?>
              <td><a href="<?php echo $this->url(array("controller"=>"xdistrib","action"=>"validatedd","numwp"=>$result['num_workplace_demande_xdistrib']));?>" <button class="retour" id="validate-<?php echo $k; ?>">Valider</button></a></td>
         <?php }elseif($this->fonction == 23){?>
              <td><a href="<?php echo $this->url(array("controller"=>"xdistrib","action"=>"validatefobfr","numwp"=>$result['num_workplace_demande_xdistrib']));?>" <button class="retour" id="validate-<?php echo $k; ?>">Valider</button></a></td>
