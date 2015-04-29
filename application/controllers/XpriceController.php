@@ -2803,7 +2803,7 @@ if($mailServiceClients[0]['mail_service_client']=='regionNord'){
     public function rechercheAction(){
         $clients= new Application_Model_DbTable_Clients();
         $result = $clients->rechercheClient();
-        echo '<pre>',  var_export($result),'</pre>';
+        //echo '<pre>',  var_export($result),'</pre>';
         $this->view->result=$result;
     }
 }
