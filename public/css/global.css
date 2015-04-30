@@ -766,3 +766,6 @@ span {
        width: 350px;
   }
 
+  span.custom-combobox{
+      width: 350px;
+  }
