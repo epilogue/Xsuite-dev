@@ -3,12 +3,14 @@ $this->title = 'Xprice/recherche';
 $this->headTitle($this->title);
 $this->headScript()->appendFile('/js/multipleselect.js');
 ?>
-<div class="ui-widget">
-<select name="liste_client" id="combobox">
-    <option value=''>entrez le nom du client </option>
-<?php foreach($this->result as $value)
-{?>
-<option value="<?php echo $value['id_client']; ?>"><?php echo $value['nom_client']; ?></option>
-<?php }?>
-</select>
-</div>
+<form>>
+    <div class="ui-widget">
+    <select name="liste_client" id="combobox">
+        <option value=''>entrez le nom du client </option>
+    <?php foreach($this->result1 as $value1)
+    {?>
+    <option value="<?php echo $value1['id_client']; ?>"><?php echo $value1['nom_client']; ?></option>
+    <?php }?>
+    </select>
+    </div>
+</form

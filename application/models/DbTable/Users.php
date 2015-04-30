@@ -141,5 +141,15 @@ class Application_Model_DbTable_Users extends Zend_Db_Table_Abstract {
         } else {
             return $rest;
         }
-}
+    }
+    public function rechercheUser() {
+       $sql="select * from users where id_fonction = 1 or id_fonction = 2  or id_fonction = 3";
+        $res = $this->getAdapter()->query($sql);
+        $rest=$res->fetchAll();
+        if (!$rest) {
+            return null;
+        } else {
+            return $rest;
+        }
+    }
 }
