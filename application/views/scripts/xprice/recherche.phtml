@@ -15,6 +15,9 @@ $this->headScript()->appendFile('/js/multipleselect.js');
                 <option value="<?php echo $value1['id_client']; ?>"><?php echo $value1['nom_client']; ?></option>
                 <?php }?>
             </select>
+        </div>
+         <div class="clear"></div>
+        <div class="ui-widget">
             <select name="liste_user" id="combobox1">
                  <option></option>
                 <?php foreach($this->result2 as $value2)
@@ -23,5 +26,7 @@ $this->headScript()->appendFile('/js/multipleselect.js');
                 <?php }?>
             </select>
         </div>
+          <div class="clear"></div>
     </form>
 </div>
+ <div class="clear"></div>
