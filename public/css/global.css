@@ -757,4 +757,10 @@ span {
     margin: 0;
     padding: 5px 10px;
   }
+  #widget1{
+      float:left;
+  }
+ #widget2{
+      float:right;
+  }
 
