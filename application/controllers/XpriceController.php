@@ -2805,7 +2805,7 @@ if($mailServiceClients[0]['mail_service_client']=='regionNord'){
         $clients= new Application_Model_DbTable_Clients();
         $result1 = $clients->rechercheClient();
         $users= new Application_Model_DbTable_Users();
-        $result = $clients->rechercheUser();
+        $result = $users->rechercheUser();
         //echo '<pre>',  var_export($result),'</pre>';
         $this->view->result1=$result1;
         $this->view->result2=$result2;
