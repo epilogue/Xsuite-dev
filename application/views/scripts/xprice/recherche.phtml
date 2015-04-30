@@ -6,17 +6,15 @@ $this->headScript()->appendFile('/js/multipleselect.js');
 <form>>
     <div class="ui-widget">
     <select name="liste_client" id="combobox">
-        <option value=''>entrez le nom du client </option>
     <?php foreach($this->result1 as $value1)
     {?>
     <option value="<?php echo $value1['id_client']; ?>"><?php echo $value1['nom_client']; ?></option>
     <?php }?>
     </select>
-        <select name="liste_user" id="combobox1">
-        <option value=''>entrez le nom du tc </option>
-    <?php foreach($this->result2 as $value)
+    <select name="liste_user" id="combobox1">
+    <?php foreach($this->result2 as $value2)
     {?>
-    <option value="<?php echo $value['id_user']; ?>"><?php echo $value['nom_user'] ; ?></option>
+    <option value="<?php echo $value2['id_user']; ?>"><?php echo $value2['nom_user'] ; ?></option>
     <?php }?>
     </select>
     </div>
