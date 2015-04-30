@@ -759,8 +759,10 @@ span {
   }
   #widget1{
       float:left;
+      width: 350px;
   }
  #widget2{
       float:right;
+       width: 350px;
   }
 
