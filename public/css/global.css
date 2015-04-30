@@ -758,6 +758,7 @@ span {
     padding: 5px 10px;
   }
   #widget1{
+      margin-left: 125px;
       float:left;
       width: 350px;
   }

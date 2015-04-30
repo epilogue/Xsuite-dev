@@ -9,6 +9,7 @@ $this->headScript()->appendFile('/js/multipleselect.js');
     <form>
         <div class="workplace">
             <div id="widget1" class="ui-widget">
+                <h4>recherche par client</h4>
                 <select name="liste_client" id="combobox">
                     <option></option>
                     <?php foreach($this->result1 as $value1)
@@ -18,6 +19,7 @@ $this->headScript()->appendFile('/js/multipleselect.js');
                 </select>
             </div>
             <div id="widget2" class="ui-widget">
+                 <h4>recherche par le commercial</h4>
                 <select name="liste_user" id="combobox1">
                      <option></option>
                     <?php foreach($this->result2 as $value2)
