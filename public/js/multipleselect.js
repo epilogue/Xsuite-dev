@@ -136,7 +136,9 @@
  
   $(function() {
     $( "#combobox" ).combobox();
+     $( "#combobox1" ).combobox();
     $( "#toggle" ).click(function() {
       $( "#combobox" ).toggle();
+       $( "#combobox1" ).toggle();
     });
   });
