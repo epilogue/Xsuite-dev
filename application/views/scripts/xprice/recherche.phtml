@@ -1,0 +1,36 @@
+<?php
+$this->title = 'Xprice/recherche';
+$this->headTitle($this->title);
+$this->headScript()->appendFile('/js/multipleselect.js');
+?>
+<div class="contenu">
+    <h2>Xprice</h2>
+    <h3>Recherche par client/Commercial des Xprices</h3> 
+    <form>
+        <div class="workplace">
+            <div id="widget1" class="ui-widget">
+                <h4>recherche par client</h4>
+                <select name="liste_client" id="combobox">
+                    <option></option>
+                    <?php foreach($this->result1 as $value1)
+                    {?>
+                    <option value="<?php echo $value1['id_client']; ?>"><?php echo $value1['nom_client']; ?></option>
+                    <?php }?>
+                </select>
+            </div>
+            <div id="widget2" class="ui-widget">
+                 <h4>recherche par le commercial</h4>
+                <select name="liste_user" id="combobox1">
+                     <option></option>
+                    <?php foreach($this->result2 as $value2)
+                    {?>
+                    <option value="<?php echo $value2['id_user']; ?>"><?php echo $value2['nom_user'] ; ?></option>
+                    <?php }?>
+                </select>
+            </div>
+              <div class="clear"></div>
+        </div>
+        <div class="clear"></div>
+    </form>
+</div>
+ <div class="clear"></div>

@@ -64,11 +64,12 @@ class XdistribController extends Zend_Controller_Action
      $holon =$user->id_holon; 
      $fonction=$user->id_fonction;
      //var_dump($fonction);
+     $this->view->createur=$user->id_user;
      $this->view->fonction=$fonction;
      if ($user->id_fonction == 1 || $user->id_fonction==2){
          $recapitulatif1 = new Application_Model_DbTable_Xdistrib();
          $recapitulatif2 = $recapitulatif1->searchByUser($user->id_user);
-         echo '<pre>',var_export($recapitulatif2),'</pre>';
+        // echo '<pre>',var_export($recapitulatif2),'</pre>';
          $r = array();
      for ($index = 0; $index < count($recapitulatif2); $index++) {
          if(($index +1) > count($recapitulatif2)-1) {
@@ -86,7 +87,7 @@ class XdistribController extends Zend_Controller_Action
      if($user->id_fonction == 6){
          $recapitulatif1 = new Application_Model_DbTable_Xdistrib();
          $recapitulatif2 = $recapitulatif1->searchforDD($user->id_user);
-          echo '<pre>',var_export($recapitulatif2),'</pre>';
+          //echo '<pre>',var_export($recapitulatif2),'</pre>';
          $r = array();
          for ($index = 0; $index < count($recapitulatif2); $index++) {
              if(($index +1) > count($recapitulatif2)-1) {

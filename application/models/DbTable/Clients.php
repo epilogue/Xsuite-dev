@@ -26,6 +26,15 @@ class Application_Model_DbTable_Clients extends Zend_Db_Table_Abstract {
         $this->insert($data);
         return $this;
     }
-
+public function rechercheClient() {
+       $sql="select * from clients";
+        $res = $this->getAdapter()->query($sql);
+        $rest=$res->fetchAll();
+        if (!$rest) {
+            return null;
+        } else {
+            return $rest;
+        }
+    }
 }
 
