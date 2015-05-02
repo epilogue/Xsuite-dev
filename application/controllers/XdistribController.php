@@ -890,6 +890,70 @@ if($this->getRequest()->isPost()){
         $this->view->fermeturevalide=$plop1['etat_validation'];
         $this->view->dateplop=$dateplop;
         $this->view->info_demande_xdistrib=$info_demande_xdistrib;
+        $encours = new Application_Model_DbTable_Validationsdemandexdistrib();
+        $encours1 = $encours->getValidForEncours($numwp);
+       $i = (count($encours1)-1);
+       $plop2=$encours1[$i]['etat_validation'] ;
+       $plop3=$encours1[$i]['nom_validation'] ;
+       if($plop2 =="validee" || $plop2=="validée"){
+        switch ($plop3) {
+            case "cdr":
+                $encoursFonction="Nicolas Thouin";
+                $encoursNom="encours";
+
+                break;
+            case "fobfr":
+                 $encoursFonction="Emmanuel Jourdain";
+                $encoursNom="encours";
+                break;
+            
+            case "supply":
+                 $encoursFonction="Alexandre Bauer";
+                $encoursNom="encours";
+                break;
+            
+            case "dbd":
+                 $encoursFonction="François Delauge";
+                $encoursNom="encours";
+                break;
+            default:
+                break;
+        }
+    }
+    elseif($plop2=="creation"){
+           $encoursFonction="chef de région";
+           $encoursNom="encours";
+       }
+    elseif($plop2=="enAttente"){
+        switch ($plop3) {
+        case "reponse":
+        $encoursFonction=$info_user['nom_user'].' '. $info_user['prenom_user'];
+        $encoursNom="encours"; 
+        break;
+        case "cdr":
+        $encoursFonction="chef de région";
+        $encoursNom="encours";
+        break;
+        case "fobfr":
+        $encoursFonction="Nicolas Thouin";
+        $encoursNom="encours";
+        break;
+
+        case "supply":
+        $encoursFonction="Emmanuel Jourdain";
+        $encoursNom="encours";
+        break;
+
+        case "dbd":
+        $encoursFonction="Alexandre Bauer";
+        $encoursNom="encours";
+        break;
+        default:
+        break;
+        }
+   }
+        $this->view->encoursFonction = $encoursFonction;
+        $this->view->encoursNom=$encoursNom;
     } 
     public function trackingAction(){
          $track = $this->getRequest()->getParam('tracking_number_demande_xdistrib', null);
@@ -1023,6 +1087,70 @@ if($this->getRequest()->isPost()){
             $usersValidations[$key]['fonction'] = $userValidationInfos['description_fonction'];
         }
         $this->view->usersValidations = $usersValidations;
+        $encours = new Application_Model_DbTable_Validationsdemandexdistrib();
+        $encours1 = $encours->getValidForEncours($numwp);
+       $i = (count($encours1)-1);
+       $plop2=$encours1[$i]['etat_validation'] ;
+       $plop3=$encours1[$i]['nom_validation'] ;
+       if($plop2 =="validee" || $plop2=="validée"){
+        switch ($plop3) {
+            case "cdr":
+                $encoursFonction="Nicolas Thouin";
+                $encoursNom="encours";
+
+                break;
+            case "fobfr":
+                 $encoursFonction="Emmanuel Jourdain";
+                $encoursNom="encours";
+                break;
+            
+            case "supply":
+                 $encoursFonction="Alexandre Bauer";
+                $encoursNom="encours";
+                break;
+            
+            case "dbd":
+                 $encoursFonction="François Delauge";
+                $encoursNom="encours";
+                break;
+            default:
+                break;
+        }
+    }
+    elseif($plop2=="creation"){
+           $encoursFonction="chef de région";
+           $encoursNom="encours";
+       }
+    elseif($plop2=="enAttente"){
+        switch ($plop3) {
+        case "reponse":
+        $encoursFonction=$info_user['nom_user'].' '. $info_user['prenom_user'];
+        $encoursNom="encours"; 
+        break;
+        case "cdr":
+        $encoursFonction="chef de région";
+        $encoursNom="encours";
+        break;
+        case "fobfr":
+        $encoursFonction="Nicolas Thouin";
+        $encoursNom="encours";
+        break;
+
+        case "supply":
+        $encoursFonction="Emmanuel Jourdain";
+        $encoursNom="encours";
+        break;
+
+        case "dbd":
+        $encoursFonction="Alexandre Bauer";
+        $encoursNom="encours";
+        break;
+        default:
+        break;
+        }
+   }
+        $this->view->encoursFonction = $encoursFonction;
+        $this->view->encoursNom=$encoursNom;
         $blocages=new Application_Model_DbTable_Validationsdemandexdistrib();
         $validationdbd="dbd";
         $blocage = $blocages->getValidation( $validationdbd, $info_demande_xdistrib['id_demande_xdistrib']);
@@ -1289,6 +1417,70 @@ if($this->getRequest()->isPost()){
             $usersValidations[$key]['fonction'] = $userValidationInfos['description_fonction'];
         }
         $this->view->usersValidations = $usersValidations;
+        $encours = new Application_Model_DbTable_Validationsdemandexdistrib();
+        $encours1 = $encours->getValidForEncours($numwp);
+       $i = (count($encours1)-1);
+       $plop2=$encours1[$i]['etat_validation'] ;
+       $plop3=$encours1[$i]['nom_validation'] ;
+       if($plop2 =="validee" || $plop2=="validée"){
+        switch ($plop3) {
+            case "cdr":
+                $encoursFonction="Nicolas Thouin";
+                $encoursNom="encours";
+
+                break;
+            case "fobfr":
+                 $encoursFonction="Emmanuel Jourdain";
+                $encoursNom="encours";
+                break;
+            
+            case "supply":
+                 $encoursFonction="Alexandre Bauer";
+                $encoursNom="encours";
+                break;
+            
+            case "dbd":
+                 $encoursFonction="François Delauge";
+                $encoursNom="encours";
+                break;
+            default:
+                break;
+        }
+    }
+    elseif($plop2=="creation"){
+           $encoursFonction="chef de région";
+           $encoursNom="encours";
+       }
+    elseif($plop2=="enAttente"){
+        switch ($plop3) {
+        case "reponse":
+        $encoursFonction=$info_user['nom_user'].' '. $info_user['prenom_user'];
+        $encoursNom="encours"; 
+        break;
+        case "cdr":
+        $encoursFonction="chef de région";
+        $encoursNom="encours";
+        break;
+        case "fobfr":
+        $encoursFonction="Nicolas Thouin";
+        $encoursNom="encours";
+        break;
+
+        case "supply":
+        $encoursFonction="Emmanuel Jourdain";
+        $encoursNom="encours";
+        break;
+
+        case "dbd":
+        $encoursFonction="Alexandre Bauer";
+        $encoursNom="encours";
+        break;
+        default:
+        break;
+        }
+   }
+        $this->view->encoursFonction = $encoursFonction;
+        $this->view->encoursNom=$encoursNom;
         $blocages=new Application_Model_DbTable_Validationsdemandexdistrib();
         $validationdbd="dbd";
         $blocage = $blocages->getValidation( $validationdbd, $info_demande_xdistrib['id_demande_xdistrib']);
@@ -1492,6 +1684,70 @@ if($this->getRequest()->isPost()){
             $usersValidations[$key]['fonction'] = $userValidationInfos['description_fonction'];
         }
         $this->view->usersValidations = $usersValidations;
+        $encours = new Application_Model_DbTable_Validationsdemandexdistrib();
+        $encours1 = $encours->getValidForEncours($numwp);
+       $i = (count($encours1)-1);
+       $plop2=$encours1[$i]['etat_validation'] ;
+       $plop3=$encours1[$i]['nom_validation'] ;
+       if($plop2 =="validee" || $plop2=="validée"){
+        switch ($plop3) {
+            case "cdr":
+                $encoursFonction="Nicolas Thouin";
+                $encoursNom="encours";
+
+                break;
+            case "fobfr":
+                 $encoursFonction="Emmanuel Jourdain";
+                $encoursNom="encours";
+                break;
+            
+            case "supply":
+                 $encoursFonction="Alexandre Bauer";
+                $encoursNom="encours";
+                break;
+            
+            case "dbd":
+                 $encoursFonction="François Delauge";
+                $encoursNom="encours";
+                break;
+            default:
+                break;
+        }
+    }
+    elseif($plop2=="creation"){
+           $encoursFonction="chef de région";
+           $encoursNom="encours";
+       }
+    elseif($plop2=="enAttente"){
+        switch ($plop3) {
+        case "reponse":
+        $encoursFonction=$info_user['nom_user'].' '. $info_user['prenom_user'];
+        $encoursNom="encours"; 
+        break;
+        case "cdr":
+        $encoursFonction="chef de région";
+        $encoursNom="encours";
+        break;
+        case "fobfr":
+        $encoursFonction="Nicolas Thouin";
+        $encoursNom="encours";
+        break;
+
+        case "supply":
+        $encoursFonction="Emmanuel Jourdain";
+        $encoursNom="encours";
+        break;
+
+        case "dbd":
+        $encoursFonction="Alexandre Bauer";
+        $encoursNom="encours";
+        break;
+        default:
+        break;
+        }
+   }
+        $this->view->encoursFonction = $encoursFonction;
+        $this->view->encoursNom=$encoursNom;
         if ($this->getRequest()->isPost()) {
             
             $date_validation = date("Y-m-d H:i:s");
@@ -2023,28 +2279,11 @@ if($this->getRequest()->isPost()){
                 $datasValidation['reponse'] = $datas['reponse'];
             }
             $commentId = $this->genererValidation($datasValidation);
-//            $mailServiceClient = new Application_Model_DbTable_Xdistrib();
-//            $mailServiceClients = $mailServiceClient->getServiceClient($numwp);
-//            if($mailServiceClients[0]['mail_service_client']=='regionNord'){
-//                $mailSC="regionnord@smc-france.fr";
-//            } elseif($mailServiceClients[0]['mail_service_client']== 'regionSud'){
-//                $mailSC="regionsud@smc-france.fr";
-//            }elseif($mailServiceClients[0]['mail_service_client']== 'regionEst'){
-//                $mailSC="regionest@smc-france.fr";
-//            }elseif($mailServiceClients[0]['mail_service_client']== 'regionOuest'){
-//                $mailSC="regionouest@smc-france.fr";
-//            }elseif ($mailServiceClients[0]['mail_service_client']== 'grandcompte'){
-//                $mailSC="SCommande@smc-france.fr";
-//            }elseif($mailServiceClients[0]['mail_service_client']=='' || $mailServiceClients[0]['mail_service_client']== NULL){
-//                $mailSC=$emailVars->listes->serviceClient;
-//            }
-//            elseif($mailServiceClients[0]['mail_service_client']== 'export'){
-//                $mailSC="export@smc-france.fr";
-//            }
+
             $mailSC="distributeurs@smc-france.fr";
             if (isset($datas['validation']) && $datas['validation'] == "validee") {
                 $params1 = array();
-                if ($margemin == true and $datas['mamo']< 10){
+                if ($margemin == true or $datas['mamo']< 10){
                     $params1['destinataireMail'] = $emailVars->listes->Dirco;
                     if (!is_null($commentId)) {
                         $params1['url'] = "http://{$_SERVER['SERVER_NAME']}/xdistrib/validatedirco/numwp/{$numwp}";

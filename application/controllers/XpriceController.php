@@ -1142,7 +1142,7 @@ elseif($mailServiceClients[0]['mail_service_client']== 'export'){
                 $params1 = array();
                 
                 
-                 if ($margemin == true and $datas['mamo']< 10){
+                 if ($margemin == true or $datas['mamo']< 10){
                  // $params['destinataireMail'] = $info_user['email_user'] ;
                   $params1['destinataireMail'] = $emailVars->listes->Dirco;
                 if (!is_null($commentId)) {
