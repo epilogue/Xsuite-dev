@@ -86,7 +86,7 @@ class Application_Model_DbTable_Xdistrib extends Zend_Db_Table_Abstract {
                 . "join clients on clients.numwp_client = demande_xdistrib.numwp_client "
                 . "join users on users.id_user = demande_xdistrib.id_user"
                 
-                . " where demande_xdistrib.tracking_number_demande_xdistrib like '{$tracking1}%' or demande_xdistrib.tracking_number_demande_xdistrib like '{$tracking2}%' order by demande_xdistrib.date_demande_xdistrib desc";
+                . " where demande_xdistrib.tracking_number_demande_xdistrib like '{$tracking1}%' or demande_xdistrib.tracking_number_demande_xdistrib like '{$tracking2}%' order by demande_xdistrib.date_demande_xdistrib desc,validations_demande_xdistrib.date_validation asc";
        
         $res = $this->getAdapter()->query($sql);
         $rest=$res->fetchAll();
@@ -100,7 +100,7 @@ class Application_Model_DbTable_Xdistrib extends Zend_Db_Table_Abstract {
         $sql="SELECT demande_xdistrib.id_demande_xdistrib, `num_workplace_demande_xdistrib`,demande_xdistrib. tracking_number_demande_xdistrib,users.nom_user,  `date_demande_xdistrib`, demande_xdistrib. id_user, client_distrib.nom_client,validations_demande_xdistrib.etat_validation  FROM `demande_xdistrib` 
 join users on users.id_user=demande_xdistrib.id_user
 join client_distrib on client_distrib.numwp_client = demande_xdistrib.numwp_client
-join validations_demande_xdistrib on validations_demande_xdistrib.id_demande_xdistrib = demande_xdistrib.id_demande_xdistrib order by demande_xdistrib.date_demande_xdistrib desc";
+join validations_demande_xdistrib on validations_demande_xdistrib.id_demande_xdistrib = demande_xdistrib.id_demande_xdistrib order by demande_xdistrib.date_demande_xdistrib desc, validations_demande_xdistrib.date_validation asc";
    $res = $this->getAdapter()->query($sql);
         $rest=$res->fetchAll();
         if (!$rest) {
@@ -114,7 +114,7 @@ join validations_demande_xdistrib on validations_demande_xdistrib.id_demande_xdi
                 . "join client_distrib on client_distrib.numwp_client = demande_xdistrib.numwp_client"
                   . " join validations_demande_xdistrib on validations_demande_xdistrib.id_demande_xdistrib = demande_xdistrib.id_demande_xdistrib "
                   . " join users on users.id_user=demande_xdistrib.id_user "
-                . " where demande_xdistrib.id_dd =$id order by demande_xdistrib.date_demande_xdistrib desc";
+                . " where demande_xdistrib.id_dd =$id order by demande_xdistrib.date_demande_xdistrib desc,validations_demande_xdistrib.date_validation asc";
         $res = $this->getAdapter()->query($sql);
         $rest=$res->fetchAll();
         if (!$rest) {

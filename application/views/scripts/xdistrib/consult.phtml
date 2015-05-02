@@ -3,8 +3,10 @@ $this->title = 'Xdistrib/visualisation';
 $this->headTitle($this->title);
 $this->headScript()->appendFile('/js/controllers/xprice/affiche_masque_commentaires.js');
 $this->headScript()->appendFile('/js/controllers/xprice/afficher_masquer_validations.js');
+$this->headScript()->appendFile('/js/controllers/xprice/fermeturevalide.js');
 ?>
 <div id="plop3" class="contenu">
+        <input id="fermeturevalide"  type="hidden" visibility="hidden" value ="<?php echo $this->fermeturevalide; ?>" class="fermeture">
     <h2>Consultation de l'offre Xdistrib : <?php echo $this->numwp; ?></h2>
     <h2>Consultation de l' offre</h2>
     <div id='workplace' class="workplace">
@@ -118,10 +120,18 @@ $this->headScript()->appendFile('/js/controllers/xprice/afficher_masquer_validat
                 <tr>
                     <td>Références produits</td>
                     <td>Quantité</td>
-                    <td>Prix Achat actuel DISTRIBUTEUR</td>
-                    <td>Prix Achat demandé DISTRIBUTEUR</td>
-                    <td>Prix Conseillé CLIENT FINAL</td>
+                    <td>Prix Achat actuel Distrib</td>
+                    <td>Prix Achat demandé Distrib</td>
+                    <td>Prix Conseillé Client</td>
                     <td>Remise référence ou série</td>
+                    <td>Prix Accordés</td>
+                     <td>Remises Accordées</td>
+                     <?php if($this->utilisateur =='5' or $this->utilisateur== '13'  or $this->utilisateur== '29'){ ?>
+                    <th>Prix cif</th>
+                    <th>Prix fob</th>
+                    
+                    <th>Marge</th><?php } else {}?>
+                </tr>
                 </tr>
                 <?php foreach($this->article_info as $value){ ?>
                 <tr>
@@ -131,7 +141,79 @@ $this->headScript()->appendFile('/js/controllers/xprice/afficher_masquer_validat
                     <td><?php echo $value['prix_demande_article']; ?></td>
                     <td><?php echo $value['prix_client_final']; ?></td>
                     <td><?php echo $value['serie']; ?></td>
-                </tr> <?php }?>
+                   <?php if ( $value['prix_demande_article'] != $value['prix_accorde_demande_article']){ ?>
+                        <td style="background-color: yellow;"><?php echo number_format($value['prix_accorde_demande_article'],2,'.',' ') ; ?></td>
+                        <td style="background-color: yellow;"><?php echo $value['remise_accorde_demande_article'] . "%"; ?></td>
+                        <?php }else{?>
+                        <td><?php echo number_format($value['prix_accorde_demande_article'],2,'.',' ') ; ?></td>
+                        <td><?php echo $value['remise_accorde_demande_article'] . "%"; ?></td>
+                        <?php }?>
+                         <?php if($this->utilisateur =='5' or $this->utilisateur== '13' or $this->utilisateur =='29'){ ?>
+                        <td><?php echo number_format($value['prix_cif_demande_article'],2,'.',' ') ; ?></td>
+                        <td><?php echo number_format($value['prix_fob_demande_article'],2,'.',' ') ; ?></td>
+                        <td><?php echo $value['marge_demande_article'] . "%"; ?></td><?php } else {}?>
+                    </tr>
+                <?php } ?>
+                     <?php if($this->utilisateur =='5' or $this->utilisateur== '13' or $this->utilisateur =='29'){ ?>
+                       <tr>
+                            <td colspan="2">total</td>
+                            <td colspan="1" ><input class="cab" id="cab-affiche"
+                               <?php $cab=0;foreach($this->article_info as $value)
+                                {$cab+=($value['quantite_demande_article']*$value['prix_achat_actuel']);
+                            
+                            } ?>value="<?php $cab2=number_format($cab,2,'.',' ');echo $cab2; ?>">
+                                <input id="cab" type="hidden" class="calculHidden" value="<?php echo $cab; ?>" >
+                            </td>
+                            <td><input class="cat" id="cat-affiche"
+                               <?php $cat=0;foreach($this->article_info as $value)
+                                {$cat+=($value['quantite_demande_article']*$value['prix_demande_article']);
+                            
+                            } ?>value="<?php $cat2=number_format($cat,2,'.',' ');echo $cat2; ?>">
+                                <input id="cat" type="hidden" class="calculHidden" value="<?php echo $cat; ?>" ></td>
+                            <td><input class="car" id="car-affiche"
+                               <?php $car=0;foreach($this->article_info as $value)
+                                {$car+=($value['quantite_demande_article']*$value['prix_client_final']);
+                            
+                            } ?>value="<?php $car2=number_format($car,2,'.',' ');echo $car2; ?>">
+                                <input id="car" type="hidden" class="calculHidden" value="<?php echo $car; ?>" ></td>
+                             <td></td>
+                            <td >
+                                <input id="caat-affiche" <?php $CAa=0; foreach($this->article_info as $value){
+                                    $CAa+=(($value['prix_accorde_demande_article'])*$value['quantite_demande_article']);
+                                    }?>  value ="<?php echo number_format($CAa, 2, '.', ' '); ?>" >
+                                <input id="caat" type="hidden" class="calculHidden" value="<?php echo $CAa; ?>" >
+                            </td>
+                            <td><input id="mo"  <?php $mo=100*(1-($CAa/$cab));?> value="<?php echo round($mo,2)."%"; ?>"></td>
+                           <td >
+                               <input  id="ccif-affiche"<?php $Ccif=0; foreach($this->article_info as $value){
+                                    $Ccif+=($value['quantite_demande_article']*$value['prix_cif_demande_article']);
+                                }?> value="<?php echo number_format($Ccif, 2, '.', ' '); ?>">
+                                <input id="ccif" type="hidden" class="calculHidden" value="<?php echo $Ccif; ?>" >
+                            </td>
+                             <td ><?php $Cfob=0; foreach($this->article_info as $value){
+                                    $Cfob+=($value['quantite_demande_article']*$value['prix_fob_demande_article']);
+                                }$Cfob2=number_format($Cfob,2,'.',' '); echo $Cfob2; ?>
+                            </td><td><input id="mamo"<?php $mamo = 100*(1-($Ccif/$CAa))?> value ="<?php echo round($mamo,2)."%";?>"></td>
+                            
+                        </tr><?php } elseif($this->utilisateur == '10') {?>
+                        <tr>
+                            <td colspan="2">total</td>
+                            <td colspan="2" ><input class="cab" id="cab-affiche"
+                               <?php $cab=0;foreach($this->article_info as $value)
+                                {$cab+=($value['quantite_demande_article']*$value['prix_tarif']);
+                            
+                            } ?>value="<?php $cab2=number_format($cab,2,'.',' ');echo $cab2; ?>">
+                                <input id="cab" type="hidden" class="calculHidden" value="<?php echo $cab; ?>" >
+                            </td>
+                            <td colspan="2"></td>
+                            <td >
+                                <input id="caat-affiche" <?php $CAa=0; foreach($this->info_demande_article_xprice as $value){
+                                    $CAa+=(($value['prix_accorde_demande_article'])*$value['quantite_demande_article']);
+                                    }?>  value ="<?php echo number_format($CAa, 2, '.', ' '); ?>" >
+                                <input id="caat" type="hidden" class="calculHidden" value="<?php echo $CAa; ?>" >
+                            </td>
+                            <td><input id="mo"  <?php $mo=100*(1-($CAa/$cab));?> value="<?php echo round($mo,2)."%"; ?>"></td>
+                 <?php }?></tr>
             </table>
         </fieldset>
     </div>

@@ -703,8 +703,8 @@ if($this->getRequest()->isPost()){
                     $art['quantite'],
                     $art['serie'],
                     $art['date'],
-                    null,
-                    null,
+                    $art['prix_achat_demande_distrib'],
+                    round(100 - ( $art['prix_achat_demande_distrib'] * 100 / $art['prix_tarif']), 2),
                     $art['prix_fob'], 
                     $art['prix_cif'],
                     $marge_demande_article,
@@ -825,6 +825,9 @@ if($this->getRequest()->isPost()){
     public function consultAction()
     {
         $numwp = $this->getRequest()->getParam('numwp', null);
+        $user = $this->_auth->getStorage()->read();
+        $this->view->utilisateur=$user->id_fonction;
+        $tiltop = $user->id_user;
         $this->view->numwp = $numwp;
         $infos_demande_xdistrib= new Application_Model_DbTable_Xdistrib();
         $info_demande_xdistrib = $infos_demande_xdistrib->getNumwp($numwp);
@@ -1858,6 +1861,7 @@ if($this->getRequest()->isPost()){
         $this->view->distrib_info=$distrib_info;
         $this->view->info_demande_xdistrib=$info_demande_xdistrib;
         $this->nom_validation = $nom_validation;
+        echo '<pre>',  var_export($article_info),'</pre>';
         $blocages=new Application_Model_DbTable_Validationsdemandexdistrib();
         $blocage = $blocages->getValidation($nom_validation, $info_demande_xdistrib['id_demande_xdistrib']);
         foreach ($blocage as $blocs){
