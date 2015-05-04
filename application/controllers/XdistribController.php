@@ -3146,6 +3146,9 @@ if($this->getRequest()->isPost()){
         $distrib_info=$info_distrib->getDistributeurnumwp($numwp_dis);
         $info_article=new Application_Model_DbTable_DemandeArticlexdistrib();
         $article_info= $info_article->getDemandeArticlexdistrib($numwp);
+        $info_client=new Application_Model_DbTable_ClientDistrib();
+        $client_info=$info_client->getClientdistrib($info_demande_xdistrib['numwp_client']);
+        $this->view->client_distrib=$client_info;
         $this->view->article_info=$article_info;
         $this->view->info_distrib=$distrib_info;
         $this->view->info_demande_xdistrib=$info_demande_xdistrib;
