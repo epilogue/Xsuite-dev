@@ -196,8 +196,8 @@ $this->headScript()->appendFile('/js/controllers/xprice/afficher_masquer_validat
                          <td><input class="pda" id="pda-<?php echo $k; ?>" value="<?php echo $value['prix_accorde_demande_article']; ?>" name="<?php echo 'prix_accorde_article[]' ?>" style="background-color: #74aaca;"></td>
                         <td><input class="ra" id="ra-<?php echo $k; ?>" value="<?php echo $value['remise_accorde_demande_article']; ?>" name="<?php echo 'remise_accorde_article[]' ?>" style="background-color: #74aaca;"></td>
                         <td><input class="ma" id="ma-<?php echo $k;?>" <?php $ma=100*(1-($value['prix_cif_demande_article']/$value['prix_accorde_demande_article']));?> value="<?php  echo round($ma,2)."%" ;?>" name="marge[]"></td>
-                        <td><input type=""  class="caa" id="caa-<?php echo $k;?>"  value="<?php echo round((($value['prix_tarif'])*$value['quantite_demande_article']),2); ?>" name="caa" style="background-color:yellow;">
-                        <input type=""  class="pwp" id="pwp-<?php echo $k;?>"  value="<?php echo $value['prix_tarif']; ?>" name="ptarif" >
+                        <td><input type="hidden"  class="caa" id="caa-<?php echo $k;?>"  value="<?php echo round((($value['prix_tarif'])*$value['quantite_demande_article']),2); ?>" name="caa" style="background-color:yellow;">
+                        <input type="hidden"  class="pwp" id="pwp-<?php echo $k;?>"  value="<?php echo $value['prix_tarif']; ?>" name="ptarif" >
                         </td>
                     </tr> <?php }?>
                     <tr>
