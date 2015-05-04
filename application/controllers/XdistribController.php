@@ -2322,7 +2322,7 @@ if($this->getRequest()->isPost()){
                 $params5 = array();
                 $params6 = array();
                 $params7 = array();
-                $params7['destinataireMail']=/*$maildevdistrib;*/"mhuby@smc-france.fr";
+                $params7['destinataireMail']=$maildevdistrib;
                 $params7['url']="http://{$_SERVER['SERVER_NAME']}/xdistrib/avenant/numwp/{$numwp}";
                 $params7['corpsMail'] = "Bonjour,\n"
                         . "\n"
@@ -2333,7 +2333,7 @@ if($this->getRequest()->isPost()){
                         . "Cordialement,\n"
                         . "\n"
                         . "--\n"
-                        . "Directeur Commercial.";
+                        . "dbd.";
                 $params7['sujet'] = " Xdistrib :demande Xdistrib  $trackingNumber/$numwp pour le client $nomclients validée par Directeur Commercial/ lien pour Avenant .";
                 $this->sendEmail($params7);
                     $params2['destinataireMail'] =$user_info['email_user']; 
