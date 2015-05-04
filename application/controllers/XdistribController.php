@@ -2541,7 +2541,7 @@ if($this->getRequest()->isPost()){
     public function validatedircoAction(){
         $user = $this->_auth->getStorage()->read();
         $tiltop = $user->id_user;
-        $this->view->dirco = $tiltop;
+        $this->view->dircouser = $tiltop;
         $numwp = $this->getRequest()->getParam('numwp', null);
         $this->view->numwp = $numwp; 
         $nom_validation = 'dirco';
@@ -2737,7 +2737,7 @@ if($this->getRequest()->isPost()){
             $params3=  array();
             $params4=  array();
             $params5 = array();
-            if (isset($formData['validation']) && $formData['validation'] == "fermee") {
+            if (isset($datas['validation']) && $datas['validation'] == "fermee") {
                 $params['destinataireMail'] =/* $info_user['email_user'];*/"mhuby@smc-france.fr";
                 $params['url'] = "http://{$_SERVER['SERVER_NAME']}/xdistrib/consult/numwp/{$numwp}";
                 $params['corpsMail'] = "Bonjour,\n"
@@ -2906,7 +2906,7 @@ if($this->getRequest()->isPost()){
                 $redirector = $this->_helper->getHelper('Redirector');
                 $redirector->gotoSimple('index', 'xdistrib');
                 
-            } elseif (isset($formData['validation']) && $formData['validation'] == 'enAttente') {
+            } elseif (isset($datas['validation']) && $datas['validation'] == 'enAttente') {
                 $emailVars = Zend_Registry::get('emailVars');
                 $params['destinataireMail'] =/*$info_user['email_user'] ;*/"mhuby@smc-france.fr";
                 if (!is_null($commentId)) {
@@ -2932,7 +2932,7 @@ if($this->getRequest()->isPost()){
                 $flashMessenger->addMessage($message);
                 $redirector = $this->_helper->getHelper('Redirector');
                 $redirector->gotoSimple('index', 'xdistrib');
-            } elseif (isset($formData['validation']) && $formData['validation'] == 'nonValide') {
+            } elseif (isset($datas['validation']) && $datas['validation'] == 'nonValide') {
                 $emailVars = Zend_Registry::get('emailVars');
                 $params['destinataireMail'] =/* $info_user['email_user'];*/"mhuby@smc-france.fr";
                 if (!is_null($commentId)) {

@@ -284,7 +284,7 @@ $this->headScript()->appendFile('/js/controllers/xprice/afficher_masquer_validat
             <input type="radio" checked="checked" name="validation" value="enAttente">  en attente de réponse<br>
            <input hidden="hidden" name="nom_validation" value="validation_dirco">
             <input hidden="hidden" name="date_validation" value="<?php echo date("Y-m-d H:i:s") ?>">
-            <input hidden="hidden" name="dirco" value="<?php echo $this->dbd; ?>">
+            <input hidden="hidden" name="dirco" value="<?php echo $this->dircouser; ?>">
             <input hidden="hidden" name="tracking" value="<?php echo $this->info_demande_xdistrib['tracking_number_demande_xdistrib']; ?>">
         </div>
         <input class="submit" type="submit" value="enregistrer statut offre">
