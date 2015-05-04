@@ -2572,6 +2572,9 @@ if($this->getRequest()->isPost()){
         $fonctioncreateur = $user_info['id_fonction'];
         $info_service = new Application_Model_DbTable_ServiceDistrib();
         $service_info = $info_service->getService($numwp);
+        $developpeurdistribs=new Application_Model_DbTable_Users;
+        $developpeurdistrib=$developpeurdistribs->getUser($info_demande_xdistrib['id_dd']);
+        $maildevdistrib=$developpeurdistrib['mail_user'];
         $this->view->service_info=$service_info;
         $this->view->contexte_info = $contexte_info;
         $this->view->concurrent_info=$concurrent_info;
@@ -2738,7 +2741,20 @@ if($this->getRequest()->isPost()){
             $params3=  array();
             $params4=  array();
             $params5 = array();
+            $params6 = array();
             if (isset($datas['validation']) && $datas['validation'] == "fermee") {
+                $params6['destinataireMail']=/*$maildevdistrib;*/"mhuby@smc-france.fr";
+                $params6['url']="http://{$_SERVER['SERVER_NAME']}/xdistrib/avenant/numwp/{$numwp}";
+                $params6['corpsMail'] = "Bonjour,\n"
+                        . "\n"
+                        . "Votre demande Xdistrib $trackingNumber/$numwp pour le client $nomclients a été validée par le Directeur Commercial .\n"
+                        . "Veuillez compléter et imprimer cette demande à cette adresse url : \n"
+                        . "%s"
+                        . "\n\n"
+                        . "Cordialement,\n"
+                        . "\n"
+                        . "--\n"
+                        . "Directeur Commercial.";
                 $params['destinataireMail'] =/* $info_user['email_user'];*/"mhuby@smc-france.fr";
                 $params['url'] = "http://{$_SERVER['SERVER_NAME']}/xdistrib/consult/numwp/{$numwp}";
                 $params['corpsMail'] = "Bonjour,\n"
@@ -2753,6 +2769,8 @@ if($this->getRequest()->isPost()){
                         . "Directeur Commercial.";
                 $params['sujet'] = " Xdistrib :demande Xdistrib  $trackingNumber/$numwp pour le client $nomclients validée par Directeur Commercial.";
                 $this->sendEmail($params);
+                 $params6['sujet'] = " Xdistrib :demande Xdistrib  $trackingNumber/$numwp pour le client $nomclients validée par Directeur Commercial/ lien pour Avenant .";
+                $this->sendEmail($params6);
                 $params1['destinataireMail'] =$mailSC;
                 $params1['url'] = "http://{$_SERVER['SERVER_NAME']}/xdistrib/consult/numwp/{$numwp}";
                 $params1['corpsMail'] = "Bonjour,\n"
