@@ -2529,11 +2529,15 @@ if($this->getRequest()->isPost()){
                 $redirector->gotoSimple('index', 'xdistrib');
             } elseif (isset($datas['validation']) && $datas['validation'] == 'nonValide') {
                 $params = array();
+                $params1 = array();
                 $params['destinataireMail'] =$user_info['email_user'];
+                $params1['destinataireMail'] =$maildevdistrib;
                 if (!is_null($commentId)) {
                     $params['url'] = "http://{$_SERVER['SERVER_NAME']}/xdistrib/consult/numwp/{$numwp}/com/{$commentId}";
+                    $params1['url'] = "http://{$_SERVER['SERVER_NAME']}/xdistrib/consult/numwp/{$numwp}/com/{$commentId}";
                 } else {
                     $params['url'] = "http://{$_SERVER['SERVER_NAME']}/xdistrib/consult/numwp/{$numwp}";
+                    $params1['url'] = "http://{$_SERVER['SERVER_NAME']}/xdistrib/consult/numwp/{$numwp}";
                 }
                 $params['corpsMail'] = "Bonjour,\n"
                         . "\n"
@@ -2545,8 +2549,20 @@ if($this->getRequest()->isPost()){
                         . "\n"
                         . "--\n"
                         . "dbd.";
+                $params1['corpsMail'] = "Bonjour,\n"
+                        . "\n"
+                        . "Votre demande Xdistrib $tracking/$numwp pour le client $nomclients est non validée par dbd .\n"
+                        . "Vous pouvez la consulter à cette adresse url : \n"
+                        . "%s"
+                        . "\n\n"
+                        . "Cordialement,\n"
+                        . "\n"
+                        . "--\n"
+                        . "dbd.";
                 $params['sujet'] = "  Xdistrib :demande Xdistrib $tracking/$numwp pour le client $nomclients non validée par dbd.";
+                $params1['sujet'] = "  Xdistrib :demande Xdistrib $tracking/$numwp pour le client $nomclients non validée par dbd.";
                 $this->sendEmail($params);
+                $this->sendEmail($params1);
 
                 $flashMessenger = $this->_helper->getHelper('FlashMessenger');
                 $message = "l'offre $numwp n'a pas été validée.";
