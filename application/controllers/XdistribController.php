@@ -2118,7 +2118,7 @@ if($this->getRequest()->isPost()){
         $this->view->distrib_info=$distrib_info;
         $this->view->info_demande_xdistrib=$info_demande_xdistrib;
         $this->nom_validation = $nom_validation;
-        echo '<pre>',  var_export($article_info),'</pre>';
+        //echo '<pre>',  var_export($article_info),'</pre>';
         $blocages=new Application_Model_DbTable_Validationsdemandexdistrib();
         $blocage = $blocages->getValidation($nom_validation, $info_demande_xdistrib['id_demande_xdistrib']);
         foreach ($blocage as $blocs){
@@ -2729,24 +2729,7 @@ if($this->getRequest()->isPost()){
                 $datasValidation['reponse'] = $datas['reponse'];
             }
             $commentId = $this->genererValidation($datasValidation);
-//            $mailServiceClient = new Application_Model_DbTable_Xdistrib();
-//            $mailServiceClients = $mailServiceClient->getServiceClient($numwp);
-//            if($mailServiceClients[0]['mail_service_client']=='regionNord'){
-//                $mailSC="regionnord@smc-france.fr";
-//            } elseif($mailServiceClients[0]['mail_service_client']== 'regionSud'){
-//                $mailSC="regionsud@smc-france.fr";
-//            }elseif($mailServiceClients[0]['mail_service_client']== 'regionEst'){
-//                $mailSC="regionest@smc-france.fr";
-//            }elseif($mailServiceClients[0]['mail_service_client']== 'regionOuest'){
-//                $mailSC="regionouest@smc-france.fr";
-//            }elseif ($mailServiceClients[0]['mail_service_client']== 'grandcompte'){
-//                $mailSC="SCommande@smc-france.fr";
-//            }elseif($mailServiceClients[0]['mail_service_client']=='' || $mailServiceClients[0]['mail_service_client']== NULL){
-//                $mailSC=$emailVars->listes->serviceClient;
-//            }
-//            elseif($mailServiceClients[0]['mail_service_client']== 'export'){
-//                $mailSC="export@smc-france.fr";
-//            }
+
             $mailSC="distributeurs@smc-france.fr";
             $params = array();
             $params1 =array();
@@ -3099,6 +3082,9 @@ if($this->getRequest()->isPost()){
             $redirector = $this->_helper->getHelper('Redirector');
             $redirector->gotoSimple('index', 'xdistrib');
         }
+    }
+    public function avenantAction(){
+        
     }
 }
 
