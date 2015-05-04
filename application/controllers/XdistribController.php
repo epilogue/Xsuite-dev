@@ -2574,7 +2574,7 @@ if($this->getRequest()->isPost()){
         $service_info = $info_service->getService($numwp);
         $developpeurdistribs=new Application_Model_DbTable_Users;
         $developpeurdistrib=$developpeurdistribs->getUser($info_demande_xdistrib['id_dd']);
-        $maildevdistrib=$developpeurdistrib['mail_user'];
+        $maildevdistrib=$developpeurdistrib['email_user'];
         $this->view->service_info=$service_info;
         $this->view->contexte_info = $contexte_info;
         $this->view->concurrent_info=$concurrent_info;
