@@ -2547,10 +2547,10 @@ if($this->getRequest()->isPost()){
         $nom_validation = 'dirco';
         $infos_demande_xdistrib = new Application_Model_DbTable_Xdistrib();
         $info_demande_xdistrib = $infos_demande_xdistrib->getNumwp($numwp);
-//        $dateinit=$info_demande_xdistrib['date_demande_xdistrib'];
-//        $date = DateTime::createFromFormat('Y-m-d', $dateinit);
-//        $dateplop = $date->format('d/m/Y');
-//        $this->view->dateplop=$dateplop;
+        $dateinit=$info_demande_xdistrib['date_demande_xdistrib'];
+        $date = DateTime::createFromFormat('Y-m-d', $dateinit);
+        $dateplop = $date->format('d/m/Y');
+        $this->view->dateplop=$dateplop;
         $numwp_dis=  substr($info_demande_xdistrib['numwp_distributeur'], 0, 6);
         $info_distrib=new Application_Model_DbTable_Distributeurs();
         $distrib_info=$info_distrib->getDistributeurnumwp($numwp_dis);
