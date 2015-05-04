@@ -1,7 +1,8 @@
 <?php
 $this->title = 'Xdistrib/accueil';
 $this->headTitle($this->title);
-$this->headScript()->appendFile('/js/controllers/xprice/recalculeprix_marge.js');
+/*$this->headScript()->appendFile('/js/controllers/xprice/recalculeprix_marge.js');*/
+$this->headScript()->appendFile('/js/controllers/Xdistrib/calculRemiseDistrib.js');
 $this->headScript()->appendFile('/js/numFormat.js');
 $this->headScript()->appendFile('/js/controllers/xprice/afficher_masquer_validations.js');
 ?>
@@ -169,14 +170,15 @@ $this->headScript()->appendFile('/js/controllers/xprice/afficher_masquer_validat
                         <td>Code Article</td>
                         <td>Références produits</td>
                         <td>Quantité</td>
-                        <td>Prix Achat actuel DISTRIBUTEUR</td>
-                        <td>Prix Achat demandé DISTRIBUTEUR</td>
-                        <td>Prix Conseillé CLIENT FINAL</td>
-                        <td>Remise référence ou série</td>
+                        <td>Remise Distrib</td>
+                        <td>Prix demandé Distrib</td>
+                        <td>Prix Conseillé Client</td>
+                        <td>Marge Distrib</td>
+                        <td>Remise réf ou série</td>
                         <td>Prif fob</td>
                         <td>Prix cif</td>
                         <td>prix accordé</td>
-                        <td>remise accordée</td>
+                        <td>remise supp</td>
                         <td>marge</td>
                     </tr>
                     <?php foreach($this->article_info as $k=>$value){ ?>
@@ -184,22 +186,25 @@ $this->headScript()->appendFile('/js/controllers/xprice/afficher_masquer_validat
                         <td><input readonly="readonly" value="<?php echo $value['code_article'] ?>"  name="<?php echo 'code_article[]'; ?>"></td>
                         <td style="width: 70px;"><?php echo $value['reference_article']; ?></td>
                         <td id="qt-<?php echo $k; ?>"><?php echo $value['quantite_demande_article']; ?></td>
-                        <td id="pwp-<?php echo $k; ?>"><?php echo $value['prix_achat_actuel']; ?></td>
+                        <td><?php $remiseDistrib= (100-(100*$value['prix_achat_actuel'])/$value['prix_tarif']);  echo round($remiseDistrib,2).'%'; ?></td>
                         <td id="pd-<?php echo $k; ?>"><?php echo $value['prix_demande_article']; ?></td>
                         <td><?php echo $value['prix_client_final']; ?></td>
+                        <td><?php $margeDistrib = 1-($value['prix_demande_article']/$value['prix_client_final']); echo round($margeDistrib,2); ?></td>
                         <td><?php echo $value['serie']; ?></td>
                         <td><input readonly="readonly" class="fob" id="fob-<?php echo $k;?>" type="text" name="fob[]" value="<?php echo $value['prix_fob_demande_article']; ?>"></td><input class="totfob" type="hidden" id="totfob-<?php echo $k;?>" value ="<?php echo $value['quantite_demande_article']*$value['prix_fob_demande_article']; ?>">
                         <td id="cif-<?php echo $k; ?>"><?php echo $value['prix_cif_demande_article']; ?></td>
                          <td><input class="pda" id="pda-<?php echo $k; ?>" value="<?php echo $value['prix_accorde_demande_article']; ?>" name="<?php echo 'prix_accorde_article[]' ?>" style="background-color: #74aaca;"></td>
-                        <td><input class="ra" id="ra-<?php echo $k; ?>" value="<?php echo $value['remise_accorde_demande_article'] . "%"; ?>" name="<?php echo 'remise_accorde_article[]' ?>" style="background-color: #74aaca;"></td>
+                        <td><input class="ra" id="ra-<?php echo $k; ?>" value="<?php echo $value['remise_accorde_demande_article']; ?>" name="<?php echo 'remise_accorde_article[]' ?>" style="background-color: #74aaca;"></td>
                         <td><input class="ma" id="ma-<?php echo $k;?>" <?php $ma=100*(1-($value['prix_cif_demande_article']/$value['prix_accorde_demande_article']));?> value="<?php  echo round($ma,2)."%" ;?>" name="marge[]"></td>
-                        <td><input type="hidden"  class="caa" id="caa-<?php echo $k;?>"  value="<?php echo round((($value['prix_accorde_demande_article'])*$value['quantite_demande_article']),2); ?>" name="caa" style="background-color:yellow;"></td>
+                        <td><input type="hidden"  class="caa" id="caa-<?php echo $k;?>"  value="<?php echo round((($value['prix_tarif'])*$value['quantite_demande_article']),2); ?>" name="caa" style="background-color:yellow;">
+                        <input type="hidden"  class="pwp" id="pwp-<?php echo $k;?>"  value="<?php echo $value['prix_tarif']; ?>" name="ptarif" >
+                        </td>
                     </tr> <?php }?>
                     <tr>
                             <td colspan="3">total</td>
-                            <td><input class="cab" id="cab-affiche"
+                            <td><input  type ="hidden" class="cab" id="cab-affiche"
                                <?php $cab=0;foreach($this->article_info as $result)
-                                {$cab+=($result['quantite_demande_article']*$result['prix_achat_actuel']);
+                                {$cab+=($result['quantite_demande_article']*$result['prix_tarif']);
                             
                             } ?>value="<?php echo number_format($cab, 2, '.', ' '); ?>">
                                 <input type="hidden" id="cab" class="calculHidden" value="<?php echo $cab; ?>">
@@ -216,6 +221,7 @@ $this->headScript()->appendFile('/js/controllers/xprice/afficher_masquer_validat
                             
                             } ?>value="<?php echo number_format($caf, 2, '.', ' '); ?>">
                                 <input type="hidden" id="caf" class="calculHidden" value="<?php echo $caf; ?>"></td>
+                             <td></td>
                              <td></td>
                             <td >
                                  <?php $Cfob=0; foreach($this->article_info as $result){
