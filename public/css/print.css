@@ -19,6 +19,7 @@ body { /* Modifications : la couleur de fond de page - la police - l'unité util
 
  #enteteavenant{
       padding-left: 50px;
+      font-size: 11px;
   }
   #avenantproduit{
       width: 450px;
