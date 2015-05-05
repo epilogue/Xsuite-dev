@@ -21,8 +21,8 @@ body { /* Modifications : la couleur de fond de page - la police - l'unité util
       padding-left: 50px;
   }
   #avenantproduit{
-      width: 500px;
-      margin-left: 250px;
+      width: 450px;
+      margin-left: 50px;
   }
   #piedpageavenant{
       text-align: center;
@@ -64,4 +64,7 @@ h4{
     color: #2A60AA;
     text-align: center;
     font-family: serif;
+}
+.objetavenant{
+    font-weight: bold;
 }
