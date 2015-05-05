@@ -781,3 +781,10 @@ span {
       text-align: center;
       font-size:9px;
   }
+  .avenantsignature td{
+      width: 150px;
+      text-align: center;
+  }
+  .avenantsignature tr{
+      height: 100px;
+  }
