@@ -48,7 +48,7 @@ body { /* Modifications : la couleur de fond de page - la police - l'unité util
     padding-bottom: 5px;
     width:100%;
     font-family:Serif;
-     font-size: 15pt;
+    font-size: 12pt;
 }
 .enum th,.enum td{
     border-style:solid;
@@ -57,7 +57,8 @@ body { /* Modifications : la couleur de fond de page - la police - l'unité util
     border-collapse: collapse;
     padding-top:5px;
     padding-bottom: 5px;
-    width : 100px;
+    width : 100px; 
+    font-size: 12pt;
 }
 h3{
     font-weight: bold;
