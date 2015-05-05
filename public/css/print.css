@@ -57,8 +57,8 @@ body { /* Modifications : la couleur de fond de page - la police - l'unité util
     border-collapse: collapse;
     padding-top:5px;
     padding-bottom: 5px;
-    width : 100px; 
-    font-size: 12pt;
+    width : 150px; 
+    font-size: 10px;
 }
 h3{
     font-weight: bold;
