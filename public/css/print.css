@@ -10,7 +10,7 @@ and open the template in the editor.
 body { /* Modifications : la couleur de fond de page - la police - l'unité utilisée pour la taille de la police  */
   background-color :#fff;
   font-family :Serif;
-  font-size :15pt;
+  font-size :12pt;
 }
 
 #header, #menu { /* Les éléments qui ne seront pas affichés  */
@@ -38,3 +38,23 @@ body { /* Modifications : la couleur de fond de page - la police - l'unité util
   #corpavenant{
       margin-left:30px;
   }
+  
+  .enumavenant {
+    border-style:solid;
+    border-color:#2A60AA;
+    border-width: thin;
+    border-collapse: collapse;
+    padding-top:5px;
+    padding-bottom: 5px;
+    width:100%;
+    font-family: verdana,arial;
+}
+.enumavenant th,.enumavenant td{
+    border-style:solid;
+    border-color:#2A60AA;
+    border-width: thin;
+    border-collapse: collapse;
+    padding-top:5px;
+    padding-bottom: 5px;
+    width : 65px;
+}
