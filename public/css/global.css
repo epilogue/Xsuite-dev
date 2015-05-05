@@ -770,7 +770,7 @@ span {
   span.custom-combobox{
       width: 350px;
   }
-  #entete{
+  #enteteavenant{
       padding-left: 50px;
   }
   #avenantproduit{
@@ -787,4 +787,7 @@ span {
   }
   .avenantsignature tr{
       height: 100px;
+  }
+  #corpavenant{
+      margin-left:30px;
   }
