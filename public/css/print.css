@@ -1,0 +1,40 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 5 mai 2015, 10:27:56
+    Author     : frhubym
+*/
+body { /* Modifications : la couleur de fond de page - la police - l'unité utilisée pour la taille de la police  */
+  background-color :#fff;
+  font-family :Serif;
+  font-size :15pt;
+}
+
+#header, #menu { /* Les éléments qui ne seront pas affichés  */
+  display :none;
+}
+
+ #enteteavenant{
+      padding-left: 50px;
+  }
+  #avenantproduit{
+      width: 500px;
+      margin-left: 250px;
+  }
+  #piedpageavenant{
+      text-align: center;
+      font-size:9px;
+  }
+  .avenantsignature td{
+      width: 300px;
+      text-align: center;
+  }
+  .avenantsignature tr{
+      height: 100px;
+  }
+  #corpavenant{
+      margin-left:30px;
+  }
