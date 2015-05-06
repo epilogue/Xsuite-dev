@@ -140,7 +140,7 @@ $this->headScript()->appendFile('/js/controllers/xprice/fermeturevalide.js');
                     <td><?php echo $value['reference_article']; ?></td>
                     <td><?php echo $value['quantite_demande_article']; ?></td>
                     <td><?php echo $value['prix_tarif']; ?></td>
-                    <td><?php $remiseActuelle=100*(1-( $value['prix_achat_actuel']/$value['prix_tarif']));echo $remiseActuelle; ?></td>
+                    <td><?php $remiseActuelle=100*(1-( $value['prix_achat_actuel']/$value['prix_tarif']));echo round($remiseActuelle,2)."%"; ?></td>
                     <td><?php echo $value['prix_demande_article']; ?></td>
                     <td><?php echo $value['serie']; ?></td>
                     <td><?php echo $value['prix_client_final']; ?></td>
