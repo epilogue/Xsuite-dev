@@ -120,10 +120,12 @@ $this->headScript()->appendFile('/js/controllers/xprice/fermeturevalide.js');
                 <tr>
                     <td>Références produits</td>
                     <td>Quantité</td>
-                    <td>Prix Achat actuel Distrib</td>
+                    <td>Prix Tarif</td>
+                    <td>Remise Actuelle</td>
                     <td>Prix Achat demandé Distrib</td>
-                    <td>Prix Conseillé Client</td>
                     <td>Remise référence ou série</td>
+                    <td>Prix Conseillé Client</td>
+                   
                     <td>Prix Accordés</td>
                      <td>Remises Accordées</td>
                      <?php if($this->utilisateur =='5' or $this->utilisateur== '13'  or $this->utilisateur== '29'){ ?>
@@ -137,10 +139,12 @@ $this->headScript()->appendFile('/js/controllers/xprice/fermeturevalide.js');
                 <tr>
                     <td><?php echo $value['reference_article']; ?></td>
                     <td><?php echo $value['quantite_demande_article']; ?></td>
-                    <td><?php echo $value['prix_achat_actuel']; ?></td>
+                    <td><?php echo $value['prix_tarif']; ?></td>
+                    <td><?php echo "remise actuelle"; ?></td>
                     <td><?php echo $value['prix_demande_article']; ?></td>
-                    <td><?php echo $value['prix_client_final']; ?></td>
                     <td><?php echo $value['serie']; ?></td>
+                    <td><?php echo $value['prix_client_final']; ?></td>
+                    
                    <?php if ( $value['prix_demande_article'] != $value['prix_accorde_demande_article']){ ?>
                         <td style="background-color: yellow;"><?php echo number_format($value['prix_accorde_demande_article'],2,'.',' ') ; ?></td>
                         <td style="background-color: yellow;"><?php echo $value['remise_accorde_demande_article'] . "%"; ?></td>
@@ -159,7 +163,7 @@ $this->headScript()->appendFile('/js/controllers/xprice/fermeturevalide.js');
                             <td colspan="2">total</td>
                             <td colspan="1" ><input class="cab" id="cab-affiche"
                                <?php $cab=0;foreach($this->article_info as $value)
-                                {$cab+=($value['quantite_demande_article']*$value['prix_achat_actuel']);
+                                {$cab+=($value['quantite_demande_article']*$value['prix_tarif']);
                             
                             } ?>value="<?php $cab2=number_format($cab,2,'.',' ');echo $cab2; ?>">
                                 <input id="cab" type="hidden" class="calculHidden" value="<?php echo $cab; ?>" >
