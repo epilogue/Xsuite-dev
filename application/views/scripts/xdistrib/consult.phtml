@@ -125,13 +125,12 @@ $this->headScript()->appendFile('/js/controllers/xprice/fermeturevalide.js');
                     <td>Prix Achat demandé Distrib</td>
                     <td>Remise référence ou série</td>
                     <td>Prix Conseillé Client</td>
-                   
                     <td>Prix Accordés</td>
                      <td>Remises Accordées</td>
                      <?php if($this->utilisateur =='5' or $this->utilisateur== '13'  or $this->utilisateur== '29'){ ?>
                     <th>Prix cif</th>
                     <th>Prix fob</th>
-                    
+                    <th>Marge Distributeur</th>
                     <th>Marge</th><?php } else {}?>
                 </tr>
                 </tr>
@@ -155,6 +154,7 @@ $this->headScript()->appendFile('/js/controllers/xprice/fermeturevalide.js');
                          <?php if($this->utilisateur =='5' or $this->utilisateur== '13' or $this->utilisateur =='29'){ ?>
                         <td><?php echo number_format($value['prix_cif_demande_article'],2,'.',' ') ; ?></td>
                         <td><?php echo number_format($value['prix_fob_demande_article'],2,'.',' ') ; ?></td>
+                        <td><?php $margedistribini =100*( 1-($value['prix_accorde_demande_article']/$value['prix_client_final'])); echo $margedistribini; ?></td>
                         <td><?php echo $value['marge_demande_article'] . "%"; ?></td><?php } else {}?>
                     </tr>
                 <?php } ?>
