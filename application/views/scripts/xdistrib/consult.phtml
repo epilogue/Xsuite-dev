@@ -204,14 +204,14 @@ $this->headScript()->appendFile('/js/controllers/xprice/fermeturevalide.js');
                         </tr><?php } elseif($this->utilisateur == '10') {?>
                         <tr>
                             <td colspan="2">total</td>
-                            <td colspan="2" ><input class="cab" id="cab-affiche"
+                            <td><input class="cab" id="cab-affiche"
                                <?php $cab=0;foreach($this->article_info as $value)
                                 {$cab+=($value['quantite_demande_article']*$value['prix_tarif']);
                             
                             } ?>value="<?php $cab2=number_format($cab,2,'.',' ');echo $cab2; ?>">
                                 <input id="cab" type="hidden" class="calculHidden" value="<?php echo $cab; ?>" >
                             </td>
-                            <td colspan="2"></td>
+                            <td></td>
                             <td >
                                 <input id="caat-affiche" <?php $CAa=0; foreach($this->info_demande_article_xprice as $value){
                                     $CAa+=(($value['prix_accorde_demande_article'])*$value['quantite_demande_article']);
