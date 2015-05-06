@@ -175,6 +175,7 @@ $this->headScript()->appendFile('/js/controllers/xprice/fermeturevalide.js');
                             
                             } ?>value="<?php $cat2=number_format($cat,2,'.',' ');echo $cat2; ?>">
                                 <input id="cat" type="hidden" class="calculHidden" value="<?php echo $cat; ?>" ></td>
+                            <td></td>
                             <td><input class="car" id="car-affiche"
                                <?php $car=0;foreach($this->article_info as $value)
                                 {$car+=($value['quantite_demande_article']*$value['prix_client_final']);
