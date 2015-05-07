@@ -170,14 +170,14 @@ $this->headScript()->appendFile('/js/controllers/xprice/afficher_masquer_validat
                         <td>Références produits</td>
                         <td>Quantité</td>
                         <td>prix Tarif<td>
-                        <td>Remise Distrib</td>
+                        <td>Remise Actuelle</td>
                         <td>Prix demandé Distrib</td>
                         <td>Remise réf ou série</td>
                         <td>Prix Conseillé Client</td>
+                        <td>Prix accordés</td>
+                        <td>Remises accordées</td>
                         <td>Prif fob</td>
                         <td>Prix cif</td>
-                        <td>remise supp</td>
-                        <td>prix accordé</td>
                         <td>Marge Distrib</td>
                         <td>marge</td>
                     </tr>
@@ -190,12 +190,12 @@ $this->headScript()->appendFile('/js/controllers/xprice/afficher_masquer_validat
                         <td id="pd-<?php echo $k; ?>"><?php echo $value['prix_demande_article']; ?></td>
                         <td><?php echo $value['serie']; ?></td>
                         <td><?php echo $value['prix_client_final']; ?></td>
+                        <td><input class="pda" id="pda-<?php echo $k; ?>" value="<?php echo $value['prix_accorde_demande_article']; ?>" name="<?php echo 'prix_accorde_article[]' ?>" style="background-color: #74aaca;"></td>
+                        <td><input class="ra" id="ra-<?php echo $k; ?>" value="<?php echo $value['remise_accorde_demande_article']; ?>" name="<?php echo 'remise_accorde_article[]' ?>" style="background-color: #74aaca;"></td>
                         <td><input readonly="readonly" class="fob" id="fob-<?php echo $k;?>" type="text" name="fob[]" value="<?php echo $value['prix_fob_demande_article']; ?>"></td><input class="totfob" type="hidden" id="totfob-<?php echo $k;?>" value ="<?php echo $value['quantite_demande_article']*$value['prix_fob_demande_article']; ?>">
                         <td id="cif-<?php echo $k; ?>"><?php echo $value['prix_cif_demande_article']; ?></td>
-                         <td><input class="ra" id="ra-<?php echo $k; ?>" value="<?php echo $value['remise_accorde_demande_article']; ?>" name="<?php echo 'remise_accorde_article[]' ?>" style="background-color: #74aaca;"></td>
-                        <td><input class="pda" id="pda-<?php echo $k; ?>" value="<?php echo $value['prix_accorde_demande_article']; ?>" name="<?php echo 'prix_accorde_article[]' ?>" style="background-color: #74aaca;"></td>
                         <td><input class="ma" id="ma-<?php echo $k;?>" <?php $ma=100*(1-($value['prix_cif_demande_article']/$value['prix_accorde_demande_article']));?> value="<?php  echo round($ma,2)."%" ;?>" name="marge[]"></td>
-                         <td><?php $margeDistrib = 1-($value['prix_demande_article']/$value['prix_client_final']); echo round($margeDistrib,2); ?></td>
+                         <td><?php $margeDistrib =100*( 1-($value['prix_accorde_article']/$value['prix_client_final'])); echo round($margeDistrib,2); ?></td>
                         <td><input type="hidden"  class="caa" id="caa-<?php echo $k;?>"  value="<?php echo round((($value['prix_tarif'])*$value['quantite_demande_article']),2); ?>" name="caa" style="background-color:yellow;">
                         
                         </td>
