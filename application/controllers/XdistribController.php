@@ -2092,6 +2092,7 @@ if($this->getRequest()->isPost()){
         $distrib_info=$info_distrib->getDistributeurnumwp($numwp_dis);
         $info_user=new Application_Model_DbTable_Users;
         $user_info=$info_user->getUser($info_demande_xdistrib['id_user']);
+        $dd_info=$info_user->getUser($info_demande_xdistrib['id_dd']);
         $nom_holon=new Application_Model_DbTable_Holons();
         $holon_nom=$nom_holon->getHolon($user_info['id_holon']);
         $info_client=new Application_Model_DbTable_ClientDistrib();
@@ -2359,10 +2360,11 @@ if($this->getRequest()->isPost()){
                     $params2['sujet'] = " XDistrib :demande Xdistrib $tracking/$numwp pour $nomclients validée par Directeur Business Developpement.";
                     $params3['corpsMail'] = "Bonjour,\n"
                         . "\n"
-                        . "la demande Xdistrib $tracking/$numwp de {$user_info['nom_user']} pour le client $nomclients a été validée par le dbd .\n"
+                        . "la demande Xdistrib $tracking/$numwp de {$user_info['nom_user']} pour le client $nomclients faites par le Deveveloppeur Distributeur {$developpeurdistrib['nom_user']} a été validée par le dbd .\n"
                         . "Vous pouvez la consulter à cette adresse url : \n"
                         . "%s"
                         . "\n\n"
+                         ."et envoyer la quotation à {$developpeurdistrib['nom_user']}"       
                         . "Cordialement,\n"
                         . "\n"
                         . "--\n"
