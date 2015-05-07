@@ -10,7 +10,7 @@ and open the template in the editor.
 body { /* Modifications : la couleur de fond de page - la police - l'unité utilisée pour la taille de la police  */
   background-color :#fff;
   font-family :Serif;
-  font-size :12px;
+  font-size :11px;
 }
 
 #header, #menu { /* Les éléments qui ne seront pas affichés  */
@@ -19,7 +19,7 @@ body { /* Modifications : la couleur de fond de page - la police - l'unité util
 
  #enteteavenant{
       padding-left: 50px;
-      font-size: 11px;
+      font-size: 10px;
   }
   #avenantproduit{
       width: 450px;
@@ -49,7 +49,7 @@ body { /* Modifications : la couleur de fond de page - la police - l'unité util
     padding-bottom: 5px;
     width:100%;
     font-family:Serif;
-    font-size: 12px;
+    font-size: 10px;
 }
 .enum th,.enum td{
     border-style:solid;
