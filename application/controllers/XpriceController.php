@@ -1574,7 +1574,7 @@ elseif($mailServiceClients[0]['mail_service_client']== 'export'){
             $this->nom_validation = $nom_validation;
             $formData = $this->getRequest()->getPost();
             $datas = $this->getRequest()->getPost();
-            $nomclients=trim($info_client['nom_client']);
+            $nomclients=trim($info_client[0]['nom_client']);
             $prix_accordes = array_combine($datas['code_article'], $datas['prix_accorde_article']);
             $remise_accordes = array_combine($datas['code_article'], $datas['remise_accorde_article']);
 
