@@ -3138,6 +3138,24 @@ if($this->getRequest()->isPost()){
             $redirector->gotoSimple('index', 'xdistrib');
         }
     }
+    public function avenant2Action(){
+        $numwp = $this->getRequest()->getParam('numwp', null);
+        $this->view->numwp = $numwp; 
+        $infos_demande_xdistrib = new Application_Model_DbTable_Xdistrib();
+        $info_demande_xdistrib = $infos_demande_xdistrib->getNumwp($numwp);
+        $numwp_dis=  substr($info_demande_xdistrib['numwp_distributeur'], 0, 6);
+        $info_distrib=new Application_Model_DbTable_Distributeurs();
+        $distrib_info=$info_distrib->getDistributeurnumwp($numwp_dis);
+        $info_article=new Application_Model_DbTable_DemandeArticlexdistrib();
+        $article_info= $info_article->getDemandeArticlexdistrib($numwp);
+        $info_client=new Application_Model_DbTable_ClientDistrib();
+        $client_info=$info_client->getClientdistrib($info_demande_xdistrib['numwp_client']);
+        $this->view->client_distrib=$client_info;
+        $this->view->article_info=$article_info;
+        $this->view->info_distrib=$distrib_info;
+        $this->view->info_demande_xdistrib=$info_demande_xdistrib;
+       //echo '<pre>', var_export($article_info),'</pre>';
+    }
     public function avenantAction(){
         $numwp = $this->getRequest()->getParam('numwp', null);
         $this->view->numwp = $numwp; 

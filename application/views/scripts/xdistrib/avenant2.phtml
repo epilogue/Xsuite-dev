@@ -1,7 +1,7 @@
 <?php echo $this->headLink()->prependStylesheet($this->baseUrl().'/css/print.css', array('media'=>'print'));  ?>
-<page>
-    <page_header>
-        <div id="enteteavenant">
+<div id="avenant" class="contenu">
+    
+    <div id="enteteavenant">
         <img  src="/images/logo_smc_bleu3.jpg" alt="" />
         <p>SMC Pneumatique S.A. <br>
             Parc Gustave Eiffel <br>
@@ -13,39 +13,11 @@
             www.smc-france.fr
         </p>
     </div>
-    </page_header>
-    <page_footer>
-         <div id="piedpageavenant">
-        <table class="avenantsignature">
-            <tr>
-                <td>Pour le Distributeur</td>
-                <td>
-                    Pour le Fabricant SMC PNEUMATIQUE SA<br>
-                     <img  src="/images/signatureFdelauge2.jpg" alt="" />
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    Nom :................................<br>
-                    Fonction :...........................<br>
-                </td>
-                <td>
-                    François DELAUGE <br>
-                    Directeur Ventes & Marketing
-                </td>
-            </tr>
-        </table>
-        <p>S.A. au capital de 9 226 250€ - 344 543 046 RCS Meaux - Siret 344 543 046 00041 - I.E. FR 60 344543046 - NAF 4669B</p>
-    </div>
-    </page_footer>
-</page>
-<div id="avenant" class="contenu">
-
-    
     <div id="corpavenant">
         <div>
             <p style="text-align: center"><h3>Avenant à la Convention Annuelle</h3></p>
         </div>
+        <form>
         <div>
             <p class="objetavenant">Objet: Accord de prix spécifique <br>
                 entre SMC Pneumatique SA et la société : <?php echo $this->info_distrib['nom_distributeur']; ?><br>
@@ -71,12 +43,33 @@
                     <td><?php echo $value['prix_accorde_demande_article']."€"; ?></td>
                 </tr><?php } ?>
             </table>
+               
             </div> 
             <p> Fait à Bussy-Saint-Georges, en 2 exemplaires<br><br>
             Le:
             </p>
-            
+            <table class="avenantsignature">
+                <tr>
+                    <td>Pour le Distributeur</td>
+                    <td>
+                        Pour le Fabricant SMC PNEUMATIQUE SA<br>
+                         <img  src="/images/signatureFdelauge2.jpg" alt="" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Nom :................................<br>
+                        Fonction :...........................<br>
+                    </td>
+                    <td>
+                        François DELAUGE <br>
+                        Directeur Ventes & Marketing
+                    </td>
+                </tr>
+            </table>
         </div>
     </div>
-   
+    <div id="piedpageavenant">
+        <p>S.A. au capital de 9 226 250€ - 344 543 046 RCS Meaux - Siret 344 543 046 00041 - I.E. FR 60 344543046 - NAF 4669B</p>
+    </div>
 </div>
