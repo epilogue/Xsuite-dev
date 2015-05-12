@@ -472,7 +472,7 @@ if($user->id_fonction == 3){
                                 $destinataireMail2 = $emailVars->listes->leaderis03;
                                 break;
                             case "7":
-                                $destinataireMail2 = "mhuby@smc-france.fr";
+                                $destinataireMail2 = $info_user['email_user'];
                                 break;
                             case "8":
                                 $destinataireMail2 = $emailVars->listes->leaderiw01;
@@ -597,7 +597,7 @@ if($user->id_fonction == 3){
                         }
                     } else {
                         $corpsMail = "tagada";
-                        $mailto = "mhuby@smc-france.fr";
+                        $mailto = $info_user['email_user'];
                         $mail = new Xsuite_Mail;
                         $mail->setSubject("plop")
                                 ->setBodyText(sprintf($corpsMail))
@@ -763,7 +763,7 @@ if($user->id_fonction == 3){
             $emailVars = Zend_Registry::get('emailVars');
             if (isset($formData['validation']) && $formData['validation'] == "validee") {
 //                $params1 = array();
-//                $params1['destinataireMail'] = "mhuby@smc-france.fr" ;
+//                $params1['destinataireMail'] = $info_user['email_user'] ;
 //                $params1['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/consult/numwp/{$numwp}";
 //                $params1['corpsMail'] = "Bonjour,\n"
 //                        . "\n"
@@ -814,7 +814,7 @@ if($user->id_fonction == 3){
              * alors envoi mail tc et insertion dans la table validation
              */ elseif (isset($formData['validation']) && $formData['validation'] == "nonValide") {
                 $params1 = array();
-                $params1['destinataireMail'] = "mhuby@smc-france.fr" ;
+                $params1['destinataireMail'] = $info_user['email_user'] ;
                 $params1['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/consult/numwp/{$numwp}";
                 $params1['corpsMail'] = "Bonjour,\n"
                         . "\n"
@@ -847,7 +847,7 @@ if($user->id_fonction == 3){
                 $lasthisto = $lastidhisto->getHistorique($formData['tracking'], $lastidvalid[0]['id_validation']);
 
                 $params1 = array();
-                $params1['destinataireMail'] = "mhuby@smc-france.fr";
+                $params1['destinataireMail'] = $info_user['email_user'];
 //                $params1['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/update/numwp/{$numwp}/histo/{$lasthisto[0]['id_histo_commentaire']}";
                 if (!is_null($commentId)) {
                     $params1['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/update/numwp/{$numwp}/com/{$commentId}";
@@ -1143,7 +1143,7 @@ elseif($mailServiceClients[0]['mail_service_client']== 'export'){
                 
                 
                  if ($margemin == true or $datas['mamo']<=10){
-                 // $params['destinataireMail'] = "mhuby@smc-france.fr" ;
+                 // $params['destinataireMail'] = $info_user['email_user'] ;
                   $params1['destinataireMail'] = $emailVars->listes->Dirco;
                 if (!is_null($commentId)) {
                     $params1['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/validatedirco/numwp/{$numwp}";
@@ -1180,9 +1180,9 @@ elseif($mailServiceClients[0]['mail_service_client']== 'export'){
                 $params4 = array();
                 $params5 = array();
                 $params6 = array();
-                    $params2['destinataireMail'] = "mhuby@smc-france.fr";
+                    $params2['destinataireMail'] = $info_user['email_user'];
                     
-                    $params3['destinataireMail'] =/*$mailSC;*/ "mhuby@smc-france.fr";
+                    $params3['destinataireMail'] =$mailSC;/* "mhuby@smc-france.fr";*/
                      if (!is_null($commentId)) {
                     $params2['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/consult/numwp/{$numwp}/com/{$commentId}";
                     $params3['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/consult/numwp/{$numwp}";
@@ -1348,7 +1348,7 @@ elseif($mailServiceClients[0]['mail_service_client']== 'export'){
                 
             elseif (isset($datas['validation']) && $datas['validation'] == 'enAttente') {
                 $params = array();
-                $params['destinataireMail'] = "mhuby@smc-france.fr";
+                $params['destinataireMail'] = $info_user['email_user'];
                 if (!is_null($commentId)) {
                     $params['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/update/numwp/{$numwp}/com/{$commentId}";
                 } else {
@@ -1374,7 +1374,7 @@ elseif($mailServiceClients[0]['mail_service_client']== 'export'){
                 $redirector->gotoSimple('index', 'xprice');
             } elseif (isset($datas['validation']) && $datas['validation'] == 'nonValide') {
                 $params = array();
-                $params['destinataireMail'] = "mhuby@smc-france.fr";
+                $params['destinataireMail'] = $info_user['email_user'];
                 if (!is_null($commentId)) {
                     $params['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/consult/numwp/{$numwp}/com/{$commentId}";
                 } else {
@@ -1627,7 +1627,7 @@ if($mailServiceClients[0]['mail_service_client']=='regionNord'){
             $params4=  array();
             $params5 = array();
             if (isset($formData['validation']) && $formData['validation'] == "fermee") {
-                $params['destinataireMail'] = "mhuby@smc-france.fr";
+                $params['destinataireMail'] = $info_user['email_user'];
                 $params['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/consult/numwp/{$numwp}";
                 $params['corpsMail'] = "Bonjour,\n"
                         . "\n"
@@ -1797,7 +1797,7 @@ if($mailServiceClients[0]['mail_service_client']=='regionNord'){
                 
             } elseif (isset($formData['validation']) && $formData['validation'] == 'enAttente') {
                 $emailVars = Zend_Registry::get('emailVars');
-                $params['destinataireMail'] ="mhuby@smc-france.fr" ;
+                $params['destinataireMail'] =$info_user['email_user'] ;
                 if (!is_null($commentId)) {
                     $params['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/update/numwp/{$numwp}/com/{$commentId}";
                 } else {
@@ -1823,7 +1823,7 @@ if($mailServiceClients[0]['mail_service_client']=='regionNord'){
                 $redirector->gotoSimple('index', 'xprice');
             } elseif (isset($formData['validation']) && $formData['validation'] == 'nonValide') {
                 $emailVars = Zend_Registry::get('emailVars');
-                $params['destinataireMail'] = "mhuby@smc-france.fr";
+                $params['destinataireMail'] = $info_user['email_user'];
                 if (!is_null($commentId)) {
                     $params['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/consult/numwp/{$numwp}/com/{$commentId}";
                 } else {
