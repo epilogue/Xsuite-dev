@@ -85,7 +85,7 @@ try{
     $pdf=new HTML2PDF('P','A4','fr');
     $pdf->pdf->SetDisplayMode('fullpage');
     $pdf->writeHTML($plopinette);
-    ob_end_clean();
+    
     $pdf->Output('avenant.pdf');
 } catch(HTML2PDF_exception $e) {
 die($e);
