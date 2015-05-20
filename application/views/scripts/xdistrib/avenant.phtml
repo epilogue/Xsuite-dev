@@ -42,7 +42,7 @@ ob_start(); ?>
                 <?php  foreach($this->article_info as $value){?>
                 <tr>
                     <td style="width: 70%;"><?php echo $value['reference_article'];?></td>
-                    <td  style="width: 12%;"<?php echo $value['prix_achat_actuel']."€";?></td>
+                    <td  style="width: 12%;"><?php echo $value['prix_achat_actuel']."€";?></td>
                     <td style="width: 12%;"><?php echo $value['prix_accorde_demande_article']."€"; ?></td>
                 </tr><?php } ?>
             </table>
