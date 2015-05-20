@@ -1,5 +1,8 @@
 <?php // echo $this->headLink()->prependStylesheet($this->baseUrl().'/css/print.css', array('media'=>'print'));  ?>
 <?php ob_start();?>
+<style type="txt/css">
+    table.border td{border:1px solid #000;padding:3mm 1mm;}
+</style>
 <page backtop="20mm" backleft="15mm" backright="15mm">
 <div id="avenant" class="contenu">
     <page_header>   
@@ -33,7 +36,7 @@
                 En vue de l’obtention du marché:……. et/ou pour une durée de : ………………….<br>
             </p>
             <div id="avenantproduit">
-                <table  class="enum">
+                <table  class="border">
                 <thead>
                     <th>Référence produit</th>
                     <th>Ancien prix de vente</th>
