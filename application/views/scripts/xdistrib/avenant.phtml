@@ -33,7 +33,7 @@ ob_start(); ?>
                 En vue de l’obtention du marché:……. et/ou pour une durée de : ………………….<br>
             </p>
             <div id="avenantproduit">
-                <table>
+                <table class="border">
                     <tr>
                         <td>Référence produit</td>
                         <td>Ancien prix de vente</td>
@@ -41,9 +41,9 @@ ob_start(); ?>
                     </tr>
                 <?php  foreach($this->article_info as $value){?>
                 <tr>
-                    <td><?php echo $value['reference_article'];?></td>
-                    <td><?php echo $value['prix_achat_actuel']."€";?></td>
-                    <td><?php echo $value['prix_accorde_demande_article']."€"; ?></td>
+                    <td style="width: 70%;"><?php echo $value['reference_article'];?></td>
+                    <td  style="width: 12%;"<?php echo $value['prix_achat_actuel']."€";?></td>
+                    <td style="width: 12%;"><?php echo $value['prix_accorde_demande_article']."€"; ?></td>
                 </tr><?php } ?>
             </table>
                
