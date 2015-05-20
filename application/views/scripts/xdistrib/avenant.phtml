@@ -2,7 +2,7 @@
 <?php ob_start();?>
 <page backtop="20mm" backleft="15mm" backright="15mm">
 <div id="avenant" class="contenu">
-    
+    <page_header>   
     <div id="enteteavenant">
        
         <p>SMC Pneumatique S.A. <br>
@@ -15,6 +15,7 @@
             www.smc-france.fr
         </p>
     </div>
+    </page_header>
     <div id="corpavenant">
         <div>
             <p style="text-align: center"><h3>Avenant à la Convention Annuelle</h3></p>
@@ -33,11 +34,11 @@
             </p>
             <div id="avenantproduit">
                 <table  class="enum">
-                <tr>
-                    <td>Référence produit</td>
-                    <td>Ancien prix de vente</td>
-                    <td>Nouveau prix de vente</td>
-                </tr>
+                <thead>
+                    <th>Référence produit</th>
+                    <th>Ancien prix de vente</th>
+                    <th>Nouveau prix de vente</th>
+                </thead>
                 <?php  foreach($this->article_info as $value){?>
                 <tr>
                     <td><?php echo $value['reference_article'];?></td>
@@ -55,7 +56,7 @@
                     <td>Pour le Distributeur</td>
                     <td>
                         Pour le Fabricant SMC PNEUMATIQUE SA<br>
-                        
+                <backimg></backimg>
                     </td>
                 </tr>
                 <tr>
