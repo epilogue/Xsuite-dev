@@ -72,9 +72,11 @@ ob_start(); ?>
         </div>
         </form>
     </div>
+    <page_footer>
     <div id="piedpageavenant">
         <p>S.A. au capital de 9 226 250€ - 344 543 046 RCS Meaux - Siret 344 543 046 00041 - I.E. FR 60 344543046 - NAF 4669B</p>
     </div>
+    </page_footer>
 </div>
     </page>
 <?php $plopinette= ob_get_clean();
@@ -83,7 +85,7 @@ try{
     $pdf=new HTML2PDF('P','A4','fr');
     $pdf->pdf->SetDisplayMode('fullpage');
     $pdf->writeHTML($plopinette);
-    $pdf->Output('avenant2.pdf');
+    $pdf->Output('avenant.pdf');
 } catch(HTML2PDF_exception $e) {
 die($e);
 }
