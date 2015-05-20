@@ -1,9 +1,6 @@
 <?php
 ob_start(); ?>
-<style type="text/css">
-    table{width: 100%;}
-    table.border td{border:1px solid #000;}
-</style>
+
 <page backtop="20mm" backleft="15mm" backright="15mm">
 <div id="avenant" class="contenu">
     <div id="enteteavenant">
@@ -35,17 +32,17 @@ ob_start(); ?>
                 En vue de l’obtention du marché:……. et/ou pour une durée de : ………………….<br>
             </p>
             <div id="avenantproduit">
-                <table class="border">
+                <table style="width: 100%;">
                     <tr>
-                        <td>Référence produit</td>
-                        <td>Ancien prix de vente</td>
-                        <td>Nouveau prix de vente</td>
+                        <td style="width: 70%; border: 1px #000 solid;">Référence produit</td>
+                        <td style="width: 12%; border: 1px #000 solid;">Ancien prix de vente</td>
+                        <td style="width: 12%; border: 1px #000 solid;">Nouveau prix de vente</td>
                     </tr>
                 <?php  foreach($this->article_info as $value){?>
                 <tr>
-                    <td style="width: 70%;"><?php echo $value['reference_article'];?></td>
-                    <td  style="width: 12%;"><?php echo $value['prix_achat_actuel']."€";?></td>
-                    <td style="width: 12%;"><?php echo $value['prix_accorde_demande_article']."€"; ?></td>
+                    <td style="width: 70%; border: 1px #000 solid;"><?php echo $value['reference_article'];?></td>
+                    <td  style="width: 12%; border: 1px #000 solid;"><?php echo $value['prix_achat_actuel']."€";?></td>
+                    <td style="width: 12%; border: 1px #000 solid;"><?php echo $value['prix_accorde_demande_article']."€"; ?></td>
                 </tr><?php } ?>
             </table>
                
