@@ -82,5 +82,5 @@ try{
     $pdf->writeHTML($plopinette);
     $pdf->Output('avenant.pdf');
 } catch(HTML2PDF_exception $e) {
-die($ex);
+die($e);
 }
