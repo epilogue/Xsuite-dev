@@ -1,5 +1,4 @@
 <?php
-ob_end_clean();
 ob_start(); ?>
 <page backtop="20mm" backleft="15mm" backright="15mm">
 <div id="avenant" class="contenu">
@@ -35,11 +34,11 @@ ob_start(); ?>
             </p>
             <div id="avenantproduit">
                 <table>
-                <thead>
-                    <th>Référence produit</th>
-                    <th>Ancien prix de vente</th>
-                    <th>Nouveau prix de vente</th>
-                </thead>
+                    <tr>
+                        <td>Référence produit</td>
+                        <td>Ancien prix de vente</td>
+                        <td>Nouveau prix de vente</td>
+                    </tr>
                 <?php  foreach($this->article_info as $value){?>
                 <tr>
                     <td><?php echo $value['reference_article'];?></td>
