@@ -1,4 +1,5 @@
 <?php echo $this->headLink()->prependStylesheet($this->baseUrl().'/css/print.css', array('media'=>'print'));  ?>
+<?php ob_start();?>
 <div id="avenant" class="contenu">
     
     <div id="enteteavenant">
@@ -73,3 +74,13 @@
         <p>S.A. au capital de 9 226 250€ - 344 543 046 RCS Meaux - Siret 344 543 046 00041 - I.E. FR 60 344543046 - NAF 4669B</p>
     </div>
 </div>
+<?php $plopinette= ob_get_clean();
+require('html2pdf/html2pdf.class.php');
+try{
+    $pdf=new HTML2PDF('P','A4','fr');
+    $pdf->pdf->SetDisplayMode('fullpage');
+    $pdf->writeHTML($plopinette);
+    $pdf->Output('avenant.pdf');
+} catch(HTML2PDF_exception $e) {
+die($ex);
+}
