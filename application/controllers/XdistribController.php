@@ -1029,7 +1029,7 @@ if($this->getRequest()->isPost()){
         $this->view->user_info=$user_info;
         $this->view->distrib_info=$distrib_info;
         $nomvalidationrecherche = "cdr";
-        $tracking = $info_demande_xdistrib['tracking_number_demande_xdistrib'];
+        $tracking = $info_demande_xdistrib->tracking_number_demande_xdistrib;
         $recherchevalidation = new Application_Model_DbTable_Validationsxdistrib();
         $recherchesvalidation = $recherchevalidation->getValidation($nomvalidationrecherche, $tracking);
         $infos_user = new Application_Model_DbTable_Users();
