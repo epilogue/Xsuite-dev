@@ -993,7 +993,7 @@ if($this->getRequest()->isPost()){
         $info_demande_xdistrib = $infos_demande_xdistrib->searchAll($tracking);
         $numwp=$info_demande_xdistrib->num_workplace_demande_xdistrib;
         $this->view->numwp=$numwp;
-        $dateinit=$info_demande_xdistrib['date_demande_xdistrib'];
+        $dateinit=$info_demande_xdistrib->date_demande_xdistrib;
         $date = DateTime::createFromFormat('Y-m-d', $dateinit);
         $dateplop = $date->format('d/m/Y');
         $ferme = new Application_Model_DbTable_Validationsdemandexdistrib();
@@ -1001,15 +1001,15 @@ if($this->getRequest()->isPost()){
         foreach($fermeture as $ferm){
             $plop1 = $ferm;
         }
-        $numwp_dis=  substr($info_demande_xdistrib['numwp_distributeur'], 0, 6);
+        $numwp_dis=  substr($info_demande_xdistrib->numwp_distributeur, 0, 6);
         $info_distrib=new Application_Model_DbTable_Distributeurs();
         $distrib_info=$info_distrib->getDistributeurnumwp($numwp_dis);
         $info_user=new Application_Model_DbTable_Users;
-        $user_info=$info_user->getUser($info_demande_xdistrib['id_user']);
+        $user_info=$info_user->getUser($info_demande_xdistrib->id_user);
         $nom_holon=new Application_Model_DbTable_Holons();
         $holon_nom=$nom_holon->getHolon($user_info['id_holon']);
         $info_client=new Application_Model_DbTable_ClientDistrib();
-        $client_info=$info_client->getClientdistrib($info_demande_xdistrib['numwp_client']);
+        $client_info=$info_client->getClientdistrib($info_demande_xdistrib->numwp_client);
         $info_article=new Application_Model_DbTable_DemandeArticlexdistrib();
         $article_info= $info_article->getDemandeArticlexdistrib($numwp);
         $info_concurrent=new Application_Model_DbTable_PrixConcurrent();
