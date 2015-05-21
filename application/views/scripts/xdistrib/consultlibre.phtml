@@ -8,7 +8,7 @@ $this->headScript()->appendFile('/js/controllers/xprice/fermeturevalide.js');
 <div id="plop3" class="contenu">
         <input id="fermeturevalide"  type="hidden" visibility="hidden" value ="<?php echo $this->fermeturevalide; ?>" class="fermeture">
     <h2>Consultation de l'offre Xdistrib : <?php echo $this->numwp; ?></h2>
-    <h2>Consultation de l' offre</h2>
+    <?php echo $this->utilisateur; echo 'plop';?>
     <div id='workplace' class="workplace">
         <fieldset id="wp" class="field">
             <legend>Informations offre</legend>
@@ -23,7 +23,7 @@ $this->headScript()->appendFile('/js/controllers/xprice/fermeturevalide.js');
                 </tr>
                 <tr>
                     <td>Tracking number :</td>
-                    <td><?php echo $this->info_demande_xdistrib->tracking_number_demande_xdistrib; echo $this->utilisateur; ?></td>
+                    <td><?php echo $this->info_demande_xdistrib->tracking_number_demande_xdistrib;?></td>
                 </tr>
             </table>
         </fieldset>
