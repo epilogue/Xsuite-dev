@@ -2,8 +2,8 @@
 ob_start();
 ?>
 <page backtop="20mm" backleft="15mm" backright="15mm" backbottom="20mm">
-<div id="avenant" class="contenu">
-    <div id="enteteavenant">
+
+    
         <p>SMC Pneumatique S.A. <br>
             Parc Gustave Eiffel <br>
             1, Bd de Strasbourg<br>
@@ -13,13 +13,11 @@ ob_start();
             Fax : +33(0)1 64 76 10 10<br>
             www.smc-france.fr
         </p>
-    </div>
-    <div id="corpavenant">
-        <div>
+   
             <p style="text-align: center"><h3>Avenant à la Convention Annuelle</h3></p>
-        </div>
-        <form>
-        <div>
+        <
+      
+       
             <p class="objetavenant">Objet: Accord de prix spécifique <br>
                 entre SMC Pneumatique SA et la société : <?php echo $this->info_distrib['nom_distributeur']; ?><br>
                 </p>
@@ -30,7 +28,7 @@ ob_start();
                 Cet accord de prix spécifique étant exclusivement applicable pour le client : <?php echo $this->client_distrib['nom_client'] ?><br>
                 En vue de l’obtention du marché:……. et/ou pour une durée de : ………………….<br>
             </p>
-            <div id="avenantproduit">
+            
                 <table>
                     <tr>
                         <td>Référence produit</td>
@@ -45,7 +43,7 @@ ob_start();
                 </tr><?php } ?>
             </table>
                
-            </div> 
+           
             <p> Fait à Bussy-Saint-Georges, en 2 exemplaires<br><br>
             Le:
             </p>
@@ -67,15 +65,14 @@ ob_start();
                     </td>
                 </tr>
             </table>
-        </div>
-        </form>
-    </div>
+      
+      
    
-    <div id="piedpageavenant">
+   
+
         <p>S.A. au capital de 9 226 250€ - 344 543 046 RCS Meaux - Siret 344 543 046 00041 - I.E. FR 60 344543046 - NAF 4669B</p>
-    </div>
+   
     
-</div>
     </page>
 <?php $plopinette= ob_get_clean();
 require('html2pdf/html2pdf.class.php');
