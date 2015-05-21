@@ -59,8 +59,8 @@ ob_start();
         <?php  foreach($this->article_info as $value){?>
         <tr>
             <td><?php echo $value['reference_article'];?></td>
-            <td><?php echo $value['prix_achat_actuel']."€";?></td>
-            <td><?php echo $value['prix_accorde_demande_article']."€"; ?></td>
+            <td><?php echo $value['prix_achat_actuel']?>€</td>
+            <td><?php echo $value['prix_accorde_demande_article']?>€</td>
         </tr><?php } ?>
     </table>
     <table>
@@ -94,7 +94,6 @@ ob_start();
     </table>
 </page>
 <?php $plopinette= ob_get_clean();
-echo $plopinette;
 require('html2pdf/html2pdf.class.php');
 try{
     $pdf=new HTML2PDF('P','A4','fr');
