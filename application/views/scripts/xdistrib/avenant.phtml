@@ -99,7 +99,7 @@ try{
     $pdf->pdf->SetDisplayMode('fullpage');
     $pdf->writeHTML($plopinette);
     
-    $pdf->Output('avenant.pdf');
+    $pdf->Output('avenant.pdf','D');
 } catch(HTML2PDF_exception $e) {
 die($e);
 }
