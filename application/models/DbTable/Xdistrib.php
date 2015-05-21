@@ -144,4 +144,11 @@ join validations_demande_xdistrib on validations_demande_xdistrib.id_demande_xdi
                 return $rest;
             }
         }
+        public function searchAll($tracking_number){
+     $tracking_number = "$tracking_number";
+    $sql="select * from demande_xdistrib where tracking_number_demande_xdistrib = '{$tracking_number}'";
+    $res= $this->getAdapter()->query($sql);
+      $rest = $res->fetchObject();
+      return $rest;
+    }
 }
