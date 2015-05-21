@@ -983,7 +983,139 @@ if($this->getRequest()->isPost()){
         }
         $this->view->form = $form;
     }
-    public function consultlibreAction(){}
+    public function consultlibreAction(){
+        $tracking = $this->getRequest()->getParam('tracking', null);
+        $this->view->tracking = $tracking;
+        /*
+         * on va rechercher les informations concernant la demande_xprice
+         */
+        $infos_demande_xdistrib = new Application_Model_DbTable_Xdistrib();
+        $info_demande_xdistrib = $infos_demande_xdistrib->searchAll($tracking);
+        $numwp=$info_demande_xdistrib->num_workplace_demande_xdistrib;
+        $this->view->numwp=$numwp;
+        $dateinit=$info_demande_xdistrib['date_demande_xdistrib'];
+        $date = DateTime::createFromFormat('Y-m-d', $dateinit);
+        $dateplop = $date->format('d/m/Y');
+        $ferme = new Application_Model_DbTable_Validationsdemandexdistrib();
+        $fermeture = $ferme->searchFermeture($numwp);
+        foreach($fermeture as $ferm){
+            $plop1 = $ferm;
+        }
+        $numwp_dis=  substr($info_demande_xdistrib['numwp_distributeur'], 0, 6);
+        $info_distrib=new Application_Model_DbTable_Distributeurs();
+        $distrib_info=$info_distrib->getDistributeurnumwp($numwp_dis);
+        $info_user=new Application_Model_DbTable_Users;
+        $user_info=$info_user->getUser($info_demande_xdistrib['id_user']);
+        $nom_holon=new Application_Model_DbTable_Holons();
+        $holon_nom=$nom_holon->getHolon($user_info['id_holon']);
+        $info_client=new Application_Model_DbTable_ClientDistrib();
+        $client_info=$info_client->getClientdistrib($info_demande_xdistrib['numwp_client']);
+        $info_article=new Application_Model_DbTable_DemandeArticlexdistrib();
+        $article_info= $info_article->getDemandeArticlexdistrib($numwp);
+        $info_concurrent=new Application_Model_DbTable_PrixConcurrent();
+        $concurrent_info=$info_concurrent->getConcurrent($numwp);
+        $info_contexte = new Application_Model_DbTable_Xdistrib();
+        $contexte_info1= $info_contexte->getContext($numwp);
+        $contexte_info2=$contexte_info1[0];
+        $contexte_info=$contexte_info2;
+        $info_service = new Application_Model_DbTable_ServiceDistrib();
+        $service_info = $info_service->getService($numwp);
+        $this->view->service_info=$service_info;
+        $this->view->contexte_info = $contexte_info;
+        $this->view->concurrent_info=$concurrent_info;
+        $this->view->article_info=$article_info;
+        $this->view->nom_holon=$holon_nom;
+        $this->view->client_info=$client_info;
+        $this->view->user_info=$user_info;
+        $this->view->distrib_info=$distrib_info;
+        $nomvalidationrecherche = "cdr";
+        $tracking = $info_demande_xdistrib['tracking_number_demande_xdistrib'];
+        $recherchevalidation = new Application_Model_DbTable_Validationsxdistrib();
+        $recherchesvalidation = $recherchevalidation->getValidation($nomvalidationrecherche, $tracking);
+        $infos_user = new Application_Model_DbTable_Users();
+        /*
+         * chargement des validations avec leurs commentaires
+         */
+        $dbtValidationsDemandesXdistrib = new Application_Model_DbTable_Validationsdemandexdistrib();
+        $validationsDemandesXdistrib = $dbtValidationsDemandesXdistrib->getAllValidation($info_demande_xdistrib['id_demande_xdistrib']);
+
+        $this->view->validations = $validationsDemandesXdistrib;
+        //echo'<pre>',  var_export($validationsDemandesXdistribs),'</pre>';
+        $usersValidations = array();
+
+        foreach (@$validationsDemandesXdistrib as $key => $validationDemandeXdistri) {
+            $userValidationInfos = $infos_user->getFonctionLabel($validationDemandeXdistri['id_user']);
+            $usersValidations[$key]['fonction'] =$userValidationInfos['prenom_user'].' ' .$userValidationInfos['nom_user'];
+        }
+        $this->view->usersValidations = $usersValidations;
+        $this->view->fermeturevalide=$plop1['etat_validation'];
+        $this->view->dateplop=$dateplop;
+        $this->view->info_demande_xdistrib=$info_demande_xdistrib;
+        $encours = new Application_Model_DbTable_Validationsdemandexdistrib();
+        $encours1 = $encours->getValidForEncours($numwp);
+       $i = (count($encours1)-1);
+       $plop2=$encours1[$i]['etat_validation'] ;
+       $plop3=$encours1[$i]['nom_validation'] ;
+       if($plop2 =="validee" || $plop2=="validée"){
+        switch ($plop3) {
+            case "cdr":
+                $encoursFonction="Nicolas Thouin";
+                $encoursNom="encours";
+
+                break;
+            case "fobfr":
+                 $encoursFonction="Emmanuel Jourdain";
+                $encoursNom="encours";
+                break;
+            
+            case "supply":
+                 $encoursFonction="Alexandre Bauer";
+                $encoursNom="encours";
+                break;
+            
+            case "dbd":
+                 $encoursFonction="François Delauge";
+                $encoursNom="encours";
+                break;
+            default:
+                break;
+        }
+    }
+    elseif($plop2=="creation"){
+           $encoursFonction="chef de région";
+           $encoursNom="encours";
+       }
+    elseif($plop2=="enAttente"){
+        switch ($plop3) {
+        case "reponse":
+        $encoursFonction=$info_user['nom_user'].' '. $info_user['prenom_user'];
+        $encoursNom="encours"; 
+        break;
+        case "cdr":
+        $encoursFonction="chef de région";
+        $encoursNom="encours";
+        break;
+        case "fobfr":
+        $encoursFonction="Nicolas Thouin";
+        $encoursNom="encours";
+        break;
+
+        case "supply":
+        $encoursFonction="Emmanuel Jourdain";
+        $encoursNom="encours";
+        break;
+
+        case "dbd":
+        $encoursFonction="Alexandre Bauer";
+        $encoursNom="encours";
+        break;
+        default:
+        break;
+        }
+   }
+        $this->view->encoursFonction = $encoursFonction;
+        $this->view->encoursNom=$encoursNom;
+    }
     public function numwpAction(){
         $numwp = $this->getRequest()->getParam('numwp', null);
         $form = new Application_Form_NumwpDistrib();
