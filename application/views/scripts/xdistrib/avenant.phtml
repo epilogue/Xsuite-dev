@@ -1,4 +1,5 @@
 <?php
+ob_get_clean();
 ob_start();
 ?>
 <page backtop="20mm" backleft="15mm" backright="15mm" backbottom="20mm">
@@ -99,7 +100,7 @@ try{
     $pdf->pdf->SetDisplayMode('fullpage');
     $pdf->writeHTML($plopinette);
     
-    $pdf->Output('avenant.pdf','D');
+    $pdf->Output('avenant.pdf');
 } catch(HTML2PDF_exception $e) {
 die($e);
 }
