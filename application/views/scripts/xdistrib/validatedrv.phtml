@@ -131,8 +131,8 @@ $this->headTitle($this->title);
                 <tr>
                     <td colspan="2">total</td>
                     <td><?php $Pa=0;foreach($this->article_info as $value){$Pa+=($value['quantite_demande_article']*$value['prix_achat_actuel']); }?><?php echo $Pa; ?></td>
-                    <td><?php $Pd=0;foreach($this->article_info as $value){$Pd+=($value['quantite_demande_article']*$value['prix_demande_article']); }?><?php echo $Pd; ?></td>
-                    <td><?php $Pc=0;foreach($this->article_info as $value){$Pc+=($value['quantite_demande_article']*$value['prix_client_final']); }?><?php echo $Pc; ?></td>
+                    <td><?php $Pd=0;foreach($this->article_info as $value){$Pd+=($value['quantite_demande_article']*$value['prix_demande_article']); }?><?php echo round($Pd,2); ?></td>
+                    <td><?php $Pc=0;foreach($this->article_info as $value){$Pc+=($value['quantite_demande_article']*$value['prix_client_final']); }?><?php echo round($Pc,2); ?></td>
                 </tr>
             </table>
         </fieldset>
