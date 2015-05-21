@@ -130,7 +130,7 @@ $this->headTitle($this->title);
                 </tr> <?php }?>
                 <tr>
                     <td colspan="2">total</td>
-                    <td><?php $Pa=0;foreach($this->article_info as $value){$Pa+=($value['quantite_demande_article']*$value['prix_achat_actuel']); }?>value="<?php echo $Pa; ?></td>
+                    <td><?php $Pa=0;foreach($this->article_info as $value){$Pa+=($value['quantite_demande_article']*$value['prix_achat_actuel']); }?><?php echo $Pa; ?></td>
                 </tr>
             </table>
         </fieldset>
