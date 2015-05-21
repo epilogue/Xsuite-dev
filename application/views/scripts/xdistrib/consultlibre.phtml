@@ -23,7 +23,7 @@ $this->headScript()->appendFile('/js/controllers/xprice/fermeturevalide.js');
                 </tr>
                 <tr>
                     <td>Tracking number :</td>
-                    <td><?php echo $this->info_demande_xdistrib->tracking_number_demande_xdistrib; ?></td>
+                    <td><?php echo $this->info_demande_xdistrib->tracking_number_demande_xdistrib; echo $this->utilisateur; ?></td>
                 </tr>
             </table>
         </fieldset>
