@@ -1,7 +1,305 @@
 <?php
-$this->title = 'Xdistrib/consultation';
+$this->title = 'Xdistrib/visualisation';
 $this->headTitle($this->title);
+$this->headScript()->appendFile('/js/controllers/xprice/affiche_masque_commentaires.js');
+$this->headScript()->appendFile('/js/controllers/xprice/afficher_masquer_validations.js');
+$this->headScript()->appendFile('/js/controllers/xprice/fermeturevalide.js');
 ?>
-<div id="plop" class="contenu">
-    <h2>Consultation de l'offre Xdistrib : <?php $numwp?></h2>
+<div id="plop3" class="contenu">
+        <input id="fermeturevalide"  type="hidden" visibility="hidden" value ="<?php echo $this->fermeturevalide; ?>" class="fermeture">
+    <h2>Consultation de l'offre Xdistrib : <?php echo $this->numwp; ?></h2>
+    <h2>Consultation de l' offre</h2>
+    <div id='workplace' class="workplace">
+        <fieldset id="wp" class="field">
+            <legend>Informations offre</legend>
+            <table>
+                <tr>
+                    <td>Numéro workplace de l'offre :</td>
+                    <td><?php echo $this->numwp; ?></td>
+                </tr>
+                <tr>
+                    <td>Date de l'offre workplace :</td>
+                    <td><?php echo $this->dateplop; ?></td>
+                </tr>
+                <tr>
+                    <td>Tracking number :</td>
+                    <td><?php echo $this->info_demande_xdistrib['tracking_number_demande_xdistrib']; ?></td>
+                </tr>
+            </table>
+        </fieldset>
+    </div>
+    <div class="clear"></div>
+    <div class="clear"></div>
+    <div id="information2" class="workplace2">
+        <fieldset id="info_user" class="field_info_2">
+            <legend>Informations<br>Commercial</legend>
+            <table>
+                <tr>
+                    <td>Nom:</td>
+                    <td><?php echo $this->user_info['nom_user'];?></td>
+                </tr>
+                <tr>
+                    <td>Prénom:</td>
+                    <td><?php echo $this->user_info['prenom_user'];?></td>
+                </tr>
+                <tr>
+                    <td>Email:</td>
+                    <td><?php echo $this->user_info['email_user'];?></td>
+                </tr>
+                <tr>
+                    <td>Téléphone:</td>
+                    <td><?php echo $this->user_info['tel_user'];?></td>
+                </tr>
+                <tr>
+                    <td>Holon:</td>
+                    <td><?php echo $this->nom_holon['nom_holon']; ?></td>
+                </tr>
+                <tr>
+                    <td>User workplace:</td>
+                    <td><?php echo $this->user_info['numwp_user'];?></td>
+                </tr>
+            </table>
+        </fieldset>
+        <fieldset id="info_distributeur" class="field_info_2" >
+            <legend>Informations<br>Distributeur</legend>
+            <table>
+                <tr>
+                    <td>Nom:</td>
+                    <td><?php echo $this->distrib_info['nom_distributeur'];?></td>
+                </tr>
+                <tr>
+                    <td>Prénom Nom du contact:</td>
+                    <td><?php echo $this->distrib_info['contact_distributeur'];?></td>
+                </tr>
+                <tr>
+                    <td>Ville:</td>
+                    <td><?php echo $this->distrib_info['agence_distributeur'];?></td>
+                </tr>
+                <tr>
+                    <td>Code Postal:</td>
+                    <td><?php echo $this->distrib_info['code_postal_distributeur'];?></td>
+                </tr>
+                <tr>
+                    <td>User Workplace:</td>
+                    <td><?php echo $this->distrib_info['numwp_distributeur'];?></td>
+                </tr>
+            </table>
+        </fieldset>             
+
+        <fieldset id="info_client" class="field_info_2"> 
+            <legend>Informations<br>Client Final</legend>
+            <table>
+                <tr>
+                    <td>Nom:</td>
+                    <td colspan="2"><?php echo $this->client_info['nom_client']?></td>
+                </tr>
+                <tr>
+                    <td>Code Postal:</td>
+                    <td><?php echo $this->client_info['codepostal_client']?></td>
+                </tr>
+                <tr>
+                    <td>Ville:</td>
+                    <td><?php echo $this->client_info['ville_client']?></td>
+                </tr>
+                <tr>
+                    <td>User Workplace:</td>
+                    <td><?php echo $this->client_info['numwp_client']?></td>
+                </tr>
+                 <tr>
+                    <td>Projet:</td>
+                    <td><?php echo $this->client_info['nom_industry']?></td>
+                </tr>
+            </table>
+       </fieldset>
+    </div>
+     <div class="clear"></div>
+    <div id="demandeArticle" class="workplace">
+        <fieldset class="field">
+            <legend>Produits</legend>
+            <table  id="article" class="enum">
+                <tr>
+                    <td>Références produits</td>
+                    <td>Quantité</td>
+                    <td>Prix Tarif</td>
+                    <td>Remise Actuelle</td>
+                    <td>Prix demandé Distrib</td>
+                    <td>Remise référence ou série</td>
+                    <td>Prix Conseillé Client</td>
+                    <td>Prix Accordés</td>
+                     <td>Remises Accordées</td>
+                     <?php if($this->utilisateur =='5' or $this->utilisateur== '13'  or $this->utilisateur== '29'){ ?>
+                    <th>Prix cif</th>
+                    <th>Prix fob</th>
+                    <th>Marge Distrib</th>
+                    <th>Marge</th><?php } else {}?>
+                </tr>
+                </tr>
+                <?php foreach($this->article_info as $value){ ?>
+                <tr>
+                    <td><?php echo $value['reference_article']; ?></td>
+                    <td><?php echo $value['quantite_demande_article']; ?></td>
+                    <td><?php echo $value['prix_tarif']; ?></td>
+                    <td><?php $remiseActuelle=100*(1-( $value['prix_achat_actuel']/$value['prix_tarif']));echo round($remiseActuelle,2)."%"; ?></td>
+                    <td><?php echo $value['prix_demande_article']; ?></td>
+                    <td><?php echo $value['serie']; ?></td>
+                    <td><?php echo $value['prix_client_final']; ?></td>
+                    
+                   <?php if ( $value['prix_demande_article'] != $value['prix_accorde_demande_article']){ ?>
+                        <td style="background-color: yellow;"><?php echo number_format($value['prix_accorde_demande_article'],2,'.',' ') ; ?></td>
+                        <td style="background-color: yellow;"><?php echo $value['remise_accorde_demande_article'] . "%"; ?></td>
+                        <?php }else{?>
+                        <td><?php echo number_format($value['prix_accorde_demande_article'],2,'.',' ') ; ?></td>
+                        <td><?php echo $value['remise_accorde_demande_article'] . "%"; ?></td>
+                        <?php }?>
+                         <?php if($this->utilisateur =='5' or $this->utilisateur== '13' or $this->utilisateur =='29'){ ?>
+                        <td><?php echo number_format($value['prix_cif_demande_article'],2,'.',' ') ; ?></td>
+                        <td><?php echo number_format($value['prix_fob_demande_article'],2,'.',' ') ; ?></td>
+                        <td><?php $margedistribini =100*( 1-($value['prix_accorde_demande_article']/$value['prix_client_final'])); echo round($margedistribini,2)."%"; ?></td>
+                        <td><?php echo $value['marge_demande_article'] . "%"; ?></td><?php } else {}?>
+                    </tr>
+                <?php } ?>
+                     <?php if($this->utilisateur =='5' or $this->utilisateur== '13' or $this->utilisateur =='29'){ ?>
+                       <tr>
+                            <td colspan="2">total</td>
+                            <td colspan="1" ><input class="cab" id="cab-affiche"
+                               <?php $cab=0;foreach($this->article_info as $value)
+                                {$cab+=($value['quantite_demande_article']*$value['prix_tarif']);
+                            
+                            } ?>value="<?php $cab2=number_format($cab,2,'.',' ');echo $cab2; ?>">
+                                <input id="cab" type="hidden" class="calculHidden" value="<?php echo $cab; ?>" >
+                            </td>
+                            <td></td>
+                            <td><input class="cat" id="cat-affiche"
+                               <?php $cat=0;foreach($this->article_info as $value)
+                                {$cat+=($value['quantite_demande_article']*$value['prix_demande_article']);
+                            
+                            } ?>value="<?php $cat2=number_format($cat,2,'.',' ');echo $cat2; ?>">
+                                <input id="cat" type="hidden" class="calculHidden" value="<?php echo $cat; ?>" ></td>
+                            <td></td>
+                            <td><input class="car" id="car-affiche"
+                               <?php $car=0;foreach($this->article_info as $value)
+                                {$car+=($value['quantite_demande_article']*$value['prix_client_final']);
+                            
+                            } ?>value="<?php $car2=number_format($car,2,'.',' ');echo $car2; ?>">
+                                <input id="car" type="hidden" class="calculHidden" value="<?php echo $car; ?>" ></td>
+                             
+                            <td >
+                                <input id="caat-affiche" <?php $CAa=0; foreach($this->article_info as $value){
+                                    $CAa+=(($value['prix_accorde_demande_article'])*$value['quantite_demande_article']);
+                                    }?>  value ="<?php echo number_format($CAa, 2, '.', ' '); ?>" >
+                                <input id="caat" type="hidden" class="calculHidden" value="<?php echo $CAa; ?>" >
+                            </td>
+                            <td><input id="mo"  <?php $mo=100*(1-($CAa/$cab));?> value="<?php echo round($mo,2)."%"; ?>"></td>
+                           <td >
+                               <input  id="ccif-affiche"<?php $Ccif=0; foreach($this->article_info as $value){
+                                    $Ccif+=($value['quantite_demande_article']*$value['prix_cif_demande_article']);
+                                }?> value="<?php echo number_format($Ccif, 2, '.', ' '); ?>">
+                                <input id="ccif" type="hidden" class="calculHidden" value="<?php echo $Ccif; ?>" >
+                            </td>
+                             <td ><?php $Cfob=0; foreach($this->article_info as $value){
+                                    $Cfob+=($value['quantite_demande_article']*$value['prix_fob_demande_article']);
+                                }$Cfob2=number_format($Cfob,2,'.',' '); echo $Cfob2; ?>
+                            </td>
+                            <td><?php  $margetotaldistrib = 100*(1-($CAa/$car)); echo round($margetotaldistrib,2)."%"?></td>
+                            <td><input id="mamo"<?php $mamo = 100*(1-($Ccif/$CAa))?> value ="<?php echo round($mamo,2)."%";?>"></td>
+                            
+                        </tr><?php } elseif($this->utilisateur == '10') {?>
+                        <tr>
+                            <td colspan="2">total</td>
+                            <td colspan="2" ><input class="cab" id="cab-affiche"
+                               <?php $cab=0;foreach($this->article_info as $value)
+                                {$cab+=($value['quantite_demande_article']*$value['prix_tarif']);
+                            
+                            } ?>value="<?php $cab2=number_format($cab,2,'.',' ');echo $cab2; ?>">
+                                <input id="cab" type="hidden" class="calculHidden" value="<?php echo $cab; ?>" >
+                            </td>
+                            <td colspan="2"></td>
+                            <td >
+                                <input id="caat-affiche" <?php $CAa=0; foreach($this->info_demande_article_xprice as $value){
+                                    $CAa+=(($value['prix_accorde_demande_article'])*$value['quantite_demande_article']);
+                                    }?>  value ="<?php echo number_format($CAa, 2, '.', ' '); ?>" >
+                                <input id="caat" type="hidden" class="calculHidden" value="<?php echo $CAa; ?>" >
+                            </td>
+                            <td><input id="mo"  <?php $mo=100*(1-($CAa/$cab));?> value="<?php echo round($mo,2)."%"; ?>"></td>
+                 <?php }?></tr>
+            </table>
+        </fieldset>
+    </div>
+    <div class="clear"></div>
+    <div id="concurrent" class="workplace">
+            <fieldset  class="field">
+                <legend>Concurrence</legend>
+                <table  id="concurrents" class="enum">
+                    <tr>
+                        <td>Concurrents</td>
+                        <td>Références Produits</td>
+                        <td>Prix Tarif CONCURRENT</td>
+                        <td>Prix spécial accordé CONCURRENT</td>
+                    </tr>
+                    <?php foreach($this->concurrent_info as $val){ ?>
+                    <tr>
+                        <td><?php echo $val['nom_concurrent']; ?></td>
+                        <td><?php echo $val['reference_article']; ?></td>
+                        <td><?php echo $val['prix_concurrent']; ?></td>
+                        <td><?php echo $val['prix_special_concurrent']; ?></td>
+                    </tr> <?php } ?>
+                </table>
+            </fieldset>
+        </div>
+        <div class="clear"></div>
+         <div id="contexte_service" class="workplace">
+            <fieldset class="field">
+                <legend>Contexte de la demande</legend>
+                <?php  foreach($this->contexte_info as $contexte){?>
+                <p><?php echo $contexte;?></p><?php } ?>
+                <table class='enum'>
+                    
+                    <tr><?php foreach($this->service_info as $key=>$value) { if($value != null && $key != "id_service_distrib" && $key != "numwp" ){?>
+                    <td><?php echo $value;} ?></td> <?php } ?>
+                    </tr>
+                </table>
+            </fieldset>
+         </div>
+         <div class="clear"></div>
+         <div id='commentaire' class="workplace">
+            <button type="button" id="histButton" name="historique" value="historique" class="submit">Afficher les commentaires</button>
+            <fieldset id='comm_user' class="field">
+                <legend>Commentaires</legend>
+                <table class="enum">
+                    <?php foreach (@$this->validations as $key => $value) { ?>
+                        <tr>
+                            <td>Commentaire <?php echo strtolower($this->usersValidations[$key]['fonction']); ?></td>
+                            <td><?php echo $value['date_validation']; ?></td>
+                            <td><?php echo nl2br($value['commentaire']); ?></td>
+                        </tr>
+
+                    <?php } ?>
+                </table>
+            </fieldset>
+        </div>
+         <div class="clear"></div>
+        <div id="validation" class="workplace">
+            <button class="submit" id="historiqueVal" name="historiqueVal" value="historiqueVal">Historique validation</button>
+            <fieldset  id='valid_hist' class='field'>
+                <legend>Validation</legend>
+                <table class="enum">
+                    <?php foreach (@$this->validations as $key => $value) { if($value['etat_validation']!="enAttente"){ ?>
+                        <tr>
+                            <td> <?php echo strtolower($this->usersValidations[$key]['fonction']); ?></td>
+                            <td><?php echo $value['date_validation']; ?></td>
+                            <td><?php echo nl2br($value['etat_validation']); ?></td>
+                        </tr>
+                    <?php } }?>
+                        <tr>
+                            <td><?php echo $this->encoursFonction; ?></td>
+                            <td></td>
+                            <td><?php echo $this->encoursNom; ?></td>
+                        </tr>
+                    <?php if ($this->fermeturevalide=="fermee") { ?>
+                        <tr><td colspan = "3" style="text-align:center;">---------FIN DE LA PROCEDURE--------</td></tr>
+                        <?php }else {?><tr><td colspan = "3" style="text-align:center;">--------PROCEDURE EN COURS--------</td></tr> <?php }?>
+                </table>
+            </fieldset>
+        </div>
+    <div class="clear"></div>
 </div>
