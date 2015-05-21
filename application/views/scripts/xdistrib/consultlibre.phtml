@@ -7,8 +7,7 @@ $this->headScript()->appendFile('/js/controllers/xprice/fermeturevalide.js');
 ?>
 <div id="plop3" class="contenu">
         <input id="fermeturevalide"  type="hidden" visibility="hidden" value ="<?php echo $this->fermeturevalide; ?>" class="fermeture">
-    <h2>Consultation de l'offre Xdistrib : <?php echo $this->numwp; ?></h2>
-    <?php echo $this->utilisateur; echo 'plop';?>
+    <h2>Consultation de l'offre Xdistrib : <?php echo $this->info_demande_xdistrib->tracking_number_demande_xdistrib; ?></h2>
     <div id='workplace' class="workplace">
         <fieldset id="wp" class="field">
             <legend>Informations offre</legend>
@@ -213,7 +212,8 @@ $this->headScript()->appendFile('/js/controllers/xprice/fermeturevalide.js');
                             } ?>value="<?php $cab2=number_format($cab,2,'.',' ');echo $cab2; ?>">
                                 <input id="cab" type="hidden" class="calculHidden" value="<?php echo $cab; ?>" >
                             </td>
-                            <td colspan="2"></td>
+                             <td><?php $Pd=0;foreach($this->article_info as $value){$Pd+=($value['quantite_demande_article']*$value['prix_demande_article']); }?><?php echo round($Pd,2); ?></td>
+                    <td><?php $Pc=0;foreach($this->article_info as $value){$Pc+=($value['quantite_demande_article']*$value['prix_client_final']); }?><?php echo round($Pc,2); ?></td>
                             <td >
                                 <input id="caat-affiche" <?php $CAa=0; foreach($this->info_demande_article_xprice as $value){
                                     $CAa+=(($value['prix_accorde_demande_article'])*$value['quantite_demande_article']);
