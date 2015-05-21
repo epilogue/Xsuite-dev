@@ -986,9 +986,8 @@ if($this->getRequest()->isPost()){
     public function consultlibreAction(){
         $tracking = $this->getRequest()->getParam('tracking', null);
         $this->view->tracking = $tracking;
-        /*
-         * on va rechercher les informations concernant la demande_xprice
-         */
+        $user = $this->_auth->getStorage()->read();
+         $this->view->utilisateur=$user->id_fonction;
         $infos_demande_xdistrib = new Application_Model_DbTable_Xdistrib();
         $info_demande_xdistrib = $infos_demande_xdistrib->searchAll($tracking);
         $numwp=$info_demande_xdistrib->num_workplace_demande_xdistrib;
