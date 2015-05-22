@@ -1,82 +1,106 @@
-<?php echo $this->headLink()->prependStylesheet($this->baseUrl().'/css/print.css', array('media'=>'print'));  ?>
-<page>
-    <page_header>
-        <div id="enteteavenant">
-        <img  src="/images/logo_smc_bleu3.jpg" alt="" />
-        <p>SMC Pneumatique S.A. <br>
-            Parc Gustave Eiffel <br>
-            1, Bd de Strasbourg<br>
-            CS 90297 BUSSY SAINT GEORGES<br>
-            77607 MARNE LA VALLEE CEDEX<br>
-            Tel : +33(0)1 64 76 10 00<br>
-            Fax : +33(0)1 64 76 10 10<br>
-            www.smc-france.fr
-        </p>
-    </div>
-    </page_header>
-    <page_footer>
-         <div id="piedpageavenant">
-        <table class="avenantsignature">
-            <tr>
-                <td>Pour le Distributeur</td>
-                <td>
-                    Pour le Fabricant SMC PNEUMATIQUE SA<br>
-                     <img  src="/images/signatureFdelauge2.jpg" alt="" />
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    Nom :................................<br>
-                    Fonction :...........................<br>
-                </td>
-                <td>
-                    François DELAUGE <br>
-                    Directeur Ventes & Marketing
-                </td>
-            </tr>
-        </table>
-        <p>S.A. au capital de 9 226 250€ - 344 543 046 RCS Meaux - Siret 344 543 046 00041 - I.E. FR 60 344543046 - NAF 4669B</p>
-    </div>
-    </page_footer>
+<?php //
+ob_get_clean();
+ob_start();
+?>
+<page backtop="20mm" backleft="15mm" backright="15mm" backbottom="20mm">
+    <table>
+        <tr>
+            <td>SMC Pneumatique S.A</td>
+        </tr>
+        <tr>
+            <td>Parc Gustave Eiffel</td>
+        </tr>
+        <tr>
+            <td> 1, Bd de Strasbourg</td>
+        </tr>
+        <tr>
+            <td>CS 90297 BUSSY SAINT GEORGES</td>
+        </tr>
+        <tr>
+            <td>77607 MARNE LA VALLEE CEDEX</td>
+        </tr>
+        <tr>
+            <td>Tel : +33(0)1 64 76 10 00</td>
+        </tr>
+        <tr>
+            <td>Fax : +33(0)1 64 76 10 10</td>
+        </tr>
+        <tr>
+            <td>www.smc-france.fr</td>
+        </tr>
+    </table>
+    <table>
+        <tr>
+            <td><h2>Avenant à la Convention Annuelle</h2></td>
+        </tr>
+        <tr>
+            <td>Objet: Accord de prix spécifique entre SMC Pneumatique SA et la société : <?php echo $this->info_distrib['nom_distributeur']; ?></td>
+        </tr>
+        <tr>
+            <td>
+                 Cher partenaire,
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Suite à votre demande, nous avons le plaisir de vous confirmer notre accord pour modifier
+                nos prix de vente selon les conditions particulières mentionnées ci-dessous.
+                Cet accord de prix spécifique étant exclusivement applicable pour le client : <?php echo $this->client_distrib['nom_client'] ?>
+                En vue de l’obtention du marché:……. et/ou pour une durée de : ………………….
+            </td>
+        </tr>
+    </table>
+    <table>
+        <tr>
+            <td>Référence produit</td>
+            <td>Ancien prix de vente</td>
+            <td>Nouveau prix de vente</td>
+        </tr>
+        <?php  foreach($this->article_info as $value){?>
+        <tr>
+            <td><?php echo $value['reference_article'];?></td>
+            <td><?php echo $value['prix_achat_actuel']?>€</td>
+            <td><?php echo $value['prix_accorde_demande_article']?>€</td>
+        </tr><?php } ?>
+    </table>
+    <table>
+        <tr>
+            <td>Fait à Bussy-Saint-Georges, en 2 exemplaires</td>
+        </tr>
+        <tr>
+            <td>Le:</td>
+        </tr>
+        <tr>
+            <td>Pour le Distributeur</td>
+            <td>
+                Pour le Fabricant SMC PNEUMATIQUE SA<br>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Nom :................................<br>
+                Fonction :...........................<br>
+            </td>
+            <td>
+                François DELAUGE <br>
+                Directeur Ventes & Marketing
+            </td>
+        </tr>
+    </table>
+    <table>
+        <tr>
+            <td>S.A. au capital de 9 226 250€ - 344 543 046 RCS Meaux - Siret 344 543 046 00041 - I.E. FR 60 344543046 - NAF 4669B</td>
+        </tr>
+    </table>
 </page>
-<div id="avenant" class="contenu">
-
+<?php $plopinette= ob_get_clean();
+require('html2pdf/html2pdf.class.php');
+try{
+    $pdf=new HTML2PDF('P','A4','fr');
+    $pdf->pdf->SetDisplayMode('fullpage');
+    $pdf->writeHTML($plopinette);
     
-    <div id="corpavenant">
-        <div>
-            <p style="text-align: center"><h3>Avenant à la Convention Annuelle</h3></p>
-        </div>
-        <div>
-            <p class="objetavenant">Objet: Accord de prix spécifique <br>
-                entre SMC Pneumatique SA et la société : <?php echo $this->info_distrib['nom_distributeur']; ?><br>
-                </p>
-                <p>
-                Cher partenaire,<br>
-                Suite à votre demande, nous avons le plaisir de vous confirmer notre accord pour modifier<br>
-                nos prix de vente selon les conditions particulières mentionnées ci-dessous.<br>
-                Cet accord de prix spécifique étant exclusivement applicable pour le client : <?php echo $this->client_distrib['nom_client'] ?><br>
-                En vue de l’obtention du marché:……. et/ou pour une durée de : ………………….<br>
-            </p>
-            <div id="avenantproduit">
-                <table  class="enum">
-                <tr>
-                    <td>Référence produit</td>
-                    <td>Ancien prix de vente</td>
-                    <td>Nouveau prix de vente</td>
-                </tr>
-                <?php  foreach($this->article_info as $value){?>
-                <tr>
-                    <td><?php echo $value['reference_article'];?></td>
-                    <td><?php echo $value['prix_achat_actuel']."€";?></td>
-                    <td><?php echo $value['prix_accorde_demande_article']."€"; ?></td>
-                </tr><?php } ?>
-            </table>
-            </div> 
-            <p> Fait à Bussy-Saint-Georges, en 2 exemplaires<br><br>
-            Le:
-            </p>
-            
-        </div>
-    </div>
-   
-</div>
+    $pdf->Output('avenant.pdf');
+} catch(HTML2PDF_exception $e) {
+die($e);
+}
