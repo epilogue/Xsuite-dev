@@ -1,40 +1,57 @@
-<?php
-require('fpdf/fpdf.php');
-class PDF extends FPDF
-{
-// En-tête
-function Header()
-{
-    // Logo
-    $this->Image('http://xsuite-test/public/images/Logo.jpg',10,6,30);
-    // Police Arial gras 15
-    $this->SetFont('Arial','B',15);
-    // Décalage à droite
-    $this->Cell(80);
-    // Titre
-    $this->Cell(30,10,'Titre',1,0,'C');
-    // Saut de ligne
-    $this->Ln(20);
-}
-// Pied de page
-function Footer()
-{
-    // Positionnement à 1,5 cm du bas
-    $this->SetY(-15);
-    // Police Arial italique 8
-    $this->SetFont('Arial','I',8);
-    // Numéro de page
-    $this->Cell(0,10,'Page '.$this->PageNo().'/{nb}',0,0,'C');
-}
-}
-
-// Instanciation de la classe dérivée
-$pdf = new PDF();
-$pdf->AliasNbPages();
-$pdf->AddPage();
-$pdf->SetFont('Times','',12);
-for($i=1;$i<=40;$i++)
-    $pdf->Cell(0,10,'Impression de la ligne numéro '.$i,0,1);
-$pdf->Output();
+<?php 
+ob_get_clean();
+ob_start();
 ?>
-?>
+<page backtop="20mm" backleft="15mm" backright="15mm" backbottom="120mm">
+    <table>
+        <tr>
+            <td>Objet: Accord de prix spécifique entre SMC Pneumatique SA et la société : <?php echo $this->info_distrib['nom_distributeur']; ?></td>
+        </tr>
+        <tr>
+            <td>
+                 Cher partenaire,
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Suite à votre demande, nous avons le plaisir de vous confirmer notre accord pour modifier
+                nos prix de vente selon les conditions particulières mentionnées ci-dessous.
+                Cet accord de prix spécifique étant exclusivement applicable pour le client : <?php echo $this->client_distrib['nom_client'] ?>
+                En vue de l’obtention du marché:……. et/ou pour une durée de : ………………….
+            </td>
+        </tr>
+    </table>
+    <table>
+        <tr>
+            <td>Référence produit</td>
+            <td>Ancien prix de vente</td>
+            <td>Nouveau prix de vente</td>
+        </tr>
+        <?php  foreach($this->article_info as $value){?>
+        <tr>
+            <td><?php echo $value['reference_article'];?></td>
+            <td><?php echo $value['prix_achat_actuel']?>€</td>
+            <td><?php echo $value['prix_accorde_demande_article']?>€</td>
+        </tr><?php } ?>
+    </table>
+    <table>
+        <tr>
+            <td>Fait à Bussy-Saint-Georges, en 2 exemplaires</td>
+        </tr>
+        <tr>
+            <td>Le:</td>
+        </tr>
+    </table>
+</page>
+<?php $plopinette= ob_get_clean();
+require('html2pdf/html2pdf.class.php');
+try{
+    $pdf=new HTML2PDF('P','A4','fr');
+    $pdf->pdf->SetDisplayMode('fullpage');
+    $pdf->writeHTML($plopinette);
+    
+    $pdf->Output(APPLICATION_PATH. "/../docs/avenant_{$this->numwp}.pdf", 'F');
+} catch(HTML2PDF_exception $e) {
+die($e);
+}
+header("Location:/xdistrib/avenant2/numwp/{$this->numwp}");

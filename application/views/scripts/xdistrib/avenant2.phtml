@@ -1,0 +1,49 @@
+<?php
+require_once(APPLICATION_PATH. "/../library/fpdf/fpdf.php");
+require_once(APPLICATION_PATH. "/../library/fpdi/fpdi.php");
+$pdf2 = new FPDI();
+// add a page (première page)
+//$pdf2->AddPage();
+
+// premier template
+// set the source file
+$pdf2->setSourceFile(APPLICATION_PATH. "/../docs/template_Avenant_header.pdf");
+// import page 1
+$tplIdx = $pdf2->importPage(1);
+
+// use the imported page and place it at point 1,70 with a width of 100 mm
+$pdf2->setSourceFile(APPLICATION_PATH. "/../docs/template_Avenant_page.pdf");
+// import page 1
+$pageIdx = $pdf2->importPage(1);
+
+// import de l'avenant
+// set the second source file
+$pageCount = $pdf2->setSourceFile(APPLICATION_PATH. "/../docs/avenant_{$this->numwp}.pdf");
+
+//Boucle sur les éventuelles pages supplémentaires
+for ($i=1; $i<=$pageCount;$i++) {
+    // use the imported page and place it at point 1,1 with a width of 100 mm
+    $avnId = $pdf2->importPage($i);
+    $size = $pdf2->getTemplateSize($avnId);
+    $pdf2->AddPage('P', array($size['w'], $size['h']));
+    if($i == 1) {
+        $pdf2->useTemplate($tplIdx, 1, 1, 210);
+        $pdf2->useTemplate($avnId, 1, 70, 210);
+    } else {
+        $pdf2->useTemplate($avnId);
+    }
+
+    $pdf2->useTemplate($pageIdx, 1, 1, 210);
+}
+
+// Troisième template
+// set the source file
+$pdf2->setSourceFile(APPLICATION_PATH. "/../docs/template_Avenant_footer.pdf");
+// import page 1
+$tplIdx = $pdf2->importPage(1);
+// use the imported page and place it at point 1,1 with a width of 100 mm
+$pdf2->useTemplate($tplIdx, 1, 1, 210);
+
+$pdf2->Output('avenant.pdf', 'I');
+/**/
+unlink(APPLICATION_PATH. "/../docs/avenant_{$this->numwp}.pdf");
