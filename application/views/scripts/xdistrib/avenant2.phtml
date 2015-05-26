@@ -1,5 +1,6 @@
 <?php
-ob_get_clean();
+header("Content-type:application/pdf");
+header("Content-Disposition:attachment;filename='downloaded.pdf'");;
 require_once(APPLICATION_PATH. "/../library/fpdf/fpdf.php");
 require_once(APPLICATION_PATH. "/../library/fpdi/fpdi.php");
 $pdf2 = new FPDI();
