@@ -43,7 +43,6 @@ $pdf2->setSourceFile(APPLICATION_PATH. "/../docs/template_Avenant_footer.pdf");
 $tplIdx = $pdf2->importPage(1);
 // use the imported page and place it at point 1,1 with a width of 100 mm
 $pdf2->useTemplate($tplIdx, 1, 10, 215);
-flush();
 $pdf2->Output('avenant.pdf', 'I');
 /**/
 unlink(APPLICATION_PATH. "/../docs/avenant_{$this->numwp}.pdf");
