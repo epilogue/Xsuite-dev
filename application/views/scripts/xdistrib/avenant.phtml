@@ -49,7 +49,7 @@ require('html2pdf/html2pdf.class.php');
 try{
     $pdf=new HTML2PDF('P','A4','fr');
     $pdf->pdf->SetDisplayMode('fullpage');
-    $pdf->pdf->setDefaultFont('Arial');
+    $pdf->setDefaultFont('Arial');
     $pdf->writeHTML($plopinette);
     
     $pdf->Output(APPLICATION_PATH. "/../docs/avenant_{$this->numwp}.pdf", 'F');
