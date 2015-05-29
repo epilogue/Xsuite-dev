@@ -29,13 +29,16 @@ $this->headScript()->appendFile('/js/controllers/xprice/popup.js');
             <td><?php echo $result['tracking_number_demande_xprice']; ?></td>
             <td><?php echo $result['nom_client']; ?></td>
              <td><?php echo $result['date_demande_xprice']; ?></td>
-        <?php if($result['etat_validation']=="validee" || $result['etat_validation']=="validée" || $result['etat_validation']=="enAttente" || $result['etat_validation']=="creation"){ ?>
+        <?php if($result['etat_validation']=="validee" || $result['etat_validation']=="validée" ||  $result['etat_validation']=="creation"){ ?>
              <td>en cours <br> <?php if($result['nom_validation']=="creation"){echo 'cdr';}
                                     elseif ($result['nom_validation']=="cdr") {echo 'fobfr';}
                                      elseif ($result['nom_validation']=="fobfr") {echo 'supply';}
                                      elseif ($result['nom_validation']=="supply") {echo 'dbd';}
                                      elseif ($result['nom_validation']=="dbd") {echo 'dirco';}
-                                   ?></td><?php } else{ ?>
+                                   ?></td><?php }elseif($result['etat_validation']=="enAttente"){
+                                       ?><td> en attente ITC</td> <?php 
+                                   }
+                                   else{ ?>
              <td><?php echo $result['etat_validation'];?><br></td>
         <?php }  ?>
              <td><a href="<?php echo $this->url(array("controller"=>"xprice","action"=>"consult","numwp"=>$result['num_workplace_demande_xprice']));?>" <button class="retour" id="historique-<?php echo $k; ?>">historique</button></a>
