@@ -5,7 +5,7 @@ class Application_Model_DbTable_Clients extends Zend_Db_Table_Abstract {
     protected $_name = 'clients';
 
     public function getClientnumwp($numwp_client) {
-       $sql="select * from clients where clients.numwp_client={$numwp_client}";
+       $sql="select * from clients where clients.numwp_client='{$numwp_client}'";
         $res = $this->getAdapter()->query($sql);
         $rest=$res->fetchAll();
         if (!$rest) {
