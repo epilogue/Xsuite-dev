@@ -381,7 +381,7 @@ if($this->getRequest()->isPost()){
             }      
         }
         $rowsbis=array_filter(array_map('array_filter',$rows));
-//       echo '<pre>', var_export($rowsbis),'</pre>';
+//      echo '<pre>', var_export($rowsbis),'</pre>';
 
         ///*troisieme iteration on va chercher 
         // * le nom des concurrents les references
@@ -677,8 +677,8 @@ if($this->getRequest()->isPost()){
             $this->view->client_info=$client_info[0];
             $article_infos = new Application_Model_DbTable_TempMovexDemande();
             $article_info= $article_infos->demande($numwp);
-            //var_dump($numwp);
-            //echo '<pre>',  var_export($article_info),'</pre>'; 
+            var_dump($numwp);
+            echo '<pre>',  var_export($article_info),'</pre>'; 
             $this->view->article_info=$article_info;
             $concurrent_infos=new Application_Model_DbTable_TempFicherDistribPrixConcurrent();
             $concurrent_info=$concurrent_infos->getAll($numwp);
