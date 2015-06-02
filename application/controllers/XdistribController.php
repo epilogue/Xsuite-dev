@@ -263,9 +263,9 @@ class XdistribController extends Zend_Controller_Action
 //            $message = "votre offre  a bien été créée.";
 //            $flashMessenger->addMessage($message);
 //            $redirector->gotoSimple('index', 'xdistrib');
-       echo '<pre>',var_export($formData),'</pre>';
-        echo '<pre>',var_export($result),'</pre>';
-        echo '<pre>',var_export($result2),'</pre>';
+//       echo '<pre>',var_export($formData),'</pre>';
+//        echo '<pre>',var_export($result),'</pre>';
+//        echo '<pre>',var_export($result2),'</pre>';
        }
     }
     public function uploadnumwpAction(){
@@ -678,7 +678,7 @@ if($this->getRequest()->isPost()){
             $article_infos = new Application_Model_DbTable_TempMovexDemande();
             $article_info= $article_infos->demande($numwp);
             var_dump($numwp);
-            echo '<pre>',  var_export($article_info),'</pre>'; exit();
+//            echo '<pre>',  var_export($article_info),'</pre>'; exit();
             $this->view->article_info=$article_info;
             $concurrent_infos=new Application_Model_DbTable_TempFicherDistribPrixConcurrent();
             $concurrent_info=$concurrent_infos->getAll($numwp);
