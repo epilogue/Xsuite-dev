@@ -25,7 +25,7 @@ $this->headTitle($this->title);
             <td><?php echo $result['tracking_number_demande_xdistrib']; ?></td>
             <td><?php echo $result['nom_client']; ?></td>
              <td><?php echo $result['date_demande_xdistrib']; ?></td>
-        <?php if($result['etat_validation']=="validee" || $result['etat_validation']=="validÃ©e" || $result['etat_validation']=="enAttente" || $result['etat_validation']=="creation"){ ?>
+        <?php if($result['etat_validation']=="validee" || $result['etat_validation']=="validée" || $result['etat_validation']=="enAttente" || $result['etat_validation']=="creation"){ ?>
              <td>en cours <br> <?php if($result['nom_validation']=="creation"){echo 'cdr';}
                                     elseif ($result['nom_validation']=="cdr") {echo 'fobfr';}
                                      elseif ($result['nom_validation']=="fobfr") {echo 'supply';}
