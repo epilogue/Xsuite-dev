@@ -201,7 +201,7 @@ $this->headScript()->appendFile('/js/controllers/xprice/afficher_masquer_validat
                         </td>
                     </tr> <?php }?>
                     <tr>
-                            <td colspan="3">total</td>
+                            <td colspan="2">total</td>
                             <td><input  type ="hidden" class="cab" id="cab-affiche"
                                <?php $cab=0;foreach($this->article_info as $result)
                                 {$cab+=($result['quantite_demande_article']*$result['prix_tarif']);
@@ -209,6 +209,7 @@ $this->headScript()->appendFile('/js/controllers/xprice/afficher_masquer_validat
                             } ?>value="<?php echo number_format($cab, 2, '.', ' '); ?>">
                                 <input type="hidden" id="cab" class="calculHidden" value="<?php echo $cab; ?>">
                             </td>
+                            <td></td>
                             <td><input class="cad" id="cad-affiche"
                                <?php $cad=0;foreach($this->article_info as $result)
                                 {$cad+=($result['quantite_demande_article']*$result['prix_demande_article']);
