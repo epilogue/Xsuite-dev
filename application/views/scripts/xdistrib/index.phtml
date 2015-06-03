@@ -31,7 +31,10 @@ $this->headTitle($this->title);
                                      elseif ($result['nom_validation']=="fobfr") {echo 'supply';}
                                      elseif ($result['nom_validation']=="supply") {echo 'dbd';}
                                      elseif ($result['nom_validation']=="dbd") {echo 'dirco';}
-                                   ?></td><?php } else{ ?>
+                                   ?></td><?php }elseif($result['etat_validation']=="enAttente"){
+                                       ?><td> en attente ITC</td> <?php 
+                                   }
+                                    else{ ?>
              <td><?php echo $result['etat_validation'];?><br></td>
         <?php }  ?>
              <td><a href="<?php echo $this->url(array("controller"=>"xdistrib","action"=>"consult","numwp"=>$result['num_workplace_demande_xdistrib']));?>" <button class="retour" id="historique-<?php echo $k; ?>">historique</button></a>
