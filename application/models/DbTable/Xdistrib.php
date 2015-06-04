@@ -81,7 +81,7 @@ class Application_Model_DbTable_Xdistrib extends Zend_Db_Table_Abstract {
         }
     }
     public function tout(){
-        $sql="select num_workplace_demande_xdistrib from demande_xdistrib";
+        $sql="select id_demande_xdistrib from demande_xdistrib";
         $res = $this->getAdapter()->query($sql);
         $rest=$res->fetchAll();
         if (!$rest) {
@@ -117,7 +117,7 @@ IN (
 SELECT max( validations_demande_xdistrib.id )
 FROM `demande_xdistrib`
 JOIN validations_demande_xdistrib ON validations_demande_xdistrib.id_demande_xdistrib = demande_xdistrib.`id_demande_xdistrib`
-GROUP BY demande_xdistrib.`tracking_number_demande_xdistrib`) and validations_demande_xdistrib.`num_workplace_demande_xdistrib`={$key}";
+GROUP BY demande_xdistrib.`tracking_number_demande_xdistrib`) and validations_demande_xdistrib.`id_demande_xdistrib`={$key}";
    $res = $this->getAdapter()->query($sql);
         $rest=$res->fetchAll();
         if (!$rest) {
