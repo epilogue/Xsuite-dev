@@ -80,6 +80,16 @@ class Application_Model_DbTable_Xdistrib extends Zend_Db_Table_Abstract {
             return $rest;
         }
     }
+    public function tout(){
+        $sql="select tracking_number from xdistrib";
+        $res = $this->getAdapter()->query($sql);
+        $rest=$res->fetchAll();
+        if (!$rest) {
+            return null;
+        } else {
+            return $rest;
+        }
+    }
     public function searchByCDR($tracking1,$tracking2){
          
         $sql="select demande_xdistrib.id_demande_xdistrib, demande_xdistrib.num_workplace_demande_xdistrib,demande_xdistrib.tracking_number_demande_xdistrib,clients.nom_client,demande_xdistrib.date_demande_xdistrib from demande_xdistrib "
