@@ -118,7 +118,7 @@ IN (
 SELECT max( validations_demande_xdistrib.date_validation )
 FROM `demande_xdistrib`
 JOIN validations_demande_xdistrib ON validations_demande_xdistrib.id_demande_xdistrib = demande_xdistrib.`id_demande_xdistrib`
-GROUP BY demande_xdistrib.`tracking_number_demande_xdistrib`";
+GROUP BY demande_xdistrib.`tracking_number_demande_xdistrib`)";
    $res = $this->getAdapter()->query($sql);
         $rest=$res->fetchAll();
         if (!$rest) {
