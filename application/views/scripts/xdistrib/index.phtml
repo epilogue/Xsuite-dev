@@ -36,7 +36,7 @@ $this->headTitle($this->title);
                                    }
                                     else{ ?>
              <td><?php echo $result['etat_validation'];?><br></td>
-    <?php }  } ?>
+    <?php }   ?>
              <td><a href="<?php echo $this->url(array("controller"=>"xdistrib","action"=>"consult","numwp"=>$result['num_workplace_demande_xdistrib']));?>" <button class="retour" id="historique-<?php echo $k; ?>">historique</button></a>
              </td>
               <?php if($this->fonction == 5 || $this->fonction ==29 ){?>
@@ -53,6 +53,6 @@ $this->headTitle($this->title);
              <td><a href="<?php echo $this->url(array("controller"=>"xdistrib","action"=>"validatefobfr","numwp"=>$result['num_workplace_demande_xdistrib']));?>" <button class="retour" id="validate-<?php echo $k; ?>">Valider</button></a></td>
         <?php } ?>
 </tr>
-   <?php }?>
+    <?php }}?>
     </table>
 </div>
