@@ -106,7 +106,7 @@ class Application_Model_DbTable_Xdistrib extends Zend_Db_Table_Abstract {
             return $rest;
         }
     }
-     public function searchforDBD(){
+     public function searchforDBD($dem){
         $sql="SELECT demande_xdistrib.id_demande_xdistrib, validations_demande_xdistrib.nom_validation, demande_xdistrib.num_workplace_demande_xdistrib, demande_xdistrib.tracking_number_demande_xdistrib, users.nom_user, max( demande_xdistrib.date_demande_xdistrib ) , demande_xdistrib.id_user, client_distrib.nom_client, validations_demande_xdistrib.etat_validation
 FROM validations_demande_xdistrib
 JOIN demande_xdistrib ON validations_demande_xdistrib.id_demande_xdistrib = demande_xdistrib.id_demande_xdistrib
@@ -114,11 +114,10 @@ JOIN users ON users.id_user = validations_demande_xdistrib.id_user
 JOIN client_distrib ON client_distrib.numwp_client = demande_xdistrib.numwp_client
 WHERE validations_demande_xdistrib.id
 IN (
-
-SELECT max( validations_demande_xdistrib.date_validation )
+SELECT max( validations_demande_xdistrib.id )
 FROM `demande_xdistrib`
 JOIN validations_demande_xdistrib ON validations_demande_xdistrib.id_demande_xdistrib = demande_xdistrib.`id_demande_xdistrib`
-GROUP BY demande_xdistrib.`tracking_number_demande_xdistrib`)";
+GROUP BY demande_xdistrib.`tracking_number_demande_xdistrib`) and validations_demande_xdistrib.`tracking_number_demande_xdistrib`={$dem}";
    $res = $this->getAdapter()->query($sql);
         $rest=$res->fetchAll();
         if (!$rest) {
