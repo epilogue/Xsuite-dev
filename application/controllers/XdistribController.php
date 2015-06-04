@@ -126,12 +126,12 @@ class XdistribController extends Zend_Controller_Action
          $r[]=$recapitulatif2bis;
          }
         
-         foreach($r as $value){
+         foreach($r as $tagada){foreach($tagada as $value){
          echo '<pre>', var_export($value),'</pre>'; 
              if(preg_match($tracking1,$value['tracking_number_demande_xdistrib'])==1 || preg_match($tracking2,$value['tracking_number_demande_xdistrib'] )==1 ) {
                  $plopr[] =$value; 
              }
-         }
+         }}
          $recapitulatif2 = $plopr;
         // echo '<pre>', var_export($plopr),'</pre>'; 
      }
