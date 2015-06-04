@@ -16,7 +16,7 @@ $this->headTitle($this->title);
             <th>Date demande</th>
              <th>état validation</th>
         </tr>
-    <?php  foreach($this->recapitulatif as $tagada) {foreach($tagada as $k=>$result){
+    <?php  foreach($this->recapitulatif as $k=>$result){
         ?><tr>
             <?php if($this->fonction == 5 || $this->fonction == 13 || $this->fonction == 10 || $this->fonction ==29 || $this->fonction==23 || $this->fonction==32 || $this->fonction == 6){?>
              <td><?php echo $result['nom_user'];?></td>
@@ -36,7 +36,7 @@ $this->headTitle($this->title);
                                    }
                                     else{ ?>
              <td><?php echo $result['etat_validation'];?><br></td>
-    <?php }  } ?>
+    <?php }   ?>
              <td><a href="<?php echo $this->url(array("controller"=>"xdistrib","action"=>"consult","numwp"=>$result['num_workplace_demande_xdistrib']));?>" <button class="retour" id="historique-<?php echo $k; ?>">historique</button></a>
              </td>
               <?php if($this->fonction == 5 || $this->fonction ==29 ){?>
