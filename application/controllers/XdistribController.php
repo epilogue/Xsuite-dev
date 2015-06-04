@@ -146,21 +146,21 @@ class XdistribController extends Zend_Controller_Action
 //          echo '<pre>',var_export($demande),'</pre>';exit();
          foreach($demande as $value){
             
-         $recapitulatif2=$recapitulatif1->searchforDBD($value['id_demande_xdistrib']);
-         $r[]=$recapitulatif2;
+         $recapitulatif2bis=$recapitulatif1->searchforDBD($value['id_demande_xdistrib']);
+         $r[]=$recapitulatif2bis;
          }
-         echo '<pre>',var_export($r),'</pre>';exit();
-         $r = array();
-         for ($index = 0; $index < count($recapitulatif2); $index++) {
-             if(($index +1) > count($recapitulatif2)-1) {
-                 $r[] = $recapitulatif2[$index];
-             } else {
-                 if($recapitulatif2[$index]['num_workplace_demande_xdistrib'] != $recapitulatif2[$index+1]['num_workplace_demande_xdistrib']) {
-                     $r[] = $recapitulatif2[$index];
-                 }
-             }
-         }
-         unset($recapitulatif2);
+//         echo '<pre>',var_export($r),'</pre>';exit();
+//         $r = array();
+//         for ($index = 0; $index < count($recapitulatif2); $index++) {
+//             if(($index +1) > count($recapitulatif2)-1) {
+//                 $r[] = $recapitulatif2[$index];
+//             } else {
+//                 if($recapitulatif2[$index]['num_workplace_demande_xdistrib'] != $recapitulatif2[$index+1]['num_workplace_demande_xdistrib']) {
+//                     $r[] = $recapitulatif2[$index];
+//                 }
+//             }
+//         }
+//         unset($recapitulatif2);
          $recapitulatif2 = $r;
      }
     $this->view->recapitulatif = $recapitulatif2;
