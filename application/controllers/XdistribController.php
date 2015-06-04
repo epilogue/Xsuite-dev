@@ -144,8 +144,10 @@ class XdistribController extends Zend_Controller_Action
          $demandes=new Application_Model_DbTable_Xdistrib();
          $demande= $demandes->tout();
          foreach($demande as $dem){
-         $recapitulatif2=$recapitulatif1->searchforDBD();}
-         echo '<pre>',var_export($recapitulatif2),'</pre>';exit();
+         $recapitulatif2=$recapitulatif1->searchforDBD();
+         $r[]=$recapitulatif2;
+         }
+         echo '<pre>',var_export($r),'</pre>';exit();
          $r = array();
          for ($index = 0; $index < count($recapitulatif2); $index++) {
              if(($index +1) > count($recapitulatif2)-1) {
