@@ -144,9 +144,9 @@ class XdistribController extends Zend_Controller_Action
          $demandes=new Application_Model_DbTable_Xdistrib();
          $demande= $demandes->tout();
 //          echo '<pre>',var_export($demande),'</pre>';exit();
-         foreach($demande as $key=>$value){
+         foreach($demande as $value){
             
-         $recapitulatif2=$recapitulatif1->searchforDBD($key);
+         $recapitulatif2=$recapitulatif1->searchforDBD($value['id_demande_xdistrib']);
          $r[]=$recapitulatif2;
          }
          echo '<pre>',var_export($r),'</pre>';exit();
