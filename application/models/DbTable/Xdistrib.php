@@ -81,7 +81,7 @@ class Application_Model_DbTable_Xdistrib extends Zend_Db_Table_Abstract {
         }
     }
     public function tout(){
-        $sql="select tracking_number_demande_xdistrib from demande_xdistrib";
+        $sql="select num_workplace_demande_xdistrib from demande_xdistrib";
         $res = $this->getAdapter()->query($sql);
         $rest=$res->fetchAll();
         if (!$rest) {
@@ -106,7 +106,7 @@ class Application_Model_DbTable_Xdistrib extends Zend_Db_Table_Abstract {
             return $rest;
         }
     }
-     public function searchforDBD($dem){
+     public function searchforDBD($key){
         $sql="SELECT demande_xdistrib.id_demande_xdistrib, validations_demande_xdistrib.nom_validation, demande_xdistrib.num_workplace_demande_xdistrib, demande_xdistrib.tracking_number_demande_xdistrib, users.nom_user, max( demande_xdistrib.date_demande_xdistrib ) , demande_xdistrib.id_user, client_distrib.nom_client, validations_demande_xdistrib.etat_validation
 FROM validations_demande_xdistrib
 JOIN demande_xdistrib ON validations_demande_xdistrib.id_demande_xdistrib = demande_xdistrib.id_demande_xdistrib
@@ -117,7 +117,7 @@ IN (
 SELECT max( validations_demande_xdistrib.id )
 FROM `demande_xdistrib`
 JOIN validations_demande_xdistrib ON validations_demande_xdistrib.id_demande_xdistrib = demande_xdistrib.`id_demande_xdistrib`
-GROUP BY demande_xdistrib.`tracking_number_demande_xdistrib`) and validations_demande_xdistrib.`tracking_number_demande_xdistrib`={$dem}";
+GROUP BY demande_xdistrib.`tracking_number_demande_xdistrib`) and validations_demande_xdistrib.`num_workplace_demande_xdistrib`={$key}";
    $res = $this->getAdapter()->query($sql);
         $rest=$res->fetchAll();
         if (!$rest) {
