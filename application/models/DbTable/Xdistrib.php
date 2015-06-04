@@ -114,11 +114,10 @@ JOIN users ON users.id_user = validations_demande_xdistrib.id_user
 JOIN client_distrib ON client_distrib.numwp_client = demande_xdistrib.numwp_client
 WHERE validations_demande_xdistrib.id
 IN (
-
 SELECT max( validations_demande_xdistrib.id )
 FROM `demande_xdistrib`
 JOIN validations_demande_xdistrib ON validations_demande_xdistrib.id_demande_xdistrib = demande_xdistrib.`id_demande_xdistrib`
-GROUP BY demande_xdistrib.`tracking_number_demande_xdistrib` ";
+GROUP BY demande_xdistrib.`tracking_number_demande_xdistrib`)";
    $res = $this->getAdapter()->query($sql);
         $rest=$res->fetchAll();
         if (!$rest) {
