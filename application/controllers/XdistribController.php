@@ -81,7 +81,7 @@ class XdistribController extends Zend_Controller_Action
          }
      }
      unset($recapitulatif2);
-     $recapitulatif2 = $r;
+     $recapitulatif2[] = $r;
          $this->view->recapitulatif = $recapitulatif2;        
      }
      if($user->id_fonction == 6){
