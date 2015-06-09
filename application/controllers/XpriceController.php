@@ -143,6 +143,7 @@ if($user->id_fonction == 3){
      }
     $this->view->recapitulatif = $recapitulatif2;
     $paginator = Zend_Paginator::factory($recapitulatif2);
+    $paginator->setCurrentPageNumber(1);
         $paginator->setItemCountPerPage(5);
         $paginator->setPageRange(5);
         $this->view->paginator=$paginator;
