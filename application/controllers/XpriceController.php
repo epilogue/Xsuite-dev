@@ -142,6 +142,10 @@ if($user->id_fonction == 3){
          $recapitulatif2 = $r;
      }
     $this->view->recapitulatif = $recapitulatif2;
+    $paginator = new Zend_Paginator_Adapter_Array($recapitulatif2);
+        $paginator->setItemCountPerPage(25);
+        $paginator->setPageRange(5);
+        $this->view->paginator=$paginator;
 }
 
     public function numwpAction() {
@@ -2499,14 +2503,14 @@ if($mailServiceClients[0]['mail_service_client']=='regionNord'){
         $infos_client = new Application_Model_DbTable_Clients();
         var_dump(trim($info_demande_xprice['numwp_client']));
         $info_client = $infos_client->getClientnumwp($info_demande_xprice['numwp_client']);
-        echo '<pre>',var_export($info_client),'</pre>';
+//        echo '<pre>',var_export($info_client),'</pre>';
         $this->view->info_client = $info_client[0];
         $noms_industrie = new Application_Model_DbTable_Industry();
         $nom_industrie = $noms_industrie->getIndustry($info_client[0]['id_industry']);
         $this->view->nom_industrie = $nom_industrie;
         $infos_demande_article_xprice = new Application_Model_DbTable_DemandeArticlexprices();
         $info_demande_article_xprice = $infos_demande_article_xprice->getDemandeArticlexprice($numwp);
-        $this->view->info_demande_article_xprice = $info_demande_article_xprice;
+        $this->view->info_demande_article_xprice = $info_demande_article_xprice;    
     }
     public function trackingAction(){
          $track = $this->getRequest()->getParam('tracking_number_demande_xprice', null);
