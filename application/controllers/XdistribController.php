@@ -160,6 +160,7 @@ class XdistribController extends Zend_Controller_Action
          $recapitulatif2 = $r;
      }
     $this->view->recapitulatif = $recapitulatif2;
+     echo '<pre>',var_export($recapitulatif2),'</pre>';
    sort($recapitulatif2,SORT_DESC);
     echo '<pre>',var_export($recapitulatif2),'</pre>';
     }
