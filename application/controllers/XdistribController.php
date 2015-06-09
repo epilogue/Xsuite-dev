@@ -139,7 +139,7 @@ class XdistribController extends Zend_Controller_Action
          $recapitulatif1 = new Application_Model_DbTable_Xdistrib;
          $demandes=new Application_Model_DbTable_Xdistrib();
          $demande= $demandes->tout();
-//          echo '<pre>',var_export($demande),'</pre>';exit();
+          echo '<pre>',var_export($demande),'</pre>';
          foreach($demande as $value){
             
          $recapitulatif2bis=$recapitulatif1->searchforDBD($value['id_demande_xdistrib']);
@@ -161,8 +161,8 @@ class XdistribController extends Zend_Controller_Action
      }
     
 //     echo '<pre>',var_export($recapitulatif2),'</pre>';
-   sort($recapitulatif2,SORT_NUMERIC);
-    echo '<pre>',var_export($recapitulatif2),'</pre>';
+   sort($recapitulatif2,SORT_DESC);
+    //echo '<pre>',var_export($recapitulatif2),'</pre>';
     $this->view->recapitulatif = $recapitulatif2;
     }
      protected function genererValidation($datas) {
