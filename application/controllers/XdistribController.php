@@ -159,10 +159,11 @@ class XdistribController extends Zend_Controller_Action
 //         unset($recapitulatif2);
          $recapitulatif2 = $r;
      }
-    $this->view->recapitulatif = $recapitulatif2;
+    
      echo '<pre>',var_export($recapitulatif2),'</pre>';
    sort($recapitulatif2,SORT_DESC);
     echo '<pre>',var_export($recapitulatif2),'</pre>';
+    $this->view->recapitulatif = $recapitulatif2;
     }
      protected function genererValidation($datas) {
         $dbtValidation = new Application_Model_DbTable_Validationsdemandexdistrib();
