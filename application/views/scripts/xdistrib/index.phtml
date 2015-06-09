@@ -16,7 +16,7 @@ $this->headTitle($this->title);
             <th>Date demande</th>
              <th>état validation</th>
         </tr>
-    <?php  foreach($this->recapitulatif as $tagada) { array_sort($tagada,'date_demande_xdistrib',SORT_DESC); foreach($tagada as $k=>$result){
+    <?php  foreach($this->recapitulatif as $tagada) {$tagada2=array_sort($tagada,'date_demande_xdistrib',SORT_DESC); foreach($tagada2 as $k=>$result){
         ?><tr>
             <?php if($this->fonction == 5 || $this->fonction == 13 || $this->fonction == 10 || $this->fonction ==29 || $this->fonction==23 || $this->fonction==32 || $this->fonction == 6){?>
              <td><?php echo $result['nom_user'];?></td>
