@@ -140,7 +140,7 @@ class XdistribController extends Zend_Controller_Action
          $demandes=new Application_Model_DbTable_Xdistrib();
          $demande= $demandes->tout();
 //          echo '<pre>',var_export($demande),'</pre>';
-          sort($demande,SORT_NUMERIC);
+   //       sort($demande,SORT_NUMERIC);
 //          echo '<pre>',var_export($demande),'</pre>';
          foreach($demande as $value){
             
