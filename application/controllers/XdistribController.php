@@ -141,7 +141,7 @@ class XdistribController extends Zend_Controller_Action
          $demande= $demandes->tout();
 //          echo '<pre>',var_export($demande),'</pre>';
           sort($demande,SORT_NUMERIC);
-          echo '<pre>',var_export($demande),'</pre>';
+//          echo '<pre>',var_export($demande),'</pre>';
          foreach($demande as $value){
             
          $recapitulatif2bis=$recapitulatif1->searchforDBD($value['id_demande_xdistrib']);
