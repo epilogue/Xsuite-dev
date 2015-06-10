@@ -81,7 +81,7 @@ class Application_Model_DbTable_Xdistrib extends Zend_Db_Table_Abstract {
         }
     }
     public function tout(){
-        $sql="select id_demande_xdistrib from demande_xdistrib order by id";
+        $sql="select id_demande_xdistrib from demande_xdistrib order by id_demande_xdistrib";
         $res = $this->getAdapter()->query($sql);
         $rest=$res->fetchAll();
         if (!$rest) {
