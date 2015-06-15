@@ -94,7 +94,7 @@ class XdistribController extends Zend_Controller_Action
                  $r[] = $recapitulatif2[$index];
              } else {
                  if($recapitulatif2[$index]['num_workplace_demande_xdistrib'] != $recapitulatif2[$index+1]['num_workplace_demande_xdistrib']) {
-                     $r[] = $recapitulatif2[$index];
+                     $r = $recapitulatif2[$index];
                  }
              }
          }
@@ -123,7 +123,7 @@ class XdistribController extends Zend_Controller_Action
         foreach($demande as $value){
             
          $recapitulatif2bis=$recapitulatif1->searchforDBD($value['id_demande_xdistrib']);
-         $r[]=$recapitulatif2bis;
+         $r=$recapitulatif2bis;
          }
         
          foreach($r as $tagada){foreach($tagada as $value){
@@ -145,7 +145,7 @@ class XdistribController extends Zend_Controller_Action
          foreach($demande as $value){
             
          $recapitulatif2bis=$recapitulatif1->searchforDBD($value['id_demande_xdistrib']);
-         $r[]=$recapitulatif2bis;
+         $r=$recapitulatif2bis;
          }
 //         echo '<pre>',var_export($r),'</pre>';exit();
 //         $r = array();
