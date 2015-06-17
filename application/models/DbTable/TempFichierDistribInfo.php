@@ -28,4 +28,15 @@ class Application_Model_DbTable_TempFichierDistribInfo extends Zend_Db_Table_Abs
         $this->insert($data);
         return $this;   
     }
+    public function getDistrib($numwp){
+        $sql= "select* from temp_fichier_distrib_info where numwp=$numwp";
+        $res = $this->getAdapter()->query($sql);
+        $rest=$res->fetchAll();
+        if (!$rest) {
+            return null;
+        } else {
+            return $rest;
+        }
+    
+    }
 }

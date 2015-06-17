@@ -28,4 +28,5 @@ class Application_Model_DbTable_TempMovexDistrib extends Zend_Db_Table_Abstract 
     
         
     }
+    
 }
