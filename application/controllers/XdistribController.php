@@ -87,9 +87,12 @@ class XdistribController extends Zend_Controller_Action
      if($user->id_fonction == 6){
          $recapitulatif1 = new Application_Model_DbTable_Xdistrib();
          $recapitulatif2 = $recapitulatif1->searchforDD($user->id_user);
-          foreach ($recapitulatif2 as $k=>$value){
-             var_dump($value['date_validation']) ;
-          }
+          foreach ($recapitulatif2 as $value){
+            
+                $popi[]=$value['date_validation'];
+            }
+            echo '<pre>',var_export($popi) ,'</pre>';
+          
          $r = array();
          for ($index = 0; $index < count($recapitulatif2); $index++) {
              if(($index +1) > count($recapitulatif2)-1) {
