@@ -168,4 +168,12 @@ GROUP BY demande_xdistrib.`tracking_number_demande_xdistrib` order by demande_xd
       $rest = $res->fetchObject();
       return $rest;
     }
+    public function essaiTest($id_dd){
+        $sql="select tracking_number_demande_xdistrib,
+            num_workplace_demande_xdistrib,
+            id_demande_xdistrib,
+            id_user
+                  from  demande_xdistrib where id_dd";
+    }
 }
+
