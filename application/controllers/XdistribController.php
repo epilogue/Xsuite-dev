@@ -89,7 +89,7 @@ class XdistribController extends Zend_Controller_Action
          $recapitulatif2 = $recapitulatif1->searchforDD($user->id_user);
           foreach ($recapitulatif2 as $value){
             
-                $popi[]=$value['date_validation'];
+                $popi[]=$value['id_demande_xdistrib'];
             }
             echo '<pre>',var_export($popi) ,'</pre>';
           
