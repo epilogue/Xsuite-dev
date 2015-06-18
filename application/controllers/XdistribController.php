@@ -88,7 +88,7 @@ class XdistribController extends Zend_Controller_Action
          $recapitulatif1 = new Application_Model_DbTable_Xdistrib();
          $recapitulatif2 = $recapitulatif1->searchforDD($user->id_user);
           foreach ($recapitulatif2 as $k=>$value){
-              echo $k['date_validation'];
+             var_dump($k['date_validation']) ;
           }
          $r = array();
          for ($index = 0; $index < count($recapitulatif2); $index++) {
