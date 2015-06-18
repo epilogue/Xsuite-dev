@@ -91,6 +91,7 @@ class XdistribController extends Zend_Controller_Action
             
                 $popi[]=$value['id_demande_xdistrib'];
             }
+            array_unique($popi);
             echo '<pre>',var_export($popi) ,'</pre>';
           
          $r = array();
