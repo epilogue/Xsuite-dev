@@ -132,14 +132,20 @@ class XdistribController extends Zend_Controller_Action
 //         echo '<pre>', var_export($plopr),'</pre>'; 
      }
       if($user->id_fonction ==5|| $user->id_fonction == 13 || $user->id_fonction == 29 || $user->id_fonction == 23 || $user->id_fonction == 32){
-         $recapitulatif1 = new Application_Model_DbTable_Xdistrib;
-         $demandes=new Application_Model_DbTable_Xdistrib();
-         $demande= $demandes->tout();
+         $recapitulatif1 = new Application_Model_DbTable_Xdistrib();
+         $demandes=$recapitulatif1->tout();
          foreach($demande as $value){
-            
-         $recapitulatif2bis=$recapitulatif1->essaiTest($value['id_demande_xdistrib']);
-         $r[]=$recapitulatif2bis;
+         $popi[]=$value['id_demande_xdistrib'];
+         
          }
+         foreach($popi as $value){
+             
+         $recapitulatif3[]=$recapitulatif1->essaiTest($value);
+        
+         } 
+         $recapitulatif2=$recapitulatif3;
+            
+     }
 //         echo '<pre>',var_export($r),'</pre>';exit();
 //         $r = array();
 //         for ($index = 0; $index < count($recapitulatif2); $index++) {
@@ -152,8 +158,8 @@ class XdistribController extends Zend_Controller_Action
 //             }
 //         }
 //         unset($recapitulatif2);;
-         $recapitulatif2 = $r;
-     }
+//         $recapitulatif2 = $r;
+//     }
     
 //     echo '<pre>',var_export($recapitulatif2),'</pre>';
    
