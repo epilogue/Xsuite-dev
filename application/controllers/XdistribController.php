@@ -134,6 +134,7 @@ class XdistribController extends Zend_Controller_Action
       if($user->id_fonction ==5|| $user->id_fonction == 13 || $user->id_fonction == 29 || $user->id_fonction == 23 || $user->id_fonction == 32){
          $recapitulatif1 = new Application_Model_DbTable_Xdistrib();
          $demande=$recapitulatif1->tout();
+          echo '<pre>',var_export($demande),'</pre>';
          foreach($demande as $value){
          $popi[]=$value['id_demande_xdistrib'];
          
