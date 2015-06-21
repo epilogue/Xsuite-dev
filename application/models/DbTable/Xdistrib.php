@@ -219,16 +219,16 @@ JOIN validations_demande_xdistrib ON validations_demande_xdistrib.id_demande_xdi
                 . " users.nom_user,"
                 . " demande_xdistrib.num_workplace_demande_xdistrib,"
                 . " demande_xdistrib.tracking_number_demande_xdistrib,"
-                . " client_distrib.nom_client,"
+                . " client_xdistrib.nom_client,"
                 . " demande_xdistrib.date_demande_xdistrib,"
                 . " validations_demande_xdistrib.etat_validation, "
                 . "validations_demande_xdistrib.id"
                 . " from demande_xdistrib "
                 . "join users on users.id_user=demande_xdistrib.id_user "
-                . "join client_distrib on client_distrib.numwp_client=demande_xdistrib.numwp_client "
+                . "join client_distrib on client_xdistrib.numwp_client=demande_xdistrib.numwp_client "
                 . "join validations_demande_xdistrib on validations_demande_xdistrib.id_demande_xdistrib=demande_xdistrib.id_demande_xdistrib"
                 . " where validations_demande_xdistrib.id = (select max(validations_demande_xdistrib.id) from validations_demande_xdistrib)"
-                . " and demande_distrib.id_demande_xdistrib='$value'";
+                . " and demande_xdistrib.id_demande_xdistrib='$value'";
         $res = $this->getAdapter()->query($sql);
         $rest=$res->fetchAll();
         if (!$rest) {
