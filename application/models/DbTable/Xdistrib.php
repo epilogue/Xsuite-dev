@@ -107,38 +107,25 @@ class Application_Model_DbTable_Xdistrib extends Zend_Db_Table_Abstract {
         }
     }
      public function searchforDBD(){
-         $sql="select demande_xdistrib.id_demande_xdistrib,"
-                 . "demande_xdistrib.num_workplace_demande_xdistrib,"
-                 . "demande_xdistrib.tracking_number_demande_xdistrib,"
-                 . "users.nom_user,"
-                 . "client_distrib.nom_client,"
-                 . " validations_demande_xdistrib.id "
-                 . " from validations_demande_xdistrib "
-                 . " join demande_xdistrib on demande_xdistrib.id_demande_xdistrib=validations_demande_xdistrib.id_demande_xdistrib"
-                 . " join client_distrib on client_distrib.numwp_client = demande_xdistrib.numwp_client "
-                 . " join users on users.id_user=demande_xdistrib.id_user "
-                 . " where validations_demande_xdistrib.id = (select "
-                    . " max(validations_demande_xdistrib.id) "
-                    . " from validations_demande_xdistrib) "
-                . " order by validations_demande_xdistrib.date_validation desc ";
-//        $sql="SELECT demande_xdistrib.date_demande_xdistrib, "
-//            . "demande_xdistrib.id_demande_xdistrib, "
-//            . "validations_demande_xdistrib.nom_validation, "
-//            . "demande_xdistrib.num_workplace_demande_xdistrib, "
-//            . "demande_xdistrib.tracking_number_demande_xdistrib, "
-//            . "users.nom_user, demande_xdistrib.date_demande_xdistrib , demande_xdistrib.id_user, client_distrib.nom_client, validations_demande_xdistrib.etat_validation
-//FROM validations_demande_xdistrib
-//JOIN demande_xdistrib ON validations_demande_xdistrib.id_demande_xdistrib = demande_xdistrib.id_demande_xdistrib
-//JOIN users ON users.id_user =demande_xdistrib.id_user
-//JOIN client_distrib ON client_distrib.numwp_client = demande_xdistrib.numwp_client
-//WHERE validations_demande_xdistrib.id
-//IN ( SELECT max( validations_demande_xdistrib.id )
-//FROM `demande_xdistrib`
-//JOIN validations_demande_xdistrib ON validations_demande_xdistrib.id_demande_xdistrib = demande_xdistrib.`id_demande_xdistrib` "
-//. "GROUP BY demande_xdistrib.`tracking_number_demande_xdistrib` " 
-//."order by demande_xdistrib.`id_demande_xdistrib` desc"
-//. ") and validations_demande_xdistrib.`id_demande_xdistrib`={$key} "
-//. "order by demande_xdistrib.`date_demande_xdistrib` desc";
+         
+        $sql="SELECT demande_xdistrib.date_demande_xdistrib, "
+            . "demande_xdistrib.id_demande_xdistrib, "
+            . "validations_demande_xdistrib.nom_validation, "
+            . "demande_xdistrib.num_workplace_demande_xdistrib, "
+            . "demande_xdistrib.tracking_number_demande_xdistrib, "
+            . "users.nom_user, demande_xdistrib.date_demande_xdistrib , demande_xdistrib.id_user, client_distrib.nom_client, validations_demande_xdistrib.etat_validation
+FROM validations_demande_xdistrib
+JOIN demande_xdistrib ON validations_demande_xdistrib.id_demande_xdistrib = demande_xdistrib.id_demande_xdistrib
+JOIN users ON users.id_user =demande_xdistrib.id_user
+JOIN client_distrib ON client_distrib.numwp_client = demande_xdistrib.numwp_client
+WHERE validations_demande_xdistrib.id
+IN ( SELECT max( validations_demande_xdistrib.id )
+FROM `demande_xdistrib`
+JOIN validations_demande_xdistrib ON validations_demande_xdistrib.id_demande_xdistrib = demande_xdistrib.`id_demande_xdistrib` "
+. "GROUP BY demande_xdistrib.`tracking_number_demande_xdistrib` " 
+."order by demande_xdistrib.`id_demande_xdistrib` desc"
+. ") and validations_demande_xdistrib.`id_demande_xdistrib`={$key} "
+. "order by demande_xdistrib.`date_demande_xdistrib` desc";
    $res = $this->getAdapter()->query($sql);
         $rest=$res->fetchAll();
         if (!$rest) {
