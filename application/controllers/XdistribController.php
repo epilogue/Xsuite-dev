@@ -96,7 +96,7 @@ class XdistribController extends Zend_Controller_Action
             foreach($popi1 as $value){
                 $recapitulatif3[]= $recapitulatif1->essaiTest($value);
             }
-            $recapitulatif2=$recapitulatif3[0];
+            $recapitulatif2=$recapitulatif3;
            echo '<pre>',var_export($recapitulatif2) ,'</pre>';
 //           $this->view->recapitulatif = $recapessai;
 //         $r = array();
