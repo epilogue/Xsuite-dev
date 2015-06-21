@@ -212,7 +212,7 @@ JOIN validations_demande_xdistrib ON validations_demande_xdistrib.id_demande_xdi
         } else {
             return $rest;
         }
-        echo '<pre>',  var_export($rest),'</pre>';
+       
     }
     public function rechercheDBD(){
         $sql= "select"
