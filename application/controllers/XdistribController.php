@@ -154,8 +154,7 @@ class XdistribController extends Zend_Controller_Action
 //                 }
 //             }
 //         }
-//         unset($recapitulatif2);
-         sort($r,SORT_ASC);
+//         unset($recapitulatif2);;
          $recapitulatif2 = $r;
      }
     
