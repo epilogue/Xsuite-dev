@@ -214,7 +214,7 @@ JOIN validations_demande_xdistrib ON validations_demande_xdistrib.id_demande_xdi
         }
        
     }
-    public function rechercheDBD(){
+    public function rechercheDBD($value){
         $sql= "select"
                 . " users.nom_user,"
                 . " demande_xdistrib.num_workplace_demande_xdistrib,"
@@ -227,7 +227,8 @@ JOIN validations_demande_xdistrib ON validations_demande_xdistrib.id_demande_xdi
                 . "join users on users.id_user=demande_xdistrib.id_user "
                 . "join client_distrib on client_distrib.numwp_client=demande_xdistrib.numwp_client "
                 . "join validations_demande_xdistrib on validations_demande_xdistrib.id_demande_xdistrib=demande_xdistrib.id_demande_xdistrib"
-                . "where validations_demande_xdistrib.id = (select max(validations_demande_xdistrib.id) from validations_demande_xdistrib)";
+                . "where validations_demande_xdistrib.id = (select max(validations_demande_xdistrib.id) from validations_demande_xdistrib)"
+                . " where demande_distrib.id_demande_xdistrib='$value'";
         echo $sql;
     }
 }
