@@ -174,6 +174,7 @@ GROUP BY demande_xdistrib.`tracking_number_demande_xdistrib` order by demande_xd
                 . "validations_demande_xdistrib.date_validation,"
                 . "validations_demande_xdistrib.id_demande_xdistrib,"
                 . "users.nom_user,"
+                . "max(validations_demande_xdistrib.id)"
                 . "client_distrib.nom_client,"
                 . "demande_xdistrib.date_demande_xdistrib,"
                 . " demande_xdistrib.num_workplace_demande_xdistrib"
@@ -181,7 +182,9 @@ GROUP BY demande_xdistrib.`tracking_number_demande_xdistrib` order by demande_xd
                 ." join demande_xdistrib on demande_xdistrib.id_demande_xdistrib=validations_demande_xdistrib.id_demande_xdistrib"
                 ." join client_distrib on client_distrib.numwp_client = demande_xdistrib.numwp_client "
                 ." join users on users.id_user=demande_xdistrib.id_user"
-                . " where validations_demande_xdistrib.id_demande_xdistrib='$value' and demande_xdistrib.id_demande_xdistrib='$value' order by validations_demande_xdistrib.date_validation desc";
+                . " where validations_demande_xdistrib.id_demande_xdistrib='$value' and demande_xdistrib.id_demande_xdistrib='$value'"
+                . ""
+                . " order by validations_demande_xdistrib.date_validation desc";
             $res= $this->getAdapter()->query($sql);
        $rest=$res->fetchAll();
             if (!$rest) {
