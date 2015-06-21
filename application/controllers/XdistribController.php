@@ -98,18 +98,18 @@ class XdistribController extends Zend_Controller_Action
             }
            echo '<pre>',var_export($recapessai) ,'</pre>';
 //           $this->view->recapitulatif = $recapessai;
-         $r = array();
-         for ($index = 0; $index < count($recapessai); $index++) {
-             if(($index +1) > count($recapessai)-1) {
-                 $r[] = $recapessai[$index];
-             } else {
-                 if($recapessai[$index]['num_workplace_demande_xdistrib'] != $recapessai[$index+1]['num_workplace_demande_xdistrib']) {
-                     $r[] = $recapessai[$index];
-                 }
-             }
-         }
-         unset($recapessai);
-         $recapessai[] = $r;    
+//         $r = array();
+//         for ($index = 0; $index < count($recapessai); $index++) {
+//             if(($index +1) > count($recapessai)-1) {
+//                 $r[] = $recapessai[$index];
+//             } else {
+//                 if($recapessai[$index]['num_workplace_demande_xdistrib'] != $recapessai[$index+1]['num_workplace_demande_xdistrib']) {
+//                     $r[] = $recapessai[$index];
+//                 }
+//             }
+//         }
+//         unset($recapessai);
+//         $recapessai[] = $r;    
      }
    
      if($user->id_fonction == 10){
