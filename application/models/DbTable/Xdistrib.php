@@ -203,6 +203,17 @@ JOIN validations_demande_xdistrib ON validations_demande_xdistrib.id_demande_xdi
                 return $rest;
             }
     }
+    public function rechercheridDBD(){
+        $sql ="select id_demande_xdistrib from demande_xdistrib";
+         $res = $this->getAdapter()->query($sql);
+        $rest=$res->fetchAll();
+        if (!$rest) {
+            return null;
+        } else {
+            return $rest;
+        }
+        echo '<pre>',  var_export($rest),'</pre>';
+    }
     public function rechercheDBD(){
         $sql= "select"
                 . " users.nom_user,"
@@ -216,7 +227,7 @@ JOIN validations_demande_xdistrib ON validations_demande_xdistrib.id_demande_xdi
                 . "join users on users.id_user=demande_xdistrib.id_user "
                 . "join client_distrib on client_distrib.numwp_client=demande_xdistrib.numwp_client "
                 . "join validations_demande_xdistrib on validations_demande_xdistrib.id_demande_xdistrib=demande_xdistrib.id_demande_xdistrib"
-                . "where validations_demande_xdistrib.id in (select max(validations_demande_xdistrib.id)";
+                . "where validations_demande_xdistrib.id = (select max(validations_demande_xdistrib.id) from validations_demande_xdistrib)";
         echo $sql;
     }
 }
