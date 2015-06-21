@@ -96,7 +96,7 @@ class XdistribController extends Zend_Controller_Action
             foreach($popi1 as $value){
                 $recapessai[]= $recapitulatif1->essaiTest($value);
             }
-           echo '<pre>',var_export($popi1) ,'</pre>';
+           echo '<pre>',var_export($recapessai) ,'</pre>';
          $r = array();
          for ($index = 0; $index < count($recapitulatif2); $index++) {
              if(($index +1) > count($recapitulatif2)-1) {
