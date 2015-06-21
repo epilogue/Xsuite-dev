@@ -106,7 +106,7 @@ class Application_Model_DbTable_Xdistrib extends Zend_Db_Table_Abstract {
             return $rest;
         }
     }
-     public function searchforDBD(){
+     public function searchforDBD($key){
          
         $sql="SELECT demande_xdistrib.date_demande_xdistrib, "
             . "demande_xdistrib.id_demande_xdistrib, "
