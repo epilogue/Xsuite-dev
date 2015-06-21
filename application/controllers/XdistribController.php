@@ -150,9 +150,10 @@ class XdistribController extends Zend_Controller_Action
          $recapitulatif1 = new Application_Model_DbTable_Xdistrib;
          $demandes=new Application_Model_DbTable_Xdistrib();
          $demande= $demandes->tout();
-         echo '<pre>',var_export($demande),'</pre>';
-//          echo '<pre>',var_export($demande),'</pre>';
-         foreach($demande as $value){
+//         echo '<pre>',var_export($demande),'</pre>';
+         $demande1=array_unique($demande);
+          echo '<pre>',var_export($demande1),'</pre>';
+         foreach($demande1 as $value){
             
          $recapitulatif2bis=$recapitulatif1->essaiTest($value['id_demande_xdistrib']);
          $r[]=$recapitulatif2bis;
