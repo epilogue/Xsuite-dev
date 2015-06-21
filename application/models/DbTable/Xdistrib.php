@@ -174,7 +174,7 @@ GROUP BY demande_xdistrib.`tracking_number_demande_xdistrib` order by demande_xd
                 . "validations_demande_xdistrib.date_validation,"
                 . "validations_demande_xdistrib.id_demande_xdistrib,"
                 . "users.nom_user,"
-                . "max(validations_demande_xdistrib.id)"
+                . "max(validations_demande_xdistrib.id),"
                 . "client_distrib.nom_client,"
                 . "demande_xdistrib.date_demande_xdistrib,"
                 . " demande_xdistrib.num_workplace_demande_xdistrib"
