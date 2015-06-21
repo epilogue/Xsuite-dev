@@ -132,18 +132,17 @@ class XdistribController extends Zend_Controller_Action
 //         echo '<pre>', var_export($plopr),'</pre>'; 
      }
       if($user->id_fonction ==5|| $user->id_fonction == 13 || $user->id_fonction == 29 || $user->id_fonction == 23 || $user->id_fonction == 32){
-         
-         $recapitulatif1 = new Application_Model_DbTable_Xdistrib();
-          $demandes=new Application_Model_DbTable_Xdistrib();
+         $recapitulatif1 = new Application_Model_DbTable_Xdistrib;
+         $demandes=new Application_Model_DbTable_Xdistrib();
          $demande= $demandes->tout();
-        foreach($demande as $value){
+//          echo '<pre>',var_export($demande),'</pre>';
+   //       sort($demande,SORT_NUMERIC);
+//          echo '<pre>',var_export($demande),'</pre>';
+         foreach($demande as $value){
             
          $recapitulatif2bis=$recapitulatif1->searchforDBD($value['id_demande_xdistrib']);
          $r[]=$recapitulatif2bis;
          }
-      }
-//         
-//            
 //         echo '<pre>',var_export($r),'</pre>';exit();
 //         $r = array();
 //         for ($index = 0; $index < count($recapitulatif2); $index++) {
@@ -155,9 +154,10 @@ class XdistribController extends Zend_Controller_Action
 //                 }
 //             }
 //         }
-//         unset($recapitulatif2);;
-//         $recapitulatif2 = $r;
-//     }
+//         unset($recapitulatif2);
+         sort($r,SORT_ASC);
+         $recapitulatif2 = $r;
+     }
     
 //     echo '<pre>',var_export($recapitulatif2),'</pre>';
    
