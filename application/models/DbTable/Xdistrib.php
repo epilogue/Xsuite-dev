@@ -189,7 +189,8 @@ JOIN validations_demande_xdistrib ON validations_demande_xdistrib.id_demande_xdi
                 ." join demande_xdistrib on demande_xdistrib.id_demande_xdistrib=validations_demande_xdistrib.id_demande_xdistrib"
                 ." join client_distrib on client_distrib.numwp_client = demande_xdistrib.numwp_client "
                 ." join users on users.id_user=demande_xdistrib.id_user"
-                . " where validations_demande_xdistrib.id_demande_xdistrib='$value' and demande_xdistrib.id_demande_xdistrib='$value' "
+                . " where validations_demande_xdistrib.id_demande_xdistrib='$value' "
+                . "and demande_xdistrib.id_demande_xdistrib='$value' "
                 . "and validations_demande_xdistrib.id = (select "
                     . "max(validations_demande_xdistrib.id) "
                     . "from validations_demande_xdistrib "
@@ -228,8 +229,11 @@ JOIN validations_demande_xdistrib ON validations_demande_xdistrib.id_demande_xdi
                 . "join client_distrib on client_distrib.numwp_client=demande_xdistrib.numwp_client "
                 . "join validations_demande_xdistrib on validations_demande_xdistrib.id_demande_xdistrib=demande_xdistrib.id_demande_xdistrib"
                 . " where validations_demande_xdistrib.id = ("
-                . "select max(validations_demande_xdistrib.id) from validations_demande_xdistrib where validations_demande_xdistrib.id_demande_xdistrib='$value')"
-                . " and demande_xdistrib.id_demande_xdistrib='$value'";
+                    . "select max(validations_demande_xdistrib.id) "
+                    . "from validations_demande_xdistrib "
+                    . "where validations_demande_xdistrib.id_demande_xdistrib='$value')"
+                . " and demande_xdistrib.id_demande_xdistrib='$value'"
+                . " order by validations_demande_xdistrib.date_validation desc";
         $res = $this->getAdapter()->query($sql);
         $rest=$res->fetchAll();
         if (!$rest) {
