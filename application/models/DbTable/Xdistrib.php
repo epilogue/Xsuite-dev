@@ -121,7 +121,9 @@ WHERE validations_demande_xdistrib.id
 IN ( SELECT max( validations_demande_xdistrib.id )
 FROM `demande_xdistrib`
 JOIN validations_demande_xdistrib ON validations_demande_xdistrib.id_demande_xdistrib = demande_xdistrib.`id_demande_xdistrib` "
-//. "GROUP BY demande_xdistrib.`tracking_number_demande_xdistrib` order by demande_xdistrib.`id_demande_xdistrib` desc) and validations_demande_xdistrib.`id_demande_xdistrib`={$key} "
+. "GROUP BY demande_xdistrib.`tracking_number_demande_xdistrib` " 
+/*."order by demande_xdistrib.`id_demande_xdistrib` desc"*/
+. ") and validations_demande_xdistrib.`id_demande_xdistrib`={$key} "
 . "order by demande_xdistrib.`date_demande_xdistrib` desc";
    $res = $this->getAdapter()->query($sql);
         $rest=$res->fetchAll();
