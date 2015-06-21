@@ -210,11 +210,13 @@ JOIN validations_demande_xdistrib ON validations_demande_xdistrib.id_demande_xdi
                 . " demande_xdistrib.tracking_number_demande_xdistrib,"
                 . " client_distrib.nom_client,"
                 . " demande_xdistrib.date_demande_xdistrib,"
-                . " validations_demande_xdistrib.etat_validation "
+                . " validations_demande_xdistrib.etat_validation, "
+                . "validations_demande_xdistrib.id"
                 . " from demande_xdistrib "
                 . "join users on users.id_user=demande_xdistrib.id_user "
-                . "join client_distrib on client_distrib.id_ckient=demande_xdistrib.id_client "
-                . "join validations_demande_xdistrib on validations_demande_xdistrib.id_demande_xdistrib=demande_xdistrib.id_demande_xdistrib";
+                . "join client_distrib on client_distrib.numwp_client=demande_xdistrib.numwp_client "
+                . "join validations_demande_xdistrib on validations_demande_xdistrib.id_demande_xdistrib=demande_xdistrib.id_demande_xdistrib"
+                . "where validations_demande_xdistrib.id in (select max(validations_demande_xdistrib.id)";
         echo $sql;
     }
 }
