@@ -169,7 +169,7 @@ GROUP BY demande_xdistrib.`tracking_number_demande_xdistrib` order by demande_xd
       return $rest;
     }
     public function essaiTest($value){
-        $sql="select * from validations_demande_xdistrib where id_demande_xdistrib='$value'";
+        $sql="select * from validations_demande_xdistrib where id_demande_xdistrib='$value' order by date_validation desc";
             $res= $this->getAdapter()->query($sql);
       $rest = $res->fetchObject();
       return $rest;
