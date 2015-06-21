@@ -183,7 +183,7 @@ GROUP BY demande_xdistrib.`tracking_number_demande_xdistrib` order by demande_xd
                 ." join client_distrib on client_distrib.numwp_client = demande_xdistrib.numwp_client "
                 ." join users on users.id_user=demande_xdistrib.id_user"
                 . " where validations_demande_xdistrib.id_demande_xdistrib='$value' and demande_xdistrib.id_demande_xdistrib='$value'"
-                . ""
+                . "and validations_demande_xdistrib.id = max(validations_demande_xdistrib.id)"
                 . " order by validations_demande_xdistrib.date_validation desc";
             $res= $this->getAdapter()->query($sql);
        $rest=$res->fetchAll();
