@@ -182,8 +182,12 @@ GROUP BY demande_xdistrib.`tracking_number_demande_xdistrib` order by demande_xd
                 ." join users on users.id_user=demande_xdistrib.id_user"
                 . " where validations_demande_xdistrib.id_demande_xdistrib='$value' order by validations_demande_xdistrib.date_validation desc";
             $res= $this->getAdapter()->query($sql);
-      $rest = $res->fetchObject();
-      return $rest;
+       $rest=$res->fetchAll();
+            if (!$rest) {
+                return null;
+            } else {
+                return $rest;
+            }
     }
 }
 
