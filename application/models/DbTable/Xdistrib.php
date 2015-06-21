@@ -118,8 +118,8 @@ class Application_Model_DbTable_Xdistrib extends Zend_Db_Table_Abstract {
                  . " join client_distrib on client_distrib.numwp_client = demande_xdistrib.numwp_client "
                  . " join users on users.id_user=demande_xdistrib.id_user "
                  . " where validations_demande_xdistrib.id = (select "
-                    . "max(validations_demande_xdistrib.id) "
-                    . "from validations_demande_xdistrib "
+                    . " max(validations_demande_xdistrib.id) "
+                    . " from validations_demande_xdistrib) "
                 . " order by validations_demande_xdistrib.date_validation desc ";
 //        $sql="SELECT demande_xdistrib.date_demande_xdistrib, "
 //            . "demande_xdistrib.id_demande_xdistrib, "
