@@ -81,7 +81,7 @@ class Application_Model_DbTable_Xdistrib extends Zend_Db_Table_Abstract {
         }
     }
     public function tout(){
-        $sql="select id_demande_xdistrib from demande_xdistrib";
+        $sql="select id_demande_xdistrib from demande_xdistrib order by id_demande_xdistrib desc";
         $res = $this->getAdapter()->query($sql);
         $rest=$res->fetchAll();
         if (!$rest) {
@@ -107,13 +107,12 @@ class Application_Model_DbTable_Xdistrib extends Zend_Db_Table_Abstract {
         }
     }
      public function searchforDBD($key){
-         
         $sql="SELECT demande_xdistrib.date_demande_xdistrib, "
             . "demande_xdistrib.id_demande_xdistrib, "
             . "validations_demande_xdistrib.nom_validation, "
             . "demande_xdistrib.num_workplace_demande_xdistrib, "
             . "demande_xdistrib.tracking_number_demande_xdistrib, "
-            . "users.nom_user, demande_xdistrib.date_demande_xdistrib , demande_xdistrib.id_user, client_distrib.nom_client, validations_demande_xdistrib.etat_validation
+            . "users.nom_user,demande_xdistrib.date_demande_xdistrib, demande_xdistrib.id_user, client_distrib.nom_client, validations_demande_xdistrib.etat_validation
 FROM validations_demande_xdistrib
 JOIN demande_xdistrib ON validations_demande_xdistrib.id_demande_xdistrib = demande_xdistrib.id_demande_xdistrib
 JOIN users ON users.id_user =demande_xdistrib.id_user
