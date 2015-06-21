@@ -92,25 +92,10 @@ class XdistribController extends Zend_Controller_Action
                 $popi[]=$value['id_demande_xdistrib'];
             }
             $popi1=array_unique($popi);
-           // echo '<pre>',var_export($popi1) ,'</pre>';
             foreach($popi1 as $value){
                 $recapitulatif3[]= $recapitulatif1->essaiTest($value);
             }
-            $recapitulatif2=$recapitulatif3;
-           echo '<pre>',var_export($recapitulatif2) ,'</pre>';
-//           $this->view->recapitulatif = $recapessai;
-//         $r = array();
-//         for ($index = 0; $index < count($recapessai); $index++) {
-//             if(($index +1) > count($recapessai)-1) {
-//                 $r[] = $recapessai[$index];
-//             } else {
-//                 if($recapessai[$index]['num_workplace_demande_xdistrib'] != $recapessai[$index+1]['num_workplace_demande_xdistrib']) {
-//                     $r[] = $recapessai[$index];
-//                 }
-//             }
-//         }
-//         unset($recapessai);
-//         $recapessai[] = $r;    
+            $recapitulatif2=$recapitulatif3;    
      }
    
      if($user->id_fonction == 10){
