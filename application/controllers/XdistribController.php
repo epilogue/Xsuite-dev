@@ -148,28 +148,8 @@ class XdistribController extends Zend_Controller_Action
      }
       if($user->id_fonction ==5|| $user->id_fonction == 13 || $user->id_fonction == 29 || $user->id_fonction == 23 || $user->id_fonction == 32){
          $recapitulatif1 = new Application_Model_DbTable_Xdistrib;
-         $demandes=new Application_Model_DbTable_Xdistrib();
-         $demande= $demandes->tout();
-//         echo '<pre>',var_export($demande),'</pre>';
-         foreach($demande as $key=>$value){
-            
-         $recapitulatif2bis=$recapitulatif1->essaiTest($value['id_demande_xdistrib']);
-         $r[]=$recapitulatif2bis;
-         }
-//         echo '<pre>',var_export($r),'</pre>';exit();
-//         $r = array();
-//         for ($index = 0; $index < count($recapitulatif2); $index++) {
-//             if(($index +1) > count($recapitulatif2)-1) {
-//                 $r[] = $recapitulatif2[$index];
-//             } else {
-//                 if($recapitulatif2[$index]['num_workplace_demande_xdistrib'] != $recapitulatif2[$index+1]['num_workplace_demande_xdistrib']) {
-//                     $r[] = $recapitulatif2[$index];
-//                 }
-//             }
-//         }
-//         unset($recapitulatif2);
-         sort($r,SORT_ASC);
-         $recapitulatif2 = $r;
+         $recapitulatif2 =$recapitulatif1->rechercheDBD();
+
      }
     
 //     echo '<pre>',var_export($recapitulatif2),'</pre>';
