@@ -140,7 +140,7 @@ class XdistribController extends Zend_Controller_Action
 //          echo '<pre>',var_export($demande),'</pre>';
          foreach($demande as $value){
             
-         $recapitulatif2bis=$recapitulatif1->searchforDBD($value['id_demande_xdistrib']);
+         $recapitulatif2bis=$recapitulatif1->essaiTest($value['id_demande_xdistrib']);
          $r[]=$recapitulatif2bis;
          }
 //         echo '<pre>',var_export($r),'</pre>';exit();
