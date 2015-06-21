@@ -86,17 +86,17 @@ class XdistribController extends Zend_Controller_Action
      }
      if($user->id_fonction == 6){
          $recapitulatif1 = new Application_Model_DbTable_Xdistrib();
-         $recapitulatif2 = $recapitulatif1->searchforDD($user->id_user);
-          foreach ($recapitulatif2 as $value){
+         $recapitulatifbistek = $recapitulatif1->searchforDD($user->id_user);
+          foreach ($recapitulatifbistek as $value){
             
                 $popi[]=$value['id_demande_xdistrib'];
             }
             $popi1=array_unique($popi);
             echo '<pre>',var_export($popi1) ,'</pre>';
             foreach($popi1 as $value){
-                $recapessai[]= $recapitulatif1->essaiTest($value);
+                $recapitulatif2[]= $recapitulatif1->essaiTest($value);
             }
-           echo '<pre>',var_export($recapessai) ,'</pre>';
+           echo '<pre>',var_export($recapitulatif2) ,'</pre>';
 //           $this->view->recapitulatif = $recapessai;
 //         $r = array();
 //         for ($index = 0; $index < count($recapessai); $index++) {
@@ -176,7 +176,7 @@ class XdistribController extends Zend_Controller_Action
 //     echo '<pre>',var_export($recapitulatif2),'</pre>';
    
 //    echo '<pre>',var_export($recapitulatif2),'</pre>';
-    $this->view->recapitulatif = $recapessai;
+    $this->view->recapitulatif = $recapitulatif2;
     }
      protected function genererValidation($datas) {
         $dbtValidation = new Application_Model_DbTable_Validationsdemandexdistrib();
