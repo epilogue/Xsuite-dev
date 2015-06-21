@@ -205,7 +205,7 @@ JOIN validations_demande_xdistrib ON validations_demande_xdistrib.id_demande_xdi
             }
     }
     public function rechercheridDBD(){
-        $sql ="select id_demande_xdistrib from demande_xdistrib";
+        $sql ="select id_demande_xdistrib from demande_xdistrib order by demande_xdistrib.date_demande_xdistrib desc";
          $res = $this->getAdapter()->query($sql);
         $rest=$res->fetchAll();
         if (!$rest) {
