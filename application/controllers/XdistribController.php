@@ -641,7 +641,8 @@ if($this->getRequest()->isPost()){
         /* creation table temporaire pour  client */
             $queryClientFinal = "select ZMCPJO.Z2MCL1  from EIT.SMCCDTA.ZMCPJO  ZMCPJO where ZMCPJO.Z2CUNO= '$numwp_client_final' ";
             $clientFinalwp = odbc_fetch_array(odbc_exec($this->odbc_conn3, $queryClientFinal));
-            $clientFinalwp['Z2MCL1'] = trim($clientFinalwp['Z2MCL1']);
+            $clientFinalwp['Z2MCL1'] = trim($clientFinalwp['Z2MCL1']); 
+            var_dump($clientFinalwp['Z2MCL1']);
             if ($clientFinalwp['Z2MCL1'] == "" || $clientFinalwp['Z2MCL1'] == " ") {
                     $clientFinalwp['Z2MCL1'] = "SCI";
             }
@@ -676,17 +677,17 @@ if($this->getRequest()->isPost()){
             $distrib_infos = new Application_Model_DbTable_TempFichierDistribInfo();
             $distrib_info=$distrib_infos->getDistrib($numwp);
             $this->view->distrib_info = $distrib_info[0];
-            echo '<pre>',var_export($distrib_info),'</pre>';            
+           // echo '<pre>',var_export($distrib_info),'</pre>';            
             /*fin de requettage pour l'affichage des infos dans le phtml*/
             $client_infos= new Application_Model_DbTable_TempMovexOffre();
             $distribnumwps= new Application_Model_DbTable_TempMovexDistrib();
             $distribnum=$distribnumwps->getnumdis($numwp);
-          echo '<pre>',var_export($distribnum),'</pre>';
+          //echo '<pre>',var_export($distribnum),'</pre>';
             $client_info=$client_infos->getClientFinal($numwp);
             $this->view->client_info=$client_info[0];
             $article_infos = new Application_Model_DbTable_TempMovexDemande();
             $article_info= $article_infos->demande($numwp);
-            var_dump($numwp);
+            //var_dump($numwp);
 //            echo '<pre>',  var_export($article_info),'</pre>'; exit();
             $this->view->article_info=$article_info;
             $concurrent_infos=new Application_Model_DbTable_TempFicherDistribPrixConcurrent();
