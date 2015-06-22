@@ -742,6 +742,7 @@ if($this->getRequest()->isPost()){
           $emailVars = Zend_Registry::get('emailVars');
       if ($this->getRequest()->isPost()) {
         $formData = $this->getRequest()->getPost();
+        echo '<pre>',var_export($formData),'</pre>';
          $numwp=$formData['numwp']; 
         $tempClienttruns= new Application_Model_DbTable_TempClient();
         $tempClienttrun=$tempClienttruns->truncateAll(); 
@@ -760,12 +761,10 @@ if($this->getRequest()->isPost()){
         $numwpexist = $demandes_xdistrib->getNumwp($numwp);
         $firstComment = null;
         if (!is_null($numwpexist)) {
+             $now = new DateTime();
             $dbtValidationDemande = new Application_Model_DbTable_Validationsdemandexdistrib();
-            if (!is_null($formData['contexte']) && trim($formData['contexte']) != "") {
-                $now = new DateTime();
                 $validationDemande = $dbtValidationDemande->createValidation(null,$demandes_xdistrib->lastId(),$user_connect->id_user, "creation", $now->format('Y-m-d H:i:s'), "creation", null);
-                $firstComment = $dbtValidationDemande->lastId();
-            }
+                
         }  
         $trackingNumber=$formData['trackingNumber'];
         $zonetracking = substr($trackingNumber, 7, 2);
