@@ -6,7 +6,7 @@ class Application_Model_DbTable_Distributeurs extends Zend_Db_Table_Abstract {
 
     public function getDistributeurnumwp($numwp) {
         $numwp= "$numwp";
-        $row = $this->fetchRow("numwp= '{$numwp}'");
+        $row = $this->fetchRow("num_workplace_demande_xdistrib= '{$numwp}'");
         if (!$row) {
             //throw new Exception("could not find row $numwp_distributeur");
             return null;
