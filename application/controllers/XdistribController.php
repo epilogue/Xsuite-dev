@@ -1011,7 +1011,7 @@ if($this->getRequest()->isPost()){
         }
         $numwp_dis=  substr($info_demande_xdistrib->numwp_distributeur, 0, 6);
         $info_distrib=new Application_Model_DbTable_Distributeurs();
-        $distrib_info=$info_distrib->getDistributeurnumwp($numwp_dis);
+        $distrib_info=$info_distrib->getDistributeurnumwp($numwp);
         $info_user=new Application_Model_DbTable_Users;
         $user_info=$info_user->getUser($info_demande_xdistrib->id_user);
         $nom_holon=new Application_Model_DbTable_Holons();
