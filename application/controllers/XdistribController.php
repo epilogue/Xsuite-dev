@@ -1179,7 +1179,7 @@ if($this->getRequest()->isPost()){
         $this->view->dateplop=$dateplop;
         $numwp_dis=  substr($info_demande_xdistrib['numwp_distributeur'], 0, 6);
         $info_distrib=new Application_Model_DbTable_Distributeurs();
-        $distrib_info=$info_distrib->getDistributeurnumwp($numwp_dis);
+        $distrib_info=$info_distrib->getDistributeurnumwp($numwp);
         $info_user=new Application_Model_DbTable_Users;
         $user_info=$info_user->getUser($info_demande_xdistrib['id_user']);
         $nom_holon=new Application_Model_DbTable_Holons();
@@ -1509,7 +1509,7 @@ if($this->getRequest()->isPost()){
         $this->view->dateplop=$dateplop;
         $numwp_dis=  substr($info_demande_xdistrib['numwp_distributeur'], 0, 6);
         $info_distrib=new Application_Model_DbTable_Distributeurs();
-        $distrib_info=$info_distrib->getDistributeurnumwp($numwp_dis);
+        $distrib_info=$info_distrib->getDistributeurnumwp($numwp);
         $info_user=new Application_Model_DbTable_Users;
         $user_info=$info_user->getUser($info_demande_xdistrib['id_user']);
         $nom_holon=new Application_Model_DbTable_Holons();
@@ -1780,7 +1780,7 @@ if($this->getRequest()->isPost()){
         $this->view->dateplop=$dateplop;
         $numwp_dis=  substr($info_demande_xdistrib['numwp_distributeur'], 0, 6);
         $info_distrib=new Application_Model_DbTable_Distributeurs();
-        $distrib_info=$info_distrib->getDistributeurnumwp($numwp_dis);
+        $distrib_info=$info_distrib->getDistributeurnumwp($numwp);
         $info_user=new Application_Model_DbTable_Users;
         $user_info=$info_user->getUser($info_demande_xdistrib['id_user']);
         $nom_holon=new Application_Model_DbTable_Holons();
@@ -1929,7 +1929,7 @@ if($this->getRequest()->isPost()){
         $this->view->dateplop=$dateplop;
         $numwp_dis=  substr($info_demande_xdistrib['numwp_distributeur'], 0, 6);
         $info_distrib=new Application_Model_DbTable_Distributeurs();
-        $distrib_info=$info_distrib->getDistributeurnumwp($numwp_dis);
+        $distrib_info=$info_distrib->getDistributeurnumwp($numwp);
         $info_user=new Application_Model_DbTable_Users;
         $user_info=$info_user->getUser($info_demande_xdistrib['id_user']);
         $nom_holon=new Application_Model_DbTable_Holons();
@@ -2090,7 +2090,7 @@ if($this->getRequest()->isPost()){
         $this->view->dateplop=$dateplop;
         $numwp_dis=  substr($info_demande_xdistrib['numwp_distributeur'], 0, 6);
         $info_distrib=new Application_Model_DbTable_Distributeurs();
-        $distrib_info=$info_distrib->getDistributeurnumwp($numwp_dis);
+        $distrib_info=$info_distrib->getDistributeurnumwp($numwp);
         $info_user=new Application_Model_DbTable_Users;
         $user_info=$info_user->getUser($info_demande_xdistrib['id_user']);
         $nom_holon=new Application_Model_DbTable_Holons();
@@ -2229,7 +2229,7 @@ if($this->getRequest()->isPost()){
         $this->view->dateplop=$dateplop;
         $numwp_dis=  substr($info_demande_xdistrib['numwp_distributeur'], 0, 6);
         $info_distrib=new Application_Model_DbTable_Distributeurs();
-        $distrib_info=$info_distrib->getDistributeurnumwp($numwp_dis);
+        $distrib_info=$info_distrib->getDistributeurnumwp($numwp);
         $info_user=new Application_Model_DbTable_Users;
         $user_info=$info_user->getUser($info_demande_xdistrib['id_user']);
         $dd_info=$info_user->getUser($info_demande_xdistrib['id_dd']);
@@ -2729,7 +2729,7 @@ if($this->getRequest()->isPost()){
         $this->view->dateplop=$dateplop;
         $numwp_dis=  substr($info_demande_xdistrib['numwp_distributeur'], 0, 6);
         $info_distrib=new Application_Model_DbTable_Distributeurs();
-        $distrib_info=$info_distrib->getDistributeurnumwp($numwp_dis);
+        $distrib_info=$info_distrib->getDistributeurnumwp($numwp);
         $info_user=new Application_Model_DbTable_Users;
         $user_info=$info_user->getUser($info_demande_xdistrib['id_user']);
         $nom_holon=new Application_Model_DbTable_Holons();
@@ -3285,7 +3285,7 @@ if($this->getRequest()->isPost()){
         $info_demande_xdistrib = $infos_demande_xdistrib->getNumwp($numwp);
         $numwp_dis=  substr($info_demande_xdistrib['numwp_distributeur'], 0, 6);
         $info_distrib=new Application_Model_DbTable_Distributeurs();
-        $distrib_info=$info_distrib->getDistributeurnumwp($numwp_dis);
+        $distrib_info=$info_distrib->getDistributeurnumwp($numwp);
         $info_article=new Application_Model_DbTable_DemandeArticlexdistrib();
         $article_info= $info_article->getDemandeArticlexdistrib($numwp);
         $info_client=new Application_Model_DbTable_ClientDistrib();
