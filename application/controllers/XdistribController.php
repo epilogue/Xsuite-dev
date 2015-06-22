@@ -827,8 +827,8 @@ if($this->getRequest()->isPost()){
                 $this->sendEmail($params1);
 //                echo '</pre>',  var_dump($params1['destinataireMail']),'</pre>';
             }    
-//            $redirector = $this->_helper->getHelper('Redirector');
-//            $redirector->gotoSimple('index', 'xdistrib');
+            $redirector = $this->_helper->getHelper('Redirector');
+            $redirector->gotoSimple('index', 'xdistrib');
         }
     }
     public function readerAction(){}
