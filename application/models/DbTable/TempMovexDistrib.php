@@ -24,9 +24,16 @@ class Application_Model_DbTable_TempMovexDistrib extends Zend_Db_Table_Abstract 
              'adresse'=>$adresse
         );
         $this->insert($data);
-        return $this;
-    
-        
+        return $this;    
     }
-    
+     public function getnumdis($numwp){
+         $sql="select numwp_distributeur from temp_movex_distrib where numwp=$numwp";
+          $res = $this->getAdapter()->query($sql);
+        $rest=$res->fetchAll();
+        if (!$rest) {
+            return null;
+        } else {
+            return $rest;
+        }
+     }
 }
