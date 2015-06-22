@@ -223,6 +223,7 @@ JOIN validations_demande_xdistrib ON validations_demande_xdistrib.id_demande_xdi
                 . " client_distrib.nom_client,"
                 . " demande_xdistrib.date_demande_xdistrib,"
                 . " validations_demande_xdistrib.etat_validation, "
+                . " validations_demande_xdistrib.nom_validation, "
                 . "validations_demande_xdistrib.id"
                 . " from demande_xdistrib "
                 . "join users on users.id_user=demande_xdistrib.id_user "
