@@ -676,6 +676,7 @@ if($this->getRequest()->isPost()){
             $distrib_infos = new Application_Model_DbTable_TempFichierDistribInfo();
             $distrib_info=$distrib_infos->getDistrib($numwp);
             $this->view->distrib_info = $distrib_info[0];
+            echo '<pre>',var_export($distrib_info),'</pre>';            exit();
             /*fin de requettage pour l'affichage des infos dans le phtml*/
             $client_infos= new Application_Model_DbTable_TempMovexOffre();
             $client_info=$client_infos->getClientFinal($numwp);
