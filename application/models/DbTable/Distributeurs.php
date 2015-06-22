@@ -4,9 +4,9 @@ class Application_Model_DbTable_Distributeurs extends Zend_Db_Table_Abstract {
 
     protected $_name = 'distributeurs';
 
-    public function getDistributeurnumwp($numwp_distributeur) {
-        $numwp_distributeur = "$numwp_distributeur";
-        $row = $this->fetchRow("numwp_distributeur = '{$numwp_distributeur}'");
+    public function getDistributeurnumwp($numwp) {
+        $numwp= "$numwp";
+        $row = $this->fetchRow("numwp= '{$numwp}'");
         if (!$row) {
             //throw new Exception("could not find row $numwp_distributeur");
             return null;
