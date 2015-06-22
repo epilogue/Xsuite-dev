@@ -681,7 +681,7 @@ if($this->getRequest()->isPost()){
             $client_infos= new Application_Model_DbTable_TempMovexOffre();
             $distribnumwps= new Application_Model_DbTable_TempMovexDistrib();
             $distribnum=$distribnumwps->getnumdis($numwp);
-           var_dump($distribnum);
+          echo '<pre>',var_export($distribnum),'</pre>';
             $client_info=$client_infos->getClientFinal($numwp);
             $this->view->client_info=$client_info[0];
             $article_infos = new Application_Model_DbTable_TempMovexDemande();
@@ -729,7 +729,7 @@ if($this->getRequest()->isPost()){
              $DefConcurrent = $DefConcurrents->create($con['concurrent'],$con['reference_produit'],$con['prix_tarif_concurrent'],$con['prix_spe_accorde_concurrent'],$con['numwp']);
         }
        $defDistributeurs=new Application_Model_DbTable_Distributeurs();
-       $defDistributeur=$defDistributeurs->createDistributeur($distrib_info[0]['distrib'], $distrib_info[0]['nom_contact_distrib'],$distribnum,$distrib_info[0]['ville_distrib'],$distrib_info[0]['codepostal_distrib'], $id_industry,$potentiel_distributeur,$distrib_info[0]['numwp']);
+       $defDistributeur=$defDistributeurs->createDistributeur($distrib_info[0]['distrib'], $distrib_info[0]['nom_contact_distrib'],$distribnum[0]['numwp_distributeur'],$distrib_info[0]['ville_distrib'],$distrib_info[0]['codepostal_distrib'], $id_industry,$potentiel_distributeur,$distrib_info[0]['numwp']);
        
 
     }
