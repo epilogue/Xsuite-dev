@@ -641,8 +641,7 @@ if($this->getRequest()->isPost()){
         /* creation table temporaire pour  client */
             $queryClientFinal = "select ZMCPJO.Z2MCL1  from EIT.SMCCDTA.ZMCPJO  ZMCPJO where ZMCPJO.Z2CUNO= '$numwp_client_final' ";
             $clientFinalwp = odbc_fetch_array(odbc_exec($this->odbc_conn3, $queryClientFinal));
-            $clientFinalwp['Z2MCL1'] = trim($clientFinalwp['Z2MCL1']); 
-            var_dump($clientFinalwp['Z2MCL1']);
+            $clientFinalwp['Z2MCL1'] = trim($clientFinalwp['Z2MCL1']);
             if ($clientFinalwp['Z2MCL1'] == "" || $clientFinalwp['Z2MCL1'] == " ") {
                     $clientFinalwp['Z2MCL1'] = "SCI";
             }
@@ -742,7 +741,6 @@ if($this->getRequest()->isPost()){
           $emailVars = Zend_Registry::get('emailVars');
       if ($this->getRequest()->isPost()) {
         $formData = $this->getRequest()->getPost();
-        echo '<pre>',var_export($formData),'</pre>';
          $numwp=$formData['numwp']; 
         $tempClienttruns= new Application_Model_DbTable_TempClient();
         $tempClienttrun=$tempClienttruns->truncateAll(); 
@@ -761,10 +759,12 @@ if($this->getRequest()->isPost()){
         $numwpexist = $demandes_xdistrib->getNumwp($numwp);
         $firstComment = null;
         if (!is_null($numwpexist)) {
-             $now = new DateTime();
             $dbtValidationDemande = new Application_Model_DbTable_Validationsdemandexdistrib();
+            if (!is_null($formData['contexte']) && trim($formData['contexte']) != "") {
+                $now = new DateTime();
                 $validationDemande = $dbtValidationDemande->createValidation(null,$demandes_xdistrib->lastId(),$user_connect->id_user, "creation", $now->format('Y-m-d H:i:s'), "creation", null);
-                
+                $firstComment = $dbtValidationDemande->lastId();
+            }
         }  
         $trackingNumber=$formData['trackingNumber'];
         $zonetracking = substr($trackingNumber, 7, 2);
