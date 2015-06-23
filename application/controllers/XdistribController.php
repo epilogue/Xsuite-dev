@@ -96,21 +96,7 @@ class XdistribController extends Zend_Controller_Action
             foreach($popi1 as $value){
                 $recapitulatif3[]= $recapitulatif1->essaiTest($value);
             }
-            $recapitulatif2=$recapitulatif3;
-          // echo '<pre>',var_export($recapitulatif2) ,'</pre>';
-//           $this->view->recapitulatif = $recapessai;
-//         $r = array();
-//         for ($index = 0; $index < count($recapessai); $index++) {
-//             if(($index +1) > count($recapessai)-1) {
-//                 $r[] = $recapessai[$index];
-//             } else {
-//                 if($recapessai[$index]['num_workplace_demande_xdistrib'] != $recapessai[$index+1]['num_workplace_demande_xdistrib']) {
-//                     $r[] = $recapessai[$index];
-//                 }
-//             }
-//         }
-//         unset($recapessai);
-//         $recapessai[] = $r;    
+            $recapitulatif2=$recapitulatif3; 
      }
    
      if($user->id_fonction == 10){
@@ -138,29 +124,20 @@ class XdistribController extends Zend_Controller_Action
          }
         
          foreach($r as $tagada){foreach($tagada as $value){
-//         echo '<pre>', var_export($value),'</pre>'; 
              if(preg_match($tracking1,$value['tracking_number_demande_xdistrib'])==1 || preg_match($tracking2,$value['tracking_number_demande_xdistrib'] )==1 ) {
                  $plopr[] =$value; 
              }
          }}
          $recapitulatif2[] = $plopr;
-//         echo '<pre>', var_export($plopr),'</pre>'; 
      }
       if($user->id_fonction ==5|| $user->id_fonction == 13 || $user->id_fonction == 29 || $user->id_fonction == 23 || $user->id_fonction == 32){
          $recapitulatif1 = new Application_Model_DbTable_Xdistrib;
          $plop1=$recapitulatif1->rechercheridDBD();
-         echo '<pre>',  var_export($plop1),'</pre>';
          
          foreach($plop1 as $value){
              $recapitulatif2[] =$recapitulatif1->rechercheDBD($value['id_demande_xdistrib']);
          }
-         
- echo '<pre>',  var_export($recapitulatif2),'</pre>';
      }
-    
-//     echo '<pre>',var_export($recapitulatif2),'</pre>';
-   
-//    echo '<pre>',var_export($recapitulatif2),'</pre>';
     $this->view->recapitulatif = $recapitulatif2;
     }
      protected function genererValidation($datas) {
