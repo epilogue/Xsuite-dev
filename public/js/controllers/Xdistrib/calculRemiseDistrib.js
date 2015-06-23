@@ -91,6 +91,7 @@ $(document).ready(function (){
         var ra = parseFloat($(this).val());
         var cif = parseFloat($('td#cif-'+k).html());
         var pda = Number(((100-ra)*pwp)/100).toFixed(2);
+         var pcf = parseFloat($('td#pcf-'+k).html());
         $('input#pda-'+k).val(pda);
         var caa=((Number(((100-ra)*pwp)/100))*qt);
         $('input#caa-'+k).val(caa);
@@ -98,9 +99,13 @@ $(document).ready(function (){
         var ma = Number(100*(1-(parseFloat($('td#cif-'+k).html())/Number(((100-ra)*pwp)/100))).toFixed(2));
         $('input#ma-'+k).val(ma+'%');
         $(this).val(parseFloat($(this).val())+'%');
+        /*marge distributeur */
+        var mad = Number(100*( 1-(pda/pcf))).toFixed(2);
+        $('input#mad-'+k).val(mad+'%');
         calculTotal();
         moyenne();
         moyenneMarge();
+        MargeMoyenneDistributeur();
     });
     
      $('input.ma').change(function (){
@@ -109,6 +114,7 @@ $(document).ready(function (){
         var qt = parseFloat($('td#qt-'+k).html());
         var pwp = parseFloat($('input#pwp-'+k).val());
         var cif = parseFloat($('td#cif-'+k).html());
+         var pcf = parseFloat($('td#pcf-'+k).html());
         var ma = parseFloat($(this).val());
         var pda = Number(cif/(1-(ma/100))).toFixed(2);
         $('input#pda-'+k).val(pda);
@@ -117,10 +123,12 @@ $(document).ready(function (){
         $(this).val(parseFloat($(this).val())+'%');
         var ra = Number(100-(Number(pda))*100/pwp).toFixed(2);
         $('input#ra-'+k).val(ra);
-        
+         var mad = Number(100*( 1-(pda/pcf))).toFixed(2);
+        $('input#mad-'+k).val(mad+'%');
         calculTotal();
         moyenne();
         moyenneMarge();
+        MargeMoyenneDistributeur();
     });
      $('input.margefob').change(function (){
         var idT = $(this).attr('id').split('-');
