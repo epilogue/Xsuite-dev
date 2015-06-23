@@ -43,6 +43,13 @@ function moyenneMarge(){
     var moyma = 100*(1- (ccif /ccat)).toFixed(2);
     $("input#mamo").val(moyma +'%');
 }
+function MargeMoyenneDistributeur(){
+     var caf = parseFloat($('input#caf').val());
+    var ccat = parseFloat($('input#caat').val());
+     var moymadis = 100*(1- (ccat/caf)).toFixed(2);
+    $("input#mamodis").val(moymadis +'%');
+} 
+
 
 function moyenneMargeFob(){
    
@@ -61,12 +68,16 @@ $(document).ready(function (){
         var qt = parseFloat($('td#qt-'+k).html());
         var cif = parseFloat($('td#cif-'+k).html());
         var caa=((parseFloat($(this).val()))*qt);
+        var pcf = parseFloat($('td#pcf-'+k).html());
         $('input#caa-'+k).val(caa);
         var ra = Number(100 - ((parseFloat($(this).val())*100)/parseFloat($('input#pwp-'+k).val()))).toFixed(2);
         $('input#ra-'+k).val(ra+'%');
          /*marge=1-(coutCif/prixvente)*/
         var ma = Number(100*(1 -(cif/parseFloat($(this).val())))).toFixed(2);
         $('input#ma-'+k).val(ma+'%');
+        /*marge distributeur */
+        var mad = Number(100*( 1-(parseFloat($(this).val())/pcf)));
+        $('input#mad-'+k).val(mad+'%');
         calculTotal();
         moyenne();
         moyenneMarge();

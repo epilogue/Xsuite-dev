@@ -189,12 +189,12 @@ $this->headScript()->appendFile('/js/controllers/xprice/afficher_masquer_validat
                         <td><?php $remiseDistrib= (100-(100*$value['prix_achat_actuel'])/$value['prix_tarif']);  echo round($remiseDistrib,1).'%'; ?></td>
                         <td id="pd-<?php echo $k; ?>"><?php echo $value['prix_demande_article']; ?></td>
                         <td><?php echo $value['serie']; ?></td>
-                        <td><?php echo $value['prix_client_final']; ?></td>
+                        <td id="pcf-<?php echo $k;?>"><?php echo $value['prix_client_final']; ?></td>
                         <td><input class="pda" id="pda-<?php echo $k; ?>" value="<?php echo $value['prix_accorde_demande_article']; ?>" name="<?php echo 'prix_accorde_article[]' ?>" style="background-color: #74aaca;"></td>
                         <td><input class="ra" id="ra-<?php echo $k; ?>" value="<?php echo $value['remise_accorde_demande_article']; ?>" name="<?php echo 'remise_accorde_article[]' ?>" style="background-color: #74aaca;"></td>
                         <td><input readonly="readonly" class="fob" id="fob-<?php echo $k;?>" type="text" name="fob[]" value="<?php echo $value['prix_fob_demande_article']; ?>"></td><input class="totfob" type="hidden" id="totfob-<?php echo $k;?>" value ="<?php echo $value['quantite_demande_article']*$value['prix_fob_demande_article']; ?>">
                         <td id="cif-<?php echo $k; ?>"><?php echo $value['prix_cif_demande_article']; ?></td>
-                        <td><input class="mad" id="pad<?php echo $k;?>" value="<?php  echo round($mad,1)."%" ;?>" name="margeDistrib[]" ><?php $margeDistrib =100*( 1-($value['prix_accorde_demande_article']/$value['prix_client_final'])); echo round($margeDistrib,1).'%'; ?></td>
+                        <td><input class="mad" id="mad<?php echo $k;?>"<?php $margeDistrib =100*( 1-($value['prix_accorde_demande_article']/$value['prix_client_final']));?> value="<?php  echo round($mad,1)."%" ;?>" name="margeDistrib[]" ></td>
                         <td><input class="ma" id="ma-<?php echo $k;?>" <?php $ma=100*(1-($value['prix_cif_demande_article']/$value['prix_accorde_demande_article']));?> value="<?php  echo round($ma,1)."%" ;?>" name="marge[]"></td>
                         <td><input type="hidden"  class="caa" id="caa-<?php echo $k;?>"  value="<?php echo round((($value['prix_tarif'])*$value['quantite_demande_article']),2); ?>" name="caa" style="background-color:yellow;">
                         
@@ -246,7 +246,7 @@ $this->headScript()->appendFile('/js/controllers/xprice/afficher_masquer_validat
                                 <input id="ccif" type="hidden" class="calculHidden" value="<?php echo $Ccif; ?>">
                             </td>
                             <td >
-                                <?php  $margetotaldistrib = 100*(1-($CAa/$caf)); echo round($margetotaldistrib,1)."%"?>
+                               <input name="mamodis" id="mamodis" <?php  $mamodis = 100*(1-($CAa/$caf));?> value="<?php echo round($mamodis,1)."%";?>">
                             </td>
                             <td> <input name="mamo" id="mamo"<?php $mamo = 100*(1-($Ccif/$CAa))?> value ="<?php echo round($mamo,1)."%";?>"></td>
                             <td></td>
