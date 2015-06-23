@@ -76,11 +76,12 @@ $(document).ready(function (){
         var ma = Number(100*(1 -(cif/parseFloat($(this).val())))).toFixed(2);
         $('input#ma-'+k).val(ma+'%');
         /*marge distributeur */
-        var mad = Number(100*( 1-(parseFloat($(this).val())/pcf)));
+        var mad = Number(100*( 1-(parseFloat($(this).val())/pcf))).toFixed(2);
         $('input#mad-'+k).val(mad+'%');
         calculTotal();
         moyenne();
         moyenneMarge();
+         MargeMoyenneDistributeur();
     });
     $('input.ra').change(function (){
         var idT = $(this).attr('id').split('-');
