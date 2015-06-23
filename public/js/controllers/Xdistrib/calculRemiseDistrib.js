@@ -100,7 +100,7 @@ $(document).ready(function (){
         $('input#ma-'+k).val(ma+'%');
         $(this).val(parseFloat($(this).val())+'%');
         /*marge distributeur */
-        var mad = Number(100*( 1-(pda/pcf))).toFixed(2);
+        var mad = Number(100*( 1-(Number(pda)/pcf))).toFixed(2);
         $('input#mad-'+k).val(mad+'%');
         calculTotal();
         moyenne();
@@ -123,7 +123,7 @@ $(document).ready(function (){
         $(this).val(parseFloat($(this).val())+'%');
         var ra = Number(100-(Number(pda))*100/pwp).toFixed(2);
         $('input#ra-'+k).val(ra);
-         var mad = Number(100*( 1-(pda/pcf))).toFixed(2);
+         var mad = Number(100*( 1-(Number(pda)/pcf))).toFixed(2);
         $('input#mad-'+k).val(mad+'%');
         calculTotal();
         moyenne();
