@@ -647,6 +647,7 @@ if($this->getRequest()->isPost()){
             /*recuperation des donnees concernant le createur de l'offre*/
             $user_infos = new Application_Model_DbTable_TempMovexOffre();
             $user_info = $user_infos->getMovexUser($numwp);
+            
             $this->view->user_info = $user_info[0];
             $nom_zone = $user_info[0]['nom_zone'];
 //            echo '<pre>',var_export($user_info),'</pre>';
@@ -2622,6 +2623,7 @@ if($this->getRequest()->isPost()){
                 
             elseif (isset($datas['validation']) && $datas['validation'] == 'enAttente') {
                 $params = array();
+                $params1=array();
                 $params['destinataireMail'] = $user_info['email_user'];
                 if (!is_null($commentId)) {
                     $params['url'] = "http://{$_SERVER['SERVER_NAME']}/xdistrib/update/numwp/{$numwp}/com/{$commentId}";
@@ -2640,7 +2642,24 @@ if($this->getRequest()->isPost()){
                         . "dbd.";
                 $params['sujet'] = " Xdistrib :demande Xdistrib $tracking/$numwp mise en attente par Directeur Business Developpement.";
                 $this->sendEmail($params);
-
+                $params1['destinataireMail'] = $dd_info['email_user'];
+                if (!is_null($commentId)) {
+                    $params1['url'] = "http://{$_SERVER['SERVER_NAME']}/xdistrib/update/numwp/{$numwp}/com/{$commentId}";
+                } else {
+                    $params1['url'] = "http://{$_SERVER['SERVER_NAME']}/xdistrib/update/numwp/{$numwp}";
+                }
+                $params1['corpsMail'] = "Bonjour,\n"
+                        . "\n"
+                        . "Votre demande Xdistrib $tracking/$numwp pour le client $nomclients est en attente de réponse à la question posée par dbd .\n"
+                        . "Vous pouvez la consulter à cette adresse url : \n"
+                        . "%s"
+                        . "\n\n"
+                        . "Cordialement,\n"
+                        . "\n"
+                        . "--\n"
+                        . "dbd.";
+                $params1['sujet'] = " Xdistrib :demande Xdistrib $tracking/$numwp mise en attente par Directeur Business Developpement.";
+                $this->sendEmail($params1);
                 $flashMessenger = $this->_helper->getHelper('FlashMessenger');
                 $message = "l'offre $numwp est en attente de réponse du commercial.";
                 $flashMessenger->addMessage($message);
