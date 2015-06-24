@@ -2441,6 +2441,7 @@ if($this->getRequest()->isPost()){
                 $params5 = array();
                 $params6 = array();
                 $params7 = array();
+                $params8 = array();
                 $params7['destinataireMail']=$maildevdistrib;
                 $params7['url']="http://{$_SERVER['SERVER_NAME']}/xdistrib/avenant/numwp/{$numwp}";
                 $params7['corpsMail'] = "Bonjour,\n"
