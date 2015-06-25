@@ -2443,12 +2443,71 @@ if($this->getRequest()->isPost()){
                 $params6 = array();
                 $params7 = array();
                 $params8 = array();
+                if($distrib_info['numwp_distributeur']=='I02055' || $distrib_info['numwp_distributeur']=='I01045'){
+                $mailRCDN= $emailVars->listes->brammer;
+                }elseif($distrib_info['numwp_distributeur']=='I03624' ||
+                        $distrib_info['numwp_distributeur']=='I00789' ||
+                        $distrib_info['numwp_distributeur']=='I05285' ||
+                        $distrib_info['numwp_distributeur']=='I03317' ||
+                        $distrib_info['numwp_distributeur']=='I02557' ||
+                        $distrib_info['numwp_distributeur']=='I00415' ||
+                        $distrib_info['numwp_distributeur']=='I00678' ||
+                        $distrib_info['numwp_distributeur']=='I04380' ||
+                        $distrib_info['numwp_distributeur']=='I03214' ||
+                        $distrib_info['numwp_distributeur']=='I02886' ||
+                        $distrib_info['numwp_distributeur']=='I03621' ||
+                        $distrib_info['numwp_distributeur']=='I02929' ||
+                        $distrib_info['numwp_distributeur']=='I02932' ||
+                        $distrib_info['numwp_distributeur']=='I03912' ||
+                        $distrib_info['numwp_distributeur']=='I05223' ||
+                        $distrib_info['numwp_distributeur']=='I02920') {
+                     $mailRCDN= $emailVars->listes->mbedexis;
+                }elseif( 
+                        $distrib_info['numwp_distributeur']=='I00264' ||
+                        $distrib_info['numwp_distributeur']=='I00662' ||
+                        $distrib_info['numwp_distributeur']=='I00412' ||
+                        $distrib_info['numwp_distributeur']=='I01796' ||
+                        $distrib_info['numwp_distributeur']=='I01800' ||
+                        $distrib_info['numwp_distributeur']=='I03174' ||
+                        $distrib_info['numwp_distributeur']=='I03383' ||
+                        $distrib_info['numwp_distributeur']=='I01803' ||
+                        $distrib_info['numwp_distributeur']=='I04736' ||
+                        $distrib_info['numwp_distributeur']=='I03697' ||
+                        $distrib_info['numwp_distributeur']=='I04732' ||
+                        $distrib_info['numwp_distributeur']=='I01799' ||
+                        $distrib_info['numwp_distributeur']=='I04957' ||
+                        $distrib_info['numwp_distributeur']=='I03517' ||
+                        $distrib_info['numwp_distributeur']=='I05061' ||
+                        $distrib_info['numwp_distributeur']=='I01808' ||
+                        $distrib_info['numwp_distributeur']=='I02688' ||
+                        $distrib_info['numwp_distributeur']=='I04956' ||
+                        $distrib_info['numwp_distributeur']=='I05065' ){
+                        $mailRCDN= $emailVars->listes->orexad;
+                }
+                elseif( $distrib_info['numwp_distributeur']=='I01990') {
+                         $mailRCDN= $emailVars->listes->rs;
+            } else{$mailRCDN="mhuby@smc-france.fr";}
+                $params8['destinataireMail']=$mailRCDN;
+                $params8['url']="http://{$_SERVER['SERVER_NAME']}/xdistrib/avenant/numwp/{$numwp}";
+                 $params['corpsMail'] = "Bonjour,\n"
+                        . "\n"
+                        . "la demande Xdistrib $trackingNumber/$numwp pour le client $nomclients a été validée par le Directeur Commercial .\n"
+                        . "Veuillez télécharger l'avenant de cette demande à cette adresse url : \n"
+                        . "%s"
+                        . "\n\n"
+                        . "Cordialement,\n"
+                        . "\n"
+                        . "--\n"
+                        . "dbd.";
+                $params8['sujet'] = " Xdistrib :demande Xdistrib  $trackingNumber/$numwp pour le client $nomclients validée par Directeur Commercial/ lien pour Avenant .";
+                $this->sendEmail($params8);
+                
                 $params7['destinataireMail']=$maildevdistrib;
                 $params7['url']="http://{$_SERVER['SERVER_NAME']}/xdistrib/avenant/numwp/{$numwp}";
                 $params7['corpsMail'] = "Bonjour,\n"
                         . "\n"
                         . "Votre demande Xdistrib $trackingNumber/$numwp pour le client $nomclients a été validée par le Directeur Commercial .\n"
-                        . "Veuillez compléter et imprimer cette demande à cette adresse url : \n"
+                        . "Veuillez télécharger l'avenant de cette demande à cette adresse url : \n"
                         . "%s"
                         . "\n\n"
                         . "Cordialement,\n"
@@ -2457,6 +2516,7 @@ if($this->getRequest()->isPost()){
                         . "dbd.";
                 $params7['sujet'] = " Xdistrib :demande Xdistrib  $trackingNumber/$numwp pour le client $nomclients validée par Directeur Commercial/ lien pour Avenant .";
                 $this->sendEmail($params7);
+                
                     $params2['destinataireMail'] =$user_info['email_user']; 
                     
                     $params3['destinataireMail'] =$mailSC; 
@@ -2917,6 +2977,65 @@ if($this->getRequest()->isPost()){
             $params5 = array();
             $params6 = array();
             if (isset($datas['validation']) && $datas['validation'] == "fermee") {
+                 $params8 = array();
+                if($distrib_info['numwp_distributeur']=='I02055' || $distrib_info['numwp_distributeur']=='I01045'){
+                $mailRCDN= $emailVars->listes->brammer;
+                }elseif($distrib_info['numwp_distributeur']=='I03624' ||
+                        $distrib_info['numwp_distributeur']=='I00789' ||
+                        $distrib_info['numwp_distributeur']=='I05285' ||
+                        $distrib_info['numwp_distributeur']=='I03317' ||
+                        $distrib_info['numwp_distributeur']=='I02557' ||
+                        $distrib_info['numwp_distributeur']=='I00415' ||
+                        $distrib_info['numwp_distributeur']=='I00678' ||
+                        $distrib_info['numwp_distributeur']=='I04380' ||
+                        $distrib_info['numwp_distributeur']=='I03214' ||
+                        $distrib_info['numwp_distributeur']=='I02886' ||
+                        $distrib_info['numwp_distributeur']=='I03621' ||
+                        $distrib_info['numwp_distributeur']=='I02929' ||
+                        $distrib_info['numwp_distributeur']=='I02932' ||
+                        $distrib_info['numwp_distributeur']=='I03912' ||
+                        $distrib_info['numwp_distributeur']=='I05223' ||
+                        $distrib_info['numwp_distributeur']=='I02920') {
+                     $mailRCDN= $emailVars->listes->mbedexis;
+                }elseif( 
+                        $distrib_info['numwp_distributeur']=='I00264' ||
+                        $distrib_info['numwp_distributeur']=='I00662' ||
+                        $distrib_info['numwp_distributeur']=='I00412' ||
+                        $distrib_info['numwp_distributeur']=='I01796' ||
+                        $distrib_info['numwp_distributeur']=='I01800' ||
+                        $distrib_info['numwp_distributeur']=='I03174' ||
+                        $distrib_info['numwp_distributeur']=='I03383' ||
+                        $distrib_info['numwp_distributeur']=='I01803' ||
+                        $distrib_info['numwp_distributeur']=='I04736' ||
+                        $distrib_info['numwp_distributeur']=='I03697' ||
+                        $distrib_info['numwp_distributeur']=='I04732' ||
+                        $distrib_info['numwp_distributeur']=='I01799' ||
+                        $distrib_info['numwp_distributeur']=='I04957' ||
+                        $distrib_info['numwp_distributeur']=='I03517' ||
+                        $distrib_info['numwp_distributeur']=='I05061' ||
+                        $distrib_info['numwp_distributeur']=='I01808' ||
+                        $distrib_info['numwp_distributeur']=='I02688' ||
+                        $distrib_info['numwp_distributeur']=='I04956' ||
+                        $distrib_info['numwp_distributeur']=='I05065' ){
+                        $mailRCDN= $emailVars->listes->orexad;
+                }
+                elseif( $distrib_info['numwp_distributeur']=='I01990') {
+                         $mailRCDN= $emailVars->listes->rs;
+            } else{$mailRCDN="mhuby@smc-france.fr";}
+                $params8['destinataireMail']=$mailRCDN;
+                $params8['url']="http://{$_SERVER['SERVER_NAME']}/xdistrib/avenant/numwp/{$numwp}";
+                 $params['corpsMail'] = "Bonjour,\n"
+                        . "\n"
+                        . "la demande Xdistrib $trackingNumber/$numwp pour le client $nomclients a été validée par le Directeur Commercial .\n"
+                        . "Veuillez télécharger l'avenant de cette demande à cette adresse url : \n"
+                        . "%s"
+                        . "\n\n"
+                        . "Cordialement,\n"
+                        . "\n"
+                        . "--\n"
+                        . "dbd.";
+                $params8['sujet'] = " Xdistrib :demande Xdistrib  $trackingNumber/$numwp pour le client $nomclients validée par Directeur Commercial/ lien pour Avenant .";
+                $this->sendEmail($params8);
                 $params6['destinataireMail']=$maildevdistrib;
                 $params6['url']="http://{$_SERVER['SERVER_NAME']}/xdistrib/avenant/numwp/{$numwp}";
                 $params6['corpsMail'] = "Bonjour,\n"
