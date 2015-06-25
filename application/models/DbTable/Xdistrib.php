@@ -187,7 +187,7 @@ JOIN validations_demande_xdistrib ON validations_demande_xdistrib.id_demande_xdi
                  . " demande_xdistrib.tracking_number_demande_xdistrib"
                 . " from validations_demande_xdistrib"
                 ." join demande_xdistrib on demande_xdistrib.id_demande_xdistrib=validations_demande_xdistrib.id_demande_xdistrib"
-                ." join client_distrib on client_distrib.numwp_client = demande_xdistrib.numwp_client "
+                ." join client_distrib on client_distrib.numwp = demande_xdistrib.num_workplace_demande_xdistrib "
                 ." join users on users.id_user=demande_xdistrib.id_user"
                 . " where validations_demande_xdistrib.id_demande_xdistrib='$value' "
                 . "and demande_xdistrib.id_demande_xdistrib='$value' "
