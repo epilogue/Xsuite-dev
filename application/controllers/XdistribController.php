@@ -133,6 +133,7 @@ class XdistribController extends Zend_Controller_Action
       if($user->id_fonction ==5|| $user->id_fonction == 13 || $user->id_fonction == 29 || $user->id_fonction == 23 || $user->id_fonction == 32){
          $recapitulatif1 = new Application_Model_DbTable_Xdistrib;
          $plop1=$recapitulatif1->rechercheridDBD();
+            echo '<pre>',var_export($plop1) ,'</pre>';
          //$plop1=array_unique($plopi);
          foreach($plop1 as $value){
              $recapitulatif2[] =$recapitulatif1->rechercheDBD($value['id_demande_xdistrib']);
