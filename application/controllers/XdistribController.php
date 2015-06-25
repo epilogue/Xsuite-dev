@@ -138,7 +138,7 @@ class XdistribController extends Zend_Controller_Action
          foreach($plop1 as $value){
              $recapitulatif2[] =$recapitulatif1->rechercheDBD($value['id_demande_xdistrib']);
          }
-     }
+     }  echo '<pre>',var_export($recapitulatif2) ,'</pre>';
     $this->view->recapitulatif = $recapitulatif2;
     }
      protected function genererValidation($datas) {
