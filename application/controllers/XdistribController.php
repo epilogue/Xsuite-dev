@@ -680,7 +680,7 @@ if($this->getRequest()->isPost()){
             $trackingNumber = Application_Model_DbTable_Xdistrib::makeTrackingNumber($nom_zone, $Xdistrib->lastId(true));
             $this->view->trackingNumber = $trackingNumber;
         }
-        if($numwp="0090724793"){$user_info['id_user']=="134";}
+        if($numwp="0090724793"){$user_info[0]['id_user']=="134";}
         $Defxdistribs= new Application_Model_DbTable_Xdistrib();
         $defxdistrib = $Defxdistribs->createXDistrib($numwp, $trackingNumber,$context_info[0]['contexte_demande'],$date,$context_info[0]['services_associes'], $user_info[0]['id_user'],$infos_dd->id_user,null,$infos_offres->OBDLSP,$numwp_distributeur5);
         $Defxdistribarticles= new Application_Model_DbTable_DemandeArticlexdistrib();
