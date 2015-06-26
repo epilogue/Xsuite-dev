@@ -647,7 +647,7 @@ if($this->getRequest()->isPost()){
             /*requete info_ vendeur, info_distrib,info_client*/ 
             /*recuperation des donnees concernant le createur de l'offre*/
             $user_infos = new Application_Model_DbTable_TempMovexOffre();
-            if($numwp="0090724793"){$user_info['id_user']=="134";}
+           
             $user_info = $user_infos->getMovexUser($numwp);
             
             $this->view->user_info = $user_info[0];
