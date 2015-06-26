@@ -1,0 +1,108 @@
+<?php
+$this->headMeta()->appendHttpEquiv('Content-Type', 'text/html;charset=utf-8');
+echo $this->doctype();
+?>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+    <head>
+        <?php
+        echo $this->headMeta();
+        echo $this->headLink()->prependStylesheet($this->baseUrl() . '/css/global.css');
+        echo $this->headLink()->prependStylesheet($this->baseUrl() . '/css/jquery-ui.css');
+        ?>
+<!--[if !IE7]><?php echo $this->headLink()->prependStylesheet($this->baseUrl() . '/css/ie8.css');?><![endif]--><?php
+        echo $this->headTitle();
+        ?>
+        <script type="text/javascript" src='/js/jquery-1.10.2.min.js'></script>
+        <script type="text/javascript" src='/js/jquery-ui-1.10.4.min.js'></script>
+        <script type="text/javascript" src='/js/afficher.js'></script>
+        <script type="text/javascript" src='/js/menu.js'></script>
+        
+        <?php
+        echo $this->headScript();
+        ?>
+
+    </head>
+    <body>
+        <div id="header">
+            <div id="header_left"><!--<img  src="/images/smc_logo_2013.jpg" alt="" usemap="#Map2"/>-->
+                <map name="Map2" id="Map2">
+                    <area alt="accueil" title="accueil" href="<?php echo $this->url(array('controller' => 'index', 'action' => 'index'), null, true); ?>" shape="rect" coords="11,10,223,50" />
+                </map>
+            </div>
+            <div id="header_center"> <H1>Xsuite</H1></div>
+            <div id="header_right">
+                <div id="header_site">
+                    <div id="logged-in-as"><?php echo $this->loggedInAs(); ?></div>
+                </div>
+            </div>
+        </div>
+        <div id="Content">
+            <?php
+            $autentificated = $this->loggedInAs();
+            if ($autentificated == '') {
+                ?>
+                <div id="menu_haut" hidden="hidden">
+                </div><?php } else { ?>
+<!--                <div id="menu" >
+                    <ul id="menu_haut">
+                        <li><a href="<?php echo $this->url(array('controller' => 'xprice', 'action' => 'index'), null, true); ?>">Xprice</a>
+                            <ul>
+                                <li><a href="<?php echo $this->url(array('controller' => 'xprice', 'action' => 'numwp'), null, true); ?>">Cr&eacute;ation</a></li>
+                                <li><a href="<?php echo $this->url(array('controller' => 'xprice', 'action' => 'tracking'), null, true); ?>">Consultation</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="<?php echo $this->url(array('controller' => 'xdistrib', 'action' => 'index'), null, true); ?>">Xprice Distrib</a>
+                            <ul>
+                                <li><a href="<?php echo $this->url(array('controller' => 'xdistrib', 'action' => 'uploadnumwp'), null, true); ?>">Cr&eacute;ation</a></li>
+                                <li><a href="<?php echo $this->url(array('controller' => 'xdistrib', 'action' => 'tracking'), null, true); ?>">Consultation</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="<?php echo $this->url(array('controller' => 'xsimple', 'action' => 'index'), null, true); ?>">Xsimple</a>
+                            <ul>
+                                <li><a>Création</a></li>
+                                <li><a>Consultation</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="<?php echo $this->url(array('controller' => 'xprev', 'action' => 'index'), null, true); ?>">Xprev</a>
+                            <ul>
+                                <li><a>Création</a></li>
+                                <li><a>Consultation</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="<?php echo $this->url(array('controller' => 'xpertise', 'action' => 'index'), null, true); ?>">Xpertise</a>
+                            <ul>
+                                <li><a>Création</a></li>
+                                <li><a>Consultation</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="<?php echo $this->url(array('controller' => 'xrfs', 'action' => 'index'), null, true); ?>">XRFS</a>
+                            <ul>
+                                <li><a>Création</a></li>
+                                <li><a>Consultation</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="<?php echo $this->url(array('controller' => 'xsdb', 'action' => 'index'), null, true); ?>">XSDB</a>
+                            <ul>
+                                <li><a>Création</a></li>
+                                <li><a>Consultation</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="<?php echo $this->url(array('controller' => 'index', 'action' => 'index'), null, true); ?>">Accueil</a>
+                        </li>
+                    </ul>-->
+                </div><?php } ?>
+            <div id="center">
+                <?php if (count($this->messages)) : ?>
+                    <ul id="messages" class="message">
+                        <?php foreach ($this->messages as $message) : ?>
+                            <li><?php echo $message; ?></li>
+                        <?php endforeach; ?>
+                    </ul>
+                <?php endif; ?>
+            </div>
+        </div>
+            <?php echo $this->layout()->content; ?>
+    </body>
+</html>
