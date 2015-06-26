@@ -1,6 +1,6 @@
 <?php
 
-class XsdbController extends Zend_Controller_Action
+class AdministrationController extends Zend_Controller_Action
 {
 
     public function init()
