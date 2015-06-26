@@ -142,12 +142,7 @@ if($user->id_fonction == 3){
          $recapitulatif2 = $r;
      }
     $this->view->recapitulatif = $recapitulatif2;
-    $this->paginator = Zend_View_Helper_PaginationControl::setDefaultViewPartial('xprice/controls.phtml');
-    $paginator = Zend_Paginator::factory($recapitulatif2);
-    $paginator->setItemCountPerPage(2);
-$paginator->setPageRange(5);
-$paginator->setCurrentPageNumber($this->_getParam('page'));
-        $this->view->paginator=$paginator;
+
 }
 
     public function numwpAction() {
