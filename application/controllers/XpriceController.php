@@ -83,11 +83,11 @@ class XpriceController extends Zend_Controller_Action {
      unset($recapitulatif2);
      $recapitulatif2 = $r;
 }
-if($user->id_fonction == 3){
+if($user->id_fonction == 3 || $user->id_fonction==1){
     $recapitulatif1=new Application_Model_DbTable_Xprices();
     $recapitulatif2 = $recapitulatif1->searchForLeader($holon);
 }
- if($user->id_fonction == 10 || $user->id_fonction==1){
+ if($user->id_fonction == 10){
      switch ($holon){
          case 2:
              $tracking1='/SP-FR-QC/';
