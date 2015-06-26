@@ -67,7 +67,7 @@ class XpriceController extends Zend_Controller_Action {
   $holon =$user->id_holon; 
   $fonction = $user->id_fonction;
   $this->view->fonction=$fonction;
- if ($user->id_fonction == 1 || $user->id_fonction==2){
+ if ($user->id_fonction == 1){
      $recapitulatif1 = new Application_Model_DbTable_Xprices();
      $recapitulatif2 = $recapitulatif1->searchByUser($user->id_user);
      $r = array();
@@ -87,7 +87,7 @@ if($user->id_fonction == 3){
     $recapitulatif1=new Application_Model_DbTable_Xprices();
     $recapitulatif2 = $recapitulatif1->searchForLeader($holon);
 }
- if($user->id_fonction == 10){
+ if($user->id_fonction == 10 || $user->id_fonction==2){
      switch ($holon){
          case 2:
              $tracking1='/SP-FR-QC/';
