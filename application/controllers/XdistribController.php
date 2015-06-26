@@ -652,7 +652,7 @@ if($this->getRequest()->isPost()){
             
             $this->view->user_info = $user_info[0];
             $nom_zone = $user_info[0]['nom_zone'];
-            echo '<pre>',var_export($user_info),'</pre>';
+           // echo '<pre>',var_export($user_info),'</pre>';
             $distrib_infos = new Application_Model_DbTable_TempFichierDistribInfo();
             $distrib_info=$distrib_infos->getDistrib($numwp);
             $this->view->distrib_info = $distrib_info[0];
