@@ -7,7 +7,7 @@ class AdministrationController extends Zend_Controller_Action
     {
         $auth = Zend_Auth::getInstance();
         $user = $auth->getIdentity();
-        $layout->setLayoutPath(APPLICATION_PATH . 'layouts/scripts');
+        //$layout->setLayoutPath(APPLICATION_PATH . 'layouts/scripts');
         $this->_helper->_layout->setLayout('admin_layout');
         if (is_null($user)) {
             $this->_helper->redirector('index', 'login');
