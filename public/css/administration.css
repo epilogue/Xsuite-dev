@@ -41,6 +41,7 @@ background:linear-gradient(to bottom, #2A60AA 33%, #5082B4 66%);
      padding: 5px;
      margin:5px;
      text-align: center;
+     line-height: 3;
 }
 #admin_contenu{
     float: left;
