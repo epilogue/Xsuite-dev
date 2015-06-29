@@ -46,12 +46,10 @@ echo $this->doctype();
                 <div id="menu_admin" hidden="hidden">
                 </div><?php } else { ?>
                      <div id="menu_admin" >
+                         <h4>Utilisateurs</h4>
                     <ul id="menu_gauche">
                         <li>
                             <a href="<?php echo $this->url(array('controller' => 'administration', 'action' => 'indexuser'), null, true); ?>">Utilisateurs</a>
-                            <ul>
-                                <li>Création</li>
-                            </ul>
                         </li>
                         <li>
                              <a href="<?php echo $this->url(array('controller' => 'administration', 'action' => 'indexfonction'), null, true); ?>">Fonctions</a>
