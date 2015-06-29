@@ -43,14 +43,17 @@ background:linear-gradient(to bottom, #2A60AA 33%, #5082B4 66%);
      text-align: center;
      line-height: 2.5;
 }
+#Content{
+     background-image: url('/images/website_maintenance1.jpg');
+    opacity: 0.25;
+    background-repeat: repeat;
+}
 #admin_contenu{
     float: left;
     width: 750px;
     height:300px;
     margin-left:30px;
-    background-image: url('/images/website_maintenance1.jpg');
-    opacity: 0.25;
-    background-repeat: repeat;
+   
 }
 #contenu_center{
     float: left;
