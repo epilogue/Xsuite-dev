@@ -1,0 +1,97 @@
+<?php
+$this->title = 'Xdistrib/update';
+$this->headTitle($this->title);
+$this->headScript()->appendFile('/js/controllers/xprice/afficher_masquer_details.js');
+?>
+<div id="contenu" class="contenu">
+    <h2>Mise à jour offre workplace </h2>
+    <div id="info_demande" class="workplace">
+        <table class="enum">
+            <tr>
+                <th>tracking_number</th>
+                <th>date de l'offre</th>
+                <th>client</th>
+                <th>montant total de l'offre</th>
+                <th>Détails</th>
+            </tr>
+            <tr>
+                <td><?php echo $this->tracking_number; ?></td>
+                <td><?php echo $this->date_offre; ?></td>
+                <td><?php echo $this->infos_client['nom_client']; ?></td>
+                <td><?php echo round($this->montant_total, 2) . "€"; ?></td>
+                <td><button id="detailbutton" class="button" name="detailbutton" value="detailbutton" >Détails</button></td>
+            </tr>
+        </table>
+    </div>
+    <div class="clear"></div>
+     <div id="demandeArticle" class="workplace">
+        <fieldset class="field">
+            <legend>Produits</legend>
+            <table  id="article" class="enum">
+                <tr>
+                    <td>Références produits</td>
+                    <td>Quantité</td>
+                    <td>Prix Achat actuel DISTRIBUTEUR</td>
+                    <td>Prix Achat demandé DISTRIBUTEUR</td>
+                    <td>Prix Conseillé CLIENT FINAL</td>
+                    <td>Remise référence ou série</td>
+                </tr>
+                <?php foreach($this->info_demande_article_xdistrib as $value){ ?>
+                <tr>
+                    <td><?php echo $value['reference_article']; ?></td>
+                    <td><?php echo $value['quantite_demande_article']; ?></td>
+                    <td><?php echo $value['prix_achat_actuel']; ?></td>
+                    <td><?php echo $value['prix_demande_article']; ?></td>
+                    <td><?php echo $value['prix_client_final']; ?></td>
+                    <td><?php echo $value['serie']; ?></td>
+                </tr> <?php }?>
+            </table>
+        </fieldset>
+    </div>
+    <div class="clear"></div>
+    <div id="comm_up" class="workplace">
+        <form method="post">
+            <fieldset class="field"><legend>Commentaires</legend>
+                <?php
+                /* aucun commentId n'existe dans le getrequest */
+                if (!is_null($this->commentId)) {
+                    ?>
+                    <input type="hidden" name="reponse" value="<?php echo $this->commentId; ?>">
+                    <?php
+                }
+                ?><table  class='enum'>
+                <?php foreach (@$this->commentaire as $key => $value) { ?>
+                        <tr><?php if ($value['etat_validation'] != "enAttente") { ?>
+                                <td>Commentaire <?php echo strtolower($this->usersCommentaires[$key]['fonction']); ?></td>
+                                <td><?php echo $value['date_validation']; ?></td>
+                                <td><?php echo nl2br($value['commentaire']); ?></td>
+                            </tr>
+                        <?php
+                        }
+                    }
+                    ?>
+                </table>
+            </fieldset >
+            <fieldset class="field">
+                <legend>Question</legend>
+                <table  class='enum'>
+                    <?php foreach (@$this->commentaire as $key => $value) { ?>
+                    <tr>
+                        <?php if ($value['etat_validation'] == "enAttente") { ?>
+                        <td>Commentaire <?php echo strtolower($this->usersCommentaires[$key]['fonction']); ?></td>
+                        <td><?php echo $value['date_validation']; ?></td>
+                        <td><?php echo nl2br($value['commentaire']); ?></td>
+                    </tr>
+                    <?php }}?>
+                </table>
+            </fieldset>
+            <fieldset class="field">
+                <legend>Réponse</legend>
+                <textarea name="reponse_comm" cols="80" rows="10"></textarea>
+            </fieldset>
+            <input class="submit" type='submit' value="Envoyer la réponse">
+        </form>
+    </div>
+    <div class="clear"></div>
+</div>
+<div class="clear"></div>
