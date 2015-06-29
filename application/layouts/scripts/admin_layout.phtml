@@ -49,6 +49,9 @@ echo $this->doctype();
                     <ul id="menu_gauche">
                         <li>
                             <a href="<?php echo $this->url(array('controller' => 'administration', 'action' => 'indexuser'), null, true); ?>">Utilisateurs</a>
+                            <ul>
+                                <li>Création</li>
+                            </ul>
                         </li>
                         <li>
                              <a href="<?php echo $this->url(array('controller' => 'administration', 'action' => 'indexfonction'), null, true); ?>">Fonctions</a>
