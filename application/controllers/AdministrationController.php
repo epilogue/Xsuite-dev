@@ -22,67 +22,67 @@ class AdministrationController extends Zend_Controller_Action
     {
         // action body
     }
-    public function indexUserAction(){
+    public function indexuserAction(){
         
     }
-    public function createUserAction(){
+    public function createuserAction(){
     
     }
-    public function updateUserAction(){
+    public function updateuserAction(){
     
     }
-    public function deleteUserAction(){
+    public function deleteuserAction(){
     
     }
-    public function indexFonctionAction(){
+    public function indexfonctionAction(){
         
     }
-    public function createFonctionAction(){
+    public function createfonctionAction(){
     
     }
-    public function updateFonctionAction(){
+    public function updatefonctionAction(){
     
     }
-    public function deleteFonctionAction(){
+    public function deletefonctionAction(){
     
     }
-    public function indexZoneAction(){
+    public function indexzoneAction(){
         
     }
-    public function createZoneAction(){
+    public function createzoneAction(){
     
     }
-    public function updateZoneAction(){
+    public function updatezoneAction(){
     
     }
-    public function deleteZoneAction(){
+    public function deletezoneAction(){
     
     }
-    public function indexIndustrieAction(){
+    public function indexindustrieAction(){
         
     }
-    public function createIndustrieAction(){
+    public function createindustrieAction(){
     
     }
-    public function updateIndustrieAction(){
+    public function updateindustrieAction(){
     
     }
-    public function deleteIndustrieAction(){
+    public function deleteindustrieAction(){
     
     }
-    public function indexHolonAction(){
+    public function indexholonAction(){
         
     }
-    public function createHolonAction(){
+    public function createholonAction(){
     
     }
-    public function updateHolonAction(){
+    public function updateholonAction(){
     
     }
-    public function deleteHolonAction(){
+    public function deleteholonAction(){
     
     }
-    public function indexRequeteAction(){
+    public function indexrequeteAction(){
         
     }
 }
