@@ -21,6 +21,10 @@ background: -webkit-linear-gradient(top, #2A60AA 33%,#5082B4 66%);
 background: -moz-linear-gradient(top, #2A60AA 33%,#5082B4 66%);
 background:linear-gradient(to bottom, #2A60AA 33%, #5082B4 66%);
 }
+#menu_gauche h4 {
+    color:white;
+    font-size: 18px;
+}
 #menu_gauche {
     list-style: none;
     padding: 5px;
