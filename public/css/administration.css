@@ -21,13 +21,14 @@ background: -webkit-linear-gradient(top, #2A60AA 33%,#5082B4 66%);
 background: -moz-linear-gradient(top, #2A60AA 33%,#5082B4 66%);
 background:linear-gradient(to bottom, #2A60AA 33%, #5082B4 66%);
 }
-
-#menu_admin ul{
+#menu_admin h4{
     list-style: none;
     padding: 5px;
     margin: 5px;
     list-style-type: none;
-    background-color: #729EBF;
+}
+#menu_admin ul{
+    
 /*    color:white;
     height: auto;
      border-bottom-right-radius: 15px;
