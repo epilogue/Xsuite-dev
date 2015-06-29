@@ -21,13 +21,13 @@ background: -webkit-linear-gradient(top, #2A60AA 33%,#5082B4 66%);
 background: -moz-linear-gradient(top, #2A60AA 33%,#5082B4 66%);
 background:linear-gradient(to bottom, #2A60AA 33%, #5082B4 66%);
 }
-#menu_admin h4{
+#menu_gauche {
     list-style: none;
     padding: 5px;
     margin: 5px;
     list-style-type: none;
 }
-#menu_admin ul{
+#menu_gauche ul{
     
 /*    color:white;
     height: auto;
@@ -37,14 +37,14 @@ background: -webkit-linear-gradient(top, #2A60AA 33%,#5082B4 66%);
 background: -moz-linear-gradient(top, #2A60AA 33%,#5082B4 66%);
 background:linear-gradient(to bottom, #2A60AA 33%, #5082B4 66%);*/
 }
-#menu_admin li{
+#menu_gauche li{
     border-right:solid 4px white;
      border-left:solid 4px white;
      border-bottom: solid 2px white;
      border-top: solid 2px white;
     border-bottom-left-radius: 10px;
     border-top-right-radius: 10px;
-    height: 40px;
+    height: 30px;
      padding: 5px;
      margin:5px;
      text-align: center;

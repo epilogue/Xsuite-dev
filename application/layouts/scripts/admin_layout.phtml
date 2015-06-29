@@ -46,8 +46,22 @@ echo $this->doctype();
                 <div id="menu_admin" hidden="hidden">
                 </div><?php } else { ?>
                      <div id="menu_admin" >
-                         <h4>Utilisateurs</h4>
-                    <ul id="menu_gauche">
+                         <div id="menu_gauche"
+                              <h4>Utilisateurs</h4>
+                              <ul>
+                                  <li>
+                                      Création
+                                  </li>
+                                  <li>
+                                      Modification
+                                  </li>
+                                  <li>
+                                      Suppression
+                                  </li>
+                              </ul>
+                         </div>
+                        
+                    <ul class="">
                         <li>
                             <a href="<?php echo $this->url(array('controller' => 'administration', 'action' => 'indexuser'), null, true); ?>">Utilisateurs</a>
                         </li>
