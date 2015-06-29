@@ -9,10 +9,11 @@ and open the template in the editor.
 */
 #menu_admin{
     float:left;
-    width: 350px;
+    width: 250px;
     background-color: #CCFFFF;
     height: auto;
-    margin-top:50px;
+    margin-top:40px;
+    margin-left:40px;
 }
 menu_gauche{
     float: left;
@@ -21,8 +22,8 @@ menu_gauche{
 }
 #admin_contenu{
     float: left;
-    width: 650px;
+    width: 750px;
     height:300px;
-    margin-left:50px;
+    margin-left:30px;
     background-color: red;
 }
