@@ -45,11 +45,11 @@ background:linear-gradient(to bottom, #2A60AA 33%, #5082B4 66%);
      border-top: solid 2px white;
     border-bottom-left-radius: 10px;
     border-top-right-radius: 10px;*/
-    height: 30px;
+    height: 20px;
      padding: 5px;
      margin:5px;
      text-align: center;
-     line-height: 2.5;
+     line-height: 2;
 }
 
 #admin_contenu{
