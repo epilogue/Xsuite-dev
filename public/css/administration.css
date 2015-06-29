@@ -26,7 +26,7 @@ menu_gauche{
     width: 250px;
     height: auto;
 }
-menu gauche ul{
+menu_gauche ul{
     list-style: none;
 }
 #admin_contenu{
