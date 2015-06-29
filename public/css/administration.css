@@ -7,10 +7,15 @@ and open the template in the editor.
     Created on : 26 juin 2015, 15:29:28
     Author     : frhubym
 */
-#admin_menu{
+#menu_admin{
     float:left;
     width: 350px;
     background-color: #000077;
+    height: auto;
+}
+menu_gauche{
+    float: left;
+    width: 250px;
     height: auto;
 }
 #admin_contenu{
