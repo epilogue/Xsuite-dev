@@ -28,6 +28,8 @@ and open the template in the editor.
 }
 #menu_gauche ul{
     list-style: none;
+    padding: 0;
+    margin: 0;
 }
 #admin_contenu{
     float: left;
