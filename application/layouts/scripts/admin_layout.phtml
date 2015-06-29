@@ -48,22 +48,22 @@ echo $this->doctype();
                      <div id="menu_admin" >
                     <ul id="menu_gauche">
                         <li>
-                            Utilisateurs
+                            <a href="<?php echo $this->url(array('controller' => 'administration', 'action' => 'indexUser'), null, true); ?>">Utilisateurs</a>
                         </li>
                         <li>
-                            Fonctions
+                             <a href="<?php echo $this->url(array('controller' => 'administration', 'action' => 'indexFonction'), null, true); ?>">Fonctions</a>
                         </li>
                         <li>
-                            Holons
+                             <a href="<?php echo $this->url(array('controller' => 'administration', 'action' => 'indexHolon'), null, true); ?>">Holons</a>
                         </li>
                         <li>
-                            Zones
+                             <a href="<?php echo $this->url(array('controller' => 'administration', 'action' => 'indexZone'), null, true); ?>">Zones</a>
                         </li>
                         <li>
-                            Industries
+                             <a href="<?php echo $this->url(array('controller' => 'administration', 'action' => 'indexIndustrie'), null, true); ?>">Industries</a>
                         </li>
                         <li>
-                            Requêtages
+                             <a href="<?php echo $this->url(array('controller' => 'administration', 'action' => 'indexRequete'), null, true); ?>">Requêtes</a>
                         </li>
                     </ul>
                 </div><?php } ?>
