@@ -27,6 +27,12 @@ and open the template in the editor.
     padding: 5px;
     margin: 5px;
     list-style-type: none;
+    background-color: #729EBF;
+    color:white;
+    height: 40px;
+background: -webkit-linear-gradient(top, #2A60AA 33%,#5082B4 66%);
+background: -moz-linear-gradient(top, #2A60AA 33%,#5082B4 66%);
+background:linear-gradient(to bottom, #2A60AA 33%, #5082B4 66%);
 }
 #admin_contenu{
     float: left;
