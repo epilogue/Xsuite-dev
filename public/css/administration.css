@@ -49,11 +49,6 @@ background:linear-gradient(to bottom, #2A60AA 33%, #5082B4 66%);
     width: 750px;
     height:300px;
     margin-left:30px;
-   #Content{
-     background-image: url('/images/website_maintenance1.jpg');
-    opacity: 0.25;
-   
-}
 }
 #contenu_center{
     float: left;
