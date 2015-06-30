@@ -21,10 +21,7 @@ background: -webkit-linear-gradient(top, #2A60AA 33%,#5082B4 66%);
 background: -moz-linear-gradient(top, #2A60AA 33%,#5082B4 66%);
 background:linear-gradient(to bottom, #2A60AA 33%, #5082B4 66%);
 }
-#menu_gauche h4 {
-    color:white;
-    font-size: 18px;
-}
+
 #menu_gauche {
     list-style: none;
     padding: 5px;
@@ -49,7 +46,7 @@ background:linear-gradient(to bottom, #2A60AA 33%, #5082B4 66%);
      border-top: solid 2px white;
     border-bottom-left-radius: 10px;
     border-top-right-radius: 10px;*/
-    height: 20px;
+    height: 15px;
      padding: 5px;
      margin:5px;
      text-align: center;
