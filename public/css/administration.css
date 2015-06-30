@@ -44,7 +44,7 @@ and open the template in the editor.
      text-align: center;
      line-height: 2;
 }
-.niveau1{
+.niveau1 ul li{
     font-size:14px;
     font-weight:bold;
 }
