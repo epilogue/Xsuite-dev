@@ -32,6 +32,15 @@ class Application_Model_DbTable_Zones extends Zend_Db_Table_Abstract {
 
         $this->update($data, 'id_zone=' . (int) $id_zone);
     }
-
+    public function allZone(){
+        $sql="select * from zones";
+        $res = $this->getAdapter()->query($sql);
+        $rest=$res->fetchAll();
+        if (!$rest) {
+            return null;
+        } else {
+            return $rest;
+        }
+}
 }
 

@@ -33,5 +33,16 @@ public function getFonction($id_fonction) {
         
         $this->update($data,'id_fonction='.(int)$id_fonction);
     }
+    
+    public function allFonction(){
+        $sql="select * from fonctions";
+        $res = $this->getAdapter()->query($sql);
+        $rest=$res->fetchAll();
+        if (!$rest) {
+            return null;
+        } else {
+            return $rest;
+        }
+    }
 }
 

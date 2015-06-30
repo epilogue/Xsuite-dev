@@ -22,5 +22,15 @@ public function getIndustry($id_industry) {
             return $row->toArray();
         }
     }
+    public function allIndustry(){
+        $sql="select * from industry";
+        $res = $this->getAdapter()->query($sql);
+        $rest=$res->fetchAll();
+        if (!$rest) {
+            return null;
+        } else {
+            return $rest;
+        }
+    }
 }
 

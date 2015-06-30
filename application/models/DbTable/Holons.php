@@ -13,5 +13,15 @@ public function getHolon($id_holon) {
         }
         return $row->toArray();
     }
+    public function allHolon(){
+        $sql="select * from holons";
+        $res = $this->getAdapter()->query($sql);
+        $rest=$res->fetchAll();
+        if (!$rest) {
+            return null;
+        } else {
+            return $rest;
+        }
+    }
 }
 
