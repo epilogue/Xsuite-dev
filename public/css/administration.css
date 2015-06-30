@@ -13,13 +13,12 @@ and open the template in the editor.
     height: auto;
     margin-top:40px;
     margin-left:40px;
-   color:white;
-    height: auto;
-     border-bottom-right-radius: 15px;
+    color:white;
+    border-bottom-right-radius: 15px;
     border-top-left-radius: 15px;
-background: -webkit-linear-gradient(top, #2A60AA 33%,#5082B4 66%);
-background: -moz-linear-gradient(top, #2A60AA 33%,#5082B4 66%);
-background:linear-gradient(to bottom, #2A60AA 33%, #5082B4 66%);
+    background: -webkit-linear-gradient(top, #2A60AA 33%,#5082B4 66%);
+    background: -moz-linear-gradient(top, #2A60AA 33%,#5082B4 66%);
+    background:linear-gradient(to bottom, #2A60AA 33%, #5082B4 66%);
 }
 
 #menu_gauche {
@@ -40,13 +39,6 @@ background:linear-gradient(to bottom, #2A60AA 33%, #5082B4 66%);
     margin: 5px;
 }
 #menu_gauche li{
-/*    border-right:solid 4px white;
-     border-left:solid 4px white;
-     border-bottom: solid 2px white;
-     border-top: solid 2px white;
-    border-bottom-left-radius: 10px;
-    border-top-right-radius: 10px;*/
-    height: 15px;
      padding: 5px;
      margin:5px;
      text-align: center;
