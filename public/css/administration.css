@@ -26,12 +26,12 @@ and open the template in the editor.
     padding: 5px;
     margin: 5px;
     list-style-type: none;
-    border-right:solid 4px white;
+/*    border-right:solid 4px white;
      border-left:solid 4px white;
      border-bottom: solid 2px white;
      border-top: solid 2px white;
     border-bottom-left-radius: 10px;
-    border-top-right-radius: 10px;
+    border-top-right-radius: 10px;*/
 }
 #menu_gauche ul{
     list-style: none;
@@ -44,7 +44,12 @@ and open the template in the editor.
       font-size:18px;
     font-weight:bold;
     height: auto;
-    border-bottom: solid 2px white;
+   border-right:solid 4px white;
+     border-left:solid 4px white;
+     border-bottom: solid 2px white;
+     border-top: solid 2px white;
+    border-bottom-left-radius: 10px;
+    border-top-right-radius: 10px;
 }
 #menu_gauche ul li ul li{
      padding: 5px;
