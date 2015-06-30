@@ -55,6 +55,8 @@ and open the template in the editor.
      line-height: 2;
       font-size:14px;
       height: 15px;
+      border-bottom:none;
+      height: 15px;
 }
 .niveau1 ul li{
     font-size:14px;
