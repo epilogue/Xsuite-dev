@@ -26,7 +26,20 @@ class AdministrationController extends Zend_Controller_Action
         
     }
     public function createuserAction(){
-    
+     $form = new Application_Form_User();
+//        $form->submit->setLabel('Creer');
+        $this->view->form = $form;
+
+        if ($this->getRequest()->isPost()) {
+            $formData = $this->getRequest()->getPost();
+            if ($form->isValid($formData)) {
+                $users = new Application_Model_DbTable_Users();
+                $user = $users->createFromForm($form);
+                $this->_helper->redirector('index');
+            } else {
+                $form->populate($formData);
+            }
+        }
     }
     public function updateuserAction(){
     
