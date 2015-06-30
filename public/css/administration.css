@@ -45,13 +45,18 @@ and open the template in the editor.
      line-height: 2;
       font-size:18px;
     font-weight:bold;
+    height: 20px;
+    border-bottom: solid 2px white;
 }
 #menu_gauche ul li ul li{
      padding: 5px;
      margin:5px;
-     text-align:right;
+     text-align:left;
      line-height: 2;
       font-size:14px;
+      height: 15px;
+      border-bottom: solid 2px white;
+      border-top: solid 2px white;
 }
 .niveau1 ul li{
     font-size:14px;
