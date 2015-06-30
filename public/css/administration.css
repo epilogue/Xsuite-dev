@@ -38,11 +38,20 @@ and open the template in the editor.
     padding: 5px;
     margin: 5px;
 }
-#menu_gauche li{
+#menu_gauche ul li{
      padding: 5px;
      margin:5px;
      text-align: center;
      line-height: 2;
+      font-size:18px;
+    font-weight:bold;
+}
+#menu_gauche ul li ul li{
+     padding: 5px;
+     margin:5px;
+     text-align:right;
+     line-height: 2;
+      font-size:14px;
 }
 .niveau1 ul li{
     font-size:14px;
