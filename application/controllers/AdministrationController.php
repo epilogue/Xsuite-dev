@@ -37,7 +37,9 @@ class AdministrationController extends Zend_Controller_Action
         $listsFonctions = new Application_Model_DbTable_Fonctions();
         $listFonction = $listsFonctions->allFonction();
         $this->view->listFonction=$listFonction;
-     
+     echo '<pre>',  var_export($listFonction),'</pre>';
+      echo '<pre>',  var_export($listZone),'</pre>';
+       echo '<pre>',  var_export($listHolon),'</pre>';
 
         if ($this->getRequest()->isPost()) {
             $formData = $this->getRequest()->getPost();
