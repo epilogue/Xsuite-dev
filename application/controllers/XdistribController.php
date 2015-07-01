@@ -66,6 +66,20 @@ class XdistribController extends Zend_Controller_Action
      //var_dump($fonction);
      $this->view->createur=$user->id_user;
      $this->view->fonction=$fonction;
+     if($user->id_fonction == 36){
+         $distrib="I01803";
+         $recapitulatif1=new Application_Model_DbTable_Xdistrib();
+         $recapitulatif2 = $recapitulatif1->searchByDistrib($distrib);
+     }
+     if($user->id_fonction == 35){
+         
+     }
+     if($user->id_fonction == 34){
+         
+     }
+     if($user->id_fonction == 33){
+         
+     }
      if ($user->id_fonction == 1 || $user->id_fonction==2){
          $recapitulatif1 = new Application_Model_DbTable_Xdistrib();
          $recapitulatif2 = $recapitulatif1->searchByUser($user->id_user);
