@@ -81,3 +81,16 @@ and open the template in the editor.
     height:300px;
     margin-left:30px;
 }
+.createuser td{
+    width: 150px;
+    height: 20px;
+}
+#imgcreateUser{
+    width: 150px;
+    float: left;
+}
+#createUserRight{
+    float: left;
+    width: 500px;
+    margin-left: 10px;
+}
