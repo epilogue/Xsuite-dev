@@ -83,7 +83,7 @@ and open the template in the editor.
 }
 .createuser td{
     width: 150px;
-    height: 20px;
+    height: 25px;
 }
 #imgcreateUser{
     width: 150px;
@@ -93,4 +93,8 @@ and open the template in the editor.
     float: left;
     width: 500px;
     margin-left: 10px;
+}
+#formcreateuser input, select{
+    width: 130px;
+    height: 20px;
 }
