@@ -33,7 +33,7 @@
                    <td>Zone</td><td>Fonction</td><td>Holon</td>
                </tr>
                <tr>
-                   <td><select  name="zone" ><?php foreach($this->listZone as $zone){ ?><option value="<?php $zone['id_zone']?>"></option><?php }; ?></select></td>
+                   <td><select  name="zone" ><?php foreach($this->listZone as $key=>$zone){ ?><option value="<?php $key['id_zone']?>"><?php echo $key['nom_zone'];?></option><?php }; ?></select></td>
                    <td><select  name="fonction" ></select></td>
                    <td><select  name="holon" ></select></td>
                </tr>
