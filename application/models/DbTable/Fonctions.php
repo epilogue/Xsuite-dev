@@ -35,7 +35,7 @@ public function getFonction($id_fonction) {
     }
     
     public function allFonction(){
-        $sql="select * from fonctions";
+        $sql="select * from fonctions order by nom_fonction asc";
         $res = $this->getAdapter()->query($sql);
         $rest=$res->fetchAll();
         if (!$rest) {
