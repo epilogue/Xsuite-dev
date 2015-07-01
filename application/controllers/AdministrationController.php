@@ -26,9 +26,18 @@ class AdministrationController extends Zend_Controller_Action
         
     }
     public function createuserAction(){
-     $form = new Application_Form_User();
-//        $form->submit->setLabel('Creer');
-        $this->view->form = $form;
+    
+     /* on va chercher les infos  pour les dropdownlist*/
+        $listsHolons = new Application_Model_DbTable_Holons();
+        $listHolon = $listsHolons->allHolon();
+        $this->view->listHolon=$listHolon;
+        $listsZones = new Application_Model_DbTable_Zones();
+        $listZone = $listsZones->allZone();
+        $this->view->listZone=$listZone;
+        $listsFonctions = new Application_Model_DbTable_Fonctions();
+        $listFonction = $listsFonctions->allFonction();
+        $this->view->listFonction=$listFonction;
+     
 
         if ($this->getRequest()->isPost()) {
             $formData = $this->getRequest()->getPost();
