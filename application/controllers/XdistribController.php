@@ -89,7 +89,7 @@ class XdistribController extends Zend_Controller_Action
          }
      }
      if($user->id_fonction == 33){
-          $distrib="('I03624','I00789')";
+          $distrib=array('I03624','I00789');
          $recapitulatif1=new Application_Model_DbTable_Xdistrib();
          $plop1=$recapitulatif1->rechercheridRCDN($distrib);
          foreach($plop1 as $value){
