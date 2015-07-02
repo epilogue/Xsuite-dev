@@ -235,6 +235,7 @@ JOIN validations_demande_xdistrib ON validations_demande_xdistrib.id_demande_xdi
                     . "where validations_demande_xdistrib.id_demande_xdistrib='$value')"
                 . " and demande_xdistrib.id_demande_xdistrib='$value'"
                 . " order by demande_xdistrib.date_demande_xdistrib desc";
+        echo $sql;
         $res = $this->getAdapter()->query($sql);
         $rest=$res->fetchAll();
         if (!$rest) {
