@@ -64,13 +64,17 @@ class XdistribController extends Zend_Controller_Action
      $fonction=$user->id_fonction;
      $this->view->createur=$user->id_user;
      $this->view->fonction=$fonction;
-     if($user->id_fonction == 36){
-         $distrib="I01803";
+     if($user->id_fonction == 34){
+         $distrib=array("I02055","I01045");
          $recapitulatif1=new Application_Model_DbTable_Xdistrib();
          $plop1=$recapitulatif1->rechercheridRCDN($distrib);
-         foreach($plop1 as $value){
-             $recapitulatif2[] =$recapitulatif1->rechercheDBD($value['id_demande_xdistrib']);
-         }
+         echo '<pre>',var_export($plop1),'</pre>';
+//         foreach($plop1 as $value){
+//            $popi[]= $value['id_demande_xdistrib'];
+//         }
+         foreach($plop1 as $value1){
+             $recapitulatif2[] = $recapitulatif1->rechercheDBD($value1['id_demande_xdistrib']);
+         }echo '<pre>',var_export($recapitulatif2),'</pre>';
      }
      if($user->id_fonction == 35){
          $distrib="I01803";
