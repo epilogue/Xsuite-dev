@@ -81,12 +81,35 @@ class XdistribController extends Zend_Controller_Action
          }
      }
      if($user->id_fonction == 34){
-          $distrib="I02055";
+         $distrib=array("I00264","
+I00662","
+I00412","
+I01796","
+I01800","
+I03174","
+I03383","
+I01803","
+I04736","
+I03697","
+I04732","
+I01799","
+I04957","
+I03517","
+I05061","
+I01808","
+I02688","
+I04956","
+I05065"
+);
          $recapitulatif1=new Application_Model_DbTable_Xdistrib();
          $plop1=$recapitulatif1->rechercheridRCDN($distrib);
-         foreach($plop1 as $value){
-             $recapitulatif2[] =$recapitulatif1->rechercheDBD($value['id_demande_xdistrib']);
-         }
+         echo '<pre>',var_export($plop1),'</pre>';
+//         foreach($plop1 as $value){
+//            $popi[]= $value['id_demande_xdistrib'];
+//         }
+         foreach($plop1 as $value1){
+             $recapitulatif2[] = $recapitulatif1->rechercheDBD($value1['id_demande_xdistrib']);
+         }echo '<pre>',var_export($recapitulatif2),'</pre>';
      }
      if($user->id_fonction == 33){
           $distrib=array("I03624","I00789");
