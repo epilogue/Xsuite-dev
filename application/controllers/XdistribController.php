@@ -65,7 +65,7 @@ class XdistribController extends Zend_Controller_Action
      echo $fonction;
      $this->view->createur=$user->id_user;
      $this->view->fonction=$fonction;
-     if($user->id_fonction == 34){
+     if($user->id_fonction == 35){
          $distrib=array("I02055","I01045");
          $recapitulatif1=new Application_Model_DbTable_Xdistrib();
          $plop1=$recapitulatif1->rechercheridRCDN($distrib);
@@ -77,15 +77,15 @@ class XdistribController extends Zend_Controller_Action
              $recapitulatif2[] = $recapitulatif1->essaiTest($value1['id_demande_xdistrib']);
          }echo '<pre>',var_export($recapitulatif2),'</pre>';
      }
-     if($user->id_fonction == 35){
-         $distrib="I01803";
+     if($user->id_fonction == 36){
+         $distrib="I01990";
          $recapitulatif1=new Application_Model_DbTable_Xdistrib();
          $plop1=$recapitulatif1->rechercheridRCDN($distrib);
          foreach($plop1 as $value){
              $recapitulatif2[] =$recapitulatif1->essaiTest($value['id_demande_xdistrib']);
          }
      }
-     if($user->id_fonction == 36){
+     if($user->id_fonction == 37){
          $distrib=array("I00264","
 I00662","
 I00412","
@@ -116,7 +116,7 @@ I05065"
              $recapitulatif2[] = $recapitulatif1->essaiTest($value1['id_demande_xdistrib']);
          }echo '<pre>',var_export($recapitulatif2),'</pre>';
      }
-     if($user->id_fonction == 33){
+     if($user->id_fonction == 34){
           $distrib=array("I03624","I00789","I05285","
 I03317","
 I02557","
