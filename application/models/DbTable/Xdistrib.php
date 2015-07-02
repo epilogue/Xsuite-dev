@@ -245,7 +245,7 @@ JOIN validations_demande_xdistrib ON validations_demande_xdistrib.id_demande_xdi
     }
      public function rechercheridRCDN($values){
          
-        $sql ="select id_demande_xdistrib from demande_xdistrib where numwp_distributeur IN (" . implode(", ",'.$values.') . ") order by demande_xdistrib.date_demande_xdistrib desc";
+        $sql ="select id_demande_xdistrib from demande_xdistrib where numwp_distributeur IN (" . implode(", ",$values) . ") order by demande_xdistrib.date_demande_xdistrib desc";
         echo $sql;
          $res = $this->getAdapter()->query($sql);
         $rest=$res->fetchAll();
