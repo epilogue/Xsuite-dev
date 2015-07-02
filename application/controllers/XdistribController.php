@@ -80,7 +80,7 @@ class XdistribController extends Zend_Controller_Action
              $recapitulatif2[] =$recapitulatif1->rechercheDBD($value['id_demande_xdistrib']);
          }
      }
-     if($user->id_fonction == 34){
+     if($user->id_fonction == 36){
          $distrib=array("I00264","
 I00662","
 I00412","
@@ -112,7 +112,21 @@ I05065"
          }echo '<pre>',var_export($recapitulatif2),'</pre>';
      }
      if($user->id_fonction == 33){
-          $distrib=array("I03624","I00789");
+          $distrib=array("I03624","I00789","I05285","
+I03317","
+I02557","
+I00415","
+I00678","
+I04380","
+I03214","
+I02886","
+I03621","
+I02929","
+I02932","
+I03912","
+I05223","
+I02920"
+);
          $recapitulatif1=new Application_Model_DbTable_Xdistrib();
          $plop1=$recapitulatif1->rechercheridRCDN($distrib);
          echo '<pre>',var_export($plop1),'</pre>';
