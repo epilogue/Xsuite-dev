@@ -60,25 +60,41 @@ class XdistribController extends Zend_Controller_Action
          * DBD et Dirco  toutes les offres 
          */
      $user = $this->_auth->getStorage()->read();
-    //echo '<pre>',var_export($user),'</pre>';
      $holon =$user->id_holon; 
      $fonction=$user->id_fonction;
-     //var_dump($fonction);
      $this->view->createur=$user->id_user;
      $this->view->fonction=$fonction;
      if($user->id_fonction == 36){
          $distrib="I01803";
          $recapitulatif1=new Application_Model_DbTable_Xdistrib();
-         $recapitulatif2 = $recapitulatif1->searchByDistrib($distrib);
+         $plop1=$recapitulatif1->rechercheridRCDN($distrib);
+         foreach($plop1 as $value){
+             $recapitulatif2[] =$recapitulatif1->rechercheDBD($value['id_demande_xdistrib']);
+         }
      }
      if($user->id_fonction == 35){
-         
+         $distrib="I01803";
+         $recapitulatif1=new Application_Model_DbTable_Xdistrib();
+         $plop1=$recapitulatif1->rechercheridRCDN($distrib);
+         foreach($plop1 as $value){
+             $recapitulatif2[] =$recapitulatif1->rechercheDBD($value['id_demande_xdistrib']);
+         }
      }
      if($user->id_fonction == 34){
-         
+          $distrib="I02055";
+         $recapitulatif1=new Application_Model_DbTable_Xdistrib();
+         $plop1=$recapitulatif1->rechercheridRCDN($distrib);
+         foreach($plop1 as $value){
+             $recapitulatif2[] =$recapitulatif1->rechercheDBD($value['id_demande_xdistrib']);
+         }
      }
      if($user->id_fonction == 33){
-         
+          $distrib="'I03624','I00789'";
+         $recapitulatif1=new Application_Model_DbTable_Xdistrib();
+         $plop1=$recapitulatif1->rechercheridRCDN($distrib);
+         foreach($plop1 as $value){
+             $recapitulatif2[] =$recapitulatif1->rechercheDBD($value['id_demande_xdistrib']);
+         }
      }
      if ($user->id_fonction == 1 || $user->id_fonction==2){
          $recapitulatif1 = new Application_Model_DbTable_Xdistrib();
