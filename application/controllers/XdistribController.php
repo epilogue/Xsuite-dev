@@ -94,7 +94,10 @@ class XdistribController extends Zend_Controller_Action
          $plop1=$recapitulatif1->rechercheridRCDN($distrib);
          echo '<pre>',var_export($plop1),'</pre>';
          foreach($plop1 as $value){
-             $recapitulatif2[] =$recapitulatif1->rechercheDBD($value['id_demande_xdistrib']);
+            $popi[]= $value['id_demande_xdistrib'];
+         }
+         foreach($popi as $value1){
+             $recapitulatif2[] =$recapitulatif1->rechercheDBD($value1);
          }
      }
      if ($user->id_fonction == 1 || $user->id_fonction==2){
