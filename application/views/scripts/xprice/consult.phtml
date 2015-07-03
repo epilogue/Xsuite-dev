@@ -78,7 +78,7 @@ $this->headScript()->appendFile('/js/controllers/xprice/fermeturevalide.js');
                     <td>Potentiel:</td>
                     <td><?php echo $this->info_client['potentiel']; ?></td>
                 </tr>
-                <?php if($this->utilisateur =='5' or $this->utilisateur== '13' or $this->utilisateur== '29'){ ?>
+                <?php if($this->utilisateur =='5' or $this->utilisateur== '13' or $this->utilisateur== '38'){ ?>
                <tr>
                     <td>CA total N-1 réalisé par le client:</td>
                     <td><?php echo number_format($this->caencoursClient_1,2,'.',' '); ?></td>
@@ -105,7 +105,7 @@ $this->headScript()->appendFile('/js/controllers/xprice/fermeturevalide.js');
                     <th>remise demandée</th>
                     <th>Prix accordés</th>
                     <th>Remises accordées</th>
-                    <?php if($this->utilisateur =='5' or $this->utilisateur== '13'  or $this->utilisateur== '29'){ ?>
+                    <?php if($this->utilisateur =='5' or $this->utilisateur== '13'  or $this->utilisateur== '38'){ ?>
                     <th>Prix cif</th>
                     <th>Prix fob</th>
                     
@@ -126,13 +126,13 @@ $this->headScript()->appendFile('/js/controllers/xprice/fermeturevalide.js');
                         <td><?php echo number_format($result['prix_accorde_demande_article'],2,'.',' ') ; ?></td>
                         <td><?php echo $result['remise_accorde_demande_article'] . "%"; ?></td>
                         <?php }?>
-                         <?php if($this->utilisateur =='5' or $this->utilisateur== '13' or $this->utilisateur =='29'){ ?>
+                         <?php if($this->utilisateur =='5' or $this->utilisateur== '13' or $this->utilisateur =='38'){ ?>
                         <td><?php echo number_format($result['prix_cif_demande_article'],2,'.',' ') ; ?></td>
                         <td><?php echo number_format($result['prix_fob_demande_article'],2,'.',' ') ; ?></td>
                         <td><?php echo $result['marge_demande_article'] . "%"; ?></td><?php } else {}?>
                     </tr>
                 <?php } ?>
-                     <?php if($this->utilisateur =='5' or $this->utilisateur== '13' or $this->utilisateur =='29'){ ?>
+                     <?php if($this->utilisateur =='5' or $this->utilisateur== '13' or $this->utilisateur =='38'){ ?>
                        <tr>
                             <td colspan="2">total</td>
                             <td colspan="2" ><input class="cab" id="cab-affiche"
