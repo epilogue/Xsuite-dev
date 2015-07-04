@@ -2400,7 +2400,7 @@ if($this->getRequest()->isPost()){
     elseif($plop2=="enAttente"){
         switch ($plop3) {
         case "reponse":
-        $encoursFonction=$info_user['nom_user'].' '. $info_user['prenom_user'];
+        $encoursFonction=$user_info['nom_user'].' '. $user_info['prenom_user'];
         $encoursNom="encours"; 
         break;
         case "cdr":
@@ -2501,7 +2501,7 @@ if($this->getRequest()->isPost()){
                             . "\n"
                             . "--\n"
                             . "dbd.";
-                    $params1['sujet'] = "  Xdistrib :nouvelle demande Xdistrib $tracking/$numwp à valider $numwp de {$info_user['nom_user']} pour le client $nomclients .";
+                    $params1['sujet'] = "  Xdistrib :nouvelle demande Xdistrib $tracking/$numwp à valider $numwp de {$user_info['nom_user']} pour le client $nomclients .";
 
                     $this->sendEmail($params1);
                 }
@@ -2668,7 +2668,7 @@ if($this->getRequest()->isPost()){
 
                          $params4['corpsMail'] = "Bonjour,\n"
                                 . "\n"
-                                . "la demande Xdistrib $tracking/$numwp de {$info_user['nom_user']} pour le client $nomclients a été validée par le DBD.\n"
+                                . "la demande Xdistrib $tracking/$numwp de {$user_info['nom_user']} pour le client $nomclients a été validée par le DBD.\n"
                                 . "Pour consulter la demande veuillez vous rendre à l'adresse url : \n"
                                 . "%s"
                                 . "\n\n"
