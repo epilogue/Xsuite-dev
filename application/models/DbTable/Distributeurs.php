@@ -27,7 +27,7 @@ class Application_Model_DbTable_Distributeurs extends Zend_Db_Table_Abstract {
             'num_workplace_demande_xdistrib'=>$numwp
         );
         $this->insert($data);
-         echo $this->insert($data);
+         //echo $this->insert($data);
         return $this;
        
     }
