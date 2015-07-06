@@ -62,7 +62,7 @@ class XdistribController extends Zend_Controller_Action
      $user = $this->_auth->getStorage()->read();
      $holon =$user->id_holon; 
      $fonction=$user->id_fonction;
-     echo $fonction;
+//     echo $fonction;
      $this->view->createur=$user->id_user;
      $this->view->fonction=$fonction;
      if($user->id_fonction == 35){
