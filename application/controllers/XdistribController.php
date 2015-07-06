@@ -992,7 +992,7 @@ if($this->getRequest()->isPost()){
     elseif($plop2=="enAttente"){
         switch ($plop3) {
         case "reponse":
-        $encoursFonction=$info_user['nom_user'].' '. $info_user['prenom_user'];
+        $encoursFonction=$user_info['nom_user'].' '. $user_info['prenom_user'];
         $encoursNom="encours"; 
         break;
         case "cdr":
