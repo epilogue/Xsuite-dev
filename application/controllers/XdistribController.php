@@ -2566,7 +2566,7 @@ if($this->getRequest()->isPost()){
             } else{$mailRCDN="mhuby@smc-france.fr";}
                 $params8['destinataireMail']=$mailRCDN;
                 $params8['url']="http://{$_SERVER['SERVER_NAME']}/xdistrib/avenant/numwp/{$numwp}";
-                 $params['corpsMail'] = "Bonjour,\n"
+                 $params8['corpsMail'] = "Bonjour,\n"
                         . "\n"
                         . "la demande Xdistrib $trackingNumber/$numwp pour le client $nomclients a été validée par le Directeur Commercial .\n"
                         . "Veuillez télécharger l'avenant de cette demande à cette adresse url : \n"
@@ -2578,7 +2578,20 @@ if($this->getRequest()->isPost()){
                         . "dbd.";
                 $params8['sujet'] = " Xdistrib :demande Xdistrib  $trackingNumber/$numwp pour le client $nomclients validée par Directeur Commercial/ lien pour Avenant .";
                 $this->sendEmail($params8);
-                
+                 $params1bis['destinataireMail'] ="mrita@france.fr";
+                $params1bis['url'] = "http://{$_SERVER['SERVER_NAME']}/xdistrib/consult/numwp/{$numwp}";
+                $params1bis['corpsMail'] = "Bonjour,\n"
+                        . "\n"
+                        . "la demande Xdistrib $trackingNumber/$numwp pour le client $nomclients a été validée par le Directeur Commercial .\n"
+                        . "Vous pouvez la consulter à cette adresse url : \n"
+                        . "%s"
+                        . "\n\n"
+                        . "Cordialement,\n"
+                        . "\n"
+                        . "--\n"
+                        . "Directeur Commercial.";
+                $params1bis['sujet'] = "  Xdistrib :demande Xdistrib $trackingNumber/$numwp pour le client $nomclients validée par Directeur Commercial.";
+                $this->sendEmail($params1bis);
                 $params7['destinataireMail']=$maildevdistrib;
                 $params7['url']="http://{$_SERVER['SERVER_NAME']}/xdistrib/avenant/numwp/{$numwp}";
                 $params7['corpsMail'] = "Bonjour,\n"
@@ -3048,6 +3061,7 @@ if($this->getRequest()->isPost()){
             $mailSC="distributeurs@smc-france.fr";
             $params = array();
             $params1 =array();
+            $params1bis =array();
             $params2 = array();
             $params3=  array();
             $params4=  array();
@@ -3155,6 +3169,20 @@ if($this->getRequest()->isPost()){
                         . "Directeur Commercial.";
                 $params1['sujet'] = "  Xdistrib :demande Xdistrib $trackingNumber/$numwp pour le client $nomclients validée par Directeur Commercial.";
                 $this->sendEmail($params1);
+                 $params1bis['destinataireMail'] ="mrita@france.fr";
+                $params1bis['url'] = "http://{$_SERVER['SERVER_NAME']}/xdistrib/consult/numwp/{$numwp}";
+                $params1bis['corpsMail'] = "Bonjour,\n"
+                        . "\n"
+                        . "la demande Xdistrib $trackingNumber/$numwp pour le client $nomclients a été validée par le Directeur Commercial .\n"
+                        . "Vous pouvez la consulter à cette adresse url : \n"
+                        . "%s"
+                        . "\n\n"
+                        . "Cordialement,\n"
+                        . "\n"
+                        . "--\n"
+                        . "Directeur Commercial.";
+                $params1bis['sujet'] = "  Xdistrib :demande Xdistrib $trackingNumber/$numwp pour le client $nomclients validée par Directeur Commercial.";
+                $this->sendEmail($params1bis);
 //envoi mail leader
                 if ($fonctioncreateur == "1") {
                         switch ($id_holon) {
