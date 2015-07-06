@@ -78,7 +78,7 @@ class XdistribController extends Zend_Controller_Action
          }//echo '<pre>',var_export($recapitulatif2),'</pre>';
      }
      if($user->id_fonction == 36){
-         $distrib="I01990";
+         $distrib=array("I01990");
          $recapitulatif1=new Application_Model_DbTable_Xdistrib();
          $plop1=$recapitulatif1->rechercheridRCDN($distrib);
          foreach($plop1 as $value){
@@ -86,7 +86,7 @@ class XdistribController extends Zend_Controller_Action
          }
      }
      if($user->id_fonction == 37){
-         $distrib=array("I00264","
+         $distrib=array("I00789","I00264","
 I00662","
 I00412","
 I01796","
@@ -117,7 +117,7 @@ I05065"
          }//echo '<pre>',var_export($recapitulatif2),'</pre>';
      }
      if($user->id_fonction == 34){
-          $distrib=array("I03624","I00789","I05285","
+          $distrib=array("I03624","I05285","
 I03317","
 I02557","
 I00415","
