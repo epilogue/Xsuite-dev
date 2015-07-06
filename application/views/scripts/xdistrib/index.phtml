@@ -32,7 +32,10 @@ $this->headTitle($this->title);
                                      elseif ($result['nom_validation']=="supply") {echo 'dbd';}
                                      elseif ($result['nom_validation']=="dbd") {echo 'dirco';}
                                    ?></td><?php }elseif($result['etat_validation']=="enAttente"){
-                                       ?><td> en attente ITC</td> <?php 
+                                       if($result['nom_validation']=="reponse"){
+                                       ?><td> en cours DBD</td> <?php }elseif($result['nom_validation']=="dbd"){
+                                           ?><td> en attenteITC</td><?php 
+                                       }
                                    }
                                     else{ ?>
              <td><?php echo $result['etat_validation'];?><br></td>
