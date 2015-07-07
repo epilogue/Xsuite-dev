@@ -2276,7 +2276,7 @@ if($this->getRequest()->isPost()){
         $service_info = $info_service->getService($numwp);
         $developpeurdistribs=new Application_Model_DbTable_Users;
         $developpeurdistrib=$developpeurdistribs->getUser($info_demande_xdistrib['id_dd']);
-        /*$maildevdistrib=$developpeurdistrib['email_user'];*/
+        $maildevdistrib=$developpeurdistrib['email_user'];
         $this->view->service_info=$service_info;
         $this->view->contexte_info = $contexte_info;
         $this->view->concurrent_info=$concurrent_info;
@@ -2449,8 +2449,8 @@ if($this->getRequest()->isPost()){
                 $datasValidation['reponse'] = $datas['reponse'];
             }
             $commentId = $this->genererValidation($datasValidation);
-$maildevdistrib="mhuby@smc-france.fr";
-            $mailSC="mhuby@smc-france.fr";/*"distributeurs@smc-france.fr";*/
+/*$maildevdistrib="mhuby@smc-france.fr";*/
+            $mailSC=/*"mhuby@smc-france.fr";*/"distributeurs@smc-france.fr";
             if (isset($datas['validation']) && $datas['validation'] == "validee") {
                 $params1 = array();
                 if ($margemin == true or $datas['mamo']< 10){
@@ -2548,7 +2548,7 @@ $maildevdistrib="mhuby@smc-france.fr";
                         . "dbd.";
                 $params8['sujet'] = " Xdistrib :demande Xdistrib  $trackingNumber/$numwp pour le client $nomclients validée par Directeur Commercial/ lien pour Avenant .";
                 $this->sendEmail($params8);
-                $params1bis['destinataireMail'] ="mhuby@smc-france.fr";/*"mrita@smc-france.fr";*/
+                $params1bis['destinataireMail'] =/*"mhuby@smc-france.fr";*/"mrita@smc-france.fr";
                 $params1bis['url'] = "http://{$_SERVER['SERVER_NAME']}/xdistrib/consult/numwp/{$numwp}";
                 $params1bis['corpsMail'] = "Bonjour,\n"
                         . "\n"
@@ -2869,7 +2869,7 @@ $maildevdistrib="mhuby@smc-france.fr";
         $service_info = $info_service->getService($numwp);
         $developpeurdistribs=new Application_Model_DbTable_Users;
         $developpeurdistrib=$developpeurdistribs->getUser($info_demande_xdistrib['id_dd']);
-        /*$maildevdistrib=$developpeurdistrib['email_user'];*/
+        $maildevdistrib=$developpeurdistrib['email_user'];
         $this->view->service_info=$service_info;
         $this->view->contexte_info = $contexte_info;
         $this->view->concurrent_info=$concurrent_info;
@@ -3029,8 +3029,8 @@ $maildevdistrib="mhuby@smc-france.fr";
                 $datasValidation['reponse'] = $datas['reponse'];
             }
             $commentId = $this->genererValidation($datasValidation);
-$maildevdistrib="mhuby@smc-france.fr";
-            $mailSC="mhuby@smc-france.fr";/*"distributeurs@smc-france.fr";*/
+/*$maildevdistrib="mhuby@smc-france.fr";*/
+            $mailSC=/*"mhuby@smc-france.fr";*/"distributeurs@smc-france.fr";
             $params = array();
             $params1 =array();
             $params1bis =array();
@@ -3111,7 +3111,7 @@ $maildevdistrib="mhuby@smc-france.fr";
                         . "\n"
                         . "--\n"
                         . "Directeur Commercial.";
-                $params['destinataireMail'] ="mhuby@smc-france.fr";/*$user_info['email_user'];*/
+                $params['destinataireMail'] =/*"mhuby@smc-france.fr";*/$user_info['email_user'];
                 $params['url'] = "http://{$_SERVER['SERVER_NAME']}/xdistrib/consult/numwp/{$numwp}";
                 $params['corpsMail'] = "Bonjour,\n"
                         . "\n"
@@ -3141,7 +3141,7 @@ $maildevdistrib="mhuby@smc-france.fr";
                         . "Directeur Commercial.";
                 $params1['sujet'] = "  Xdistrib :demande Xdistrib $tracking/$numwp pour le client $nomclients validée par Directeur Commercial.";
                 $this->sendEmail($params1);
-                 $params1bis['destinataireMail'] ="mhuby@smc-france.fr";/*"mrita@smc-france.fr";*/
+                 $params1bis['destinataireMail'] =/*"mhuby@smc-france.fr";*/"mrita@smc-france.fr";
                 $params1bis['url'] = "http://{$_SERVER['SERVER_NAME']}/xdistrib/consult/numwp/{$numwp}";
                 $params1bis['corpsMail'] = "Bonjour,\n"
                         . "\n"
@@ -3298,7 +3298,7 @@ $maildevdistrib="mhuby@smc-france.fr";
                 
             } elseif (isset($datas['validation']) && $datas['validation'] == 'enAttente') {
                 $emailVars = Zend_Registry::get('emailVars');
-                $params['destinataireMail'] ="mhuby@smc-france.fr";/*$user_info['email_user'] ;*/
+                $params['destinataireMail'] =/*"mhuby@smc-france.fr";*/$user_info['email_user'] ;
                 if (!is_null($commentId)) {
                     $params['url'] = "http://{$_SERVER['SERVER_NAME']}/xdistrib/update/numwp/{$numwp}/com/{$commentId}";
                 } else {
@@ -3324,7 +3324,7 @@ $maildevdistrib="mhuby@smc-france.fr";
                 $redirector->gotoSimple('index', 'xdistrib');
             } elseif (isset($datas['validation']) && $datas['validation'] == 'nonValide') {
                 $emailVars = Zend_Registry::get('emailVars');
-                $params['destinataireMail'] = "mhuby@smc-france.fr" ;/*$user_info['email_user'];*/
+                $params['destinataireMail'] = /*"mhuby@smc-france.fr" ;*/$user_info['email_user'];
                 if (!is_null($commentId)) {
                     $params['url'] = "http://{$_SERVER['SERVER_NAME']}/xdistrib/consult/numwp/{$numwp}/com/{$commentId}";
                 } else {
