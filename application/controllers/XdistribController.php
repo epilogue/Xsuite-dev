@@ -3474,7 +3474,6 @@ if($this->getRequest()->isPost()){
         $this->view->numwp = $numwp; 
         $infos_demande_xdistrib = new Application_Model_DbTable_Xdistrib();
         $info_demande_xdistrib = $infos_demande_xdistrib->getNumwp($numwp);
-        $numwp_dis=  substr($info_demande_xdistrib['numwp_distributeur'], 0, 6);
         $info_distrib=new Application_Model_DbTable_Distributeurs();
         $distrib_info=$info_distrib->getDistributeurnumwp($numwp);
         $info_article=new Application_Model_DbTable_DemandeArticlexdistrib();
@@ -3493,7 +3492,7 @@ if($this->getRequest()->isPost()){
         $infos_demande_xdistrib = new Application_Model_DbTable_Xdistrib();
         $info_demande_xdistrib = $infos_demande_xdistrib->getNumwp($numwp);
         $numwp_dis=trim($info_demande_xdistrib['numwp_distributeur']);
-        var_dump($numwp);
+        //var_dump($numwp);
         $info_distrib=new Application_Model_DbTable_Distributeurs();
         $distrib_info=$info_distrib->getDistributeurnumwp($numwp);
         $info_article=new Application_Model_DbTable_DemandeArticlexdistrib();
@@ -3506,7 +3505,7 @@ if($this->getRequest()->isPost()){
         $this->view->info_demande_xdistrib=$info_demande_xdistrib;
         
         
-       echo '<pre>', var_export($distrib_info),'</pre>'; exit();
+      // echo '<pre>', var_export($distrib_info),'</pre>'; exit();
     }
 }
 
