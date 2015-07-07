@@ -2852,6 +2852,7 @@ $maildevdistrib="mhuby@smc-france.fr";
         $user_info=$info_user->getUser($info_demande_xdistrib['id_user']);
         $nom_holon=new Application_Model_DbTable_Holons();
         $holon_nom=$nom_holon->getHolon($user_info['id_holon']);
+        $id_holon=$user_info['id_holon'];
         $info_client=new Application_Model_DbTable_ClientDistrib();
         $client_info=$info_client->getClientdistrib($info_demande_xdistrib['numwp_client']);
         $info_article=new Application_Model_DbTable_DemandeArticlexdistrib();
@@ -3192,7 +3193,7 @@ $maildevdistrib="mhuby@smc-france.fr";
 
                          $params2['corpsMail'] = "Bonjour,\n"
                                 . "\n"
-                                . "la demande Xdistrib $tracking/$numwp de {$info_user['nom_user']} pour le client $nomclients a été validée par le Dirco.\n"
+                                . "la demande Xdistrib $tracking/$numwp de {$user_info['nom_user']} pour le client $nomclients a été validée par le Dirco.\n"
                                 . "Pour consulter la demande veuillez vous rendre à l'adresse url : \n"
                                 . "%s"
                                 . "\n\n"
