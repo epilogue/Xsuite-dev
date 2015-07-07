@@ -3088,7 +3088,7 @@ $maildevdistrib="mhuby@smc-france.fr";
                 $params8['url']="http://{$_SERVER['SERVER_NAME']}/xdistrib/avenant/numwp/{$numwp}";
                  $params8['corpsMail'] = "Bonjour,\n"
                         . "\n"
-                        . "la demande Xdistrib $trackingNumber/$numwp pour le client $nomclients a été validée par le Directeur Commercial .\n"
+                        . "la demande Xdistrib $tracking/$numwp pour le client $nomclients a été validée par le Directeur Commercial .\n"
                         . "Veuillez télécharger l'avenant de cette demande à cette adresse url : \n"
                         . "%s"
                         . "\n\n"
@@ -3096,13 +3096,13 @@ $maildevdistrib="mhuby@smc-france.fr";
                         . "\n"
                         . "--\n"
                         . "dbd.";
-                $params8['sujet'] = " Xdistrib :demande Xdistrib  $trackingNumber/$numwp pour le client $nomclients validée par Directeur Commercial/ lien pour Avenant .";
+                $params8['sujet'] = " Xdistrib :demande Xdistrib  $tracking/$numwp pour le client $nomclients validée par Directeur Commercial/ lien pour Avenant .";
                 $this->sendEmail($params8);
                 $params6['destinataireMail']=$maildevdistrib;
                 $params6['url']="http://{$_SERVER['SERVER_NAME']}/xdistrib/avenant/numwp/{$numwp}";
                 $params6['corpsMail'] = "Bonjour,\n"
                         . "\n"
-                        . "Votre demande Xdistrib $trackingNumber/$numwp pour le client $nomclients a été validée par le Directeur Commercial .\n"
+                        . "Votre demande Xdistrib $tracking/$numwp pour le client $nomclients a été validée par le Directeur Commercial .\n"
                         . "Veuillez télécharger  l'avenant de  cette demande  à cette adresse url : \n"
                         . "%s"
                         . "\n\n"
@@ -3114,7 +3114,7 @@ $maildevdistrib="mhuby@smc-france.fr";
                 $params['url'] = "http://{$_SERVER['SERVER_NAME']}/xdistrib/consult/numwp/{$numwp}";
                 $params['corpsMail'] = "Bonjour,\n"
                         . "\n"
-                        . "Votre demande Xdistrib $trackingNumber/$numwp pour le client $nomclients a été validée par le Directeur Commercial .\n"
+                        . "Votre demande Xdistrib $tracking/$numwp pour le client $nomclients a été validée par le Directeur Commercial .\n"
                         . "Vous pouvez la consulter à cette adresse url : \n"
                         . "%s"
                         . "\n\n"
@@ -3122,15 +3122,15 @@ $maildevdistrib="mhuby@smc-france.fr";
                         . "\n"
                         . "--\n"
                         . "Directeur Commercial.";
-                $params['sujet'] = " Xdistrib :demande Xdistrib  $trackingNumber/$numwp pour le client $nomclients validée par Directeur Commercial.";
+                $params['sujet'] = " Xdistrib :demande Xdistrib  $tracking/$numwp pour le client $nomclients validée par Directeur Commercial.";
                 $this->sendEmail($params);
-                 $params6['sujet'] = " Xdistrib :demande Xdistrib  $trackingNumber/$numwp pour le client $nomclients validée par Directeur Commercial/ lien pour Avenant .";
+                 $params6['sujet'] = " Xdistrib :demande Xdistrib  $tracking/$numwp pour le client $nomclients validée par Directeur Commercial/ lien pour Avenant .";
                 $this->sendEmail($params6);
                 $params1['destinataireMail'] =$mailSC;
                 $params1['url'] = "http://{$_SERVER['SERVER_NAME']}/xdistrib/consult/numwp/{$numwp}";
                 $params1['corpsMail'] = "Bonjour,\n"
                         . "\n"
-                        . "la demande Xdistrib $trackingNumber/$numwp pour le client $nomclients a été validée par le Directeur Commercial .\n"
+                        . "la demande Xdistrib $tracking/$numwp pour le client $nomclients a été validée par le Directeur Commercial .\n"
                         . "Vous pouvez la consulter à cette adresse url : \n"
                         . "%s"
                         . "\n\n"
@@ -3138,13 +3138,13 @@ $maildevdistrib="mhuby@smc-france.fr";
                         . "\n"
                         . "--\n"
                         . "Directeur Commercial.";
-                $params1['sujet'] = "  Xdistrib :demande Xdistrib $trackingNumber/$numwp pour le client $nomclients validée par Directeur Commercial.";
+                $params1['sujet'] = "  Xdistrib :demande Xdistrib $tracking/$numwp pour le client $nomclients validée par Directeur Commercial.";
                 $this->sendEmail($params1);
                  $params1bis['destinataireMail'] ="mhuby@smc-france.fr";/*"mrita@smc-france.fr";*/
                 $params1bis['url'] = "http://{$_SERVER['SERVER_NAME']}/xdistrib/consult/numwp/{$numwp}";
                 $params1bis['corpsMail'] = "Bonjour,\n"
                         . "\n"
-                        . "la demande Xdistrib $trackingNumber/$numwp pour le client $nomclients a été validée par le Directeur Commercial .\n"
+                        . "la demande Xdistrib $tracking/$numwp pour le client $nomclients a été validée par le Directeur Commercial .\n"
                         . "Vous pouvez la consulter à cette adresse url : \n"
                         . "%s"
                         . "\n\n"
@@ -3152,7 +3152,7 @@ $maildevdistrib="mhuby@smc-france.fr";
                         . "\n"
                         . "--\n"
                         . "Directeur Commercial.";
-                $params1bis['sujet'] = "  Xdistrib :demande Xdistrib $trackingNumber/$numwp pour le client $nomclients validée par Directeur Commercial.";
+                $params1bis['sujet'] = "  Xdistrib :demande Xdistrib $tracking/$numwp pour le client $nomclients validée par Directeur Commercial.";
                 $this->sendEmail($params1bis);
 //envoi mail leader
                 if ($fonctioncreateur == "1") {
@@ -3192,7 +3192,7 @@ $maildevdistrib="mhuby@smc-france.fr";
 
                          $params2['corpsMail'] = "Bonjour,\n"
                                 . "\n"
-                                . "la demande Xdistrib $trackingNumber/$numwp de {$info_user['nom_user']} pour le client $nomclients a été validée par le Dirco.\n"
+                                . "la demande Xdistrib $tracking/$numwp de {$info_user['nom_user']} pour le client $nomclients a été validée par le Dirco.\n"
                                 . "Pour consulter la demande veuillez vous rendre à l'adresse url : \n"
                                 . "%s"
                                 . "\n\n"
@@ -3200,7 +3200,7 @@ $maildevdistrib="mhuby@smc-france.fr";
                                 . "\n"
                                 . "--\n"
                                 . "Xsuite";
-                        $params2['sujet']=" Xdistrib :  Offre Xdistrib  $trackingNumber/$numwp  de {$user_info['nom_user']} pour $nomclients validée par le Dirco";
+                        $params2['sujet']=" Xdistrib :  Offre Xdistrib  $tracking/$numwp  de {$user_info['nom_user']} pour $nomclients validée par le Dirco";
                       $this->sendEmail($params2);           
                     }
                     //envoi au cdr
@@ -3232,7 +3232,7 @@ $maildevdistrib="mhuby@smc-france.fr";
 
                         $params3['corpsMail'] = "Bonjour,\n"
                                 . "\n"
-                                . "la demande Xdistrib $trackingNumber/$numwp de {$info_user['nom_user']} pour le client $nomclients a été validée par le Dirco.\n"
+                                . "la demande Xdistrib $tracking/$numwp de {$info_user['nom_user']} pour le client $nomclients a été validée par le Dirco.\n"
                                 . "Pour consulter la demande veuillez vous rendre à l'adresse url : \n"
                                 . "%s"
                                 . "\n\n"
@@ -3240,7 +3240,7 @@ $maildevdistrib="mhuby@smc-france.fr";
                                 . "\n"
                                 . "--\n"
                                 . "Xsuite";
-                        $params3['sujet']=" Xdistrib :Offre Xdistrib  $trackingNumber/$numwp de {$user_info['nom_user']} pour $nomclients validée par le Dirco";
+                        $params3['sujet']=" Xdistrib :Offre Xdistrib  $tracking/$numwp de {$user_info['nom_user']} pour $nomclients validée par le Dirco";
                       $this->sendEmail($params3); 
                     }
                     switch ($destIndustry) {
@@ -3272,12 +3272,12 @@ $maildevdistrib="mhuby@smc-france.fr";
                         . "--\n"
                         . "Xdistrib";
                 $params4['destinataireMail'] = $destinataireMail2;
-                $params4['sujet'] = " Xdistrib : La demande Xdistrib  $trackingNumber/$numwp de {$info_user['nom_user']} pour le client $nomclients a été validée par le Dirco.";
+                $params4['sujet'] = " Xdistrib : La demande Xdistrib  $tracking/$numwp de {$info_user['nom_user']} pour le client $nomclients a été validée par le Dirco.";
                 $this->sendEmail($params4);
                  $params5['url'] = "http://{$_SERVER['SERVER_NAME']}/xdistrib/consult/numwp/{$numwp}";
                 $params5['corpsMail'] = "Bonjour,\n"
                         . "\n"
-                        . "la demande Xdistrib $trackingNumber/$numwp de {$info_user['nom_user']} pour le client $nomclients a été validée par le Dirco.\n"
+                        . "la demande Xdistrib $tracking/$numwp de {$info_user['nom_user']} pour le client $nomclients a été validée par le Dirco.\n"
                         . "Pour consulter la demande veuillez vous rendre à l'adresse url : \n"
                         . "%s"
                         . "\n\n"
@@ -3286,7 +3286,7 @@ $maildevdistrib="mhuby@smc-france.fr";
                         . "--\n"
                         . "Xdistrib";
                 $params5['destinataireMail'] = $emailVars->listes->DBD;
-                $params5['sujet'] = " Xdistrib : La demande Xdistrib $trackingNumber/$numwp de {$info_user['nom_user']} pour le client $nomclients a été validée par le Dirco.";
+                $params5['sujet'] = " Xdistrib : La demande Xdistrib $tracking/$numwp de {$info_user['nom_user']} pour le client $nomclients a été validée par le Dirco.";
                 $this->sendEmail($params5);
                 $flashMessenger = $this->_helper->getHelper('FlashMessenger');
                 $message = "l'offre $numwp pour le client$nomclients a bien été validée.";
@@ -3304,7 +3304,7 @@ $maildevdistrib="mhuby@smc-france.fr";
                 }
                 $params['corpsMail'] = "Bonjour,\n"
                         . "\n"
-                        . "Votre demande Xdistrib $trackingNumber/$numwp est en attente de réponse à la question posée par le Directeur Commercial .\n"
+                        . "Votre demande Xdistrib $tracking/$numwp est en attente de réponse à la question posée par le Directeur Commercial .\n"
                         . "Vous pouvez la consulter à cette adresse url : \n"
                         . "%s"
                         . "\n\n"
@@ -3316,7 +3316,7 @@ $maildevdistrib="mhuby@smc-france.fr";
                 $this->sendEmail($params);
 
                 $flashMessenger = $this->_helper->getHelper('FlashMessenger');
-                $message = "l'offre Xdistrib $trackingNumber/$numwp pour le client $nomclients est en attente de réponse du commercial.";
+                $message = "l'offre Xdistrib $tracking/$numwp pour le client $nomclients est en attente de réponse du commercial.";
                 $flashMessenger->addMessage($message);
                 $redirector = $this->_helper->getHelper('Redirector');
                 $redirector->gotoSimple('index', 'xdistrib');
@@ -3330,7 +3330,7 @@ $maildevdistrib="mhuby@smc-france.fr";
                 }
                 $params['corpsMail'] = "Bonjour,\n"
                         . "\n"
-                        . "Votre demande Xdistrib $trackingNumber/$numwp pour le client $nomclients n'est pas validée par le Directeur Commercial .\n"
+                        . "Votre demande Xdistrib $tracking/$numwp pour le client $nomclients n'est pas validée par le Directeur Commercial .\n"
                         . "Vous pouvez la consulter à cette adresse url : \n"
                         . "%s"
                         . "\n\n"
@@ -3343,7 +3343,7 @@ $maildevdistrib="mhuby@smc-france.fr";
                 $params5['url'] = "http://{$_SERVER['SERVER_NAME']}/xdistrib/consult/numwp/{$numwp}";
                 $params5['corpsMail'] = "Bonjour,\n"
                         . "\n"
-                        . "la demande Xdistrib $trackingNumber/$numwp de {$info_user['nom_user']} pour le client $nomclients a été refusée par le Dirco.\n"
+                        . "la demande Xdistrib $tracking/$numwp de {$info_user['nom_user']} pour le client $nomclients a été refusée par le Dirco.\n"
                         . "Pour consulter la demande veuillez vous rendre à l'adresse url : \n"
                         . "%s"
                         . "\n\n"
@@ -3352,7 +3352,7 @@ $maildevdistrib="mhuby@smc-france.fr";
                         . "--\n"
                         . "Xdistrib";
                 $params5['destinataireMail'] =$emailVars->listes->DBD;
-                $params5['sujet'] = " Xdistrib : La demande Xdistrib $trackingNumber/$numwp de {$info_user['nom_user']} pour le client $nomclients a été refusée par le Dirco.";
+                $params5['sujet'] = " Xdistrib : La demande Xdistrib $tracking/$numwp de {$info_user['nom_user']} pour le client $nomclients a été refusée par le Dirco.";
                 $this->sendEmail($params5);
                 $flashMessenger = $this->_helper->getHelper('FlashMessenger');
                 $message = "l'offre $numwp pour le client $nomclients n'a pas été validée.";
