@@ -3110,7 +3110,7 @@ $maildevdistrib="mhuby@smc-france.fr";
                         . "\n"
                         . "--\n"
                         . "Directeur Commercial.";
-                $params['destinataireMail'] =$info_user['email_user'];
+                $params['destinataireMail'] ="mhuby@smc-france.fr";/*$user_info['email_user'];*/
                 $params['url'] = "http://{$_SERVER['SERVER_NAME']}/xdistrib/consult/numwp/{$numwp}";
                 $params['corpsMail'] = "Bonjour,\n"
                         . "\n"
