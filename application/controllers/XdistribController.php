@@ -2547,7 +2547,7 @@ if($this->getRequest()->isPost()){
                         . "dbd.";
                 $params8['sujet'] = " Xdistrib :demande Xdistrib  $trackingNumber/$numwp pour le client $nomclients validée par Directeur Commercial/ lien pour Avenant .";
                 $this->sendEmail($params8);
-                $params1bis['destinataireMail'] ="mrita@france.fr";
+                $params1bis['destinataireMail'] ="mrita@smc-france.fr";
                 $params1bis['url'] = "http://{$_SERVER['SERVER_NAME']}/xdistrib/consult/numwp/{$numwp}";
                 $params1bis['corpsMail'] = "Bonjour,\n"
                         . "\n"
@@ -3138,7 +3138,7 @@ if($this->getRequest()->isPost()){
                         . "Directeur Commercial.";
                 $params1['sujet'] = "  Xdistrib :demande Xdistrib $trackingNumber/$numwp pour le client $nomclients validée par Directeur Commercial.";
                 $this->sendEmail($params1);
-                 $params1bis['destinataireMail'] ="mrita@france.fr";
+                 $params1bis['destinataireMail'] ="mrita@smc-france.fr";
                 $params1bis['url'] = "http://{$_SERVER['SERVER_NAME']}/xdistrib/consult/numwp/{$numwp}";
                 $params1bis['corpsMail'] = "Bonjour,\n"
                         . "\n"
