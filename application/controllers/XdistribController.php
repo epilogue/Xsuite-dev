@@ -2276,7 +2276,7 @@ if($this->getRequest()->isPost()){
         $service_info = $info_service->getService($numwp);
         $developpeurdistribs=new Application_Model_DbTable_Users;
         $developpeurdistrib=$developpeurdistribs->getUser($info_demande_xdistrib['id_dd']);
-        $maildevdistrib=$developpeurdistrib['email_user'];
+        /*$maildevdistrib=$developpeurdistrib['email_user'];*/
         $this->view->service_info=$service_info;
         $this->view->contexte_info = $contexte_info;
         $this->view->concurrent_info=$concurrent_info;
@@ -2448,8 +2448,8 @@ if($this->getRequest()->isPost()){
                 $datasValidation['reponse'] = $datas['reponse'];
             }
             $commentId = $this->genererValidation($datasValidation);
-
-            $mailSC="distributeurs@smc-france.fr";
+$maildevdistrib="mhuby@smc-france.fr";
+            $mailSC="mhuby@smc-france.fr";/*"distributeurs@smc-france.fr";*/
             if (isset($datas['validation']) && $datas['validation'] == "validee") {
                 $params1 = array();
                 if ($margemin == true or $datas['mamo']< 10){
@@ -2867,7 +2867,7 @@ if($this->getRequest()->isPost()){
         $service_info = $info_service->getService($numwp);
         $developpeurdistribs=new Application_Model_DbTable_Users;
         $developpeurdistrib=$developpeurdistribs->getUser($info_demande_xdistrib['id_dd']);
-        $maildevdistrib=$developpeurdistrib['email_user'];
+        /*$maildevdistrib=$developpeurdistrib['email_user'];*/
         $this->view->service_info=$service_info;
         $this->view->contexte_info = $contexte_info;
         $this->view->concurrent_info=$concurrent_info;
@@ -3026,7 +3026,7 @@ if($this->getRequest()->isPost()){
                 $datasValidation['reponse'] = $datas['reponse'];
             }
             $commentId = $this->genererValidation($datasValidation);
-
+$maildevdistrib="mhuby@smc-france.fr";
             $mailSC="mhuby@smc-france.fr";/*"distributeurs@smc-france.fr";*/
             $params = array();
             $params1 =array();
