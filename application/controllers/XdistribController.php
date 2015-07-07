@@ -3505,7 +3505,7 @@ if($this->getRequest()->isPost()){
         $this->view->info_demande_xdistrib=$info_demande_xdistrib;
         
         
-       echo '<pre>', var_export($info_demande_distrib),'</pre>'; exit();
+       echo '<pre>', var_export($info_demande_xdistrib),'</pre>'; exit();
     }
 }
 
