@@ -2492,7 +2492,6 @@ if($this->getRequest()->isPost()){
                 if($distrib_info['numwp_distributeur']=='I02055' || $distrib_info['numwp_distributeur']=='I01045'){
                 $mailRCDN= $emailVars->listes->brammer;
                 }elseif($distrib_info['numwp_distributeur']=='I03624' ||
-                        $distrib_info['numwp_distributeur']=='I00789' ||
                         $distrib_info['numwp_distributeur']=='I05285' ||
                         $distrib_info['numwp_distributeur']=='I03317' ||
                         $distrib_info['numwp_distributeur']=='I02557' ||
@@ -2510,6 +2509,7 @@ if($this->getRequest()->isPost()){
                      $mailRCDN= $emailVars->listes->mbedexis;
                 }elseif( 
                         $distrib_info['numwp_distributeur']=='I00264' ||
+                        $distrib_info['numwp_distributeur']=='I00789' ||
                         $distrib_info['numwp_distributeur']=='I00662' ||
                         $distrib_info['numwp_distributeur']=='I00412' ||
                         $distrib_info['numwp_distributeur']=='I01796' ||
@@ -2547,7 +2547,7 @@ if($this->getRequest()->isPost()){
                         . "dbd.";
                 $params8['sujet'] = " Xdistrib :demande Xdistrib  $trackingNumber/$numwp pour le client $nomclients validée par Directeur Commercial/ lien pour Avenant .";
                 $this->sendEmail($params8);
-                 $params1bis['destinataireMail'] ="mrita@france.fr";
+                $params1bis['destinataireMail'] ="mrita@france.fr";
                 $params1bis['url'] = "http://{$_SERVER['SERVER_NAME']}/xdistrib/consult/numwp/{$numwp}";
                 $params1bis['corpsMail'] = "Bonjour,\n"
                         . "\n"
