@@ -3492,9 +3492,10 @@ if($this->getRequest()->isPost()){
         $this->view->numwp = $numwp; 
         $infos_demande_xdistrib = new Application_Model_DbTable_Xdistrib();
         $info_demande_xdistrib = $infos_demande_xdistrib->getNumwp($numwp);
-        $numwp_dis=trim( $info_demande_xdistrib['numwp_distributeur']);
+        $numwp_dis=trim($info_demande_xdistrib['numwp_distributeur']);
+        var_dump($numwp_dis);
         $info_distrib=new Application_Model_DbTable_Distributeurs();
-        $distrib_info=$info_distrib->getDistributeurnumwp($numwp_dis);
+        $distrib_info=$info_distrib->getDistributeurnumwp($numwp);
         $info_article=new Application_Model_DbTable_DemandeArticlexdistrib();
         $article_info= $info_article->getDemandeArticlexdistrib($numwp);
         $info_client=new Application_Model_DbTable_ClientDistrib();
