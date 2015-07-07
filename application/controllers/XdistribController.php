@@ -2532,7 +2532,7 @@ if($this->getRequest()->isPost()){
                 }
                 elseif( $distrib_info['numwp_distributeur']=='I01990') {
                          $mailRCDN= $emailVars->listes->rs;
-            } else{$mailRCDN="mhuby@smc-france.fr";}
+            } else{$mailRCDN=$maildevdistrib;}
                 $params8['destinataireMail']=$mailRCDN;
                 $params8['url']="http://{$_SERVER['SERVER_NAME']}/xdistrib/avenant/numwp/{$numwp}";
                  $params8['corpsMail'] = "Bonjour,\n"
@@ -3101,7 +3101,7 @@ if($this->getRequest()->isPost()){
                 $params6['corpsMail'] = "Bonjour,\n"
                         . "\n"
                         . "Votre demande Xdistrib $trackingNumber/$numwp pour le client $nomclients a été validée par le Directeur Commercial .\n"
-                        . "Veuillez compléter et imprimer cette demande à cette adresse url : \n"
+                        . "Veuillez télécharger  l'avenant de  cette demande  à cette adresse url : \n"
                         . "%s"
                         . "\n\n"
                         . "Cordialement,\n"
