@@ -796,7 +796,7 @@ if($this->getRequest()->isPost()){
         $destinataire=$formData['info_dd'];
         $params1=array();
         $params=array();
-        if($user_connect->id_fonction == "6"){
+        if($user_connect->id_fonction == "6" || $user_connect->id_fonction == "34" || $user_connect->id_fonction == "35" || $user_connect->id_fonction == "36" || $user_connect->id_fonction == "37" ){
             switch ($zonetracking) {
                 case "QA":
                     $destinataireMail1 = $emailVars->listes->QA;
