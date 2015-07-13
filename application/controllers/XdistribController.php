@@ -2491,6 +2491,7 @@ if($this->getRequest()->isPost()){
                 $params6 = array();
                 $params7 = array();
                 $params8 = array();
+                $numwp_distributeur=trim($distrib_info['numwp_distributeur']);
                 if($distrib_info['numwp_distributeur']=='I02055' || $distrib_info['numwp_distributeur']=='I01045'){
                 $mailRCDN= $emailVars->listes->brammer;
                 }elseif($distrib_info['numwp_distributeur']=='I03624' ||
