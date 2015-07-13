@@ -2492,48 +2492,48 @@ if($this->getRequest()->isPost()){
                 $params7 = array();
                 $params8 = array();
                 $numwp_distributeur=trim($distrib_info['numwp_distributeur']);
-                if($distrib_info['numwp_distributeur']=='I02055' || $distrib_info['numwp_distributeur']=='I01045'){
+                if($numwp_distributeur=='I02055' || $numwp_distributeur=='I01045'){
                 $mailRCDN= $emailVars->listes->brammer;
-                }elseif($distrib_info['numwp_distributeur']=='I03624' ||
-                        $distrib_info['numwp_distributeur']=='I05285' ||
-                        $distrib_info['numwp_distributeur']=='I03317' ||
-                        $distrib_info['numwp_distributeur']=='I02557' ||
-                        $distrib_info['numwp_distributeur']=='I00415' ||
-                        $distrib_info['numwp_distributeur']=='I00678' ||
-                        $distrib_info['numwp_distributeur']=='I04380' ||
-                        $distrib_info['numwp_distributeur']=='I03214' ||
-                        $distrib_info['numwp_distributeur']=='I02886' ||
-                        $distrib_info['numwp_distributeur']=='I03621' ||
-                        $distrib_info['numwp_distributeur']=='I02929' ||
-                        $distrib_info['numwp_distributeur']=='I02932' ||
-                        $distrib_info['numwp_distributeur']=='I03912' ||
-                        $distrib_info['numwp_distributeur']=='I05223' ||
-                        $distrib_info['numwp_distributeur']=='I02920') {
+                }elseif($numwp_distributeur=='I03624' ||
+                        $numwp_distributeur=='I05285' ||
+                        $numwp_distributeur=='I03317' ||
+                        $numwp_distributeur=='I02557' ||
+                        $numwp_distributeur=='I00415' ||
+                        $numwp_distributeur=='I00678' ||
+                        $numwp_distributeur=='I04380' ||
+                        $numwp_distributeur=='I03214' ||
+                        $numwp_distributeur=='I02886' ||
+                        $numwp_distributeur=='I03621' ||
+                        $numwp_distributeur=='I02929' ||
+                        $numwp_distributeur=='I02932' ||
+                        $numwp_distributeur=='I03912' ||
+                        $numwp_distributeur=='I05223' ||
+                        $numwp_distributeur=='I02920') {
                      $mailRCDN= $emailVars->listes->mbedexis;
                 }elseif( 
-                        $distrib_info['numwp_distributeur']=='I00264' ||
-                        $distrib_info['numwp_distributeur']=='I00789' ||
-                        $distrib_info['numwp_distributeur']=='I00662' ||
-                        $distrib_info['numwp_distributeur']=='I00412' ||
-                        $distrib_info['numwp_distributeur']=='I01796' ||
-                        $distrib_info['numwp_distributeur']=='I01800' ||
-                        $distrib_info['numwp_distributeur']=='I03174' ||
-                        $distrib_info['numwp_distributeur']=='I03383' ||
-                        $distrib_info['numwp_distributeur']=='I01803' ||
-                        $distrib_info['numwp_distributeur']=='I04736' ||
-                        $distrib_info['numwp_distributeur']=='I03697' ||
-                        $distrib_info['numwp_distributeur']=='I04732' ||
-                        $distrib_info['numwp_distributeur']=='I01799' ||
-                        $distrib_info['numwp_distributeur']=='I04957' ||
-                        $distrib_info['numwp_distributeur']=='I03517' ||
-                        $distrib_info['numwp_distributeur']=='I05061' ||
-                        $distrib_info['numwp_distributeur']=='I01808' ||
-                        $distrib_info['numwp_distributeur']=='I02688' ||
-                        $distrib_info['numwp_distributeur']=='I04956' ||
-                        $distrib_info['numwp_distributeur']=='I05065' ){
+                        $numwp_distributeur=='I00264' ||
+                        $numwp_distributeur=='I00789' ||
+                        $numwp_distributeur=='I00662' ||
+                        $numwp_distributeur=='I00412' ||
+                        $numwp_distributeur=='I01796' ||
+                        $numwp_distributeur=='I01800' ||
+                        $numwp_distributeur=='I03174' ||
+                        $numwp_distributeur=='I03383' ||
+                        $numwp_distributeur=='I01803' ||
+                        $numwp_distributeur=='I04736' ||
+                        $numwp_distributeur=='I03697' ||
+                        $numwp_distributeur=='I04732' ||
+                        $numwp_distributeur=='I01799' ||
+                        $numwp_distributeur=='I04957' ||
+                        $numwp_distributeur=='I03517' ||
+                        $numwp_distributeur=='I05061' ||
+                        $numwp_distributeur=='I01808' ||
+                        $numwp_distributeur=='I02688' ||
+                        $numwp_distributeur=='I04956' ||
+                        $numwp_distributeur=='I05065' ){
                         $mailRCDN= $emailVars->listes->orexad;
                 }
-                elseif( $distrib_info['numwp_distributeur']=='I01990') {
+                elseif( $numwp_distributeur=='I01990') {
                          $mailRCDN= $emailVars->listes->rs;
             } else{$mailRCDN=$maildevdistrib;}
                 $params8['destinataireMail']=$mailRCDN;
@@ -3043,48 +3043,49 @@ if($this->getRequest()->isPost()){
             $params6 = array();
             if (isset($datas['validation']) && $datas['validation'] == "fermee") {
                  $params8 = array();
-                if($distrib_info['numwp_distributeur']=='I02055' || $distrib_info['numwp_distributeur']=='I01045'){
+                 $numwp_distributeur=trim($distrib_info['numwp_distributeur']);
+                if($numwp_distributeur=='I02055' || $numwp_distributeur=='I01045'){
                 $mailRCDN= $emailVars->listes->brammer;
-                }elseif($distrib_info['numwp_distributeur']=='I03624' ||
-                        $distrib_info['numwp_distributeur']=='I00789' ||
-                        $distrib_info['numwp_distributeur']=='I05285' ||
-                        $distrib_info['numwp_distributeur']=='I03317' ||
-                        $distrib_info['numwp_distributeur']=='I02557' ||
-                        $distrib_info['numwp_distributeur']=='I00415' ||
-                        $distrib_info['numwp_distributeur']=='I00678' ||
-                        $distrib_info['numwp_distributeur']=='I04380' ||
-                        $distrib_info['numwp_distributeur']=='I03214' ||
-                        $distrib_info['numwp_distributeur']=='I02886' ||
-                        $distrib_info['numwp_distributeur']=='I03621' ||
-                        $distrib_info['numwp_distributeur']=='I02929' ||
-                        $distrib_info['numwp_distributeur']=='I02932' ||
-                        $distrib_info['numwp_distributeur']=='I03912' ||
-                        $distrib_info['numwp_distributeur']=='I05223' ||
-                        $distrib_info['numwp_distributeur']=='I02920') {
+                }elseif($numwp_distributeur=='I03624' ||
+                        $numwp_distributeur=='I00789' ||
+                        $numwp_distributeur=='I05285' ||
+                        $numwp_distributeur=='I03317' ||
+                        $numwp_distributeur=='I02557' ||
+                        $numwp_distributeur=='I00415' ||
+                        $numwp_distributeur=='I00678' ||
+                        $numwp_distributeur=='I04380' ||
+                        $numwp_distributeur=='I03214' ||
+                        $numwp_distributeur=='I02886' ||
+                        $numwp_distributeur=='I03621' ||
+                        $numwp_distributeur=='I02929' ||
+                        $numwp_distributeur=='I02932' ||
+                        $numwp_distributeur=='I03912' ||
+                        $numwp_distributeur=='I05223' ||
+                        $numwp_distributeur=='I02920') {
                      $mailRCDN= $emailVars->listes->mbedexis;
                 }elseif( 
-                        $distrib_info['numwp_distributeur']=='I00264' ||
-                        $distrib_info['numwp_distributeur']=='I00662' ||
-                        $distrib_info['numwp_distributeur']=='I00412' ||
-                        $distrib_info['numwp_distributeur']=='I01796' ||
-                        $distrib_info['numwp_distributeur']=='I01800' ||
-                        $distrib_info['numwp_distributeur']=='I03174' ||
-                        $distrib_info['numwp_distributeur']=='I03383' ||
-                        $distrib_info['numwp_distributeur']=='I01803' ||
-                        $distrib_info['numwp_distributeur']=='I04736' ||
-                        $distrib_info['numwp_distributeur']=='I03697' ||
-                        $distrib_info['numwp_distributeur']=='I04732' ||
-                        $distrib_info['numwp_distributeur']=='I01799' ||
-                        $distrib_info['numwp_distributeur']=='I04957' ||
-                        $distrib_info['numwp_distributeur']=='I03517' ||
-                        $distrib_info['numwp_distributeur']=='I05061' ||
-                        $distrib_info['numwp_distributeur']=='I01808' ||
-                        $distrib_info['numwp_distributeur']=='I02688' ||
-                        $distrib_info['numwp_distributeur']=='I04956' ||
-                        $distrib_info['numwp_distributeur']=='I05065' ){
+                        $numwp_distributeur=='I00264' ||
+                        $numwp_distributeur=='I00662' ||
+                        $numwp_distributeur=='I00412' ||
+                        $numwp_distributeur=='I01796' ||
+                        $numwp_distributeur=='I01800' ||
+                        $numwp_distributeur=='I03174' ||
+                        $numwp_distributeur=='I03383' ||
+                        $numwp_distributeur=='I01803' ||
+                        $numwp_distributeur=='I04736' ||
+                        $numwp_distributeur=='I03697' ||
+                        $numwp_distributeur=='I04732' ||
+                        $numwp_distributeur=='I01799' ||
+                        $numwp_distributeur=='I04957' ||
+                        $numwp_distributeur=='I03517' ||
+                        $numwp_distributeur=='I05061' ||
+                        $numwp_distributeur=='I01808' ||
+                        $numwp_distributeur=='I02688' ||
+                        $numwp_distributeur=='I04956' ||
+                        $numwp_distributeur=='I05065' ){
                         $mailRCDN= $emailVars->listes->orexad;
                 }
-                elseif( $distrib_info['numwp_distributeur']=='I01990') {
+                elseif( $numwp_distributeur=='I01990') {
                          $mailRCDN= $emailVars->listes->rs;
             } else{$mailRCDN=$maildevdistrib;}
                 $params8['destinataireMail']=$mailRCDN;
