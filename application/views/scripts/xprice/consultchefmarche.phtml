@@ -60,19 +60,19 @@ $this->headScript()->appendFile('/js/controllers/xprice/affiche_masque_commentai
             <table>
                 <tr>
                     <td>Nom:</td>
-                    <td><?php echo $this->info_client['nom_client']; ?></td>
+                    <td><?php echo $this->info_client[0]['nom_client']; ?></td>
                 </tr>
                 <tr>
                     <td>User Workplace:</td>
-                    <td><?php echo $this->info_client['numwp_client']; ?></td>
+                    <td><?php echo $this->info_client[0]['numwp_client']; ?></td>
                 </tr>
                 <tr>
                     <td>Projet industrie:</td>
-                    <td><?php echo $this->nom_industrie['nom_industry'] ?></td>
+                    <td><?php echo $this->nom_industrie[0]['nom_industry'] ?></td>
                 </tr>
                 <tr>
                     <td>Potentiel:</td>
-                    <td><?php echo $this->info_client['potentiel']; ?></td>
+                    <td><?php echo $this->info_client[0]['potentiel']; ?></td>
                 </tr>
             </table>
         </fieldset>
