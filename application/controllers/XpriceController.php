@@ -1319,7 +1319,22 @@ elseif($mailServiceClients[0]['mail_service_client']== 'export'){
                     case ($destIndustry > 137 && $destIndustry < 272 ):
                         $destinataireMail2 = $emailVars->listes->electronique;
                         break;
-                    case ($destIndustry > 271 && $destIndustry < 314 ):
+                    case ($destIndustry > 271 && $destIndustry < 281 ):
+                        $destinataireMail2 = $emailVars->listes->foodindustries1;
+                        break;
+                    case ($destIndustry > 280 && $destIndustry < 291 ):
+                        $destinataireMail2 = $emailVars->listes->foodindustries;
+                        break;
+                        case ($destIndustry > 290 && $destIndustry < 295 ):
+                        $destinataireMail2 = $emailVars->listes->foodindustries1;
+                        break;
+                    case ($destIndustry > 294 && $destIndustry < 304 ):
+                        $destinataireMail2 = $emailVars->listes->foodindustries;
+                        break;
+                    case ($destIndustry > 303 && $destIndustry < 309 ):
+                        $destinataireMail2 = $emailVars->listes->foodindustries1;
+                        break;
+                    case ($destIndustry > 308 && $destIndustry < 314 ):  
                         $destinataireMail2 = $emailVars->listes->foodindustries;
                         break;
                     case ($destIndustry > 313 && $destIndustry <= 415 ):
