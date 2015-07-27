@@ -224,7 +224,7 @@ JOIN validations_demande_xdistrib ON validations_demande_xdistrib.id_demande_xdi
                 . " demande_xdistrib.date_demande_xdistrib,"
                 . " validations_demande_xdistrib.etat_validation, "
                 . " validations_demande_xdistrib.nom_validation, "
-                . " validations_demande_xdistrib.id "
+                . " validations_demande_xdistrib.id, "
                 . " distributeurs.nom_distributeur "
                 . " from demande_xdistrib "
                 . "join distributeurs on distributeurs.num_workplace_demande_xdistrib = xdistrib.num_workplace_demande_xdistrib"
