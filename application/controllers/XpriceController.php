@@ -715,7 +715,7 @@ if($user->id_fonction == 3 || $user->id_fonction==1){
         $this->view->info_user = $info_user;
         $infos_client = new Application_Model_DbTable_Clients();
         $info_client = $infos_client->getClientnumwp($numwp_client);
-        echo '<pre>',var_export($info_client),'</pre>';
+       // echo '<pre>',var_export($info_client),'</pre>';
         $this->view->info_client = $info_client[0];
         $noms_industrie = new Application_Model_DbTable_Industry();
         $nom_industrie = $noms_industrie->getIndustry($info_client[0]['id_industry']);
@@ -2244,7 +2244,7 @@ if($mailServiceClients[0]['mail_service_client']=='regionNord'){
         }
         if ($this->getRequest()->isPost()) {
             $date_validation_supply = date("Y-m-d H:i:s");
-            echo $date_validation_supply;
+            //echo $date_validation_supply;
             $this->view->date_validation_supply = $date_validation_supply;
             $etat = "validée";
             $nom_validationsupply = "supply";
@@ -2843,7 +2843,7 @@ if($mailServiceClients[0]['mail_service_client']=='regionNord'){
         $this->view->info_user = $info_user;
         $infos_client = new Application_Model_DbTable_Clients();
         $info_client = $infos_client->getClientnumwp($info_demande_xprice['numwp_client']);
-        var_dump($info_client);
+       // var_dump($info_client);
         $this->view->info_client = $info_client;
         $noms_industrie = new Application_Model_DbTable_Industry();
         $nom_industrie = $noms_industrie->getIndustry($info_client[0]['id_industry']);
