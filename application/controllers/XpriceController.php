@@ -432,14 +432,23 @@ if($user->id_fonction == 3 || $user->id_fonction==1){
                     case ($destIndustry > 0 && $destIndustry < 14 ):
                         $destinataireMail4 = $emailVars->listes->carIndustries1;
                         break;
-                    case ($destIndustry =14 ):
+                    case ($destIndustry =14):
                         $destinataireMail4 = $emailVars->listes->carIndustries2;
                         break;
-                    case ($destIndustry =15 || $destIndustry=16 || $destIndustry=18 || $destIndustry=19):
+                    case ($destIndustry =15):
                         $destinataireMail4 = $emailVars->listes->carIndustries1;
                         break;
-                    case ($destIndustry =17 ):
+                     case ( $destIndustry=16):
+                        $destinataireMail4 = $emailVars->listes->carIndustries1;
+                        break;
+                    case ($destIndustry =17):
                         $destinataireMail4 = $emailVars->listes->carIndustries2;
+                        break;
+                     case ($destIndustry=18):
+                        $destinataireMail4 = $emailVars->listes->carIndustries1;
+                        break;
+                     case ($destIndustry=19):
+                        $destinataireMail4 = $emailVars->listes->carIndustries1;
                         break;
                     case ($destIndustry > 19 && $destIndustry < 59):
                         $destinataireMail4 = $emailVars->listes->carIndustries2;
@@ -1332,28 +1341,37 @@ elseif($mailServiceClients[0]['mail_service_client']== 'export'){
                     }
                 switch ($destIndustry) {
                    case ($destIndustry > 0 && $destIndustry < 14 ):
-                        $destinataireMail4 = $emailVars->listes->carIndustries1;
+                        $destinataireMail2 = $emailVars->listes->carIndustries1;
                         break;
                     case ($destIndustry =14 ):
-                        $destinataireMail4 = $emailVars->listes->carIndustries2;
+                        $destinataireMail2 = $emailVars->listes->carIndustries2;
                         break;
-                    case ($destIndustry =15 || $destIndustry=16 || $destIndustry=18 || $destIndustry=19):
-                        $destinataireMail4 = $emailVars->listes->carIndustries1;
+                    case ($destIndustry =15):
+                        $destinataireMail2 = $emailVars->listes->carIndustries1;
+                        break;
+                    case ( $destIndustry=16):
+                        $destinataireMail2 = $emailVars->listes->carIndustries1;
                         break;
                     case ($destIndustry =17 ):
-                        $destinataireMail4 = $emailVars->listes->carIndustries2;
+                        $destinataireMail2 = $emailVars->listes->carIndustries2;
+                        break;
+                    case ($destIndustry=18):
+                        $destinataireMail2 = $emailVars->listes->carIndustries1;
+                        break;
+                    case ($destIndustry=19):
+                        $destinataireMail2 = $emailVars->listes->carIndustries1;
                         break;
                     case ($destIndustry > 19 && $destIndustry < 59):
-                        $destinataireMail4 = $emailVars->listes->carIndustries2;
+                        $destinataireMail2 = $emailVars->listes->carIndustries2;
                         break;
                     case ($destIndustry =59 ):
-                        $destinataireMail4 = $emailVars->listes->carIndustries1;
+                        $destinataireMail2 = $emailVars->listes->carIndustries1;
                         break;
                     case ($destIndustry > 59 && $destIndustry < 73):
-                        $destinataireMail4 = $emailVars->listes->carIndustries2;
+                        $destinataireMail2 = $emailVars->listes->carIndustries2;
                         break;
                     case ($destIndustry > 72 && $destIndustry < 77 ):
-                        $destinataireMail4 = $emailVars->listes->carIndustries1;
+                        $destinataireMail2 = $emailVars->listes->carIndustries1;
                         break;
                     case ($destIndustry > 76 && $destIndustry < 138 ):
                         $destinataireMail2 = $emailVars->listes->lifeandscience;
@@ -1805,28 +1823,37 @@ if($mailServiceClients[0]['mail_service_client']=='regionNord'){
                     }
                     switch ($destIndustry) {
                     case ($destIndustry > 0 && $destIndustry < 14 ):
-                        $destinataireMail4 = $emailVars->listes->carIndustries1;
+                        $destinataireMail2 = $emailVars->listes->carIndustries1;
                         break;
                     case ($destIndustry =14 ):
-                        $destinataireMail4 = $emailVars->listes->carIndustries2;
+                        $destinataireMail2 = $emailVars->listes->carIndustries2;
                         break;
-                    case ($destIndustry =15 || $destIndustry=16 || $destIndustry=18 || $destIndustry=19):
-                        $destinataireMail4 = $emailVars->listes->carIndustries1;
+                    case ($destIndustry =15 ):
+                        $destinataireMail2 = $emailVars->listes->carIndustries1;
+                        break;
+                    case ( $destIndustry=16 ):
+                        $destinataireMail2 = $emailVars->listes->carIndustries1;
                         break;
                     case ($destIndustry =17 ):
-                        $destinataireMail4 = $emailVars->listes->carIndustries2;
+                        $destinataireMail2 = $emailVars->listes->carIndustries2;
+                        break;
+                    case ($destIndustry=18 ):
+                        $destinataireMail2 = $emailVars->listes->carIndustries1;
+                        break;
+                    case ( $destIndustry=19):
+                        $destinataireMail2 = $emailVars->listes->carIndustries1;
                         break;
                     case ($destIndustry > 19 && $destIndustry < 59):
-                        $destinataireMail4 = $emailVars->listes->carIndustries2;
+                         $destinataireMail2 = $emailVars->listes->carIndustries2;
                         break;
                     case ($destIndustry =59 ):
-                        $destinataireMail4 = $emailVars->listes->carIndustries1;
+                         $destinataireMail2 = $emailVars->listes->carIndustries1;
                         break;
                     case ($destIndustry > 59 && $destIndustry < 73):
-                        $destinataireMail4 = $emailVars->listes->carIndustries2;
+                         $destinataireMail2 = $emailVars->listes->carIndustries2;
                         break;
                     case ($destIndustry > 72 && $destIndustry < 77 ):
-                        $destinataireMail4 = $emailVars->listes->carIndustries1;
+                         $destinataireMail2 = $emailVars->listes->carIndustries1;
                         break;
                     case ($destIndustry > 76 && $destIndustry < 138 ):
                         $destinataireMail2 = $emailVars->listes->lifeandscience;
