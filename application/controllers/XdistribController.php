@@ -1410,16 +1410,16 @@ if($this->getRequest()->isPost()){
                          $destinataireMail2 = $emailVars->listes->carIndustries1;
                         break;
                     case ($destIndustry > 76 && $destIndustry < 138 ):
-                        $destinataireMail2 = $emailVars->listes->lifeandscience;
+                        $destinataireMail2 = $emailVars->listes->LifeandScience;
                         break;
                     case ($destIndustry > 137 && $destIndustry < 272 ):
-                        $destinataireMail2 = $emailVars->listes->electronique;
+                        $destinataireMail2 = $emailVars->listes->Electronique;
                         break;
                     case ($destIndustry > 271 && $destIndustry < 314 ):
-                        $destinataireMail2 = $emailVars->listes->foodindustries;
+                        $destinataireMail2 = $emailVars->listes->foodIndustries;
                         break;
                     case ($destIndustry > 313 && $destIndustry <= 415 ):
-                        $destinataireMail2 = $emailVars->listes->environnementenergie;
+                        $destinataireMail2 = $emailVars->listes->environnementEnergie;
                         break;
                 }
                 $params['url'] = "http://{$_SERVER['SERVER_NAME']}/xdistrib/consultchefmarche/numwp/{$numwp}";

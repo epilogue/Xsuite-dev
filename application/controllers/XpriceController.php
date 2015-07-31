@@ -1374,31 +1374,31 @@ elseif($mailServiceClients[0]['mail_service_client']== 'export'){
                         $destinataireMail2 = $emailVars->listes->carIndustries1;
                         break;
                     case ($destIndustry > 76 && $destIndustry < 138 ):
-                        $destinataireMail2 = $emailVars->listes->lifeandscience;
+                        $destinataireMail2 = $emailVars->listes->LifeandScience;
                         break;
                     case ($destIndustry > 137 && $destIndustry < 272 ):
-                        $destinataireMail2 = $emailVars->listes->electronique;
+                        $destinataireMail2 = $emailVars->listes->Electronique;
                         break;
                     case ($destIndustry > 271 && $destIndustry < 281 ):
-                        $destinataireMail2 = $emailVars->listes->foodindustries1;
+                        $destinataireMail2 = $emailVars->listes->foodIndustries1;
                         break;
                     case ($destIndustry > 280 && $destIndustry < 291 ):
-                        $destinataireMail2 = $emailVars->listes->foodindustries;
+                        $destinataireMail2 = $emailVars->listes->foodIndustries;
                         break;
                         case ($destIndustry > 290 && $destIndustry < 295 ):
-                        $destinataireMail2 = $emailVars->listes->foodindustries1;
+                        $destinataireMail2 = $emailVars->listes->foodIndustries1;
                         break;
                     case ($destIndustry > 294 && $destIndustry < 304 ):
-                        $destinataireMail2 = $emailVars->listes->foodindustries;
+                        $destinataireMail2 = $emailVars->listes->foodIndustries;
                         break;
                     case ($destIndustry > 303 && $destIndustry < 309 ):
-                        $destinataireMail2 = $emailVars->listes->foodindustries1;
+                        $destinataireMail2 = $emailVars->listes->foodIndustries1;
                         break;
                     case ($destIndustry > 308 && $destIndustry < 314 ):  
-                        $destinataireMail2 = $emailVars->listes->foodindustries;
+                        $destinataireMail2 = $emailVars->listes->foodIndustries;
                         break;
                     case ($destIndustry > 313 && $destIndustry <= 415 ):
-                        $destinataireMail2 = $emailVars->listes->environnementenergie;
+                        $destinataireMail2 = $emailVars->listes->environnementEnergie;
                         break;
                 }
                 $params6['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/consult/numwp/{$numwp}";
@@ -1828,44 +1828,59 @@ if($mailServiceClients[0]['mail_service_client']=='regionNord'){
                     case ($destIndustry =14 ):
                         $destinataireMail2 = $emailVars->listes->carIndustries2;
                         break;
-                    case ($destIndustry =15 ):
+                    case ($destIndustry =15):
                         $destinataireMail2 = $emailVars->listes->carIndustries1;
                         break;
-                    case ( $destIndustry=16 ):
+                    case ( $destIndustry=16):
                         $destinataireMail2 = $emailVars->listes->carIndustries1;
                         break;
                     case ($destIndustry =17 ):
                         $destinataireMail2 = $emailVars->listes->carIndustries2;
                         break;
-                    case ($destIndustry=18 ):
+                    case ($destIndustry=18):
                         $destinataireMail2 = $emailVars->listes->carIndustries1;
                         break;
-                    case ( $destIndustry=19):
+                    case ($destIndustry=19):
                         $destinataireMail2 = $emailVars->listes->carIndustries1;
                         break;
                     case ($destIndustry > 19 && $destIndustry < 59):
-                         $destinataireMail2 = $emailVars->listes->carIndustries2;
+                        $destinataireMail2 = $emailVars->listes->carIndustries2;
                         break;
                     case ($destIndustry =59 ):
-                         $destinataireMail2 = $emailVars->listes->carIndustries1;
+                        $destinataireMail2 = $emailVars->listes->carIndustries1;
                         break;
                     case ($destIndustry > 59 && $destIndustry < 73):
-                         $destinataireMail2 = $emailVars->listes->carIndustries2;
+                        $destinataireMail2 = $emailVars->listes->carIndustries2;
                         break;
                     case ($destIndustry > 72 && $destIndustry < 77 ):
-                         $destinataireMail2 = $emailVars->listes->carIndustries1;
+                        $destinataireMail2 = $emailVars->listes->carIndustries1;
                         break;
                     case ($destIndustry > 76 && $destIndustry < 138 ):
-                        $destinataireMail2 = $emailVars->listes->lifeandscience;
+                        $destinataireMail2 = $emailVars->listes->lifeandScience;
                         break;
                     case ($destIndustry > 137 && $destIndustry < 272 ):
-                        $destinataireMail2 = $emailVars->listes->electronique;
+                        $destinataireMail2 = $emailVars->listes->Electronique;
                         break;
-                    case ($destIndustry > 271 && $destIndustry < 314 ):
-                        $destinataireMail2 = $emailVars->listes->foodindustries;
+                    case ($destIndustry > 271 && $destIndustry < 281 ):
+                        $destinataireMail2 = $emailVars->listes->foodIndustries1;
+                        break;
+                    case ($destIndustry > 280 && $destIndustry < 291 ):
+                        $destinataireMail2 = $emailVars->listes->foodIndustries;
+                        break;
+                        case ($destIndustry > 290 && $destIndustry < 295 ):
+                        $destinataireMail2 = $emailVars->listes->foodIndustries1;
+                        break;
+                    case ($destIndustry > 294 && $destIndustry < 304 ):
+                        $destinataireMail2 = $emailVars->listes->foodIndustries;
+                        break;
+                    case ($destIndustry > 303 && $destIndustry < 309 ):
+                        $destinataireMail2 = $emailVars->listes->foodIndustries1;
+                        break;
+                    case ($destIndustry > 308 && $destIndustry < 314 ):  
+                        $destinataireMail2 = $emailVars->listes->foodIndustries;
                         break;
                     case ($destIndustry > 313 && $destIndustry <= 415 ):
-                        $destinataireMail2 = $emailVars->listes->environnementenergie;
+                        $destinataireMail2 = $emailVars->listes->environnementEnergie;
                         break;
                 }
                 $params4['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/consult/numwp/{$numwp}";
