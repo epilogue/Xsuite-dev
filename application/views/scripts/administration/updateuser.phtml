@@ -1,0 +1,15 @@
+
+<script>
+     $(function() {
+    var maliste=<?php echo json_encode($malisteUser); ?>
+    $( "#user" ).autocomplete({
+      source: maliste
+    });
+  });
+</script>
+
+ 
+<div class="ui-widget">
+  <label for="user">Utilisateur: </label>
+  <input id="user">
+</div>

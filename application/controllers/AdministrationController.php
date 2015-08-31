@@ -59,7 +59,9 @@ class AdministrationController extends Zend_Controller_Action
                 }  
     }
     public function updateuserAction(){
-    
+    $malisteUsers=new Application_Model_DbTable_Users;
+        $malisteUser=$malisteUsers->rechercheUserCompletion(); 
+        $this->view->malisteUser = $malisteUser;
     }
     public function deleteuserAction(){
     
@@ -117,8 +119,6 @@ class AdministrationController extends Zend_Controller_Action
     }
     public function rechercheNomCompletion(){
         
-        $malisteUsers=new Application_Model_DbTable_Users;
-        $malisteUser=$malisteUsers->rechercheUserCompletion();
         
     }
 }
