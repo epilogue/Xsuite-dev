@@ -40,15 +40,14 @@ class AdministrationController extends Zend_Controller_Action
     
 
         if ($this->getRequest()->isPost()) {
-            $formData = $this->getRequest()->getPost();           
-               echo  '<pre>',  var_export($formData),'<pre>'; 
+            $formData = $this->getRequest()->getPost();
                if($formData['fonction'] == 1 | $formData['fonction'] ==2 | $formData['fonction'] ==14 | $formData['fonction'] ==33){ $niveau ="niveau1";}
                elseif ($formData['fonction'] == 10) { $niveau="niveau2";}
                elseif ($formData['fonction'] ==6 | $formData['fonction'] ==26 | $formData['fonction'] ==27 | $formData['fonction'] ==35 | $formData['fonction'] ==37 | $formData['fonction'] ==30 | $formData['fonction'] ==29 | $formData['fonction'] ==34) {$niveau="niveau3";}
                elseif($formData['fonction'] ==32 | $formData['fonction'] ==23){ $niveau="niveau4";}
                elseif($formData['fonction'] == 5 | $formData['fonction'] ==13 | $formData['fonction'] ==38){ $niveau="niveau5";}
                elseif ($formData['fonction'] == 39) { $niveau="niveau6";}
-               echo $niveau;exit();
+               
                 $users = new Application_Model_DbTable_Users();
         $user = $users->createUser($formData['nom'], $formData['prenom'], $formData['tel'], $formData['email'], $formData['matricule'], $formData['userworkplace'],$formData['fonction'],$formData['zone'],$formData['holon'], $niveau);
                 $this->_helper->redirector('index');
