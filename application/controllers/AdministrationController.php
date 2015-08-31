@@ -115,5 +115,11 @@ class AdministrationController extends Zend_Controller_Action
     public function indexrequeteAction(){
         
     }
+    public function rechercheNomCompletion(){
+        
+        $malisteUsers=new Application_Model_DbTable_Users;
+        $malisteUser=$malisteUsers->rechercheUserCompletion();
+        
+    }
 }
 

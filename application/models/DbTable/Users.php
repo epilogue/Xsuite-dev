@@ -152,4 +152,14 @@ class Application_Model_DbTable_Users extends Zend_Db_Table_Abstract {
             return $rest;
         }
     }
+    public function rechercheUserCompletion() {
+       $sql="select nom_user , prenom_user from users";
+        $res = $this->getAdapter()->query($sql);
+        $rest=$res->fetchAll();
+        if (!$rest) {
+            return null;
+        } else {
+            return $rest;
+        }
+    }
 }

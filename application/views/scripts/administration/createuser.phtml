@@ -35,7 +35,7 @@
                <tr>
                    <td><select  name="zone" ><?php foreach($this->listZone as $value){; ?><option value="<?php echo $value['id_zone'];?>"><?php echo $value['nom_zone'];?></option><?php }; ?></select></td>
                    <td><select  name="fonction" ><?php foreach($this->listFonction as $value){; ?><option value="<?php echo $value['id_fonction'];?>"><?php echo $value['nom_fonction'].'('.$value['description_fonction'].')';?></option><?php }; ?></select></td>
-                   <td><select  name="holon" ></select></td>
+                   <td><select  name="holon" ><?php foreach($this->listHolon as $value){; ?><option value="<?php echo $value['id_holon'];?>"><?php echo $value['nom_holon'];?></option><?php }; ?></select></td>
                </tr>
            </table>
                 <input id="creeruser" class="submit" type="submit" value="créer">
