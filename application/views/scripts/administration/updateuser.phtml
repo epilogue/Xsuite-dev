@@ -1,7 +1,7 @@
 
 <script>
      $(function() {
-    var maliste=<?php echo json_encode($malisteUser); ?>
+    var maliste=<?php echo json_encode($this->malisteUser); ?>
     $( "#user" ).autocomplete({
       source: maliste
     });
