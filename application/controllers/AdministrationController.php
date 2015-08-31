@@ -42,12 +42,19 @@ class AdministrationController extends Zend_Controller_Action
         if ($this->getRequest()->isPost()) {
             $formData = $this->getRequest()->getPost();
             if ($form->isValid($formData)) {
+               echo  '<pre>',  var_export($formData),'<pre>'; exit();
                 $users = new Application_Model_DbTable_Users();
-                $user = $users->createFromForm($form);
+                $user = $users->createUser($nom, $prenom, $tel, $email, $matricule, $numwp_user, $id_fonction, $id_zone, $id_holon, $niveau);
                 $this->_helper->redirector('index');
-            } else {
-                $form->populate($formData);
-            }
+                $flashMessenger = $this->_helper->getHelper('FlashMessenger');
+                    $message = "Votre demande a bien été enregistrée.";
+                    $flashMessenger->addMessage($message);
+                    $redirector = $this->_helper->getHelper('Redirector');
+                    $redirector->gotoSimple('index', 'xprice');
+                } else {
+                    $form->populate($formData);
+                }
+           
         }
     }
     public function updateuserAction(){
