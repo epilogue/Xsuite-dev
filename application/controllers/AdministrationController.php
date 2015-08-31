@@ -50,9 +50,7 @@ class AdministrationController extends Zend_Controller_Action
                     $flashMessenger->addMessage($message);
                     $redirector = $this->_helper->getHelper('Redirector');
                     $redirector->gotoSimple('index', 'xprice');
-                } else {
-                    $form->populate($formData);
-                }   
+                }  
     }
     public function updateuserAction(){
     
