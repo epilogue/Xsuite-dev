@@ -11,7 +11,7 @@ $this->headScript()->appendFile('/js/jquery-ui-1.10.4.min.js');
   });
 </script>
 
- 
+ <?php echo json_encode($this->malisteUser); ?>
 <div class="ui-widget">
   <label for="user">Utilisateur: </label>
   <input id="user">
