@@ -40,8 +40,7 @@ class AdministrationController extends Zend_Controller_Action
     
 
         if ($this->getRequest()->isPost()) {
-            $formData = $this->getRequest()->getPost();
-            if ($form->isValid($formData)) {
+            $formData = $this->getRequest()->getPost();           
                echo  '<pre>',  var_export($formData),'<pre>'; exit();
                 $users = new Application_Model_DbTable_Users();
                 $user = $users->createUser($nom, $prenom, $tel, $email, $matricule, $numwp_user, $id_fonction, $id_zone, $id_holon, $niveau);
@@ -53,9 +52,7 @@ class AdministrationController extends Zend_Controller_Action
                     $redirector->gotoSimple('index', 'xprice');
                 } else {
                     $form->populate($formData);
-                }
-           
-        }
+                }   
     }
     public function updateuserAction(){
     
