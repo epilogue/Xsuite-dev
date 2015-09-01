@@ -23,7 +23,9 @@ class AdministrationController extends Zend_Controller_Action
         // action body
     }
     public function indexuserAction(){
-        
+        $malisteUsers=new Application_Model_DbTable_Users;
+        $malisteUser=$malisteUsers->rechercheUserCompletion(); 
+        $this->view->malisteUser = $malisteUser;
     }
     public function createuserAction(){
     
