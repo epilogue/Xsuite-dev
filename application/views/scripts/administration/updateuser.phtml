@@ -1,18 +1,11 @@
-<?php 
-$this->headScript()->appendFile('/js/jquery-1.10.2.min.js');
-$this->headScript()->appendFile('/js/jquery-ui-1.10.4.min.js');
-?>
-<script>
-     $(function() {
-    var maliste=<?php echo json_encode($this->malisteUser); ?>
-    $( "#user" ).autocomplete({
-      source: maliste
-    });
-  });
-</script>
-
- <?php echo json_encode($this->malisteUser); ?>
-<div class="ui-widget">
-  <label for="user">Utilisateur: </label>
-  <input id="user">
+<div>
+    <table>
+        <?php foreach($this->malisteUser as $key=>$users){ ?>
+        <tr>
+            <td><?php echo $users['nom_user'] ?></td>
+            <td><?php echo $users['prenom_user'] ?><input hidden="hidden" name="user" value="<?php echo $users['id_user']?>"/></td>
+        <td><a href="<?php echo $this->url(array("controller"=>"administration","action"=>"consult","user"=>$users['id_user']));?>" <button class="retour" id="consultation-<?php echo $k; ?>">consultation</button></a></td>
+            <td><?php ?></td>
+    </tr><?php } ?>
+    </table>
 </div>
