@@ -130,6 +130,7 @@ and open the template in the editor.
 }
 .adminupdate{
     height: auto;
-    width: 800px;
+    width: 300px;
     margin-left: 250px;
+    margin-top: 30px;
 }
