@@ -109,3 +109,16 @@ and open the template in the editor.
     margin-left: 40%;
     margin-right: auto;
 }
+createuserdiv{
+    height: 100px;
+    width: 800px;
+    margin-left: 250px;
+}
+createusera{
+    height:40px;
+    color: white;
+   margin-left: 300px;
+   width: 200px;
+   border-radius: 10px;
+    background-color: #2A60AA;
+}
