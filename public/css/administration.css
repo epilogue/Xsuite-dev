@@ -122,3 +122,8 @@ and open the template in the editor.
    border-radius: 10px;
     background-color: #2A60AA;
 }
+#modifconsultdiv{
+    height: auto;
+    width: 800px;
+    margin-left: 250px;
+}
