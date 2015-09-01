@@ -68,9 +68,21 @@ class AdministrationController extends Zend_Controller_Action
     }
     public function consultuserAction(){
      $id_user = $this->getRequest()->getParam('user', null);
+     $utilisateurs = new Application_Model_DbTable_Users();
+     $utilisateur = $utilisateurs->getUser($id_user);
+     $this->view->utilisateur = $utilisateur;
+     $holons=new Application_Model_DbTable_Holons();
+     $holon=$holons->getHolon($this->utilisateur['id_holon']);
+     $this->view->holon = $holon;
+     $fonctions=new Application_Model_DbTable_Fonctions();
+     $fonction=$fonctions->getFonction($this->utilisateur['id_fonction']);
+     $this->view->fonction = $fonction;
+     $zones=new Application_Model_DbTable_Zones();
+     $zone=$zones->getZone($this->utilisateur['id_zone']);
+     $this->view->zone = $zone;
     }
     public function indexfonctionAction(){
-        
+     
     }
     public function createfonctionAction(){
     
