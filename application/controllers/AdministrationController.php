@@ -61,18 +61,20 @@ class AdministrationController extends Zend_Controller_Action
                 }  
     }
     public function updateuserAction(){
-    $malisteUsers=new Application_Model_DbTable_Users;
-        $malisteUser=$malisteUsers->rechercheUserCompletion(); 
-        $this->view->malisteUser = $malisteUser;
+     $id_user = $this->getRequest()->getParam('user', null);
+     $utilisateurs = new Application_Model_DbTable_Users();
+     $utilisateur = $utilisateurs->getUser($id_user);
+     $this->view->utilisateur = $utilisateur;
     }
-    public function deleteuserAction(){
-    
+    public function consultuserAction(){
+     $id_user = $this->getRequest()->getParam('user', null);
     }
     public function indexfonctionAction(){
         
     }
     public function createfonctionAction(){
     
+     
     }
     public function updatefonctionAction(){
     
