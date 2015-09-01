@@ -121,6 +121,7 @@ and open the template in the editor.
    width: 200px;
    border-radius: 10px;
     background-color: #2A60AA;
+    font-family: verdana,arial;
 }
 #modifconsultdiv{
     height: auto;
