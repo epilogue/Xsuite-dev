@@ -41,78 +41,54 @@ echo $this->doctype();
         <div id="Content">
             <?php
             $autentificated = $this->loggedInAs();
+            
             if ($autentificated == '') {
                 ?>
-                <div id="menu_admin" hidden="hidden">
+                <div id="menu_haut" hidden="hidden">
                 </div><?php } else { ?>
-                     <div id="menu_admin" >
-                         <div id="menu_gauche">
-                             <ul class="niveau1">
-                                  <li >Utilisateurs
-                                          <ul  class="niveau2">
-                                              <li>
-                                              <a class="lienblack" href="<?php echo $this->url(array('controller' => 'administration', 'action' => 'createuser'), null, true); ?>">Création</a>
-                                              </li>
-                                              <li>
-                                                  <a class="lienblack" href="<?php echo $this->url(array('controller' => 'administration', 'action' => 'updateuser'), null, true); ?>">Modification</a>
-                                              </li>
-                                          </ul>
-                                  </li>
-                             </ul>
-                             <ul>
-                                 <li>
-                                     Industries
-                                     <ul  class="niveau2">
-                                          <li>
-                                              <a class="lienblack" href="<?php echo $this->url(array('controller' => 'administration', 'action' => 'createindustrie'), null, true); ?>">Création</a>
-                                          </li>
-                                          <li>
-                                              <a class="lienblack" href="<?php echo $this->url(array('controller' => 'administration', 'action' => 'updateindustrie'), null, true); ?>">Modification</a>
-                                          </li>
-                                      </ul>
-                                 </li>
-                             </ul>
-                             <ul>
-                                 <li>
-                                     Holons
-                                     <ul  class="niveau2">
-                                          <li>
-                                              <a class="lienblack" href="<?php echo $this->url(array('controller' => 'administration', 'action' => 'createholon'), null, true); ?>">Création</a>
-                                          </li>
-                                          <li>
-                                              <a class="lienblack" href="<?php echo $this->url(array('controller' => 'administration', 'action' => 'updateholon'), null, true); ?>">Modification</a>
-                                          </li>
-                                      </ul>
-                                 </li>
-                             </ul>
-                             <ul>
-                                 <li>
-                                     Zones
-                                     <ul  class="niveau2">
-                                          <li>
-                                              <a class="lienblack" href="<?php echo $this->url(array('controller' => 'administration', 'action' => 'createzone'), null, true); ?>">Création</a>
-                                          </li>
-                                          <li>
-                                              <a class="lienblack" href="<?php echo $this->url(array('controller' => 'administration', 'action' => 'updatezone'), null, true); ?>">Modification</a>
-                                          </li>
-                                      </ul>
-                                 </li>
-                             </ul>
-                             <ul>
-                                 <li>
-                                     Fonctions
-                                     <ul class="niveau2">
-                                          <li>
-                                              <a class="lienblack" href="<?php echo $this->url(array('controller' => 'administration', 'action' => 'createfonction'), null, true); ?>">Création</a>
-                                          </li>
-                                          <li>
-                                              <a class="lienblack" href="<?php echo $this->url(array('controller' => 'administration', 'action' => 'updatefonction'), null, true); ?>">Modification</a>
-                                          </li>
-                                      </ul>
-                                 </li>
-                              </ul>
-                         </div>
-                     </div><?php } ?>
+                <div id="menu" >
+                    <ul id="menu_haut">
+                        <li><a href="<?php echo $this->url(array('controller' => 'administration', 'action' => 'indexuser'), null, true); ?>">Utilisateurs</a>
+                            <ul>
+                                <li><a href="<?php echo $this->url(array('controller' => 'administration', 'action' => 'createuser'), null, true); ?>">Cr&eacute;ation</a></li>
+                                <li><a href="<?php echo $this->url(array('controller' => 'administration', 'action' => 'updateuser'), null, true); ?>">Consultation</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="<?php echo $this->url(array('controller' => 'administration', 'action' => 'indexindustrie'), null, true); ?>">Industries</a>
+                            <ul>
+                                <li><a href="<?php echo $this->url(array('controller' => 'administration', 'action' => 'createindustrie'), null, true); ?>">Cr&eacute;ation</a></li>
+                                <li><a href="<?php echo $this->url(array('controller' => 'administration', 'action' => 'updateindustrie'), null, true); ?>">Consultation</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="<?php echo $this->url(array('controller' => 'administration', 'action' => 'indexholon'), null, true); ?>">Xsimple</a>
+                            <ul>
+                                <li><a href="<?php echo $this->url(array('controller' => 'administration', 'action' => 'createholon'), null, true); ?>">Cr&eacute;ation</a></li>
+                                <li><a href="<?php echo $this->url(array('controller' => 'administration', 'action' => 'updateholon'), null, true); ?>">Consultation</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="<?php echo $this->url(array('controller' => 'administration', 'action' => 'indexfonction'), null, true); ?>">Xprev</a>
+                            <ul>
+                                <li><a href="<?php echo $this->url(array('controller' => 'administration', 'action' => 'createfonction'), null, true); ?>">Cr&eacute;ation</a></li>
+                                <li><a href="<?php echo $this->url(array('controller' => 'administration', 'action' => 'updatefonction'), null, true); ?>">Consultation</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="<?php echo $this->url(array('controller' => 'administration', 'action' => 'indexzone'), null, true); ?>">Xpertise</a>
+                            <ul>
+                                <li><a href="<?php echo $this->url(array('controller' => 'administration', 'action' => 'createzone'), null, true); ?>">Cr&eacute;ation</a></li>
+                                <li><a href="<?php echo $this->url(array('controller' => 'administration', 'action' => 'updatezone'), null, true); ?>">Consultation</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="<?php echo $this->url(array('controller' => 'xrfs', 'action' => 'index'), null, true); ?>">XRFS</a>
+                            <ul>
+                                <li><a>Création</a></li>
+                                <li><a>Consultation</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="<?php echo $this->url(array('controller' => 'index', 'action' => 'index'), null, true); ?>">Accueil</a>
+                        </li>
+                    </ul>
+                </div><?php } ?>
             <div id="center">
                 <?php if (count($this->messages)) : ?>
                     <ul id="messages" class="message">
