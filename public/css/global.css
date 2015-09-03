@@ -527,7 +527,7 @@ h3{
 }
 
 #userIndex a:hover, a:visited, a:link{
-    color: black !important;
+    color: black ;
 }
 /*formulaire consultation , creation xprice xdistrib*/
 #tracking_number_demande_xdistrib-label,#tracking_number_demande_xprice-label{
