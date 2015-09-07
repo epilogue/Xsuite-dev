@@ -9,7 +9,10 @@ $pdf2 = new FPDI();
 
 // premier template
 // set the source file
-$pdf2->setSourceFile(APPLICATION_PATH. "/../docs/template_Avenant_header.pdf");
+if($this->info_distrib['numwp_distributeur']=="I02055"){
+    $pdf2->setSourceFile(APPLICATION_PATH. "/../docs/template_AvenantBrammer_header.pdf");
+}else{
+$pdf2->setSourceFile(APPLICATION_PATH. "/../docs/template_Avenant_header.pdf");}
 // import page 1
 $tplIdx = $pdf2->importPage(1);
 
