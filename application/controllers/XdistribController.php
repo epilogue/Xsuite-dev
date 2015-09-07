@@ -3600,7 +3600,7 @@ if($this->getRequest()->isPost()){
         $this->view->article_info=$article_info;
         $this->view->info_distrib=$distrib_info;
         $this->view->info_demande_xdistrib=$info_demande_xdistrib;
-         var_dump($numwp_dis); echo '<pre>',  var_export($distrib_info),'</pre>'; exit();
+//         var_dump($numwp_dis); echo '<pre>',  var_export($distrib_info),'</pre>'; exit();
         
       // echo '<pre>', var_export($distrib_info),'</pre>'; exit();
     }
