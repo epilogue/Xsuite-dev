@@ -9,7 +9,7 @@ $pdf2 = new FPDI();
 
 // premier template
 // set the source file
-echo "<pre>",  var_export($this->info_distrib),"</pre>";exit();
+echo "<pre>",  var_export($this->info_distrib),"</pre>";
 if($this->info_distrib['numwp_distributeur']=="I02055"){
     $pdf2->setSourceFile(APPLICATION_PATH. "/../docs/template_AvenantBrammer_header.pdf");
 }else{
