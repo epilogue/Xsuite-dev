@@ -4,7 +4,7 @@ ob_start();
 ?>
 <page backtop="20mm" backleft="15mm" backright="15mm" backbottom="120mm">
     <table>
-        <tr> <?php if ($this->info_distrib['numwp_distributeur']=="I02055") {?><td>Objet : Avenant au contrat cadre 2015 daté du 30/06/2015</td><?php}else{ ?>
+        <tr> <?php if($this->info_distrib['numwp_distributeur']=="I02055") { ?><td>Objet : Avenant au contrat cadre 2015 daté du 30/06/2015</td><?php }else { ?>
         <td>Objet: Accord de prix spécifique entre SMC Pneumatique SA et la société : <?php echo $this->info_distrib['nom_distributeur']; ?></td><?php }?>
         </tr>
         <tr>
