@@ -4,8 +4,8 @@ ob_start();
 ?>
 <page backtop="20mm" backleft="15mm" backright="15mm" backbottom="120mm">
     <table>
-        <tr>
-            <td>Objet: Accord de prix spécifique entre SMC Pneumatique SA et la société : <?php echo $this->info_distrib['nom_distributeur']; ?></td>
+        <tr> <?php if ($this->info_distrib['numwp_distributeur']=="I02055") {?><td>Objet : Avenant au contrat cadre 2015 daté du 30/06/2015</td><?php}else{ ?>
+        <td>Objet: Accord de prix spécifique entre SMC Pneumatique SA et la société : <?php echo $this->info_distrib['nom_distributeur']; ?></td><?php }?>
         </tr>
         <tr>
             <td>
@@ -16,7 +16,7 @@ ob_start();
             <td>
                 Suite à votre demande, nous avons le plaisir de vous confirmer notre accord pour modifier
                 nos prix de vente selon les conditions particulières mentionnées ci-dessous.
-                Cet accord de prix spécifique étant exclusivement applicable pour le client : <?php echo $this->client_distrib['nom_client'] ?>,
+                Cet accord de prix spécifique étant exclusivement applicable pour le client : <?php echo $this->client_distrib['nom_client']; ?> <?php echo $this->client_distrib['numwp_client'];?>,
                 en vue de l’obtention du marché suivant les références ci-dessous et pour une validité jusqu'au 31/12/2015.</td>
         </tr>
     </table>
