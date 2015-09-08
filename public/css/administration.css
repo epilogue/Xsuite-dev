@@ -99,7 +99,7 @@ and open the template in the editor.
     width: 130px;
     height: 20px;
 }
-#creeruser{
+#creeruser,#creerfonction,#creerholon,#creerindustry,#creerzone{
     background-color: #2a60aa;
     border-radius: 10px;
     border-width: 0;
