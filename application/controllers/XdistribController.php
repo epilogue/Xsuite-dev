@@ -3599,9 +3599,9 @@ if($this->getRequest()->isPost()){
         $dates= new Application_Model_DbTable_Validationsdemandexdistrib();
         $date= $dates->datefermeture($numwp);
         echo '<pre>', var_export($date),'</pre>'; 
-        $format='d/m/y';
+        $format='yy-mm-dd';
         
-        $datefinale1=  DateTime::createFromFormat($format, $date[0]['date_validation']);
+        $datefinale1=  DateTime::createFromFormat($format,$date[0]['date_validation']);
           echo '<pre>', var_export($datefinale1),'</pre>'; exit();
         $this->view->date=$datefinale1;
         $this->view->client_distrib=$client_info;
