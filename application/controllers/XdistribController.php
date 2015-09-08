@@ -3601,7 +3601,7 @@ if($this->getRequest()->isPost()){
         echo '<pre>', var_export($date),'</pre>'; 
         $format='yy-mm-dd';
         
-        $datefinale1=date( 'DD/MM/YY' ,strtotime($date[0]['date_validation']));
+        $datefinale1=date( 'Y' ,strtotime($date[0]['date_validation']));
           echo '<pre>', var_export($datefinale1),'</pre>'; exit();
         $this->view->date=$datefinale1;
         $this->view->client_distrib=$client_info;
