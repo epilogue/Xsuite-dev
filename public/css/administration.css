@@ -78,7 +78,7 @@ and open the template in the editor.
     height:300px;
     margin-left:30px;
 }
-.createuser td{
+.createuser td,.createfonction td{
     width: 150px;
     height: 25px;
 }
@@ -86,12 +86,12 @@ and open the template in the editor.
     width: 150px;
     float: left;
 }
-#createUserRight{
+#createUserRight,createFonctionRight{
     float: left;
     width: 500px;
     margin-left: 10px;
 }
-#formcreateuser input, select{
+#formcreateuser input, select,formcreatefonction input ,select,formcreateindustry input, select,formcreateholon input,select,formcreatezone input ,select{
     width: 130px;
     height: 20px;
 }
@@ -106,14 +106,14 @@ and open the template in the editor.
     margin-left: 40%;
     margin-right: auto;
 }
-#createuserdiv{
+#createuserdiv,createfonctiondiv,createindustrydiv,createholondiv,createzonediv{
     height: 100px;
     width: 800px;
     margin-left: 160px;
     margin-bottom: 60px;
     margin-top: 60px;
 }
-#createusera{
+#createusera,createfonctiona,createindustrya,createholona,createzonea{
     height:40px;
     color: white;
    margin-left: 300px;
