@@ -3598,8 +3598,6 @@ if($this->getRequest()->isPost()){
         $client_info=$info_client->getClientdistrib($info_demande_xdistrib['numwp_client']);
         $dates= new Application_Model_DbTable_Validationsdemandexdistrib();
         $date= $dates->datefermeture($numwp);
-//        echo '<pre>', var_export($date),'</pre>'; 
-        $format='yy-mm-dd';
         
         $datefinale4=date( 'Y' ,strtotime($date[0]['date_validation']));
         $datefinale3=date( 'm' ,strtotime($date[0]['date_validation']));
@@ -3611,9 +3609,6 @@ if($this->getRequest()->isPost()){
         $this->view->article_info=$article_info;
         $this->view->info_distrib=$distrib_info;
         $this->view->info_demande_xdistrib=$info_demande_xdistrib;
-//         var_dump($numwp_dis); echo '<pre>',  var_export($distrib_info),'</pre>'; exit();
-        
-      // echo '<pre>', var_export($distrib_info),'</pre>'; exit();
     }
 }
 
