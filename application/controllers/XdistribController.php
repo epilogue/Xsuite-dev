@@ -3601,6 +3601,7 @@ if($this->getRequest()->isPost()){
         $format='d/m/y';
         
         $datefinale1=  DateTime::createFromFormat($format, $date);
+          echo '<pre>', var_export($datefinale1),'</pre>'; exit();
         $this->view->date=$datefinale1;
         $this->view->client_distrib=$client_info;
         $this->view->article_info=$article_info;
