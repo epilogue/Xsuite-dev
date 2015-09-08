@@ -3598,6 +3598,7 @@ if($this->getRequest()->isPost()){
         $client_info=$info_client->getClientdistrib($info_demande_xdistrib['numwp_client']);
         $dates= new Application_Model_DbTable_Validationsdemandexdistrib();
         $date= $dates->datefermeture($numwp);
+        echo '<pre>', var_export($date),'</pre>'; 
         $format='d/m/y';
         
         $datefinale1=  DateTime::createFromFormat($format, $date['date_validation']);
