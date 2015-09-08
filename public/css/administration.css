@@ -109,7 +109,9 @@ and open the template in the editor.
 #createuserdiv{
     height: 100px;
     width: 800px;
-    margin-left: 250px;
+    margin-left: 160px;
+    margin-bottom: 60px;
+    margin-top: 60px;
 }
 #createusera{
     height:40px;
@@ -123,7 +125,7 @@ and open the template in the editor.
 #modifconsultdiv{
     height: auto;
     width: 800px;
-    margin-left: 250px;
+    margin-left: 1600px;
 }
 .adminupdate{
     height: auto;
