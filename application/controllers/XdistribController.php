@@ -3602,8 +3602,8 @@ if($this->getRequest()->isPost()){
         $format='yy-mm-dd';
         
         $datefinale4=date( 'Y' ,strtotime($date[0]['date_validation']));
-        $datefinale3=date( 'M' ,strtotime($date[0]['date_validation']));
-        $datefinale2=date( 'D' ,strtotime($date[0]['date_validation']));
+        $datefinale3=date( 'm' ,strtotime($date[0]['date_validation']));
+        $datefinale2=date( 'd' ,strtotime($date[0]['date_validation']));
         $datefinale1=$datefinale2.'/'.$datefinale3.'/'.$datefinale4;
           echo '<pre>', var_export($datefinale1),'</pre>'; exit();
         $this->view->date=$datefinale1;
