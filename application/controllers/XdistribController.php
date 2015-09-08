@@ -3600,7 +3600,7 @@ if($this->getRequest()->isPost()){
         $date= $dates->datefermeture($numwp);
         $format='d/m/y';
         
-        $datefinale1=  DateTime::createFromFormat($format, $date);
+        $datefinale1=  DateTime::createFromFormat($format, $date['date_validation']);
           echo '<pre>', var_export($datefinale1),'</pre>'; exit();
         $this->view->date=$datefinale1;
         $this->view->client_distrib=$client_info;
