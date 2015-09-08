@@ -54,10 +54,10 @@ class AdministrationController extends Zend_Controller_Action
         $user = $users->createUser($formData['nom'], $formData['prenom'], $formData['tel'], $formData['email'], $formData['matricule'], $formData['userworkplace'],$formData['fonction'],$formData['zone'],$formData['holon'], $niveau);
                 $this->_helper->redirector('index');
                 $flashMessenger = $this->_helper->getHelper('FlashMessenger');
-                    $message = "Votre demande a bien été enregistrée.";
+                    $message = "Le nouvel utilisateur a bien été créé.";
                     $flashMessenger->addMessage($message);
                     $redirector = $this->_helper->getHelper('Redirector');
-                    $redirector->gotoSimple('index', 'xprice');
+                    $redirector->gotoSimple('index', 'administration');
                 }  
     }
     public function updateuserAction(){
@@ -82,11 +82,23 @@ class AdministrationController extends Zend_Controller_Action
      $this->view->zone = $zone;
     }
     public function indexfonctionAction(){
-     
+     $malisteFonctions=new Application_Model_DbTable_Fonctions();
+     $malisteFonction=$malisteFonctions->allFonction(); 
+     $this->view->malisteFonction = $malisteFonction;
     }
     public function createfonctionAction(){
     
-     
+         if ($this->getRequest()->isPost()) {
+             $formData = $this->getRequest()->getPost();
+             $fonctions= new Application_Model_DbTable_Fonctions();
+             $fonction= $fonctions->createFonction($formData['nom_fonction'], $formData['description_fonction']);
+             $this->_helper->redirector('index');
+            $flashMessenger = $this->_helper->getHelper('FlashMessenger');
+            $message = "Votre demande a bien été enregistrée.";
+            $flashMessenger->addMessage($message);
+            $redirector = $this->_helper->getHelper('Redirector');
+            $redirector->gotoSimple('index', 'administration');
+        }
     }
     public function updatefonctionAction(){
     

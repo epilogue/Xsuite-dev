@@ -1,0 +1,17 @@
+<div class="">
+    <div id="createfonctiondiv" >
+        <a href="<?php echo $this->url(array("controller"=>"administration","action"=>"createfonction"));?>" <button class="retour" id="createfonctiona">Création d'une fonction</button></a>
+    </div>
+
+    <div id="modifconsultdiv">
+        <table class="enum">
+            <?php foreach($this->malisteFonction as $key=>$fonctions){ ?>
+            <tr>
+                <td><?php echo $fonctions['nom_fonction'] ?></td>
+                <td><?php echo $fonctions['description_fonction'] ?><input hidden="hidden" name="fonction" value="<?php echo $fonctions['id_fonction']?>"/></td>
+            <td><a href="<?php echo $this->url(array("controller"=>"administration","action"=>"consultfonction","fonction"=>$fonctions['id_fonction']));?>" <button class="retour" id="consultation-<?php echo $k; ?>">consultation</button></a></td>
+                <td><a href="<?php echo $this->url(array("controller"=>"administration","action"=>"updatefonction","fonction"=>$fonctions['id_fonction']));?>" <button class="retour" id="modification-<?php echo $k; ?>">modification</button></a></td>
+        </tr><?php } ?>
+        </table>
+    </div>
+</div>
