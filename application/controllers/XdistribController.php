@@ -3596,6 +3596,12 @@ if($this->getRequest()->isPost()){
         $article_info= $info_article->getDemandeArticlexdistrib($numwp);
         $info_client=new Application_Model_DbTable_ClientDistrib();
         $client_info=$info_client->getClientdistrib($info_demande_xdistrib['numwp_client']);
+        $dates= new Application_Model_DbTable_Validationsdemandexdistrib();
+        $date= $dates->datefermeture($numwp);
+        $format='d/m/y';
+        
+        $datefinale1=  DateTime::createFromFormat($format, $date);
+        $this->view->date=$datefinale1;
         $this->view->client_distrib=$client_info;
         $this->view->article_info=$article_info;
         $this->view->info_distrib=$distrib_info;

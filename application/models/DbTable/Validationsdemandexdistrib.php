@@ -100,4 +100,15 @@ join demande_xdistrib on demande_xdistrib.id_demande_xdistrib =validations_deman
                 return $rest;
             }
         }
+        public function datefermeture($numwp){
+            $sql="select date_validation fFROM validations_demande_xdistrib
+join demande_xdistrib on demande_xdistrib.id_demande_xdistrib =validations_demande_xdistrib.id_demande_xdistrib where num_workplace_demande_xdistrib = $numwp and etat_validation='fermee'";
+            $res = $this->getAdapter()->query($sql);
+            $rest=$res->fetchAll();
+            if (!$rest) {
+                return null;
+            } else {
+                return $rest;
+            }
+        }
 }
