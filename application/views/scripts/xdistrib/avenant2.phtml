@@ -44,7 +44,10 @@ for ($i=1; $i<=$pageCount;$i++) {
 
 // Troisième template
 // set the source file
-$pdf2->setSourceFile(APPLICATION_PATH. "/../docs/template_Avenant_footer.pdf");
+if(trim($this->info_distrib['numwp_distributeur'])=="I02055"){
+    $pdf2->setSourceFile(APPLICATION_PATH. "/../docs/template_AvenantBrammer_footer.pdf");
+}else{
+$pdf2->setSourceFile(APPLICATION_PATH. "/../docs/template_Avenant_footer.pdf");}
 // import page 1
 $tplIdx = $pdf2->importPage(1);
 // use the imported page and place it at point 1,1 with a width of 100 mm

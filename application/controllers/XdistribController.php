@@ -3581,7 +3581,7 @@ if($this->getRequest()->isPost()){
         $this->view->article_info=$article_info;
         $this->view->info_distrib=$distrib_info;
         $this->view->info_demande_xdistrib=$info_demande_xdistrib;
-       echo '<pre>', var_export($distrib_info),'</pre>';
+      // echo '<pre>', var_export($distrib_info),'</pre>';
     }
     public function avenantAction(){
         $numwp = $this->getRequest()->getParam('numwp', null);
