@@ -156,16 +156,34 @@ class AdministrationController extends Zend_Controller_Action
      $this->view->industry = $industry;
     }
     public function indexholonAction(){
-        
+     $holons = new Application_Model_DbTable_Holons();
+     $holon = $holons->allHolon();
+     $this->view->malisteHolon = $holon;
     }
     public function createholonAction(){
-    
+    if ($this->getRequest()->isPost()) {
+            $formData = $this->getRequest()->getPost();
+            $holons= new Application_Model_DbTable_Holons();
+            $holon= $holons->createHolon($formData['nom_holon'], $formData['description_holon']);
+            $this->_helper->redirector('indexholon');
+            $flashMessenger = $this->_helper->getHelper('FlashMessenger');
+            $message = "Le nouvel Holon a bien été enregistré.";
+            $flashMessenger->addMessage($message);
+            $redirector = $this->_helper->getHelper('Redirector');
+            $redirector->gotoSimple('index', 'administration');
+        }
     }
     public function updateholonAction(){
-    
+    $id_holon = $this->getRequest()->getParam('holon', null);
+     $holons = new Application_Model_DbTable_Holons();
+     $holon = $holons->getHolon($id_holon);
+     $this->view->holon = $holon;
     }
-    public function deleteholonAction(){
-    
+    public function consultholonAction(){
+     $id_holon = $this->getRequest()->getParam('holon', null);
+     $holons = new Application_Model_DbTable_Holons();
+     $holon = $holons->getHolon($id_holon);
+     $this->view->holon = $holon;
     }
     public function indexrequeteAction(){
         

@@ -1,0 +1,17 @@
+<div class="">
+    <div id="createholondiv" >
+        <a href="<?php echo $this->url(array("controller"=>"administration","action"=>"createholon"));?>" <button class="retour" id="createholona">Création d'un holon</button></a>
+    </div>
+
+    <div id="modifconsultdiv">
+        <table class="enum">
+            <?php foreach($this->malisteHolon as $key=>$holons){ ?>
+            <tr>
+                <td><?php echo $holons['nom_holon'] ?></td>
+                <td><?php echo $holons['description_holon'] ?><input hidden="hidden" name="holon" value="<?php echo $holons['id_holon']?>"/></td>
+                <td><a href="<?php echo $this->url(array("controller"=>"administration","action"=>"consultholon","holon"=>$industrys['id_holon']));?>" <button class="retour" id="consultation-<?php echo $k; ?>">consultation</button></a></td>
+                <td><a href="<?php echo $this->url(array("controller"=>"administration","action"=>"updateholon","holon"=>$holons['id_holon']));?>" <button class="retour" id="modification-<?php echo $k; ?>">modification</button></a></td>
+        </tr><?php } ?>
+        </table>
+    </div>
+</div>

@@ -23,5 +23,22 @@ public function getHolon($id_holon) {
             return $rest;
         }
     }
+    public function createHolon($nom_holon,$description_holon){
+         $data =array(
+            'nom_holon'=>$nom_holon,
+            'description_holon'=>$description_holon    
+        );
+        $this->insert($data);
+        
+    }
+    public function updateHolon($id_holon,$nom_holon,$description_holon) {
+        
+         $data =array(
+            'nom_holon'=>$nom_holon,
+            'description_holon'=>$description_holon    
+        );   
+        
+        $this->update($data,'id_holon='.(int)$id_holon);
+    }
 }
 
