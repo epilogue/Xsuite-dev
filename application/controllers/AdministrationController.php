@@ -139,7 +139,7 @@ class AdministrationController extends Zend_Controller_Action
     public function consultzoneAction(){
     $id_zone = $this->getRequest()->getParam('zone', null);
      $zones = new Application_Model_DbTable_Zones();
-     $zone = $zones->getFonction($id_zone);
+     $zone = $zones->getZone($id_zone);
      $this->view->zone = $zone;
     }
     public function indexindustrieAction(){
