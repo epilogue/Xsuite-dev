@@ -1,0 +1,17 @@
+<div class="">
+    <div id="createzonediv" >
+        <a href="<?php echo $this->url(array("controller"=>"administration","action"=>"createzone"));?>" <button class="retour" id="createzonea">Création d'une zone</button></a>
+    </div>
+
+    <div id="modifconsultdiv">
+        <table class="enum">
+            <?php foreach($this->malisteZone as $key=>$zones){ ?>
+            <tr>
+                <td><?php echo $zones['nom_zone'] ?></td>
+                <td><?php echo $zones['description_zone'] ?><input hidden="hidden" name="zone" value="<?php echo $zones['id_zone']?>"/></td>
+                <td><a href="<?php echo $this->url(array("controller"=>"administration","action"=>"consultzone","zone"=>$zones['id_zone']));?>" <button class="retour" id="consultation-<?php echo $k; ?>">consultation</button></a></td>
+                <td><a href="<?php echo $this->url(array("controller"=>"administration","action"=>"updatezone","zone"=>$holons['id_zone']));?>" <button class="retour" id="modification-<?php echo $k; ?>">modification</button></a></td>
+        </tr><?php } ?>
+        </table>
+    </div>
+</div>

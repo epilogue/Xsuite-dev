@@ -113,16 +113,34 @@ class AdministrationController extends Zend_Controller_Action
      $this->view->fonction = $fonction;
     }
     public function indexzoneAction(){
-        
+         $zones = new Application_Model_DbTable_Zones();
+         $zone = $zones->allZone();
+         $this->view->malisteZone = $zone;
     }
     public function createzoneAction(){
-    
+    if ($this->getRequest()->isPost()) {
+             $formData = $this->getRequest()->getPost();
+             $zones= new Application_Model_DbTable_Zones();
+             $zone= $zones->createZone($formData['nom_zone'], $formData['description_zone']);
+             $this->_helper->redirector('index');
+            $flashMessenger = $this->_helper->getHelper('FlashMessenger');
+            $message = "Votre demande a bien été enregistrée.";
+            $flashMessenger->addMessage($message);
+            $redirector = $this->_helper->getHelper('Redirector');
+            $redirector->gotoSimple('index', 'administration');
+        }
     }
     public function updatezoneAction(){
-    
+     $id_zone = $this->getRequest()->getParam('zone', null);
+     $zones = new Application_Model_DbTable_Zones();
+     $zone = $zones->getZone($id_zone);
+     $this->view->zone = $zone;
     }
-    public function deletezoneAction(){
-    
+    public function consultzoneAction(){
+    $id_zone = $this->getRequest()->getParam('zone', null);
+     $zones = new Application_Model_DbTable_Zones();
+     $zone = $zones->getFonction($id_zone);
+     $this->view->zone = $zone;
     }
     public function indexindustrieAction(){
     
