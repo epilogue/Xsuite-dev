@@ -1,6 +1,6 @@
 <div class="">
     <div id="createindustrydiv" >
-        <a href="<?php echo $this->url(array("controller"=>"administration","action"=>"createindustry"));?>" <button class="retour" id="createindustrya">Création d'une industrie</button></a>
+        <a href="<?php echo $this->url(array("controller"=>"administration","action"=>"createindustrie"));?>" <button class="retour" id="createindustrya">Création d'une industrie</button></a>
     </div>
 
     <div id="modifconsultdiv">
@@ -11,8 +11,8 @@
                 <td><?php echo $industrys['code_smc_industry'] ?></td>
                 <td><?php echo $industrys['code_movex_industry'] ?></td>
                 <td><?php echo $industrys['description_industry'] ?><input hidden="hidden" name="industry" value="<?php echo $industrys['id_industry']?>"/></td>
-            <td><a href="<?php echo $this->url(array("controller"=>"administration","action"=>"consultindustry","industry"=>$industrys['id_industry']));?>" <button class="retour" id="consultation-<?php echo $k; ?>">consultation</button></a></td>
-                <td><a href="<?php echo $this->url(array("controller"=>"administration","action"=>"updateindustry","industry"=>$industrys['id_industry']));?>" <button class="retour" id="modification-<?php echo $k; ?>">modification</button></a></td>
+            <td><a href="<?php echo $this->url(array("controller"=>"administration","action"=>"consultindustrie","industry"=>$industrys['id_industry']));?>" <button class="retour" id="consultation-<?php echo $k; ?>">consultation</button></a></td>
+                <td><a href="<?php echo $this->url(array("controller"=>"administration","action"=>"updateindustrie","industry"=>$industrys['id_industry']));?>" <button class="retour" id="modification-<?php echo $k; ?>">modification</button></a></td>
         </tr><?php } ?>
         </table>
     </div>
