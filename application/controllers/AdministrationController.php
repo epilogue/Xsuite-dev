@@ -128,7 +128,7 @@ class AdministrationController extends Zend_Controller_Action
     
      $industrys = new Application_Model_DbTable_Industry();
      $industry = $industrys->allIndustry();
-     $this->view->malisteindustry = $industry;
+     $this->view->malisteIndustry = $industry;
     }
     public function createindustrieAction(){
     if ($this->getRequest()->isPost()) {
