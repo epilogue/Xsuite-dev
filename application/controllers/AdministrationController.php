@@ -101,10 +101,16 @@ class AdministrationController extends Zend_Controller_Action
         }
     }
     public function updatefonctionAction(){
-    
+    $id_fonction = $this->getRequest()->getParam('fonction', null);
+     $fonctions = new Application_Model_DbTable_Fonctions();
+     $fonction = $fonctions->getFonction($id_fonction);
+     $this->view->fonction = $fonction;
     }
-    public function deletefonctionAction(){
-    
+    public function consultfonctionAction(){
+    $id_fonction = $this->getRequest()->getParam('fonction', null);
+     $fonctions = new Application_Model_DbTable_Fonctions();
+     $fonction = $fonctions->getFonction($id_fonction);
+     $this->view->fonction = $fonction;
     }
     public function indexzoneAction(){
         
@@ -119,16 +125,35 @@ class AdministrationController extends Zend_Controller_Action
     
     }
     public function indexindustrieAction(){
-        
+     $id_industry = $this->getRequest()->getParam('industry', null);
+     $industrys = new Application_Model_DbTable_Industry();
+     $industry = $industrys->getIndustry($id_industry);
+     $this->view->industry = $industry;
     }
     public function createindustrieAction(){
-    
+    if ($this->getRequest()->isPost()) {
+             $formData = $this->getRequest()->getPost();
+             $industrys= new Application_Model_DbTable_Industry();
+             $industry= $industrys->createIndustry($formData['nom_industry'],$formData['code_smc_industry'],$formData['code_movex_industry'], $formData['description_industry']);
+             $this->_helper->redirector('index');
+            $flashMessenger = $this->_helper->getHelper('FlashMessenger');
+            $message = "La nouvelle Industrie a bien été enregistrée.";
+            $flashMessenger->addMessage($message);
+            $redirector = $this->_helper->getHelper('Redirector');
+            $redirector->gotoSimple('index', 'administration');
+        }
     }
     public function updateindustrieAction(){
-    
+     $id_industry = $this->getRequest()->getParam('industry', null);
+     $industrys = new Application_Model_DbTable_Industry();
+     $industry = $industrys->getIndustry($id_industry);
+     $this->view->industry = $industry;
     }
-    public function deleteindustrieAction(){
-    
+    public function consultindustrieAction(){
+     $id_industry = $this->getRequest()->getParam('industry', null);
+     $industrys = new Application_Model_DbTable_Industry();
+     $industry = $industrys->getIndustry($id_industry);
+     $this->view->industry = $industry;
     }
     public function indexholonAction(){
         
