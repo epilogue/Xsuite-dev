@@ -61,10 +61,19 @@ class AdministrationController extends Zend_Controller_Action
                 }  
     }
     public function updateuserAction(){
-     $id_user = $this->getRequest()->getParam('user', null);
-     $utilisateurs = new Application_Model_DbTable_Users();
-     $utilisateur = $utilisateurs->getUser($id_user);
-     $this->view->utilisateur = $utilisateur;
+        $id_user = $this->getRequest()->getParam('user', null);
+        $utilisateurs = new Application_Model_DbTable_Users();
+        $utilisateur = $utilisateurs->getUser($id_user);
+        $this->view->utilisateur = $utilisateur;
+        $listsHolons = new Application_Model_DbTable_Holons();
+        $listHolon = $listsHolons->allHolon();
+        $this->view->listHolon=$listHolon;
+        $listsZones = new Application_Model_DbTable_Zones();
+        $listZone = $listsZones->allZone();
+        $this->view->listZone=$listZone;
+        $listsFonctions = new Application_Model_DbTable_Fonctions();
+        $listFonction = $listsFonctions->allFonction();
+        $this->view->listFonction=$listFonction;
     }
     public function consultuserAction(){
      $id_user = $this->getRequest()->getParam('user', null);
@@ -89,10 +98,10 @@ class AdministrationController extends Zend_Controller_Action
     public function createfonctionAction(){
     
          if ($this->getRequest()->isPost()) {
-             $formData = $this->getRequest()->getPost();
-             $fonctions= new Application_Model_DbTable_Fonctions();
-             $fonction= $fonctions->createFonction($formData['nom_fonction'], $formData['description_fonction']);
-             $this->_helper->redirector('index');
+            $formData = $this->getRequest()->getPost();
+            $fonctions= new Application_Model_DbTable_Fonctions();
+            $fonction= $fonctions->createFonction($formData['nom_fonction'], $formData['description_fonction']);
+            $this->_helper->redirector('index');
             $flashMessenger = $this->_helper->getHelper('FlashMessenger');
             $message = "Votre demande a bien été enregistrée.";
             $flashMessenger->addMessage($message);
@@ -101,16 +110,19 @@ class AdministrationController extends Zend_Controller_Action
         }
     }
     public function updatefonctionAction(){
-    $id_fonction = $this->getRequest()->getParam('fonction', null);
-     $fonctions = new Application_Model_DbTable_Fonctions();
-     $fonction = $fonctions->getFonction($id_fonction);
-     $this->view->fonction = $fonction;
+        $id_fonction = $this->getRequest()->getParam('fonction', null);
+        $fonctions = new Application_Model_DbTable_Fonctions();
+        $fonction = $fonctions->getFonction($id_fonction);
+        $this->view->fonction = $fonction;
+        $listsFonctions = new Application_Model_DbTable_Fonctions();
+        $listFonction = $listsFonctions->allFonction();
+        $this->view->listFonction=$listFonction;
     }
     public function consultfonctionAction(){
-    $id_fonction = $this->getRequest()->getParam('fonction', null);
-     $fonctions = new Application_Model_DbTable_Fonctions();
-     $fonction = $fonctions->getFonction($id_fonction);
-     $this->view->fonction = $fonction;
+        $id_fonction = $this->getRequest()->getParam('fonction', null);
+        $fonctions = new Application_Model_DbTable_Fonctions();
+        $fonction = $fonctions->getFonction($id_fonction);
+        $this->view->fonction = $fonction;
     }
     public function indexzoneAction(){
          $zones = new Application_Model_DbTable_Zones();
@@ -118,23 +130,26 @@ class AdministrationController extends Zend_Controller_Action
          $this->view->malisteZone = $zone;
     }
     public function createzoneAction(){
-    if ($this->getRequest()->isPost()) {
-             $formData = $this->getRequest()->getPost();
-             $zones= new Application_Model_DbTable_Zones();
-             $zone= $zones->createZone($formData['nom_zone'], $formData['description_zone']);
-             $this->_helper->redirector('index');
-            $flashMessenger = $this->_helper->getHelper('FlashMessenger');
-            $message = "Votre demande a bien été enregistrée.";
-            $flashMessenger->addMessage($message);
-            $redirector = $this->_helper->getHelper('Redirector');
-            $redirector->gotoSimple('index', 'administration');
+        if ($this->getRequest()->isPost()) {
+                $formData = $this->getRequest()->getPost();
+                $zones= new Application_Model_DbTable_Zones();
+                $zone= $zones->createZone($formData['nom_zone'], $formData['description_zone']);
+                $this->_helper->redirector('index');
+                $flashMessenger = $this->_helper->getHelper('FlashMessenger');
+                $message = "Votre demande a bien été enregistrée.";
+                $flashMessenger->addMessage($message);
+                $redirector = $this->_helper->getHelper('Redirector');
+                $redirector->gotoSimple('index', 'administration');
         }
     }
     public function updatezoneAction(){
-     $id_zone = $this->getRequest()->getParam('zone', null);
-     $zones = new Application_Model_DbTable_Zones();
-     $zone = $zones->getZone($id_zone);
-     $this->view->zone = $zone;
+        $id_zone = $this->getRequest()->getParam('zone', null);
+        $zones = new Application_Model_DbTable_Zones();
+        $zone = $zones->getZone($id_zone);
+        $this->view->zone = $zone;
+        $listsZones = new Application_Model_DbTable_Zones();
+        $listZone = $listsZones->allZone();
+        $this->view->listZone=$listZone;
     }
     public function consultzoneAction(){
     $id_zone = $this->getRequest()->getParam('zone', null);
@@ -166,6 +181,9 @@ class AdministrationController extends Zend_Controller_Action
      $industrys = new Application_Model_DbTable_Industry();
      $industry = $industrys->getIndustry($id_industry);
      $this->view->industry = $industry;
+     $listsIndusrys = new Application_Model_DbTable_Industry();
+     $listIndustry = $listsIndustrys->allIndustry();
+     $this->view->listIndustry=$listIndustry;
     }
     public function consultindustrieAction(){
      $id_industry = $this->getRequest()->getParam('industry', null);
@@ -192,10 +210,13 @@ class AdministrationController extends Zend_Controller_Action
         }
     }
     public function updateholonAction(){
-    $id_holon = $this->getRequest()->getParam('holon', null);
-     $holons = new Application_Model_DbTable_Holons();
-     $holon = $holons->getHolon($id_holon);
-     $this->view->holon = $holon;
+        $id_holon = $this->getRequest()->getParam('holon', null);
+        $holons = new Application_Model_DbTable_Holons();
+        $holon = $holons->getHolon($id_holon);
+        $this->view->holon = $holon;
+        $listsHolons = new Application_Model_DbTable_Holons();
+        $listHolon = $listsHolons->allHolon();
+        $this->view->listHolon=$listHolon;
     }
     public function consultholonAction(){
      $id_holon = $this->getRequest()->getParam('holon', null);
