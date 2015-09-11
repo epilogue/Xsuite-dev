@@ -61,39 +61,39 @@ class AdministrationController extends Zend_Controller_Action
                 }  
     }
     public function updateuserAction(){
-        $id_user = $this->getRequest()->getParam('user', null);
-        $utilisateurs = new Application_Model_DbTable_Users();
-        $utilisateur = $utilisateurs->getUser($id_user);
-        $this->view->utilisateur = $utilisateur;
-        $listsHolons = new Application_Model_DbTable_Holons();
-        $listHolon = $listsHolons->allHolon();
-        $this->view->listHolon=$listHolon;
-        $listsZones = new Application_Model_DbTable_Zones();
-        $listZone = $listsZones->allZone();
-        $this->view->listZone=$listZone;
-        $listsFonctions = new Application_Model_DbTable_Fonctions();
-        $listFonction = $listsFonctions->allFonction();
-        $this->view->listFonction=$listFonction;
+            $id_user = $this->getRequest()->getParam('user', null);
+            $utilisateurs = new Application_Model_DbTable_Users();
+            $utilisateur = $utilisateurs->getUser($id_user);
+            $this->view->utilisateur = $utilisateur;
+            $listsHolons = new Application_Model_DbTable_Holons();
+            $listHolon = $listsHolons->allHolon();
+            $this->view->listHolon=$listHolon;
+            $listsZones = new Application_Model_DbTable_Zones();
+            $listZone = $listsZones->allZone();
+            $this->view->listZone=$listZone;
+            $listsFonctions = new Application_Model_DbTable_Fonctions();
+            $listFonction = $listsFonctions->allFonction();
+            $this->view->listFonction=$listFonction;
     }
     public function consultuserAction(){
-     $id_user = $this->getRequest()->getParam('user', null);
-     $utilisateurs = new Application_Model_DbTable_Users();
-     $utilisateur = $utilisateurs->getUser($id_user);
-     $this->view->utilisateur = $utilisateur;
-     $holons=new Application_Model_DbTable_Holons();
-     $holon=$holons->getHolon($utilisateur['id_holon']);
-     $this->view->holon = $holon;
-     $fonctions=new Application_Model_DbTable_Fonctions();
-     $fonction=$fonctions->getFonction($utilisateur['id_fonction']);
-     $this->view->fonction = $fonction;
-     $zones=new Application_Model_DbTable_Zones();
-     $zone=$zones->getZone($utilisateur['id_zone']);
-     $this->view->zone = $zone;
+         $id_user = $this->getRequest()->getParam('user', null);
+         $utilisateurs = new Application_Model_DbTable_Users();
+         $utilisateur = $utilisateurs->getUser($id_user);
+         $this->view->utilisateur = $utilisateur;
+         $holons=new Application_Model_DbTable_Holons();
+         $holon=$holons->getHolon($utilisateur['id_holon']);
+         $this->view->holon = $holon;
+         $fonctions=new Application_Model_DbTable_Fonctions();
+         $fonction=$fonctions->getFonction($utilisateur['id_fonction']);
+         $this->view->fonction = $fonction;
+         $zones=new Application_Model_DbTable_Zones();
+         $zone=$zones->getZone($utilisateur['id_zone']);
+         $this->view->zone = $zone;
     }
     public function indexfonctionAction(){
-     $malisteFonctions=new Application_Model_DbTable_Fonctions();
-     $malisteFonction=$malisteFonctions->allFonction(); 
-     $this->view->malisteFonction = $malisteFonction;
+         $malisteFonctions=new Application_Model_DbTable_Fonctions();
+         $malisteFonction=$malisteFonctions->allFonction(); 
+         $this->view->malisteFonction = $malisteFonction;
     }
     public function createfonctionAction(){
     
