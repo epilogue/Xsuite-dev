@@ -30,11 +30,11 @@
         </tr>
          <tr>
             <td>Zone :</td>
-            <td><?php  echo $this->zone['nom_zone'];?></td>
+            <td><select><?php foreach($this->listZone as $listZone){?><option<?php if($listZone['id_zone']==$this->zone['id_zone']){?> selected="selected" <?php }?> value="<?php echo $listZone['id_zone']?>"><?php echo $listZone['nom_zone']?></option><?php } ?></select><?php  echo $this->zone['nom_zone'];?></td>
         </tr>
          <tr>
             <td>Holon :</td>
-            <td><?php  echo $this->holon['nom_holon'] ;?></td>
+            <td><select><?php foreach($this->listHolon as $listHolon){?><option<?php if($listHolon['id_holon']==$this->holon['id_holon']){?> selected="selected" <?php }?> value="<?php echo $listHolon['id_holon']?>"><?php echo $listHolon['nom_holon']?></option><?php } ?></select><?php  echo $this->holon['nom_holon'] ;?></td>
         </tr>
     </table>
 </div>
