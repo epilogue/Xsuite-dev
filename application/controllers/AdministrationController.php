@@ -94,7 +94,7 @@ class AdministrationController extends Zend_Controller_Action
                elseif($formData['fonction'] == 5 | $formData['fonction'] ==13 | $formData['fonction'] ==38){ $niveau="niveau5";}
                elseif ($formData['fonction'] == 39) { $niveau="niveau6";}
                $users = new Application_Model_DbTable_Users();
-                $user = $users->updateUser($formData['nom_user'], $formData['prenom_user'], $formData['tel_user'], $formData['email_user'], $formData['password_user'], $formData['numwp_user'],$formData['fonction'],$formData['zone'],$formData['holon'], $niveau);
+                $user = $users->updateUser($formData['user'],$formData['nom_user'], $formData['prenom_user'], $formData['tel_user'], $formData['email_user'], $formData['password_user'], $formData['numwp_user'],$formData['fonction'],$formData['zone'],$formData['holon'], $niveau);
                     $this->_helper->redirector('index');
                     $flashMessenger = $this->_helper->getHelper('FlashMessenger');
                         $message = "Le nouvel utilisateur a bien été créé.";
