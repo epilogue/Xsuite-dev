@@ -212,6 +212,17 @@ class AdministrationController extends Zend_Controller_Action
      $listsIndustrys = new Application_Model_DbTable_Industry();
      $listIndustry = $listsIndustrys->allIndustry();
      $this->view->listIndustry=$listIndustry;
+     if ($this->getRequest()->isPost()) {
+             $formData = $this->getRequest()->getPost();
+             $industrys= new Application_Model_DbTable_Industry();
+             $industry= $industrys->createIndustry($formData['nom_industry'],$formData['code_smc_industry'],$formData['code_movex_industry'], $formData['description_industry']);
+             $this->_helper->redirector('index');
+            $flashMessenger = $this->_helper->getHelper('FlashMessenger');
+            $message = "La nouvelle Industrie a bien été enregistrée.";
+            $flashMessenger->addMessage($message);
+            $redirector = $this->_helper->getHelper('Redirector');
+            $redirector->gotoSimple('index', 'administration');
+        }
     }
     public function consultindustrieAction(){
      $id_industry = $this->getRequest()->getParam('industry', null);
