@@ -74,6 +74,15 @@ class AdministrationController extends Zend_Controller_Action
             $listsFonctions = new Application_Model_DbTable_Fonctions();
             $listFonction = $listsFonctions->allFonction();
             $this->view->listFonction=$listFonction;
+            $holons=new Application_Model_DbTable_Holons();
+             $holon=$holons->getHolon($utilisateur['id_holon']);
+             $this->view->holon = $holon;
+             $fonctions=new Application_Model_DbTable_Fonctions();
+             $fonction=$fonctions->getFonction($utilisateur['id_fonction']);
+             $this->view->fonction = $fonction;
+             $zones=new Application_Model_DbTable_Zones();
+             $zone=$zones->getZone($utilisateur['id_zone']);
+             $this->view->zone = $zone;
     }
     public function consultuserAction(){
          $id_user = $this->getRequest()->getParam('user', null);
