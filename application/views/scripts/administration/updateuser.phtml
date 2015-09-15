@@ -27,7 +27,7 @@
          <tr>
             <td>Fonction :</td>
             <td><select>
-                    <option selected="selected" value=" <?php echo $this->fonction['id_fonction']?>"><?php $this->fonction['nom_fonction']?></option>
+                    <option selected="selected" value=" <?php echo $this->fonction['id_fonction']?>"><?php echo $this->fonction['nom_fonction']?></option>
                 <?php foreach($this->listFonction as $listFonction){?><option value="<?php echo $listFonction['id_fonction']?>"><?php  echo $listFonction['nom_fonction'] ;?></option><?php } ?></select></td>
         </tr>
          <tr>
