@@ -85,6 +85,7 @@ class AdministrationController extends Zend_Controller_Action
              $this->view->zone = $zone;
              if ($this->getRequest()->isPost()) {
                 $formData = $this->getRequest()->getPost();
+                echo '<pre>',  var_export($formData),'</pre>';
                 
                 if($formData['fonction'] == 1 | $formData['fonction'] ==2 | $formData['fonction'] ==14 | $formData['fonction'] ==33){ $niveau ="niveau1";}
                elseif ($formData['fonction'] == 10) { $niveau="niveau2";}
