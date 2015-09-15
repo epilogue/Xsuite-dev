@@ -209,7 +209,7 @@ class AdministrationController extends Zend_Controller_Action
      $industrys = new Application_Model_DbTable_Industry();
      $industry = $industrys->getIndustry($id_industry);
      $this->view->industry = $industry;
-     $listsIndusrys = new Application_Model_DbTable_Industry();
+     $listsIndustrys = new Application_Model_DbTable_Industry();
      $listIndustry = $listsIndustrys->allIndustry();
      $this->view->listIndustry=$listIndustry;
     }
