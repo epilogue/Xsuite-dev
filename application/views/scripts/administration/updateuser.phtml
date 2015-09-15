@@ -27,15 +27,15 @@
             </tr>
              <tr>
                 <td>Fonction :</td>
-                <td><select><?php foreach($this->listFonction as $listFonction){?><option<?php if($listFonction['id_fonction']==$this->fonction['id_fonction']){?> selected="selected" <?php }?> value="<?php echo $listFonction['id_fonction']?>"><?php  echo $listFonction['nom_fonction'] ;?></option><?php } ?></select></td>
+                <td><select name="fonction"><?php foreach($this->listFonction as $listFonction){?><option<?php if($listFonction['id_fonction']==$this->fonction['id_fonction']){?> selected="selected" <?php }?> value="<?php echo $listFonction['id_fonction']?>"><?php  echo $listFonction['nom_fonction'] ;?></option><?php } ?></select></td>
             </tr>
              <tr>
                 <td>Zone :</td>
-                <td><select><?php foreach($this->listZone as $listZone){?><option<?php if($listZone['id_zone']==$this->zone['id_zone']){?> selected="selected" <?php }?> value="<?php echo $listZone['id_zone']?>"><?php echo $listZone['nom_zone']?></option><?php } ?></select></td>
+                <td><select name="zone"><?php foreach($this->listZone as $listZone){?><option<?php if($listZone['id_zone']==$this->zone['id_zone']){?> selected="selected" <?php }?> value="<?php echo $listZone['id_zone']?>"><?php echo $listZone['nom_zone']?></option><?php } ?></select></td>
             </tr>
              <tr>
                 <td>Holon :</td>
-                <td><select><?php foreach($this->listHolon as $listHolon){?><option<?php if($listHolon['id_holon']==$this->holon['id_holon']){?> selected="selected" <?php }?> value="<?php echo $listHolon['id_holon']?>"><?php echo $listHolon['nom_holon']?></option><?php } ?></select></td>
+                <td><select name="holon"><?php foreach($this->listHolon as $listHolon){?><option<?php if($listHolon['id_holon']==$this->holon['id_holon']){?> selected="selected" <?php }?> value="<?php echo $listHolon['id_holon']?>"><?php echo $listHolon['nom_holon']?></option><?php } ?></select></td>
             </tr>
         </table>
         <input id="updateuser" class="submit" type="submit" value="mettre à jour">
