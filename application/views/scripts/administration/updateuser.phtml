@@ -26,17 +26,15 @@
         </tr>
          <tr>
             <td>Fonction :</td>
-            <td><select>
-                    <option selected="selected" value=" <?php echo $this->fonction['id_fonction']?>"><?php echo $this->fonction['nom_fonction']?></option>
-                <?php foreach($this->listFonction as $listFonction){?><option value="<?php echo $listFonction['id_fonction']?>"><?php  echo $listFonction['nom_fonction'] ;?></option><?php } ?></select></td>
+            <td><select><?php foreach($this->listFonction as $listFonction){?><option<?php if($listFonction['id_fonction']==$this->fonction['id_fonction']){?> selected="selected" <?php }?> value="<?php echo $listFonction['nom_fonction']?>"><?php  echo $listFonction['nom_fonction'] ;?></option><?php } ?></select></td>
         </tr>
          <tr>
             <td>Zone :</td>
-            <td><select><?php foreach($this->listZone as $listZone){?><option<?php if($listZone['id_zone']==$this->zone['id_zone']){?> selected="selected" <?php }?> value="<?php echo $listZone['id_zone']?>"><?php echo $listZone['nom_zone']?></option><?php } ?></select><?php  echo $this->zone['nom_zone'];?></td>
+            <td><select><?php foreach($this->listZone as $listZone){?><option<?php if($listZone['id_zone']==$this->zone['id_zone']){?> selected="selected" <?php }?> value="<?php echo $listZone['id_zone']?>"><?php echo $listZone['nom_zone']?></option><?php } ?></select></td>
         </tr>
          <tr>
             <td>Holon :</td>
-            <td><select><?php foreach($this->listHolon as $listHolon){?><option<?php if($listHolon['id_holon']==$this->holon['id_holon']){?> selected="selected" <?php }?> value="<?php echo $listHolon['id_holon']?>"><?php echo $listHolon['nom_holon']?></option><?php } ?></select><?php  echo $this->holon['nom_holon'] ;?></td>
+            <td><select><?php foreach($this->listHolon as $listHolon){?><option<?php if($listHolon['id_holon']==$this->holon['id_holon']){?> selected="selected" <?php }?> value="<?php echo $listHolon['id_holon']?>"><?php echo $listHolon['nom_holon']?></option><?php } ?></select></td>
         </tr>
     </table>
 </div>
