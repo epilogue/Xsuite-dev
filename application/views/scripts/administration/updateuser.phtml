@@ -7,7 +7,7 @@
             </tr>
             <tr>
                 <td>Nom :</td>
-                <td><input type="text" value="<?php  echo $this->utilisateur['nom_user'];?>" name="nom_user"></td>
+                <td><input type="text" value="<?php  echo $this->utilisateur['nom_user'];?>" name="nom_user"><input hidden="hidden" name="password_user" value="<?php echo $this->utilisateur['password_user']?>"></td>
             </tr>
              <tr>
                 <td>Prénom :</td>
@@ -27,7 +27,7 @@
             </tr>
              <tr>
                 <td>Fonction :</td>
-                <td><select><?php foreach($this->listFonction as $listFonction){?><option<?php if($listFonction['id_fonction']==$this->fonction['id_fonction']){?> selected="selected" <?php }?> value="<?php echo $listFonction['nom_fonction']?>"><?php  echo $listFonction['nom_fonction'] ;?></option><?php } ?></select></td>
+                <td><select><?php foreach($this->listFonction as $listFonction){?><option<?php if($listFonction['id_fonction']==$this->fonction['id_fonction']){?> selected="selected" <?php }?> value="<?php echo $listFonction['id_fonction']?>"><?php  echo $listFonction['nom_fonction'] ;?></option><?php } ?></select></td>
             </tr>
              <tr>
                 <td>Zone :</td>
