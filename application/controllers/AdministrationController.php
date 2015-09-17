@@ -211,7 +211,7 @@ class AdministrationController extends Zend_Controller_Action
      $this->view->industry = $industry;
      $listsIndustrys = new Application_Model_DbTable_Industry();
      $listIndustry = $listsIndustrys->allIndustry();
-     $this->view->listIndustry=$listIndustry; echo '<pre>',  var_export($listIndustry),'</pre>';                exit();
+//     $this->view->listIndustry=$listIndustry; echo '<pre>',  var_export($listIndustry),'</pre>';                exit();
      if ($this->getRequest()->isPost()) {
              $formData = $this->getRequest()->getPost();
              $industrys= new Application_Model_DbTable_Industry();
