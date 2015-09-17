@@ -222,6 +222,7 @@ class AdministrationController extends Zend_Controller_Action
             $flashMessenger->addMessage($message);
             $redirector = $this->_helper->getHelper('Redirector');
             $redirector->gotoSimple('index', 'administration');
+            echo '<pre>',  var_export($listIndustry),'</pre>';                exit();
         }
     }
     public function consultindustrieAction(){
