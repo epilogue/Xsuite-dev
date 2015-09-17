@@ -43,5 +43,15 @@ public function getIndustry($id_industry) {
         return $this;
         
     }
+    public function createIndustry($nom_industry, $code_smc_industry,$code_movex_industry,$description_industry) {
+        $data = array(
+           " nom_industry" => $nom_industry,
+             "code_smc_industry"=>$code_smc_industry,
+            "code_movex_industry"=>$code_movex_industry,
+            "description_industry"=>$description_industry
+        );
+        $this->insert($data);
+        return $this;
+    }
 }
 
