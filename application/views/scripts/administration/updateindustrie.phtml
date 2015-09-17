@@ -6,7 +6,7 @@
         </tr>
         <tr>
             <td>code smc de l'industrie:</td>
-            <td><select name="code_smc_industry"><?php foreach($this->listIndustry as $listIndustry){?><option <?php if($this->listIndustry['id_industry'] == $this->industry['id_industry']){ ?> selected="selected" <?php }?> value ="<?php  echo $listIndustry['code_smc_industry'];?>"></option> <?php } ?></select></td>
+            <td><select name="code_smc_industry"><?php foreach($this->listIndustry as $listIndustry){?><option <?php if($listIndustry['id_industry'] == $this->industry['id_industry']){ ?> selected="selected" <?php }?> value ="<?php  echo $listIndustry['code_smc_industry'];?>"></option> <?php } ?></select></td>
         </tr>
         <tr>
             <td>code movex de l'industrie:</td>
