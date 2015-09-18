@@ -1,12 +1,15 @@
 <div class="adminupdate">
-    <table class="enum">
-        <tr>
-            <td>Nom de l'holon:</td>
-            <td><?php  echo $this->holon['nom_holon'];?><input hidden="hidden" name="holon" value="<?php echo $holons['id_holon']?>"/></td>
-        </tr>
-        <tr>
-            <td>Description de l'holon:</td>
-            <td><?php  echo $this->holon['description_holon'];?></td>
-        </tr>
-    </table>
+    <form method="post">
+        <table class="enum">
+            <tr>
+                <td>Nom de l'holon:</td>
+                <td><input hidden="hidden" name="holon" value="<?php echo $this->holon['id_holon']?>"/><input type="text" name="nom_holon" value="<?php  echo $this->holon['nom_holon'];?>"></td>
+            </tr>
+            <tr>
+                <td>Description de l'holon:</td>
+                <td><textarea name="description_holon" value=""><?php  echo $this->holon['description_holon'];?></textarea></td>
+            </tr>
+        </table>
+         <input id="updateholon" class="submit" type="submit" value="mettre à jour">
+    </form>
 </div>
