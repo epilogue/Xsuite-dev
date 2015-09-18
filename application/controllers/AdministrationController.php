@@ -220,7 +220,7 @@ class AdministrationController extends Zend_Controller_Action
              $formData = $this->getRequest()->getPost();
              echo '<pre>',  var_export($formData),'</pre>';                exit();
              $industrys= new Application_Model_DbTable_Industry();
-             $industry= $industrys->createIndustry($formData['nom_industry'],$formData['code_smc_industry'],$formData['code_movex_industry'], $formData['description_industry']);
+             $industry= $industrys->createIndustry($formData['industry'],$formData['nom_industry'],$formData['code_smc_industry'],$formData['code_movex_industry'], $formData['description_industry']);
              $this->_helper->redirector('index');
             $flashMessenger = $this->_helper->getHelper('FlashMessenger');
             $message = "La nouvelle Industrie a bien été enregistrée.";
