@@ -235,11 +235,11 @@ class AdministrationController extends Zend_Controller_Action
              $industrys= new Application_Model_DbTable_Industry();
              $industry= $industrys->updateIndustry($formData['industry'],$formData['nom_industry'],$formData['code_smc_industry'],$formData['code_movex_industry'], $formData['description_industry']);
              $this->_helper->redirector('index');
-            $flashMessenger = $this->_helper->getHelper('FlashMessenger');
-            $message = "La nouvelle Industrie a bien été enregistrée.";
-            $flashMessenger->addMessage($message);
-            $redirector = $this->_helper->getHelper('Redirector');
-            $redirector->gotoSimple('index', 'administration');
+             $flashMessenger = $this->_helper->getHelper('FlashMessenger');
+             $message = "La nouvelle Industrie a bien été enregistrée.";
+             $flashMessenger->addMessage($message);
+             $redirector = $this->_helper->getHelper('Redirector');
+             $redirector->gotoSimple('index', 'administration');
            
         }
     }
@@ -275,7 +275,19 @@ class AdministrationController extends Zend_Controller_Action
         $listsHolons = new Application_Model_DbTable_Holons();
         $listHolon = $listsHolons->allHolon();
         $this->view->listHolon=$listHolon;
+        if ($this->getRequest()->isPost()) {
+            $formData = $this->getRequest()->getPost();
+            $holons= new Application_Model_DbTable_Holons();
+            $holon= $holons->updateHolon($formData['holon'],$formData['nom_holon'], $formData['description_holon']);
+            $this->_helper->redirector('indexholon');
+            $flashMessenger = $this->_helper->getHelper('FlashMessenger');
+            $message = "Le nouvel Holon a bien été enregistré.";
+            $flashMessenger->addMessage($message);
+            $redirector = $this->_helper->getHelper('Redirector');
+            $redirector->gotoSimple('index', 'administration');
+        }
     }
+    
     public function consultholonAction(){
      $id_holon = $this->getRequest()->getParam('holon', null);
      $holons = new Application_Model_DbTable_Holons();
