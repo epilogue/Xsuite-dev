@@ -218,7 +218,7 @@ class AdministrationController extends Zend_Controller_Action
 //     echo '<pre>',  var_export($listIndustry),'</pre>';                exit();
      if ($this->getRequest()->isPost()) {
              $formData = $this->getRequest()->getPost();
-             echo '<pre>',  var_export($formData),'</pre>';                exit();
+//             echo '<pre>',  var_export($formData),'</pre>';                exit();
              $industrys= new Application_Model_DbTable_Industry();
              $industry= $industrys->createIndustry($formData['industry'],$formData['nom_industry'],$formData['code_smc_industry'],$formData['code_movex_industry'], $formData['description_industry']);
              $this->_helper->redirector('index');
