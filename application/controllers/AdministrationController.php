@@ -191,6 +191,17 @@ class AdministrationController extends Zend_Controller_Action
         $listsZones = new Application_Model_DbTable_Zones();
         $listZone = $listsZones->allZone();
         $this->view->listZone=$listZone;
+        if ($this->getRequest()->isPost()) {
+                $formData = $this->getRequest()->getPost();
+                $zones= new Application_Model_DbTable_Zones();
+                $zone= $zones->updateZone($formData['zone'],$formData['nom_zone'], $formData['description_zone']);
+                $this->_helper->redirector('index');
+                $flashMessenger = $this->_helper->getHelper('FlashMessenger');
+                $message = "Votre demande a bien été enregistrée.";
+                $flashMessenger->addMessage($message);
+                $redirector = $this->_helper->getHelper('Redirector');
+                $redirector->gotoSimple('index', 'administration');
+        }
     }
     public function consultzoneAction(){
     $id_zone = $this->getRequest()->getParam('zone', null);
