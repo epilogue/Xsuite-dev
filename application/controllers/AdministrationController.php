@@ -306,7 +306,9 @@ class AdministrationController extends Zend_Controller_Action
      $this->view->holon = $holon;
     }
     public function indexrequeteAction(){
-        
+       $xprices=new Application_Model_DbTable_Xprices;
+       $xprice = $xprices->totalXprice();
+       
     }
     public function rechercheNomCompletion(){
         

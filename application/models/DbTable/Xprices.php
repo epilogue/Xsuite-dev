@@ -166,5 +166,8 @@ public function searchAll($tracking_number){
                 return $rest;
             }
         }
+    public function totalXprice(){
+        
+    }
 }
 
