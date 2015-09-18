@@ -97,7 +97,7 @@ class AdministrationController extends Zend_Controller_Action
                 $user = $users->updateUser($formData['user'],$formData['nom_user'], $formData['prenom_user'], $formData['tel_user'], $formData['email_user'], $formData['password_user'], $formData['numwp_user'],$formData['fonction'],$formData['zone'],$formData['holon'], $niveau);
                     $this->_helper->redirector('index');
                     $flashMessenger = $this->_helper->getHelper('FlashMessenger');
-                        $message = "Le nouvel utilisateur a bien été créé.";
+                        $message = "L'utilisateur a bien été modifié.";
                         $flashMessenger->addMessage($message);
                         $redirector = $this->_helper->getHelper('Redirector');
                         $redirector->gotoSimple('index', 'administration');
@@ -152,7 +152,7 @@ class AdministrationController extends Zend_Controller_Action
             $fonction= $fonctions->updateFonction($formData['fonction'],$formData['nom_fonction'],$formData['description_fonction']);
             $this->_helper->redirector('index');
             $flashMessenger = $this->_helper->getHelper('FlashMessenger');
-            $message = "Votre demande a bien été enregistrée.";
+            $message = "La fonction a bien été modifiée.";
             $flashMessenger->addMessage($message);
             $redirector = $this->_helper->getHelper('Redirector');
             $redirector->gotoSimple('index','administration');
@@ -197,7 +197,7 @@ class AdministrationController extends Zend_Controller_Action
                 $zone= $zones->updateZone($formData['zone'],$formData['nom_zone'], $formData['description_zone']);
                 $this->_helper->redirector('index');
                 $flashMessenger = $this->_helper->getHelper('FlashMessenger');
-                $message = "Votre demande a bien été enregistrée.";
+                $message = "Vla zone  a bien été modifiée.";
                 $flashMessenger->addMessage($message);
                 $redirector = $this->_helper->getHelper('Redirector');
                 $redirector->gotoSimple('index', 'administration');
@@ -247,7 +247,7 @@ class AdministrationController extends Zend_Controller_Action
              $industry= $industrys->updateIndustry($formData['industry'],$formData['nom_industry'],$formData['code_smc_industry'],$formData['code_movex_industry'], $formData['description_industry']);
              $this->_helper->redirector('index');
              $flashMessenger = $this->_helper->getHelper('FlashMessenger');
-             $message = "La nouvelle Industrie a bien été enregistrée.";
+             $message = "L' Industrie a bien été modifiée.";
              $flashMessenger->addMessage($message);
              $redirector = $this->_helper->getHelper('Redirector');
              $redirector->gotoSimple('index', 'administration');
@@ -292,7 +292,7 @@ class AdministrationController extends Zend_Controller_Action
             $holon= $holons->updateHolon($formData['holon'],$formData['nom_holon'], $formData['description_holon']);
             $this->_helper->redirector('indexholon');
             $flashMessenger = $this->_helper->getHelper('FlashMessenger');
-            $message = "Le nouvel Holon a bien été enregistré.";
+            $message = "L' Holon a bien été modifié.";
             $flashMessenger->addMessage($message);
             $redirector = $this->_helper->getHelper('Redirector');
             $redirector->gotoSimple('index', 'administration');
