@@ -149,7 +149,7 @@ class AdministrationController extends Zend_Controller_Action
         if ($this->getRequest()->isPost()) {
             $formData = $this->getRequest()->getPost();
             $fonctions= new Application_Model_DbTable_Fonctions();
-            $fonction= $fonctions->updateFonction($formData['id_fonction'],$formData['nom_fonction'],$formData['description_fonction']);
+            $fonction= $fonctions->updateFonction($formData['fonction'],$formData['nom_fonction'],$formData['description_fonction']);
             $this->_helper->redirector('index');
             $flashMessenger = $this->_helper->getHelper('FlashMessenger');
             $message = "Votre demande a bien été enregistrée.";
