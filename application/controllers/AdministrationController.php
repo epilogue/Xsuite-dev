@@ -145,6 +145,18 @@ class AdministrationController extends Zend_Controller_Action
         $listsFonctions = new Application_Model_DbTable_Fonctions();
         $listFonction = $listsFonctions->allFonction();
         $this->view->listFonction=$listFonction;
+        if ($this->getRequest()->isPost()) {
+            $formData = $this->getRequest()->getPost();
+            $fonctions= new Application_Model_DbTable_Fonctions();
+            $fonction= $fonctions->updateFonction($formData['id_fonction'],$formData['nom_fonction'], $formData['description_fonction']);
+            $this->_helper->redirector('index');
+            $flashMessenger = $this->_helper->getHelper('FlashMessenger');
+            $message = "Votre demande a bien été enregistrée.";
+            $flashMessenger->addMessage($message);
+            $redirector = $this->_helper->getHelper('Redirector');
+        $redirector->gotoSimple('index', 'administration');
+        
+        }
     }
     public function consultfonctionAction(){
         $id_fonction = $this->getRequest()->getParam('fonction', null);
