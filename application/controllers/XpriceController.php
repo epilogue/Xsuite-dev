@@ -428,23 +428,25 @@ if($user->id_fonction == 3 || $user->id_fonction==1){
 //                                $params['sujet']=" XPrice :Votre Offre  Xprice {$trackingNumber}/{$numwp} de {$user_info['nom_user']} pour $clientsnom";
 //                                $this->sendEmail($params);
                     $params4=array();
+                    $Carindus1=array(1,2,3,4,5,6,7,8,9,10,11,12,13,15,16,18,19,59,73,74,75,76);
+                    $carindus2 = array(14,17,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,60,61,62,63,64,65,66,67,68,69,70,71,72);
                     switch ($destIndustry) {
                     case ($destIndustry > 0 && $destIndustry < 14 ):
                         $destinataireMail4 = $emailVars->listes->carIndustries1;
                         break;
-                    case ($destIndustry =14):
+                    case ($destIndustry = 14):
                         $destinataireMail4 = $emailVars->listes->carIndustries2;
                         break;
-                    case ($destIndustry =15):
+                    case ($destIndustry = 15):
                         $destinataireMail4 = $emailVars->listes->carIndustries1;
                         break;
-                     case ( $destIndustry=16):
+                    case ( $destIndustry = 16):
                         $destinataireMail4 = $emailVars->listes->carIndustries1;
                         break;
-                    case ($destIndustry =17):
+                    case ($destIndustry = 17):
                         $destinataireMail4 = $emailVars->listes->carIndustries2;
                         break;
-                     case ($destIndustry=18):
+                    case ($destIndustry = 18):
                         $destinataireMail4 = $emailVars->listes->carIndustries1;
                         break;
                      case ($destIndustry=19):
@@ -453,7 +455,7 @@ if($user->id_fonction == 3 || $user->id_fonction==1){
                     case ($destIndustry > 19 && $destIndustry < 59):
                         $destinataireMail4 = $emailVars->listes->carIndustries2;
                         break;
-                    case ($destIndustry =59 ):
+                    case ($destIndustry = 59 ):
                         $destinataireMail4 = $emailVars->listes->carIndustries1;
                         break;
                     case ($destIndustry > 59 && $destIndustry < 73):
@@ -468,7 +470,22 @@ if($user->id_fonction == 3 || $user->id_fonction==1){
                     case ($destIndustry > 137 && $destIndustry < 272 ):
                         $destinataireMail4 = $emailVars->listes->Electronique;
                         break;
-                    case ($destIndustry > 271 && $destIndustry < 314 ):
+                    case ($destIndustry > 271 && $destIndustry < 281 ):
+                        $destinataireMail4 = $emailVars->listes->foodIndustries1;
+                        break;
+                    case ($destIndustry > 280 && $destIndustry < 291 ):
+                        $destinataireMail4 = $emailVars->listes->foodIndustries;
+                        break;
+                        case ($destIndustry > 290 && $destIndustry < 295 ):
+                        $destinataireMail4 = $emailVars->listes->foodIndustries1;
+                        break;
+                    case ($destIndustry > 294 && $destIndustry < 304 ):
+                        $destinataireMail4 = $emailVars->listes->foodIndustries;
+                        break;
+                    case ($destIndustry > 303 && $destIndustry < 309 ):
+                        $destinataireMail4 = $emailVars->listes->foodIndustries1;
+                        break;
+                    case ($destIndustry > 308 && $destIndustry < 314 ):  
                         $destinataireMail4 = $emailVars->listes->foodIndustries;
                         break;
                     case ($destIndustry > 313 && $destIndustry <= 415 ):

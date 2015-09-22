@@ -1379,28 +1379,28 @@ if($this->getRequest()->isPost()){
                     case ($destIndustry > 0 && $destIndustry < 14 ):
                         $destinataireMail2 = $emailVars->listes->carIndustries1;
                         break;
-                    case ($destIndustry =14 ):
+                    case ($destIndustry = 14 ):
                         $destinataireMail2 = $emailVars->listes->carIndustries2;
                         break;
-                    case ($destIndustry =15 ):
+                    case ($destIndustry = 15 ):
                         $destinataireMail2 = $emailVars->listes->carIndustries1;
                         break;
-                    case ( $destIndustry=16 ):
+                    case ( $destIndustry = 16 ):
                         $destinataireMail2 = $emailVars->listes->carIndustries1;
                         break;
-                    case ($destIndustry =17 ):
+                    case ($destIndustry = 17 ):
                         $destinataireMail2 = $emailVars->listes->carIndustries2;
                         break;
-                    case ($destIndustry=18 ):
+                    case ($destIndustry = 18 ):
                         $destinataireMail2 = $emailVars->listes->carIndustries1;
                         break;
-                    case ( $destIndustry=19):
+                    case ( $destIndustry = 19):
                         $destinataireMail2 = $emailVars->listes->carIndustries1;
                         break;
                     case ($destIndustry > 19 && $destIndustry < 59):
                          $destinataireMail2 = $emailVars->listes->carIndustries2;
                         break;
-                    case ($destIndustry =59 ):
+                    case ($destIndustry = 59 ):
                          $destinataireMail2 = $emailVars->listes->carIndustries1;
                         break;
                     case ($destIndustry > 59 && $destIndustry < 73):
@@ -1415,7 +1415,22 @@ if($this->getRequest()->isPost()){
                     case ($destIndustry > 137 && $destIndustry < 272 ):
                         $destinataireMail2 = $emailVars->listes->Electronique;
                         break;
-                    case ($destIndustry > 271 && $destIndustry < 314 ):
+                    case ($destIndustry > 271 && $destIndustry < 281 ):
+                        $destinataireMail2 = $emailVars->listes->foodIndustries1;
+                        break;
+                    case ($destIndustry > 280 && $destIndustry < 291 ):
+                        $destinataireMail2 = $emailVars->listes->foodIndustries;
+                        break;
+                        case ($destIndustry > 290 && $destIndustry < 295 ):
+                        $destinataireMail2 = $emailVars->listes->foodIndustries1;
+                        break;
+                    case ($destIndustry > 294 && $destIndustry < 304 ):
+                        $destinataireMail2 = $emailVars->listes->foodIndustries;
+                        break;
+                    case ($destIndustry > 303 && $destIndustry < 309 ):
+                        $destinataireMail2 = $emailVars->listes->foodIndustries1;
+                        break;
+                    case ($destIndustry > 308 && $destIndustry < 314 ):  
                         $destinataireMail2 = $emailVars->listes->foodIndustries;
                         break;
                     case ($destIndustry > 313 && $destIndustry <= 415 ):
@@ -1433,7 +1448,7 @@ if($this->getRequest()->isPost()){
                         . "\n"
                         . "--\n"
                         . "XDistrib";
-                $params['destinataireMail'] = $destinataireMail;
+                $params['destinataireMail'] = $destinataireMail2;
                 $params['sujet'] = " XDistrib : Nouvelle demande Xdistrib {$tracking}/{$numwp} à consulter de {$user_info['nom_user']} pour {$client_info['nom_client']}.";
                
                 $this->sendEmail($params);
@@ -2740,28 +2755,28 @@ if($this->getRequest()->isPost()){
                      case ($destIndustry > 0 && $destIndustry < 14 ):
                         $destinataireMail2 = $emailVars->listes->carIndustries1;
                         break;
-                    case ($destIndustry =14 ):
+                     case ($destIndustry = 14 ):
                         $destinataireMail2 = $emailVars->listes->carIndustries2;
                         break;
-                    case ($destIndustry =15 ):
+                     case ($destIndustry = 15 ):
                         $destinataireMail2 = $emailVars->listes->carIndustries1;
                         break;
-                    case ( $destIndustry=16 ):
+                     case ( $destIndustry = 16 ):
                         $destinataireMail2 = $emailVars->listes->carIndustries1;
                         break;
-                    case ($destIndustry =17 ):
+                     case ($destIndustry = 17 ):
                         $destinataireMail2 = $emailVars->listes->carIndustries2;
                         break;
-                    case ($destIndustry=18 ):
+                     case ($destIndustry = 18 ):
                         $destinataireMail2 = $emailVars->listes->carIndustries1;
                         break;
-                    case ( $destIndustry=19):
+                     case ( $destIndustry = 19):
                         $destinataireMail2 = $emailVars->listes->carIndustries1;
                         break;
                     case ($destIndustry > 19 && $destIndustry < 59):
                          $destinataireMail2 = $emailVars->listes->carIndustries2;
                         break;
-                    case ($destIndustry =59 ):
+                     case ($destIndustry = 59 ):
                          $destinataireMail2 = $emailVars->listes->carIndustries1;
                         break;
                     case ($destIndustry > 59 && $destIndustry < 73):
@@ -2773,14 +2788,29 @@ if($this->getRequest()->isPost()){
                     case ($destIndustry > 76 && $destIndustry < 138 ):
                         $destinataireMail2 = $emailVars->listes->lifeandscience;
                         break;
-                    case ($destIndustry > 137 && $destIndustry < 272 ):
-                        $destinataireMail2 = $emailVars->listes->electronique;
+                     case ($destIndustry > 137 && $destIndustry < 272 ):
+                        $destinataireMail2 = $emailVars->listes->Electronique;
                         break;
-                    case ($destIndustry > 271 && $destIndustry < 314 ):
-                        $destinataireMail2 = $emailVars->listes->foodindustries;
+                    case ($destIndustry > 271 && $destIndustry < 281 ):
+                        $destinataireMail2 = $emailVars->listes->foodIndustries1;
+                        break;
+                    case ($destIndustry > 280 && $destIndustry < 291 ):
+                        $destinataireMail2 = $emailVars->listes->foodIndustries;
+                        break;
+                        case ($destIndustry > 290 && $destIndustry < 295 ):
+                        $destinataireMail2 = $emailVars->listes->foodIndustries1;
+                        break;
+                    case ($destIndustry > 294 && $destIndustry < 304 ):
+                        $destinataireMail2 = $emailVars->listes->foodIndustries;
+                        break;
+                    case ($destIndustry > 303 && $destIndustry < 309 ):
+                        $destinataireMail2 = $emailVars->listes->foodIndustries1;
+                        break;
+                    case ($destIndustry > 308 && $destIndustry < 314 ):  
+                        $destinataireMail2 = $emailVars->listes->foodIndustries;
                         break;
                     case ($destIndustry > 313 && $destIndustry <= 415 ):
-                        $destinataireMail2 = $emailVars->listes->environnementenergie;
+                        $destinataireMail2 = $emailVars->listes->environnementEnergie;
                         break;
                 }
                 $params6['url'] = "http://{$_SERVER['SERVER_NAME']}/xdistrib/consult/numwp/{$numwp}";
@@ -3312,28 +3342,28 @@ if($this->getRequest()->isPost()){
                      case ($destIndustry > 0 && $destIndustry < 14 ):
                         $destinataireMail2 = $emailVars->listes->carIndustries1;
                         break;
-                    case ($destIndustry =14 ):
+                     case ($destIndustry = 14 ):
                         $destinataireMail2 = $emailVars->listes->carIndustries2;
                         break;
-                    case ($destIndustry =15 ):
+                     case ($destIndustry = 15 ):
                         $destinataireMail2 = $emailVars->listes->carIndustries1;
                         break;
-                    case ( $destIndustry=16 ):
+                     case ( $destIndustry = 16 ):
                         $destinataireMail2 = $emailVars->listes->carIndustries1;
                         break;
-                    case ($destIndustry =17 ):
+                     case ($destIndustry = 17 ):
                         $destinataireMail2 = $emailVars->listes->carIndustries2;
                         break;
-                    case ($destIndustry=18 ):
+                     case ($destIndustry = 18 ):
                         $destinataireMail2 = $emailVars->listes->carIndustries1;
                         break;
-                    case ( $destIndustry=19):
+                     case ( $destIndustry = 19):
                         $destinataireMail2 = $emailVars->listes->carIndustries1;
                         break;
                     case ($destIndustry > 19 && $destIndustry < 59):
                          $destinataireMail2 = $emailVars->listes->carIndustries2;
                         break;
-                    case ($destIndustry =59 ):
+                     case ($destIndustry = 59 ):
                          $destinataireMail2 = $emailVars->listes->carIndustries1;
                         break;
                     case ($destIndustry > 59 && $destIndustry < 73):
@@ -3348,11 +3378,26 @@ if($this->getRequest()->isPost()){
                     case ($destIndustry > 137 && $destIndustry < 272 ):
                         $destinataireMail2 = $emailVars->listes->electronique;
                         break;
-                    case ($destIndustry > 271 && $destIndustry < 314 ):
-                        $destinataireMail2 = $emailVars->listes->foodindustries;
+                    case ($destIndustry > 271 && $destIndustry < 281 ):
+                        $destinataireMail2 = $emailVars->listes->foodIndustries1;
+                        break;
+                    case ($destIndustry > 280 && $destIndustry < 291 ):
+                        $destinataireMail2 = $emailVars->listes->foodIndustries;
+                        break;
+                        case ($destIndustry > 290 && $destIndustry < 295 ):
+                        $destinataireMail2 = $emailVars->listes->foodIndustries1;
+                        break;
+                    case ($destIndustry > 294 && $destIndustry < 304 ):
+                        $destinataireMail2 = $emailVars->listes->foodIndustries;
+                        break;
+                    case ($destIndustry > 303 && $destIndustry < 309 ):
+                        $destinataireMail2 = $emailVars->listes->foodIndustries1;
+                        break;
+                    case ($destIndustry > 308 && $destIndustry < 314 ):  
+                        $destinataireMail2 = $emailVars->listes->foodIndustries;
                         break;
                     case ($destIndustry > 313 && $destIndustry <= 415 ):
-                        $destinataireMail2 = $emailVars->listes->environnementenergie;
+                        $destinataireMail2 = $emailVars->listes->environnementEnergie;
                         break;
                 }
                 $params4['url'] = "http://{$_SERVER['SERVER_NAME']}/xdistrib/consult/numwp/{$numwp}";
