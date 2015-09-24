@@ -160,11 +160,13 @@ class XdistribController extends Zend_Controller_Action
              break;
          }
          $recapitulatif1 = new Application_Model_DbTable_Xdistrib();
-          $demandes=new Application_Model_DbTable_Xdistrib();
-         $demande= $demandes->tout();
-        foreach($demande as $value){
+//          $demandes=new Application_Model_DbTable_Xdistrib();
+//         $demande= $demandes->tout();
+         $recapitulatif1 = new Application_Model_DbTable_Xdistrib;
+         $plop1=$recapitulatif1->rechercheridDBD();
+        foreach($plop1 as $value){
             
-         $recapitulatif2bis=$recapitulatif1->searchforDBD($value['id_demande_xdistrib']);
+         $recapitulatif2bis=$recapitulatif1->rechercheDBD($value['id_demande_xdistrib']);
          $r[]=$recapitulatif2bis;
          }
         
