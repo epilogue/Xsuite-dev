@@ -2539,10 +2539,20 @@ if($this->getRequest()->isPost()){
                 $params6 = array();
                 $params7 = array();
                 $params8 = array();
+                $params8bis = array();
                 $numwp_distributeur=trim($distrib_info['numwp_distributeur']);
+                //essai  de creation de fichier csv  + envoi  en piece-jointe pour le distributeur brammer 
                 if($numwp_distributeur=='I02055' || $numwp_distributeur=='I01045'){
-                $mailRCDN= $emailVars->listes->brammer;
-                }elseif($numwp_distributeur=='I03624' ||
+                    $essaisdemandes= new Application_Model_DbTable_DemandeArticlexdistrib();
+                    $essaidemandecsv= $essaisdemandes->getDemandeArticlexdistrib($numwp);
+                    $cheminessai ="{$numwp}.'.csv'";
+                    $delimiteur =';';
+                    $fichier=fopen($cheminessai,'w+');
+                    foreach($essaidemandecsv as $dataessai){
+                        
+                    }
+                $mailBrammer= $emailVars->listes->brammer;}
+                if($numwp_distributeur=='I03624' ||
                         $numwp_distributeur=='I05285' ||
                         $numwp_distributeur=='I03317' ||
                         $numwp_distributeur=='I02557' ||
@@ -2556,7 +2566,8 @@ if($this->getRequest()->isPost()){
                         $numwp_distributeur=='I02932' ||
                         $numwp_distributeur=='I03912' ||
                         $numwp_distributeur=='I05223' ||
-                        $numwp_distributeur=='I02920') {
+                        $numwp_distributeur=='I02920')
+                    {
                      $mailRCDN= $emailVars->listes->mbedexis;
                 }elseif( 
                         $numwp_distributeur=='I00264' ||
