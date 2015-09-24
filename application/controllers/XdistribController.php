@@ -598,7 +598,7 @@ if($this->getRequest()->isPost()){
              $numwp_distributeur10 = $numdistributeurwp['OACHL1'];
              $potentiel_distributeur=$infos_distributeur['OKCFC7'];
              $tempDistribs=new Application_Model_DbTable_TempMovexDistrib();
-             $tempDistrib=$tempDistribs->createdistrib($numwp, $numwp_distributeur5, $id_industry, $numwp_distributeur10, $potentiel_distributeur, $adresse);
+             $tempDistrib=$tempDistribs->createdistrib(trim($numwp), trim($numwp_distributeur5), $id_industry, $numwp_distributeur10, $potentiel_distributeur, $adresse);
 
             /*
              * fin insertion insertion table temp_movex_distributeur
@@ -683,10 +683,10 @@ if($this->getRequest()->isPost()){
             $nom_industry=$info_industry_client_final['description_industry'];
           
             $clientTemps= new Application_Model_DbTable_TempClient();
-            $clientTemp= $clientTemps->createTemp($numwp,$infos_offres->OBDLSP,$code_postal_client_final,$ville_client_final,$nom_industry,$id_industry,$nom_client_final);
+            $clientTemp= $clientTemps->createTemp(trim($numwp),$infos_offres->OBDLSP,$code_postal_client_final,$ville_client_final,$nom_industry,$id_industry,$nom_client_final);
             
             $clientDEF= new Application_Model_DbTable_ClientDistrib();
-            $clientDefs= $clientDEF->createClientDistrib($numwp,$infos_offres->OBDLSP,$code_postal_client_final,$ville_client_final,$nom_industry,$id_industry,$nom_client_final,null);
+            $clientDefs= $clientDEF->createClientDistrib(trim($numwp),$infos_offres->OBDLSP,$code_postal_client_final,$ville_client_final,$nom_industry,$id_industry,$nom_client_final,null);
         /*fin de l'insertion des données movex dans les tables temporaires */
             /* debut de requettage  pour affichage des informations  dans le phtml*/
             /*requete info_ vendeur, info_distrib,info_client*/ 
@@ -725,8 +725,9 @@ if($this->getRequest()->isPost()){
             $trackingNumber = Application_Model_DbTable_Xdistrib::makeTrackingNumber($nom_zone, $Xdistrib->lastId(true));
             $this->view->trackingNumber = $trackingNumber;
         }
+        $userCreat = $this->_auth->getStorage()->read();
         $Defxdistribs= new Application_Model_DbTable_Xdistrib();
-        $defxdistrib = $Defxdistribs->createXDistrib($numwp, $trackingNumber,$context_info[0]['contexte_demande'],$date,$context_info[0]['services_associes'],$user_info[0]['id_user'],$infos_dd->id_user,null,$infos_offres->OBDLSP,$numwp_distributeur5);
+        $defxdistrib = $Defxdistribs->createXDistrib($numwp, $trackingNumber,$context_info[0]['contexte_demande'],$date,$context_info[0]['services_associes'],$user_info[0]['id_user'],$userCreat->id_user,null,$infos_offres->OBDLSP,$numwp_distributeur5);
         $Defxdistribarticles= new Application_Model_DbTable_DemandeArticlexdistrib();
         foreach($article_info as $art){
             $marge_demande_article = 100*(1-($art['prix_cif']/$art['prix_achat_demande_distrib']));
