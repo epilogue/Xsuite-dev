@@ -540,7 +540,7 @@ if($this->getRequest()->isPost()){
             $flashMessenger->addMessage($message);
             $redirector->gotoSimple('index', 'xdistrib');
         }
-        exit();
+        
         $this->view->numwp = $numwp;
         //si le numero workplace est valide alors on fait la requête pour movex
         // requête d'informations de l'offre et on va enregistrer les infos  dans les  tables temp_movex 
