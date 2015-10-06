@@ -1402,69 +1402,22 @@ if($this->getRequest()->isPost()){
                         348,349,350,351,352,353,354,355,356,357,358,359,360,361,362,363,364,365,
                         366,367,368,369,370,371,372,373,374,375,376,377,378,379,380,381,382,383,
                         384,385,386,387,388,389,390,391,392,393,394,395,396,397,398,399,400,401,
-                        402,403,404,405,406,407,408,409,410,411,412,413,414,415);
-                    switch ($destIndustry) {
-                    case ($destIndustry > 0 && $destIndustry < 14 ):
+                        402,403,404,405,406,407,408,409,410,411,412,413,414,415,416);
+                    if(in_array($destIndustry, $car1)){
                         $destinataireMail2 = $emailVars->listes->carIndustries1;
-                        break;
-                    case ($destIndustry = 14 ):
-                        $destinataireMail2 = $emailVars->listes->carIndustries2;
-                        break;
-                    case ($destIndustry = 15 ):
-                        $destinataireMail2 = $emailVars->listes->carIndustries1;
-                        break;
-                    case ( $destIndustry = 16 ):
-                        $destinataireMail2 = $emailVars->listes->carIndustries1;
-                        break;
-                    case ($destIndustry = 17 ):
-                        $destinataireMail2 = $emailVars->listes->carIndustries2;
-                        break;
-                    case ($destIndustry = 18 ):
-                        $destinataireMail2 = $emailVars->listes->carIndustries1;
-                        break;
-                    case ( $destIndustry = 19):
-                        $destinataireMail2 = $emailVars->listes->carIndustries1;
-                        break;
-                    case ($destIndustry > 19 && $destIndustry < 59):
-                         $destinataireMail2 = $emailVars->listes->carIndustries2;
-                        break;
-                    case ($destIndustry = 59 ):
-                         $destinataireMail2 = $emailVars->listes->carIndustries1;
-                        break;
-                    case ($destIndustry > 59 && $destIndustry < 73):
-                         $destinataireMail2 = $emailVars->listes->carIndustries2;
-                        break;
-                    case ($destIndustry > 72 && $destIndustry < 77 ):
-                         $destinataireMail2 = $emailVars->listes->carIndustries1;
-                        break;
-                    case ($destIndustry > 76 && $destIndustry < 138 ):
+                    }elseif(in_array($destIndustry, $car2)){
+                        $destinataireMail2 = $emailVars->listes->carIndustries;
+                    }elseif(in_array($destIndustry, $LS)){
                         $destinataireMail2 = $emailVars->listes->LifeandScience;
-                        break;
-                    case ($destIndustry > 137 && $destIndustry < 272 ):
-                        $destinataireMail2 = $emailVars->listes->Electronique;
-                        break;
-                    case ($destIndustry > 271 && $destIndustry < 281 ):
-                        $destinataireMail2 = $emailVars->listes->foodIndustries1;
-                        break;
-                    case ($destIndustry > 280 && $destIndustry < 291 ):
-                        $destinataireMail2 = $emailVars->listes->foodIndustries;
-                        break;
-                        case ($destIndustry > 290 && $destIndustry < 295 ):
-                        $destinataireMail2 = $emailVars->listes->foodIndustries1;
-                        break;
-                    case ($destIndustry > 294 && $destIndustry < 304 ):
-                        $destinataireMail2 = $emailVars->listes->foodIndustries;
-                        break;
-                    case ($destIndustry > 303 && $destIndustry < 309 ):
-                        $destinataireMail2 = $emailVars->listes->foodIndustries1;
-                        break;
-                    case ($destIndustry > 308 && $destIndustry < 314 ):  
-                        $destinataireMail2 = $emailVars->listes->foodIndustries;
-                        break;
-                    case ($destIndustry > 313 && $destIndustry <= 415 ):
+                    }elseif(in_array($destIndustry, $Elec)){
+                       $destinataireMail2 = $emailVars->listes->Electronique;
+                    }elseif(in_array($destIndustry, $food)){
+                       $destinataireMail2 = $emailVars->listes->foodIndustries;
+                    }elseif(in_array($destIndustry, $food1)){
+                       $destinataireMail2 = $emailVars->listes->foodIndustries1;
+                    }elseif(in_array($destIndustry,$EE)){
                         $destinataireMail2 = $emailVars->listes->environnementEnergie;
-                        break;
-                }
+                    }
                 $params['url'] = "http://{$_SERVER['SERVER_NAME']}/xdistrib/consultchefmarche/numwp/{$numwp}";
                 $params['corpsMail'] = "Bonjour,\n"
                         . "\n"
@@ -2814,68 +2767,21 @@ if($this->getRequest()->isPost()){
                         366,367,368,369,370,371,372,373,374,375,376,377,378,379,380,381,382,383,
                         384,385,386,387,388,389,390,391,392,393,394,395,396,397,398,399,400,401,
                         402,403,404,405,406,407,408,409,410,411,412,413,414,415);
-                switch ($destIndustry) {
-                     case ($destIndustry > 0 && $destIndustry < 14 ):
-                        $destinataireMail2 = $emailVars->listes->carIndustries1;
-                        break;
-                     case ($destIndustry = 14 ):
-                        $destinataireMail2 = $emailVars->listes->carIndustries2;
-                        break;
-                     case ($destIndustry = 15 ):
-                        $destinataireMail2 = $emailVars->listes->carIndustries1;
-                        break;
-                     case ( $destIndustry = 16 ):
-                        $destinataireMail2 = $emailVars->listes->carIndustries1;
-                        break;
-                     case ($destIndustry = 17 ):
-                        $destinataireMail2 = $emailVars->listes->carIndustries2;
-                        break;
-                     case ($destIndustry = 18 ):
-                        $destinataireMail2 = $emailVars->listes->carIndustries1;
-                        break;
-                     case ( $destIndustry = 19):
-                        $destinataireMail2 = $emailVars->listes->carIndustries1;
-                        break;
-                    case ($destIndustry > 19 && $destIndustry < 59):
-                         $destinataireMail2 = $emailVars->listes->carIndustries2;
-                        break;
-                     case ($destIndustry = 59 ):
-                         $destinataireMail2 = $emailVars->listes->carIndustries1;
-                        break;
-                    case ($destIndustry > 59 && $destIndustry < 73):
-                         $destinataireMail2 = $emailVars->listes->carIndustries2;
-                        break;
-                    case ($destIndustry > 72 && $destIndustry < 77 ):
-                         $destinataireMail2 = $emailVars->listes->carIndustries1;
-                        break;
-                    case ($destIndustry > 76 && $destIndustry < 138 ):
-                        $destinataireMail2 = $emailVars->listes->lifeandscience;
-                        break;
-                     case ($destIndustry > 137 && $destIndustry < 272 ):
-                        $destinataireMail2 = $emailVars->listes->Electronique;
-                        break;
-                    case ($destIndustry > 271 && $destIndustry < 281 ):
-                        $destinataireMail2 = $emailVars->listes->foodIndustries1;
-                        break;
-                    case ($destIndustry > 280 && $destIndustry < 291 ):
-                        $destinataireMail2 = $emailVars->listes->foodIndustries;
-                        break;
-                        case ($destIndustry > 290 && $destIndustry < 295 ):
-                        $destinataireMail2 = $emailVars->listes->foodIndustries1;
-                        break;
-                    case ($destIndustry > 294 && $destIndustry < 304 ):
-                        $destinataireMail2 = $emailVars->listes->foodIndustries;
-                        break;
-                    case ($destIndustry > 303 && $destIndustry < 309 ):
-                        $destinataireMail2 = $emailVars->listes->foodIndustries1;
-                        break;
-                    case ($destIndustry > 308 && $destIndustry < 314 ):  
-                        $destinataireMail2 = $emailVars->listes->foodIndustries;
-                        break;
-                    case ($destIndustry > 313 && $destIndustry <= 415 ):
-                        $destinataireMail2 = $emailVars->listes->environnementEnergie;
-                        break;
-                }
+                if(in_array($destIndustry, $car1)){
+                        $destinataireMail6 = $emailVars->listes->carIndustries1;
+                    }elseif(in_array($destIndustry, $car2)){
+                        $destinataireMail6 = $emailVars->listes->carIndustries;
+                    }elseif(in_array($destIndustry, $LS)){
+                        $destinataireMail6 = $emailVars->listes->LifeandScience;
+                    }elseif(in_array($destIndustry, $Elec)){
+                       $destinataireMail6 = $emailVars->listes->Electronique;
+                    }elseif(in_array($destIndustry, $food)){
+                       $destinataireMail6 = $emailVars->listes->foodIndustries;
+                    }elseif(in_array($destIndustry, $food1)){
+                       $destinataireMail6 = $emailVars->listes->foodIndustries1;
+                    }elseif(in_array($destIndustry,$EE)){
+                        $destinataireMail6 = $emailVars->listes->environnementEnergie;
+                    }
                 $params6['url'] = "http://{$_SERVER['SERVER_NAME']}/xdistrib/consult/numwp/{$numwp}";
                 $params6['corpsMail'] = "Bonjour,\n"
                         . "\n"
@@ -2887,7 +2793,7 @@ if($this->getRequest()->isPost()){
                         . "\n"
                         . "--\n"
                         . "Xdistrib";
-                $params6['destinataireMail'] = $destinataireMail2;
+                $params6['destinataireMail'] = $destinataireMail6;
                 $params6['sujet'] = " Xdistrib : La demande Xdistrib $tracking/$numwp de {$user_info['nom_user']} pour le client $nomclients a été validée par le DBD.";
                 $this->sendEmail($params6);
                    $flashMessenger = $this->_helper->getHelper('FlashMessenger');
@@ -3031,6 +2937,7 @@ if($this->getRequest()->isPost()){
         $this->view->article_info=$article_info;
         $this->view->nom_holon=$holon_nom;
         $this->view->client_info=$client_info;
+        $destIndustry=$client_info['id_industry'];
         $this->view->user_info=$user_info;
         $this->view->distrib_info=$distrib_info;
         $this->view->info_demande_xdistrib=$info_demande_xdistrib;
@@ -3344,6 +3251,9 @@ if($this->getRequest()->isPost()){
                             case "20":
                                 $params2['destinataireMail'] = $emailVars->listes->leaderin03;
                                 break;
+                            case "31":
+                                $params2['destinataireMail'] = $emailVars->listes->leaderiw08;
+                                break;
                         }
                          $params2['url'] = "http://{$_SERVER['SERVER_NAME']}/xdistrib/consult/numwp/{$numwp}";
 
@@ -3425,68 +3335,21 @@ if($this->getRequest()->isPost()){
                         366,367,368,369,370,371,372,373,374,375,376,377,378,379,380,381,382,383,
                         384,385,386,387,388,389,390,391,392,393,394,395,396,397,398,399,400,401,
                         402,403,404,405,406,407,408,409,410,411,412,413,414,415);
-                    switch ($destIndustry) {
-                     case ($destIndustry > 0 && $destIndustry < 14 ):
-                        $destinataireMail2 = $emailVars->listes->carIndustries1;
-                        break;
-                     case ($destIndustry = 14 ):
-                        $destinataireMail2 = $emailVars->listes->carIndustries2;
-                        break;
-                     case ($destIndustry = 15 ):
-                        $destinataireMail2 = $emailVars->listes->carIndustries1;
-                        break;
-                     case ( $destIndustry = 16 ):
-                        $destinataireMail2 = $emailVars->listes->carIndustries1;
-                        break;
-                     case ($destIndustry = 17 ):
-                        $destinataireMail2 = $emailVars->listes->carIndustries2;
-                        break;
-                     case ($destIndustry = 18 ):
-                        $destinataireMail2 = $emailVars->listes->carIndustries1;
-                        break;
-                     case ( $destIndustry = 19):
-                        $destinataireMail2 = $emailVars->listes->carIndustries1;
-                        break;
-                    case ($destIndustry > 19 && $destIndustry < 59):
-                         $destinataireMail2 = $emailVars->listes->carIndustries2;
-                        break;
-                     case ($destIndustry = 59 ):
-                         $destinataireMail2 = $emailVars->listes->carIndustries1;
-                        break;
-                    case ($destIndustry > 59 && $destIndustry < 73):
-                         $destinataireMail2 = $emailVars->listes->carIndustries2;
-                        break;
-                    case ($destIndustry > 72 && $destIndustry < 77 ):
-                         $destinataireMail2 = $emailVars->listes->carIndustries1;
-                        break;
-                    case ($destIndustry > 76 && $destIndustry < 138 ):
-                        $destinataireMail2 = $emailVars->listes->lifeandscience;
-                        break;
-                    case ($destIndustry > 137 && $destIndustry < 272 ):
-                        $destinataireMail2 = $emailVars->listes->electronique;
-                        break;
-                    case ($destIndustry > 271 && $destIndustry < 281 ):
-                        $destinataireMail2 = $emailVars->listes->foodIndustries1;
-                        break;
-                    case ($destIndustry > 280 && $destIndustry < 291 ):
-                        $destinataireMail2 = $emailVars->listes->foodIndustries;
-                        break;
-                        case ($destIndustry > 290 && $destIndustry < 295 ):
-                        $destinataireMail2 = $emailVars->listes->foodIndustries1;
-                        break;
-                    case ($destIndustry > 294 && $destIndustry < 304 ):
-                        $destinataireMail2 = $emailVars->listes->foodIndustries;
-                        break;
-                    case ($destIndustry > 303 && $destIndustry < 309 ):
-                        $destinataireMail2 = $emailVars->listes->foodIndustries1;
-                        break;
-                    case ($destIndustry > 308 && $destIndustry < 314 ):  
-                        $destinataireMail2 = $emailVars->listes->foodIndustries;
-                        break;
-                    case ($destIndustry > 313 && $destIndustry <= 415 ):
-                        $destinataireMail2 = $emailVars->listes->environnementEnergie;
-                        break;
-                }
+                    if(in_array($destIndustry, $car1)){
+                        $destinataireMail4 = $emailVars->listes->carIndustries1;
+                    }elseif(in_array($destIndustry, $car2)){
+                        $destinataireMail4 = $emailVars->listes->carIndustries;
+                    }elseif(in_array($destIndustry, $LS)){
+                        $destinataireMail4 = $emailVars->listes->LifeandScience;
+                    }elseif(in_array($destIndustry, $Elec)){
+                       $destinataireMail4 = $emailVars->listes->Electronique;
+                    }elseif(in_array($destIndustry, $food)){
+                       $destinataireMail4 = $emailVars->listes->foodIndustries;
+                    }elseif(in_array($destIndustry, $food1)){
+                       $destinataireMail4 = $emailVars->listes->foodIndustries1;
+                    }elseif(in_array($destIndustry,$EE)){
+                        $destinataireMail4 = $emailVars->listes->environnementEnergie;
+                    }
                 $params4['url'] = "http://{$_SERVER['SERVER_NAME']}/xdistrib/consult/numwp/{$numwp}";
                 $params4['corpsMail'] = "Bonjour,\n"
                         . "\n"
@@ -3498,7 +3361,7 @@ if($this->getRequest()->isPost()){
                         . "\n"
                         . "--\n"
                         . "Xdistrib";
-                $params4['destinataireMail'] = $destinataireMail2;
+                $params4['destinataireMail'] = $destinataireMail4;
                 $params4['sujet'] = " Xdistrib : La demande Xdistrib  $tracking/$numwp de {$user_info['nom_user']} pour le client $nomclients a été validée par le Dirco.";
                 $this->sendEmail($params4);
                  $params5['url'] = "http://{$_SERVER['SERVER_NAME']}/xdistrib/consult/numwp/{$numwp}";
