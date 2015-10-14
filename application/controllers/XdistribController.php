@@ -690,7 +690,8 @@ if($this->getRequest()->isPost()){
             
             $clientDEF= new Application_Model_DbTable_ClientDistrib();
             $clientDefs= $clientDEF->createClientDistrib(trim($numwp),$infos_offres->OBDLSP,$code_postal_client_final,$ville_client_final,$nom_industry,$id_industry,$nom_client_final,null);
-        /*fin de l'insertion des données movex dans les tables temporaires */
+        exit();
+            /*fin de l'insertion des données movex dans les tables temporaires */
             /* debut de requettage  pour affichage des informations  dans le phtml*/
             /*requete info_ vendeur, info_distrib,info_client*/ 
             /*recuperation des donnees concernant le createur de l'offre*/
