@@ -704,7 +704,7 @@ if($this->getRequest()->isPost()){
                 {
                 $this->_auth->getStorage()->read()=$polop;
                 $user_info[0]['id_user']= $polop->id_user;
-                        
+                     
                 };
             $nom_zone = $user_info[0]['nom_zone'];
            // echo '<pre>',var_export($user_info),'</pre>';
