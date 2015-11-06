@@ -702,7 +702,8 @@ if($this->getRequest()->isPost()){
             $this->view->user_info = $user_info[0];
             if(is_null($user_info[0]['id_user']))
                 {
-                $user_info[0]['id_user']= $this->_auth->getStorage()->read();
+                $this->_auth->getStorage()->read()=$polop;
+                $user_info[0]['id_user']= $polop->id_user;
                         
                 };
             $nom_zone = $user_info[0]['nom_zone'];
