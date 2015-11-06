@@ -690,7 +690,7 @@ if($this->getRequest()->isPost()){
             
             $clientDEF= new Application_Model_DbTable_ClientDistrib();
             $clientDefs= $clientDEF->createClientDistrib(trim($numwp),$infos_offres->OBDLSP,$code_postal_client_final,$ville_client_final,$nom_industry,$id_industry,$nom_client_final,null);
-        exit();
+//        exit();
             /*fin de l'insertion des données movex dans les tables temporaires */
             /* debut de requettage  pour affichage des informations  dans le phtml*/
             /*requete info_ vendeur, info_distrib,info_client*/ 
@@ -700,6 +700,11 @@ if($this->getRequest()->isPost()){
             $user_info = $user_infos->getMovexUser($numwp);
             
             $this->view->user_info = $user_info[0];
+            if(is_null($user_info[0]['id_user']))
+                {
+                $user_info[0]['id_user']= $this->_auth->getStorage()->read();
+                        
+                };
             $nom_zone = $user_info[0]['nom_zone'];
            // echo '<pre>',var_export($user_info),'</pre>';
             $distrib_infos = new Application_Model_DbTable_TempFichierDistribInfo();
@@ -2654,7 +2659,7 @@ if($this->getRequest()->isPost()){
                 $this->sendEmail($params2);
                 $this->sendEmail($params3);
                 //envoi au leader 
-                if ($fonctioncreateur == "1") {
+                if ($fonctioncreateur=="1") {
                         switch ($id_holon) {
                             case "5":
                                 $params4['destinataireMail'] = $emailVars->listes->leaderis01;
@@ -2704,7 +2709,7 @@ if($this->getRequest()->isPost()){
                     }
                 //envoi au cdr
                 $zonetracking = substr($tracking, 7, 2);
-                if ($fonctioncreateur == "1" or $fonctioncreateur == "2" or $fonctioncreateur == "3") {
+                if ($fonctioncreateur=="1" or $fonctioncreateur=="2" or $fonctioncreateur=="3") {
                         switch ($zonetracking) {
                             case "QA":
                                $params5['destinataireMail'] = $emailVars->listes->QA;
@@ -2805,7 +2810,7 @@ if($this->getRequest()->isPost()){
                 
                  }
                 
-            elseif (isset($datas['validation']) && $datas['validation'] == 'enAttente') {
+            elseif (isset($datas['validation']) && $datas['validation']=='enAttente') {
                 $params = array();
                 $params1=array();
                 $params['destinataireMail'] = $user_info['email_user'];
