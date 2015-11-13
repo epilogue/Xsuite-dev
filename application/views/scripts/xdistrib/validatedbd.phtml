@@ -183,6 +183,7 @@ $this->headScript()->appendFile('/js/controllers/xprice/afficher_masquer_validat
                     </tr>
                     <?php foreach($this->article_info as $k=>$value){ ?>
                     <tr>
+                         <td><input readonly="readonly" value="<?php echo $value['code_article']; ?>"  name="<?php echo 'code_article[]'; ?>"></td>
                         <td style="width: 70px;"><?php echo $value['reference_article']; ?></td>
                         <td id="qt-<?php echo $k; ?>"><?php echo $value['quantite_demande_article']; ?></td>
                         <td><input class="pwp" id="pwp-<?php echo $k;?>"  value="<?php echo $value['prix_tarif']; ?>" name="ptarif" ></td>
