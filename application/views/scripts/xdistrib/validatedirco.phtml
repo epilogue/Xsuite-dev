@@ -167,6 +167,7 @@ $this->headScript()->appendFile('/js/controllers/xprice/afficher_masquer_validat
                 <legend>Produits</legend>
                 <table  id="article" class="enum">
                     <tr>
+                        <td>Code article</td>
                         <td>Références produits</td>
                         <td>Quantité</td>
                         <td>prix Tarif</td>
@@ -183,6 +184,7 @@ $this->headScript()->appendFile('/js/controllers/xprice/afficher_masquer_validat
                     </tr>
                     <?php foreach($this->article_info as $k=>$value){ ?>
                     <tr>
+                         <td><input readonly="readonly" value="<?php echo $value['code_article']; ?>"  name="<?php echo 'code_article[]'; ?>"></td>
                         <td style="width: 70px;"><?php echo $value['reference_article']; ?></td>
                         <td id="qt-<?php echo $k; ?>"><?php echo $value['quantite_demande_article']; ?></td>
                         <td><input class="pwp" id="pwp-<?php echo $k;?>"  value="<?php echo $value['prix_tarif']; ?>" name="ptarif" ></td>
@@ -201,7 +203,7 @@ $this->headScript()->appendFile('/js/controllers/xprice/afficher_masquer_validat
                         </td>
                     </tr> <?php }?>
                     <tr>
-                            <td>total</td>
+                            <td colspan="2">total</td>
                             <td></td>
                             <td><input class="cab" id="cab-affiche"
                                <?php $cab=0;foreach($this->article_info as $result)
