@@ -389,7 +389,7 @@ if($this->getRequest()->isPost()){
         $code_postal_client_final=$excellContent[5][6];
         $ville_client_final=$excellContent[5][8];
         $contact_distributeur=$excellContent[6][1];
-var_dump($excellContent[4][8]);exit();
+//var_dump($excellContent[4][8]);exit();
           /* deuxième iteration  on va  recuperer les données  concernant les articles  on boucle tant qu'on a pas de ligne  vide  ou  que l'on ne rencontre pas ''concurrence''*/ 
         $j=0;
         foreach($sheet->getRowIterator() as $row) {
