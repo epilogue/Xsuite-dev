@@ -3180,6 +3180,8 @@ if($this->getRequest()->isPost()){
                         . "\n"
                         . "--\n"
                         . "Directeur Commercial.";
+                $params6['sujet'] = " Xdistrib :demande Xdistrib  $tracking/$numwp pour le client $nomclients validée par Directeur Commercial/ lien pour Avenant .";
+                $this->sendEmail($params6);
                 $params['destinataireMail'] =/*"mhuby@smc-france.fr";*/$user_info['email_user'];
                 $params['url'] = "http://{$_SERVER['SERVER_NAME']}/xdistrib/consult/numwp/{$numwp}";
                 $params['corpsMail'] = "Bonjour,\n"
@@ -3194,8 +3196,7 @@ if($this->getRequest()->isPost()){
                         . "Directeur Commercial.";
                 $params['sujet'] = " Xdistrib :demande Xdistrib  $tracking/$numwp pour le client $nomclients validée par Directeur Commercial.";
                 $this->sendEmail($params);
-                 $params6['sujet'] = " Xdistrib :demande Xdistrib  $tracking/$numwp pour le client $nomclients validée par Directeur Commercial/ lien pour Avenant .";
-                $this->sendEmail($params6);
+                 
                 $params1['destinataireMail'] =$mailSC;
                 $params1['url'] = "http://{$_SERVER['SERVER_NAME']}/xdistrib/consult/numwp/{$numwp}";
                 $params1['corpsMail'] = "Bonjour,\n"
@@ -3210,7 +3211,7 @@ if($this->getRequest()->isPost()){
                         . "Directeur Commercial.";
                 $params1['sujet'] = "  Xdistrib :demande Xdistrib $tracking/$numwp pour le client $nomclients validée par Directeur Commercial.";
                 $this->sendEmail($params1);
-                 $params1bis['destinataireMail'] =/*"mhuby@smc-france.fr";*/"mrita@smc-france.fr";
+                 $params1bis['destinataireMail'] ="mrita@smc-france.fr";
                 $params1bis['url'] = "http://{$_SERVER['SERVER_NAME']}/xdistrib/consult/numwp/{$numwp}";
                 $params1bis['corpsMail'] = "Bonjour,\n"
                         . "\n"
@@ -3515,7 +3516,7 @@ if($this->getRequest()->isPost()){
             $formData = $this->getRequest()->getPost();
 
             $datasValidation = array(
-                'nom_validation' => $nom_validation, 'validation' => "enAttente",
+                'nom_validation' => $nom_validation, 'validation' => "Réponse",
                 'commentaire' => $formData['reponse_comm'],
                 'tiltop' => $user->id_user, 'id_demande_xdistrib' => $info_demande_xdistrib['id_demande_xdistrib']
             );
