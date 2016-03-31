@@ -86,7 +86,7 @@ class XdistribController extends Zend_Controller_Action
          }
      }
      if($user->id_fonction == 37){
-         $distrib=array("I00789","I00264","I00662","I00412","I01796","I01800","I03174","I03383","I01803","I04736","I03697","I04732","I01799","I04957","I03517","I05061","I01808","I02688","I04956","I05065"
+         $distrib=array("I00264","I00662","I00412","I01796","I01800","I03174","I03383","I01803","I04736","I03697","I04732","I01799","I04957","I03517","I05061","I01808","I02688","I04956","I05065"
 );
          $recapitulatif1=new Application_Model_DbTable_Xdistrib();
          $plop1=$recapitulatif1->rechercheridRCDN($distrib);
@@ -99,7 +99,7 @@ class XdistribController extends Zend_Controller_Action
          }//echo '<pre>',var_export($recapitulatif2),'</pre>';
      }
      if($user->id_fonction == 34){
-          $distrib=array("I03624","I05285","I03317","I02557","I00415","I00678","I04380","I03214","I02886","I03621","I02929","I02932","I03912","I05223","I02920"
+          $distrib=array("I00789","I03624","I05285","I03317","I02557","I00415","I00678","I04380","I03214","I02886","I03621","I02929","I02932","I03912","I05223","I02920"
 );
          $recapitulatif1=new Application_Model_DbTable_Xdistrib();
          $plop1=$recapitulatif1->rechercheridRCDN($distrib);
