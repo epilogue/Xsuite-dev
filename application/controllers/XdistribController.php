@@ -2536,7 +2536,8 @@ if($this->getRequest()->isPost()){
 //                        
 //                    }
                  $mailRCDN= $emailVars->listes->brammer;}
-                elseif($numwp_distributeur=='I03624' ||
+                elseif($numwp_distributeur=='I03624' ||                        
+                        $numwp_distributeur=='I00789' ||
                         $numwp_distributeur=='I05285' ||
                         $numwp_distributeur=='I03317' ||
                         $numwp_distributeur=='I02557' ||
@@ -2555,7 +2556,6 @@ if($this->getRequest()->isPost()){
                      $mailRCDN= $emailVars->listes->mbedexis;
                 }elseif( 
                         $numwp_distributeur=='I00264' ||
-                        $numwp_distributeur=='I00789' ||
                         $numwp_distributeur=='I00662' ||
                         $numwp_distributeur=='I00412' ||
                         $numwp_distributeur=='I01796' ||
