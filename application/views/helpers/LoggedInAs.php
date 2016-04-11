@@ -10,7 +10,7 @@ class Zend_View_Helper_LoggedInAs extends Zend_View_Helper_Abstract
             if($auth->getIdentity()->id_fonction==39){
             $logoutUrl = $this->view->url(array('controller'=>'login', 'action'=>'logout'), null, true);
             $adminis = $this->view->url(array('controller'=>'administration','action'=>'index'),null, true);
-            return 'Bienvenue ' . $prenom_user .' . <a href="'.$logoutUrl.'">Déconnexion</a> <br/> <a href="'.$adminis.'">Administration</a>';
+            return 'Bienvenue ' . $prenom_user .' . <a href="'.$logoutUrl.'">Déconnexion</a> <br/><br/> <a href="'.$adminis.'">Administration</a>';
             } 
             else{
                $logoutUrl = $this->view->url(array('controller'=>'login', 'action'=>'logout'), null, true); 
