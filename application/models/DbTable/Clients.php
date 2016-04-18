@@ -27,7 +27,7 @@ class Application_Model_DbTable_Clients extends Zend_Db_Table_Abstract {
         return $this;
     }
 public function rechercheClient() {
-       $sql="select * from clients";
+       $sql="select distinct(numwp_client),nom_client from clients";
         $res = $this->getAdapter()->query($sql);
         $rest=$res->fetchAll();
         if (!$rest) {
