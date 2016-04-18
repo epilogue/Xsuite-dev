@@ -2870,5 +2870,7 @@ if($mailServiceClients[0]['mail_service_client']=='regionNord'){
         $listXprice = $xprice->getRecherche($formData['liste_client']);
         
          echo '<pre>',  var_export($listXprice),'</pre>';
+         
+          $this->view->listXprice=$listXprice;
     }
 }
