@@ -20,7 +20,11 @@ $this->headScript()->appendFile('/js/controllers/xprice/popup.js');
         <tbody>
             <?php foreach ($this->listXprice as $result){?>
             <tr>
-            
+                <td><?php echo $result['nom_user'] ?></td>
+                <td><?php echo $result['num_workplace_demande_xprice'] ?></td>
+                <td><?php echo $result['tracking_number_demande_xprice'] ?></td>
+                <td><?php echo $result['nom_client'] ?></td>
+                <td><?php echo $result['date_demande_xprice']?></td>
                 <td><a href="<?php echo $this->url(array("controller"=>"xprice","action"=>"consult","numwp"=>$result['num_workplace_demande_xprice']));?>" <button class="retour" id="historique-<?php echo $k; ?>">historique</button></a>
             </tr>
             <?php } ?>
