@@ -2862,4 +2862,8 @@ if($mailServiceClients[0]['mail_service_client']=='regionNord'){
         $this->view->result1=$result1;
         $this->view->result2=$result2;
     }
+    public function recherche2Action(){
+        $formData = $this->getRequest()->getPost();
+        echo '<pre>',  var_export($formData),'</pre>';
+    }
 }
