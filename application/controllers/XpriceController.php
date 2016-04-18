@@ -2865,5 +2865,10 @@ if($mailServiceClients[0]['mail_service_client']=='regionNord'){
     public function recherche2Action(){
         $formData = $this->getRequest()->getPost();
         echo '<pre>',  var_export($formData),'</pre>';
+        
+        $xprice = new Application_Model_DbTable_Xprices();
+        $listXprice = $xprice->getRecherche($formData['liste_client']);
+        
+         echo '<pre>',  var_export($listXprice),'</pre>';
     }
 }

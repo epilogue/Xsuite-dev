@@ -14,7 +14,7 @@ $this->headScript()->appendFile('/js/multipleselect.js');
                         <td><h4>client :</h4></td>
                         <td>
                             <select name="liste_client" id="combobox">
-                                <option>Choississez le client</option>
+                                <option></option>
                                 <?php foreach($this->result1 as $value1)
                                 {?>
                                 <option value="<?php echo $value1['numwp_client']; ?>"><?php echo $value1['nom_client']; ?></option>
@@ -24,6 +24,7 @@ $this->headScript()->appendFile('/js/multipleselect.js');
                     </tr>    
                 </table>
             </div>
+            <div class="clear"></div>
             <div>
                 <input type="submit" name="valider" value="valider">
             </div>
