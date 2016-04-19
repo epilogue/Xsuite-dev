@@ -2867,7 +2867,7 @@ if($mailServiceClients[0]['mail_service_client']=='regionNord'){
        
         $this->view->result1=$result1;}
         elseif($fonction == 46 || $fonction == 43){
-            $result1=$clientRGC->rechercheRGCClient($tiltop);
+            $result1=$clients->rechercheRGCClient($tiltop);
         }
         echo '<pre>',  var_export($result1),'</pre>';
     }
