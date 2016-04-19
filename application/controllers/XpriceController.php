@@ -2873,8 +2873,10 @@ if($mailServiceClients[0]['mail_service_client']=='regionNord'){
         elseif($fonction ==6 || $fonction==3){
             $holon = $user->id_holon;
             $result1=$clients->rechercheDDLEADClient($holon);
+            var_dump($holon);
         }
-//        echo '<pre>',  var_export($result1),'</pre>';
+        
+        echo '<pre>',  var_export($result1),'</pre>';
          $this->view->result1=$result1;
     }
     public function recherche2Action(){
