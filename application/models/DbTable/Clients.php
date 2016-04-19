@@ -75,5 +75,17 @@ public function rechercheClient() {
             return $rest;
         }
     }
+    public function rechercheITCClient($id_user){
+        $sql = "select distinct(clients.numwp_client),clients.nom_client from clients "
+                . " join  demande_xprices on demande_xprices.numwp_client = clients.numwp_client "
+                . " where demande_xprices.id_user=$id_user";
+        $res = $this->getAdapter()->query($sql);
+        $rest=$res->fetchAll();
+        if (!$rest) {
+            return null;
+        } else {
+            return $rest;
+        }
+    }
 }
 
