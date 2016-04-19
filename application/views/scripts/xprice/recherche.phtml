@@ -8,25 +8,21 @@ $this->headScript()->appendFile('/js/multipleselect.js');
     <h3>Recherche Xprice par client </h3> 
     <form method="post" action="recherche2">
         <div class="workplace">
-            <fieldset>
-                <legend>Choix du client</legend>
-                <table>
-                    <tr>
-                        <td>Nom client :</td>
-                        <td>
-                            <select name="liste_client" id="nom_client">
-                                <option>Choississez le nom du client</option>
-                                <?php foreach($this->result1 as $value1)
-                                {?>
-                                <option value="<?php echo $value1['numwp_client']; ?>"><?php echo $value1['nom_client']; ?></option>
-                                <?php }?>
-                            </select>
-                        </td>
-                    </tr>    
-                </table>
-            </fieldset>
-            <div>
-                <input type="submit" name="valider" value="valider">
-            </div>
+            <table>
+                <tr>
+                    <td>Nom client :</td>
+                    <td>
+                        <select name="liste_client" id="nom_client">
+                            <option>Choississez le nom du client</option>
+                            <?php foreach($this->result1 as $value1)
+                            {?>
+                            <option value="<?php echo $value1['numwp_client']; ?>"><?php echo $value1['nom_client']; ?></option>
+                            <?php }?>
+                        </select>
+                    </td>
+                </tr>    
+            </table>
+            <p><input type="submit" name="valider" value="valider"></p>
+        </div>
     </form>
 </div>
