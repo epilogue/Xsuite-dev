@@ -38,8 +38,8 @@ public function rechercheClient() {
     }
     public function rechercheRGCClient($id_user){
         $sql = "select distinct(numwp_client),nom_client from clients "
-                . " join  demande_xprice on numwp_client_demande_xprice = clients.numwp_client "
-                . " where demande_xprice.id_user=$id_user";
+                . " join  demande_xprices on numwp_client_demande_xprices = clients.numwp_client "
+                . " where demande_xprices.id_user=$id_user";
         $res = $this->getAdapter()->query($sql);
         $rest=$res->fetchAll();
         if (!$rest) {
