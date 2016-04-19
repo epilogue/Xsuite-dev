@@ -2891,7 +2891,7 @@ if($mailServiceClients[0]['mail_service_client']=='regionNord'){
             $result1 = $clients->rechercheRCDClient($likeholon);
         }
         
-        echo '<pre>',  var_export($result1),'</pre>';
+//        echo '<pre>',  var_export($result1),'</pre>';
          $this->view->result1=$result1;
     }
     public function recherche2Action(){
