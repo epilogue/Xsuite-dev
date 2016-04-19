@@ -2859,8 +2859,9 @@ if($mailServiceClients[0]['mail_service_client']=='regionNord'){
         $fonction = $user->id_fonction;
         $tiltop = $user->id_user;
         $users= new Application_Model_DbTable_Users();
-        if($fonction==42 || $fonction==44 || $fonction==41 ||$fonction==45 || $fonction==5 ||$fonction==13 ){
         $clients= new Application_Model_DbTable_Clients();
+        if($fonction==42 || $fonction==44 || $fonction==41 ||$fonction==45 || $fonction==5 ||$fonction==13 ){
+       
         $result1 = $clients->rechercheClient();
 //        $users= new Application_Model_DbTable_Users();
 //        $result2 = $users->rechercheUser();
