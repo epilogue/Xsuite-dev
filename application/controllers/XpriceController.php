@@ -2854,22 +2854,34 @@ if($mailServiceClients[0]['mail_service_client']=='regionNord'){
     
     }
     public function rechercheAction(){
+        
+        $user = $this->_auth->getStorage()->read();
+        $fonction = $user->id_fonction;
+        $tiltop = $user->id_user;
+        $users= new Application_Model_DbTable_Users();
+        if($fonction==42 || $fonction==44 || $fonction==41 ||$fonction==45 || $fonction==5 ||$fonction==13 ){
         $clients= new Application_Model_DbTable_Clients();
         $result1 = $clients->rechercheClient();
-        $users= new Application_Model_DbTable_Users();
-        $result2 = $users->rechercheUser();
-        //echo '<pre>',  var_export($result),'</pre>';
-        $this->view->result1=$result1;
-        $this->view->result2=$result2;
+//        $users= new Application_Model_DbTable_Users();
+//        $result2 = $users->rechercheUser();
+       
+        $this->view->result1=$result1;}
+        elseif($fonction == 46 || $fonction == 43){
+            $result1=$clientRGC->rechercheRGCClient($tiltop);
+        }
+        echo '<pre>',  var_export($result1),'</pre>';
     }
     public function recherche2Action(){
+        $user = $this->_auth->getStorage()->read();
+        $fonction = $user->id_fonction;
+        $tiltop = $user->id_user;
+//        $this->view->utilisateur=$user->id_fonction;
+      
+        
         $formData = $this->getRequest()->getPost();
-        echo '<pre>',  var_export($formData),'</pre>';
         
         $xprice = new Application_Model_DbTable_Xprices();
         $listXprice = $xprice->getRecherche($formData['liste_client']);
-        
-         echo '<pre>',  var_export($listXprice),'</pre>';
          
           $this->view->listXprice=$listXprice;
     }
