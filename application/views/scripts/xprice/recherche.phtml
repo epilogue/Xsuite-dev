@@ -8,13 +8,14 @@ $this->headScript()->appendFile('/js/multipleselect.js');
     <h3>Recherche Xprice par client </h3> 
     <form method="post" action="recherche2">
         <div class="workplace">
-            <div id="widget1" class="ui-widget">
+            <fieldset>
+                <legend>Choix du client</legend>
                 <table>
                     <tr>
-                        <td><h4>client :</h4></td>
+                        <td>Nom client :</td>
                         <td>
-                            <select name="liste_client" id="combobox">
-                                <option></option>
+                            <select name="liste_client" id="nom_client">
+                                <option>Choississez le nom du client</option>
                                 <?php foreach($this->result1 as $value1)
                                 {?>
                                 <option value="<?php echo $value1['numwp_client']; ?>"><?php echo $value1['nom_client']; ?></option>
@@ -23,12 +24,9 @@ $this->headScript()->appendFile('/js/multipleselect.js');
                         </td>
                     </tr>    
                 </table>
-            </div>
-            <div class="clear"></div>
+            </fieldset>
             <div>
                 <input type="submit" name="valider" value="valider">
             </div>
-        <div class="clear"></div>
     </form>
 </div>
- <div class="clear"></div>
