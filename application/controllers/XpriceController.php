@@ -2875,6 +2875,21 @@ if($mailServiceClients[0]['mail_service_client']=='regionNord'){
             $result1=$clients->rechercheDDLEADClient($holon);
             var_dump($holon);
         }
+        elseif($fonction == 10){
+            $holon =$user->id_holon;
+            switch ($holon){
+            case 2:
+                $likeholon =array(18,19,20);
+                break;
+            case 3 : 
+                $likeholon =array(5,6,11,13);
+                break;
+            case 4 :
+                $likeholon = array(8,9,10,14,31);
+                break;
+            }
+            $result1 = $clients->rechercheRCDClient($likeholon);
+        }
         
         echo '<pre>',  var_export($result1),'</pre>';
          $this->view->result1=$result1;
