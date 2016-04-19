@@ -67,6 +67,13 @@ public function rechercheClient() {
                 . " join demande_xprices on demande_xprices.numwp_client= clients.numwp_client "
                 . " join users on users.id_user=demande_xprices.id_user "
                 . " where users.id_holon  in $likeholon";
+        $res = $this->getAdapter()->query($sql);
+        $rest=$res->fetchAll();
+        if (!$rest) {
+            return null;
+        } else {
+            return $rest;
+        }
     }
 }
 
