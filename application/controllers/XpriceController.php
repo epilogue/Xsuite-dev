@@ -2866,11 +2866,12 @@ if($mailServiceClients[0]['mail_service_client']=='regionNord'){
 //        $users= new Application_Model_DbTable_Users();
 //        $result2 = $users->rechercheUser();
        
-        $this->view->result1=$result1;}
+       }
         elseif($fonction == 46 || $fonction == 43){
             $result1=$clients->rechercheRGCClient($tiltop);
         }
         echo '<pre>',  var_export($result1),'</pre>';
+         $this->view->result1=$result1;
     }
     public function recherche2Action(){
         $user = $this->_auth->getStorage()->read();
