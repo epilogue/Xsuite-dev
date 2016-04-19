@@ -51,7 +51,7 @@ public function rechercheClient() {
     public function rechercheDDLEADClient($holon){
         $sql = "select distinct(clients.numwp_client), clients.nom_client from clients "
                 . " join demande_xprices on demande_xprices.numwp_client = clients.numwp_client "
-                . " join users on users.id_users = demande_xprices.id_user "
+                . " join users on users.id_user = demande_xprices.id_user "
                 . "where users.id_holon = $holon";
         $res = $this->getAdapter()->query($sql);
         $rest=$res->fetchAll();
