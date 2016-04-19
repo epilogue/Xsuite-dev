@@ -3612,5 +3612,11 @@ if($this->getRequest()->isPost()){
         $this->view->info_distrib=$distrib_info;
         $this->view->info_demande_xdistrib=$info_demande_xdistrib;
     }
+    public function rechercheAction(){
+        
+    }
+    public function recherche2Action(){
+        
+    }
 }
 
