@@ -590,9 +590,11 @@ if($user->id_fonction == 3 || $user->id_fonction==1){
                             case 31:
                                 $destinataireMail1 = $emailVars->listes->CDROUEST;
                                 break;
+                            case 29:
+                                $destinataireMail1=$emailVars->listes->IO;
                         }
-                        if($fonctioncreateur ==43 || $user_info['id_user']==145 || $holoncreateur==29){
-                            $destinataireMail1=$emailVars->listes->QA;
+                        if($holoncreateur ==33 || $user_info['id_user']==145){
+                            $destinataireMail1=$emailVars->listes->IO;
                         }
                         //
                         //echo '<pre>',  var_export($destinataireMail1),'</pre>'; exit();
