@@ -486,9 +486,9 @@ if($user->id_fonction == 3 || $user->id_fonction==1){
                     /*
                      * ici si itc envoie mail au leader en fonction du holon pour consultation
                      */
-//                                var_dump($fonctioncreateur);
-//                                var_dump($holoncreateur);
-                    if ($fonctioncreateur == "2") {
+                                var_dump($fonctioncreateur);
+                                var_dump($holoncreateur); exit();
+                    if ($fonctioncreateur == 2) {
                         switch ($holoncreateur) {
                             case "5":
                                 $destinataireMail2 = $emailVars->listes->leaderis01;
@@ -549,30 +549,50 @@ if($user->id_fonction == 3 || $user->id_fonction==1){
                      * ici si fonction itc kam ou leader  envoie de mail au chef de region pour validation
                      */
                     $zonetracking = substr($trackingNumber, 6, 2);
+                    /*changement à comter du 22/04/2016 le dispatch mail ce fait maintenant en fonction du holon  et non plus de la region*/
                     //echo '<pre>',  var_export($zonetracking),'</pre>';
-                    if ($fonctioncreateur == "1" || $fonctioncreateur == "2" || $fonctioncreateur == "3") {
-                        switch ($zonetracking) {
-                            case "QA":
-                                $destinataireMail1 = $emailVars->listes->QA;
-                                break;
-                            case "QC":
+                    
+                    if ( $fonctioncreateur == "2" || $fonctioncreateur == "3") {
+                        switch ($holoncreateur) {
+                            case 18:
                                 $destinataireMail1 = $emailVars->listes->CDRNORD;
                                 break;
-                            case "QF":
+                            case 19:
                                 $destinataireMail1 = $emailVars->listes->CDRNORD;
                                 break;
-                            case "QE":
+                            case 20:
+                                $destinataireMail1 = $emailVars->listes->CDRNORD;
+                                break;
+                            case 5:
                                 $destinataireMail1 = $emailVars->listes->CDREST;
                                 break;
-                            case "QH":
+                            case 6:
                                 $destinataireMail1 = $emailVars->listes->CDREST;
                                 break;
-                            case "QI":
+                            case 11:
+                                $destinataireMail1 = $emailVars->listes->CDREST;
+                                break;
+                            case 13:
+                                $destinataireMail1 = $emailVars->listes->CDREST;
+                                break;
+                            case 8:
                                 $destinataireMail1 = $emailVars->listes->CDROUEST;
                                 break;
-                            case "QK":
+                            case 9:
                                 $destinataireMail1 = $emailVars->listes->CDROUEST;
                                 break;
+                            case 10:
+                                $destinataireMail1 = $emailVars->listes->CDROUEST;
+                                break;
+                            case 14:
+                                $destinataireMail1 = $emailVars->listes->CDROUEST;
+                                break;
+                            case 31:
+                                $destinataireMail1 = $emailVars->listes->CDROUEST;
+                                break;
+                        }
+                        if($fonctioncreateur ==43 || $user_info['id_user']==145 || $holoncreateur==29){
+                            $destinataireMail1=$emailVars->listes->QA;
                         }
                         //
                         //echo '<pre>',  var_export($destinataireMail1),'</pre>'; exit();
