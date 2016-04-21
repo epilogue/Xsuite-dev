@@ -487,7 +487,7 @@ if($user->id_fonction == 3 || $user->id_fonction==1){
                      * ici si itc envoie mail au leader en fonction du holon pour consultation
                      */
                                 var_dump($fonctioncreateur);
-                                var_dump($holoncreateur); exit();
+                                var_dump($holoncreateur);
                     if ($fonctioncreateur == 2) {
                         switch ($holoncreateur) {
                             case "5":
@@ -554,50 +554,50 @@ if($user->id_fonction == 3 || $user->id_fonction==1){
                     
                     if ( $fonctioncreateur == "2" || $fonctioncreateur == "3") {
                         switch ($holoncreateur) {
-                            case 18:
+                            case "18":
                                 $destinataireMail1 = $emailVars->listes->CDRNORD;
                                 break;
-                            case 19:
+                            case "19":
                                 $destinataireMail1 = $emailVars->listes->CDRNORD;
                                 break;
-                            case 20:
+                            case "20":
                                 $destinataireMail1 = $emailVars->listes->CDRNORD;
                                 break;
-                            case 5:
+                            case "5":
                                 $destinataireMail1 = $emailVars->listes->CDREST;
                                 break;
-                            case 6:
+                            case"6":
                                 $destinataireMail1 = $emailVars->listes->CDREST;
                                 break;
-                            case 11:
+                            case "11":
                                 $destinataireMail1 = $emailVars->listes->CDREST;
                                 break;
-                            case 13:
+                            case "13":
                                 $destinataireMail1 = $emailVars->listes->CDREST;
                                 break;
-                            case 8:
+                            case "8":
                                 $destinataireMail1 = $emailVars->listes->CDROUEST;
                                 break;
-                            case 9:
+                            case "9":
                                 $destinataireMail1 = $emailVars->listes->CDROUEST;
                                 break;
-                            case 10:
+                            case "10":
                                 $destinataireMail1 = $emailVars->listes->CDROUEST;
                                 break;
-                            case 14:
+                            case "14":
                                 $destinataireMail1 = $emailVars->listes->CDROUEST;
                                 break;
-                            case 31:
+                            case "31":
                                 $destinataireMail1 = $emailVars->listes->CDROUEST;
                                 break;
-                            case 29:
+                            case "29":
                                 $destinataireMail1=$emailVars->listes->IO;
                         }
-                        if($holoncreateur ==33 || $user_info['id_user']==145){
+                        if($holoncreateur =="33" || $user_info['id_user']=="145"){
                             $destinataireMail1=$emailVars->listes->IO;
                         }
                         //
-                        //echo '<pre>',  var_export($destinataireMail1),'</pre>'; exit();
+                        echo '<pre>',  var_export($destinataireMail1),'</pre>'; exit();
                         if (!is_null($firstComment)) {
                             $url1 = "http://{$_SERVER['SERVER_NAME']}/xprice/validatechefregion/numwp/{$numwp}/com/{$firstComment}";
                         } else {
