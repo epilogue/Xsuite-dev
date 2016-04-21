@@ -597,7 +597,8 @@ if($user->id_fonction == 3 || $user->id_fonction==1){
                             $destinataireMail1=$emailVars->listes->IO;
                         }
                         //
-                        echo '<pre>',  var_export($destinataireMail1),'</pre>'; exit();
+                        echo '<pre>',  var_export($destinataireMail1),'</pre>'; 
+                        echo '<pre>',  var_export($destinataireMail2),'</pre>'; exit();
                         if (!is_null($firstComment)) {
                             $url1 = "http://{$_SERVER['SERVER_NAME']}/xprice/validatechefregion/numwp/{$numwp}/com/{$firstComment}";
                         } else {
