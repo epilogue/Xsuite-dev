@@ -111,7 +111,7 @@ class XdistribController extends Zend_Controller_Action
              $recapitulatif2[] = $recapitulatif1->rechercheDBD($value1['id_demande_xdistrib']);
          }//echo '<pre>',var_export($recapitulatif2),'</pre>';
      }
-     if ($user->id_fonction == 1 || $user->id_fonction==2){
+     if ($user->id_fonction == 43 || $user->id_fonction==2){
          $recapitulatif1 = new Application_Model_DbTable_Xdistrib();
          $recapitulatif2 = $recapitulatif1->searchByUser($user->id_user);
         // echo '<pre>',var_export($recapitulatif2),'</pre>';
@@ -177,7 +177,7 @@ class XdistribController extends Zend_Controller_Action
          }}
          $recapitulatif2[] = $plopr;
      }
-      if($user->id_fonction ==5|| $user->id_fonction == 13 || $user->id_fonction == 29 || $user->id_fonction == 23 || $user->id_fonction == 32){
+      if($user->id_fonction ==5|| $user->id_fonction == 13 || $user->id_fonction == 41 || $user->id_fonction == 23 || $user->id_fonction == 32|| $user->id_fonction == 47){
          $recapitulatif1 = new Application_Model_DbTable_Xdistrib;
          $plop1=$recapitulatif1->rechercheridDBD();
             //echo '<pre>',var_export($plop1) ,'</pre>';
@@ -787,7 +787,9 @@ if($this->getRequest()->isPost()){
         $infos_services=$info_service->createServiceDistrib($formData['numwp'], $formData['produitdedie'], $formData['ecatalogue'], $formData['journeetech'], $formData['accescom'], $formData['identconc'], $formData['interlocuteur'], $formData['service_associe']);
         $infos_users= new Application_Model_DbTable_Users();
         $id_user = $formData['id_user'];
+        
         $info_user = $infos_users->getUser($id_user);
+        $id_holon =$info_user['id_holon'];
         $nom_client=$formData['nom_client'];
         $nom_distrib=$formData['nom_distrib'];
         $demandes_xdistrib = new Application_Model_DbTable_Xdistrib();
@@ -807,28 +809,45 @@ if($this->getRequest()->isPost()){
         $params1=array();
         $params=array();
         if($user_connect->id_fonction == "6" || $user_connect->id_fonction == "34" || $user_connect->id_fonction == "35" || $user_connect->id_fonction == "36" || $user_connect->id_fonction == "37" ){
-            switch ($zonetracking) {
-                case "QA":
-                    $destinataireMail1 = $emailVars->listes->QA;
-                    break;
-                case "QC":
+            switch ($id_holon) {
+                case "18":
                     $destinataireMail1 = $emailVars->listes->CDRNORD;
                     break;
-                case "QF":
+                case "19":
                     $destinataireMail1 = $emailVars->listes->CDRNORD;
                     break;
-                case "QE":
+                case "20":
+                    $destinataireMail1 = $emailVars->listes->CDRNORD;
+                    break;
+                case "5":
                     $destinataireMail1 = $emailVars->listes->CDREST;
                     break;
-                case "QH":
+                case"6":
                     $destinataireMail1 = $emailVars->listes->CDREST;
                     break;
-                case "QI":
+                case "11":
+                    $destinataireMail1 = $emailVars->listes->CDREST;
+                    break;
+                case "13":
+                    $destinataireMail1 = $emailVars->listes->CDREST;
+                    break;
+                case "8":
                     $destinataireMail1 = $emailVars->listes->CDROUEST;
                     break;
-                case "QK":
+                case "9":
                     $destinataireMail1 = $emailVars->listes->CDROUEST;
                     break;
+                case "10":
+                    $destinataireMail1 = $emailVars->listes->CDROUEST;
+                    break;
+                case "14":
+                    $destinataireMail1 = $emailVars->listes->CDROUEST;
+                    break;
+                case "31":
+                    $destinataireMail1 = $emailVars->listes->CDROUEST;
+                    break;
+                case "29":
+                    $destinataireMail1=$emailVars->listes->Export;
             }
              $params['destinataireMail']=$destinataireMail1;
              $params['url']="http://{$_SERVER['SERVER_NAME']}/xdistrib/validatedrv/numwp/{$numwp}";
@@ -845,7 +864,7 @@ if($this->getRequest()->isPost()){
              $params['sujet']=" XDistrib :L'offre XDistrib {$trackingNumber}/{$numwp} de {$info_user['nom_user']} {$info_user['prenom_user']} pour {$nom_distrib}/{$nom_client} est à valider";
             $this->sendEmail($params);
             }
-            elseif($user_connect->id_fonction == "1" || $user_connect->id_fonction== "2" || $user_connect->id_fonction == "3" ){
+            elseif($user_connect->id_fonction == "43" || $user_connect->id_fonction== "2" || $user_connect->id_fonction == "3" ){
                 $params1['destinataireMail']=$mail_dd;
                 $params1['url']="http://{$_SERVER['SERVER_NAME']}/xdistrib/validatedd/numwp/{$numwp}";
                 $params1['corpsMail']="Bonjour,\n"
@@ -1437,31 +1456,48 @@ if($this->getRequest()->isPost()){
                         . "XDistrib";
                 $params['destinataireMail'] = $destinataireMail2;
                 $params['sujet'] = " XDistrib : Nouvelle demande Xdistrib {$tracking}/{$numwp} à consulter de {$user_info['nom_user']} pour {$client_info['nom_client']}.";
-               
+              $holonRecherche=$user_info['id_holon'];
                 $this->sendEmail($params);
                 $zonetracking = substr($tracking, 7, 2);
-                switch ($zonetracking) {
-                    case "QA":
-                        $destinataireMail1 = $emailVars->listes->QA;
-                        break;
-                    case "QC":
-                        $destinataireMail1 = $emailVars->listes->CDRNORD;
-                        break;
-                    case "QF":
-                        $destinataireMail1 = $emailVars->listes->CDRNORD;
-                        break;
-                    case "QE":
-                        $destinataireMail1 = $emailVars->listes->CDREST;
-                        break;
-                    case "QH":
-                        $destinataireMail1 = $emailVars->listes->CDREST;
-                        break;
-                    case "QI":
-                        $destinataireMail1 = $emailVars->listes->CDROUEST;
-                        break;
-                    case "QK":
-                        $destinataireMail1 = $emailVars->listes->CDROUEST;
-                        break;
+                switch ($holonRecherche) {
+                    case "18":
+                    $destinataireMail1 = $emailVars->listes->CDRNORD;
+                    break;
+                case "19":
+                    $destinataireMail1 = $emailVars->listes->CDRNORD;
+                    break;
+                case "20":
+                    $destinataireMail1 = $emailVars->listes->CDRNORD;
+                    break;
+                case "5":
+                    $destinataireMail1 = $emailVars->listes->CDREST;
+                    break;
+                case"6":
+                    $destinataireMail1 = $emailVars->listes->CDREST;
+                    break;
+                case "11":
+                    $destinataireMail1 = $emailVars->listes->CDREST;
+                    break;
+                case "13":
+                    $destinataireMail1 = $emailVars->listes->CDREST;
+                    break;
+                case "8":
+                    $destinataireMail1 = $emailVars->listes->CDROUEST;
+                    break;
+                case "9":
+                    $destinataireMail1 = $emailVars->listes->CDROUEST;
+                    break;
+                case "10":
+                    $destinataireMail1 = $emailVars->listes->CDROUEST;
+                    break;
+                case "14":
+                    $destinataireMail1 = $emailVars->listes->CDROUEST;
+                    break;
+                case "31":
+                    $destinataireMail1 = $emailVars->listes->CDROUEST;
+                    break;
+                case "29":
+                    $destinataireMail1=$emailVars->listes->Export;
                 }
                     //
                     //echo '<pre>',  var_export($destinataireMail1),'</pre>'; exit();

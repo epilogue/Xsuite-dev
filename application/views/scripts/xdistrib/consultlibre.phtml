@@ -126,7 +126,7 @@ $this->headScript()->appendFile('/js/controllers/xprice/fermeturevalide.js');
                     <td>Prix Conseillé Client</td>
                     <td>Prix Accordés</td>
                      <td>Remises Accordées</td>
-                     <?php if($this->utilisateur =='5' or $this->utilisateur== '13'  or $this->utilisateur== '29'){ ?>
+                     <?php if($this->utilisateur =='5' or $this->utilisateur== '13' or $this->utilisateur =="213"){ ?>
                     <th>Prix cif</th>
                     <th>Prix fob</th>
                     <th>Marge Distrib</th>
@@ -157,7 +157,7 @@ $this->headScript()->appendFile('/js/controllers/xprice/fermeturevalide.js');
                         <td><?php echo $value['marge_demande_article'] . "%"; ?></td><?php } else {}?>
                     </tr>
                 <?php } ?>
-                     <?php if($this->utilisateur =='5' or $this->utilisateur== '13' or $this->utilisateur =='29'){ ?>
+                     <?php if($this->utilisateur =='5' or $this->utilisateur== '13' or $this->utilisateur =="213"){ ?>
                        <tr>
                             <td colspan="2">total</td>
                             <td colspan="1" ><input class="cab" id="cab-affiche"
