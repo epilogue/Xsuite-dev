@@ -83,11 +83,13 @@ class XpriceController extends Zend_Controller_Action {
      unset($recapitulatif2);
      $recapitulatif2 = $r;
 }
-if($user->id_fonction == 3 || $user->id_fonction==1){
+if($user->id_fonction == 3){
     $recapitulatif1=new Application_Model_DbTable_Xprices();
     $recapitulatif2 = $recapitulatif1->searchForLeader($holon);
 }
+
  if($user->id_fonction == 10){
+    
      switch ($holon){
          case 2:
              $tracking1='/SP-FR-QC/';
@@ -125,7 +127,7 @@ if($user->id_fonction == 3 || $user->id_fonction==1){
         // echo '<pre>', var_export($plopr),'</pre>'; 
      }
      
-     if($user->id_fonction == 5 || $user->id_fonction == 13 || $user->id_fonction == 29 || $user->id_fonction == 23 || $user->id_fonction == 32){
+     if($user->id_fonction == 5 || $user->id_fonction == 13 || $user->id_fonction == 41 || $user->id_fonction == 23 || $user->id_fonction == 32 || $user->id_fonction==47){
          $recapitulatif1 = new Application_Model_DbTable_Xprices;
          $recapitulatif2=$recapitulatif1->searchforDBD();
          $r = array();
@@ -413,21 +415,9 @@ if($user->id_fonction == 3 || $user->id_fonction==1){
                     $holoncreateur = $user_info['id_holon'];
                     $clientsnom=trim($infos_client['OKCUNM']);
                     $params=array();
-//                    $params['destinataireMail']=$user_info['email_user'];
-//                    $params['url']="http://{$_SERVER['SERVER_NAME']}/xprice/consult/numwp/{$numwp}";
-//                    $params['corpsMail']="Bonjour,\n"
-//                                . "\n"
-//                                . "Votre demande XPrice({$trackingNumber}/{$numwp}) a bien été envoyé.\n"
-//                                . "pour la consulter veuillez vous rendre à l'adresse url : \n"
-//                                . "%s"
-//                                . "\n\n"
-//                                . "Cordialement,\n"
-//                                . "\n"
-//                                . "--\n"
-//                                . "Xsuite";
-//                                $params['sujet']=" XPrice :Votre Offre  Xprice {$trackingNumber}/{$numwp} de {$user_info['nom_user']} pour $clientsnom";
-//                                $this->sendEmail($params);
+                    /*envoi mail au chef de marché correspondant*/
                     $params4=array();
+                    /*dispatch code industry movex -> code industry smc-france*/
                     $car1=array(1,2,3,4,5,6,7,8,9,10,11,12,13,15,16,18,19,59,73,74,75,76);
                     $car2=array(14,17,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,
                         37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,
@@ -486,8 +476,6 @@ if($user->id_fonction == 3 || $user->id_fonction==1){
                     /*
                      * ici si itc envoie mail au leader en fonction du holon pour consultation
                      */
-                                var_dump($fonctioncreateur);
-                                var_dump($holoncreateur);
                     if ($fonctioncreateur == 2) {
                         switch ($holoncreateur) {
                             case "5":
@@ -528,7 +516,6 @@ if($user->id_fonction == 3 || $user->id_fonction==1){
                                 break;
                         }
                         $url2 = "http://{$_SERVER['SERVER_NAME']}/xprice/consult/numwp/{$numwp}";
-//var_dump($destinataireMail2); exit();
                         $corpsMail2 = "Bonjour,\n"
                                 . "\n"
                                 . "Vous avez une nouvelle demande XPrice({$trackingNumber}/{$numwp}) à consulter.\n"
@@ -548,11 +535,18 @@ if($user->id_fonction == 3 || $user->id_fonction==1){
                     /*
                      * ici si fonction itc kam ou leader  envoie de mail au chef de region pour validation
                      */
+                    $idSearch1=array(42,98,122);
+                    $idSearch2=array(217,184,97);
+                    $idSearch3=array(34,199);
                     $zonetracking = substr($trackingNumber, 6, 2);
-                    /*changement à comter du 22/04/2016 le dispatch mail ce fait maintenant en fonction du holon  et non plus de la region*/
+                    /*changement à comter du 22/04/2016 le dispatch mail ce fait maintenant en fonction du holon  et non plus de la region
+                       if($holoncreateur =="33" || $user_info['id_user']=="145"){
+                            $destinataireMail1=$emailVars->listes->IO;
+                        }
+                     *                      */
                     //echo '<pre>',  var_export($zonetracking),'</pre>';
                     
-                    if ( $fonctioncreateur == "2" || $fonctioncreateur == "3") {
+                    if ( $fonctioncreateur == "2" || $fonctioncreateur == "3" || $fonctioncreateur =="6") {
                         switch ($holoncreateur) {
                             case "18":
                                 $destinataireMail1 = $emailVars->listes->CDRNORD;
@@ -591,14 +585,8 @@ if($user->id_fonction == 3 || $user->id_fonction==1){
                                 $destinataireMail1 = $emailVars->listes->CDROUEST;
                                 break;
                             case "29":
-                                $destinataireMail1=$emailVars->listes->IO;
+                                $destinataireMail1=$emailVars->listes->Export;
                         }
-                        if($holoncreateur =="33" || $user_info['id_user']=="145"){
-                            $destinataireMail1=$emailVars->listes->IO;
-                        }
-                        //
-                        echo '<pre>',  var_export($destinataireMail1),'</pre>'; 
-                        echo '<pre>',  var_export($destinataireMail2),'</pre>'; exit();
                         if (!is_null($firstComment)) {
                             $url1 = "http://{$_SERVER['SERVER_NAME']}/xprice/validatechefregion/numwp/{$numwp}/com/{$firstComment}";
                         } else {
@@ -621,18 +609,18 @@ if($user->id_fonction == 3 || $user->id_fonction==1){
                                 ->send();
                     }
                     /*
-                     * ici si le createur de la demande est un dd un cdr ou un dm alors envoie de mail au chef de marché
-                     */ elseif ($fonctioncreateur == "7" || $fonctioncreateur == "6" || $fonctioncreateur == "11") {
-                        if ($zonetracking == "QA" || $zonetracking == "QF" || $zonetracking == "QE" || $zonetracking == "QI" || $zonetracking == "QC" || $zonetracking == "QH" || $zonetracking == "QK") {
-                            $destinataireMail3 = $emailVars->listes->cm;
+                     * ici si le createur de la demande est un RGCN(ancien kam)ou luc montaclair alors envoie de mail DGCN(IO)
+                     */ elseif ($fonctioncreateur == "46" || $user_info['id_user']==145) {
+                       
+                            $destinataireMail3 = $emailVars->listes->IO;
                             if (!is_null($firstComment)) {
-                                $url3 = "http://{$_SERVER['SERVER_NAME']}/xprice/consult/numwp/{$numwp}/com/{$firstComment}";
+                                $url3 = "http://{$_SERVER['SERVER_NAME']}/xprice/validatechefregion/numwp/{$numwp}/com/{$firstComment}";
                             } else {
-                                $url3 = "http://{$_SERVER['SERVER_NAME']}/xprice/consult/numwp/{$numwp}";
+                                $url3 = "http://{$_SERVER['SERVER_NAME']}/xprice/validatechefregion/numwp/{$numwp}";
                             }
                             $corpsMail3 = "Bonjour,\n"
                                     . "\n"
-                                    . "Vous avez une nouvelle demande XPrice  {$trackingNumber}/{$numwp} à consulter.\n"
+                                    . "Vous avez une nouvelle demande XPrice  {$trackingNumber}/{$numwp} à valider.\n"
                                     . "Veuillez vous rendre à l'adresse url : \n"
                                     . "%s"
                                     . "\n\n"
@@ -645,8 +633,78 @@ if($user->id_fonction == 3 || $user->id_fonction==1){
                                     ->setBodyText(sprintf($corpsMail3, $url3))
                                     ->addTo($destinataireMail3)
                                     ->send();
-                        }
-                    } else {
+                        
+                    }
+                    /*ici envoi au MGCI ou DGCI si fonction createur ==43/42/44*/
+                    elseif (in_array($user_info['id_user'], $idSearch1)) {
+                        $destinataireMailRGCI1 = $emailVars->listes->RGCI1;
+                         if (!is_null($firstComment)) {
+                                $urlRGCI1 = "http://{$_SERVER['SERVER_NAME']}/xprice/validatechefregion/numwp/{$numwp}/com/{$firstComment}";
+                            } else {
+                                $urlRGCI1 = "http://{$_SERVER['SERVER_NAME']}/xprice/validatechefregion/numwp/{$numwp}";
+                            }
+                            $corpsMailRGCI1 = "Bonjour,\n"
+                                    . "\n"
+                                    . "Vous avez une nouvelle demande XPrice  {$trackingNumber}/{$numwp} à valider.\n"
+                                    . "Veuillez vous rendre à l'adresse url : \n"
+                                    . "%s"
+                                    . "\n\n"
+                                    . "Cordialement,\n"
+                                    . "\n"
+                                    . "--\n"
+                                    . "Xsuite";
+                            $mailRGCI1 = new Xsuite_Mail();
+                            $mailRGCI1->setSubject(" XPrice : Nouvelle Offre Xprice {$trackingNumber}/{$numwp} à valider de {$user_info['nom_user']} pour $clientsnom")
+                                    ->setBodyText(sprintf($corpsMailRGCI1, $urlRGCI1))
+                                    ->addTo($destinataireMailRGCI1)
+                                    ->send();
+                    } elseif ( in_array($user_info['id_user'], $idSearch2)) {
+                        $destinataireMailRGCI2 = $emailVars->listes->RGCI2;
+                         if (!is_null($firstComment)) {
+                                $urlRGCI2 = "http://{$_SERVER['SERVER_NAME']}/xprice/validatechefregion/numwp/{$numwp}/com/{$firstComment}";
+                            } else {
+                                $urlRGCI2 = "http://{$_SERVER['SERVER_NAME']}/xprice/validatechefregion/numwp/{$numwp}";
+                            }
+                            $corpsMailRGCI2 = "Bonjour,\n"
+                                    . "\n"
+                                    . "Vous avez une nouvelle demande XPrice  {$trackingNumber}/{$numwp} à valider.\n"
+                                    . "Veuillez vous rendre à l'adresse url : \n"
+                                    . "%s"
+                                    . "\n\n"
+                                    . "Cordialement,\n"
+                                    . "\n"
+                                    . "--\n"
+                                    . "Xsuite";
+                            $mailRGCI2 = new Xsuite_Mail();
+                            $mailRGCI2->setSubject(" XPrice : Nouvelle Offre Xprice {$trackingNumber}/{$numwp} à valider de {$user_info['nom_user']} pour $clientsnom")
+                                    ->setBodyText(sprintf($corpsMailRGCI2, $urlRGCI2))
+                                    ->addTo($destinataireMailRGCI2)
+                                    ->send();
+                    } 
+                    elseif ( in_array($user_info['id_user'], $idSearch3)) {
+                        $destinataireMailRGCI3 = $emailVars->listes->RGCI3;
+                         if (!is_null($firstComment)) {
+                                $urlRGCI3 = "http://{$_SERVER['SERVER_NAME']}/xprice/validatechefregion/numwp/{$numwp}/com/{$firstComment}";
+                            } else {
+                                $urlRGCI3 = "http://{$_SERVER['SERVER_NAME']}/xprice/validatechefregion/numwp/{$numwp}";
+                            }
+                            $corpsMailRGCI3 = "Bonjour,\n"
+                                    . "\n"
+                                    . "Vous avez une nouvelle demande XPrice  {$trackingNumber}/{$numwp} à valider.\n"
+                                    . "Veuillez vous rendre à l'adresse url : \n"
+                                    . "%s"
+                                    . "\n\n"
+                                    . "Cordialement,\n"
+                                    . "\n"
+                                    . "--\n"
+                                    . "Xsuite";
+                            $mailRGCI3 = new Xsuite_Mail();
+                            $mailRGCI3->setSubject(" XPrice : Nouvelle Offre Xprice {$trackingNumber}/{$numwp} à valider de {$user_info['nom_user']} pour $clientsnom")
+                                    ->setBodyText(sprintf($corpsMailRGCI3, $urlRGCI3))
+                                    ->addTo($destinataireMailRGCI3)
+                                    ->send();
+                    } 
+                    else {
                         $corpsMail = "tagada";
                         $mailto = $info_user['email_user'];
                         $mail = new Xsuite_Mail;
