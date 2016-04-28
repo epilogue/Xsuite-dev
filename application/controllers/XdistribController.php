@@ -3691,7 +3691,7 @@ if($this->getRequest()->isPost()){
        
        }
         elseif($fonction == 46 || $fonction == 43){
-            $result1=$dsistributeurs->rechercheRGCDistributeur($tiltop);
+            $result1=$distributeurs->rechercheRGCDistributeur($tiltop);
         }
         elseif($fonction ==6 || $fonction==3){
             $holon = $user->id_holon;
