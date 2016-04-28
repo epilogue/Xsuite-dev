@@ -3731,7 +3731,7 @@ if($this->getRequest()->isPost()){
         
         $xdistrib = new Application_Model_DbTable_Xdistrib();
         $listXDistrib = $xdistrib->getRecherche($formData['liste_distributeur']);
-         
+          echo '<pre>',  var_export($listXDistrib),'</pre>';
           $this->view->listXdistrib=$listXDistrib;
         
     }
