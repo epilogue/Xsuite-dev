@@ -35,6 +35,7 @@ public function rechercheDistributeur() {
        $sql="select distinct(numwp_distributeur),nom_distributeur from distributeurs";
         $res = $this->getAdapter()->query($sql);
         $rest=$res->fetchAll();
+        var_dump($sql);
         if (!$rest) {
             return null;
         } else {
