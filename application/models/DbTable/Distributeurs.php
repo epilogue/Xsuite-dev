@@ -31,6 +31,66 @@ class Application_Model_DbTable_Distributeurs extends Zend_Db_Table_Abstract {
         return $this;
        
     }
-
+public function rechercheDistributeur() {
+       $sql="select distinct(numwp_distributeur),nom_distributeur from distributeurs";
+        $res = $this->getAdapter()->query($sql);
+        $rest=$res->fetchAll();
+        if (!$rest) {
+            return null;
+        } else {
+            return $rest;
+        }
+    }
+    public function rechercheRGCDistributeur($id_user){
+        $sql = "select distinct(distributeurs.numwp_distributeur),distributeurs.nom_distributeurs from distributeurs "
+                . " join  demande_xdistrib on demande_xdistrib.numwp_distributeur = distributeurs.numwp_distributeur"
+                . " where demande_xdistrib.id_user=$id_user";
+        $res = $this->getAdapter()->query($sql);
+        $rest=$res->fetchAll();
+        if (!$rest) {
+            return null;
+        } else {
+            return $rest;
+        }
+    }
+    
+     public function rechercheDDLEADDistributeur($holon){
+        $sql = "select distinct(distributeurs.numwp_distributeur), distributeurs.nom_distributeur from distributeurs "
+                . " join demande_xdistrib on demande_xdistrib.numwp_distributeur = distributeurs.numwp_distributeur "
+                . " join users on users.id_user = demande_xdistrib.id_user "
+                . "where users.id_holon = $holon";
+        $res = $this->getAdapter()->query($sql);
+        $rest=$res->fetchAll();
+        if (!$rest) {
+            return null;
+        } else {
+            return $rest;
+        }
+    }
+     public function rechercheRCDDistributeur($likeholon){
+        $sql ="select distinct(distributeurs.numwp_distributeur), distributeurs.nom_distributeur from distributeurs "
+                . " join demande_xdistrib on demande_xdistrib.numwp_distributeur= distributeurs.numwp_distributeur "
+                . " join users on users.id_user=demande_xdistrib.id_user "
+                . " where users.id_holon in (".implode(',', $likeholon).")";
+        $res = $this->getAdapter()->query($sql);
+        $rest=$res->fetchAll();
+        if (!$rest) {
+            return null;
+        } else {
+            return $rest;
+        }
+    }
+    public function rechercheITCDistributeur($id_user){
+        $sql = "select distinct(distributeurs.numwp_distributeur),distributeurs.nom_distributeur from distributeurs "
+                . " join  demande_xdistrib on demande_xdistrib.numwp_distributeur = distributeurs.numwp_distributeur "
+                . " where demande_xdistrib.id_user=$id_user";
+        $res = $this->getAdapter()->query($sql);
+        $rest=$res->fetchAll();
+        if (!$rest) {
+            return null;
+        } else {
+            return $rest;
+        }
+    }
 }
 

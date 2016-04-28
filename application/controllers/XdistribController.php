@@ -880,6 +880,35 @@ if($this->getRequest()->isPost()){
                 $params1['sujet']=" XDistrib :L'offre XDistrib {$trackingNumber}/{$numwp} de {$info_user['nom_user']} {$info_user['prenom_user']} pour {$nom_distrib}/{$nom_client} est à valider";
                 $this->sendEmail($params1);
 //                echo '</pre>',  var_dump($params1['destinataireMail']),'</pre>';
+                $params2 = array();
+                $rcdnbrammer = array('I01045','I02055');
+                $rcdnmabeo = array('I03624','I00789' ,'I05285' ,'I03317','I02557','I00415','I00678','I04380','I03214','I02886','I03621','I02929','I02932','I03912','I05223','I02920');
+                $rcdnrs = array('I01990');
+                $rcdnorexad = array('I00264','I00662' ,'I00412','I01796','I01800','I03174','I03383','I01803','I04736','I03697','I04732','I01799','I04957','I03517','I05061','I01808','I02688','I04956','I05065');
+                $infodistributeur = new Application_Model_DbTable_Xdistrib();
+                $clientDistrib= $infodistributeur->mailconsultRCDN($numwp);
+                if(in_array($clientDistrib,$rcdnmabeo)){
+                    $destinataireMail2=$emailVars->listes->dexis;
+                }elseif(in_array($clientDistrib,$rcdnbrammer)){
+                    $destinataireMail2=$emailVars->listes->brammer;
+                }elseif(in_array($clientDistrib, $rcdnrs)){
+                    $destinataireMail2=$emailVars->listes->rs;
+                }elseif(in_array($clientDistrib,$rcdnorexad)){
+                    $destinataireMail2=$emailVars->listes->orexad;
+                }
+                $params2['url']="http://{$_SERVER['SERVER_NAME']}/xdistrib/consult/numwp/{$numwp}";
+                $params2['corpsMail']="Bonjour,\n"
+                            . "\n"
+                            . "la demande XDistrib({$trackingNumber}/{$numwp}) de {$destinataire}/{$info_user['nom_user']} {$info_user['prenom_user']}  pour {$nom_distrib}/{$nom_client} est à consulter .\n"
+                            . "pour la consulter veuillez vous rendre à l'adresse url : \n"
+                            . "%s"
+                            . "\n\n"
+                            . "Cordialement,\n"
+                            . "\n"
+                            . "--\n"
+                           . "Xsuite";
+                $params2['sujet']=" XDistrib :L'offre XDistrib {$trackingNumber}/{$numwp} de {$info_user['nom_user']} {$info_user['prenom_user']} pour {$nom_distrib}/{$nom_client} est à consulter";
+                $this->sendEmail($params2);
             }    
             $redirector = $this->_helper->getHelper('Redirector');
             $redirector->gotoSimple('index', 'xdistrib');
@@ -3649,9 +3678,59 @@ if($this->getRequest()->isPost()){
         $this->view->info_demande_xdistrib=$info_demande_xdistrib;
     }
     public function rechercheAction(){
-        
+        $user = $this->_auth->getStorage()->read();
+        $fonction = $user->id_fonction;
+        $tiltop = $user->id_user;
+        $users= new Application_Model_DbTable_Users();
+        $distributeurs= new Application_Model_DbTable_Distributeurs();
+        if($fonction==42 || $fonction==44 || $fonction==41 ||$fonction==45 || $fonction==5 ||$fonction==13 ){
+       
+        $result1 = $distributeurs->rechercheDistributeur();
+//        $users= new Application_Model_DbTable_Users();
+//        $result2 = $users->rechercheUser();
+       
+       }
+        elseif($fonction == 46 || $fonction == 43){
+            $result1=$clients->rechercheRGCDistributeur($tiltop);
+        }
+        elseif($fonction ==6 || $fonction==3){
+            $holon = $user->id_holon;
+            $result1=$clients->rechercheDDLEADDistributeur($holon);
+            var_dump($holon);
+        }
+        elseif($fonction == 10){
+            $holon =$user->id_holon;
+            switch ($holon){
+            case 2:
+                $likeholon =array(18,19,20);
+                break;
+            case 3 : 
+                $likeholon =array(5,6,11,13);
+                break;
+            case 4 :
+                $likeholon = array(8,9,10,14,31);
+                break;
+            }
+            $result1 = $clients->rechercheRCDDistributeur($likeholon);
+        }
+        elseif($fonction == 2){
+            $result1 = $clients->rechercheITCDistributeur($id_user);
+        }    
+//        echo '<pre>',  var_export($result1),'</pre>';
     }
     public function recherche2Action(){
+         $user = $this->_auth->getStorage()->read();
+        $fonction = $user->id_fonction;
+        $tiltop = $user->id_user;
+//        $this->view->utilisateur=$user->id_fonction;
+      
+        
+        $formData = $this->getRequest()->getPost();
+        
+        $xdistrib = new Application_Model_DbTable_Xdistrib();
+        $listXDistrib = $xdistrib->getRecherche($formData['liste_distributeur']);
+         
+          $this->view->listXdistrib=$listXdistrib;
         
     }
 }
