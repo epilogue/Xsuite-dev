@@ -3716,7 +3716,7 @@ if($this->getRequest()->isPost()){
         elseif($fonction == 2){
             $result1 = $distributeurs->rechercheITCDistributeur($id_user);
         }    
-       echo '<pre>',  var_export($result1),'</pre>';
+//       echo '<pre>',  var_export($result1),'</pre>';
        
         $this->view->result1=$result1;
     }
@@ -3732,7 +3732,7 @@ if($this->getRequest()->isPost()){
         $xdistrib = new Application_Model_DbTable_Xdistrib();
         $listXDistrib = $xdistrib->getRecherche($formData['liste_distributeur']);
          
-          $this->view->listXdistrib=$listXdistrib;
+          $this->view->listXdistrib=$listXDistrib;
         
     }
 }
