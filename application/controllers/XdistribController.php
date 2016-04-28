@@ -3691,11 +3691,11 @@ if($this->getRequest()->isPost()){
        
        }
         elseif($fonction == 46 || $fonction == 43){
-            $result1=$clients->rechercheRGCDistributeur($tiltop);
+            $result1=$dsistributeurs->rechercheRGCDistributeur($tiltop);
         }
         elseif($fonction ==6 || $fonction==3){
             $holon = $user->id_holon;
-            $result1=$clients->rechercheDDLEADDistributeur($holon);
+            $result1=$distributeurs->rechercheDDLEADDistributeur($holon);
             var_dump($holon);
         }
         elseif($fonction == 10){
@@ -3711,10 +3711,10 @@ if($this->getRequest()->isPost()){
                 $likeholon = array(8,9,10,14,31);
                 break;
             }
-            $result1 = $clients->rechercheRCDDistributeur($likeholon);
+            $result1 = $distributeurs->rechercheRCDDistributeur($likeholon);
         }
         elseif($fonction == 2){
-            $result1 = $clients->rechercheITCDistributeur($id_user);
+            $result1 = $distributeurs->rechercheITCDistributeur($id_user);
         }    
 //        echo '<pre>',  var_export($result1),'</pre>';
     }
