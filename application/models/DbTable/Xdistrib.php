@@ -280,7 +280,7 @@ JOIN validations_demande_xdistrib ON validations_demande_xdistrib.id_demande_xdi
     }
     
     public function getRecherche($numwp_distributeur){
-            $sql = "select demande_xdistrib.num_workplace_demande_xdistrib, demande_xdistrib.id_demande_xdistrib, demande_xdistrib.tracking_number_demande_xdistrib,distributeurs.nom_distributeur,demande_xdistrib.date_demande_xdistrib,users.nom_user  from demande_xdistrib"
+            $sql = "select distinct(demande_xdistrib.num_workplace_demande_xdistrib), demande_xdistrib.id_demande_xdistrib, demande_xdistrib.tracking_number_demande_xdistrib,distributeurs.nom_distributeur,demande_xdistrib.date_demande_xdistrib,users.nom_user  from demande_xdistrib"
                     . " join distributeurs on distributeurs.numwp_distributeur = demande_xdistrib.numwp_distributeur"
                     . " join users on users.id_user = demande_xdistrib.id_user"
                      //. " join validations_demande_xprices  on validations_demande_xprices.id_demande_xprice = demande_xprices.id_demande_xprice "
