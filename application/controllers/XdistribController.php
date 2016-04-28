@@ -3716,7 +3716,7 @@ if($this->getRequest()->isPost()){
         elseif($fonction == 2){
             $result1 = $distributeurs->rechercheITCDistributeur($id_user);
         }    
-//        echo '<pre>',  var_export($result1),'</pre>';
+       echo '<pre>',  var_export($result1),'</pre>';
     }
     public function recherche2Action(){
          $user = $this->_auth->getStorage()->read();

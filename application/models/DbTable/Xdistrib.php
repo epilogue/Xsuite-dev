@@ -287,6 +287,7 @@ JOIN validations_demande_xdistrib ON validations_demande_xdistrib.id_demande_xdi
                     . " where demande_xdistrib.numwp_distributeur = '{$numwp_distributeur}'"
                     . "order by demande_xdistrib.date_demande_xdistrib desc";
                     $res = $this->getAdapter()->query($sql);
+                    var_dump(sql);
             $rest=$res->fetchAll();
             if (!$rest) {
                 return null;
