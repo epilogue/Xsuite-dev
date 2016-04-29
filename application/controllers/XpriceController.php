@@ -2954,7 +2954,7 @@ if($mailServiceClients[0]['mail_service_client']=='regionNord'){
         elseif($fonction ==6 || $fonction==3){
             $holon = $user->id_holon;
             $result1=$clients->rechercheDDLEADClient($holon);
-            var_dump($holon);
+//            var_dump($holon);
         }
         elseif($fonction == 10){
             $holon =$user->id_holon;
