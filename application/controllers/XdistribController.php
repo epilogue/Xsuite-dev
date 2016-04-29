@@ -3696,7 +3696,7 @@ if($this->getRequest()->isPost()){
         elseif($fonction ==6 || $fonction==3){
             $holon = $user->id_holon;
             $result1=$distributeurs->rechercheDDLEADDistributeur($holon);
-            var_dump($holon);
+//            var_dump($holon);
         }
         elseif($fonction == 10){
             $holon =$user->id_holon;
