@@ -3683,7 +3683,7 @@ if($this->getRequest()->isPost()){
         $tiltop = $user->id_user;
         $users= new Application_Model_DbTable_Users();
         $distributeurs= new Application_Model_DbTable_Distributeurs();
-        if($fonction==42 || $fonction==44 || $fonction==41 ||$fonction==45 || $fonction==5 ||$fonction==13 ){
+        if($fonction==42 || $fonction==44 || $fonction==41 ||$fonction==45 || $fonction==5 ||$fonction==13 ||$fonction==47 ){
        
         $result1 = $distributeurs->rechercheDistributeur();
 //        $users= new Application_Model_DbTable_Users();
