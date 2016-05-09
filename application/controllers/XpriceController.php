@@ -67,7 +67,7 @@ class XpriceController extends Zend_Controller_Action {
   $holon =$user->id_holon; 
   $fonction = $user->id_fonction;
   $this->view->fonction=$fonction;
- if ($user->id_fonction == 2){
+ if ($user->id_fonction == 2 || $user->id_fonction == 46 ){
      $recapitulatif1 = new Application_Model_DbTable_Xprices();
      $recapitulatif2 = $recapitulatif1->searchByUser($user->id_user);
      $r = array();
