@@ -283,7 +283,8 @@ class XdistribController extends Zend_Controller_Action
          while( $affiche_offre[]=odbc_fetch_array($affiche_offres)){
              $this->view->affiche_offre=$affiche_offre;
          }
-    }
+    } echo '<pre>',var_export($result),'</pre>';
+        echo '<pre>',var_export($result2),'</pre>';
        if ($this->getRequest()->isPost()) {
        $formData = $this->getRequest()->getPost();
        $result= array_combine($formData['reference'],$formData['quantite']);
@@ -294,10 +295,10 @@ class XdistribController extends Zend_Controller_Action
             $flashMessenger->addMessage($message);
             $redirector->gotoSimple('index', 'xdistrib');
        echo '<pre>',var_export($formData),'</pre>';
-        echo '<pre>',var_export($result),'</pre>';
-        echo '<pre>',var_export($result2),'</pre>';
+       
        }
     }
+    
     public function uploadnumwpAction(){
     
      $numwp = $this->getRequest()->getParam('numwp', null);
