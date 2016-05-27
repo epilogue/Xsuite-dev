@@ -97,13 +97,6 @@ $this->headTitle($this->title);
                         <td>Projet:</td>
                         <td><?php echo $this->info_industry['nom_industry'] ;?></td>
                     </tr>
-                    <tr>
-                        <td>Client cible PAC :</td>
-                        <td>
-                            <span class="pac"><input type="radio" name="pac" value="oui">Oui</span>
-                            <span class="pac"><input type="radio" name="pac" value="non">Non</span>
-                        </td>
-                    </tr>
                 </table>
            </fieldset>
         </div>
@@ -117,10 +110,8 @@ $this->headTitle($this->title);
                         <td>Quantité</td>
                         <td>Prix Tarif</td>
                         <td>Remise Contractuelle</td>
-                        <td>Prix Achat actuel DISTRIBUTEUR</td>
                         <td>Prix Achat demandé DISTRIBUTEUR</td>
-                        <td>Prix Achat CLIENT FINAL</td>
-                        <td>Remise supplémentaire DISTRIBUTEUR</td>
+                        <td>Prix Conseillé Client</td>
                         <td>Remise référence ou série</td>
                     </tr>
                     <?php foreach($this->affiche_offre as $k=>$value){ ?>
