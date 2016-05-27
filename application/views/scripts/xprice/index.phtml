@@ -11,7 +11,7 @@ $this->headScript()->appendFile('/js/controllers/xprice/popup.js');
     <h3>Demande en ligne pour Prix Spéciaux</h3> 
     <table class="enum">
         <tr>
-             <?php if($this->fonction == 3 || $this->fonction == 5 || $this->fonction == 13 || $this->fonction ==10 || $this->fonction ==38 || $this->fonction==23 || $this->fonction==32){?>
+             <?php if($this->fonction == 3 || $this->fonction == 5 || $this->fonction == 13 || $this->fonction ==10 || $this->fonction ==38 || $this->fonction==23 || $this->fonction==32 || $this->fonction ==45){?>
             <th>Commercial</th>
         <?php } ?>
             <th>Numéro Workplace</th>
@@ -22,7 +22,7 @@ $this->headScript()->appendFile('/js/controllers/xprice/popup.js');
         </tr>
     <?php  foreach($this->recapitulatif as $k=>$result){
         ?><tr>
-            <?php if( $this->fonction == 3 || $this->fonction == 5 || $this->fonction == 13 || $this->fonction == 10 || $this->fonction ==38 || $this->fonction==23 || $this->fonction==32){?>
+            <?php if( $this->fonction == 3 || $this->fonction == 5 || $this->fonction == 13 || $this->fonction == 10 ||$this->fonction == 45 || $this->fonction ==38 || $this->fonction==23 || $this->fonction==32){?>
              <td><?php echo $result['nom_user'];?></td>
         <?php } ?>
             <td><?php echo $result['num_workplace_demande_xprice']; ?></td>
