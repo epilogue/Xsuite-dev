@@ -122,9 +122,14 @@ $this->headTitle($this->title);
                         <td id="pwp-<?php echo $k?>"><?php echo round($value['OBSAPR'],2)?></td><input type="hidden" name="prix_tarif_dis[]" value="<?php echo round($value['OBSAPR'],2); ?>" >
                         <td><?php echo round($value['OBVTCD'],2); ?><input  type="hidden" name="remiseA[]" id="rad-<?php echo $k ;?>" value="<?php echo $value['OBVTCD'] ;?>"></td>
                         <td><?php echo round($value['OBNEPR'],2); ?></td><input type="hidden" name="prix_demande[]" value="<?php echo round($value['OBNEPR'],2);?>">
-                        <td><input style="background-color: #74aaca;height:30px; width:80px;margin-left:10px;" type="text" name="prix_achat_client_final[]" id="Prix_achat_client_final" ></td>
+                        <td style="background-color: #74aaca;height:30px;"><input  type="text" name="prix_achat_client_final[]" id="Prix_achat_client_final" ></td>
                         <td><?php  $remiseB =(100-((100* $value['OBNEPR'])/$value['OBSAPR']));?><input type="text" name="remiseB[]" value="<?php echo round($remiseB,2).'%';?>"</td>
-                        <td><input required="required" style="background-color: #74aaca;height:30px; width:80px;margin-left:10px;" type="text" name="serie[]" value=""></td>
+                        <td style="background-color: #74aaca;height:30px;"><select name="serie[]" required="required">
+                                        <option>Choisissez le type de remise</option>
+                                        <option value="SERIE">Série</option>
+                                        <option value="REF">Référence</option>
+                            </select>
+                        </td>
                     </tr> <?php }?>
                 </table>
             </fieldset>
