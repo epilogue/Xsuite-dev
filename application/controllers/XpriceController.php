@@ -93,18 +93,18 @@ if($user->id_fonction == 3){
      switch ($holon){
          case 2:
              $searchholon=array(18, 19, 20, 21, 22, 23, 32);
-             $tracking1='/SP-FR-QC/';
-             $tracking2='/SP-FR-QF/';
+//             $tracking1='/SP-FR-QC/';
+//             $tracking2='/SP-FR-QF/';
              break;
          case 3:
              $searchholon=array(5,6,7,11,12,13,30);
-             $tracking1='/SP-FR-QE/';
-             $tracking2='/SP-FR-QH/';            
+//             $tracking1='/SP-FR-QE/';
+//             $tracking2='/SP-FR-QH/';            
              break;
          case 4:
              $searchholon=array(8,9,10,14,15,16,17,31);
-            $tracking1='/SP-FR-QI/';
-            $tracking2='/SP-FR-QK/';            
+//            $tracking1='/SP-FR-QI/';
+//            $tracking2='/SP-FR-QK/';            
              break;
          }
          $recapitulatif1 = new Application_Model_DbTable_Xprices();
