@@ -92,20 +92,23 @@ if($user->id_fonction == 3){
     
      switch ($holon){
          case 2:
+             $searchholon=array(18, 19, 20, 21, 22, 23, 32);
              $tracking1='/SP-FR-QC/';
              $tracking2='/SP-FR-QF/';
              break;
          case 3:
+             $searchholon=array(5,6,7,11,12,13,30);
              $tracking1='/SP-FR-QE/';
              $tracking2='/SP-FR-QH/';            
              break;
          case 4:
+             $searchholon=array(8,9,10,14,15,16,17,31);
             $tracking1='/SP-FR-QI/';
             $tracking2='/SP-FR-QK/';            
              break;
          }
          $recapitulatif1 = new Application_Model_DbTable_Xprices();
-         $recapitulatif2=$recapitulatif1->searchforDBD();
+         $recapitulatif2=$recapitulatif1->searchForCDR($searchholon);
          $r = array();
          for ($index = 0; $index < count($recapitulatif2); $index++) {
              if(($index +1) > count($recapitulatif2)-1) {
@@ -117,13 +120,7 @@ if($user->id_fonction == 3){
              }
          }
          unset($recapitulatif2);
-         foreach($r as $value){
-         //echo '<pre>', var_export($value),'</pre>'; 
-             if(preg_match($tracking1,$value['tracking_number_demande_xprice'])==1 || preg_match($tracking2,$value['tracking_number_demande_xprice'] )==1 ) {
-                 $plopr[] =$value; 
-             }
-         }
-         $recapitulatif2 = $plopr;
+         $recapitulatif2 = $r;
         // echo '<pre>', var_export($plopr),'</pre>'; 
      }
      if($user->id_fonction ==45){
