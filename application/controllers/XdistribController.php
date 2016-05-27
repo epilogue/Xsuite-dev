@@ -288,14 +288,14 @@ class XdistribController extends Zend_Controller_Action
        $formData = $this->getRequest()->getPost();
        $result= array_combine($formData['reference'],$formData['quantite']);
       $result2=  array_combine( $formData['reference'],$formData['prix_tarif_dis']);
-//       $redirector = $this->_helper->getHelper('Redirector');
-//            $flashMessenger = $this->_helper->getHelper('FlashMessenger');
-//            $message = "votre offre  a bien été créée.";
-//            $flashMessenger->addMessage($message);
-//            $redirector->gotoSimple('index', 'xdistrib');
-//       echo '<pre>',var_export($formData),'</pre>';
-//        echo '<pre>',var_export($result),'</pre>';
-//        echo '<pre>',var_export($result2),'</pre>';
+       $redirector = $this->_helper->getHelper('Redirector');
+            $flashMessenger = $this->_helper->getHelper('FlashMessenger');
+            $message = "votre offre  a bien été créée.";
+            $flashMessenger->addMessage($message);
+            $redirector->gotoSimple('index', 'xdistrib');
+       echo '<pre>',var_export($formData),'</pre>';
+        echo '<pre>',var_export($result),'</pre>';
+        echo '<pre>',var_export($result2),'</pre>';
        }
     }
     public function uploadnumwpAction(){
