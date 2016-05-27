@@ -112,6 +112,7 @@ $this->headTitle($this->title);
                         <td>Remise Contractuelle</td>
                         <td>Prix Achat demandé DISTRIBUTEUR</td>
                         <td>Prix Conseillé Client</td>
+                        <td>Remise Demandée</td>
                         <td>Remise référence ou série</td>
                     </tr>
                     <?php foreach($this->affiche_offre as $k=>$value){ ?>
@@ -123,7 +124,7 @@ $this->headTitle($this->title);
                         <td><?php echo round($value['OBNEPR'],2); ?></td><input type="hidden" name="prix_demande[]" value="<?php echo round($value['OBNEPR'],2);?>">
                         <td><input style="background-color: #74aaca;height:30px; width:80px;margin-left:10px;" type="text" name="prix_achat_client_final[]" id="Prix_achat_client_final" ></td>
                         <td><?php  $remiseB =(100-((100* $value['OBNEPR'])/$value['OBSAPR']));?><input type="text" name="remiseB[]" value="<?php echo round($remiseB,2).'%';?>"</td>
-                        <td><input type="text" name="serie[]" value=""></td>
+                        <td><input required="required" style="background-color: #74aaca;height:30px; width:80px;margin-left:10px;" type="text" name="serie[]" value=""></td>
                     </tr> <?php }?>
                 </table>
             </fieldset>
@@ -140,13 +141,12 @@ $this->headTitle($this->title);
                         <td>Prix Tarif CONCURRENT</td>
                         <td>Prix spécial accordé CONCURRENT</td>
                     </tr>
-                    <?php  for( $j=0;$j<$i; $j++){?>
                     <tr>
                         <td><input type="text" name="nom_concurrent"></td>
                         <td><input type="text" name="reference_produit"></td>
                         <td><input type="text" name="prix_tarif"></td>
                         <td><input type="text" name="prix_spe"></td>
-                    </tr> <?php }?>
+                    </tr> 
                 </table>
             </fieldset>
         </div>
