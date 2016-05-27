@@ -117,9 +117,9 @@ public function searchAll($tracking_number){
                 . "join users on users.id_user = demande_xprices.id_user"
                 . " join validations_demande_xprices  on validations_demande_xprices.id_demande_xprice = demande_xprices.id_demande_xprice "
                 . " where demande_xprices.tracking_number_demande_xprice like '{$tracking1}%' or demande_xprices.tracking_number_demande_xprice like '{$tracking2}%' and users.id_holon != 33  order by demande_xprices.date_demande_xprice desc,validations_demande_xprices.date_validation asc";
-       
+        var_dump($sql);
         $res = $this->getAdapter()->query($sql);
-        echo '<pre>',  var_export($sql),'</pre>';        exit();
+//        echo '<pre>',  var_export($sql),'</pre>';        exit();
         $rest=$res->fetchAll();
         if (!$rest) {
             return null;
