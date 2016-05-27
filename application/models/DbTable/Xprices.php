@@ -119,6 +119,7 @@ public function searchAll($tracking_number){
                 . " where demande_xprices.tracking_number_demande_xprice like '{$tracking1}%' or demande_xprices.tracking_number_demande_xprice like '{$tracking2}%' and users.id_holon != 33  order by demande_xprices.date_demande_xprice desc,validations_demande_xprices.date_validation asc";
        
         $res = $this->getAdapter()->query($sql);
+        echo '<pre>',  var_export($sql),'</pre>';
         $rest=$res->fetchAll();
         if (!$rest) {
             return null;
