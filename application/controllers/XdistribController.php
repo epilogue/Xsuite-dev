@@ -270,13 +270,7 @@ class XdistribController extends Zend_Controller_Action
             $industriewp4 = odbc_fetch_array(odbc_exec($this->odbc_conn3, $query1quart2));
             
             $sqlaffiche = "select
-                OOLINE.OBITNO,
-                OOLINE.OBITDS,
-                OOLINE.OBORQT,
-                OOLINE.OBLNA2,
-                OOLINE.OBNEPR,
-                OOLINE.OBSAPR,
-                OOLINE.OBELNO
+                *
                 from EIT.CVXCDTA.OOLINE OOLINE WHERE OOLINE.OBORNO='{$numwp}'  AND OOLINE.OBDIVI LIKE 'FR0' AND OOLINE.OBCONO=100";
                 $affiche_offres=odbc_exec($this->odbc_conn, $sqlaffiche);
                
