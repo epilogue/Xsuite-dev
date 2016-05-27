@@ -246,6 +246,8 @@ class XdistribController extends Zend_Controller_Action
             $query1bis = "select * from EIT.MVXCDTA.OCUSMA OCUSMA where OCUSMA.OKCUNO = '{$infos_offres->OBDLSP}'";
             $infos_client = odbc_fetch_array(odbc_exec($this->odbc_conn2, $query1bis));
             $this->view->infos_client=$infos_client;
+            echo '<pre>',var_export($infos_client),'</pre>';
+        echo '<pre>',var_export($infos_offres),'</pre>';
             $query1quart = "select ZMCPJO.Z2MCL1  from EIT.SMCCDTA.ZMCPJO  ZMCPJO where ZMCPJO.Z2CUNO= '{$infos_offres->OBDLSP}' ";
             $industriewp = odbc_fetch_array(odbc_exec($this->odbc_conn3, $query1quart));
             $this->view->industriewp = $industriewp;
@@ -283,8 +285,7 @@ class XdistribController extends Zend_Controller_Action
          while( $affiche_offre[]=odbc_fetch_array($affiche_offres)){
              $this->view->affiche_offre=$affiche_offre;
          }
-    } echo '<pre>',var_export($result),'</pre>';
-        echo '<pre>',var_export($result2),'</pre>';
+    } 
        if ($this->getRequest()->isPost()) {
        $formData = $this->getRequest()->getPost();
        $result= array_combine($formData['reference'],$formData['quantite']);
