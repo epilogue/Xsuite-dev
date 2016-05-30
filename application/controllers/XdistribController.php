@@ -62,7 +62,8 @@ class XdistribController extends Zend_Controller_Action
      $user = $this->_auth->getStorage()->read();
      $holon =$user->id_holon; 
      $fonction=$user->id_fonction;
-//     echo $fonction;
+     echo $fonction;
+     var_dump($user->id_user);
      $this->view->createur=$user->id_user;
      $this->view->fonction=$fonction;
      if($user->id_fonction == 35){
@@ -129,7 +130,7 @@ class XdistribController extends Zend_Controller_Action
      $recapitulatif2[] = $r;
          $this->view->recapitulatif = $recapitulatif2;        
      }
-     if($user->id_fonction == 6){
+     if($user->id_fonction ==6){
          $recapitulatif1 = new Application_Model_DbTable_Xdistrib();
          $recapitulatifbistek = $recapitulatif1->searchforDD($user->id_user);
           foreach ($recapitulatifbistek as $value){
