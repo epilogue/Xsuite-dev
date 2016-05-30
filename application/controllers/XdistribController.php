@@ -133,7 +133,7 @@ class XdistribController extends Zend_Controller_Action
      if($user->id_fonction ==6){
          $recapitulatif1 = new Application_Model_DbTable_Xdistrib();
          $recapitulatifbistek = $recapitulatif1->searchforDD($user->id_user);
-         var_export($recapitulatifbistek);
+//         var_export($recapitulatifbistek);
           foreach ($recapitulatifbistek as $value){
             
                 $popi[]=$value['id_demande_xdistrib'];
