@@ -1638,30 +1638,6 @@ elseif($mailServiceClients[0]['mail_service_client']== 'export'){
          * Fin du chargement des validations
          */
         $this->view->info_user = $info_user;
-        
-        /*infos clients */
-//        $anneeencours_1 = date('Y')-2;
-//        $querycaencours_1="select 
-//        Sum(ZMCCSS.ZCSN01+ZMCCSS.ZCSN02+ZMCCSS.ZCSN03+ZMCCSS.ZCSN04+ZMCCSS.ZCSN05+ZMCCSS.ZCSN06+ZMCCSS.ZCSN07+ZMCCSS.ZCSN08+ZMCCSS.ZCSN09+ZMCCSS.ZCSN10+ZMCCSS.ZCSN11+ZMCCSS.ZCSN12) as CA_LY
-//        from EIT.ZEUCDTA.ZMCCSS40 ZMCCSS
-//        where ZMCCSS.ZCDIVI  like 'FR0' and ZMCCSS.ZCYEA4 like '{$anneeencours_1}' and ZMCCSS.ZCDIUS like '{$info_demande_xprice['numwp_client']}'";
-//        $caencoursClients_1 = odbc_exec($this->odbc_conn4, $querycaencours_1);
-//        $caencoursClient_1 = odbc_fetch_object($caencoursClients_1);
-//        $CA_LY = $caencoursClient_1->CA_LY;
-//        $this->view->caencoursClient_1=$CA_LY;
-//        $anneeencours = date('Y')-1;
-//        $querycaencours="select  
-//         Sum(ZMCCSS.ZCSN01+ZMCCSS.ZCSN02+ZMCCSS.ZCSN03+ZMCCSS.ZCSN04+ZMCCSS.ZCSN05+ZMCCSS.ZCSN06+ZMCCSS.ZCSN07+ZMCCSS.ZCSN08+ZMCCSS.ZCSN09+ZMCCSS.ZCSN10+ZMCCSS.ZCSN11+ZMCCSS.ZCSN12) as CA_YTD
-//
-//         from EIT.ZEUCDTA.ZMCCSS40 ZMCCSS
-//         where ZMCCSS.ZCDIVI  like 'FR0' and ZMCCSS.ZCYEA4 like '{$anneeencours}' and ZMCCSS.ZCDIUS like '{$info_demande_xprice['numwp_client']}'";
-//         $caencoursClients = odbc_exec($this->odbc_conn4, $querycaencours);
-//        $caencoursClient = odbc_fetch_object($caencoursClients);
-//        
-//        $CA_YTD = $caencoursClient->CA_YTD;
-//        $this->view->caencoursClient=$CA_YTD;
-//        $pourcent_progress=round(100-((100*$CA_LY)/$CA_YTD),2).'%';
-//        $this->view->pourcent_progress=$pourcent_progress;
         $infos_client = new Application_Model_DbTable_Clients();
         $info_client = $infos_client->getClientnumwp($info_demande_xprice['numwp_client']);
 //        echo '<pre>',var_export($info_client),'</pre>';
@@ -1739,7 +1715,10 @@ if($mailServiceClients[0]['mail_service_client']=='regionNord'){
     $mailSC="regionouest@smc-france.fr";
 }elseif ($mailServiceClients[0]['mail_service_client']== 'grandcompte'){
     $mailSC="SCommande@smc-france.fr";
-}elseif($mailServiceClients[0]['mail_service_client']=='' || $mailServiceClients[0]['mail_service_client']== NULL){
+}elseif ($mailServiceClients[0]['mail_service_client']== 'export'){
+    $mailSC="export@smc-france.fr";
+}
+elseif($mailServiceClients[0]['mail_service_client']=='' || $mailServiceClients[0]['mail_service_client']== NULL){
     $mailSC=$emailVars->listes->serviceClient;
 }
             $emailVars = Zend_Registry::get('emailVars');

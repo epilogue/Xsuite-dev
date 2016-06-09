@@ -121,8 +121,8 @@ class XdistribController extends Zend_Controller_Action
             }
             $recapitulatif2=$recapitulatif3; 
      }
-   if($user->id_fonction ==45){ echo 'plop1';
-   $recapitulatif1 = new Application_Model_DbTable_Xdistrib();echo 'plop2';
+   if($user->id_fonction ==45){ 
+   $recapitulatif1 = new Application_Model_DbTable_Xdistrib();
     $plop1=$recapitulatif1->rechercheridDGCN();
           foreach($plop1 as $value){
              $recapitulatif2[] =$recapitulatif1->rechercheDBD($value['id_demande_xdistrib']);
