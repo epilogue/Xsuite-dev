@@ -60,6 +60,6 @@ $this->headTitle($this->title);
     </table>
     <?php if($this->fonction == 45){
           foreach ($this->recapitulatif as $tagada){
-          echo $tagada;}
+          echo '<pre>', var_export($tagada),'</pre>';}
           } ?>
 </div>
