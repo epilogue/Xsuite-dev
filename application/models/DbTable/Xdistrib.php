@@ -115,7 +115,7 @@ class Application_Model_DbTable_Xdistrib extends Zend_Db_Table_Abstract {
                     . "demande_xdistrib.date_demande_xdistrib,"
                     . "validations_demande_xdistrib.etat_validation"
                     . ",validations_demande_xdistrib.nom_validation"
-                    . "distributeurs.nom_distributeur"
+                    . ",distributeurs.nom_distributeur"
                     . ",users.nom_user  from demande_xdistrib"
                 . " join client_distrib ON client_distrib.numwp_client = demande_xdistrib.numwp_client"
                 . " join users ON users.id_user =demande_xdistrib.id_user"
