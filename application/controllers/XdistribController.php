@@ -123,21 +123,21 @@ class XdistribController extends Zend_Controller_Action
      }
    if($user->id_fonction ==45){ echo 'plop1';
    $recapitulatif1 = new Application_Model_DbTable_Xdistrib();echo 'plop2';
-         $essait=$recapitulatif1->searchForDGCN(); echo 'plop4';}
-//           echo '<pre>',var_export($recapitulatif2) ,'</pre>';exit();
-//         $r = array();
-//         for ($index = 0; $index < count($recapitulatif2); $index++) {
-//             if(($index +1) > count($recapitulatif2)-1) {
-//                 $r[] = $recapitulatif2[$index];
-//             } else {
-//                 if($recapitulatif2[$index]['num_workplace_demande_xdistrib'] != $recapitulatif2[$index+1]['num_workplace_demande_xdistrib']) {
-//                     $r[] = $recapitulatif2[$index];
-//                 }
-//             }
-//         }
-//         unset($recapitulatif2);
-//         $recapitulatif2 = $r;
-//     }
+         $recapitulatif2=$recapitulatif1->searchForDGCN(); echo 'plop4';
+           echo '<pre>',var_export($recapitulatif2) ,'</pre>';
+         $r = array();
+         for ($index = 0; $index < count($recapitulatif2); $index++) {
+             if(($index +1) > count($recapitulatif2)-1) {
+                 $r[] = $recapitulatif2[$index];
+             } else {
+                 if($recapitulatif2[$index]['num_workplace_demande_xdistrib'] != $recapitulatif2[$index+1]['num_workplace_demande_xdistrib']) {
+                     $r[] = $recapitulatif2[$index];
+                 }
+             }
+         }
+         unset($recapitulatif2);
+         $recapitulatif2 = $r;
+     }
      if($user->id_fonction == 10){
      switch ($holon){
          case 2:
