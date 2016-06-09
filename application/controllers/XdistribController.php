@@ -52,13 +52,6 @@ class XdistribController extends Zend_Controller_Action
     }
     public function indexAction()
     {
-        /*
-         * en fonction de la fonction de l'utilisateur  on va chercher  dans la bdd  les offres qui le concerne 
-         * KAM et ITC  leurs offres 
-         * Leader leurs offres et celles de leur holon
-         * Chef de region  les offres de leurs régions
-         * DBD et Dirco  toutes les offres 
-         */
      $user = $this->_auth->getStorage()->read();
      $holon =$user->id_holon; 
      $fonction=$user->id_fonction;
@@ -70,13 +63,9 @@ class XdistribController extends Zend_Controller_Action
          $distrib=array("I02055","I01045");
          $recapitulatif1=new Application_Model_DbTable_Xdistrib();
          $plop1=$recapitulatif1->rechercheridRCDN($distrib);
-   //      echo '<pre>',var_export($plop1),'</pre>';
-//         foreach($plop1 as $value){
-//            $popi[]= $value['id_demande_xdistrib'];
-//         }
          foreach($plop1 as $value1){
              $recapitulatif2[] = $recapitulatif1->essaiTest($value1['id_demande_xdistrib']);
-         }//echo '<pre>',var_export($recapitulatif2),'</pre>';
+         }
      }
      if($user->id_fonction == 36){
          $distrib=array("I01990");
@@ -87,35 +76,24 @@ class XdistribController extends Zend_Controller_Action
          }
      }
      if($user->id_fonction == 37){
-         $distrib=array("I00264","I00662","I00412","I01796","I01800","I03174","I03383","I01803","I04736","I03697","I04732","I01799","I04957","I03517","I05061","I01808","I02688","I04956","I05065"
-);
+         $distrib=array("I00264","I00662","I00412","I01796","I01800","I03174","I03383","I01803","I04736","I03697","I04732","I01799","I04957","I03517","I05061","I01808","I02688","I04956","I05065");
          $recapitulatif1=new Application_Model_DbTable_Xdistrib();
          $plop1=$recapitulatif1->rechercheridRCDN($distrib);
-        // echo '<pre>',var_export($plop1),'</pre>';
-//         foreach($plop1 as $value){
-//            $popi[]= $value['id_demande_xdistrib'];
-//         }
          foreach($plop1 as $value1){
              $recapitulatif2[] = $recapitulatif1->essaiTest($value1['id_demande_xdistrib']);
-         }//echo '<pre>',var_export($recapitulatif2),'</pre>';
+         }
      }
      if($user->id_fonction == 34){
-          $distrib=array("I00789","I03624","I05285","I03317","I02557","I00415","I00678","I04380","I03214","I02886","I03621","I02929","I02932","I03912","I05223","I02920"
-);
+          $distrib=array("I00789","I03624","I05285","I03317","I02557","I00415","I00678","I04380","I03214","I02886","I03621","I02929","I02932","I03912","I05223","I02920");
          $recapitulatif1=new Application_Model_DbTable_Xdistrib();
          $plop1=$recapitulatif1->rechercheridRCDN($distrib);
-        // echo '<pre>',var_export($plop1),'</pre>';
-//         foreach($plop1 as $value){
-//            $popi[]= $value['id_demande_xdistrib'];
-//         }
          foreach($plop1 as $value1){
              $recapitulatif2[] = $recapitulatif1->rechercheDBD($value1['id_demande_xdistrib']);
-         }//echo '<pre>',var_export($recapitulatif2),'</pre>';
+         }
      }
      if ($user->id_fonction == 43 || $user->id_fonction==2){
          $recapitulatif1 = new Application_Model_DbTable_Xdistrib();
          $recapitulatif2 = $recapitulatif1->searchByUser($user->id_user);
-        // echo '<pre>',var_export($recapitulatif2),'</pre>';
          $r = array();
      for ($index = 0; $index < count($recapitulatif2); $index++) {
          if(($index +1) > count($recapitulatif2)-1) {
@@ -133,35 +111,33 @@ class XdistribController extends Zend_Controller_Action
      if($user->id_fonction ==6){
          $recapitulatif1 = new Application_Model_DbTable_Xdistrib();
          $recapitulatifbistek = $recapitulatif1->searchforDD($user->id_user);
-//         var_export($recapitulatifbistek);
           foreach ($recapitulatifbistek as $value){
             
                 $popi[]=$value['id_demande_xdistrib'];
             }
             $popi1=array_unique($popi);
-           // echo '<pre>',var_export($popi1) ,'</pre>';
             foreach($popi1 as $value){
                 $recapitulatif3[]= $recapitulatif1->essaiTest($value);
             }
             $recapitulatif2=$recapitulatif3; 
      }
-   if($user->id_fonction ==45){
-         $recapitulatif1 = new Application_Model_DbTable_Xdistrib();
-         $recapitulatif2=$recapitulatif1->searchForDGCN();
-           echo '<pre>',var_export($recapitulatif2) ,'</pre>';
-         $r = array();
-         for ($index = 0; $index < count($recapitulatif2); $index++) {
-             if(($index +1) > count($recapitulatif2)-1) {
-                 $r[] = $recapitulatif2[$index];
-             } else {
-                 if($recapitulatif2[$index]['num_workplace_demande_xdistrib'] != $recapitulatif2[$index+1]['num_workplace_demande_xdistrib']) {
-                     $r[] = $recapitulatif2[$index];
-                 }
-             }
-         }
-         unset($recapitulatif2);
-         $recapitulatif2 = $r;
-     }
+//   if($user->id_fonction ==45){
+//         $recapitulatif1 = new Application_Model_DbTable_Xdistrib();
+//         $recapitulatif2=$recapitulatif1->searchForDGCN();
+//           echo '<pre>',var_export($recapitulatif2) ,'</pre>';exit();
+//         $r = array();
+//         for ($index = 0; $index < count($recapitulatif2); $index++) {
+//             if(($index +1) > count($recapitulatif2)-1) {
+//                 $r[] = $recapitulatif2[$index];
+//             } else {
+//                 if($recapitulatif2[$index]['num_workplace_demande_xdistrib'] != $recapitulatif2[$index+1]['num_workplace_demande_xdistrib']) {
+//                     $r[] = $recapitulatif2[$index];
+//                 }
+//             }
+//         }
+//         unset($recapitulatif2);
+//         $recapitulatif2 = $r;
+//     }
      if($user->id_fonction == 10){
      switch ($holon){
          case 2:
