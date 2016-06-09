@@ -146,7 +146,7 @@ class XdistribController extends Zend_Controller_Action
             $recapitulatif2=$recapitulatif3; 
      }
    if($user->id_fonction ==45){
-         $recapitulatif1 = new Application_Model_DbTable_XDistrib;
+         $recapitulatif1 = new Application_Model_DbTable_Xdistrib;
          $recapitulatif2=$recapitulatif1->searchForDGCN();
            echo '<pre>',var_export($recapitulatif2) ,'</pre>';
          $r = array();
