@@ -278,6 +278,16 @@ JOIN validations_demande_xdistrib ON validations_demande_xdistrib.id_demande_xdi
             return $rest;
         }
     }
+    public function rechercheridDGCN(){
+        $sql = "select id_demande_xdistrib from demande_xdistrib join users on users.id_users = demande_xdistrib.id_users where users.id_holon in ( 2, 18, 19, 20, 21, 22, 23, 32, 33)";
+        $res = $this->getAdapter()->query($sql);
+        $rest=$res->fetchAll();
+        if (!$rest) {
+            return null;
+        } else {
+            return $rest;
+        }
+    }
      public function rechercheridRCDN($values){
          $essai="'" . implode("','", $values) . "'";
         $sql ="select id_demande_xdistrib from demande_xdistrib where numwp_distributeur IN ($essai) order by demande_xdistrib.date_demande_xdistrib desc";
