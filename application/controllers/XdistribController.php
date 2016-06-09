@@ -145,7 +145,23 @@ class XdistribController extends Zend_Controller_Action
             }
             $recapitulatif2=$recapitulatif3; 
      }
-   
+   if($user->id_fonction ==45){
+         $recapitulatif1 = new Application_Model_DbTable_XDistrib;
+         $recapitulatif2=$recapitulatif1->searchForDGCN();
+           echo '<pre>',var_export($recapitulatif2) ,'</pre>';
+         $r = array();
+         for ($index = 0; $index < count($recapitulatif2); $index++) {
+             if(($index +1) > count($recapitulatif2)-1) {
+                 $r[] = $recapitulatif2[$index];
+             } else {
+                 if($recapitulatif2[$index]['num_workplace_demande_xdistrib'] != $recapitulatif2[$index+1]['num_workplace_demande_xdistrib']) {
+                     $r[] = $recapitulatif2[$index];
+                 }
+             }
+         }
+         unset($recapitulatif2);
+         $recapitulatif2 = $r;
+     }
      if($user->id_fonction == 10){
      switch ($holon){
          case 2:
@@ -813,7 +829,7 @@ if($this->getRequest()->isPost()){
         $destinataire=$formData['info_dd'];
         $params1=array();
         $params=array();
-        if($user_connect->id_fonction == "6" || $user_connect->id_fonction == "34" || $user_connect->id_fonction == "35" || $user_connect->id_fonction == "36" || $user_connect->id_fonction == "37" ){
+        if($user_connect->id_user=="78"||$user_connect->id_user=="62"||$user_connect->id_fonction == "6" || $user_connect->id_fonction == "34" || $user_connect->id_fonction == "35" || $user_connect->id_fonction == "36" || $user_connect->id_fonction == "37" ){
             switch ($id_holon) {
                 case "18":
                     $destinataireMail1 = $emailVars->listes->CDRNORD;
