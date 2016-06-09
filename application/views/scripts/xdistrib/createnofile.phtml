@@ -114,7 +114,7 @@ $this->headTitle($this->title);
                         <td style="background-color: #74aaca;height:30px;margin-left: 10px !important;"><input required="required" type="text" name="prix_achat_client_final[]" id="Prix_achat_client_final" ></td>
                         <td><?php  $remiseB =(100-((100* $value['OBNEPR'])/$value['OBSAPR']));?><input type="text" name="remiseB[]" value="<?php echo round($remiseB,2).'%';?>"</td>
                         <td style="background-color: #74aaca;height:30px;margin-left: 10px !important;"><select name="serie[]" required="required">
-                                        <option>Choisissez le type de remise</option>
+                                        <option value="">Choisissez le type de remise</option>
                                         <option value="SERIE">Série</option>
                                         <option value="REF">Référence</option>
                             </select>
