@@ -92,7 +92,7 @@ class Application_Model_DbTable_Xdistrib extends Zend_Db_Table_Abstract {
     }
     public function searchByCDR($tracking1,$tracking2){
          
-        $sql="select distinct(demande_xdistrib.id_demande_xdistrib), demande_xdistrib.num_workplace_demande_xdistrib,demande_xdistrib.tracking_number_demande_xdistrib,clients.nom_client,demande_xdistrib.date_demande_xdistrib from demande_xdistrib "
+        $sql="select demande_xdistrib.id_demande_xdistrib, demande_xdistrib.num_workplace_demande_xdistrib,demande_xdistrib.tracking_number_demande_xdistrib,clients.nom_client,demande_xdistrib.date_demande_xdistrib from demande_xdistrib "
                 . "join clients on clients.numwp_client = demande_xdistrib.numwp_client "
                 . "join users on users.id_user = demande_xdistrib.id_user"
                 
@@ -108,7 +108,7 @@ class Application_Model_DbTable_Xdistrib extends Zend_Db_Table_Abstract {
     }
     
      public function searchForDGCN(){
-            $sql="select  demande_xdistrib.num_workplace_demande_xdistrib, demande_xdistrib.id_demande_xdistrib,demande_xdistrib.tracking_number_demande_xdistrib,client_distrib.nom_client,demande_xdistrib.date_demande_xdistrib, validations_demande_xdistrib.etat_validation,validations_demande_xdistrib.nom_validation,distributeurs.nom_distributeur,users.nom_user  from demande_xdistrib
+            $sql="select  distinct(demande_xdistrib.num_workplace_demande_xdistrib), demande_xdistrib.id_demande_xdistrib,demande_xdistrib.tracking_number_demande_xdistrib,client_distrib.nom_client,demande_xdistrib.date_demande_xdistrib, validations_demande_xdistrib.etat_validation,validations_demande_xdistrib.nom_validation,distributeurs.nom_distributeur,users.nom_user  from demande_xdistrib
  join client_distrib ON client_distrib.numwp_client = demande_xdistrib.numwp_client 
  join users ON users.id_user =demande_xdistrib.id_user 
  join distributeurs on distributeurs.num_workplace_demande_xdistrib = demande_xdistrib.num_workplace_demande_xdistrib 
