@@ -58,5 +58,8 @@ $this->headTitle($this->title);
 </tr>
     <?php } }?>
     </table>
-    <?php echo $this->recapitulatif;?>
+    <?php if($this->fonction == 45){
+          foreach ($this->recapitulatif as $tagada){
+          echo $tagada;}
+          } ?>
 </div>
