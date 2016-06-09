@@ -7,7 +7,7 @@ $this->headTitle($this->title);
     <h3>Demande en ligne pour Prix Spéciaux Distributeurs </h3> 
     <table class="enum">
         <tr>
-             <?php if($this->fonction == 3 || $this->fonction == '5' || $this->fonction == 13 || $this->fonction ==10 || $this->fonction ==29 || $this->fonction==23 || $this->fonction==32 || $this->fonction == 6  || $this->fonction == 40 || $this->fonction == 45){?>
+             <?php if($this->fonction == 3 || $this->fonction == 5 || $this->fonction == 13 || $this->fonction ==10 || $this->fonction ==29 || $this->fonction==23 || $this->fonction==32 || $this->fonction == 6  || $this->fonction == 40 || $this->fonction == 45){?>
             <th>Commercial</th>
         <?php } ?>
             <th>Numéro Workplace</th>
@@ -58,4 +58,5 @@ $this->headTitle($this->title);
 </tr>
     <?php } }?>
     </table>
+    <?php echo $this->recapitulatif;?>
 </div>
