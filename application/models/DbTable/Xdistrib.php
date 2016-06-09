@@ -108,12 +108,12 @@ class Application_Model_DbTable_Xdistrib extends Zend_Db_Table_Abstract {
     }
     
      public function searchForDGCN(){
-            $sql="select  distinct(demande_xdistrib.num_workplace_demande_xdistrib),max(validations_demande_xdistrib.id), demande_xdistrib.id_demande_xdistrib,demande_xdistrib.tracking_number_demande_xdistrib,client_distrib.nom_client,demande_xdistrib.date_demande_xdistrib, validations_demande_xdistrib.etat_validation,validations_demande_xdistrib.nom_validation,distributeurs.nom_distributeur,users.nom_user  from demande_xdistrib
+            $sql="select max(validations_demande_xdistrib.id) from (select  distinct(demande_xdistrib.num_workplace_demande_xdistrib), demande_xdistrib.id_demande_xdistrib,demande_xdistrib.tracking_number_demande_xdistrib,client_distrib.nom_client,demande_xdistrib.date_demande_xdistrib, validations_demande_xdistrib.etat_validation,validations_demande_xdistrib.nom_validation,distributeurs.nom_distributeur,users.nom_user  from demande_xdistrib
  join client_distrib ON client_distrib.numwp_client = demande_xdistrib.numwp_client 
  join users ON users.id_user =demande_xdistrib.id_user 
  join distributeurs on distributeurs.num_workplace_demande_xdistrib = demande_xdistrib.num_workplace_demande_xdistrib 
 JOIN validations_demande_xdistrib ON validations_demande_xdistrib.id_demande_xdistrib = demande_xdistrib.`id_demande_xdistrib` 
- where  users.id_holon in ( 2, 18, 19, 20, 21, 22, 23, 32, 33) order by demande_xdistrib.`date_demande_xdistrib` desc, validations_demande_xdistrib.date_validation asc";
+ where  users.id_holon in ( 2, 18, 19, 20, 21, 22, 23, 32, 33) order by demande_xdistrib.`date_demande_xdistrib` desc, validations_demande_xdistrib.date_validation asc)";
        var_dump($sql);
        echo 'plop3';
             $res = $this->getAdapter()->query($sql);
