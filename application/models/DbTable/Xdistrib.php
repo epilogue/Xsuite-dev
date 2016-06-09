@@ -123,7 +123,9 @@ class Application_Model_DbTable_Xdistrib extends Zend_Db_Table_Abstract {
                 . " JOIN validations_demande_xdistrib ON validations_demande_xdistrib.id_demande_xdistrib = demande_xdistrib.`id_demande_xdistrib`"
                 . " where  users.id_holon in ( 2, 18, 19, 20, 21, 22, 23, 32, 33 )"
                 ." order by demande_xdistrib.`date_demande_xdistrib` desc, validations_demande_xdistrib.date_validation asc";
-       $res = $this->getAdapter()->query($sql);
+       var_dump($sql);
+       echo 'plop3';
+            $res = $this->getAdapter()->query($sql);
             $rest=$res->fetchAll();
             if (!$rest) {
                 return null;
