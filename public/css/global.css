@@ -13,6 +13,11 @@ html{
 body{ 
      
 }
+
+.obligatoire{
+    color:#990000;
+    font-style: italic;
+}
 .fermee{
      background-image:url('/images/Valide2.png');
      background-repeat:no-repeat;
