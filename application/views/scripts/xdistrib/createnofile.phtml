@@ -81,6 +81,12 @@ $this->headTitle($this->title);
                         <td>Projet:</td>
                         <td><?php echo $this->info_industry['nom_industry'] ;?></td>
                     </tr>
+                    <tr>
+                        <td><input name="potentielUser" value=""type="text" required="required"></td>
+                    </tr>
+                    <tr>
+                        <td><input name="partMarche" value=""type="text" required="required"></td>
+                    </tr>
                 </table>
            </fieldset>
         </div>
@@ -136,10 +142,10 @@ $this->headTitle($this->title);
                         <td>Prix spécial accordé CONCURRENT</td>
                     </tr>
                     <tr>
-                        <td><input type="text" name="nom_concurrent"></td>
+                        <td><input type="text" name="nom_concurrent" required="required"></td>
                         <td><input type="text" name="reference_produit"></td>
                         <td><input type="text" name="prix_tarif"></td>
-                        <td><input type="text" name="prix_spe"></td>
+                        <td><input type="text" name="prix_spe" required="required"></td>
                     </tr> 
                 </table>
             </fieldset>
@@ -148,7 +154,7 @@ $this->headTitle($this->title);
         <div id="contexte_service" class="workplace">
             <fieldset class="field">
                 <legend>Contexte de la demande</legend>
-                 <textarea name="contexte" cols="120" rows="7"><?php echo $this->context_info;?></textarea>
+                <textarea name="contexte" cols="120" rows="7" required="required"></textarea>
             </fieldset>
        
             <fieldset class="field">
