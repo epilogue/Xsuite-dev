@@ -644,13 +644,7 @@ if($this->getRequest()->isPost()){
                     $updatecif3 = $updatecif1->updatecif($cif, $result['code_article'], $numwp);
                 }
             }
-//                                $margeupdate1=new Application_Model_DbTable_TempMovexDemande();
-//                                $margeupdate2=$margeupdate1->getDemandeArticlexdistrib($numwp);
-//                                foreach($margeupdate2 as $res){
-//                                    $marges = 1-($res['prix_cif']/$res['prix_accorde']);
-//                                    $marge=$marges*100;
-//                                    $margeupdate3=$margeupdate1->updateMarge($marge, $res['code_article'],$numwp);
-//                                }
+
 
         /* creation table temporaire pour  client */
             $queryClientFinal = "select ZMCPJO.Z2MCL1  from EIT.SMCCDTA.ZMCPJO  ZMCPJO where ZMCPJO.Z2CUNO= '$numwp_client_final' ";
@@ -2340,6 +2334,7 @@ if($this->getRequest()->isPost()){
         $numwp_dis=  substr($info_demande_xdistrib['numwp_distributeur'], 0, 6);
         $info_distrib=new Application_Model_DbTable_Distributeurs();
         $distrib_info=$info_distrib->getDistributeurnumwp($numwp);
+        $nomDistributeur = $distrib_info['nom_distributeur'];
         //var_dump(trim($distrib_info['numwp_distributeur'])); exit();
         $info_user=new Application_Model_DbTable_Users;
         $user_info=$info_user->getUser($info_demande_xdistrib['id_user']);
@@ -2363,6 +2358,7 @@ if($this->getRequest()->isPost()){
         $developpeurdistribs=new Application_Model_DbTable_Users;
         $developpeurdistrib=$developpeurdistribs->getUser($info_demande_xdistrib['id_dd']);
         $maildevdistrib=$developpeurdistrib['email_user'];
+        $nomRCD = $developpeurdistrib['nom_user'];
         $this->view->service_info=$service_info;
         $this->view->contexte_info = $contexte_info;
         $this->view->concurrent_info=$concurrent_info;
@@ -2698,7 +2694,7 @@ if($this->getRequest()->isPost()){
                     $params2['sujet'] = " XDistrib :demande Xdistrib $tracking/$numwp pour $nomclients validée par Directeur Business Developpement.";
                     $params3['corpsMail'] = "Bonjour,\n"
                         . "\n"
-                        . "la demande Xdistrib $tracking/$numwp de {$user_info['nom_user']} pour le client $nomclients faites par le Deveveloppeur Distributeur {$developpeurdistrib['nom_user']} a été validée par le dbd .\n"
+                        . "la demande Xdistrib $tracking/$numwp de $nomRCD pour le distributeur $nomDistributeur  a été validée par le dbd .\n"
                         . "Vous pouvez la consulter à cette adresse url : \n"
                         . "%s"
                         . "\n\n"
@@ -2707,7 +2703,7 @@ if($this->getRequest()->isPost()){
                         . "\n"
                         . "--\n"
                         . "dbd.";
-                $params3['sujet'] = "  XDistrib : la demande Xdistrib $tracking/$numwp de {$user_info['nom_user']} pour le client $nomclients a été validée .";
+                $params3['sujet'] = "  XDistrib : la demande Xdistrib $tracking/$numwp de $nomRCD pour le distributeur $nomDistributeur a été validée .";
                 
                 $this->sendEmail($params2);
                 $this->sendEmail($params3);
@@ -2990,6 +2986,7 @@ if($this->getRequest()->isPost()){
         $developpeurdistribs=new Application_Model_DbTable_Users;
         $developpeurdistrib=$developpeurdistribs->getUser($info_demande_xdistrib['id_dd']);
         $maildevdistrib=$developpeurdistrib['email_user'];
+        $nomRCD = $developpeurdistrib['nom_user'];
         $this->view->service_info=$service_info;
         $this->view->contexte_info = $contexte_info;
         $this->view->concurrent_info=$concurrent_info;
@@ -3254,7 +3251,7 @@ if($this->getRequest()->isPost()){
                 $params1['url'] = "http://{$_SERVER['SERVER_NAME']}/xdistrib/consult/numwp/{$numwp}";
                 $params1['corpsMail'] = "Bonjour,\n"
                         . "\n"
-                        . "la demande Xdistrib $tracking/$numwp pour le client $nomclients a été validée par le Directeur Commercial .\n"
+                        . "la demande Xdistrib $tracking/$numwp de  $nomRCD pour le Distributeur {$distrib_info['nom_distributeur']} a été validée par le Directeur Commercial .\n"
                         . "Vous pouvez la consulter à cette adresse url : \n"
                         . "%s"
                         . "\n\n"
@@ -3262,7 +3259,7 @@ if($this->getRequest()->isPost()){
                         . "\n"
                         . "--\n"
                         . "Directeur Commercial.";
-                $params1['sujet'] = "  Xdistrib :demande Xdistrib $tracking/$numwp pour le client $nomclients validée par Directeur Commercial.";
+                $params1['sujet'] = "  Xdistrib :demande Xdistrib $tracking/$numwp de  $nomRCD pour le Distributeur {$distrib_info['nom_distributeur']} validée par Directeur Commercial.";
                 $this->sendEmail($params1);
                  $params1bis['destinataireMail'] ="mrita@smc-france.fr";
                 $params1bis['url'] = "http://{$_SERVER['SERVER_NAME']}/xdistrib/consult/numwp/{$numwp}";
