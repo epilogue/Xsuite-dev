@@ -2672,8 +2672,12 @@ if($this->getRequest()->isPost()){
                 $this->sendEmail($params7);
                 
                     $params2['destinataireMail'] =$user_info['email_user']; 
-                    
-                    $params3['destinataireMail'] =$mailSC; 
+                    if($user_info['id_holon']==29){
+                        $params3['destinataireMail'] ="export@smc-fance.fr";
+                    }else{
+                         $params3['destinataireMail'] =$mailSC; 
+                    }
+                   
                      if (!is_null($commentId)) {
                     $params2['url'] = "http://{$_SERVER['SERVER_NAME']}/xdistrib/consult/numwp/{$numwp}/com/{$commentId}";
                     $params3['url'] = "http://{$_SERVER['SERVER_NAME']}/xdistrib/consult/numwp/{$numwp}";
