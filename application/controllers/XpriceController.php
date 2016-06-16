@@ -550,7 +550,7 @@ if($user->id_fonction == 3){
                      */
                     $idSearch1=array(42,98,122);
                     $idSearch2=array(217,184,97);
-                    $idSearch3=array(34,199);
+                    $idSearch3=array(20,34,199);
                     $zonetracking = substr($trackingNumber, 6, 2);
                     /*changement à comter du 22/04/2016 le dispatch mail ce fait maintenant en fonction du holon  et non plus de la region
                        if($holoncreateur =="33" || $user_info['id_user']=="145"){
