@@ -31,16 +31,16 @@ $this->headTitle($this->title);
                 <legend>Informations<br>Commercial</legend>
                 <table>
                     <tr>
-                        <td>Nom du TC SMC:</td>
-                        <td><?php echo $this->infos_tc['nom_user']?></td>
+                        <td> TC:</td>
+                        <td><?php echo $this->infos_tc['nom_user'].'&nbsp;'.$this->infos_tc['prenom_user']?></td>
                     </tr>
                     <tr>
-                        <td>Prénom du TC SMC:</td>
-                        <td><?php echo $this->infos_tc['prenom_user']?></td>
+                        <td>RCD :</td>
+                        <td><?php echo $this->infos_dd['nom_user'].'$nbsp;'.$this->info_dd['prenom_user'] ?></td>
                     </tr>
                     <tr>
-                        <td>Email du TC SMC:</td>
-                        <td><?php echo $this->infos_tc['email_user']?></td>
+                        <td>tel TC :<?php echo $this->infos_tc['tel_user']?></td>
+                        <td>tel RCD :<?php echo $this->infos_tc['tel_user']?></td>
                     </tr>
                 </table>
             </fieldset>

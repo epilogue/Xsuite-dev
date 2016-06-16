@@ -302,7 +302,7 @@ JOIN validations_demande_xdistrib ON validations_demande_xdistrib.id_demande_xdi
        
     }
     public function mailconsultRCDN($numwp){
-        $sql = "select numwp_distributeur from demande_xdistrib where num_workplace_demande_xdistrib={$numwp}";
+        $sql = "select numwp_distributeur from distributeurs where num_workplace_demande_xdistrib={$numwp}";
          $res = $this->getAdapter()->query($sql);
         $rest=$res->fetchAll();
         if (!$rest) {
