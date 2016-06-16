@@ -217,7 +217,6 @@ class XdistribController extends Zend_Controller_Action
             $infodd=new Application_Model_DbTable_Users();
             $infos_dd=$infodd->getUserName($nomdebu);
             $this->view->infos_dd=$infos_dd;
-            var_dump($infos_dd);exit();
             $infotc=new Application_Model_DbTable_Users();
             $infos_tc = $infotc->getMovexUser($numwp_user);
             $this->view->infos_tc=$infos_tc;
