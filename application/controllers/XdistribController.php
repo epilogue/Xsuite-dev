@@ -218,7 +218,7 @@ class XdistribController extends Zend_Controller_Action
             $infodd=new Application_Model_DbTable_Users();
             $infos_dd=$infodd->getUserName($nomdebu);
             $this->view->infos_dd=$infos_dd;
-            var_export($infos_dd);
+//            var_export($infos_dd);
             $infotc=new Application_Model_DbTable_Users();
             $infos_tc = $infotc->getMovexUser($numwp_user);
             $this->view->infos_tc=$infos_tc;
@@ -688,9 +688,10 @@ if($this->getRequest()->isPost()){
                 {
                $polop= $this->_auth->getStorage()->read();
                 $user_info[0]['id_user']= $polop->id_user;  
-                };
-            $nom_zone = $user_info[0]['nom_zone'];
+                }
+            $nom_zone = $infos_dd->nom_zone;
            // echo '<pre>',var_export($user_info),'</pre>';
+            // echo '<pre>',var_export($nom_zone),'</pre>';
             $distrib_infos = new Application_Model_DbTable_TempFichierDistribInfo();
             $distrib_info=$distrib_infos->getDistrib($numwp);
             $this->view->distrib_info = $distrib_info[0];
