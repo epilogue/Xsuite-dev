@@ -219,6 +219,8 @@ class XdistribController extends Zend_Controller_Action
             $infos_dd=$infodd->getUserName($nomdebu);
             $this->view->infos_dd=$infos_dd;
 //            var_export($infos_dd);
+             $trackingNumber = Application_Model_DbTable_Xdistrib::makeTrackingNumber($nom_zone, $Xdistrib->lastId(true));
+            $this->view->trackingNumber = $trackingNumber;
             $infotc=new Application_Model_DbTable_Users();
             $infos_tc = $infotc->getMovexUser($numwp_user);
             $this->view->infos_tc=$infos_tc;
