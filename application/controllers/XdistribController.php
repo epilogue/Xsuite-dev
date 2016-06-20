@@ -219,7 +219,8 @@ class XdistribController extends Zend_Controller_Action
             $infos_dd=$infodd->getUserName($nomdebu);
             $this->view->infos_dd=$infos_dd;
 //            var_export($infos_dd);
-             $trackingNumber = Application_Model_DbTable_Xdistrib::makeTrackingNumber($nom_zone, $Xdistrib->lastId(true));
+             $Xdistrib = new Application_Model_DbTable_Xdistrib();
+       $trackingNumber = Application_Model_DbTable_Xdistrib::makeTrackingNumber($nom_zone, $Xdistrib->lastId(true));
             $this->view->trackingNumber = $trackingNumber;
             $infotc=new Application_Model_DbTable_Users();
             $infos_tc = $infotc->getMovexUser($numwp_user);
@@ -286,6 +287,7 @@ class XdistribController extends Zend_Controller_Action
             $flashMessenger->addMessage($message);
             $redirector->gotoSimple('index', 'xdistrib');
        echo '<pre>',var_export($formData),'</pre>';
+       
        
        }
     }
