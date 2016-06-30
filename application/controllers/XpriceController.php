@@ -559,7 +559,7 @@ if($user->id_fonction == 3){
                      *                      */
                     //echo '<pre>',  var_export($zonetracking),'</pre>';
                     
-                    if ( $fonctioncreateur == "2" || $fonctioncreateur == "3" || $fonctioncreateur =="6") {
+                    if ( $fonctioncreateur == "2" || $fonctioncreateur == "3" || $fonctioncreateur =="6" and $info_user['id_user'] !=62 and $info_user['id_user'] !=78) {
                         switch ($holoncreateur) {
                             case "18":
                                 $destinataireMail1 = $emailVars->listes->CDRNORD;
@@ -597,8 +597,6 @@ if($user->id_fonction == 3){
                             case "31":
                                 $destinataireMail1 = $emailVars->listes->CDROUEST;
                                 break;
-                            case "29":
-                                $destinataireMail1=$emailVars->listes->Export;
                         }
                         if (!is_null($firstComment)) {
                             $url1 = "http://{$_SERVER['SERVER_NAME']}/xprice/validatechefregion/numwp/{$numwp}/com/{$firstComment}";
@@ -620,6 +618,23 @@ if($user->id_fonction == 3){
                                 ->setBodyText(sprintf($corpsMail1, $url1))
                                 ->addTo($destinataireMail1)
                                 ->send();
+                    }elseif($info_user['id_user'] =62 || $info_user['id_user'] =78){
+                         $paramsexport= array();
+                $paramsexport['destinataireMail'] = $emailVars->listes->fobfr;
+                        $paramsexport['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/prixfobfr/numwp/{$numwp}";
+                
+                $paramsexport['corpsMail'] = "Bonjour,\n"
+                        . "\n"
+                        . "Vous avez une nouvelle demande XPrice $tracking/$numwp à valider {$info_user['nom_user']} pour le client $nomclients.\n"
+                        . "Veuillez vous rendre à l'adresse url : \n"
+                        . "%s"
+                        . "\n\n"
+                        . "Cordialement,\n"
+                        . "\n"
+                        . "--\n"
+                        . "Xprice";
+                $paramsexport['sujet'] = " XPrice : Nouvelle demande Xprice $tracking/$numwp à valider de {$info_user['nom_user']} pour le client $nomclients.";
+                $this->sendEmail($paramsexport);
                     }
                     /*
                      * ici si le createur de la demande est un RGCN(ancien kam)ou luc montaclair alors envoie de mail DGCN(IO)
@@ -649,7 +664,7 @@ if($user->id_fonction == 3){
                         
                     }
                     /*ici envoi au MGCI ou DGCI si fonction createur ==43/42/44*/
-                    elseif (in_array($user_info['id_user'], $idSearch1)) {
+                    elseif ( $user_info['id_user']==42 ||$user_info['id_user']==98 || $user_info['id_user']==122) {
                         $destinataireMailRGCI1 = $emailVars->listes->RGCI1;
                          if (!is_null($firstComment)) {
                                 $urlRGCI1 = "http://{$_SERVER['SERVER_NAME']}/xprice/validatechefregion/numwp/{$numwp}/com/{$firstComment}";
@@ -671,7 +686,7 @@ if($user->id_fonction == 3){
                                     ->setBodyText(sprintf($corpsMailRGCI1, $urlRGCI1))
                                     ->addTo($destinataireMailRGCI1)
                                     ->send();
-                    } elseif ( in_array($user_info['id_user'], $idSearch2)) {
+                    } elseif ( $user_info['id_user']==97 ||$user_info['id_user']==184 || $user_info['id_user']==217) {
                         $destinataireMailRGCI2 = $emailVars->listes->RGCI2;
                          if (!is_null($firstComment)) {
                                 $urlRGCI2 = "http://{$_SERVER['SERVER_NAME']}/xprice/validatechefregion/numwp/{$numwp}/com/{$firstComment}";
@@ -694,7 +709,7 @@ if($user->id_fonction == 3){
                                     ->addTo($destinataireMailRGCI2)
                                     ->send();
                     } 
-                    elseif ( in_array($user_info['id_user'], $idSearch3)) {
+                    elseif ( $user_info['id_user']==20 ||$user_info['id_user']==34 || $user_info['id_user']==199) {
                         $destinataireMailRGCI3 = $emailVars->listes->RGCI3;
                          if (!is_null($firstComment)) {
                                 $urlRGCI3 = "http://{$_SERVER['SERVER_NAME']}/xprice/validatechefregion/numwp/{$numwp}/com/{$firstComment}";

@@ -876,13 +876,13 @@ if($this->getRequest()->isPost()){
                 $rcdnorexad = array('I00264','I00662' ,'I00412','I01796','I01800','I03174','I03383','I01803','I04736','I03697','I04732','I01799','I04957','I03517','I05061','I01808','I02688','I04956','I05065');
                 $infodistributeur = new Application_Model_DbTable_Xdistrib();
                 $clientDistrib= $infodistributeur->mailconsultRCDN($numwp);
-                if(in_array($clientDistrib,$rcdnmabeo)){
+                if($clientDistrib=='I03624' || $clientDistrib=='I00789' || $clientDistrib=='I05285' || $clientDistrib=='I03317'|| $clientDistrib=='I02557'|| $clientDistrib=='I00415'|| $clientDistrib=='I00678'|| $clientDistrib=='I04380'|| $clientDistrib=='I03214'|| $clientDistrib=='I02886'|| $clientDistrib=='I03621'|| $clientDistrib=='I02929'|| $clientDistrib=='I02932'|| $clientDistrib=='I03912'|| $clientDistrib=='I05223'|| $clientDistrib=='I02920'){
                     $destinataireMail2=$emailVars->listes->dexis;
-                }elseif(in_array($clientDistrib,$rcdnbrammer)){
+                }elseif($clientDistrib=='I01045'|| $clientDistrib=='I02055'){
                     $destinataireMail2=$emailVars->listes->brammer;
-                }elseif(in_array($clientDistrib, $rcdnrs)){
+                }elseif($clientDistrib=='I01990'){
                     $destinataireMail2=$emailVars->listes->rs;
-                }elseif(in_array($clientDistrib,$rcdnorexad)){
+                }elseif($clientDistrib=='I00264'|| $clientDistrib=='I00662' || $clientDistrib=='I00412'|| $clientDistrib=='I01796'|| $clientDistrib=='I01800'|| $clientDistrib=='I03174'|| $clientDistrib=='I03383'|| $clientDistrib=='I01803'|| $clientDistrib=='I04736'|| $clientDistrib=='I03697'|| $clientDistrib=='I04732'|| $clientDistrib=='I01799'|| $clientDistrib=='I04957'|| $clientDistrib=='I03517'|| $clientDistrib=='I05061'|| $clientDistrib=='I01808'|| $clientDistrib=='I02688'|| $clientDistrib=='I04956'|| $clientDistrib=='I05065'){
                     $destinataireMail2=$emailVars->listes->orexad;
                 }
                 $params2['url']="http://{$_SERVER['SERVER_NAME']}/xdistrib/consult/numwp/{$numwp}";
