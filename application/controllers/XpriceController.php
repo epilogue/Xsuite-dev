@@ -559,7 +559,25 @@ if($user->id_fonction == 3){
                      *                      */
                     //echo '<pre>',  var_export($zonetracking),'</pre>';
                     
-                    if ( $fonctioncreateur == "2" || $fonctioncreateur == "3" || $fonctioncreateur =="6" and $info_user['id_user'] !=62 and $info_user['id_user'] !=78) {
+                    if ( $fonctioncreateur == "2" || $fonctioncreateur == "3" || $fonctioncreateur =="6")  {
+                        if($info_user['id_user']==62 || $info_user['id_user'] ==78){
+                             $paramsexport= array();
+                $paramsexport['destinataireMail'] = $emailVars->listes->fobfr;
+                        $paramsexport['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/prixfobfr/numwp/{$numwp}";
+                
+                $paramsexport['corpsMail'] = "Bonjour,\n"
+                        . "\n"
+                        . "Vous avez une nouvelle demande XPrice $tracking/$numwp à valider {$info_user['nom_user']} pour le client $nomclients.\n"
+                        . "Veuillez vous rendre à l'adresse url : \n"
+                        . "%s"
+                        . "\n\n"
+                        . "Cordialement,\n"
+                        . "\n"
+                        . "--\n"
+                        . "Xprice";
+                $paramsexport['sujet'] = " XPrice : Nouvelle demande Xprice $tracking/$numwp à valider de {$info_user['nom_user']} pour le client $nomclients.";
+                $this->sendEmail($paramsexport);
+                        }else{
                         switch ($holoncreateur) {
                             case "18":
                                 $destinataireMail1 = $emailVars->listes->CDRNORD;
@@ -618,23 +636,8 @@ if($user->id_fonction == 3){
                                 ->setBodyText(sprintf($corpsMail1, $url1))
                                 ->addTo($destinataireMail1)
                                 ->send();
-                    }elseif($info_user['id_user'] =62 || $info_user['id_user'] =78){
-                         $paramsexport= array();
-                $paramsexport['destinataireMail'] = $emailVars->listes->fobfr;
-                        $paramsexport['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/prixfobfr/numwp/{$numwp}";
-                
-                $paramsexport['corpsMail'] = "Bonjour,\n"
-                        . "\n"
-                        . "Vous avez une nouvelle demande XPrice $tracking/$numwp à valider {$info_user['nom_user']} pour le client $nomclients.\n"
-                        . "Veuillez vous rendre à l'adresse url : \n"
-                        . "%s"
-                        . "\n\n"
-                        . "Cordialement,\n"
-                        . "\n"
-                        . "--\n"
-                        . "Xprice";
-                $paramsexport['sujet'] = " XPrice : Nouvelle demande Xprice $tracking/$numwp à valider de {$info_user['nom_user']} pour le client $nomclients.";
-                $this->sendEmail($paramsexport);
+                    }
+                        
                     }
                     /*
                      * ici si le createur de la demande est un RGCN(ancien kam)ou luc montaclair alors envoie de mail DGCN(IO)
