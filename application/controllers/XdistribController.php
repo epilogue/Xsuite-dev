@@ -725,7 +725,7 @@ if($this->getRequest()->isPost()){
         }
         $userCreat = $this->_auth->getStorage()->read();
         $Defxdistribs= new Application_Model_DbTable_Xdistrib();
-        $defxdistrib = $Defxdistribs->createXDistrib($numwp, $trackingNumber,$context_info[0]['contexte_demande'],$date,$context_info[0]['services_associes'],$user_info[0]['id_user'],$userCreat->id_user,null,$infos_offres->OBDLSP,$numwp_distributeur5);
+        $defxdistrib = $Defxdistribs->createXDistrib($numwp, $trackingNumber,$context_info[0]['contexte_demande'],$date,$context_info[0]['services_associes'],$user_info[0]['id_user'],$userCreat->id_user,null,trim($infos_offres->OBDLSP),trim($numwp_distributeur5));
         $Defxdistribarticles= new Application_Model_DbTable_DemandeArticlexdistrib();
         foreach($article_info as $art){
             $marge_demande_article = 100*(1-($art['prix_cif']/$art['prix_achat_demande_distrib']));
