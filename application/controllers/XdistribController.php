@@ -213,6 +213,12 @@ class XdistribController extends Zend_Controller_Action
              */
        
             $numwp_user=$infos_offres->OBSMCD;
+             $infotc=new Application_Model_DbTable_Users();
+            $infos_tc = $infotc->getMovexUser($numwp_user);
+            $this->view->infos_tc=$infos_tc;
+            $infozones= new Application_Model_DbTable_Zones();
+            $nom_zone = $infozones->getZone($infos_tc['id_zone']);
+            var_dump($nom_zone);
             $nomdeb = trim($infos_offres->OBCHID);
             $nomdebu=substr($nomdeb,2,-1);
             $infodd=new Application_Model_DbTable_Users();
@@ -222,9 +228,7 @@ class XdistribController extends Zend_Controller_Action
              $Xdistrib = new Application_Model_DbTable_Xdistrib();
        $trackingNumber = Application_Model_DbTable_Xdistrib::makeTrackingNumber($nom_zone, $Xdistrib->lastId(true));
             $this->view->trackingNumber = $trackingNumber;
-            $infotc=new Application_Model_DbTable_Users();
-            $infos_tc = $infotc->getMovexUser($numwp_user);
-            $this->view->infos_tc=$infos_tc;
+           
             $dateinit = $infos_offres->OBRGDT;
             $dateinit3 = substr($dateinit, 0, 4);
             $dateinit2 = substr($dateinit, 4, 2);
