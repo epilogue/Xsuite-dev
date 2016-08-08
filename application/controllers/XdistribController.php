@@ -286,6 +286,23 @@ class XdistribController extends Zend_Controller_Action
        $result= array_combine($formData['reference'],$formData['quantite']);
       $result2=  array_combine( $formData['reference'],$formData['prix_tarif_dis']);
        $redirector = $this->_helper->getHelper('Redirector');
+       if(isset($_FILES['fichierDemandeDistrib']['name'])){
+           if($_FILES['fichierDemandeDistrib']['size']<= 2000000){
+               $extension_valide = array('pdf');
+               $extension_upload = strtolower(substr(strrchr($_FILES['fichierDemandeDistrib']['name'], '.'), 1));
+               if(in_array($extension_upload, $extension_valide)){
+                   echo "extension correcte";
+               }
+               $nomFichier = 'Mail_'.$trackingNumber.$extension_upload;
+               $uploaddir = APPLICATION_PATH."/public//mails/";
+               $uploadfile = $uploaddir.$nomFichier;
+               if(move_uploaded_file($_FILES['fichierDemandeDistrib']['tmp_name'], $uploadfile)){
+                   echo 'tout ok'; exit();
+               } else{
+                   echo 'le transfert a échoué';
+               }
+           }
+       }
             $flashMessenger = $this->_helper->getHelper('FlashMessenger');
             $message = "votre offre  a bien été créée.";
             $flashMessenger->addMessage($message);
