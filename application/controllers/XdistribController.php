@@ -226,7 +226,7 @@ class XdistribController extends Zend_Controller_Action
             $this->view->infos_dd=$infos_dd;
 //            var_export($infos_dd);
              $Xdistrib = new Application_Model_DbTable_Xdistrib();
-       $trackingNumber = Application_Model_DbTable_Xdistrib::makeTrackingNumber($nom_zone, $Xdistrib->lastId(true));
+            $trackingNumber = Application_Model_DbTable_Xdistrib::makeTrackingNumber($nom_zone, $Xdistrib->lastId(true));
             $this->view->trackingNumber = $trackingNumber;
            
             $dateinit = $infos_offres->OBRGDT;
