@@ -717,7 +717,8 @@ if($this->getRequest()->isPost()){
                 $infozones = new Application_Model_DbTable_Zones();
             $nom_zone = $infozones->getZone($infos_dd->id_zone);
            // echo '<pre>',var_export($user_info),'</pre>';
-            // echo '<pre>',var_export($nom_zone),'</pre>';
+            echo '<pre>',var_export($nom_zone['nom_zone']),'</pre>';
+             echo '<pre>',var_export($nom_zone),'</pre>'; exit();
             $distrib_infos = new Application_Model_DbTable_TempFichierDistribInfo();
             $distrib_info=$distrib_infos->getDistrib($numwp);
             $this->view->distrib_info = $distrib_info[0];
