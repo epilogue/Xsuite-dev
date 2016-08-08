@@ -278,7 +278,7 @@ class XdistribController extends Zend_Controller_Action
                
          while( $affiche_offre[]=odbc_fetch_array($affiche_offres)){
              $this->view->affiche_offre=$affiche_offre;
-             echo '<pre>',var_export($affiche_offre),'</pre>';
+             
          }
     } 
        if ($this->getRequest()->isPost()) {
@@ -290,7 +290,7 @@ class XdistribController extends Zend_Controller_Action
             $message = "votre offre  a bien été créée.";
             $flashMessenger->addMessage($message);
             $redirector->gotoSimple('index', 'xdistrib');
-       echo '<pre>',var_export($formData),'</pre>';
+       echo '<pre>',var_export($infos_tc),'</pre>';
        
        
        }
