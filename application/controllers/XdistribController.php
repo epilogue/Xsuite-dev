@@ -218,7 +218,7 @@ class XdistribController extends Zend_Controller_Action
             $this->view->infos_tc=$infos_tc;
             $infozones= new Application_Model_DbTable_Zones();
             $nom_zone = $infozones->getZone($infos_tc['id_zone']);
-            var_dump($nom_zone);
+//            var_dump($nom_zone);
             $nomdeb = trim($infos_offres->OBCHID);
             $nomdebu=substr($nomdeb,2,-1);
             $infodd=new Application_Model_DbTable_Users();
@@ -226,7 +226,7 @@ class XdistribController extends Zend_Controller_Action
             $this->view->infos_dd=$infos_dd;
 //            var_export($infos_dd);
              $Xdistrib = new Application_Model_DbTable_Xdistrib();
-            $trackingNumber = Application_Model_DbTable_Xdistrib::makeTrackingNumber($nom_zone, $Xdistrib->lastId(true));
+            $trackingNumber = Application_Model_DbTable_Xdistrib::makeTrackingNumber($nom_zone['nom_zone'], $Xdistrib->lastId(true));
             $this->view->trackingNumber = $trackingNumber;
            
             $dateinit = $infos_offres->OBRGDT;
@@ -290,7 +290,7 @@ class XdistribController extends Zend_Controller_Action
             $message = "votre offre  a bien été créée.";
             $flashMessenger->addMessage($message);
             $redirector->gotoSimple('index', 'xdistrib');
-       echo '<pre>',var_export($infos_tc),'</pre>';
+//       echo '<pre>',var_export($infos_tc),'</pre>';
        
        
        }
