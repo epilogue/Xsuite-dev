@@ -714,7 +714,8 @@ if($this->getRequest()->isPost()){
                $polop= $this->_auth->getStorage()->read();
                 $user_info[0]['id_user']= $polop->id_user;  
                 }
-            $nom_zone = $infos_dd->nom_zone;
+                $infozones = new Application_Model_DbTable_Zones();
+            $nom_zone = $infozones->getZone($infos_dd->id_zone);
            // echo '<pre>',var_export($user_info),'</pre>';
             // echo '<pre>',var_export($nom_zone),'</pre>';
             $distrib_infos = new Application_Model_DbTable_TempFichierDistribInfo();
