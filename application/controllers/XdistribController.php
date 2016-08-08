@@ -283,9 +283,13 @@ class XdistribController extends Zend_Controller_Action
     } 
        if ($this->getRequest()->isPost()) {
        $formData = $this->getRequest()->getPost();
+        echo '<pre>',var_export($formData),'</pre>';
+        
        $result= array_combine($formData['reference'],$formData['quantite']);
       $result2=  array_combine( $formData['reference'],$formData['prix_tarif_dis']);
        $redirector = $this->_helper->getHelper('Redirector');
+       echo '<pre>',var_export($result),'</pre>';
+        echo '<pre>',var_export($result2),'</pre>';exit();
        if(isset($_FILES['fichierDemandeDistrib']['name'])){
            if($_FILES['fichierDemandeDistrib']['size']<= 2000000){
                $extension_valide = array('pdf');
