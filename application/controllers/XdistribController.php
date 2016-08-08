@@ -712,10 +712,14 @@ if($this->getRequest()->isPost()){
             if(is_null($user_info[0]['id_user']))
                 {
                $polop= $this->_auth->getStorage()->read();
-                $user_info[0]['id_user']= $polop->id_user;  
-                }
+                $user_info[0]['id_user']= $polop->id_user;
                 $infozones = new Application_Model_DbTable_Zones();
-            $nom_zone = $infozones->getZone($infos_dd->id_zone);
+                $nomzones = $infozones->getZone($infos_dd->id_zone);
+                $nom_zone = $nomzones['nom_zone'];
+                }
+                else{
+                    $nom_zone =  $user_info[0]['nom_zone'];
+                }
 //            echo '<pre>',var_export($user_info),'</pre>';
 //            echo '<pre>',var_export($nom_zone['nom_zone']),'</pre>';
 //             echo '<pre>',var_export($nom_zone),'</pre>'; exit();
@@ -743,7 +747,7 @@ if($this->getRequest()->isPost()){
             $this->view->context_info=$context_info[0]['contexte_demande'];
             $this->view->service_info=$context_info[0]['services_associes'];
             $Xdistrib = new Application_Model_DbTable_Xdistrib();
-            $trackingNumber = Application_Model_DbTable_Xdistrib::makeTrackingNumber($nom_zone['nom_zone'], $Xdistrib->lastId(true));
+            $trackingNumber = Application_Model_DbTable_Xdistrib::makeTrackingNumber($nom_zone, $Xdistrib->lastId(true));
             $this->view->trackingNumber = $trackingNumber;
         }
         $userCreat = $this->_auth->getStorage()->read();
