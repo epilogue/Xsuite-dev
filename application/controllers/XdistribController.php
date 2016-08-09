@@ -325,7 +325,7 @@ class XdistribController extends Zend_Controller_Action
 //                echo '<pre>',var_export($demande),'</pre>';
 //                var_dump($demande['OBORQT']); 
                $prix_tarif=round($demande['OBSAPR'],2);
-               $prix_achat_actuel = round(($demande['OBSPAR']*40)/100,2);
+               $prix_achat_actuel = round(($demande['OBSAPR']*40)/100,2);
                $prix_demande_article =round($demande['OBNEPR'],2);
                
                $new_demande_article_Xdistrib= $article_Xdistrib->createDemandeArticlexdistrib(
