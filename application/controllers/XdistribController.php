@@ -295,7 +295,7 @@ class XdistribController extends Zend_Controller_Action
 //         $client_distrib = $clientDistrib->createClientDistrib($numwp, $infos_client['OKCUNO'], $codepostal, $ville, $info_industry['nom_industry'],  $info_industry['id_industry'], $infos_client['OKCUNM'], null);
          
          /*distributeurs ( ok  en commentaire pour ne pas saturée la bdd de test )*/
-           echo '<pre>',var_export($affiche_offre),'</pre>';
+//           echo '<pre>',var_export($affiche_offre),'</pre>';
 //            echo '<pre>',var_export($industriewp4),'</pre>';
 //           $adresse =trim($infos_client['OKCUA4']);
 //         $codepostaldis = substr($adresse,0,5);
@@ -323,10 +323,10 @@ class XdistribController extends Zend_Controller_Action
            $article_Xdistrib=new Application_Model_DbTable_DemandeArticlexdistrib();
            foreach($affiche_offre as $demande){
                foreach($demande as $value){
-                    echo '<pre>',var_export($value),'</pre>';
+                    echo '<pre>',var_export($value),'</pre>';exit();
                 var_dump($value['OBORQT']); 
                }
-                echo '<pre>',var_export($demande),'</pre>';exit();
+                echo '<pre>',var_export($demande),'</pre>';
                 var_dump($demande['OBORQT']); 
                $prix_tarif=round($demande['OBSAPR'],2);
                $prix_achat_actuel = round(($demande['OBSPAR']*40)/100,2);
