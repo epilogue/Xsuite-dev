@@ -296,8 +296,12 @@ class XdistribController extends Zend_Controller_Action
          
          /*distributeurs*/
            echo '<pre>',var_export($infos_distrib),'</pre>';
+            echo '<pre>',var_export($industriewp4),'</pre>';
+           $adresse =trim($infos_client['OKCUA4']);
+         $codepostaldis = substr($adresse,0,5);
+         $agence = substr($adresse,5);
          
-//         $nom_distributeur,$contact_distributeur, $numwp_distributeur,$agence_distributeur, $code_postal_distributeur,$id_industry,$potentiel,$numwp
+//        trim($infos_distrib['OKCUNM']),null,trim($infos_distrib['OKCUNO']),$agence, $codepostaldis,$id_industry,$potentiel,$numwp
     } 
        if ($this->getRequest()->isPost()) {
        $formData = $this->getRequest()->getPost();
