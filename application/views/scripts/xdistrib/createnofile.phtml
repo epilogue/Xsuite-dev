@@ -121,7 +121,7 @@ $this->headTitle($this->title);
                         <td>Remise Demandée</td>
                         <td>Remise référence ou série</td>
                     </tr>
-                    <?php foreach($this->affiche_offre as $key->$value){ ?>
+                    <?php foreach($this->affiche_offre as $value){ ?>
                     <tr>
                         <td><input type="text" readonly="readonly" name="reference[<?php  echo $key; ?>]" value="<?php echo trim($value['OBITDS']); ?>" ></td>
                         <td><input type="text" readonly="readonly" name="quantite[<?php  echo $key; ?>]" value="<?php echo round($value['OBORQT'],2); ?>" ></td>
