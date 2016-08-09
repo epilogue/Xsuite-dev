@@ -301,8 +301,8 @@ class XdistribController extends Zend_Controller_Action
          $codepostaldis = substr($adresse,0,5);
          $agence = substr($adresse,5);
          $potentiel = $infos_distributeur['OKCFC7'];
-         
-//        trim($infos_distrib['OKCUNM']),null,trim($infos_distrib['OKCUNO']),$agence, $codepostaldis,$info_industry['id_industry'],$potentiel,$numwp)
+         $distribs = new Application_Model_DbTable_Distributeurs();
+         $distrib=$distribs->createDistributeur(trim($infos_distrib['OKCUNM']),null,trim($infos_distrib['OKCUNO']),$agence, $codepostaldis,$info_industry['id_industry'],$potentiel,$numwp);
     } 
        if ($this->getRequest()->isPost()) {
        $formData = $this->getRequest()->getPost();
