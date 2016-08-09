@@ -239,6 +239,7 @@ class XdistribController extends Zend_Controller_Action
             $user = $this->_auth->getStorage()->read();
             $query1bis = "select * from EIT.MVXCDTA.OCUSMA OCUSMA where OCUSMA.OKCUNO = '{$infos_offres->OBDLSP}'";
             $infos_client = odbc_fetch_array(odbc_exec($this->odbc_conn2, $query1bis));
+            echo '<pre>',var_export($infos_client),'</pre>';
             $this->view->infos_client=$infos_client;
             $query1quart = "select ZMCPJO.Z2MCL1  from EIT.SMCCDTA.ZMCPJO  ZMCPJO where ZMCPJO.Z2CUNO= '{$infos_offres->OBDLSP}' ";
             $industriewp = odbc_fetch_array(odbc_exec($this->odbc_conn3, $query1quart));
@@ -280,14 +281,28 @@ class XdistribController extends Zend_Controller_Action
              $this->view->affiche_offre=$affiche_offre;
              
          }
+         /* on insert les données provenant de movex et on renseigne les tables suivantes :
+          * clients_distrib
+          * distribs
+          * demande_xdistrib     
+          *  demande_article_xdistrib
+          */
+         
+         //client_distrib
+         
+         $clientDistrib = new Application_Model_DbTable_ClientDistrib();
+         $client_distrib = $clientDistrib->createClientDistrib($numwp, $numwp_client, $codepostal_client, $ville_client, $nom_industry, $id_industry, $nom_client, $client_pac);
     } 
        if ($this->getRequest()->isPost()) {
        $formData = $this->getRequest()->getPost();
+       
+       /**/
         echo '<pre>',var_export($formData),'</pre>';
         
-       $result= array_combine($formData['reference'],$formData['quantite'],$formData['prix_tarif_dis']);
-      $result2=  array_combine( $formData['reference'],$formData['prix_tarif_dis']);
-       $redirector = $this->_helper->getHelper('Redirector');
+      $result = array_combine($formData['reference'],$formData['quantite']);
+      $result2 =  array_combine( $formData['reference'],$formData['prix_tarif_dis']);
+      $result3 = array_combine($formData['reference'],$formData['serie']);
+      $redirector = $this->_helper->getHelper('Redirector');
        echo '<pre>',var_export($result),'</pre>';
         echo '<pre>',var_export($result2),'</pre>';
         var_dump($_FILES); 
