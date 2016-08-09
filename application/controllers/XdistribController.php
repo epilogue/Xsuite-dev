@@ -293,7 +293,7 @@ class XdistribController extends Zend_Controller_Action
          var_dump($adresse);
          $codepostal = substr($adresse,0,5);
          var_dump($codepostal);
-         $ville = substr($adresse,4);
+         $ville = substr($adresse,5);
          var_dump($ville);
 //         $clientDistrib = new Application_Model_DbTable_ClientDistrib();
 //         $client_distrib = $clientDistrib->createClientDistrib($numwp, $infos_client['OKCUNO'], $codepostal_client, $ville_client, $nom_industry, $id_industry, $nom_client, $client_pac);
