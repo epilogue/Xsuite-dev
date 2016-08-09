@@ -239,7 +239,7 @@ class XdistribController extends Zend_Controller_Action
             $user = $this->_auth->getStorage()->read();
             $query1bis = "select * from EIT.MVXCDTA.OCUSMA OCUSMA where OCUSMA.OKCUNO = '{$infos_offres->OBDLSP}'";
             $infos_client = odbc_fetch_array(odbc_exec($this->odbc_conn2, $query1bis));
-            echo '<pre>',var_export($infos_client),'</pre>';
+//            echo '<pre>',var_export($infos_client),'</pre>';
             $this->view->infos_client=$infos_client;
             $query1quart = "select ZMCPJO.Z2MCL1  from EIT.SMCCDTA.ZMCPJO  ZMCPJO where ZMCPJO.Z2CUNO= '{$infos_offres->OBDLSP}' ";
             $industriewp = odbc_fetch_array(odbc_exec($this->odbc_conn3, $query1quart));
@@ -321,11 +321,9 @@ class XdistribController extends Zend_Controller_Action
             
             /*demande_article_Xdistrib*/
            $article_Xdistrib=new Application_Model_DbTable_DemandeArticlexdistrib();
+            while( $affiche_offre[]=odbc_fetch_array($affiche_offres)){
            foreach($affiche_offre as $demande){
-               foreach($demande as $value){
-                    echo '<pre>',var_export($value),'</pre>';exit();
-                var_dump($value['OBORQT']); 
-               }
+              
                 echo '<pre>',var_export($demande),'</pre>';
                 var_dump($demande['OBORQT']); 
                $prix_tarif=round($demande['OBSAPR'],2);
@@ -351,7 +349,7 @@ class XdistribController extends Zend_Controller_Action
                    $numwp,
                        null) ;
                
-           }
+            }}
 //            $new_demande_article_Xdistrib=($prix_tarif,prix_achat,prix_dremande,prixfinal,quantite,remise,$date,null,null,null,null,null,tracking,code,ref,$numwp,code_acqauisition);
     } 
        if ($this->getRequest()->isPost()) {
