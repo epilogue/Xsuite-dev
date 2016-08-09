@@ -332,7 +332,7 @@ class XdistribController extends Zend_Controller_Action
                     $prix_achat_actuel,/*prixachat*/
                    $prix_demande_article,/*prixdemande*/
                    null,/*prixfinal*/
-                   $demande['OBOQRT'], 
+                   $demande['OBORQT'], 
                    null,
                    $date,
                    null, 
