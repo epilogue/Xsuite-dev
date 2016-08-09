@@ -277,10 +277,10 @@ class XdistribController extends Zend_Controller_Action
                 from EIT.CVXCDTA.OOLINE OOLINE WHERE OOLINE.OBORNO='{$numwp}'  AND OOLINE.OBDIVI LIKE 'FR0' AND OOLINE.OBCONO=100";
                 $affiche_offres=odbc_exec($this->odbc_conn, $sqlaffiche);
                
-         while( $affiche_offre[]=odbc_fetch_array($affiche_offres)){
-             $this->view->affiche_offre=$affiche_offre;
-             
-         }
+//         while( $affiche_offre[]=odbc_fetch_array($affiche_offres)){
+//            
+//             
+//         }
          /* on insert les données provenant de movex et on renseigne les tables suivantes :
           * clients_distrib
           * distribs
@@ -322,6 +322,7 @@ class XdistribController extends Zend_Controller_Action
             /*demande_article_Xdistrib*/
            $article_Xdistrib=new Application_Model_DbTable_DemandeArticlexdistrib();
             while( $affiche_offre[]=odbc_fetch_array($affiche_offres)){
+                 $this->view->affiche_offre=$affiche_offre;
            foreach($affiche_offre as $demande){
               
 //                echo '<pre>',var_export($demande),'</pre>';
