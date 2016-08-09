@@ -311,8 +311,8 @@ class XdistribController extends Zend_Controller_Action
             $this->view->datefinal = $datefinal;
             $datef=array($dateinit3, $dateinit2,$dateinit1) ;
             $date=implode('-',$datef);
-//             echo '<pre>',var_export($infos_tc),'</pre>';
-//              echo '<pre>',var_export($infos_dd),'</pre>';
+             echo '<pre>',var_export($infos_tc),'</pre>';
+             echo '<pre>',var_export($infos_dd),'</pre>';
            $Xdistribs = new Application_Model_DbTable_Xdistrib();
            $new_Xdistrib= $Xdistribs->createXDistrib($numwp, $trackingNumber, null, $date, null, $infos_tc['id_user'], $infos_dd->id_user,null,$infos_client['OKCUNO'],$infos_distrib['OKCUNO']);
             
@@ -320,9 +320,10 @@ class XdistribController extends Zend_Controller_Action
            $article_Xdistrib=new Application_Model_DbTable_DemandeArticlexdistrib();
             while( $affiche_offre[]=odbc_fetch_array($affiche_offres)){
                  $this->view->affiche_offre=$affiche_offre;
+                   echo '<pre>',var_export($affiche_offre),'</pre>';
            foreach($affiche_offre as $demande){
               
-//                echo '<pre>',var_export($demande),'</pre>';
+               echo '<pre>',var_export($demande),'</pre>';
 //                var_dump($demande['OBORQT']); 
                $prix_tarif=round($demande['OBSAPR'],2);
                $prix_achat_actuel = round(($demande['OBSAPR']*40)/100,2);
