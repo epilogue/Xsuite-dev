@@ -288,21 +288,21 @@ class XdistribController extends Zend_Controller_Action
           *  demande_article_xdistrib
           */
          //client_distrib ( ok  en commentaire pour ne pas saturée la bdd de test )
-//         $adresse =trim($infos_client['OKCUA4']);
-//         $codepostal = substr($adresse,0,5);
-//         $ville = substr($adresse,5);
-//         $clientDistrib = new Application_Model_DbTable_ClientDistrib();
-//         $client_distrib = $clientDistrib->createClientDistrib($numwp, $infos_client['OKCUNO'], $codepostal, $ville, $info_industry['nom_industry'],  $info_industry['id_industry'], $infos_client['OKCUNM'], null);
+         $adresse =trim($infos_client['OKCUA4']);
+         $codepostal = substr($adresse,0,5);
+         $ville = substr($adresse,5);
+         $clientDistrib = new Application_Model_DbTable_ClientDistrib();
+         $client_distrib = $clientDistrib->createClientDistrib($numwp, $infos_client['OKCUNO'], $codepostal, $ville, $info_industry['nom_industry'],  $info_industry['id_industry'], $infos_client['OKCUNM'], null);
          
          /*distributeurs ( ok  en commentaire pour ne pas saturée la bdd de test )*/
 //           echo '<pre>',var_export($affiche_offre),'</pre>';
 //            echo '<pre>',var_export($industriewp4),'</pre>';
-//           $adresse =trim($infos_client['OKCUA4']);
-//         $codepostaldis = substr($adresse,0,5);
-//         $agence = substr($adresse,5);
-//         $potentiel = $infos_distributeur['OKCFC7'];
-//         $distribs = new Application_Model_DbTable_Distributeurs();
-//         $distrib=$distribs->createDistributeur(trim($infos_distrib['OKCUNM']),null,trim($infos_distrib['OKCUNO']),$agence, $codepostaldis,$info_industry['id_industry'],$potentiel,$numwp);
+           $adresse =trim($infos_client['OKCUA4']);
+         $codepostaldis = substr($adresse,0,5);
+         $agence = substr($adresse,5);
+         $potentiel = $infos_distributeur['OKCFC7'];
+         $distribs = new Application_Model_DbTable_Distributeurs();
+         $distrib=$distribs->createDistributeur(trim($infos_distrib['OKCUNM']),null,trim($infos_distrib['OKCUNO']),$agence, $codepostaldis,$info_industry['id_industry'],$potentiel,$numwp);
          
          /*demande xdistrib ( ok  en commentaire pour ne pas saturée la bdd de test )*/
             $dateinit = $infos_offres->OBRGDT;
@@ -316,16 +316,16 @@ class XdistribController extends Zend_Controller_Action
             $date=implode('-',$datef);
 //             echo '<pre>',var_export($infos_tc),'</pre>';
 //              echo '<pre>',var_export($infos_dd),'</pre>';
-//           $Xdistribs = new Application_Model_DbTable_Xdistrib();
-//           $new_Xdistrib= $Xdistribs->createXDistrib($numwp, $trackingNumber, null, $date, null, $infos_tc['id_user'], $infos_dd->id_user,null,$infos_client['OKCUNO'],$infos_distrib['OKCUNO']);
+           $Xdistribs = new Application_Model_DbTable_Xdistrib();
+           $new_Xdistrib= $Xdistribs->createXDistrib($numwp, $trackingNumber, null, $date, null, $infos_tc['id_user'], $infos_dd->id_user,null,$infos_client['OKCUNO'],$infos_distrib['OKCUNO']);
             
             /*demande_article_Xdistrib*/
            $article_Xdistrib=new Application_Model_DbTable_DemandeArticlexdistrib();
             while( $affiche_offre[]=odbc_fetch_array($affiche_offres)){
            foreach($affiche_offre as $demande){
               
-                echo '<pre>',var_export($demande),'</pre>';
-                var_dump($demande['OBORQT']); 
+//                echo '<pre>',var_export($demande),'</pre>';
+//                var_dump($demande['OBORQT']); 
                $prix_tarif=round($demande['OBSAPR'],2);
                $prix_achat_actuel = round(($demande['OBSPAR']*40)/100,2);
                $prix_demande_article =round($demande['OBNEPR'],2);
@@ -356,15 +356,15 @@ class XdistribController extends Zend_Controller_Action
        $formData = $this->getRequest()->getPost();
        
        /**/
-        echo '<pre>',var_export($formData),'</pre>';
+//        echo '<pre>',var_export($formData),'</pre>';
         
       $result = array_combine($formData['reference'],$formData['quantite']);
       $result2 =  array_combine( $formData['reference'],$formData['prix_tarif_dis']);
       $result3 = array_combine($formData['reference'],$formData['serie']);
       $redirector = $this->_helper->getHelper('Redirector');
-       echo '<pre>',var_export($result),'</pre>';
-        echo '<pre>',var_export($result2),'</pre>';
-        var_dump($_FILES); 
+//       echo '<pre>',var_export($result),'</pre>';
+//        echo '<pre>',var_export($result2),'</pre>';
+//        var_dump($_FILES); 
        if(isset($_FILES['fichierDemandeDistrib']['name'])){
            if($_FILES['fichierDemandeDistrib']['size']<= 2000000){
                $extension_valide = array('pdf');
@@ -374,13 +374,13 @@ class XdistribController extends Zend_Controller_Action
                    echo "extension correcte";
                }
                $nomFichier = 'Mail_'.$trackingNumber.'.'.$extension_upload;
-               var_dump($nomFichier);
+//               var_dump($nomFichier);
                $uploaddir = APPLICATION_PATH."/public/mails/";
-               var_dump($uploaddir);
+//               var_dump($uploaddir);
                $uploadfile = $uploaddir.$nomFichier;
-               var_dump($uploadfile);exit();
+//               var_dump($uploadfile);exit();
                if(move_uploaded_file($_FILES['fichierDemandeDistrib']['tmp_name'], $uploadfile)){
-                   echo 'tout ok'; exit();
+                   echo 'tout ok'; 
                } else{
                    echo 'le transfert a échoué';
                }
