@@ -295,8 +295,8 @@ class XdistribController extends Zend_Controller_Action
 //         $client_distrib = $clientDistrib->createClientDistrib($numwp, $infos_client['OKCUNO'], $codepostal, $ville, $info_industry['nom_industry'],  $info_industry['id_industry'], $infos_client['OKCUNM'], null);
          
          /*distributeurs ( ok  en commentaire pour ne pas saturée la bdd de test )*/
-           echo '<pre>',var_export($infos_distrib),'</pre>';
-            echo '<pre>',var_export($industriewp4),'</pre>';
+           echo '<pre>',var_export($affiche_offre),'</pre>';
+//            echo '<pre>',var_export($industriewp4),'</pre>';
 //           $adresse =trim($infos_client['OKCUA4']);
 //         $codepostaldis = substr($adresse,0,5);
 //         $agence = substr($adresse,5);
@@ -304,20 +304,24 @@ class XdistribController extends Zend_Controller_Action
 //         $distribs = new Application_Model_DbTable_Distributeurs();
 //         $distrib=$distribs->createDistributeur(trim($infos_distrib['OKCUNM']),null,trim($infos_distrib['OKCUNO']),$agence, $codepostaldis,$info_industry['id_industry'],$potentiel,$numwp);
          
-         /*demande xdistrib*/
-            $dateinit = $infos_offres->OBRGDT;
-            $dateinit3 = substr($dateinit, 0, 4);
-            $dateinit2 = substr($dateinit, 4, 2);
-            $dateinit1 = substr($dateinit, 6, 2);
-            $dateinitf = array($dateinit1, $dateinit2,$dateinit3);
-            $datefinal = implode('/', $dateinitf);
-            $this->view->datefinal = $datefinal;
-            $datef=array($dateinit3, $dateinit2,$dateinit1) ;
-            $date=implode('-',$datef);
-             echo '<pre>',var_export($infos_tc),'</pre>';
-              echo '<pre>',var_export($infos_dd),'</pre>';
-           $Xdistribs = new Application_Model_DbTable_Xdistrib();
-           $new_Xdistrib= $Xdistribs->createXDistrib($numwp, $trackingNumber, null, $date, null, $infos_tc['id_user'], $infos_dd->id_user,null,$infos_client['OKCUNO'],$infos_distrib['OKCUNO']);
+         /*demande xdistrib ( ok  en commentaire pour ne pas saturée la bdd de test )*/
+//            $dateinit = $infos_offres->OBRGDT;
+//            $dateinit3 = substr($dateinit, 0, 4);
+//            $dateinit2 = substr($dateinit, 4, 2);
+//            $dateinit1 = substr($dateinit, 6, 2);
+//            $dateinitf = array($dateinit1, $dateinit2,$dateinit3);
+//            $datefinal = implode('/', $dateinitf);
+//            $this->view->datefinal = $datefinal;
+//            $datef=array($dateinit3, $dateinit2,$dateinit1) ;
+//            $date=implode('-',$datef);
+//             echo '<pre>',var_export($infos_tc),'</pre>';
+//              echo '<pre>',var_export($infos_dd),'</pre>';
+//           $Xdistribs = new Application_Model_DbTable_Xdistrib();
+//           $new_Xdistrib= $Xdistribs->createXDistrib($numwp, $trackingNumber, null, $date, null, $infos_tc['id_user'], $infos_dd->id_user,null,$infos_client['OKCUNO'],$infos_distrib['OKCUNO']);
+            
+            /*demande_article_Xdistrib*/
+            
+//            $new_demande_article_Xdistrib=($prix_tarif,prix_achat,prix_dremande,prixfinal,quantite,remise,$date,null,null,null,null,null,tracking,code,ref,$numwp,code_acqauisition);
     } 
        if ($this->getRequest()->isPost()) {
        $formData = $this->getRequest()->getPost();
