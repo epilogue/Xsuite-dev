@@ -290,6 +290,7 @@ class XdistribController extends Zend_Controller_Action
        $redirector = $this->_helper->getHelper('Redirector');
        echo '<pre>',var_export($result),'</pre>';
         echo '<pre>',var_export($result2),'</pre>';
+        var_dump($_FILES); exit();
        if(isset($_FILES['fichierDemandeDistrib']['name'])){
            if($_FILES['fichierDemandeDistrib']['size']<= 2000000){
                $extension_valide = array('pdf');
