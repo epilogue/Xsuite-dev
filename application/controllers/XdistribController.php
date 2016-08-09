@@ -299,9 +299,9 @@ class XdistribController extends Zend_Controller_Action
                if(in_array($extension_upload, $extension_valide)){
                    echo "extension correcte";
                }
-               $nomFichier = 'Mail_'.$trackingNumber.$extension_upload;
+               $nomFichier = 'Mail_'.$trackingNumber.'.'.$extension_upload;
                var_dump($nomFichier);
-               $uploaddir = APPLICATION_PATH."/public//mails/";
+               $uploaddir = APPLICATION_PATH."/public/mails/";
                var_dump($uploaddir);
                $uploadfile = $uploaddir.$nomFichier;
                var_dump($uploadfile);exit();
