@@ -321,7 +321,29 @@ class XdistribController extends Zend_Controller_Action
             
             /*demande_article_Xdistrib*/
            $article_Xdistrib=new Application_Model_DbTable_DemandeArticlexdistrib();
-           foreach($affiche_offre as $demande){$new_demande_article_Xdistrib= $article_Xdistrib->createDemandeArticlexdistrib(round($demande['OBSAPR'],2),($demande['OBSPAR']*40)/100 , round($demande['OBNEPR'],2),null, $demande['OBQRT'], null, $date, null, null, null, null, null, $trackingNumber, $demande['OBITNO'], $demande['OBITDS'], $numwp,null) ;
+           foreach($affiche_offre as $demande){
+               $prix_tarif=round($demande['OBSAPR'],2);
+               $prix_achat_actuel = round(($demande['OBSPAR']*40)/100,2);
+               $prix_demande_article =round($demande['OBNEPR'],2);
+               
+               $new_demande_article_Xdistrib= $article_Xdistrib->createDemandeArticlexdistrib(
+                   $prix_tarif,/*prixtarif*/
+                    $prix_achat_actuel,/*prixachat*/
+                   $prix_demande_article,/*prixdemande*/
+                   null,/*prixfinal*/
+                   $demande['OBQRT'], 
+                   null,
+                   $date,
+                   null, 
+                   null,
+                   null,
+                   null,
+                   null,
+                   $trackingNumber,
+                   $demande['OBITNO'],
+                   $demande['OBITDS'],
+                   $numwp,
+                       null) ;
                
            }
 //            $new_demande_article_Xdistrib=($prix_tarif,prix_achat,prix_dremande,prixfinal,quantite,remise,$date,null,null,null,null,null,tracking,code,ref,$numwp,code_acqauisition);
