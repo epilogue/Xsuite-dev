@@ -287,7 +287,7 @@ class XdistribController extends Zend_Controller_Action
           * demande_xdistrib     
           *  demande_article_xdistrib
           */
-         
+         echo '<pre>',  var_export($info_industry),'</pre>';
          //client_distrib
          $adresse =trim($infos_client['OKCUA4']);
          var_dump($adresse);
