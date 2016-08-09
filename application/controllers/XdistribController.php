@@ -277,10 +277,7 @@ class XdistribController extends Zend_Controller_Action
                 from EIT.CVXCDTA.OOLINE OOLINE WHERE OOLINE.OBORNO='{$numwp}'  AND OOLINE.OBDIVI LIKE 'FR0' AND OOLINE.OBCONO=100";
                 $affiche_offres=odbc_exec($this->odbc_conn, $sqlaffiche);
                
-//         while( $affiche_offre[]=odbc_fetch_array($affiche_offres)){
-//            
-//             
-//         }
+       }
          /* on insert les données provenant de movex et on renseigne les tables suivantes :
           * clients_distrib
           * distribs
@@ -350,7 +347,7 @@ class XdistribController extends Zend_Controller_Action
                    $numwp,
                        null) ;
                
-            }}
+            }
 //            $new_demande_article_Xdistrib=($prix_tarif,prix_achat,prix_dremande,prixfinal,quantite,remise,$date,null,null,null,null,null,tracking,code,ref,$numwp,code_acqauisition);
     } 
        if ($this->getRequest()->isPost()) {
