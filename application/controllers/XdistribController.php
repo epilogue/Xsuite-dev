@@ -317,7 +317,7 @@ class XdistribController extends Zend_Controller_Action
              echo '<pre>',var_export($infos_tc),'</pre>';
               echo '<pre>',var_export($infos_dd),'</pre>';
            $Xdistribs = new Application_Model_DbTable_Xdistrib();
-           $new_Xdistrib= $Xdistribs->createXDistrib($numwp, $trackingNumber, null, $date, null, $infos_tc['id_user'], $infos_dd['id_user'],null,$infos_client['OKCUNO'],$infos_distrib['OKCUNO']);
+           $new_Xdistrib= $Xdistribs->createXDistrib($numwp, $trackingNumber, null, $date, null, $infos_tc['id_user'], $infos_dd->id_user,null,$infos_client['OKCUNO'],$infos_distrib['OKCUNO']);
     } 
        if ($this->getRequest()->isPost()) {
        $formData = $this->getRequest()->getPost();
