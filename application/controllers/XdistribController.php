@@ -290,8 +290,8 @@ class XdistribController extends Zend_Controller_Action
          
          //client_distrib
          
-         $clientDistrib = new Application_Model_DbTable_ClientDistrib();
-         $client_distrib = $clientDistrib->createClientDistrib($numwp, $numwp_client, $codepostal_client, $ville_client, $nom_industry, $id_industry, $nom_client, $client_pac);
+//         $clientDistrib = new Application_Model_DbTable_ClientDistrib();
+//         $client_distrib = $clientDistrib->createClientDistrib($numwp, $numwp_client, $codepostal_client, $ville_client, $nom_industry, $id_industry, $nom_client, $client_pac);
     } 
        if ($this->getRequest()->isPost()) {
        $formData = $this->getRequest()->getPost();
