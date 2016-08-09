@@ -320,7 +320,10 @@ class XdistribController extends Zend_Controller_Action
 //           $new_Xdistrib= $Xdistribs->createXDistrib($numwp, $trackingNumber, null, $date, null, $infos_tc['id_user'], $infos_dd->id_user,null,$infos_client['OKCUNO'],$infos_distrib['OKCUNO']);
             
             /*demande_article_Xdistrib*/
-            
+           $article_Xdistrib=new Application_Model_DbTable_DemandeArticlexdistrib();
+           foreach($affiche_offre as $demande){$new_demande_article_Xdistrib= $article_Xdistrib->createDemandeArticlexdistrib(round($demande['OBSAPR'],2),($demande['OBSPAR']*40)/100 , round($demande['OBNEPR'],2),null, $demande['OBQRT'], null, $date, null, null, null, null, null, $trackingNumber, $demande['OBITNO'], $demande['OBITDS'], $numwp,null) ;
+               
+           }
 //            $new_demande_article_Xdistrib=($prix_tarif,prix_achat,prix_dremande,prixfinal,quantite,remise,$date,null,null,null,null,null,tracking,code,ref,$numwp,code_acqauisition);
     } 
        if ($this->getRequest()->isPost()) {
