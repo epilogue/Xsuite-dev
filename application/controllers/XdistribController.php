@@ -287,16 +287,17 @@ class XdistribController extends Zend_Controller_Action
           * demande_xdistrib     
           *  demande_article_xdistrib
           */
-         echo '<pre>',  var_export($info_industry),'</pre>';
-         //client_distrib
-         $adresse =trim($infos_client['OKCUA4']);
-         var_dump($adresse);
-         $codepostal = substr($adresse,0,5);
-         var_dump($codepostal);
-         $ville = substr($adresse,5);
-         var_dump($ville);
-       $clientDistrib = new Application_Model_DbTable_ClientDistrib();
-        $client_distrib = $clientDistrib->createClientDistrib($numwp, $infos_client['OKCUNO'], $codepostal, $ville, $info_industry['nom_industry'],  $info_industry['id_industry'], $infos_client['OKCUNM'], null);
+         //client_distrib ( ok  en commentaire pour ne pas saturée la bdd de test )
+//         $adresse =trim($infos_client['OKCUA4']);
+//         $codepostal = substr($adresse,0,5);
+//         $ville = substr($adresse,5);
+//         $clientDistrib = new Application_Model_DbTable_ClientDistrib();
+//         $client_distrib = $clientDistrib->createClientDistrib($numwp, $infos_client['OKCUNO'], $codepostal, $ville, $info_industry['nom_industry'],  $info_industry['id_industry'], $infos_client['OKCUNM'], null);
+         
+         /*distributeurs*/
+           echo '<pre>',var_export($infos_distrib),'</pre>';
+         
+//         $nom_distributeur,$contact_distributeur, $numwp_distributeur,$agence_distributeur, $code_postal_distributeur,$id_industry,$potentiel,$numwp
     } 
        if ($this->getRequest()->isPost()) {
        $formData = $this->getRequest()->getPost();
