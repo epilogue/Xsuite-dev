@@ -55,8 +55,8 @@ class XdistribController extends Zend_Controller_Action
      $user = $this->_auth->getStorage()->read();
      $holon =$user->id_holon; 
      $fonction=$user->id_fonction;
-     echo $fonction;
-     var_dump($user->id_user);
+     //echo $fonction;
+     //var_dump($user->id_user);
      $this->view->createur=$user->id_user;
      $this->view->fonction=$fonction;
      if($user->id_fonction == 35){
@@ -311,8 +311,8 @@ class XdistribController extends Zend_Controller_Action
             $this->view->datefinal = $datefinal;
             $datef=array($dateinit3, $dateinit2,$dateinit1) ;
             $date=implode('-',$datef);
-             echo '<pre>',var_export($infos_tc),'</pre>';
-             echo '<pre>',var_export($infos_dd),'</pre>';
+//             echo '<pre>',var_export($infos_tc),'</pre>';
+//             echo '<pre>',var_export($infos_dd),'</pre>';
            $Xdistribs = new Application_Model_DbTable_Xdistrib();
            $new_Xdistrib= $Xdistribs->createXDistrib($numwp, $trackingNumber, null, $date, null, $infos_tc['id_user'], $infos_dd->id_user,null,$infos_client['OKCUNO'],$infos_distrib['OKCUNO']);
             
@@ -354,9 +354,46 @@ class XdistribController extends Zend_Controller_Action
        if ($this->getRequest()->isPost()) {
        $formData = $this->getRequest()->getPost();
        
-       /**/
+       /* mettre a jour demandearticle avec prix-cif, prix fob et code acquisition*/
+       foreach ($this->view->affiche_offre as $itnoarticle) {
+                $mmcono = "100";
+                $division = "FR0";
+                $facility = "I01";
+                $type = "3";
+                $warehouse = "I02";
+                $agreement1 = "I000001";
+                $agreement2 = "I000002";
+                $agreement3 = "I000003";
+                $query3 = "select * from EIT.MVXCDTA.MPAGRP MPAGRP where MPAGRP.AJCONO = '$mmcono'  AND MPAGRP.AJOBV2 = '{$itnoarticle['OBITNO']}' AND MPAGRP.AJOBV1 = '$division'  ORDER BY MPAGRP.AJAGNB";
+                $resultats3 = odbc_Exec($this->odbc_conn2, $query3);
+                $prixciffob[] = odbc_fetch_object($resultats3);
+                $acquis= "select MITBAL.MBITNO, MITBAL.MBPUIT from EIT.MVXCDTA.MITBAL MITBAL where MITBAL.MBITNO ='{$itnoarticle['OBITNO']}'";
+                $resultatsacquis=odbc_Exec($this->odbc_conn2, $acquis);
+                $resultatacquis[] = odbc_fetch_object($resultatsacquis);
+            }
+           
+
+            /*insertion et update  prix fob et cif*/ 
+            foreach ($prixciffob as $key => $value) {
+               $insertprix = new Application_Model_DbTable_DemandeArticlexdistrib();
+               $inserprix = $insertprix->InserPrixFob($value->AJPUPR, $value->AJOBV2, $numwp);
+            }
+            foreach($resultatacquis as $key=>$value){
+                $insertacquis= new Application_Model_DbTable_DemandeArticlexdistrib();
+                $inseracquis = $insertacquis->InserCodeAcquis($value->MBPUIT, $value->MBITNO, $numwp);
+            }
+
+            $updatecif1 = new Application_Model_DbTable_DemandeArticlexdistrib();
+            $updatecif2 = $updatecif1->getDemandeArticlexdistrib($numwp);                   
+            foreach($updatecif2 as $result){
+                if($result['code_acquisition']=='2'){
+                    $cifs= ($result['prix_fob'])*1.07;
+                    $cif=round($cifs,2);
+                    $updatecif3 = $updatecif1->updatecif($cif, $result['code_article'], $numwp);
+                }
+            }
 //        echo '<pre>',var_export($formData),'</pre>';
-        
+            exit();
       $result = array_combine($formData['reference'],$formData['quantite']);
       $result2 =  array_combine( $formData['reference'],$formData['prix_tarif_dis']);
       $result3 = array_combine($formData['reference'],$formData['serie']);
