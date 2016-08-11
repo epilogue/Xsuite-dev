@@ -350,7 +350,7 @@ class XdistribController extends Zend_Controller_Action
                    $numwp,
                        null) ;
                
-            } exit();
+            } 
 //            $new_demande_article_Xdistrib=($prix_tarif,prix_achat,prix_dremande,prixfinal,quantite,remise,$date,null,null,null,null,null,tracking,code,ref,$numwp,code_acqauisition);
      
        if ($this->getRequest()->isPost()) {
@@ -366,9 +366,9 @@ class XdistribController extends Zend_Controller_Action
                 $agreement1 = "I000001";
                 $agreement2 = "I000002";
                 $agreement3 = "I000003";
-                $query3 = "select * from EIT.MVXCDTA.MPAGRP MPAGRP where MPAGRP.AJCONO = '$mmcono'  AND MPAGRP.AJOBV2 = '{$itnoarticle['OBITNO']}' AND MPAGRP.AJOBV1 = '$division'  ORDER BY MPAGRP.AJAGNB";
-                $resultats3 = odbc_Exec($this->odbc_conn2, $query3);
-                $prixciffob[] = odbc_fetch_object($resultats3);
+                $query5 = "select * from EIT.MVXCDTA.MPAGRP MPAGRP where MPAGRP.AJCONO = '$mmcono'  AND MPAGRP.AJOBV2 = '{$itnoarticle['OBITNO']}' AND MPAGRP.AJOBV1 = '$division'  ORDER BY MPAGRP.AJAGNB";
+                $resultats5 = odbc_Exec($this->odbc_conn2, $query5);
+                $prixciffob[] = odbc_fetch_object($resultats5);
                 $acquis= "select MITBAL.MBITNO, MITBAL.MBPUIT from EIT.MVXCDTA.MITBAL MITBAL where MITBAL.MBITNO ='{$itnoarticle['OBITNO']}'";
                 $resultatsacquis=odbc_Exec($this->odbc_conn2, $acquis);
                 $resultatacquis[] = odbc_fetch_object($resultatsacquis);
