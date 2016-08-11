@@ -319,9 +319,9 @@ class XdistribController extends Zend_Controller_Action
             /*demande_article_Xdistrib*/
            $article_Xdistrib=new Application_Model_DbTable_DemandeArticlexdistrib();
             while( $affiche_offre[]=odbc_fetch_array($affiche_offres)){
-                 $this->view->affiche_offre=$affiche_offre;
+            $this->view->affiche_offre=$affiche_offre;}
                    echo '<pre>',var_export($affiche_offre),'</pre>';
-           foreach($affiche_offre as $demande){
+           foreach($this->view->affiche_offre as $demande){
               
                echo '<pre>',var_export($demande),'</pre>';
 //                var_dump($demande['OBORQT']); 
@@ -350,7 +350,7 @@ class XdistribController extends Zend_Controller_Action
                
             }
 //            $new_demande_article_Xdistrib=($prix_tarif,prix_achat,prix_dremande,prixfinal,quantite,remise,$date,null,null,null,null,null,tracking,code,ref,$numwp,code_acqauisition);
-    } 
+     
        if ($this->getRequest()->isPost()) {
        $formData = $this->getRequest()->getPost();
        
