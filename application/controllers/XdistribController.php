@@ -313,14 +313,14 @@ class XdistribController extends Zend_Controller_Action
             $date=implode('-',$datef);
 ////             echo '<pre>',var_export($infos_tc),'</pre>';
 ////             echo '<pre>',var_export($infos_dd),'</pre>';
-//           $Xdistribs = new Application_Model_DbTable_Xdistrib();
-//           $new_Xdistrib= $Xdistribs->createXDistrib($numwp, $trackingNumber, null, $date, null, $infos_tc['id_user'], $infos_dd->id_user,null,$infos_client['OKCUNO'],$infos_distrib['OKCUNO']);
+           $Xdistribs = new Application_Model_DbTable_Xdistrib();
+           $new_Xdistrib= $Xdistribs->createXDistrib($numwp, $trackingNumber, null, $date, null, $infos_tc['id_user'], $infos_dd->id_user,null,$infos_client['OKCUNO'],$infos_distrib['OKCUNO']);
             
             /*demande_article_Xdistrib*/
            $article_Xdistrib=new Application_Model_DbTable_DemandeArticlexdistrib();
             while( $affiche_offre[]=odbc_fetch_array($affiche_offres)){
             $this->view->affiche_offre=$affiche_offre;}
-                   echo '<pre>',var_export($affiche_offre),'</pre>';
+//                   echo '<pre>',var_export($affiche_offre),'</pre>';
            foreach($this->view->affiche_offre as $demande){
               
                echo '<pre>',var_export($demande),'</pre>';
