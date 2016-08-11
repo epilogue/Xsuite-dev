@@ -302,19 +302,19 @@ class XdistribController extends Zend_Controller_Action
          $distrib=$distribs->createDistributeur(trim($infos_distrib['OKCUNM']),null,trim($infos_distrib['OKCUNO']),$agence, $codepostaldis,$info_industry['id_industry'],$potentiel,$numwp);
          
          /*demande xdistrib ( ok  en commentaire pour ne pas saturée la bdd de test )*/
-            $dateinit = $infos_offres->OBRGDT;
-            $dateinit3 = substr($dateinit, 0, 4);
-            $dateinit2 = substr($dateinit, 4, 2);
-            $dateinit1 = substr($dateinit, 6, 2);
-            $dateinitf = array($dateinit1, $dateinit2,$dateinit3);
-            $datefinal = implode('/', $dateinitf);
-            $this->view->datefinal = $datefinal;
-            $datef=array($dateinit3, $dateinit2,$dateinit1) ;
-            $date=implode('-',$datef);
-//             echo '<pre>',var_export($infos_tc),'</pre>';
-//             echo '<pre>',var_export($infos_dd),'</pre>';
-           $Xdistribs = new Application_Model_DbTable_Xdistrib();
-           $new_Xdistrib= $Xdistribs->createXDistrib($numwp, $trackingNumber, null, $date, null, $infos_tc['id_user'], $infos_dd->id_user,null,$infos_client['OKCUNO'],$infos_distrib['OKCUNO']);
+//            $dateinit = $infos_offres->OBRGDT;
+//            $dateinit3 = substr($dateinit, 0, 4);
+//            $dateinit2 = substr($dateinit, 4, 2);
+//            $dateinit1 = substr($dateinit, 6, 2);
+//            $dateinitf = array($dateinit1, $dateinit2,$dateinit3);
+//            $datefinal = implode('/', $dateinitf);
+//            $this->view->datefinal = $datefinal;
+//            $datef=array($dateinit3, $dateinit2,$dateinit1) ;
+//            $date=implode('-',$datef);
+////             echo '<pre>',var_export($infos_tc),'</pre>';
+////             echo '<pre>',var_export($infos_dd),'</pre>';
+//           $Xdistribs = new Application_Model_DbTable_Xdistrib();
+//           $new_Xdistrib= $Xdistribs->createXDistrib($numwp, $trackingNumber, null, $date, null, $infos_tc['id_user'], $infos_dd->id_user,null,$infos_client['OKCUNO'],$infos_distrib['OKCUNO']);
             
             /*demande_article_Xdistrib*/
            $article_Xdistrib=new Application_Model_DbTable_DemandeArticlexdistrib();
