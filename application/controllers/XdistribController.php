@@ -276,7 +276,9 @@ class XdistribController extends Zend_Controller_Action
                 OOLINE.OBELNO
                 from EIT.CVXCDTA.OOLINE OOLINE WHERE OOLINE.OBORNO='{$numwp}'  AND OOLINE.OBDIVI LIKE 'FR0' AND OOLINE.OBCONO=100";
                 $affiche_offres=odbc_exec($this->odbc_conn, $sqlaffiche);
-               
+          $article_Xdistrib=new Application_Model_DbTable_DemandeArticlexdistrib();
+            while( $affiche_offre[]=odbc_fetch_array($affiche_offres)){
+            $this->view->affiche_offre=$affiche_offre;}     
        }
          /* on insert les données provenant de movex et on renseigne les tables suivantes :
           * clients_distrib
@@ -318,8 +320,8 @@ class XdistribController extends Zend_Controller_Action
             
             /*demande_article_Xdistrib*/
            $article_Xdistrib=new Application_Model_DbTable_DemandeArticlexdistrib();
-            while( $affiche_offre[]=odbc_fetch_array($affiche_offres)){
-            $this->view->affiche_offre=$affiche_offre;}
+//            while( $affiche_offre[]=odbc_fetch_array($affiche_offres)){
+//            $this->view->affiche_offre=$affiche_offre;}
 //                   echo '<pre>',var_export($affiche_offre),'</pre>';
            foreach($this->view->affiche_offre as $demande){
               
@@ -348,7 +350,7 @@ class XdistribController extends Zend_Controller_Action
                    $numwp,
                        null) ;
                
-            }
+            } exit();
 //            $new_demande_article_Xdistrib=($prix_tarif,prix_achat,prix_dremande,prixfinal,quantite,remise,$date,null,null,null,null,null,tracking,code,ref,$numwp,code_acqauisition);
      
        if ($this->getRequest()->isPost()) {
