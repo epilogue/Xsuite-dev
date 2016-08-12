@@ -69,9 +69,10 @@ class Application_Model_DbTable_DemandeArticlexdistrib extends Zend_Db_Table_Abs
         $datas = array('prix_cif_demande_article' => $cifs);
         $where = $plop->quoteInto('code_article = ?', $code_article)
                 . $plop->quoteInto(' And tracking_number_demande_xdistrib = ?', $tracking_number);
-        var_dump($where);
-        var_dump($datas);
+//        var_dump($where);
+//        var_dump($datas);
         $plop2 = $this->update($datas, $where);
+        var_dump($plop2);
         return $plop2;
     }
 

@@ -373,13 +373,13 @@ class XdistribController extends Zend_Controller_Action
             echo '<pre>',  var_export($updatecif2),'</pre>'; 
             foreach($updatecif2 as $result){
                 if($result['code_acquisition']=='2'){
-                    echo 'plop';
+//                    echo 'plop';
                     $fob=0+$result['prix_fob_demande_article'];
-                    var_dump($fob);
+//                    var_dump($fob);
                     $cifs=$fob*1.07;
                     //var_dump($cifs);
                     $cif=round($cifs,2);
-                     var_dump($cif);
+//                     var_dump($cif);
                     $updatecif3 = $updatecif1->updatecif($cif, $result['code_article'], $numwp);
                 }
             }
