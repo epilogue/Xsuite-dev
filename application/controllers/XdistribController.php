@@ -379,6 +379,7 @@ class XdistribController extends Zend_Controller_Action
                     $cifs=$fob*1.07;
                     var_dump($cifs);
                     $cif=round($cifs,2);
+                     var_dump($cif);
                     $updatecif3 = $updatecif1->updatecif($cif, $result['code_article'], $numwp);
                 }
             }
