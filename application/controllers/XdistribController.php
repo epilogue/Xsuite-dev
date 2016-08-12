@@ -351,11 +351,11 @@ class XdistribController extends Zend_Controller_Action
                 $agreement1 = "I000001";
                 $agreement2 = "I000002";
                 $agreement3 = "I000003";
-                $query5 = "select * from EIT.MVXCDTA.MPAGRP MPAGRP where MPAGRP.AJCONO = '$mmcono'  AND MPAGRP.AJOBV2 = '{$itnoarticle['OBITNO']}' AND MPAGRP.AJOBV1 = '$division'  ORDER BY MPAGRP.AJAGNB";
+                $query5 = "select * from EIT.MVXCDTA.MPAGRP MPAGRP where MPAGRP.AJCONO = '$mmcono'  AND MPAGRP.AJOBV2 = '{$demande['OBITNO']}' AND MPAGRP.AJOBV1 = '$division'  ORDER BY MPAGRP.AJAGNB";
                 $resultats5 = odbc_Exec($this->odbc_conn2, $query5);
                 $prixciffob[] = odbc_fetch_object($resultats5);
                 echo '<pre>',var_export($prixciffob),'</pre>';exit();
-                $acquis= "select MITBAL.MBITNO, MITBAL.MBPUIT from EIT.MVXCDTA.MITBAL MITBAL where MITBAL.MBITNO ='{$itnoarticle['OBITNO']}'";
+                $acquis= "select MITBAL.MBITNO, MITBAL.MBPUIT from EIT.MVXCDTA.MITBAL MITBAL where MITBAL.MBITNO ='{$demande['OBITNO']}'";
                 $resultatsacquis=odbc_Exec($this->odbc_conn2, $acquis);
                 $resultatacquis[] = odbc_fetch_object($resultatsacquis);
             } 
