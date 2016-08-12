@@ -354,19 +354,11 @@ class XdistribController extends Zend_Controller_Action
                 $query5 = "select * from EIT.MVXCDTA.MPAGRP MPAGRP where MPAGRP.AJCONO = '$mmcono'  AND MPAGRP.AJOBV2 = '{$demande['OBITNO']}' AND MPAGRP.AJOBV1 = '$division'  ORDER BY MPAGRP.AJAGNB";
                 $resultats5 = odbc_Exec($this->odbc_conn2, $query5);
                 $prixciffob[] = odbc_fetch_object($resultats5);
-                echo '<pre>',var_export($prixciffob),'</pre>';exit();
+                echo '<pre>',var_export($prixciffob),'</pre>';
                 $acquis= "select MITBAL.MBITNO, MITBAL.MBPUIT from EIT.MVXCDTA.MITBAL MITBAL where MITBAL.MBITNO ='{$demande['OBITNO']}'";
                 $resultatsacquis=odbc_Exec($this->odbc_conn2, $acquis);
                 $resultatacquis[] = odbc_fetch_object($resultatsacquis);
             } 
-//            $new_demande_article_Xdistrib=($prix_tarif,prix_achat,prix_dremande,prixfinal,quantite,remise,$date,null,null,null,null,null,tracking,code,ref,$numwp,code_acqauisition);
-     
-       if ($this->getRequest()->isPost()) {
-       $formData = $this->getRequest()->getPost();
-      
-           
-
-            /*insertion et update  prix fob et cif*/ 
             foreach ($prixciffob as $key => $value) {
                $insertprix = new Application_Model_DbTable_DemandeArticlexdistrib();
                $inserprix = $insertprix->InserPrixFob($value->AJPUPR, $value->AJOBV2, $numwp);
@@ -387,6 +379,15 @@ class XdistribController extends Zend_Controller_Action
             }
 //        echo '<pre>',var_export($formData),'</pre>';
             exit();
+//            $new_demande_article_Xdistrib=($prix_tarif,prix_achat,prix_dremande,prixfinal,quantite,remise,$date,null,null,null,null,null,tracking,code,ref,$numwp,code_acqauisition);
+     
+       if ($this->getRequest()->isPost()) {
+       $formData = $this->getRequest()->getPost();
+      
+           
+
+            /*insertion et update  prix fob et cif*/ 
+            
       $result = array_combine($formData['reference'],$formData['quantite']);
       $result2 =  array_combine( $formData['reference'],$formData['prix_tarif_dis']);
       $result3 = array_combine($formData['reference'],$formData['serie']);
