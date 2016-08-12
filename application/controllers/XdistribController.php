@@ -278,20 +278,9 @@ class XdistribController extends Zend_Controller_Action
                 $affiche_offres=odbc_exec($this->odbc_conn, $sqlaffiche);
           $article_Xdistrib=new Application_Model_DbTable_DemandeArticlexdistrib();
             while( $affiche_offre[]=odbc_fetch_array($affiche_offres)){
-            $this->view->affiche_offre=$affiche_offre;}     
-       
-         /* on insert les données provenant de movex et on renseigne les tables suivantes :
-          * clients_distrib
-          * distribs
-          * demande_xdistrib     
-          *  demande_article_xdistrib
-          */
-         //client_distrib ( ok  en commentaire pour ne pas saturée la bdd de test )
-         
-       if ($this->getRequest()->isPost()) {
-       $formData = $this->getRequest()->getPost();
-     echo '<pre>',var_export($formData),'</pre>'; exit();
-     $adresse =trim($infos_client['OKCUA4']);
+            $this->view->affiche_offre=$affiche_offre;}
+            
+         $adresse =trim($infos_client['OKCUA4']);
          $codepostal = substr($adresse,0,5);
          $ville = substr($adresse,5);
          $clientDistrib = new Application_Model_DbTable_ClientDistrib();
@@ -383,6 +372,19 @@ class XdistribController extends Zend_Controller_Action
                     $updatecif3 = $updatecif1->updatecif($cif, $result['code_article'], $numwp);
                 }
             }
+       exit();
+         /* on insert les données provenant de movex et on renseigne les tables suivantes :
+          * clients_distrib
+          * distribs
+          * demande_xdistrib     
+          *  demande_article_xdistrib
+          */
+         //client_distrib ( ok  en commentaire pour ne pas saturée la bdd de test )
+         
+       if ($this->getRequest()->isPost()) {
+       $formData = $this->getRequest()->getPost();
+     echo '<pre>',var_export($formData),'</pre>'; exit();
+     
       $result = array_combine($formData['reference'],$formData['quantite']);
       $result2 =  array_combine( $formData['reference'],$formData['prix_tarif_dis']);
       $result3 = array_combine($formData['reference'],$formData['serie']);
