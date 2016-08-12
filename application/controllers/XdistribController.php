@@ -380,7 +380,7 @@ class XdistribController extends Zend_Controller_Action
           *  demande_article_xdistrib
           */
          //client_distrib ( ok  en commentaire pour ne pas saturée la bdd de test )
-         
+        }
        if ($this->getRequest()->isPost()) {
        $formData = $this->getRequest()->getPost();
      echo '<pre>',var_export($formData),'</pre>'; exit();
@@ -421,7 +421,7 @@ class XdistribController extends Zend_Controller_Action
        
        
                 }
-            }
+            
         }
     }
     
