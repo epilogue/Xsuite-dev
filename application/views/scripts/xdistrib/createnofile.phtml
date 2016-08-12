@@ -123,14 +123,14 @@ $this->headTitle($this->title);
                     </tr>
                     <?php foreach($this->affiche_offre as $key->$value){ ?>
                     <tr>
-                        <td><input type="text" readonly="readonly" name="reference[<?php  echo $key; ?>]" value="<?php echo trim($value['OBITDS']); ?>" ></td>
-                        <td><input type="text" readonly="readonly" name="quantite[<?php  echo $key; ?>]" value="<?php echo round($value['OBORQT'],2); ?>" ></td>
-                        <td><input type="text" readonly="readonly" name="prix_tarif_dis[<?php  echo $key; ?>]" value="<?php echo round($value['OBSAPR'],2); ?>" ></td>
-                        <td><input type="text" readonly="readonly" name="remiseA[<?php  echo $key; ?>]"  value="<?php echo $value['OBVTCD'] ;?>"></td>
-                        <td><input type="text" readonly="readonly" name="prix_demande[<?php  echo $key; ?>]" value="<?php echo round($value['OBNEPR'],2);?>"></td>
+                        <td><input type="text" readonly="readonly" name="reference[]" value="<?php echo trim($value['OBITDS']); ?>" ></td>
+                        <td><input type="text" readonly="readonly" name="quantite[]" value="<?php echo round($value['OBORQT'],2); ?>" ></td>
+                        <td><input type="text" readonly="readonly" name="prix_tarif_dis[]" value="<?php echo round($value['OBSAPR'],2); ?>" ></td>
+                        <td><input type="text" readonly="readonly" name="remiseA[]"  value="<?php echo $value['OBVTCD'] ;?>"></td>
+                        <td><input type="text" readonly="readonly" name="prix_demande[]" value="<?php echo round($value['OBNEPR'],2);?>"></td>
                         <td style="background-color: #74aaca;height:30px;margin-left: 10px !important;"><input required="required" type="text" name="prix_achat_client_final[<?php  echo $key; ?>]" id="Prix_achat_client_final" ></td>
-                        <td><?php  $remiseB =(100-((100* $value['OBNEPR'])/$value['OBSAPR']));?><input type="text" name="remiseB[<?php  echo $key; ?>]" value="<?php echo round($remiseB,2).'%';?>"</td>
-                        <td style="background-color: #74aaca;height:30px;margin-left: 10px !important;"><select name="serie[<?php  echo $key; ?>]" required="required">
+                        <td><?php  $remiseB =(100-((100* $value['OBNEPR'])/$value['OBSAPR']));?><input type="text" name="remiseB[]" value="<?php echo round($remiseB,2).'%';?>"</td>
+                        <td style="background-color: #74aaca;height:30px;margin-left: 10px !important;"><select name="serie[]" required="required">
                                         <option value="">Choisissez le type de remise</option>
                                         <option value="SERIE">Série</option>
                                         <option value="REF">Référence</option>
