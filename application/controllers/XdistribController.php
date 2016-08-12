@@ -354,7 +354,7 @@ class XdistribController extends Zend_Controller_Action
                 $query5 = "select * from EIT.MVXCDTA.MPAGRP MPAGRP where MPAGRP.AJCONO = '$mmcono'  AND MPAGRP.AJOBV2 = '{$demande['OBITNO']}' AND MPAGRP.AJOBV1 = '$division'  ORDER BY MPAGRP.AJAGNB";
                 $resultats5 = odbc_Exec($this->odbc_conn2, $query5);
                 $prixciffob[] = odbc_fetch_object($resultats5);
-                echo '<pre>',var_export($prixciffob),'</pre>';
+//                echo '<pre>',var_export($prixciffob),'</pre>';
                 $acquis= "select MITBAL.MBITNO, MITBAL.MBPUIT from EIT.MVXCDTA.MITBAL MITBAL where MITBAL.MBITNO ='{$demande['OBITNO']}'";
                 $resultatsacquis=odbc_Exec($this->odbc_conn2, $acquis);
                 $resultatacquis[] = odbc_fetch_object($resultatsacquis);
@@ -370,10 +370,10 @@ class XdistribController extends Zend_Controller_Action
 
             $updatecif1 = new Application_Model_DbTable_DemandeArticlexdistrib();
             $updatecif2 = $updatecif1->getDemandeArticlexdistrib($numwp);
-            echo '<pre>',  var_export($updatecif2),'</pre>'; exit();
+//            echo '<pre>',  var_export($updatecif2),'</pre>'; 
             foreach($updatecif2 as $result){
                 if($result['code_acquisition']=='2'){
-                    $cifs= ($result['prix_fob'])*1.07;
+                    $cifs= ($result['prix_fob_demande_article'])*1.07;
                     $cif=round($cifs,2);
                     $updatecif3 = $updatecif1->updatecif($cif, $result['code_article'], $numwp);
                 }
