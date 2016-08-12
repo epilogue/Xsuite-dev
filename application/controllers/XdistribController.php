@@ -375,7 +375,7 @@ class XdistribController extends Zend_Controller_Action
                 if($result['code_acquisition']=='2'){
                     echo 'plop';
                     var_dump($result['prix_fob_demande_article']);
-                    $cifs= ($result['prix_fob_demande_article'])*1.07;
+                    $cifs= floatval(($result['prix_fob_demande_article']))*1.07;
                     $cif=round($cifs,2);
                     $updatecif3 = $updatecif1->updatecif($cif, $result['code_article'], $numwp);
                 }
