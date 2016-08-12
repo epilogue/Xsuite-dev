@@ -370,9 +370,10 @@ class XdistribController extends Zend_Controller_Action
 
             $updatecif1 = new Application_Model_DbTable_DemandeArticlexdistrib();
             $updatecif2 = $updatecif1->getDemandeArticlexdistrib($numwp);
-//            echo '<pre>',  var_export($updatecif2),'</pre>'; 
+            echo '<pre>',  var_export($updatecif2),'</pre>'; 
             foreach($updatecif2 as $result){
                 if($result['code_acquisition']=='2'){
+                    echo 'plop';
                     $cifs= ($result['prix_fob_demande_article'])*1.07;
                     $cif=round($cifs,2);
                     $updatecif3 = $updatecif1->updatecif($cif, $result['code_article'], $numwp);
