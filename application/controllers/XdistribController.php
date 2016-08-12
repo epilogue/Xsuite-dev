@@ -197,7 +197,7 @@ class XdistribController extends Zend_Controller_Action
             $message = "Cette offre a déjà été créée.";
             $flashMessenger->addMessage($message);
             $redirector->gotoSimple('index', 'xdistrib');
-        }else{
+        }
         $this->view->numwp = $numwp;
         if (!is_null($numwp)) {
             $sql = "select * from EIT.CVXCDTA.OOLINE OOLINE where OOLINE.OBORNO='{$numwp}'";
@@ -422,7 +422,7 @@ class XdistribController extends Zend_Controller_Action
        
                 }
             
-        }
+        
     }
     
     public function uploadnumwpAction(){
