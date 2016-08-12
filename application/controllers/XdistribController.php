@@ -381,7 +381,7 @@ class XdistribController extends Zend_Controller_Action
             }
        if ($this->getRequest()->isPost()) {
        $formData = $this->getRequest()->getPost();
-     echo '<pre>',var_export($formData),'</pre>';
+     echo '<pre>',var_export($formData),'</pre>'; exit();
       $result = array_combine($formData['reference'],$formData['quantite']);
       $result2 =  array_combine( $formData['reference'],$formData['prix_tarif_dis']);
       $result3 = array_combine($formData['reference'],$formData['serie']);
