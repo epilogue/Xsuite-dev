@@ -287,7 +287,11 @@ class XdistribController extends Zend_Controller_Action
           *  demande_article_xdistrib
           */
          //client_distrib ( ok  en commentaire pour ne pas saturée la bdd de test )
-         $adresse =trim($infos_client['OKCUA4']);
+         
+       if ($this->getRequest()->isPost()) {
+       $formData = $this->getRequest()->getPost();
+     echo '<pre>',var_export($formData),'</pre>'; exit();
+     $adresse =trim($infos_client['OKCUA4']);
          $codepostal = substr($adresse,0,5);
          $ville = substr($adresse,5);
          $clientDistrib = new Application_Model_DbTable_ClientDistrib();
@@ -379,9 +383,6 @@ class XdistribController extends Zend_Controller_Action
                     $updatecif3 = $updatecif1->updatecif($cif, $result['code_article'], $numwp);
                 }
             }
-       if ($this->getRequest()->isPost()) {
-       $formData = $this->getRequest()->getPost();
-     echo '<pre>',var_export($formData),'</pre>'; exit();
       $result = array_combine($formData['reference'],$formData['quantite']);
       $result2 =  array_combine( $formData['reference'],$formData['prix_tarif_dis']);
       $result3 = array_combine($formData['reference'],$formData['serie']);
