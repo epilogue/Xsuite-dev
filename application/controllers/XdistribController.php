@@ -279,7 +279,7 @@ class XdistribController extends Zend_Controller_Action
           $article_Xdistrib=new Application_Model_DbTable_DemandeArticlexdistrib();
             while( $affiche_offre[]=odbc_fetch_array($affiche_offres)){
             $this->view->affiche_offre=$affiche_offre;}     
-       }
+       
          /* on insert les données provenant de movex et on renseigne les tables suivantes :
           * clients_distrib
           * distribs
@@ -320,13 +320,7 @@ class XdistribController extends Zend_Controller_Action
             
             /*demande_article_Xdistrib*/
            $article_Xdistrib=new Application_Model_DbTable_DemandeArticlexdistrib();
-//            while( $affiche_offre[]=odbc_fetch_array($affiche_offres)){
-//            $this->view->affiche_offre=$affiche_offre;}
-//                   echo '<pre>',var_export($affiche_offre),'</pre>';
            foreach($this->view->affiche_offre as $demande){
-              
-//               echo '<pre>',var_export($demande),'</pre>';
-//                var_dump($demande['OBORQT']); 
                $prix_tarif=round($demande['OBSAPR'],2);
                $prix_achat_actuel = round(($demande['OBSAPR']*40)/100,2);
                $prix_demande_article =round($demande['OBNEPR'],2);
@@ -349,15 +343,6 @@ class XdistribController extends Zend_Controller_Action
                    $demande['OBITDS'],
                    $numwp,
                        null) ;
-               
-            } 
-//            $new_demande_article_Xdistrib=($prix_tarif,prix_achat,prix_dremande,prixfinal,quantite,remise,$date,null,null,null,null,null,tracking,code,ref,$numwp,code_acqauisition);
-     
-       if ($this->getRequest()->isPost()) {
-       $formData = $this->getRequest()->getPost();
-       
-       /* mettre a jour demandearticle avec prix-cif, prix fob et code acquisition*/
-       foreach ($this->view->affiche_offre as $itnoarticle) {
                 $mmcono = "100";
                 $division = "FR0";
                 $facility = "I01";
@@ -373,7 +358,12 @@ class XdistribController extends Zend_Controller_Action
                 $acquis= "select MITBAL.MBITNO, MITBAL.MBPUIT from EIT.MVXCDTA.MITBAL MITBAL where MITBAL.MBITNO ='{$itnoarticle['OBITNO']}'";
                 $resultatsacquis=odbc_Exec($this->odbc_conn2, $acquis);
                 $resultatacquis[] = odbc_fetch_object($resultatsacquis);
-            }
+            } 
+//            $new_demande_article_Xdistrib=($prix_tarif,prix_achat,prix_dremande,prixfinal,quantite,remise,$date,null,null,null,null,null,tracking,code,ref,$numwp,code_acqauisition);
+     
+       if ($this->getRequest()->isPost()) {
+       $formData = $this->getRequest()->getPost();
+      
            
 
             /*insertion et update  prix fob et cif*/ 
@@ -433,6 +423,7 @@ class XdistribController extends Zend_Controller_Action
        
        
        }
+        }
     }
     
     public function uploadnumwpAction(){
