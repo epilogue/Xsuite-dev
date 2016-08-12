@@ -374,7 +374,7 @@ class XdistribController extends Zend_Controller_Action
             foreach($updatecif2 as $result){
                 if($result['code_acquisition']=='2'){
 //                    echo 'plop';
-                    $fob=0+$result['prix_fob_demande_article'];
+                    $fob=$result['prix_fob_demande_article'];
 //                    var_dump($fob);
                     $cifs=$fob*1.07;
                     //var_dump($cifs);
