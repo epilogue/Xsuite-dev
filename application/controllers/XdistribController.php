@@ -339,7 +339,7 @@ class XdistribController extends Zend_Controller_Action
                    null,
                    null,
                    $trackingNumber,
-                   $demande['OBITNO'],
+                   trim($demande['OBITNO']),
                    $demande['OBITDS'],
                    $numwp,
                        null) ;
