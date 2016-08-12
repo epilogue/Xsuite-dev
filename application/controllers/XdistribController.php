@@ -189,15 +189,15 @@ class XdistribController extends Zend_Controller_Action
     public function createnofileAction(){
         $numwp = $this->getRequest()->getParam('numwp', null);
         /* on vérifie que la demande  n'existe pas */
-        $demandes_xdistrib = new Application_Model_DbTable_Xdistrib();
-        $demandeXdistrib = $demandes_xdistrib->getNumwp($numwp);
-        if (!is_null($demandeXdistrib)) {
-            $redirector = $this->_helper->getHelper('Redirector');
-            $flashMessenger = $this->_helper->getHelper('FlashMessenger');
-            $message = "Cette offre a déjà été créée.";
-            $flashMessenger->addMessage($message);
-            $redirector->gotoSimple('index', 'xdistrib');
-        }
+//        $demandes_xdistrib = new Application_Model_DbTable_Xdistrib();
+//        $demandeXdistrib = $demandes_xdistrib->getNumwp($numwp);
+//        if (!is_null($demandeXdistrib)) {
+//            $redirector = $this->_helper->getHelper('Redirector');
+//            $flashMessenger = $this->_helper->getHelper('FlashMessenger');
+//            $message = "Cette offre a déjà été créée.";
+//            $flashMessenger->addMessage($message);
+//            $redirector->gotoSimple('index', 'xdistrib');
+//        }
         $this->view->numwp = $numwp;
         if (!is_null($numwp)) {
             $sql = "select * from EIT.CVXCDTA.OOLINE OOLINE where OOLINE.OBORNO='{$numwp}'";
