@@ -380,11 +380,11 @@ class XdistribController extends Zend_Controller_Action
                     //var_dump($cifs);
                     $cif=round($cifs,2);
 //                     var_dump($cif);
-                    $updatecif3 = $updatecif1->updatecif($cif, $result['code_article'], $numwp);
+                    $updatecif3 = $updatecif1->updatecif($cif, $result['code_article'], $numwp);exit();
                 }
             }
 //        echo '<pre>',var_export($formData),'</pre>';
-            exit();
+            
 //            $new_demande_article_Xdistrib=($prix_tarif,prix_achat,prix_dremande,prixfinal,quantite,remise,$date,null,null,null,null,null,tracking,code,ref,$numwp,code_acqauisition);
      
        if ($this->getRequest()->isPost()) {
