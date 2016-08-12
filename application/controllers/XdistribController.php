@@ -373,27 +373,15 @@ class XdistribController extends Zend_Controller_Action
             echo '<pre>',  var_export($updatecif2),'</pre>'; 
             foreach($updatecif2 as $result){
                 if($result['code_acquisition']=='2'){
-//                    echo 'plop';
                     $fob=$result['prix_fob_demande_article'];
-//                    var_dump($fob);
                     $cifs=$fob*1.07;
-                    //var_dump($cifs);
                     $cif=round($cifs,2);
-//                     var_dump($cif);
-                    $updatecif3 = $updatecif1->updatecif($cif, $result['code_article'], $numwp);exit();
+                    $updatecif3 = $updatecif1->updatecif($cif, $result['code_article'], $numwp);
                 }
             }
-//        echo '<pre>',var_export($formData),'</pre>';
-            
-//            $new_demande_article_Xdistrib=($prix_tarif,prix_achat,prix_dremande,prixfinal,quantite,remise,$date,null,null,null,null,null,tracking,code,ref,$numwp,code_acqauisition);
-     
        if ($this->getRequest()->isPost()) {
        $formData = $this->getRequest()->getPost();
-      
-           
-
-            /*insertion et update  prix fob et cif*/ 
-            
+     echo '<pre>',var_export($formData),'</pre>';
       $result = array_combine($formData['reference'],$formData['quantite']);
       $result2 =  array_combine( $formData['reference'],$formData['prix_tarif_dis']);
       $result3 = array_combine($formData['reference'],$formData['serie']);
@@ -429,7 +417,7 @@ class XdistribController extends Zend_Controller_Action
 //       echo '<pre>',var_export($infos_tc),'</pre>';
        
        
-       }
+            }
         }
     }
     
