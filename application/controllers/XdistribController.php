@@ -280,6 +280,7 @@ class XdistribController extends Zend_Controller_Action
 //            while( $affiche_offre[]=odbc_fetch_array($affiche_offres)){
 //            $affiche_offre=$affiche_offre;} 
             $this->view->affiche_offre=$affiche_offres;
+            echo '<pre>',  var_export($affiche_offres),'</pre>';
          $adresse =trim($infos_client['OKCUA4']);
          $codepostal = substr($adresse,0,5);
          $ville = substr($adresse,5);
@@ -313,7 +314,7 @@ class XdistribController extends Zend_Controller_Action
             
             /*demande_article_Xdistrib*/
            $article_Xdistrib=new Application_Model_DbTable_DemandeArticlexdistrib();
-           foreach($this->view->affiche_offre as $demande){
+           foreach($affiche_offres as $demande){
                $prix_tarif=round($demande['OBSAPR'],2);
                $prix_achat_actuel = round(($demande['OBSAPR']*40)/100,2);
                $prix_demande_article =round($demande['OBNEPR'],2);
