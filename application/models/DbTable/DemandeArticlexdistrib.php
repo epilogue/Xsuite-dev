@@ -65,7 +65,7 @@ class Application_Model_DbTable_DemandeArticlexdistrib extends Zend_Db_Table_Abs
         
         
         $sql="update demande_article_xdistrib set prix_cif_demande_article=$cifs where code_article =$code_article And num_workplace_demande_xdistrib=  $numwp ";
-        var_dump($sql);
+//        var_dump($sql);
         $res = $this->getAdapter()->query($sql);
         
         if (!$res) {
@@ -74,7 +74,7 @@ class Application_Model_DbTable_DemandeArticlexdistrib extends Zend_Db_Table_Abs
             return $res;
         }
         
-        var_dump($plop2);
+//        var_dump($plop2);
         return $plop2;
     }
 
