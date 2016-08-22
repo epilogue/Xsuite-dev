@@ -278,7 +278,7 @@ class XdistribController extends Zend_Controller_Action
                 $affiche_offres=odbc_exec($this->odbc_conn, $sqlaffiche);
           $article_Xdistrib=new Application_Model_DbTable_DemandeArticlexdistrib();
             while( $affiche_offre[]=odbc_fetch_array($affiche_offres)){
-            $this->view->affiche_offre=$affiche_offre;}
+            $this->view->affiche_offre=$affiche_offre;} exit();
             
          $adresse =trim($infos_client['OKCUA4']);
          $codepostal = substr($adresse,0,5);
