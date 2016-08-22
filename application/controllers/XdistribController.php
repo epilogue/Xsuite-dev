@@ -363,7 +363,7 @@ class XdistribController extends Zend_Controller_Action
 
             $updatecif1 = new Application_Model_DbTable_DemandeArticlexdistrib();
             $updatecif2 = $updatecif1->getDemandeArticlexdistrib($numwp);
-            echo '<pre>',  var_export($updatecif2),'</pre>'; 
+//            echo '<pre>',  var_export($updatecif2),'</pre>'; 
             foreach($updatecif2 as $result){
                 if($result['code_acquisition']=='2'){
                     $fob=$result['prix_fob_demande_article'];
@@ -383,7 +383,7 @@ class XdistribController extends Zend_Controller_Action
         }
        if ($this->getRequest()->isPost()) {
        $formData = $this->getRequest()->getPost();
-     echo '<pre>',var_export($formData),'</pre>'; exit();
+//     echo '<pre>',var_export($formData),'</pre>'; exit();
      
       $result = array_combine($formData['reference'],$formData['quantite']);
       $result2 =  array_combine( $formData['reference'],$formData['prix_tarif_dis']);
