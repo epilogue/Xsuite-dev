@@ -278,7 +278,7 @@ class XdistribController extends Zend_Controller_Action
                 $affiche_offres=odbc_exec($this->odbc_conn, $sqlaffiche);
           $article_Xdistrib=new Application_Model_DbTable_DemandeArticlexdistrib();
             while( $affiche_offre[]=odbc_fetch_array($affiche_offres)){
-            $this->view->affiche_offre=$affiche_offre;} exit();
+            $this->view->affiche_offre=$affiche_offre;} 
             
          $adresse =trim($infos_client['OKCUA4']);
          $codepostal = substr($adresse,0,5);
@@ -372,7 +372,7 @@ class XdistribController extends Zend_Controller_Action
                     $updatecif3 = $updatecif1->updatecif($cif, $result['code_article'], $numwp);
                 }
             }
-//       exit();
+      exit();
          /* on insert les données provenant de movex et on renseigne les tables suivantes :
           * clients_distrib
           * distribs
@@ -417,12 +417,8 @@ class XdistribController extends Zend_Controller_Action
             $message = "votre offre  a bien été créée.";
             $flashMessenger->addMessage($message);
             $redirector->gotoSimple('index', 'xdistrib');
-//       echo '<pre>',var_export($infos_tc),'</pre>';
-       
-       
-                }
-            
-        
+  
+                }    
     }
     
     public function uploadnumwpAction(){
