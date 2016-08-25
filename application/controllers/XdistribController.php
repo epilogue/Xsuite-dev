@@ -275,7 +275,7 @@ class XdistribController extends Zend_Controller_Action
                 OOLINE.OBSAPR,
                 OOLINE.OBELNO
                 from EIT.CVXCDTA.OOLINE OOLINE WHERE OOLINE.OBORNO='{$numwp}'  AND OOLINE.OBDIVI LIKE 'FR0' AND OOLINE.OBCONO=100";
-                $affiche_offres=odbc_fetch_array(odbc_exec($this->odbc_conn, $sqlaffiche));
+                $affiche_offres[]=odbc_fetch_array(odbc_exec($this->odbc_conn, $sqlaffiche));
           $article_Xdistrib=new Application_Model_DbTable_DemandeArticlexdistrib();
 //            while( $affiche_offre[]=odbc_fetch_array($affiche_offres)){
 //            $affiche_offre=$affiche_offre;} 
@@ -934,7 +934,7 @@ if($this->getRequest()->isPost()){
         $params1=array();
         $params=array();
         if($user_connect->id_user=="78"||$user_connect->id_user=="62"||$user_connect->id_fonction == "6" || $user_connect->id_fonction == "34" || $user_connect->id_fonction == "35" || $user_connect->id_fonction == "36" || $user_connect->id_fonction == "37" ){
-            switch ($id_holon) {
+            switch ($id_holon){
                 case "18":
                     $destinataireMail1 = $emailVars->listes->CDRNORD;
                     break;
@@ -990,6 +990,14 @@ if($this->getRequest()->isPost()){
             $this->sendEmail($params);
             }
             elseif($user_connect->id_fonction == "43" || $user_connect->id_fonction== "2" || $user_connect->id_fonction == "3" ){
+                
+                $infos_dd= new Application_Model_DbTable_Users();
+                $info_dd= $infos_dd->getUser($formData['info_dd']);
+                $mail_dd=$info_dd['mail_users'];
+                var_dump($formData['info_dd']);
+                echo '<pre>',  var_export($info_dd),'</pre>';
+                var_dump($mail_dd);
+                exit();
                 $params1['destinataireMail']=$mail_dd;
                 $params1['url']="http://{$_SERVER['SERVER_NAME']}/xdistrib/validatedd/numwp/{$numwp}";
                 $params1['corpsMail']="Bonjour,\n"
@@ -3866,6 +3874,38 @@ if($this->getRequest()->isPost()){
 //          echo '<pre>',  var_export($listXDistrib),'</pre>';
           $this->view->listXdistrib=$listXDistrib;
         
+    }
+    public function nofilecreateAction(){
+        $numwp = $this->getRequest()->getParam('numwp', null);
+        $demandes_xdistrib = new Application_Model_DbTable_Xdistrib();
+        $demandeXdistrib = $demandes_xdistrib->getNumwp($numwp);
+        if (!is_null($demandeXdistrib)) {
+            $redirector = $this->_helper->getHelper('Redirector');
+            $flashMessenger = $this->_helper->getHelper('FlashMessenger');
+            $message = "Cette offre a déjà été créée.";
+            $flashMessenger->addMessage($message);
+            $redirector->gotoSimple('index', 'xdistrib');
+        }
+        $this->view->numwp = $numwp;
+        if (!is_null($numwp)) {
+            $pirate = "select OOLINE.OBORNO, OOLINE.OBRGDT, OOLINE.OBORNO from EIT.CVXCDTA.OOLINE OOLINE where OOLINE.OBORNO='{$numwp}'";
+            $infos_offre = odbc_exec($this->odbc_conn, $pirate);
+            $infos_offres = odbc_fetch_object($infos_offre);
+            $this->view->infos_offres = $infos_offres;
+            $dateinit = $infos_offres->OBRGDT;
+            $dateinit3 = substr($dateinit, 0, 4);
+            $dateinit2 = substr($dateinit, 4, 2);
+            $dateinit1 = substr($dateinit, 6, 2);
+            $dateinitf = array($dateinit1, $dateinit2, $dateinit3);
+            $datefinal = implode('/', $dateinitf);
+            $this->view->datefinal = $datefinal;
+            $dd = $this->_auth->getStorage()->read();
+            $zoneT = new Application_Model_DbTable_Zones();
+            $zone = $zoneT->getZone($dd->id_zone);
+            $Xdistribs = new Application_Model_DbTable_Xdistrib();
+            $trackingNumber = Application_Model_DbTable_Xdistrib::makeTrackingNumber($zone['nom_zone'], $Xdistribs->lastId(true));
+            $this->view->trackingNumber = $trackingNumber;
+        }
     }
 }
 
