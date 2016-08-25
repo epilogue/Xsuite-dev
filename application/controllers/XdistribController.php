@@ -993,9 +993,7 @@ if($this->getRequest()->isPost()){
             }
             elseif($user_connect->id_fonction == "43" || $user_connect->id_fonction== "2" || $user_connect->id_fonction == "3" ){
                 
-                $infos_dd= new Application_Model_DbTable_Users();
-                $info_dd= $infos_dd->getUser($formData['info_dd']);
-                $mail_dd=$info_dd['mail_users'];
+                $mail_dd=$formData['info_dd'];
                 var_dump($formData['info_dd']);
                 echo '<pre>',  var_export($info_dd),'</pre>';
                 var_dump($mail_dd);
