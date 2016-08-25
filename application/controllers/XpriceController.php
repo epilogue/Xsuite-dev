@@ -2951,7 +2951,7 @@ elseif($mailServiceClients[0]['mail_service_client']=='' || $mailServiceClients[
         $tiltop = $user->id_user;
         $users= new Application_Model_DbTable_Users();
         $clients= new Application_Model_DbTable_Clients();
-        if($fonction==42 || $fonction==44 || $fonction==41 ||$fonction==45 || $fonction==5 ||$fonction==13 || $fonction==47 ){
+        if($fonction==42 || $fonction==44 || $fonction==41 ||$fonction==45 || $fonction==5 ||$fonction==13 || $fonction==47 || $fonction==4 ){
        
         $result1 = $clients->rechercheClient();
 //        $users= new Application_Model_DbTable_Users();
