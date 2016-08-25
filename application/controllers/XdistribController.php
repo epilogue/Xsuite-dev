@@ -975,8 +975,8 @@ if($this->getRequest()->isPost()){
                     $destinataireMail1=$emailVars->listes->Export;
             }
              $params['destinataireMail']=$destinataireMail1;
-             var_dump($destinataireMail1);
-             exit();
+//             var_dump($destinataireMail1);
+//             exit();
              $params['url']="http://{$_SERVER['SERVER_NAME']}/xdistrib/validatedrv/numwp/{$numwp}";
              $params['corpsMail']="Bonjour,\n"
                                 . "\n"
@@ -994,9 +994,6 @@ if($this->getRequest()->isPost()){
             elseif($user_connect->id_fonction == "43" || $user_connect->id_fonction== "2" || $user_connect->id_fonction == "3" ){
                 
                 $mail_dd=$formData['info_dd'];
-                var_dump($formData['info_dd']);
-                var_dump($mail_dd);
-                exit();
                 $params1['destinataireMail']=$mail_dd;
                 $params1['url']="http://{$_SERVER['SERVER_NAME']}/xdistrib/validatedd/numwp/{$numwp}";
                 $params1['corpsMail']="Bonjour,\n"
@@ -1020,7 +1017,7 @@ if($this->getRequest()->isPost()){
                 $infodistributeur = new Application_Model_DbTable_Xdistrib();
                 $clientDistrib= $infodistributeur->mailconsultRCDN($numwp);
                 if($clientDistrib=='I03624' || $clientDistrib=='I00789' || $clientDistrib=='I05285' || $clientDistrib=='I03317'|| $clientDistrib=='I02557'|| $clientDistrib=='I00415'|| $clientDistrib=='I00678'|| $clientDistrib=='I04380'|| $clientDistrib=='I03214'|| $clientDistrib=='I02886'|| $clientDistrib=='I03621'|| $clientDistrib=='I02929'|| $clientDistrib=='I02932'|| $clientDistrib=='I03912'|| $clientDistrib=='I05223'|| $clientDistrib=='I02920'){
-                    $destinataireMail2=$emailVars->listes->dexis;
+                    $destinataireMail2=$emailVars->listes->mbedexis;
                 }elseif($clientDistrib=='I01045'|| $clientDistrib=='I02055'){
                     $destinataireMail2=$emailVars->listes->brammer;
                 }elseif($clientDistrib=='I01990'){
@@ -3822,7 +3819,7 @@ if($this->getRequest()->isPost()){
         $tiltop = $user->id_user;
         $users= new Application_Model_DbTable_Users();
         $distributeurs= new Application_Model_DbTable_Distributeurs();
-        if($fonction==42 || $fonction==44 || $fonction==41 ||$fonction==45 || $fonction==5 ||$fonction==13 ||$fonction==47 ){
+        if($fonction==42 || $fonction==44 || $fonction==41 ||$fonction==45 || $fonction==5 ||$fonction==13 ||$fonction==47 ||$fonction==4 ){
        
         $result1 = $distributeurs->rechercheDistributeur();
 //        $users= new Application_Model_DbTable_Users();
