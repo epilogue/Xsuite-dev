@@ -975,6 +975,8 @@ if($this->getRequest()->isPost()){
                     $destinataireMail1=$emailVars->listes->Export;
             }
              $params['destinataireMail']=$destinataireMail1;
+             var_dump($destinataireMail1);
+             exit();
              $params['url']="http://{$_SERVER['SERVER_NAME']}/xdistrib/validatedrv/numwp/{$numwp}";
              $params['corpsMail']="Bonjour,\n"
                                 . "\n"
