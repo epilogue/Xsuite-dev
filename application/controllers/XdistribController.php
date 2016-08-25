@@ -995,7 +995,6 @@ if($this->getRequest()->isPost()){
                 
                 $mail_dd=$formData['info_dd'];
                 var_dump($formData['info_dd']);
-                echo '<pre>',  var_export($info_dd),'</pre>';
                 var_dump($mail_dd);
                 exit();
                 $params1['destinataireMail']=$mail_dd;
