@@ -32,7 +32,7 @@ class Application_Model_DbTable_Distributeurs extends Zend_Db_Table_Abstract {
        
     }
 public function rechercheDistributeur() {
-       $sql="select distinct(numwp_distributeur),nom_distributeur from distributeurs";
+       $sql="select distinct(numwp_distributeur),nom_distributeur from distributeurs order by nom_distributeur ASC";
         $res = $this->getAdapter()->query($sql);
         $rest=$res->fetchAll();
 //        var_dump($sql);
