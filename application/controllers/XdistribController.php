@@ -2723,14 +2723,6 @@ if($this->getRequest()->isPost()){
                 $numwp_distributeur=trim($distrib_info['numwp_distributeur']);
                 //essai  de creation de fichier csv  + envoi  en piece-jointe pour le distributeur brammer 
                 if($numwp_distributeur=='I02055' || $numwp_distributeur=='I01045'){
-//                    $essaisdemandes= new Application_Model_DbTable_DemandeArticlexdistrib();
-//                    $essaidemandecsv= $essaisdemandes->getDemandeArticlexdistrib($numwp);
-//                    $cheminessai ="{$numwp}.'.csv'";
-//                    $delimiteur =';';
-//                    $fichier=fopen($cheminessai,'w+');
-//                    foreach($essaidemandecsv as $dataessai){
-//                        
-//                    }
                  $mailRCDN= $emailVars->listes->brammer;}
                 elseif($numwp_distributeur=='I03624' ||                        
                         $numwp_distributeur=='I00789' ||
@@ -2789,7 +2781,7 @@ if($this->getRequest()->isPost()){
                         . "dbd.";
                 $params8['sujet'] = " Xdistrib :demande Xdistrib  $trackingNumber/$numwp pour le client $nomclients validée par Directeur Commercial/ lien pour Avenant .";
                 $this->sendEmail($params8);
-                $params1bis['destinataireMail'] =/*"mhuby@smc-france.fr";*/"mrita@smc-france.fr";
+                $params1bis['destinataireMail'] ="mrita@smc-france.fr";
                 $params1bis['url'] = "http://{$_SERVER['SERVER_NAME']}/xdistrib/consult/numwp/{$numwp}";
                 $params1bis['corpsMail'] = "Bonjour,\n"
                         . "\n"
@@ -2820,7 +2812,7 @@ if($this->getRequest()->isPost()){
                 
                     $params2['destinataireMail'] =$user_info['email_user']; 
                     if($user_info['id_holon']==29){
-                        $params3['destinataireMail'] ="export@smc-fance.fr";
+                        $params3['destinataireMail'] ="export@smc-france.fr";
                     }else{
                          $params3['destinataireMail'] =$mailSC; 
                     }
