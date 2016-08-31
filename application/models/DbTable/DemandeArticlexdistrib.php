@@ -63,8 +63,9 @@ class Application_Model_DbTable_DemandeArticlexdistrib extends Zend_Db_Table_Abs
 
     public function updatecif($cifs, $code_article, $tracking_number) {
         
+        $cif=floatval($cifs);
         $tracking_number = "$tracking_number";
-        $sql="update demande_article_xdistrib set prix_cif_demande_article=$cifs where code_article =$code_article And tracking_number_demande_xdistrib ='{$tracking_number}'";
+        $sql="update demande_article_xdistrib set prix_cif_demande_article=$cif where code_article =$code_article And tracking_number_demande_xdistrib ='{$tracking_number}'";
 //        var_dump($sql); exit();
         $res = $this->getAdapter()->query($sql);
         
