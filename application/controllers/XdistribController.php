@@ -2246,7 +2246,7 @@ if($this->getRequest()->isPost()){
             $nom_validationfobfr = "fobfr";
             $formData = $this->getRequest()->getPost();
             $datas = $this->getRequest()->getPost();
-            echo  '<pre>',var_export($datas),'</pre>'; exit();
+//            echo  '<pre>',var_export($datas),'</pre>'; exit();
             $nomclients=trim($client_info['nom_client']);
 //            foreach ($formData as $datas) {
             $fobs = array_combine($datas['code_article'], $datas['prix_fob']);
