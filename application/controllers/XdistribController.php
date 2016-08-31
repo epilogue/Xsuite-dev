@@ -2238,6 +2238,7 @@ if($this->getRequest()->isPost()){
             }
         }
         if ($this->getRequest()->isPost()) {
+            echo 'plop';
             $date_validationfobfr = date("Y-m-d H:i:s");
             $this->view->date_validationfobfr = $date_validationfobfr;
             $etat = "validée";
