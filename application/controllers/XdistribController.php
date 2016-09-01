@@ -131,7 +131,8 @@ class XdistribController extends Zend_Controller_Action
      }
      if($user->id_fonction == 10){
          if($holon==28){
-             $recapitulatif1 = new Application_Model_DbTable_Xdistrib();
+             echo "plop";
+//             $recapitulatif1 = new Application_Model_DbTable_Xdistrib();
 //          $demandes=new Application_Model_DbTable_Xdistrib();
 //         $demande= $demandes->tout();
          $recapitulatif1 = new Application_Model_DbTable_Xdistrib();
