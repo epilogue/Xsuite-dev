@@ -144,6 +144,7 @@ class XdistribController extends Zend_Controller_Action
          }
         
          foreach($r as $tagada){foreach($tagada as $value){
+    var_dump($tagada);
              if($value['id_user']==62 ||$value['id_user'] ==78 ) {
                  $plopr[] =$value; 
              }
