@@ -130,6 +130,25 @@ class XdistribController extends Zend_Controller_Action
      
      }
      if($user->id_fonction == 10){
+         if($holon==29){
+             $recapitulatif1 = new Application_Model_DbTable_Xdistrib();
+//          $demandes=new Application_Model_DbTable_Xdistrib();
+//         $demande= $demandes->tout();
+         $recapitulatif1 = new Application_Model_DbTable_Xdistrib();
+         $plop1=$recapitulatif1->rechercheridDBD();
+        foreach($plop1 as $value){
+            
+         $recapitulatif2bis=$recapitulatif1->rechercheDBD($value['id_demande_xdistrib']);
+         $r[]=$recapitulatif2bis;
+         }
+        
+         foreach($r as $tagada){foreach($tagada as $value){
+             if($value['id_user']==62 ||$value['id_user'] ==78 ) {
+                 $plopr[] =$value; 
+             }
+         }}
+         $recapitulatif2[] = $plopr;
+         }else{
      switch ($holon){
          case 2:
              $tracking1='/SPD-FR-QC/';
@@ -143,10 +162,7 @@ class XdistribController extends Zend_Controller_Action
             $tracking1='/SPD-FR-QI/';
             $tracking2='/SPD-FR-QK/';            
              break;
-         case 29:
-             $tracking1='/SPD-FR-QE/';
-             $tracking2='/SPD-FR-QE/';  
-         }
+     }
          $recapitulatif1 = new Application_Model_DbTable_Xdistrib();
 //          $demandes=new Application_Model_DbTable_Xdistrib();
 //         $demande= $demandes->tout();
@@ -164,7 +180,7 @@ class XdistribController extends Zend_Controller_Action
              }
          }}
          $recapitulatif2[] = $plopr;
-     }
+     }}
       if($user->id_fonction ==5|| $user->id_fonction == 13 || $user->id_fonction == 41 || $user->id_fonction == 23 || $user->id_fonction == 32|| $user->id_fonction == 47){
          $recapitulatif1 = new Application_Model_DbTable_Xdistrib();
          $plop1=$recapitulatif1->rechercheridDBD();
