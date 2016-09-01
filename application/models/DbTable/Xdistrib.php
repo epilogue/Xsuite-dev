@@ -250,6 +250,7 @@ JOIN validations_demande_xdistrib ON validations_demande_xdistrib.id_demande_xdi
     public function rechercheDBD($value){
         $sql= "select"
                 . " users.nom_user,"
+                . " users.id_user,"
                 . " demande_xdistrib.num_workplace_demande_xdistrib,"
                 . " demande_xdistrib.tracking_number_demande_xdistrib,"
                 . " client_distrib.nom_client,"
