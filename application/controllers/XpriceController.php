@@ -106,6 +106,9 @@ if($user->id_fonction == 3){
 //            $tracking1='/SP-FR-QI/';
 //            $tracking2='/SP-FR-QK/';            
              break;
+         case 28:
+             $searchholon=array(29);
+             break;
          }
          $recapitulatif1 = new Application_Model_DbTable_Xprices();
          $recapitulatif2=$recapitulatif1->searchForCDR($searchholon);
