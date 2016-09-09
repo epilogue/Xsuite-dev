@@ -933,7 +933,7 @@ if($this->getRequest()->isPost()){
           $emailVars = Zend_Registry::get('emailVars');
       if ($this->getRequest()->isPost()) {
         $formData = $this->getRequest()->getPost();
-         echo '<pre>',  var_export($formdata),'</pre>'; exit();
+         echo '<pre>',  var_export($formData),'</pre>'; exit();
          $numwp=$formData['numwp']; 
         $tempClienttruns= new Application_Model_DbTable_TempClient();
         $tempClienttrun=$tempClienttruns->truncateAll(); 
