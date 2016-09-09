@@ -700,6 +700,7 @@ if($this->getRequest()->isPost()){
              echo '<pre>',  var_export($infos_offres),'</pre>';
              var_dump($infos_offres->OBCHID);
             $nomdebu=substr($nomdeb,2,-1);
+            var_dump($nomdebu);
             $infodd=new Application_Model_DbTable_Users();
             $infos_dd=$infodd->getUserName($nomdebu);
             $this->view->infos_dd=$infos_dd;
