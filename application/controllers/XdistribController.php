@@ -697,8 +697,8 @@ if($this->getRequest()->isPost()){
             $this->view->infos_offres = $infos_offres;
 //            echo '<pre>',  var_export($infos_offres),'</pre>'; (exit);
             $nomdeb = trim($infos_offres->OBCHID);
-             echo '<pre>',  var_export($infos_offres),'</pre>';
-             var_dump($infos_offres->OBCHID);
+//             echo '<pre>',  var_export($infos_offres),'</pre>';
+//             var_dump($infos_offres->OBCHID);
              $mourap= $this->_auth->getStorage()->read();
                 $pmoura= $mourap->id_user;
              if($pmoura=99){
@@ -707,11 +707,11 @@ if($this->getRequest()->isPost()){
                  $nomdebu=substr($nomdeb,2,-1);
              }
 //            $nomdebu=substr($nomdeb,2,-1);
-            var_dump($nomdebu);
+//            var_dump($nomdebu);
             $infodd=new Application_Model_DbTable_Users();
             $infos_dd=$infodd->getUserName($nomdebu);
             $this->view->infos_dd=$infos_dd;
-           echo '<pre>',  var_export($infos_dd),'</pre>'; (exit);
+//           echo '<pre>',  var_export($infos_dd),'</pre>'; (exit);
             $dateinit = $infos_offres->OBRGDT;
             $dateinit3 = substr($dateinit, 0, 4);
             $dateinit2 = substr($dateinit, 4, 2);
@@ -861,7 +861,7 @@ if($this->getRequest()->isPost()){
                 else{
                     $nom_zone =  $user_info[0]['nom_zone'];
                 }
-            echo '<pre>',var_export($user_info[0]),'</pre>';
+//            echo '<pre>',var_export($user_info[0]),'</pre>';
 //            echo '<pre>',var_export($nom_zone['nom_zone']),'</pre>';
 //             echo '<pre>',var_export($nom_zone),'</pre>'; exit();
             $distrib_infos = new Application_Model_DbTable_TempFichierDistribInfo();
