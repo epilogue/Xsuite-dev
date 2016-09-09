@@ -947,7 +947,7 @@ if($this->getRequest()->isPost()){
         $id_user = $formData['id_user'];
         var_dump($id_user);
         $info_user = $infos_users->getUser($id_user);
-         echo '<pre>',  var_export($info_user),'</pre>'; exit();
+         echo '<pre>',  var_export($info_user),'</pre>'; 
         $id_holon =$info_user['id_holon'];
         $nom_client=$formData['nom_client'];
         $nom_distrib=$formData['nom_distrib'];
