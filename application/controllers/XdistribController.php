@@ -933,7 +933,7 @@ if($this->getRequest()->isPost()){
           $emailVars = Zend_Registry::get('emailVars');
       if ($this->getRequest()->isPost()) {
         $formData = $this->getRequest()->getPost();
-         echo '<pre>',  var_export($formData),'</pre>'; exit();
+         echo '<pre>',  var_export($formData),'</pre>'; 
          $numwp=$formData['numwp']; 
         $tempClienttruns= new Application_Model_DbTable_TempClient();
         $tempClienttrun=$tempClienttruns->truncateAll(); 
@@ -945,7 +945,7 @@ if($this->getRequest()->isPost()){
         $infos_services=$info_service->createServiceDistrib($formData['numwp'], $formData['produitdedie'], $formData['ecatalogue'], $formData['journeetech'], $formData['accescom'], $formData['identconc'], $formData['interlocuteur'], $formData['service_associe']);
         $infos_users= new Application_Model_DbTable_Users();
         $id_user = $formData['id_user'];
-        
+        var_dump($id_user);exit();
         $info_user = $infos_users->getUser($id_user);
         $id_holon =$info_user['id_holon'];
         $nom_client=$formData['nom_client'];
