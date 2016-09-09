@@ -701,6 +701,7 @@ if($this->getRequest()->isPost()){
             $infodd=new Application_Model_DbTable_Users();
             $infos_dd=$infodd->getUserName($nomdebu);
             $this->view->infos_dd=$infos_dd;
+           echo '<pre>',  var_export($infos_dd),'</pre>'; (exit);
             $dateinit = $infos_offres->OBRGDT;
             $dateinit3 = substr($dateinit, 0, 4);
             $dateinit2 = substr($dateinit, 4, 2);
@@ -852,7 +853,7 @@ if($this->getRequest()->isPost()){
                 }
             echo '<pre>',var_export($user_info[0]),'</pre>';
 //            echo '<pre>',var_export($nom_zone['nom_zone']),'</pre>';
-             echo '<pre>',var_export($nom_zone),'</pre>'; exit();
+//             echo '<pre>',var_export($nom_zone),'</pre>'; exit();
             $distrib_infos = new Application_Model_DbTable_TempFichierDistribInfo();
             $distrib_info=$distrib_infos->getDistrib($numwp);
             $this->view->distrib_info = $distrib_info[0];
