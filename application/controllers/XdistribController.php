@@ -945,8 +945,9 @@ if($this->getRequest()->isPost()){
         $infos_services=$info_service->createServiceDistrib($formData['numwp'], $formData['produitdedie'], $formData['ecatalogue'], $formData['journeetech'], $formData['accescom'], $formData['identconc'], $formData['interlocuteur'], $formData['service_associe']);
         $infos_users= new Application_Model_DbTable_Users();
         $id_user = $formData['id_user'];
-        var_dump($id_user);exit();
+        var_dump($id_user);
         $info_user = $infos_users->getUser($id_user);
+         echo '<pre>',  var_export($info_user),'</pre>'; exit();
         $id_holon =$info_user['id_holon'];
         $nom_client=$formData['nom_client'];
         $nom_distrib=$formData['nom_distrib'];
