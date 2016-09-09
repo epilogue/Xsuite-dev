@@ -699,7 +699,14 @@ if($this->getRequest()->isPost()){
             $nomdeb = trim($infos_offres->OBCHID);
              echo '<pre>',  var_export($infos_offres),'</pre>';
              var_dump($infos_offres->OBCHID);
-            $nomdebu=substr($nomdeb,2,-1);
+             $mourap= $this->_auth->getStorage()->read();
+                $pmoura= $mourap->id_user;
+             if($pmoura=99){
+                 $nomdebu=substr($nomdeb,2,-2);
+             }else{
+                 $nomdebu=substr($nomdeb,2,-1);
+             }
+//            $nomdebu=substr($nomdeb,2,-1);
             var_dump($nomdebu);
             $infodd=new Application_Model_DbTable_Users();
             $infos_dd=$infodd->getUserName($nomdebu);
