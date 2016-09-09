@@ -239,7 +239,7 @@ class XdistribController extends Zend_Controller_Action
             $this->view->infos_tc=$infos_tc;
             $infozones= new Application_Model_DbTable_Zones();
             $nom_zone = $infozones->getZone($infos_tc['id_zone']);
-//            var_dump($nom_zone);
+           var_dump($nom_zone);
             $nomdeb = trim($infos_offres->OBCHID);
             $nomdebu=substr($nomdeb,2,-1);
             $infodd=new Application_Model_DbTable_Users();
