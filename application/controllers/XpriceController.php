@@ -83,7 +83,7 @@ class XpriceController extends Zend_Controller_Action {
      unset($recapitulatif2);
      $recapitulatif2 = $r;
 }
-if($user->id_fonction == 3){
+if($user->id_fonction == 3 || $user->id_fonction == 6 ){
     $recapitulatif1=new Application_Model_DbTable_Xprices();
     $recapitulatif2 = $recapitulatif1->searchForLeader($holon);
 }
