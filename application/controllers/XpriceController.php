@@ -89,7 +89,7 @@ if($user->id_fonction == 3){
     $recapitulatif2 = $recapitulatif1->searchForLeader($holon);
 }
 
- if($user->id_fonction == 10 ||$user->id_user ==85){
+ if($user->id_fonction == 10){
     
      switch ($holon){
          case 2:
