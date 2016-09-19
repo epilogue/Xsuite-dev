@@ -82,14 +82,14 @@ class XpriceController extends Zend_Controller_Action {
      }
      unset($recapitulatif2);
      $recapitulatif2 = $r;
-       echo '<pre>', var_export($recapitulatif2),'</pre>'; 
+//       echo '<pre>', var_export($recapitulatif2),'</pre>'; 
 }
-if($user->id_fonction == 3 ){
+if($user->id_fonction == 3 ||$user->id_user ==85){
     $recapitulatif1=new Application_Model_DbTable_Xprices();
     $recapitulatif2 = $recapitulatif1->searchForLeader($holon);
 }
 
- if($user->id_fonction == 10){
+ if($user->id_fonction == 10 ||$user->id_user ==85){
     
      switch ($holon){
          case 2:
