@@ -82,6 +82,7 @@ class XpriceController extends Zend_Controller_Action {
      }
      unset($recapitulatif2);
      $recapitulatif2 = $r;
+       echo '<pre>', var_export($recapitulatif2),'</pre>'; 
 }
 if($user->id_fonction == 3 ){
     $recapitulatif1=new Application_Model_DbTable_Xprices();
