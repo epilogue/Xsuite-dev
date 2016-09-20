@@ -3954,11 +3954,7 @@ if($this->getRequest()->isPost()){
         $user = $this->_auth->getStorage()->read();
         $fonction = $user->id_fonction;
         $tiltop = $user->id_user;
-//        $this->view->utilisateur=$user->id_fonction;
-      
-        
         $formData = $this->getRequest()->getPost();
-        
         $xdistrib = new Application_Model_DbTable_Xdistrib();
         $listXDistrib = $xdistrib->getComptableRecherche($formData['liste_distributeur'],$formData['liste_code_article']);
 //          echo '<pre>',  var_export($listXDistrib),'</pre>';
