@@ -336,8 +336,8 @@ JOIN validations_demande_xdistrib ON validations_demande_xdistrib.id_demande_xdi
                     . " join users on users.id_user = demande_xdistrib.id_user "
                . " join demande_article_xdistrib on demande_article_xdistrib.tracking_number_demande_xdistrib=demande_xdistrib.tracking_number_demande_xdistrib "
                     . " where demande_xdistrib.numwp_distributeur = '{$code_distrib}' "
-                    . " and demande_article_xdistrib.code_article = {$code_article}"
-                    . "order by demande_xdistrib.date_demande_xdistrib desc";
+                    . " and demande_article_xdistrib.code_article = {$code_article} "
+                    . " order by demande_xdistrib.date_demande_xdistrib desc";
                     $res = $this->getAdapter()->query($sql);
                     
                    var_dump($sql);
