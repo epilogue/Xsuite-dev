@@ -933,7 +933,7 @@ if($this->getRequest()->isPost()){
           $emailVars = Zend_Registry::get('emailVars');
       if ($this->getRequest()->isPost()) {
         $formData = $this->getRequest()->getPost();
-         echo '<pre>',  var_export($formData),'</pre>'; 
+         //echo '<pre>',  var_export($formData),'</pre>'; 
          $numwp=$formData['numwp']; 
         $tempClienttruns= new Application_Model_DbTable_TempClient();
         $tempClienttrun=$tempClienttruns->truncateAll(); 
@@ -945,9 +945,9 @@ if($this->getRequest()->isPost()){
         $infos_services=$info_service->createServiceDistrib($formData['numwp'], $formData['produitdedie'], $formData['ecatalogue'], $formData['journeetech'], $formData['accescom'], $formData['identconc'], $formData['interlocuteur'], $formData['service_associe']);
         $infos_users= new Application_Model_DbTable_Users();
         $id_user = $formData['id_user'];
-        var_dump($id_user);
+        //var_dump($id_user);
         $info_user = $infos_users->getUser($id_user);
-         echo '<pre>',  var_export($info_user),'</pre>'; 
+        // echo '<pre>',  var_export($info_user),'</pre>'; 
         $id_holon =$info_user['id_holon'];
         $nom_client=$formData['nom_client'];
         $nom_distrib=$formData['nom_distrib'];
@@ -1042,6 +1042,40 @@ if($this->getRequest()->isPost()){
                            . "Xsuite";
                 $params1['sujet']=" XDistrib :L'offre XDistrib {$trackingNumber}/{$numwp} de {$info_user['nom_user']} {$info_user['prenom_user']} pour {$nom_distrib}/{$nom_client} est à valider";
                 $this->sendEmail($params1);
+                $paramsRGCU1=array();
+                $paramsRGCU2=array();
+                 if($info_user['id_user']==34 || $info_user['id_user']==97 || $info_user['id_user']==184 || $info_user['id_user']==217 ){
+                     $paramsRGCU1['destinataireMail']="nberingue@smc-france.fr";
+                     $paramsRGCU1['url']="http://{$_SERVER['SERVER_NAME']}/xdistrib/consult/numwp/{$numwp}";
+                $paramsRGCU1['corpsMail']="Bonjour,\n"
+                            . "\n"
+                            . "la demande XDistrib({$trackingNumber}/{$numwp}) de {$destinataire}/{$info_user['nom_user']} {$info_user['prenom_user']}  pour {$nom_distrib}/{$nom_client} est à consulter .\n"
+                            . "pour la consulter veuillez vous rendre à l'adresse url : \n"
+                            . "%s"
+                            . "\n\n"
+                            . "Cordialement,\n"
+                            . "\n"
+                            . "--\n"
+                           . "Xsuite";
+                $paramsRGCU1['sujet']=" XDistrib :L'offre XDistrib {$trackingNumber}/{$numwp} de {$info_user['nom_user']} {$info_user['prenom_user']} pour {$nom_distrib}/{$nom_client} est à consulter";
+                $this->sendEmail($paramsRGCU1);
+                 }
+                  if($info_user['id_user']==124 || $info_user['id_user']==42 || $info_user['id_user']==98 || $info_user['id_user']==199){
+                      $paramsRGCU2['destinataireMail']="clemoine@smc-france.fr";
+                     $paramsRGCU2['url']="http://{$_SERVER['SERVER_NAME']}/xdistrib/consult/numwp/{$numwp}";
+                $paramsRGCU2['corpsMail']="Bonjour,\n"
+                            . "\n"
+                            . "la demande XDistrib({$trackingNumber}/{$numwp}) de {$destinataire}/{$info_user['nom_user']} {$info_user['prenom_user']}  pour {$nom_distrib}/{$nom_client} est à consulter .\n"
+                            . "pour la consulter veuillez vous rendre à l'adresse url : \n"
+                            . "%s"
+                            . "\n\n"
+                            . "Cordialement,\n"
+                            . "\n"
+                            . "--\n"
+                           . "Xsuite";
+                $paramsRGCU2['sujet']=" XDistrib :L'offre XDistrib {$trackingNumber}/{$numwp} de {$info_user['nom_user']} {$info_user['prenom_user']} pour {$nom_distrib}/{$nom_client} est à consulter";
+                $this->sendEmail($paramsRGCU2);
+                  }
 //                echo '</pre>',  var_dump($params1['destinataireMail']),'</pre>';
                 $params2 = array();
                 $rcdnbrammer = array('I01045','I02055');
@@ -1059,6 +1093,7 @@ if($this->getRequest()->isPost()){
                 }elseif($clientDistrib=='I00264'|| $clientDistrib=='I00662' || $clientDistrib=='I00412'|| $clientDistrib=='I01796'|| $clientDistrib=='I01800'|| $clientDistrib=='I03174'|| $clientDistrib=='I03383'|| $clientDistrib=='I01803'|| $clientDistrib=='I04736'|| $clientDistrib=='I03697'|| $clientDistrib=='I04732'|| $clientDistrib=='I01799'|| $clientDistrib=='I04957'|| $clientDistrib=='I03517'|| $clientDistrib=='I05061'|| $clientDistrib=='I01808'|| $clientDistrib=='I02688'|| $clientDistrib=='I04956'|| $clientDistrib=='I05065'){
                     $destinataireMail2=$emailVars->listes->orexad;
                 }
+                $params2['destinataireMail']=$destinataireMail2;
                 $params2['url']="http://{$_SERVER['SERVER_NAME']}/xdistrib/consult/numwp/{$numwp}";
                 $params2['corpsMail']="Bonjour,\n"
                             . "\n"

@@ -549,6 +549,46 @@ if($user->id_fonction == 3){
                                 ->addTo($destinataireMail2)
                                 ->send();
                     }
+                    /*envoi mail si fonction RGCU*/
+                    
+                    if($info_user['id_user']==34 || $info_user['id_user']==97 || $info_user['id_user']==184 || $info_user['id_user']==217 ){
+                      $urlRGCU = "http://{$_SERVER['SERVER_NAME']}/xprice/consult/numwp/{$numwp}";
+                        $corpsMailRGCU = "Bonjour,\n"
+                                . "\n"
+                                . "Vous avez une nouvelle demande XPrice({$trackingNumber}/{$numwp}) à consulter.\n"
+                                . "Veuillez vous rendre à l'adresse url : \n"
+                                . "%s"
+                                . "\n\n"
+                                . "Cordialement,\n"
+                                . "\n"
+                                . "--\n"
+                                . "Xsuite";
+                        $mailRGCU = new Xsuite_Mail();
+                        $destinataireMailRGCU="nberingue@smc-france.fr";
+                        $mailRGCU->setSubject(" XPrice : Nouvelle Offre  Xprice {$trackingNumber}/{$numwp} à consulter de {$user_info['nom_user']} pour $clientsnom")
+                                ->setBodyText(sprintf($corpsMailRGCU, $urlRGCU))
+                                ->addTo($destinataireMailRGCU)
+                                ->send();  
+                    }
+                    if($info_user['id_user']==124 || $info_user['id_user']==42 || $info_user['id_user']==98 || $info_user['id_user']==199){
+                         $urlRGCU2 = "http://{$_SERVER['SERVER_NAME']}/xprice/consult/numwp/{$numwp}";
+                        $corpsMailRGCU2 = "Bonjour,\n"
+                                . "\n"
+                                . "Vous avez une nouvelle demande XPrice({$trackingNumber}/{$numwp}) à consulter.\n"
+                                . "Veuillez vous rendre à l'adresse url : \n"
+                                . "%s"
+                                . "\n\n"
+                                . "Cordialement,\n"
+                                . "\n"
+                                . "--\n"
+                                . "Xsuite";
+                        $mailRGCU2 = new Xsuite_Mail();
+                        $destinataireMailRGCU2="clemoine@smc-france.fr";
+                        $mailRGCU2->setSubject(" XPrice : Nouvelle Offre  Xprice {$trackingNumber}/{$numwp} à consulter de {$user_info['nom_user']} pour $clientsnom")
+                                ->setBodyText(sprintf($corpsMailRGCU2, $urlRGCU2))
+                                ->addTo($destinataireMailRGCU2)
+                                ->send();  
+                    }
                     /*
                      * ici si fonction itc kam ou leader  envoie de mail au chef de region pour validation
                      */
