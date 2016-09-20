@@ -7,6 +7,7 @@ class AdministrationController extends Zend_Controller_Action
     {
         $auth = Zend_Auth::getInstance();
         $user = $auth->getIdentity();
+         $this->view->messages = $this->_helper->flashMessenger->getMessages();
         //$layout->setLayoutPath(APPLICATION_PATH . 'layouts/scripts');
         $this->_helper->_layout->setLayout('admin_layout');
         if (is_null($user)) {
@@ -55,7 +56,7 @@ class AdministrationController extends Zend_Controller_Action
                if(!is_null($Mailuser)){
                    $redirector = $this->_helper->getHelper('Redirector');
             $flashMessenger = $this->_helper->getHelper('FlashMessenger');
-            $message = "Cetutilisateur a déjà été créé.";
+            $message = "Cet utilisateur a déjà été créé.";
             $flashMessenger->addMessage($message);
             $redirector->gotoSimple('indexuser', 'administration');
                }else{
