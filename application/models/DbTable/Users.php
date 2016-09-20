@@ -127,7 +127,7 @@ class Application_Model_DbTable_Users extends Zend_Db_Table_Abstract {
     public function getPassword($email_user){
          $email_user = "$email_user";
     $sql="select password_user , email_user from users where email_user = '{$email_user}'";
-    var_dump($sql);
+//    var_dump($sql);
     $res= $this->getAdapter()->query($sql);
       $rest = $res->fetchObject();
      if (!$rest) {
