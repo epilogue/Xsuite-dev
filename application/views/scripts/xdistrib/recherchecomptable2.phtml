@@ -1,0 +1,34 @@
+<?php
+$this->title = 'Xdistrib/recherche';
+$this->headTitle($this->title);
+
+$this->headScript()->appendFile('/js/controllers/xprice/popup.js');
+?>
+<div class="contenu">
+    <h2>Xdistrib</h2>
+    <h3>Résultats de la recherche</h3> 
+    <table class="enum">
+        <thead>
+            <tr>
+                <th>Commercial</th>
+                <th>Numéro Workplace</th>
+                <th>Tracking number</th>
+                <th>Nom Distributeur</th>
+                <th>Date demande</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($this->listXdistrib as $result){?>
+            <tr>
+                <td><?php echo $result['nom_user'] ?></td>
+                <td><?php echo $result['num_workplace_demande_xdistrib'] ?></td>
+                <td><?php echo $result['tracking_number_demande_xdistrib'] ?></td>
+                <td><?php echo $result['nom_distributeur'] ?></td>
+                <td><?php echo $result['date_demande_xdistrib']?></td>
+                <td><a href="<?php echo $this->url(array("controller"=>"xdistrib","action"=>"consult","numwp"=>$result['num_workplace_demande_xdistrib']));?>" <button class="retour" id="historique-<?php echo $k; ?>">historique</button></a>
+            </tr>
+            <?php } ?>
+        </tbody>
+        
+    </table>
+</div>

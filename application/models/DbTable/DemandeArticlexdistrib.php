@@ -191,5 +191,8 @@ class Application_Model_DbTable_DemandeArticlexdistrib extends Zend_Db_Table_Abs
             return $rest;
         }
     } 
+    public function article(){
+        $sql="select distinct(code_article) from demande_article_xdistrib";
+    }
 }
 

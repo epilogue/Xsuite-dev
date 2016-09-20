@@ -3933,6 +3933,38 @@ if($this->getRequest()->isPost()){
           $this->view->listXdistrib=$listXDistrib;
         
     }
+    public function recherchecomptableAction(){
+        $user = $this->_auth->getStorage()->read();
+        $fonction = $user->id_fonction;
+        $tiltop = $user->id_user;
+        $users= new Application_Model_DbTable_Users();
+        $distributeurs= new Application_Model_DbTable_Distributeurs();
+        $article= new Application_Model_DbTable_DemandeArticlexdistrib();
+        if($fonction==47){
+       
+        $result1 = $distributeurs->rechercheDistributeur();
+        $code_article=$article->article() ;
+        $this->view->code_client=$result1;
+        $this->view->code_article=$code_article;
+       }
+       
+    }
+    
+    public function recherchecomptable2Action(){
+        $user = $this->_auth->getStorage()->read();
+        $fonction = $user->id_fonction;
+        $tiltop = $user->id_user;
+//        $this->view->utilisateur=$user->id_fonction;
+      
+        
+        $formData = $this->getRequest()->getPost();
+        
+        $xdistrib = new Application_Model_DbTable_Xdistrib();
+        $listXDistrib = $xdistrib->getComptableRecherche($formData['liste_distributeur'],$formData['liste_code_article']);
+//          echo '<pre>',  var_export($listXDistrib),'</pre>';
+          $this->view->listXdistrib=$listXDistrib;
+       
+    }
     public function nofilecreateAction(){
         $numwp = $this->getRequest()->getParam('numwp', null);
         $demandes_xdistrib = new Application_Model_DbTable_Xdistrib();

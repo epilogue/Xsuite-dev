@@ -330,5 +330,23 @@ JOIN validations_demande_xdistrib ON validations_demande_xdistrib.id_demande_xdi
                 return $rest;
             }
         }
+    public function getComptableRecherche($code_distrib,$code_article){
+       $sql = "select distinct(demande_xdistrib.num_workplace_demande_xdistrib), demande_xdistrib.id_demande_xdistrib, demande_xdistrib.tracking_number_demande_xdistrib,distributeurs.nom_distributeur,demande_xdistrib.date_demande_xdistrib,users.nom_user  from demande_xdistrib"
+                    . " join distributeurs on distributeurs.numwp_distributeur = demande_xdistrib.numwp_distributeur"
+                    . " join users on users.id_user = demande_xdistrib.id_user "
+               . " join demande_article_xdistrib on demande_article_xdistrib.tracking_number_demande_xdistrib=demande_xdistrib.tracking_number_demande_xdistrib "
+                    . " where demande_xdistrib.numwp_distributeur = '{$code_distrib}' "
+                    . " and demande_article_xdistrib.code_article = {$code_article}"
+                    . "order by demande_xdistrib.date_demande_xdistrib desc";
+                    $res = $this->getAdapter()->query($sql);
+                    
+                   var_dump($sql);
+            $rest=$res->fetchAll();
+            if (!$rest) {
+                return null;
+            } else {
+                return $rest;
+            }
+    }
 }
 
