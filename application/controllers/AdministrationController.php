@@ -50,7 +50,15 @@ class AdministrationController extends Zend_Controller_Action
                elseif($formData['fonction'] ==32 | $formData['fonction'] ==23){ $niveau="niveau4";}
                elseif($formData['fonction'] == 5 | $formData['fonction'] ==13 | $formData['fonction'] ==38){ $niveau="niveau5";}
                elseif ($formData['fonction'] == 39) { $niveau="niveau6";}
-               
+               $User = new Application_Model_DbTable_Users;
+               $Mailuser=$User->getPassword($formData['email']);
+               if(!is_null($Mailuser)){
+                   $redirector = $this->_helper->getHelper('Redirector');
+            $flashMessenger = $this->_helper->getHelper('FlashMessenger');
+            $message = "Cetutilisateur a déjà été créé.";
+            $flashMessenger->addMessage($message);
+            $redirector->gotoSimple('indexuser', 'administration');
+               }else{
                 $users = new Application_Model_DbTable_Users();
         $user = $users->createUser($formData['nom'], $formData['prenom'], $formData['tel'], $formData['email'], $formData['matricule'], $formData['userworkplace'],$formData['fonction'],$formData['zone'],$formData['holon'], $niveau);
                 $this->_helper->redirector('index');
@@ -60,6 +68,7 @@ class AdministrationController extends Zend_Controller_Action
                     $redirector = $this->_helper->getHelper('Redirector');
                     $redirector->gotoSimple('index', 'administration');
                 }  
+        }
     }
     public function updateuserAction(){
             $id_user = $this->getRequest()->getParam('user', null);
