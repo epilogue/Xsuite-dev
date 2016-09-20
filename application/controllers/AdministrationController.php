@@ -52,9 +52,9 @@ class AdministrationController extends Zend_Controller_Action
                elseif($formData['fonction'] == 5 | $formData['fonction'] ==13 | $formData['fonction'] ==38){ $niveau="niveau5";}
                elseif ($formData['fonction'] == 39) { $niveau="niveau6";}
                $User = new Application_Model_DbTable_Users;
-               var_dump($User);
+              echo '<pre>', var_export($User),'</pre>';
                $Mailuser=$User->getPassword($formData['email']);
-               var_dump($Mailuser); exit();
+              echo '<pre>', var_export($Mailuser),'</pre>'; exit();
                if(!is_null($Mailuser)){
                    $redirector = $this->_helper->getHelper('Redirector');
             $flashMessenger = $this->_helper->getHelper('FlashMessenger');
