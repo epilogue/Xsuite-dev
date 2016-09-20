@@ -130,7 +130,11 @@ class Application_Model_DbTable_Users extends Zend_Db_Table_Abstract {
     var_dump($sql);
     $res= $this->getAdapter()->query($sql);
       $rest = $res->fetchObject();
-      return $rest;
+     if (!$rest) {
+            return null;
+        } else {
+            return $rest;
+        }
     }
     public function getUserName($name){
     $name="$name";
