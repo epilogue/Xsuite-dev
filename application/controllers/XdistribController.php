@@ -298,8 +298,8 @@ class XdistribController extends Zend_Controller_Action
                 from EIT.CVXCDTA.OOLINE OOLINE WHERE OOLINE.OBORNO='{$numwp}'  AND OOLINE.OBDIVI LIKE 'FR0' AND OOLINE.OBCONO=100";
                 $affiche_offres[]=odbc_fetch_array(odbc_exec($this->odbc_conn, $sqlaffiche));
           $article_Xdistrib=new Application_Model_DbTable_DemandeArticlexdistrib();
-//            while( $affiche_offre[]=odbc_fetch_array($affiche_offres)){
-//            $affiche_offre=$affiche_offre;} 
+            while( $affiche_offre[]=odbc_fetch_array($affiche_offres)){
+            $affiche_offre=$affiche_offre;} 
             $this->view->affiche_offre=$affiche_offres;
             echo '<pre>',  var_export($affiche_offres),'</pre>';
          $adresse =trim($infos_client['OKCUA4']);
