@@ -463,16 +463,8 @@ if($user->id_fonction == 3){
                         $destinataireMail4 = $emailVars->listes->carIndustries1;
                     }elseif(in_array($destIndustry, $car2)){
                         $destinataireMail4 = $emailVars->listes->carIndustries;
-                    }elseif(in_array($destIndustry, $LS)){
-                        $destinataireMail4 = $emailVars->listes->LifeandScience;
                     }elseif(in_array($destIndustry, $Elec)){
                        $destinataireMail4 = $emailVars->listes->Electronique;
-                    }elseif(in_array($destIndustry, $food)){
-                       $destinataireMail4 = $emailVars->listes->foodIndustries;
-                    }elseif(in_array($destIndustry, $food1)){
-                       $destinataireMail4 = $emailVars->listes->foodIndustries1;
-                    }elseif(in_array($destIndustry,$EE)){
-                        $destinataireMail4 = $emailVars->listes->environnementEnergie;
                     }
                  
                 $params4['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/consultchefmarche/numwp/{$numwp}";
@@ -1498,16 +1490,8 @@ elseif($mailServiceClients[0]['mail_service_client']== 'export'){
                         $destinataireMail2 = $emailVars->listes->carIndustries1;
                     }elseif(in_array($destIndustry, $car2)){
                         $destinataireMail2 = $emailVars->listes->carIndustries;
-                    }elseif(in_array($destIndustry, $LS)){
-                        $destinataireMail2 = $emailVars->listes->LifeandScience;
                     }elseif(in_array($destIndustry, $Elec)){
                        $destinataireMail2 = $emailVars->listes->Electronique;
-                    }elseif(in_array($destIndustry, $food)){
-                       $destinataireMail2 = $emailVars->listes->foodIndustries;
-                    }elseif(in_array($destIndustry, $food1)){
-                       $destinataireMail2 = $emailVars->listes->foodIndustries1;
-                    }elseif(in_array($destIndustry,$EE)){
-                        $destinataireMail2 = $emailVars->listes->environnementEnergie;
                     }
                 $params6['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/consult/numwp/{$numwp}";
                 $params6['corpsMail'] = "Bonjour,\n"
@@ -1936,16 +1920,8 @@ elseif($mailServiceClients[0]['mail_service_client']=='' || $mailServiceClients[
                         $destinataireMail2 = $emailVars->listes->carIndustries1;
                     }elseif(in_array($destIndustry, $car2)){
                         $destinataireMail2 = $emailVars->listes->carIndustries;
-                    }elseif(in_array($destIndustry, $LS)){
-                        $destinataireMail2 = $emailVars->listes->LifeandScience;
                     }elseif(in_array($destIndustry, $Elec)){
                        $destinataireMail2 = $emailVars->listes->Electronique;
-                    }elseif(in_array($destIndustry, $food)){
-                       $destinataireMail2 = $emailVars->listes->foodIndustries;
-                    }elseif(in_array($destIndustry, $food1)){
-                       $destinataireMail2 = $emailVars->listes->foodIndustries1;
-                    }elseif(in_array($destIndustry,$EE)){
-                        $destinataireMail2 = $emailVars->listes->environnementEnergie;
                     }
                 $params4['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/consult/numwp/{$numwp}";
                 $params4['corpsMail'] = "Bonjour,\n"
