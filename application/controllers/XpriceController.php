@@ -703,7 +703,7 @@ if($user->id_fonction == 3){
                         
                     }
                     /*ici envoi au MGCI ou DGCI si fonction createur ==43/42/44*/
-                    elseif ( $user_info['id_user']==42 ||$user_info['id_user']==98 || $user_info['id_user']==122) {
+                    elseif ( $user_info['id_user']==42 ||$user_info['id_user']==98 || $user_info['id_user']==122 || $user_info['id_user']==199) {
                         $destinataireMailRGCI1 = $emailVars->listes->RGCI1;
                          if (!is_null($firstComment)) {
                                 $urlRGCI1 = "http://{$_SERVER['SERVER_NAME']}/xprice/validatechefregion/numwp/{$numwp}/com/{$firstComment}";
@@ -725,7 +725,7 @@ if($user->id_fonction == 3){
                                     ->setBodyText(sprintf($corpsMailRGCI1, $urlRGCI1))
                                     ->addTo($destinataireMailRGCI1)
                                     ->send();
-                    } elseif ( $user_info['id_user']==97 ||$user_info['id_user']==184 || $user_info['id_user']==217) {
+                    } elseif ( $user_info['id_user']==97|| $user_info['id_user']==34 ||$user_info['id_user']==184 || $user_info['id_user']==217) {
                         $destinataireMailRGCI2 = $emailVars->listes->RGCI2;
                          if (!is_null($firstComment)) {
                                 $urlRGCI2 = "http://{$_SERVER['SERVER_NAME']}/xprice/validatechefregion/numwp/{$numwp}/com/{$firstComment}";
@@ -748,7 +748,7 @@ if($user->id_fonction == 3){
                                     ->addTo($destinataireMailRGCI2)
                                     ->send();
                     } 
-                    elseif ( $user_info['id_user']==20 ||$user_info['id_user']==34 || $user_info['id_user']==199) {
+                    elseif ( $user_info['id_user']==20) {
                         $destinataireMailRGCI3 = $emailVars->listes->RGCI3;
                          if (!is_null($firstComment)) {
                                 $urlRGCI3 = "http://{$_SERVER['SERVER_NAME']}/xprice/validatechefregion/numwp/{$numwp}/com/{$firstComment}";
