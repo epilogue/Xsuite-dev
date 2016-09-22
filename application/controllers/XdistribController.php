@@ -394,7 +394,7 @@ class XdistribController extends Zend_Controller_Action
                     $updatecif3 = $updatecif1->updatecif($cif, $result['code_article'], $numwp);
                 }
             }
-      exit();
+      
          /* on insert les données provenant de movex et on renseigne les tables suivantes :
           * clients_distrib
           * distribs
@@ -403,44 +403,44 @@ class XdistribController extends Zend_Controller_Action
           */
          //client_distrib ( ok  en commentaire pour ne pas saturée la bdd de test )
         }
-//       if ($this->getRequest()->isPost()) {
-//       $formData = $this->getRequest()->getPost();
-////     echo '<pre>',var_export($formData),'</pre>'; exit();
-//     
-//      $result = array_combine($formData['reference'],$formData['quantite']);
-//      $result2 =  array_combine( $formData['reference'],$formData['prix_tarif_dis']);
-//      $result3 = array_combine($formData['reference'],$formData['serie']);
-//      $redirector = $this->_helper->getHelper('Redirector');
-////       echo '<pre>',var_export($result),'</pre>';
-////        echo '<pre>',var_export($result2),'</pre>';
-////        var_dump($_FILES); 
-//       if(isset($_FILES['fichierDemandeDistrib']['name'])){
-//           if($_FILES['fichierDemandeDistrib']['size']<= 2000000){
-//               $extension_valide = array('pdf');
-//               $extension_upload = strtolower(substr(strrchr($_FILES['fichierDemandeDistrib']['name'], '.'), 1));
-//               var_dump($extension_upload);
-//               if(in_array($extension_upload, $extension_valide)){
-//                   echo "extension correcte";
-//               }
-//               $nomFichier = 'Mail_'.$trackingNumber.'.'.$extension_upload;
-////               var_dump($nomFichier);
-//               $uploaddir = APPLICATION_PATH."/public/mails/";
-////               var_dump($uploaddir);
-//               $uploadfile = $uploaddir.$nomFichier;
-////               var_dump($uploadfile);exit();
-//               if(move_uploaded_file($_FILES['fichierDemandeDistrib']['tmp_name'], $uploadfile)){
-//                   echo 'tout ok'; 
-//               } else{
-//                   echo 'le transfert a échoué';
-//               }
-//           }
-//       }
-//            $flashMessenger = $this->_helper->getHelper('FlashMessenger');
-//            $message = "votre offre  a bien été créée.";
-//            $flashMessenger->addMessage($message);
-//            $redirector->gotoSimple('index', 'xdistrib');
-//  
-//                }    
+       if ($this->getRequest()->isPost()) {
+       $formData = $this->getRequest()->getPost();
+//     echo '<pre>',var_export($formData),'</pre>'; 
+     
+      $result = array_combine($formData['reference'],$formData['quantite']);
+      $result2 =  array_combine( $formData['reference'],$formData['prix_tarif_dis']);
+      $result3 = array_combine($formData['reference'],$formData['serie']);
+      $redirector = $this->_helper->getHelper('Redirector');
+//       echo '<pre>',var_export($result),'</pre>';
+//        echo '<pre>',var_export($result2),'</pre>';
+//        var_dump($_FILES); 
+       if(isset($_FILES['fichierDemandeDistrib']['name'])){
+           if($_FILES['fichierDemandeDistrib']['size']<= 2000000){
+               $extension_valide = array('pdf');
+               $extension_upload = strtolower(substr(strrchr($_FILES['fichierDemandeDistrib']['name'], '.'), 1));
+               var_dump($extension_upload);
+               if(in_array($extension_upload, $extension_valide)){
+                   echo "extension correcte";
+               }
+               $nomFichier = 'Mail_'.$trackingNumber.'.'.$extension_upload;
+//               var_dump($nomFichier);
+               $uploaddir = APPLICATION_PATH."/public/mails/";
+//               var_dump($uploaddir);
+               $uploadfile = $uploaddir.$nomFichier;
+//               var_dump($uploadfile);exit();
+               if(move_uploaded_file($_FILES['fichierDemandeDistrib']['tmp_name'], $uploadfile)){
+                   echo 'tout ok'; 
+               } else{
+                   echo 'le transfert a échoué';
+               }
+           }
+       }
+            $flashMessenger = $this->_helper->getHelper('FlashMessenger');
+            $message = "votre offre  a bien été créée.";
+            $flashMessenger->addMessage($message);
+            $redirector->gotoSimple('index', 'xdistrib');
+  
+                }    
     }
     
     public function uploadnumwpAction(){
