@@ -392,7 +392,7 @@ class XdistribController extends Zend_Controller_Action
                    trim($demande['OBITNO']),
                    $demande['OBITDS'],
                    $numwp,
-                       $code_acquisition) ;exit();
+                       $code_acquisition) ;
                 $mmcono = "100";
                 $division = "FR0";
                 $facility = "I01";
