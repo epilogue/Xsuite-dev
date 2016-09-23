@@ -24,6 +24,7 @@ class Application_Model_DbTable_DemandeArticlexdistrib extends Zend_Db_Table_Abs
             'num_workplace_demande_xdistrib' => $num_workplace_demande_xdistrib,
             'code_acquisition' => $code_acquisition
         );
+        var_export($data, true); exit();
         $this->insert($data);
         return $this;
     }
