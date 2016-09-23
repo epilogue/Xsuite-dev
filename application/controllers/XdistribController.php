@@ -430,7 +430,7 @@ class XdistribController extends Zend_Controller_Action
                $uploaddir = APPLICATION_PATH."/public/mails/";
                var_dump($uploaddir);
                $uploadfile = $uploaddir.$nomFichier;
-               var_dump($uploadfile);exit();
+               var_dump($uploadfile);
                if(move_uploaded_file($_FILES['fichierDemandeDistrib']['tmp_name'], $uploadfile)){
                    echo 'tout ok'; 
                } else{
