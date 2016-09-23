@@ -374,7 +374,7 @@ class XdistribController extends Zend_Controller_Action
                    $demande['OBITDS'],
                    $numwp,
                        $code_acquisition);
-               echo '<pre>',var_export($data),'</pre>';
+               echo '<pre>',var_export($data),'</pre>';exit();
                $new_demande_article_Xdistrib= $article_Xdistrib->createDemandeArticlexdistrib(
                    $prix_tarif,/*prixtarif*/
                    $prix_achat_actuel,/*prixachat*/
@@ -392,7 +392,7 @@ class XdistribController extends Zend_Controller_Action
                    trim($demande['OBITNO']),
                    $demande['OBITDS'],
                    $numwp,
-                       $code_acquisition) ;
+                   $code_acquisition) ;
                 $mmcono = "100";
                 $division = "FR0";
                 $facility = "I01";
