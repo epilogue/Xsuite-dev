@@ -355,6 +355,8 @@ class XdistribController extends Zend_Controller_Action
                $prix_cif_demande_article=null;
                $marge_demande_article=null;
                $code_acquisition=null;
+               $plop="150";
+               $essai=intval($plop);
                $quantite= intval($demande['OBORQT']);
                echo '<pre>',var_export($demande),'</pre>';
                var_dump($demande['OBORQT']);
@@ -363,6 +365,7 @@ class XdistribController extends Zend_Controller_Action
                    $prix_demande_article,/*prixdemande*/
                    $prix_final,/*prixfinal*/
                    $quantite, 
+                   $essai,
                   $serie,
                    $date,
                    $prix_accorde_demande_article, 
