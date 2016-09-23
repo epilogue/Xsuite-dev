@@ -355,8 +355,6 @@ class XdistribController extends Zend_Controller_Action
                $prix_cif_demande_article=null;
                $marge_demande_article=null;
                $code_acquisition=null;
-               $plop="150";
-               $essai=intval($plop);
                $quantite= intval($demande['OBORQT']);
                echo '<pre>',var_export($demande),'</pre>';
                var_dump($demande['OBORQT']);
@@ -364,8 +362,7 @@ class XdistribController extends Zend_Controller_Action
                    $prix_achat_actuel,/*prixachat*/
                    $prix_demande_article,/*prixdemande*/
                    $prix_final,/*prixfinal*/
-                   $quantite, 
-                   $essai,
+                   $quantite,
                   $serie,
                    $date,
                    $prix_accorde_demande_article, 
@@ -378,7 +375,7 @@ class XdistribController extends Zend_Controller_Action
                    $demande['OBITDS'],
                    $numwp,
                        $code_acquisition);
-               echo '<pre>',var_export($data),'</pre>';exit();
+               echo '<pre>',var_export($data),'</pre>';
                $new_demande_article_Xdistrib= $article_Xdistrib->createDemandeArticlexdistrib(
                    $prix_tarif,/*prixtarif*/
                    $prix_achat_actuel,/*prixachat*/
