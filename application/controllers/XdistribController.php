@@ -344,11 +344,11 @@ class XdistribController extends Zend_Controller_Action
             /*demande_article_Xdistrib*/
            $article_Xdistrib=new Application_Model_DbTable_DemandeArticlexdistrib();
            foreach($affiche_offre as $demande){
-               $prix_tarif=intval($demande['OBSAPR']);
+               $prix_tarif=$demande['OBSAPR'];
                var_dump($prix_tarif);
-               $prix_achat_actuel =intval(($demande['OBSAPR']*40)/100);
+               $prix_achat_actuel =($demande['OBSAPR']*40)/100;
                 var_dump($prix_achat_actuel);
-               $prix_demande_article =intval($demande['OBNEPR']);
+               $prix_demande_article =$demande['OBNEPR'];
                 var_dump($prix_demande_article);
                $prix_final=null;
                $serie= null;
