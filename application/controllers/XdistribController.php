@@ -303,7 +303,7 @@ class XdistribController extends Zend_Controller_Action
          $affiche_offre[]=odbc_fetch_array($affiche_offres);
           while ($affiche_offre[] = odbc_fetch_array($affiche_offres)) {
                 $this->view->affiche_offre = $affiche_offre;
-                echo '<pre>',var_export($this->view->affiche_offre),'</pre>';
+//                echo '<pre>',var_export($this->view->affiche_offre),'</pre>';
             }
         exit();
 //           $this->view->affiche_offre=$affiche_offre;
@@ -347,10 +347,11 @@ class XdistribController extends Zend_Controller_Action
                $prix_tarif=round($demande['OBSAPR'],2);
                $prix_achat_actuel = round(($demande['OBSAPR']*40)/100,2);
                $prix_demande_article =round($demande['OBNEPR'],2);
-               
+               echo '<pre>',var_export($demande),'</pre>';
+               var_dump($demande['OBORQT']);exit();
                $new_demande_article_Xdistrib= $article_Xdistrib->createDemandeArticlexdistrib(
                    $prix_tarif,/*prixtarif*/
-                    $prix_achat_actuel,/*prixachat*/
+                   $prix_achat_actuel,/*prixachat*/
                    $prix_demande_article,/*prixdemande*/
                    null,/*prixfinal*/
                    $demande['OBORQT'], 
