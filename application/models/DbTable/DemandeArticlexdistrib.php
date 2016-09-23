@@ -6,7 +6,7 @@ class Application_Model_DbTable_DemandeArticlexdistrib extends Zend_Db_Table_Abs
 
     public function createDemandeArticlexdistrib($prix_tarif,$prix_achat_actuel,$prix_demande_article,$prix_client_final,$quantite_demande_article,$serie,$date_demande_xdistrib, $prix_accorde_demande_article, $remise_accorde_demande_article, $prix_fob_demande_article, $prix_cif_demande_article, $marge_demande_article, $tracking_number_demande_xdistrib, $code_article, $reference_article, $num_workplace_demande_xdistrib,$code_acquisition) {
         $data = array(
-            'prix_tarif' => $prix_tarif,
+            'prix_tarif' => floatval($prix_tarif),
             'prix_achat_actuel' =>$prix_achat_actuel,
             'prix_demande_article'=> $prix_demande_article,
             'prix_client_final'=>$prix_client_final,
@@ -24,7 +24,7 @@ class Application_Model_DbTable_DemandeArticlexdistrib extends Zend_Db_Table_Abs
             'num_workplace_demande_xdistrib' => $num_workplace_demande_xdistrib,
             'code_acquisition' => $code_acquisition
         );
-        echo "<pre>",var_export($data, true),"</pre>"; exit();
+//        echo "<pre>",var_export($data, true),"</pre>"; exit();
         $this->insert($data);
         return $this;
     }
