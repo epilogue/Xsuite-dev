@@ -361,29 +361,12 @@ class XdistribController extends Zend_Controller_Action
                $quantite= intval($demande['OBORQT']);
 //               echo '<pre>',var_export($demande),'</pre>';
                var_dump($demande['OBORQT']);
-               $data=array($prix_tarif,/*prixtarif*/
-                   $prix_achat_actuel,/*prixachat*/
-                   $prix_demande_article,/*prixdemande*/
-                   $prix_final,/*prixfinal*/
-                   $quantite,
-                  $serie,
-                   $date,
-                   $prix_accorde_demande_article, 
-                   $remise_accorde_demande_article,
-                   $prix_fob_demande_article,
-                   $prix_cif_demande_article,
-                   $marge_demande_article,
-                   $trackingNumber,
-                   trim($demande['OBITNO']),
-                   $demande['OBITDS'],
-                   $numwp,
-                       $code_acquisition);
-               echo '<pre>',var_export($data),'</pre>'; exit();
+              
                $new_demande_article_Xdistrib= $article_Xdistrib->createDemandeArticlexdistrib(
-                   $prix_tarif,
-                   $prix_achat_actuel,
+                   $demande['OBSAPR'],
+                   ($demande['OBSAPR']*40)/100,
                    $prix_demande_article,
-                   $prix_final,
+                   $demande['OBNEPR'],
                    $demande['OBORQT'], 
                   $serie,
                    $date,
