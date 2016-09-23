@@ -225,6 +225,7 @@ class XdistribController extends Zend_Controller_Action
             $infos_offre = odbc_exec($this->odbc_conn, $sql);
             $infos_offres = odbc_fetch_object($infos_offre);
             $this->view->infos_offres=$infos_offres;
+             echo '<pre>',var_export($infos_offres),'</pre>';exit();
             /*
              *'OBDLSP-> numéro client final (10 chiffres)'
              *'OBCUNO-> numéro distributeur (5 chiffres)'
@@ -239,7 +240,7 @@ class XdistribController extends Zend_Controller_Action
             $this->view->infos_tc=$infos_tc;
             $infozones= new Application_Model_DbTable_Zones();
             $nom_zone = $infozones->getZone($infos_tc['id_zone']);
-           var_dump($nom_zone);
+           //var_dump($nom_zone);
             $nomdeb = trim($infos_offres->OBCHID);
             $nomdebu=substr($nomdeb,2,-1);
             $infodd=new Application_Model_DbTable_Users();
