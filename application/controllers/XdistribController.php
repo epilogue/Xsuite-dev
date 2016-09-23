@@ -359,9 +359,9 @@ class XdistribController extends Zend_Controller_Action
                $marge_demande_article=null;
                $code_acquisition=null;
                $quantite= intval($demande['OBORQT']);
-               echo '<pre>',var_export($demande, true),'</pre>';
-//               var_dump($demande['OBORQT']);
-              exit();
+//               echo '<pre>',var_export($demande, true),'</pre>';
+////               var_dump($demande['OBORQT']);
+//              exit();
                $new_demande_article_Xdistrib= $article_Xdistrib->createDemandeArticlexdistrib(
                    $demande['OBSAPR'],
                    ($demande['OBSAPR']*40)/100,
