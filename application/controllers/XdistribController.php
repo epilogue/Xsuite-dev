@@ -347,26 +347,52 @@ class XdistribController extends Zend_Controller_Action
                $prix_tarif=round($demande['OBSAPR'],2);
                $prix_achat_actuel = round(($demande['OBSAPR']*40)/100,2);
                $prix_demande_article =round($demande['OBNEPR'],2);
+               $prix_final=null;
+               $serie= null;
+               $prix_accorde_demande_article=null;
+               $remise_accorde_demande_article=null;
+               $prix_fob_demande_article=null;
+               $prix_cif_demande_article=null;
+               $marge_demande_article=null;
+               $code_acquisition=null;
                echo '<pre>',var_export($demande),'</pre>';
-               var_dump($demande['OBORQT']);exit();
-               $new_demande_article_Xdistrib= $article_Xdistrib->createDemandeArticlexdistrib(
-                   $prix_tarif,/*prixtarif*/
+               var_dump($demande['OBORQT']);
+               $data=array($prix_tarif,/*prixtarif*/
                    $prix_achat_actuel,/*prixachat*/
                    $prix_demande_article,/*prixdemande*/
-                   null,/*prixfinal*/
+                   $prix_final,/*prixfinal*/
                    $demande['OBORQT'], 
-                   null,
+                  $serie,
                    $date,
-                   null, 
-                   null,
-                   null,
-                   null,
-                   null,
+                   $prix_accorde_demande_article, 
+                   $remise_accorde_demande_article,
+                   $prix_fob_demande_article,
+                   $prix_cif_demande_article,
+                   $marge_demande_article,
                    $trackingNumber,
                    trim($demande['OBITNO']),
                    $demande['OBITDS'],
                    $numwp,
-                       null) ;
+                       $code_acquisition);
+               echo '<pre>',var_export($data),'</pre>';
+               $new_demande_article_Xdistrib= $article_Xdistrib->createDemandeArticlexdistrib(
+                   $prix_tarif,/*prixtarif*/
+                   $prix_achat_actuel,/*prixachat*/
+                   $prix_demande_article,/*prixdemande*/
+                   $prix_final,/*prixfinal*/
+                   $demande['OBORQT'], 
+                  $serie,
+                   $date,
+                   $prix_accorde_demande_article, 
+                   $remise_accorde_demande_article,
+                   $prix_fob_demande_article,
+                   $prix_cif_demande_article,
+                   $marge_demande_article,
+                   $trackingNumber,
+                   trim($demande['OBITNO']),
+                   $demande['OBITDS'],
+                   $numwp,
+                       $code_acquisition) ;exit();
                 $mmcono = "100";
                 $division = "FR0";
                 $facility = "I01";
