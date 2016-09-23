@@ -297,11 +297,13 @@ class XdistribController extends Zend_Controller_Action
                 OOLINE.OBELNO
                 from EIT.CVXCDTA.OOLINE OOLINE WHERE OOLINE.OBORNO='{$numwp}'  AND OOLINE.OBDIVI LIKE 'FR0' AND OOLINE.OBCONO=100";
                 $affiche_offres=odbc_exec($this->odbc_conn, $sqlaffiche);
+                echo '<pre>',  var_export($affiche_offres),'</pre>';
           $article_Xdistrib=new Application_Model_DbTable_DemandeArticlexdistrib();
             while( $affiche_offre[]=odbc_fetch_array($affiche_offres)){
-           $this->view->affiche_offre=$affiche_offre;} 
+           $this->view->affiche_offre=$affiche_offre;
+           } 
 //            affiche_offre=$affiche_offres;
-            echo '<pre>',  var_export($this->view->affiche_offre),'</pre>';
+           
          $adresse =trim($infos_client['OKCUA4']);
          $codepostal = substr($adresse,0,5);
          $ville = substr($adresse,5);
