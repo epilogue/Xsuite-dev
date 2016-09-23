@@ -416,7 +416,7 @@ class XdistribController extends Zend_Controller_Action
       $redirector = $this->_helper->getHelper('Redirector');
 //       echo '<pre>',var_export($result),'</pre>';
 //        echo '<pre>',var_export($result2),'</pre>';
-//        var_dump($_FILES); 
+        var_dump($_FILES); 
        if(isset($_FILES['fichierDemandeDistrib']['name'])){
            if($_FILES['fichierDemandeDistrib']['size']<= 2000000){
                $extension_valide = array('pdf');
@@ -426,11 +426,11 @@ class XdistribController extends Zend_Controller_Action
                    echo "extension correcte";
                }
                $nomFichier = 'Mail_'.$trackingNumber.'.'.$extension_upload;
-//               var_dump($nomFichier);
+               var_dump($nomFichier);
                $uploaddir = APPLICATION_PATH."/public/mails/";
-//               var_dump($uploaddir);
+               var_dump($uploaddir);
                $uploadfile = $uploaddir.$nomFichier;
-//               var_dump($uploadfile);exit();
+               var_dump($uploadfile);exit();
                if(move_uploaded_file($_FILES['fichierDemandeDistrib']['tmp_name'], $uploadfile)){
                    echo 'tout ok'; 
                } else{
