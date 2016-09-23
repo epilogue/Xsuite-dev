@@ -355,13 +355,14 @@ class XdistribController extends Zend_Controller_Action
                $prix_cif_demande_article=null;
                $marge_demande_article=null;
                $code_acquisition=null;
+               $quantite= intval($demande['OBORQT']);
                echo '<pre>',var_export($demande),'</pre>';
                var_dump($demande['OBORQT']);
                $data=array($prix_tarif,/*prixtarif*/
                    $prix_achat_actuel,/*prixachat*/
                    $prix_demande_article,/*prixdemande*/
                    $prix_final,/*prixfinal*/
-                   $demande['OBORQT'], 
+                   $quantite, 
                   $serie,
                    $date,
                    $prix_accorde_demande_article, 
