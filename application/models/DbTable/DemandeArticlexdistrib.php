@@ -4,27 +4,14 @@ class Application_Model_DbTable_DemandeArticlexdistrib extends Zend_Db_Table_Abs
 
     protected $_name = 'demande_article_xdistrib';
 
-    public function createDemandeArticlexdistrib($prix_tarif,$prix_achat_actuel,$prix_demande_article,$prix_client_final,$quantite_demande_article,$serie,$date_demande_xdistrib, $prix_accorde_demande_article, $remise_accorde_demande_article, $prix_fob_demande_article, $prix_cif_demande_article, $marge_demande_article, $tracking_number_demande_xdistrib, $code_article, $reference_article, $num_workplace_demande_xdistrib,$code_acquisition) {
-        $data = array(
-            'prix_tarif' => floatval($prix_tarif),
-            'prix_achat_actuel' =>floatval($prix_achat_actuel),
-            'prix_demande_article'=> floatval($prix_demande_article),
-            'prix_client_final'=>floatval($prix_client_final),
-            'quantite_demande_article'=> intval($quantite_demande_article),
-            'serie'=>$serie,
-            'date_demande_xdistrib' => $date_demande_xdistrib,
-            'prix_accorde_demande_article' => $prix_accorde_demande_article,
-            'remise_accorde_demande_article' => $remise_accorde_demande_article,
-            'prix_fob_demande_article' => $prix_fob_demande_article,
-            'prix_cif_demande_article' => $prix_cif_demande_article,
-            'marge_demande_article' => $marge_demande_article,
-            'tracking_number_demande_xdistrib' => $tracking_number_demande_xdistrib,
-            'code_article' => $code_article,
-            'reference_article' => $reference_article,
-            'num_workplace_demande_xdistrib' => $num_workplace_demande_xdistrib,
-            'code_acquisition' => $code_acquisition
-        );
-//        echo "<pre>",var_export($data, true),"</pre>"; exit();
+    public function createDemandeArticlexdistrib($data) {
+       
+            $data[0] = floatval($data[0]);
+            $data[1] =floatval($data[1]);
+            $data[2]= floatval($data[2]);
+            $data[3]=floatval($data[3]);
+           $data[4]= intval($data[4]);
+        echo "<pre>",var_export($data, true),"</pre>"; exit();
         $this->insert($data);
         return $this;
     }

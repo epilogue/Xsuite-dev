@@ -366,7 +366,7 @@ class XdistribController extends Zend_Controller_Action
                    $prix_demande_article,
                    $demande['OBNEPR'],
                    $demande['OBORQT'], 
-                  $serie,
+                   $serie,
                    $date,
                    $prix_accorde_demande_article, 
                    $remise_accorde_demande_article,
@@ -375,29 +375,12 @@ class XdistribController extends Zend_Controller_Action
                    $marge_demande_article,
                    $trackingNumber,
                    trim($demande['OBITNO']),
-                   $demande['OBITDS'],
+                   trim($demande['OBITDS']),
                    $numwp,
                    $code_acquisition);
                 echo '<pre>',var_export($data, true),'</pre>';
-              exit();
-               $new_demande_article_Xdistrib= $article_Xdistrib->createDemandeArticlexdistrib(
-                   $demande['OBSAPR'],
-                   ($demande['OBSAPR']*40)/100,
-                   $prix_demande_article,
-                   $demande['OBNEPR'],
-                   $demande['OBORQT'], 
-                  $serie,
-                   $date,
-                   $prix_accorde_demande_article, 
-                   $remise_accorde_demande_article,
-                   $prix_fob_demande_article,
-                   $prix_cif_demande_article,
-                   $marge_demande_article,
-                   $trackingNumber,
-                   trim($demande['OBITNO']),
-                   $demande['OBITDS'],
-                   $numwp,
-                   $code_acquisition) ;
+            
+               $new_demande_article_Xdistrib= $article_Xdistrib->createDemandeArticlexdistrib($data) ;
                 $mmcono = "100";
                 $division = "FR0";
                 $facility = "I01";
