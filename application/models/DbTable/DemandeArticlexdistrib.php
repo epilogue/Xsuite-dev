@@ -30,9 +30,9 @@ class Application_Model_DbTable_DemandeArticlexdistrib extends Zend_Db_Table_Abs
 public function createArticleDemandeNoFile($data){
     $data['prix_tarif']=floatval($data['prix_tarif']);
     $data['prix_tarif_actuel']=  floatval($data['prix_tarif_actuel']);
-//    $data[2]= floatval($data[2]);
-//    $data[3]= floatval($data[3]);
-//    $data[4]= intval($data[4]);
+    $data['prix_demande_article']= floatval($data['prix_demande_article']);
+    $data['prix_client_final']= floatval($data['prix_client_final']);
+    $data['quantite_demande_article']= intval($data['quantite_demande_article']);
        echo '<pre>',var_export($data, true),'</pre>'; exit();
     $this->insert($data);
         return $this;
