@@ -303,7 +303,7 @@ class XdistribController extends Zend_Controller_Action
                 var_dump($sqlaffiche);
                 $affiche_offres=odbc_exec($this->odbc_conn, $sqlaffiche);
           
-         $affiche_offre[]=odbc_fetch_array($affiche_offres);
+         //$affiche_offre[]=odbc_fetch_array($affiche_offres);
           while ($affiche_offre[] = odbc_fetch_array($affiche_offres)) {
                 $this->view->affiche_offre = $affiche_offre;
                 echo '<pre>',var_export($this->view->affiche_offre),'</pre>';
