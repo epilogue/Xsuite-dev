@@ -380,7 +380,7 @@ class XdistribController extends Zend_Controller_Action
                    $code_acquisition);
                 echo '<pre>',var_export($data, true),'</pre>';
             
-               $new_demande_article_Xdistrib= $article_Xdistrib->createDemandeArticlexdistrib($data) ;
+               $new_demande_article_Xdistrib= $article_Xdistrib->createArticleDemandeNoFile($data) ;
                 $mmcono = "100";
                 $division = "FR0";
                 $facility = "I01";
