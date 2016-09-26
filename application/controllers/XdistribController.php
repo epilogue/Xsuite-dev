@@ -308,7 +308,7 @@ class XdistribController extends Zend_Controller_Action
                 $this->view->affiche_offre = $affiche_offre;
                 echo '<pre>',var_export($this->view->affiche_offre),'</pre>';
             }
-       
+       exit();
 //           $this->view->affiche_offre=$affiche_offre;
            
 //            affiche_offre=$affiche_offres;
