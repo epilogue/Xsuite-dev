@@ -10,7 +10,7 @@ class Application_Model_DbTable_DemandeArticlexdistrib extends Zend_Db_Table_Abs
             'prix_achat_actuel' =>floatval($prix_achat_actuel),
             'prix_demande_article'=> floatval($prix_demande_article),
             'prix_client_final'=>floatval($prix_client_final),
-            'quantite_demande_article'=> $quantite_demande_article,
+            'quantite_demande_article'=> intval($quantite_demande_article),
             'serie'=>$serie,
             'date_demande_xdistrib' => $date_demande_xdistrib,
             'prix_accorde_demande_article' => $prix_accorde_demande_article,
