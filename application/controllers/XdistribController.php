@@ -362,22 +362,22 @@ class XdistribController extends Zend_Controller_Action
               
                //var_dump($demande['OBITDS']);
                $data =array( 'prix_tarif'=>$demande['OBSAPR'],
-                   ($demande['OBSAPR']*40)/100,
-                   $prix_demande_article,
-                   $demande['OBNEPR'],
-                   $demande['OBORQT'], 
-                   $serie,
-                   $date,
-                   $prix_accorde_demande_article, 
-                   $remise_accorde_demande_article,
-                   $prix_fob_demande_article,
-                   $prix_cif_demande_article,
-                   $marge_demande_article,
-                   $trackingNumber,
-                   trim($demande['OBITNO']),
-                   trim($demande['OBITDS']),
-                   $numwp,
-                   $code_acquisition);
+                   'prix_tarif_actuel'=>($demande['OBSAPR']*40)/100,
+                   'prix_demande_article'=>$prix_demande_article,
+                   'prix_client_final'=>$demande['OBNEPR'],
+                   'quantite_demande_article'=>$demande['OBORQT'], 
+                   'serie'=>$serie,
+                   'date_demande_xdistrib'=>$date,
+                   'prix_accorde_demande_article'=>$prix_accorde_demande_article, 
+                   'remise_accorde_demande_article'=>$remise_accorde_demande_article,
+                   'prix_fob_demande_article'=>$prix_fob_demande_article,
+                   'prix_cif_demande_article'=>$prix_cif_demande_article,
+                   'marge_demande_article'=>$marge_demande_article,
+                   'tracking_number_demande_xdistrib'=>$trackingNumber,
+                   'code_article'=>trim($demande['OBITNO']),
+                   'reference_article'=>trim($demande['OBITDS']),
+                   'num_workplace_demande_xdistrib'=>$numwp,
+                   'code_acquisition'=>$code_acquisition);
                 echo '<pre>',var_export($data, true),'</pre>';
             
                $new_demande_article_Xdistrib= $article_Xdistrib->createArticleDemandeNoFile($data) ;

@@ -28,7 +28,7 @@ class Application_Model_DbTable_DemandeArticlexdistrib extends Zend_Db_Table_Abs
         return $this;
     }
 public function createArticleDemandeNoFile($data){
-//    $data[0]=  floatval($data[0]);
+//    $data[]=  floatval($data[0]);
 //    $data[1]=  floatval($data[1]);
 //    $data[2]= floatval($data[2]);
 //    $data[3]= floatval($data[3]);
