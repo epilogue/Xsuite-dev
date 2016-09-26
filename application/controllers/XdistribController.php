@@ -361,7 +361,7 @@ class XdistribController extends Zend_Controller_Action
                $quantite= intval($demande['OBORQT']);
               
                //var_dump($demande['OBITDS']);
-               $data =array( $demande['OBSAPR'],
+               $data =array( 'prix_tarif'=>$demande['OBSAPR'],
                    ($demande['OBSAPR']*40)/100,
                    $prix_demande_article,
                    $demande['OBNEPR'],
