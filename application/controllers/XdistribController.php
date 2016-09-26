@@ -225,7 +225,7 @@ class XdistribController extends Zend_Controller_Action
             $infos_offre = odbc_exec($this->odbc_conn, $sql);
             $infos_offres = odbc_fetch_object($infos_offre);
             $this->view->infos_offres=$infos_offres;
-             echo '<pre>',var_export($infos_offres),'</pre>';
+            // echo '<pre>',var_export($infos_offres),'</pre>';
             /*
              *'OBDLSP-> numéro client final (10 chiffres)'
              *'OBCUNO-> numéro distributeur (5 chiffres)'
@@ -345,11 +345,11 @@ class XdistribController extends Zend_Controller_Action
            $article_Xdistrib=new Application_Model_DbTable_DemandeArticlexdistrib();
            foreach($affiche_offre as $demande){
                $prix_tarif=$demande['OBSAPR'];
-               var_dump($prix_tarif);
+               //var_dump($prix_tarif);
                $prix_achat_actuel =($demande['OBSAPR']*40)/100;
-                var_dump($prix_achat_actuel);
+                //var_dump($prix_achat_actuel);
                $prix_demande_article =$demande['OBNEPR'];
-                var_dump($prix_demande_article);
+               // var_dump($prix_demande_article);
                $prix_final=null;
                $serie= null;
                $prix_accorde_demande_article=null;
@@ -359,8 +359,26 @@ class XdistribController extends Zend_Controller_Action
                $marge_demande_article=null;
                $code_acquisition=null;
                $quantite= intval($demande['OBORQT']);
-               echo '<pre>',var_export($demande, true),'</pre>';
-               var_dump($demande['OBITDS']);
+              
+               //var_dump($demande['OBITDS']);
+               $data =array( $demande['OBSAPR'],
+                   ($demande['OBSAPR']*40)/100,
+                   $prix_demande_article,
+                   $demande['OBNEPR'],
+                   $demande['OBORQT'], 
+                  $serie,
+                   $date,
+                   $prix_accorde_demande_article, 
+                   $remise_accorde_demande_article,
+                   $prix_fob_demande_article,
+                   $prix_cif_demande_article,
+                   $marge_demande_article,
+                   $trackingNumber,
+                   trim($demande['OBITNO']),
+                   $demande['OBITDS'],
+                   $numwp,
+                   $code_acquisition);
+                echo '<pre>',var_export($data, true),'</pre>';
               exit();
                $new_demande_article_Xdistrib= $article_Xdistrib->createDemandeArticlexdistrib(
                    $demande['OBSAPR'],
