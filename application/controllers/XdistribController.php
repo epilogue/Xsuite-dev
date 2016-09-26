@@ -362,7 +362,7 @@ class XdistribController extends Zend_Controller_Action
               
                //var_dump($demande['OBITDS']);
                $data =array( 'prix_tarif'=>$demande['OBSAPR'],
-                   'prix_tarif_actuel'=>($demande['OBSAPR']*40)/100,
+                   'prix_achat_actuel'=>($demande['OBSAPR']*40)/100,
                    'prix_demande_article'=>$prix_demande_article,
                    'prix_client_final'=>$demande['OBNEPR'],
                    'quantite_demande_article'=>$demande['OBORQT'], 
