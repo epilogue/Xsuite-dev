@@ -347,23 +347,23 @@ class XdistribController extends Zend_Controller_Action
             /*demande_article_Xdistrib*/
            $article_Xdistrib=new Application_Model_DbTable_DemandeArticlexdistrib();
            foreach($affiche_offre as $demande){
-               $prix_tarif=$demande['OBSAPR'];
-               //var_dump($prix_tarif);
-               $prix_achat_actuel =($demande['OBSAPR']*40)/100;
-                //var_dump($prix_achat_actuel);
-               $prix_demande_article =$demande['OBNEPR'];
-               // var_dump($prix_demande_article);
-               $prix_final=null;
-               $serie= null;
-               $prix_accorde_demande_article=null;
-               $remise_accorde_demande_article=null;
-               $prix_fob_demande_article=null;
-               $prix_cif_demande_article=null;
-               $marge_demande_article=null;
-               $code_acquisition=null;
-               $quantite= intval($demande['OBORQT']);
-              
-               //var_dump($demande['OBITDS']);
+//               $prix_tarif=$demande['OBSAPR'];
+//               //var_dump($prix_tarif);
+//               $prix_achat_actuel =($demande['OBSAPR']*40)/100;
+//                //var_dump($prix_achat_actuel);
+//               $prix_demande_article =$demande['OBNEPR'];
+//               // var_dump($prix_demande_article);
+//               $prix_final=null;
+//               $serie= null;
+//               $prix_accorde_demande_article=null;
+//               $remise_accorde_demande_article=null;
+//               $prix_fob_demande_article=null;
+//               $prix_cif_demande_article=null;
+//               $marge_demande_article=null;
+//               $code_acquisition=null;
+//               $quantite= intval($demande['OBORQT']);
+//              
+//               //var_dump($demande['OBITDS']);
                $data =array( 'prix_tarif'=>$demande['OBSAPR'],
                    'prix_achat_actuel'=>($demande['OBSAPR']*40)/100,
                    'prix_demande_article'=>$prix_demande_article,
@@ -431,17 +431,17 @@ class XdistribController extends Zend_Controller_Action
         }
        if ($this->getRequest()->isPost()) {
        $formData = $this->getRequest()->getPost();
-    echo '<pre>',var_export($formData),'</pre>'; 
+//    echo '<pre>',var_export($formData),'</pre>'; 
      
       $result = array_combine($formData['reference'],$formData['quantite']);
       $result2 =  array_combine( $formData['reference'],$formData['prix_tarif_dis']);
       $result3 = array_combine($formData['reference'],$formData['serie']);
       $result4= array_combine($formData['reference'], $formData['prix_achat_client_final']);
       $redirector = $this->_helper->getHelper('Redirector');
-        echo '<pre>',var_export($result),'</pre>';
-        echo '<pre>',var_export($result2),'</pre>';
-         echo '<pre>',var_export($result3),'</pre>';exit();
-        var_dump($_FILES); 
+//        echo '<pre>',var_export($result),'</pre>';
+//        echo '<pre>',var_export($result2),'</pre>';
+//         echo '<pre>',var_export($result3),'</pre>';exit();
+//        var_dump($_FILES); 
        if(isset($_FILES['fichierDemandeDistrib']['name'])){
            if($_FILES['fichierDemandeDistrib']['size']<= 2000000){
                $extension_valide = array('pdf');
