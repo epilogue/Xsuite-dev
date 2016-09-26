@@ -33,7 +33,7 @@ public function createArticleDemandeNoFile($data){
     $data['prix_demande_article']= floatval($data['prix_demande_article']);
     $data['prix_client_final']= floatval($data['prix_client_final']);
     $data['quantite_demande_article']= intval($data['quantite_demande_article']);
-       echo '<pre>',var_export($data, true),'</pre>'; exit();
+       echo '<pre>',var_export($data, true),'</pre>'; 
     $this->insert($data);
         return $this;
 }
