@@ -1033,6 +1033,9 @@ if($this->getRequest()->isPost()){
                 case "31":
                     $destinataireMail1 = $emailVars->listes->CDROUEST;
                     break;
+                case "33":
+                    $destinataireMail1 = $emailVars->listes->IO;
+                    break;
                 case "29":
                     $destinataireMail1=$emailVars->listes->Export;
             }
