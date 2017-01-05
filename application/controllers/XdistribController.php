@@ -421,9 +421,9 @@ class XdistribController extends Zend_Controller_Action
       $redirector = $this->_helper->getHelper('Redirector');
       /*update des articles avec les prix achat final serie...*/
       
-        echo '<pre>',var_export($result),'</pre>';
+        echo '<pre>',var_export($result),'</pre>';exit();
 //        echo '<pre>',var_export($result2),'</pre>';
-//         echo '<pre>',var_export($result3),'</pre>';exit();
+//         echo '<pre>',var_export($result3),'</pre>';
 //        var_dump($_FILES); 
        if(isset($_FILES['fichierDemandeDistrib']['name'])){
            if($_FILES['fichierDemandeDistrib']['size']<= 2000000){
