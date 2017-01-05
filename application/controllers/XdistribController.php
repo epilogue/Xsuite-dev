@@ -423,8 +423,10 @@ class XdistribController extends Zend_Controller_Action
       foreach ($result3 as $key=>$value) {
           echo $key;
           echo $value;
+          $updateSerie = new Application_Model_DbTable_DemandeArticlexdistrib();
+          $upserie = $updateSerie->updateSerie($key, $trackingNumber, $value);
       }
-        echo '<pre>',var_export($result2),'</pre>';exit();
+        //echo '<pre>',var_export($result3),'</pre>';exit();
 //        echo '<pre>',var_export($result2),'</pre>';
 //         echo '<pre>',var_export($result3),'</pre>';
 //        var_dump($_FILES); 
