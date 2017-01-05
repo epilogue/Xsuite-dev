@@ -349,7 +349,7 @@ class XdistribController extends Zend_Controller_Action
            echo '<pre>',var_export($affiche_offre),'</pre>';
            foreach($affiche_offre as $demande){
               //var_dump($demande['OBITDS']);
-               if($demande !=FALSE){
+               if($demande !==FALSE){
                $data =array( 'prix_tarif'=>$demande['OBSAPR'],
                    'prix_achat_actuel'=>($demande['OBSAPR']*40)/100,
                    'prix_demande_article'=>$prix_demande_article,
