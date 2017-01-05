@@ -328,7 +328,7 @@ class XdistribController extends Zend_Controller_Action
          $potentiel = $infos_distrib['OKCFC7'];
          $distribs = new Application_Model_DbTable_Distributeurs();
          $distrib=$distribs->createDistributeur(trim($infos_distrib['OKCUNM']),null,trim($infos_distrib['OKCUNO']),$agence, $codepostaldis,$info_industry['id_industry'],$potentiel,$numwp);
-         
+          /*create demande*/
          /*demande xdistrib ( ok  en commentaire pour ne pas saturée la bdd de test )*/
             $dateinit = $infos_offres->OBRGDT;
             $dateinit3 = substr($dateinit, 0, 4);
@@ -339,12 +339,11 @@ class XdistribController extends Zend_Controller_Action
             $this->view->datefinal = $datefinal;
             $datef=array($dateinit3, $dateinit2,$dateinit1) ;
             $date=implode('-',$datef);
-////             echo '<pre>',var_export($infos_tc),'</pre>';
-////             echo '<pre>',var_export($infos_dd),'</pre>';
+           
            $Xdistribs = new Application_Model_DbTable_Xdistrib();
            $new_Xdistrib= $Xdistribs->createXDistrib($numwp, $trackingNumber, null, $date, null, $infos_tc['id_user'], $infos_dd->id_user,null,$infos_client['OKCUNO'],$infos_distrib['OKCUNO']);
-            
-            /*demande_article_Xdistrib*/
+            /*fin create demande*/
+            /*create article_Xdistrib*/
            $article_Xdistrib=new Application_Model_DbTable_DemandeArticlexdistrib();
           
            $affiche_offre1=array_filter($affiche_offre);
@@ -373,6 +372,9 @@ class XdistribController extends Zend_Controller_Action
 //                echo '<pre>',var_export($data, true),'</pre>';
             
                $new_demande_article_Xdistrib= $article_Xdistrib->createArticleDemandeNoFile($data) ;
+               /*fin create article*/
+               
+               /*recherche et insertion prif fob et cif*/
                 $mmcono = "100";
                 $division = "FR0";
                 $facility = "I01";
@@ -384,7 +386,6 @@ class XdistribController extends Zend_Controller_Action
                 $query5 = "select * from EIT.MVXCDTA.MPAGRP MPAGRP where MPAGRP.AJCONO = '$mmcono'  AND MPAGRP.AJOBV2 = '{$demande['OBITNO']}' AND MPAGRP.AJOBV1 = '$division'  ORDER BY MPAGRP.AJAGNB";
                 $resultats5 = odbc_Exec($this->odbc_conn2, $query5);
                 $prixciffob[] = odbc_fetch_object($resultats5);
-//                echo '<pre>',var_export($prixciffob),'</pre>';
                 $acquis= "select MITBAL.MBITNO, MITBAL.MBPUIT from EIT.MVXCDTA.MITBAL MITBAL where MITBAL.MBITNO ='{$demande['OBITNO']}'";
                 $resultatsacquis=odbc_Exec($this->odbc_conn2, $acquis);
                 $resultatacquis[] = odbc_fetch_object($resultatsacquis);
@@ -399,8 +400,7 @@ class XdistribController extends Zend_Controller_Action
             }
 
             $updatecif1 = new Application_Model_DbTable_DemandeArticlexdistrib();
-            $updatecif2 = $updatecif1->getDemandeArticlexdistrib($numwp);
-//            echo '<pre>',  var_export($updatecif2),'</pre>'; 
+            $updatecif2 = $updatecif1->getDemandeArticlexdistrib($numwp); 
             foreach($updatecif2 as $result){
                 if($result['code_acquisition']=='2'){
                     $fob=$result['prix_fob_demande_article'];
@@ -409,24 +409,18 @@ class XdistribController extends Zend_Controller_Action
                     $updatecif3 = $updatecif1->updatecif($cif, $result['code_article'], $numwp);
                 }
             }
-      
-         /* on insert les données provenant de movex et on renseigne les tables suivantes :
-          * clients_distrib
-          * distribs
-          * demande_xdistrib     
-          *  demande_article_xdistrib
-          */
-         //client_distrib ( ok  en commentaire pour ne pas saturée la bdd de test )
         }
        if ($this->getRequest()->isPost()) {
        $formData = $this->getRequest()->getPost();
 //    echo '<pre>',var_export($formData),'</pre>'; 
      
-      $result = array_combine($formData['reference'],$formData['quantite']);
+      $result = array_combine($formData['reference'],$formData['quantite'],$formData['prix_tarif_dis']);
       $result2 =  array_combine( $formData['reference'],$formData['prix_tarif_dis']);
       $result3 = array_combine($formData['reference'],$formData['serie']);
       $result4= array_combine($formData['reference'], $formData['prix_achat_client_final']);
       $redirector = $this->_helper->getHelper('Redirector');
+      /*update des articles avec les prix achat final serie...*/
+      
         echo '<pre>',var_export($result),'</pre>';
 //        echo '<pre>',var_export($result2),'</pre>';
 //         echo '<pre>',var_export($result3),'</pre>';exit();
