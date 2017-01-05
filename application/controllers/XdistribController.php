@@ -462,13 +462,13 @@ class XdistribController extends Zend_Controller_Action
                    echo 'le transfert a échoué';
                }
            }
-       }
+       } echo '<pre>',var_export($formData),'</pre>' ; exit();
             $flashMessenger = $this->_helper->getHelper('FlashMessenger');
             $message = "votre offre  a bien été créée.";
             $flashMessenger->addMessage($message);
             $redirector->gotoSimple('index', 'xdistrib');
   
-           echo '<pre>',var_export($formData),'</pre>' ; exit();    }    
+              }    
     }
     
     public function uploadnumwpAction(){
