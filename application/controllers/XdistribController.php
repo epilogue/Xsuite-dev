@@ -452,7 +452,7 @@ class XdistribController extends Zend_Controller_Action
                }
                $nomFichier = 'Mail_'.$trackingNumber.'.'.$extension_upload;
               // var_dump($nomFichier);
-               $uploaddir = "/../public/mails/";
+               $uploaddir = "/home/mag/www-dev/Xsuite-dev_mag/public/mails/";
               // var_dump($uploaddir);$uploaddir = APPLICATION_PATH."/public/mails/";
                $uploadfile = $uploaddir.$nomFichier;
                var_dump($uploadfile);
