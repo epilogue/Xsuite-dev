@@ -415,7 +415,7 @@ class XdistribController extends Zend_Controller_Action
 //    echo '<pre>',var_export($formData),'</pre>'; 
      
       $result = array_combine($formData['reference'],$formData['quantite']);
-      $result2 =  array_combine( $result,$formData['prix_tarif_dis']);
+      $result2 =  array_combine( $formData['reference'],$formData['prix_tarif_dis']);
       $result3 = array_combine($formData['reference'],$formData['serie']);
       $result4= array_combine($formData['reference'], $formData['prix_achat_client_final']);
       $redirector = $this->_helper->getHelper('Redirector');
