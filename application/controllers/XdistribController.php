@@ -306,7 +306,7 @@ class XdistribController extends Zend_Controller_Action
          //$affiche_offre[]=odbc_fetch_array($affiche_offres);
           while ($affiche_offre[] = odbc_fetch_array($affiche_offres)) {
                 $this->view->affiche_offre = $affiche_offre;
-                echo '<pre>',var_export($this->view->affiche_offre),'</pre>';
+               // echo '<pre>',var_export($this->view->affiche_offre),'</pre>';
             }
 
 //           $this->view->affiche_offre=$affiche_offre;
@@ -468,7 +468,7 @@ class XdistribController extends Zend_Controller_Action
             $flashMessenger->addMessage($message);
             $redirector->gotoSimple('index', 'xdistrib');
   
-                }    
+           echo '<pre>',var_export($formData),'</pre>' ; exit();    }    
     }
     
     public function uploadnumwpAction(){
