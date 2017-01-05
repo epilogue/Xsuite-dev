@@ -322,7 +322,7 @@ class XdistribController extends Zend_Controller_Action
          /*distributeurs ( ok  en commentaire pour ne pas saturée la bdd de test )*/
 //           echo '<pre>',var_export($affiche_offre),'</pre>';
 //            echo '<pre>',var_export($industriewp4),'</pre>';
-           $adresse =trim($infos_client['OKCUA4']);
+         $adresse =trim($infos_client['OKCUA4']);
          $codepostaldis = substr($adresse,0,5);
          $agence = substr($adresse,5);
          $potentiel = $infos_distrib['OKCFC7'];
@@ -346,24 +346,9 @@ class XdistribController extends Zend_Controller_Action
             
             /*demande_article_Xdistrib*/
            $article_Xdistrib=new Application_Model_DbTable_DemandeArticlexdistrib();
+           echo '<pre>',var_export($affiche_offre),'</pre>';
            foreach($affiche_offre as $demande){
-//               $prix_tarif=$demande['OBSAPR'];
-//               //var_dump($prix_tarif);
-//               $prix_achat_actuel =($demande['OBSAPR']*40)/100;
-//                //var_dump($prix_achat_actuel);
-//               $prix_demande_article =$demande['OBNEPR'];
-//               // var_dump($prix_demande_article);
-//               $prix_final=null;
-//               $serie= null;
-//               $prix_accorde_demande_article=null;
-//               $remise_accorde_demande_article=null;
-//               $prix_fob_demande_article=null;
-//               $prix_cif_demande_article=null;
-//               $marge_demande_article=null;
-//               $code_acquisition=null;
-//               $quantite= intval($demande['OBORQT']);
-//              
-//               //var_dump($demande['OBITDS']);
+              //var_dump($demande['OBITDS']);
                $data =array( 'prix_tarif'=>$demande['OBSAPR'],
                    'prix_achat_actuel'=>($demande['OBSAPR']*40)/100,
                    'prix_demande_article'=>$prix_demande_article,
