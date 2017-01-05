@@ -447,7 +447,7 @@ class XdistribController extends Zend_Controller_Action
                    echo 'le transfert a échoué';
                }
            }
-       } echo '<pre>',var_export($formData),'</pre>' ; exit();
+       } echo '<pre>',var_export($formData),'</pre>' ; 
             $flashMessenger = $this->_helper->getHelper('FlashMessenger');
             $message = "votre offre  a bien été créée.";
             $flashMessenger->addMessage($message);
