@@ -302,7 +302,7 @@ class XdistribController extends Zend_Controller_Action
                 from EIT.CVXCDTA.OOLINE OOLINE WHERE OOLINE.OBORNO='{$numwp}'  AND OOLINE.OBDIVI LIKE 'FR0' AND OOLINE.OBCONO=100";
                 var_dump($sqlaffiche);
                 $affiche_offres=odbc_exec($this->odbc_conn, $sqlaffiche);
-           echo '<pre>',var_export($affiche_offres),'</pre>';
+           //echo '<pre>',var_export($affiche_offres),'</pre>';
          //$affiche_offre[]=odbc_fetch_array($affiche_offres);
           while ($affiche_offre[] = odbc_fetch_array($affiche_offres)) {
                 $this->view->affiche_offre = $affiche_offre;
@@ -347,7 +347,7 @@ class XdistribController extends Zend_Controller_Action
            $article_Xdistrib=new Application_Model_DbTable_DemandeArticlexdistrib();
           
            $affiche_offre1=array_filter($affiche_offre);
-            echo '<pre>',var_export($affiche_offre1),'</pre>';
+            //echo '<pre>',var_export($affiche_offre1),'</pre>';
            foreach($affiche_offre1 as $demande){
               //var_dump($demande['OBITDS']);
               
@@ -421,11 +421,11 @@ class XdistribController extends Zend_Controller_Action
       $redirector = $this->_helper->getHelper('Redirector');
       /*update des articles avec les prix achat final serie...*/
       foreach ($result3 as $key=>$value) {
-          echo $key;
-          echo $value;
+          //echo $key;
+          //echo $value;
           $updateSerie = new Application_Model_DbTable_DemandeArticlexdistrib();
           $upserie = $updateSerie->updateSerie($key, $trackingNumber, $value);
-          var_dump($upserie); exit();
+          echo '<pre>',var_export($upserie),'</pre>'; exit();
       }
         //echo '<pre>',var_export($result3),'</pre>';exit();
 //        echo '<pre>',var_export($result2),'</pre>';
