@@ -99,12 +99,12 @@ public function createArticleDemandeNoFile($data){
         return $plop2;
     }
     
-     public function updateSerie($code_article,$tracking_number,$serie) {
-        $code_article = "$code_article";
+     public function updateSerie($reference,$tracking_number,$serie) {
+        $reference = "$reference";
         $tracking_number = "$tracking_number";
         $serie="$serie";
-         $sql ="UPDATE `demande_article_xdistrib` SET `serie`='{$serie}' WHERE `code_article`='{$code_article}' and `tracking_number_demande_xdistrib`='{$tracking_number}'";
-         var_dump($sql);exit();
+         $sql ="UPDATE `demande_article_xdistrib` SET `serie`='{$serie}' WHERE `reference_article`='{$reference}' and `tracking_number_demande_xdistrib`='{$tracking_number}'";
+//         var_dump($sql);exit();
           $res = $this->getAdapter()->query($sql);
         
         if (!$res) {
