@@ -99,7 +99,7 @@ public function createArticleDemandeNoFile($data){
         return $plop2;
     }
     
-     public function updateSerie( $code_article,$tracking_number,$serie) {
+     public function updateSerie($code_article,$tracking_number,$serie) {
         $code_article = "$code_article";
         $tracking_number = "$tracking_number";
         $serie = "$serie";
@@ -107,9 +107,9 @@ public function createArticleDemandeNoFile($data){
         $datas = array('serie' => $serie);
         $where = $plop4->quoteInto('code_article = ?', $code_article)
                 . $plop4->quoteInto(' And tracking_number_demande_xdistrib = ?', $tracking_number);
-        $plop5 = $this->update($datas, $where);
+        $plop5 = $this->update($datas, $where); var_dump($datas);var_dump($where);exit();
         return $plop5;
-        var_dump($datas);var_dump($where);exit();
+       
     }
 
     public function listtracking($tracking_number) {
