@@ -109,6 +109,7 @@ public function createArticleDemandeNoFile($data){
                 . $plop4->quoteInto(' And tracking_number_demande_xdistrib = ?', $tracking_number);
         $plop5 = $this->update($datas, $where);
         return $plop5;
+        var_dump($plop5);exit();
     }
 
     public function listtracking($tracking_number) {
