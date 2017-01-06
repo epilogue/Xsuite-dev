@@ -100,9 +100,9 @@ public function createArticleDemandeNoFile($data){
     }
     
      public function updateSerie($reference,$tracking_number,$serie) {
-        $reference = "$reference";
-        $tracking_number = "$tracking_number";
-        $serie="$serie";
+        //$reference = "$reference";
+        //$tracking_number = "$tracking_number";
+        //$serie="$serie";
          $sql ="UPDATE `demande_article_xdistrib` SET `serie`='{$serie}' WHERE `reference_article`='{$reference}' and `tracking_number_demande_xdistrib`='{$tracking_number}'";
 //         var_dump($sql);exit();
           $res = $this->getAdapter()->query($sql);
@@ -116,9 +116,9 @@ public function createArticleDemandeNoFile($data){
     }
     
     public function updatePrixClient($reference,$tracking_number,$prix) {
-        $reference = "$reference";
-        $tracking_number = "$tracking_number";
-        $prix="$prix";
+        //$reference = "$reference";
+       // $tracking_number = "$tracking_number";
+        //$prix="$prix";
          $sql ="UPDATE `demande_article_xdistrib` SET `prix_client_final`='{$prix}' WHERE `reference_article`='{$reference}' and `tracking_number_demande_xdistrib`='{$tracking_number}'";
          var_dump($sql);exit();
           $res = $this->getAdapter()->query($sql);
