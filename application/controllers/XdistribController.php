@@ -353,8 +353,8 @@ class XdistribController extends Zend_Controller_Action
               
                $data =array( 'prix_tarif'=>$demande['OBSAPR'],
                    'prix_achat_actuel'=>($demande['OBSAPR']*40)/100,
-                   'prix_demande_article'=>$prix_demande_article,
-                   'prix_client_final'=>$demande['OBNEPR'],
+                   'prix_demande_article'=>$demande['OBNEPR'],
+                   'prix_client_final'=>$prix_client_final,
                    'quantite_demande_article'=>$demande['OBORQT'], 
                    'serie'=>$serie,
                    'date_demande_xdistrib'=>$date,
