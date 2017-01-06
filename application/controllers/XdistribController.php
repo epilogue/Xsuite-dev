@@ -423,10 +423,8 @@ class XdistribController extends Zend_Controller_Action
       /*update des articles avec les prix achat final serie...*/
       $updateSerie = new Application_Model_DbTable_DemandeArticlexdistrib();
       foreach ($result3 as $key=>$value) {
-         echo $key;
-         echo $value;exit();
-          $upserie = $updateSerie->updateSerie($key, $trackingNumber, $value);
-         // echo '<pre>',var_export($upserie),'</pre>'; exit();
+          $upserie = $updateSerie->updateSerie($key, $trackingNumber,$value);
+          echo '<pre>',var_export($upserie),'</pre>'; exit();
       }
         //echo '<pre>',var_export($result3),'</pre>';exit();
 //        echo '<pre>',var_export($result2),'</pre>';
