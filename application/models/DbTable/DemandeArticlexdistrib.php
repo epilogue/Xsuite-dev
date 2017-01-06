@@ -100,8 +100,9 @@ public function createArticleDemandeNoFile($data){
     }
     
      public function updateSerie($code_article,$tracking_number,$serie) {
-//        $code_article = "$code_article";
-//        $tracking_number = "$tracking_number";
+        $code_article = "$code_article";
+        $tracking_number = "$tracking_number";
+        $serie="$serie";
          $sql ="UPDATE `demande_article_xdistrib` SET `serie`={$serie}  WHERE `code_article`={$code_article} and `tracking_number_demande_xdistrib`={$tracking_number}";
 
           $res = $this->getAdapter()->query($sql);
