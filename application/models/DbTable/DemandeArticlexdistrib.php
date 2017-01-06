@@ -104,7 +104,7 @@ public function createArticleDemandeNoFile($data){
         $tracking_number = "$tracking_number";
         $serie="$serie";
          $sql ="UPDATE `demande_article_xdistrib` SET `serie`='{$serie}' WHERE `code_article`='{$code_article}' and `tracking_number_demande_xdistrib`='{$tracking_number}'";
-         var_dump($sql);
+         var_dump($sql);exit();
           $res = $this->getAdapter()->query($sql);
         
         if (!$res) {

@@ -412,7 +412,7 @@ class XdistribController extends Zend_Controller_Action
         }
        if ($this->getRequest()->isPost()) {
        $formData = $this->getRequest()->getPost();
-        $redirector = $this->_helper->getHelper('Redirector');
+       $redirector = $this->_helper->getHelper('Redirector');
 //    echo '<pre>',var_export($formData),'</pre>'; 
      
       //$result = array_combine($formData['reference'],$formData['quantite']);
@@ -423,11 +423,8 @@ class XdistribController extends Zend_Controller_Action
       /*update des articles avec les prix achat final serie...*/
       $updateSerie = new Application_Model_DbTable_DemandeArticlexdistrib();
       foreach ($result3 as $key=>$value) {
-          $upserie = $updateSerie->updateSerie($key, $trackingNumber,$value);
+          $upserie = $updateSerie->updateSerie($key,$trackingNumber,$value);
       }
-        //echo '<pre>',var_export($result3),'</pre>';exit();
-//        echo '<pre>',var_export($result2),'</pre>';
-//         echo '<pre>',var_export($result3),'</pre>';
 //        var_dump($_FILES); 
        if(isset($_FILES['fichierDemandeDistrib']['name'])){
            if($_FILES['fichierDemandeDistrib']['size']<= 2000000){
@@ -442,16 +439,16 @@ class XdistribController extends Zend_Controller_Action
                $uploaddir = "/home/mag/www-dev/Xsuite-dev_mag/public/mails/";
               // var_dump($uploaddir);$uploaddir = APPLICATION_PATH."/public/mails/";
                $uploadfile = $uploaddir.$nomFichier;
-               var_dump($uploadfile);
+               //var_dump($uploadfile);
                $tmp_name=$_FILES['fichierDemandeDistrib']['tmp_name'];
-               var_dump($tmp_name);
+               //var_dump($tmp_name);
                if(move_uploaded_file($tmp_name, $uploadfile)){
                    echo 'tout ok'; 
                } else{
                    echo 'le transfert a échoué';
                }
            }
-       } echo '<pre>',var_export($formData),'</pre>' ; 
+       } 
             $flashMessenger = $this->_helper->getHelper('FlashMessenger');
             $message = "votre offre  a bien été créée.";
             $flashMessenger->addMessage($message);
