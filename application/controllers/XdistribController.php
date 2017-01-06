@@ -425,6 +425,9 @@ class XdistribController extends Zend_Controller_Action
       foreach ($result3 as $key=>$value) {
           $upserie = $updateSerie->updateSerie($key,$trackingNumber,$value);
       }
+      foreach ($result4 as $key=>$value) {
+          $upprix = $updateSerie->updateSerie($key,$trackingNumber,$value);
+      }
 //        var_dump($_FILES); 
        if(isset($_FILES['fichierDemandeDistrib']['name'])){
            if($_FILES['fichierDemandeDistrib']['size']<= 2000000){
