@@ -102,7 +102,7 @@ public function createArticleDemandeNoFile($data){
      public function updateSerie($code_article,$tracking_number,$serie) {
 //        $code_article = "$code_article";
 //        $tracking_number = "$tracking_number";
-//        $serie = "$serie";
+        $serie = "plop";
         $plop4 = $this->getAdapter();
         $datas = array('serie' => $serie);
         $where = $plop4->quoteInto('code_article = ?', $code_article)
