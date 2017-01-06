@@ -426,7 +426,7 @@ class XdistribController extends Zend_Controller_Action
           $upserie = $updateSerie->updateSerie($key,$trackingNumber,$value);
       }
       foreach ($result4 as $key=>$value) {
-          $upprix = $updateSerie->updatePrixClient($key,$trackingNumber,$value);
+          $upprix =$updateSerie->updatePrixClient($key,$trackingNumber,$value);
       }
 //        var_dump($_FILES); 
        if(isset($_FILES['fichierDemandeDistrib']['name'])){
