@@ -425,6 +425,7 @@ class XdistribController extends Zend_Controller_Action
           echo $value;
           $updateSerie = new Application_Model_DbTable_DemandeArticlexdistrib();
           $upserie = $updateSerie->updateSerie($key, $trackingNumber, $value);
+          var_dump($upserie); exit();
       }
         //echo '<pre>',var_export($result3),'</pre>';exit();
 //        echo '<pre>',var_export($result2),'</pre>';
