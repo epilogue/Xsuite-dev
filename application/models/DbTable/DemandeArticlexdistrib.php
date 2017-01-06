@@ -107,7 +107,7 @@ public function createArticleDemandeNoFile($data){
         $datas = array('serie' => $serie);
         $where = $plop4->quoteInto('code_article = ?', $code_article)
                 . $plop4->quoteInto(' And tracking_number_demande_xdistrib = ?', $tracking_number);
-        $plop5 = $this->update($datas, $where); var_dump($datas);var_dump($where);var_dump($plop5);exit();
+        $plop5 = $this->update($datas, $where); echo $this->update($datas,$where); var_dump($datas);var_dump($where);var_dump($plop5);exit();
         return $plop5;
        
     }
