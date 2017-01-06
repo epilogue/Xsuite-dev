@@ -420,7 +420,7 @@ class XdistribController extends Zend_Controller_Action
       $result3 = array_combine($formData['reference'],$formData['serie']);
       $result4= array_combine($formData['reference'],$formData['prix_achat_client_final']);
      echo '<pre>',var_export($result3),'</pre>'; 
-     echo '<pre>',var_export($result4),'</pre>'; exit();
+     echo '<pre>',var_export($result4),'</pre>'; 
       /*update des articles avec les prix achat final serie...*/
       $updateSerie = new Application_Model_DbTable_DemandeArticlexdistrib();
       foreach ($result3 as $key=>$value) {

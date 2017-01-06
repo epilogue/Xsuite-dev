@@ -120,7 +120,7 @@ public function createArticleDemandeNoFile($data){
        // $tracking_number = "$tracking_number";
         //$prix="$prix";
          $sql ="UPDATE `demande_article_xdistrib` SET `prix_client_final`='{$prix}' WHERE `reference_article`='{$reference}' and `tracking_number_demande_xdistrib`='{$tracking_number}'";
-         var_dump($sql);exit();
+        // var_dump($sql);exit();
           $res = $this->getAdapter()->query($sql);
         
         if (!$res) {
