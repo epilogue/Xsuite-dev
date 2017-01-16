@@ -94,7 +94,7 @@ public function rechercheDistributeur() {
         }
     }
     public function rechercheDistributeurComptable() {
-       $sql="select distinct(numwp_distributeur),nom_distributeur from distributeurs order by nom_distributeur ASC union select distinct(numwp_client),nom_client from clients order by nom_client ASC";
+       $sql="select distinct(numwp_distributeur),nom_distributeur from distributeurs  union select distinct(numwp_client),nom_client from clients ";
         $res = $this->getAdapter()->query($sql);
         $rest=$res->fetchAll();
 //        var_dump($sql);
