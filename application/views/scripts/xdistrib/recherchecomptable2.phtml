@@ -9,19 +9,8 @@ $this->headScript()->appendFile('/js/controllers/xprice/popup.js');
     <h3>Résultats de la recherche</h3> 
     
     <table class="enum">
-        <?php foreach ($this->listXdistrib as $resulta){
-        $coud=explode('-',$resulta['tracking_number_demande_xdistrib']);
-        if($coud[0]=='SPD'){?>
+        
         <thead>
-            <tr>
-                <th>Commercial</th>
-                <th>Numéro Workplace</th>
-                <th>Tracking number</th>
-                <th>Nom Distributeur</th>
-                <th>Date demande</th>
-            </tr>
-        </thead><?php }else{?>
-            <thead>
             <tr>
                 <th>Commercial</th>
                 <th>Numéro Workplace</th>
@@ -29,8 +18,8 @@ $this->headScript()->appendFile('/js/controllers/xprice/popup.js');
                 <th>Nom Client</th>
                 <th>Date demande</th>
             </tr>
-        </thead>
-            <?php } }?>
+        </thead>?>
+            
         <tbody>
             <?php foreach ($this->listXdistrib as $result){
                  $coud=explode('-',$result['tracking_number_demande_xdistrib']);
