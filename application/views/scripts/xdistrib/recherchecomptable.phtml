@@ -23,7 +23,7 @@ $this->headScript()->appendFile('/js/multipleselect.js');
                     <td>Choississez le code article :</td>
                     <td>
                         <select name="liste_code_article" id="code_article">
-                            <option>Choississez le code article</option>
+                           
                             <?php foreach($this->code_article as $value2)
                             {?>
                             <option value="<?php echo $value2['code_article']; ?>"><?php echo $value2['code_article']; ?></option>
