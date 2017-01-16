@@ -7,7 +7,11 @@ $this->headScript()->appendFile('/js/controllers/xprice/popup.js');
 <div class="contenu">
     <h2>Xdistrib</h2>
     <h3>Résultats de la recherche</h3> 
+    
     <table class="enum">
+        <?php foreach ($this->listXdistrib as $resulta){
+        $coud=explode('-',$resulta['tracking_number_demande_xdistrib']);
+        if($coud[0]=='SPD'){?>
         <thead>
             <tr>
                 <th>Commercial</th>
@@ -16,9 +20,21 @@ $this->headScript()->appendFile('/js/controllers/xprice/popup.js');
                 <th>Nom Distributeur</th>
                 <th>Date demande</th>
             </tr>
+        </thead><?php }else{?>
+            <thead>
+            <tr>
+                <th>Commercial</th>
+                <th>Numéro Workplace</th>
+                <th>Tracking number</th>
+                <th>Nom Client</th>
+                <th>Date demande</th>
+            </tr>
         </thead>
+            <?php } }?>
         <tbody>
-            <?php foreach ($this->listXdistrib as $result){?>
+            <?php foreach ($this->listXdistrib as $result){
+                 $coud=explode('-',$result['tracking_number_demande_xdistrib']);
+            if($coud[0]=='SPD'){ ?>
             <tr>
                 <td><?php echo $result['nom_user'] ?></td>
                 <td><?php echo $result['num_workplace_demande_xdistrib'] ?></td>
@@ -27,7 +43,16 @@ $this->headScript()->appendFile('/js/controllers/xprice/popup.js');
                 <td><?php echo $result['date_demande_xdistrib']?></td>
                 <td><a href="<?php echo $this->url(array("controller"=>"xdistrib","action"=>"consult","numwp"=>$result['num_workplace_demande_xdistrib']));?>" <button class="retour" id="historique-<?php echo $k; ?>">historique</button></a>
             </tr>
-            <?php } ?>
+        <?php }else{ ?>
+            <tr>
+                <td><?php echo $result['nom_user'] ?></td>
+                <td><?php echo $result['num_workplace_demande_xdistrib'] ?></td>
+                <td><?php echo $result['tracking_number_demande_xdistrib'] ?></td>
+                <td><?php echo $result['nom_client'] ?></td>
+                <td><?php echo $result['date_demande_xdistrib']?></td>
+                <td><a href="<?php echo $this->url(array("controller"=>"xprice","action"=>"consult","numwp"=>$result['num_workplace_demande_xdistrib']));?>" <button class="retour" id="historique-<?php echo $k; ?>">historique</button></a>
+            </tr>
+         <?php } } ?>
         </tbody>
         
     </table>
