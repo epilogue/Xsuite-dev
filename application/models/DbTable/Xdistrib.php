@@ -343,7 +343,7 @@ JOIN validations_demande_xdistrib ON validations_demande_xdistrib.id_demande_xdi
                . " join demande_article_xprices on demande_article_xprices.tracking_number_demande_xprice=demande_xprices.tracking_number_demande_xprice "
                     . " where demande_xprices.numwp_client = '{$code_distrib}' "
                     . " or demande_article_xprices.code_article = {$code_article} ";
-            var_dump($sql);exit();
+            //var_dump($sql);exit();
                     $res = $this->getAdapter()->query($sql);
                     
 //                   var_dump($sql);
