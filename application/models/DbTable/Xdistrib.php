@@ -336,13 +336,13 @@ JOIN validations_demande_xdistrib ON validations_demande_xdistrib.id_demande_xdi
                     . " join users on users.id_user = demande_xdistrib.id_user "
                . " join demande_article_xdistrib on demande_article_xdistrib.tracking_number_demande_xdistrib=demande_xdistrib.tracking_number_demande_xdistrib "
                     . " where demande_xdistrib.numwp_distributeur = '{$code_distrib}' "
-                    . " and demande_article_xdistrib.code_article = {$code_article} "
+                    . " or demande_article_xdistrib.code_article = {$code_article} "
                     . " union select distinct(demande_xprices.num_workplace_demande_xprice), demande_xprices.id_demande_xprice, demande_xprices.tracking_number_demande_xprice,clients.nom_client,demande_xprices.date_demande_xprice,users.nom_user  from demande_xprices "
                     . " join clients on clients.numwp_client = demande_xprices.numwp_client"
                     . " join users on users.id_user = demande_xprices.id_user "
                . " join demande_article_xprices on demande_article_xprices.tracking_number_demande_xprice=demande_xprices.tracking_number_demande_xprice "
                     . " where demande_xprices.numwp_client = '{$code_distrib}' "
-                    . " and demande_article_xprices.code_article = {$code_article} ";
+                    . " or demande_article_xprices.code_article = {$code_article} ";
             var_dump($sql);exit();
                     $res = $this->getAdapter()->query($sql);
                     
