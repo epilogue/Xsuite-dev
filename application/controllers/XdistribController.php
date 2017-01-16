@@ -3939,8 +3939,8 @@ if($this->getRequest()->isPost()){
         $article= new Application_Model_DbTable_DemandeArticlexdistrib();
         if($fonction==47){
        
-        $result1 = $distributeurs->rechercheDistributeur();
-        $code_article=$article->article() ;
+        $result1 = $distributeurs->rechercheDistributeurComptable();
+        $code_article=$article->articleComptabilite() ;
         $this->view->code_client=$result1;
         $this->view->code_article=$code_article;
        }

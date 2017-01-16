@@ -233,6 +233,17 @@ public function createArticleDemandeNoFile($data){
         }
     } 
     public function article(){
+        $sql="select distinct(code_article) from demande_article_xdistrib";
+        $res = $this->getAdapter()->query($sql);
+        $rest=$res->fetchAll();
+        if (!$rest) {
+            return null;
+        } else {
+            return $rest;
+        }
+    }
+    
+    public function articleComptabilite(){
         $sql="select distinct(code_article) from demande_article_xdistrib union select distinct(code_article) from demande_article_xprices ";
         $res = $this->getAdapter()->query($sql);
         $rest=$res->fetchAll();
