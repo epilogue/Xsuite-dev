@@ -544,7 +544,12 @@ if($this->getRequest()->isPost()){
             $excellContent[] = $rowC;
         }
         $nomcontact=$excellContent[1][1];
-        $nom_distributeur=$excellContent[4][1];
+        $testmabeo="#^I03624#";
+        if(preg_match($testmabeo,$numwp_client_final=$excellContent[4][8])){
+            $nom_distributeur="MABEO";
+        }else{
+            $nom_distributeur=$excellContent[4][1];
+        }
         $nom_client_final=$excellContent[4][6];
         $numwp_client_final=$excellContent[4][8];
         $code_postal_distributeur=$excellContent[5][1];
@@ -713,7 +718,7 @@ if($this->getRequest()->isPost()){
             $infos_offre = odbc_exec($this->odbc_conn, $pirate);
             $infos_offres = odbc_fetch_object($infos_offre);
             $this->view->infos_offres = $infos_offres;
-            echo '<pre>',  var_export($infos_offres),'</pre>'; (exit);
+           // echo '<pre>',  var_export($infos_offres),'</pre>'; (exit);
             $nomdeb = trim($infos_offres->OBCHID);
 //             echo '<pre>',  var_export($infos_offres),'</pre>';
 //             var_dump($infos_offres->OBCHID);
