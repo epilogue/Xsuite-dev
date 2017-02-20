@@ -523,6 +523,9 @@ if($user->id_fonction == 3){
                              case "31":
                                 $destinataireMail2 = $emailVars->listes->leaderiw08;
                                 break;
+                            case "34":
+                                $destinataireMail2 ='alegeard@smc-france.fr';
+                                break;
                         }
                         $url2 = "http://{$_SERVER['SERVER_NAME']}/xprice/consult/numwp/{$numwp}";
                         $corpsMail2 = "Bonjour,\n"
@@ -650,6 +653,9 @@ if($user->id_fonction == 3){
                                 break;
                             case "31":
                                 $destinataireMail1 = $emailVars->listes->CDROUEST;
+                                break;
+                            case "34":
+                                $destinataireMail1 ='alegeard@smc-france.fr';
                                 break;
                         }
                         if (!is_null($firstComment)) {
