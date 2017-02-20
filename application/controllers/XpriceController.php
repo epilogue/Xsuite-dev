@@ -3028,4 +3028,25 @@ elseif($mailServiceClients[0]['mail_service_client']=='' || $mailServiceClients[
          
           $this->view->listXprice=$listXprice;
     }
+    
+    public function bddalexandreAction(){
+        $user = $this->_auth->getStorage()->read();
+        $fonction = $user->id_fonction;
+        $id = $user->id_user;
+        $directalex =new Application_Model_DbTable_Xprices();
+       $date = new Datetime(); 
+       $date->format('Y/m/d');
+       echo '<pre>',  var_export($date),'</pre>';
+        if($id=4 ||$id=67){
+            $requetedirect = $directalex->getAlex($date);
+             $this->view->requetedirect=$requetedirect;
+        }
+        else{
+             $flashMessenger = $this->_helper->getHelper('FlashMessenger');
+             $message = "vous ne pouvez accéder à cette demande.";
+             $flashMessenger->addMessage($message);
+             $redirector = $this->_helper->getHelper('Redirector');
+             $redirector->gotoSimple('index', 'xprice');
+        }
+    }
 }
