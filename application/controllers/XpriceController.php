@@ -1758,13 +1758,13 @@ elseif($mailServiceClients[0]['mail_service_client']== 'export'){
 $mailServiceClient = new Application_Model_DbTable_Xprices();
 $mailServiceClients = $mailServiceClient->getServiceClient($numwp);
 if($mailServiceClients[0]['mail_service_client']=='regionNord'){
-    $mailSC="regionnord@smc-france.fr";
+    $mailSC="commandes@smc-france.fr";
 } elseif($mailServiceClients[0]['mail_service_client']== 'regionSud'){
-    $mailSC="regionsud@smc-france.fr";
+    $mailSC="commandes@smc-france.fr";
 }elseif($mailServiceClients[0]['mail_service_client']== 'regionEst'){
-    $mailSC="regionest@smc-france.fr";
+    $mailSC="commandes@smc-france.fr";
 }elseif($mailServiceClients[0]['mail_service_client']== 'regionOuest'){
-    $mailSC="regionouest@smc-france.fr";
+    $mailSC="commandes@smc-france.fr";
 }elseif ($mailServiceClients[0]['mail_service_client']== 'grandcompte'){
     $mailSC="SCommande@smc-france.fr";
 }elseif ($mailServiceClients[0]['mail_service_client']== 'export'){
