@@ -237,22 +237,17 @@ class XdistribController extends Zend_Controller_Action
              */
        
             $numwp_user=$infos_offres->OBSMCD;
-             $infotc=new Application_Model_DbTable_Users();
+            $infotc=new Application_Model_DbTable_Users();
             $infos_tc = $infotc->getMovexUser($numwp_user);
             $this->view->infos_tc=$infos_tc;
             $infozones= new Application_Model_DbTable_Zones();
             $nom_zone = $infozones->getZone($infos_tc['id_zone']);
-           //var_dump($nom_zone);
             $nomdeb = trim($infos_offres->OBCHID);
             $nomdebu=substr($nomdeb,2,-1);
             $infodd=new Application_Model_DbTable_Users();
             $infos_dd=$infodd->getUserName($nomdebu);
             $this->view->infos_dd=$infos_dd;
-//             echo '<pre>', var_export($infos_offres),'</pre>';
-//             var_dump($nomdebu);
-//             
-//           echo '<pre>', var_export($infos_dd),'</pre>';
-             $Xdistrib = new Application_Model_DbTable_Xdistrib();
+            $Xdistrib = new Application_Model_DbTable_Xdistrib();
             $trackingNumber = Application_Model_DbTable_Xdistrib::makeTrackingNumber($nom_zone['nom_zone'], $Xdistrib->lastId(true));
             $this->view->trackingNumber = $trackingNumber;
            
@@ -266,7 +261,6 @@ class XdistribController extends Zend_Controller_Action
             $user = $this->_auth->getStorage()->read();
             $query1bis = "select * from EIT.MVXCDTA.OCUSMA OCUSMA where OCUSMA.OKCUNO = '{$infos_offres->OBDLSP}'";
             $infos_client = odbc_fetch_array(odbc_exec($this->odbc_conn2, $query1bis));
-//            echo '<pre>',var_export($infos_client),'</pre>';
             $this->view->infos_client=$infos_client;
             $query1quart = "select ZMCPJO.Z2MCL1  from EIT.SMCCDTA.ZMCPJO  ZMCPJO where ZMCPJO.Z2CUNO= '{$infos_offres->OBDLSP}' ";
             $industriewp = odbc_fetch_array(odbc_exec($this->odbc_conn3, $query1quart));
@@ -302,28 +296,19 @@ class XdistribController extends Zend_Controller_Action
                 OOLINE.OBSAPR,
                 OOLINE.OBELNO
                 from EIT.CVXCDTA.OOLINE OOLINE WHERE OOLINE.OBORNO='{$numwp}'  AND OOLINE.OBDIVI LIKE 'FR0' AND OOLINE.OBCONO=100";
-//                var_dump($sqlaffiche);
                 $affiche_offres=odbc_exec($this->odbc_conn, $sqlaffiche);
-           //echo '<pre>',var_export($affiche_offres),'</pre>';
-         //$affiche_offre[]=odbc_fetch_array($affiche_offres);
           while ($affiche_offre[] = odbc_fetch_array($affiche_offres)) {
                 $this->view->affiche_offre = $affiche_offre;
-               // echo '<pre>',var_export($this->view->affiche_offre),'</pre>';
             }
-
-//           $this->view->affiche_offre=$affiche_offre;
-           
-//            affiche_offre=$affiche_offres;
-           
+         /*insertion dans la table cleint_distrib*/
          $adresse =trim($infos_client['OKCUA4']);
          $codepostal = substr($adresse,0,5);
          $ville = substr($adresse,5);
          $clientDistrib = new Application_Model_DbTable_ClientDistrib();
          $client_distrib = $clientDistrib->createClientDistrib($numwp, $infos_client['OKCUNO'], $codepostal, $ville, $info_industry['nom_industry'],  $info_industry['id_industry'], $infos_client['OKCUNM'], null);
          
-         /*distributeurs ( ok  en commentaire pour ne pas saturée la bdd de test )*/
-//           echo '<pre>',var_export($affiche_offre),'</pre>';
-//            echo '<pre>',var_export($industriewp4),'</pre>';
+         /*insertion dans la table distributeurs ( ok  en commentaire pour ne pas saturée la bdd de test )*/
+
          $adresse =trim($infos_client['OKCUA4']);
          $codepostaldis = substr($adresse,0,5);
          $agence = substr($adresse,5);
@@ -349,7 +334,7 @@ class XdistribController extends Zend_Controller_Action
            $article_Xdistrib=new Application_Model_DbTable_DemandeArticlexdistrib();
           
            $affiche_offre1=array_filter($affiche_offre);
-            //echo '<pre>',var_export($affiche_offre1),'</pre>';
+            echo '<pre>',var_export($affiche_offre1),'</pre>';
            foreach($affiche_offre1 as $demande){
               //var_dump($demande['OBITDS']);
               
@@ -371,7 +356,7 @@ class XdistribController extends Zend_Controller_Action
                    'num_workplace_demande_xdistrib'=>$numwp,
                    'code_acquisition'=>$code_acquisition);
                    
-//                echo '<pre>',var_export($data, true),'</pre>';
+             echo '<pre>',var_export($data, true),'</pre>';
             
                $new_demande_article_Xdistrib= $article_Xdistrib->createArticleDemandeNoFile($data) ;
                /*fin create article*/
