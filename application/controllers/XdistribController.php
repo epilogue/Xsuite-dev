@@ -315,7 +315,11 @@ class XdistribController extends Zend_Controller_Action
          $potentiel = $infos_distrib['OKCFC7'];
          $distribs = new Application_Model_DbTable_Distributeurs();
          $distrib=$distribs->createDistributeur(trim($infos_distrib['OKCUNM']),null,trim($infos_distrib['OKCUNO']),$agence, $codepostaldis,$info_industry['id_industry'],$potentiel,$numwp);
-          /*create demande*/
+        
+         $numwpexist = $demandes_xdistrib->getNumwp($numwp);
+                    $firstComment = null;
+                    if (is_null($numwpexist)){
+/*create demande*/
          /*demande xdistrib ( ok  en commentaire pour ne pas saturée la bdd de test )*/
             $dateinit = $infos_offres->OBRGDT;
             $dateinit3 = substr($dateinit, 0, 4);
@@ -329,7 +333,8 @@ class XdistribController extends Zend_Controller_Action
            
            $Xdistribs = new Application_Model_DbTable_Xdistrib();
            $new_Xdistrib= $Xdistribs->createXDistrib($numwp, $trackingNumber, null, $date, null, $infos_tc['id_user'], $infos_dd->id_user,null,$infos_client['OKCUNO'],$infos_distrib['OKCUNO']);
-            /*fin create demande*/
+            }
+           /*fin create demande*/
             /*create article_Xdistrib*/
            $article_Xdistrib=new Application_Model_DbTable_DemandeArticlexdistrib();
           
