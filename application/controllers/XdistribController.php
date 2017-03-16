@@ -429,7 +429,7 @@ class XdistribController extends Zend_Controller_Action
       foreach ($result4 as $key=>$value) {
           $upprix =$updateSerie->updatePrixClient($key,$trackingNumber,$value);
       }
-       var_dump($_FILES); exit();
+       var_dump($_FILES); 
        if(isset($_FILES['fichierDemandeDistrib']['name'])){
            if($_FILES['fichierDemandeDistrib']['size']<= 2000000){
                $extension_valide = array('pdf');
@@ -445,7 +445,7 @@ class XdistribController extends Zend_Controller_Action
                $uploadfile = $uploaddir.$nomFichier;
                var_dump($uploadfile);
                $tmp_name=$_FILES['fichierDemandeDistrib']['tmp_name'];
-               var_dump($tmp_name);
+               var_dump($tmp_name);exit();
                if(move_uploaded_file($tmp_name, $uploadfile)){
                    echo 'tout ok'; 
                } else{
