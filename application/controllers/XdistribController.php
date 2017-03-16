@@ -445,7 +445,7 @@ class XdistribController extends Zend_Controller_Action
                $uploadfile = $uploaddir.$nomFichier;
                var_dump($uploadfile);
                $tmp_name=$_FILES['fichierDemandeDistrib']['tmp_name'];
-               var_dump($tmp_name);exit();
+               var_dump($tmp_name);
                if(move_uploaded_file($tmp_name, $uploadfile)){
                    echo 'tout ok'; 
                } else{
