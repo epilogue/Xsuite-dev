@@ -208,6 +208,7 @@ class XdistribController extends Zend_Controller_Action
         }
     }
     public function createnofileAction(){
+        $user_connect = $this->_auth->getStorage()->read();
         $numwp = $this->getRequest()->getParam('numwp', null);
         /* on vérifie que la demande  n'existe pas */
 //        $demandes_xdistrib = new Application_Model_DbTable_Xdistrib();
@@ -453,6 +454,21 @@ class XdistribController extends Zend_Controller_Action
                }
            }
        } 
+       
+       /*
+        * envoi des mails
+        * vérifier la fonction du createur de la demande Xdistrib
+        * vérifier la fonction du user rattacher a la demande 
+        * si itc fait la demande alors  envoyer au dd
+        * si dd fait la demande alors si 
+        *        
+        * 
+        *  */
+       /*mail qu rcd pour validation*/
+//       if(){
+//                  ;
+//               }
+       
             $flashMessenger = $this->_helper->getHelper('FlashMessenger');
             $message = "votre offre  a bien été créée.";
             $flashMessenger->addMessage($message);
@@ -957,7 +973,7 @@ if($this->getRequest()->isPost()){
       if ($this->getRequest()->isPost()) {
         $formData = $this->getRequest()->getPost();
          //echo '<pre>',  var_export($formData),'</pre>'; 
-         $numwp=$formData['numwp']; 
+        $numwp=$formData['numwp']; 
         $tempClienttruns= new Application_Model_DbTable_TempClient();
         $tempClienttrun=$tempClienttruns->truncateAll(); 
         /*on va chercher des infos sur le user
