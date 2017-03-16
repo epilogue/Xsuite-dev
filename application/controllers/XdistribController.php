@@ -221,6 +221,9 @@ class XdistribController extends Zend_Controller_Action
             $flashMessenger->addMessage($message);
             $redirector->gotoSimple('index', 'xdistrib');
         }
+ else {
+    
+
         $this->view->numwp = $numwp;
         if (!is_null($numwp)) {
             $sql = "select * from EIT.CVXCDTA.OOLINE OOLINE where OOLINE.OBORNO='{$numwp}'";
@@ -405,7 +408,7 @@ class XdistribController extends Zend_Controller_Action
        if ($this->getRequest()->isPost()) {
        $formData = $this->getRequest()->getPost();
        $redirector = $this->_helper->getHelper('Redirector');
-    echo '<pre>',var_export($formData),'</pre>';    exit();
+//    echo '<pre>',var_export($formData),'</pre>';    exit();
      
       //$result = array_combine($formData['reference'],$formData['quantite']);
       //$result2 =  array_combine( $formData['reference'],$formData['prix_tarif_dis']);
@@ -475,7 +478,8 @@ class XdistribController extends Zend_Controller_Action
             $flashMessenger->addMessage($message);
             $redirector->gotoSimple('index', 'xdistrib');
   
-              }    
+              }  
+              }
     }
     
     public function uploadnumwpAction(){
