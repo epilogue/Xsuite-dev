@@ -194,7 +194,7 @@ class XdistribController extends Zend_Controller_Action
      } // echo '<pre>',var_export($recapitulatif2) ,'</pre>';
     $this->view->recapitulatif = $recapitulatif2;
     }
-     protected function genererValidation($datas) {
+    protected function genererValidation($datas) {
         $dbtValidation = new Application_Model_DbTable_Validationsdemandexdistrib();
         $now = new Datetime();
         $commentaire = (!is_null($datas['commentaire']) && trim($datas['commentaire']) != "") ? trim($datas['commentaire']) : null;
@@ -209,23 +209,20 @@ class XdistribController extends Zend_Controller_Action
     }
     public function createnofileAction(){
         $user_connect = $this->_auth->getStorage()->read();
-        var_dump($user_connect);
-        $numwp = $this->getRequest()->getParam('numwp', null);
+        $numwprecu = $this->getRequest()->getParam('numwp', null);
         /* on vérifie que la demande  n'existe pas */
         $demandes_xdistrib = new Application_Model_DbTable_Xdistrib();
-        $demandeXdistrib = $demandes_xdistrib->getNumwp($numwp);
-        if (!is_null($demandeXdistrib)) {
+        $demandeXdistrib = $demandes_xdistrib->getNumwp($numwprecu);
+        if (!is_null($demandeXdistrib)){
             $redirector = $this->_helper->getHelper('Redirector');
             $flashMessenger = $this->_helper->getHelper('FlashMessenger');
             $message = "Cette offre a déjà été créée.";
             $flashMessenger->addMessage($message);
             $redirector->gotoSimple('index', 'xdistrib');
         }
- else {
-    
-
-        $this->view->numwp = $numwp;
-        if (!is_null($numwp)) {
+        else {    
+        $this->view->numwp = $numwprecu;
+        if (!is_null($numwprecu)) {
             $sql = "select * from EIT.CVXCDTA.OOLINE OOLINE where OOLINE.OBORNO='{$numwp}'";
             $infos_offre = odbc_exec($this->odbc_conn, $sql);
             $infos_offres = odbc_fetch_object($infos_offre);
@@ -320,8 +317,8 @@ class XdistribController extends Zend_Controller_Action
          $distrib=$distribs->createDistributeur(trim($infos_distrib['OKCUNM']),null,trim($infos_distrib['OKCUNO']),$agence, $codepostaldis,$info_industry['id_industry'],$potentiel,$numwp);
         
          $numwpexist = $demandes_xdistrib->getNumwp($numwp);
-                    $firstComment = null;
-                    if (is_null($numwpexist)){
+         $firstComment = null;
+         if (is_null($numwpexist)){
 /*create demande*/
          /*demande xdistrib ( ok  en commentaire pour ne pas saturée la bdd de test )*/
             $dateinit = $infos_offres->OBRGDT;
@@ -405,6 +402,7 @@ class XdistribController extends Zend_Controller_Action
                 }
             }
         }
+        
        if ($this->getRequest()->isPost()) {
        $formData = $this->getRequest()->getPost();
        $redirector = $this->_helper->getHelper('Redirector');
@@ -479,7 +477,7 @@ class XdistribController extends Zend_Controller_Action
             $redirector->gotoSimple('index', 'xdistrib');
   
               }  
-              }
+         }
     }
     
     public function uploadnumwpAction(){
