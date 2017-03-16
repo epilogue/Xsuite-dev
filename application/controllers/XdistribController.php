@@ -415,14 +415,14 @@ class XdistribController extends Zend_Controller_Action
        if ($this->getRequest()->isPost()) {
        $formData = $this->getRequest()->getPost();
        $redirector = $this->_helper->getHelper('Redirector');
-//    echo '<pre>',var_export($formData),'</pre>'; 
+    echo '<pre>',var_export($formData),'</pre>'; 
      
       //$result = array_combine($formData['reference'],$formData['quantite']);
       //$result2 =  array_combine( $formData['reference'],$formData['prix_tarif_dis']);
       $result3 = array_combine($formData['reference'],$formData['serie']);
       $result4= array_combine($formData['reference'],$formData['prix_achat_client_final']);
-     echo '<pre>',var_export($result3),'</pre>'; 
-     echo '<pre>',var_export($result4),'</pre>'; 
+//     echo '<pre>',var_export($result3),'</pre>'; 
+//     echo '<pre>',var_export($result4),'</pre>'; 
       /*update des articles avec les prix achat final serie...*/
       $updateSerie = new Application_Model_DbTable_DemandeArticlexdistrib();
       foreach ($result3 as $key=>$value) {
@@ -455,7 +455,17 @@ class XdistribController extends Zend_Controller_Action
                }
            }
        } 
-       
+       $demandes_xdistrib = new Application_Model_DbTable_Xdistrib();
+        $numwpexist = $demandes_xdistrib->getNumwp($numwp);
+        $firstComment = null;
+        if (!is_null($numwpexist)) {
+            $dbtValidationDemande = new Application_Model_DbTable_Validationsdemandexdistrib();
+            if (!is_null($formData['contexte']) && trim($formData['contexte']) != "") {
+                $now = new DateTime();
+                $validationDemande = $dbtValidationDemande->createValidation(null,$demandes_xdistrib->lastId(),$user_connect->id_user, "creation", $now->format('Y-m-d H:i:s'), "creation", null);
+                $firstComment = $dbtValidationDemande->lastId();
+            }
+        }  
        /*
         * envoi des mails
         * vérifier la fonction du createur de la demande Xdistrib
