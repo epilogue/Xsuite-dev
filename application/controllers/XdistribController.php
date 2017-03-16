@@ -222,20 +222,11 @@ class XdistribController extends Zend_Controller_Action
         }
         else {    
         $this->view->numwp = $numwprecu;
-        if (!is_null($numwprecu)) {
+        if (!is_null($numwprecu)){
             $sql = "select * from EIT.CVXCDTA.OOLINE OOLINE where OOLINE.OBORNO='{$numwp}'";
             $infos_offre = odbc_exec($this->odbc_conn, $sql);
             $infos_offres = odbc_fetch_object($infos_offre);
             $this->view->infos_offres=$infos_offres;
-            // echo '<pre>',var_export($infos_offres),'</pre>';
-            /*
-             *'OBDLSP-> numéro client final (10 chiffres)'
-             *'OBCUNO-> numéro distributeur (5 chiffres)'
-             *'OBRGDT->date de l'offre'
-             *'OBSMCD -> id du contact (tc smc)'
-             *'OBCHID-> FR--------(7lettres nom + premiere lettre prenom) créateur de la demande DD)
-             */
-       
             $numwp_user=$infos_offres->OBSMCD;
             $infotc=new Application_Model_DbTable_Users();
             $infos_tc = $infotc->getMovexUser($numwp_user);
@@ -250,7 +241,6 @@ class XdistribController extends Zend_Controller_Action
             $Xdistrib = new Application_Model_DbTable_Xdistrib();
             $trackingNumber = Application_Model_DbTable_Xdistrib::makeTrackingNumber($nom_zone['nom_zone'], $Xdistrib->lastId(true));
             $this->view->trackingNumber = $trackingNumber;
-           
             $dateinit = $infos_offres->OBRGDT;
             $dateinit3 = substr($dateinit, 0, 4);
             $dateinit2 = substr($dateinit, 4, 2);
@@ -297,9 +287,17 @@ class XdistribController extends Zend_Controller_Action
                 OOLINE.OBELNO
                 from EIT.CVXCDTA.OOLINE OOLINE WHERE OOLINE.OBORNO='{$numwp}'  AND OOLINE.OBDIVI LIKE 'FR0' AND OOLINE.OBCONO=100";
                 $affiche_offres=odbc_exec($this->odbc_conn, $sqlaffiche);
-          while ($affiche_offre[] = odbc_fetch_array($affiche_offres)) {
+          while ($affiche_offre[] = odbc_fetch_array($affiche_offres)){
                 $this->view->affiche_offre = $affiche_offre;
             }
+         } 
+         
+         if($this->getRequest()->isPost()) {
+            $formData = $this->getRequest()->getPost();
+            $redirector = $this->_helper->getHelper('Redirector');
+            
+             echo '<pre>',var_export($formData),'</pre>';    exit();
+         } 
          /*insertion dans la table cleint_distrib*/
          $adresse =trim($infos_client['OKCUA4']);
          $codepostal = substr($adresse,0,5);
@@ -401,7 +399,7 @@ class XdistribController extends Zend_Controller_Action
                     $updatecif3 = $updatecif1->updatecif($cif, $result['code_article'], $numwp);
                 }
             }
-        }
+        
         
        if ($this->getRequest()->isPost()) {
        $formData = $this->getRequest()->getPost();
