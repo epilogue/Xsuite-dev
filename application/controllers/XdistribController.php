@@ -429,7 +429,7 @@ class XdistribController extends Zend_Controller_Action
       foreach ($result4 as $key=>$value) {
           $upprix =$updateSerie->updatePrixClient($key,$trackingNumber,$value);
       }
-       var_dump($_FILES); 
+       var_dump($_FILES); exit();
        if(isset($_FILES['fichierDemandeDistrib']['name'])){
            if($_FILES['fichierDemandeDistrib']['size']<= 2000000){
                $extension_valide = array('pdf');
