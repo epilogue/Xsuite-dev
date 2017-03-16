@@ -209,6 +209,7 @@ class XdistribController extends Zend_Controller_Action
     }
     public function createnofileAction(){
         $user_connect = $this->_auth->getStorage()->read();
+        var_dump($user_connect);
         $numwp = $this->getRequest()->getParam('numwp', null);
         /* on vérifie que la demande  n'existe pas */
 //        $demandes_xdistrib = new Application_Model_DbTable_Xdistrib();
@@ -301,7 +302,7 @@ class XdistribController extends Zend_Controller_Action
                 OOLINE.OBSAPR,
                 OOLINE.OBELNO
                 from EIT.CVXCDTA.OOLINE OOLINE WHERE OOLINE.OBORNO='{$numwp}'  AND OOLINE.OBDIVI LIKE 'FR0' AND OOLINE.OBCONO=100";
-                var_dump($sqlaffiche);
+//                var_dump($sqlaffiche);
                 $affiche_offres=odbc_exec($this->odbc_conn, $sqlaffiche);
            //echo '<pre>',var_export($affiche_offres),'</pre>';
          //$affiche_offre[]=odbc_fetch_array($affiche_offres);
