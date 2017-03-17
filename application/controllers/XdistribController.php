@@ -223,7 +223,7 @@ class XdistribController extends Zend_Controller_Action
         else {    
         $this->view->numwp = $numwprecu;
         if (!is_null($numwprecu)){
-            $sql = "select * from EIT.CVXCDTA.OOLINE OOLINE where OOLINE.OBORNO='{$numwp}'";
+            $sql = "select * from EIT.CVXCDTA.OOLINE OOLINE where OOLINE.OBORNO='{$numwprecu}'";
             $infos_offre = odbc_exec($this->odbc_conn, $sql);
             $infos_offres = odbc_fetch_object($infos_offre);
             $this->view->infos_offres=$infos_offres;
