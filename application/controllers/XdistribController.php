@@ -183,7 +183,7 @@ class XdistribController extends Zend_Controller_Action
          }}
          $recapitulatif2[] = $plopr;
      }}
-      if($user->id_fonction ==5|| $user->id_fonction == 13 || $user->id_fonction == 41 || $user->id_fonction == 23 || $user->id_fonction == 32|| $user->id_fonction == 47){
+      if($user->id_fonction ==48 ||$user->id_fonction ==5|| $user->id_fonction == 13 || $user->id_fonction == 41 || $user->id_fonction == 23 || $user->id_fonction == 32|| $user->id_fonction == 47){
          $recapitulatif1 = new Application_Model_DbTable_Xdistrib();
          $plop1=$recapitulatif1->rechercheridDBD();
             //echo '<pre>',var_export($plop1) ,'</pre>';
