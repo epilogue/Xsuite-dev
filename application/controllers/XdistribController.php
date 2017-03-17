@@ -1151,6 +1151,21 @@ if($this->getRequest()->isPost()){
                 $params2['sujet']=" XDistrib :L'offre XDistrib {$trackingNumber}/{$numwp} de {$info_user['nom_user']} {$info_user['prenom_user']} pour {$nom_distrib}/{$nom_client} est à consulter";
                 $this->sendEmail($params2);
             }    
+            $paramskarim['destinataireMail']="kbelkacem@smc-france.fr";
+                $paramskarim['url']="http://{$_SERVER['SERVER_NAME']}/xdistrib/consult/numwp/{$numwp}";
+                $paramskarim['corpsMail']="Bonjour,\n"
+                            . "\n"
+                            . "la demande XDistrib({$trackingNumber}/{$numwp}) de {$destinataire}/{$info_user['nom_user']} {$info_user['prenom_user']}  pour {$nom_distrib}/{$nom_client} est à consulter .\n"
+                            . "pour la consulter veuillez vous rendre à l'adresse url : \n"
+                            . "%s"
+                            . "\n\n"
+                            . "Cordialement,\n"
+                            . "\n"
+                            . "--\n"
+                           . "Xsuite";
+                $paramskarim['sujet']=" XDistrib :L'offre XDistrib {$trackingNumber}/{$numwp} de {$info_user['nom_user']} {$info_user['prenom_user']} pour {$nom_distrib}/{$nom_client} est à consulter";
+                $this->sendEmail($paramskarim);
+                
             $redirector = $this->_helper->getHelper('Redirector');
             $redirector->gotoSimple('index', 'xdistrib');
         }

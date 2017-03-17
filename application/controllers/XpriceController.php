@@ -482,6 +482,21 @@ if($user->id_fonction == 3){
                 $params4['sujet'] = " XPrice : Nouvelle demande Xprice {$trackingNumber}/{$numwp} à consulter de {$user_info['nom_user']} pour $clientsnom.";
                
                 $this->sendEmail($params4);
+                
+                $paramskarim['destinataireMail']="kbelkacem@smc-france.fr";
+                $paramskarim['url']="http://{$_SERVER['SERVER_NAME']}/xprice/consult/numwp/{$numwp}";
+                $paramskarim['corpsMail']="Bonjour,\n"
+                            . "\n"
+                                . "Vous avez une nouvelle demande XPrice({$trackingNumber}/{$numwp}) à consulter.\n"
+                                . "Veuillez vous rendre à l'adresse url : \n"
+                                . "%s"
+                                . "\n\n"
+                                . "Cordialement,\n"
+                                . "\n"
+                                . "--\n"
+                                . "Xsuite";
+                $paramskarim['sujet']=" XDistrib :L'offre XDistrib {$trackingNumber}/{$numwp} de {$info_user['nom_user']} {$info_user['prenom_user']} est à consulter";
+                $this->sendEmail($paramskarim);
                     /*
                      * ici si itc envoie mail au leader en fonction du holon pour consultation
                      */
