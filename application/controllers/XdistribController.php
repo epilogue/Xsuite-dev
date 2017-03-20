@@ -290,6 +290,22 @@ class XdistribController extends Zend_Controller_Action
           while ($affiche_offre[] = odbc_fetch_array($affiche_offres)){
                 $this->view->affiche_offre = $affiche_offre;
             }
+         /*insertion dans la table cleint_distrib*/
+         $adresse =trim($infos_client['OKCUA4']);
+         $codepostal = substr($adresse,0,5);
+         $ville = substr($adresse,5);
+         $clientDistrib = new Application_Model_DbTable_ClientDistrib();
+         $client_distrib = $clientDistrib->createClientDistrib($numwprecu, $infos_client['OKCUNO'], $codepostal, $ville, $info_industry['nom_industry'],  $info_industry['id_industry'], $infos_client['OKCUNM'], null);
+         
+         /*insertion dans la table distributeurs ( ok  en commentaire pour ne pas saturée la bdd de test )*/
+
+         $adresse =trim($infos_client['OKCUA4']);
+         $codepostaldis = substr($adresse,0,5);
+         $agence = substr($adresse,5);
+         $potentiel = $infos_distrib['OKCFC7'];
+         $distribs = new Application_Model_DbTable_Distributeurs();
+         $distrib=$distribs->createDistributeur(trim($infos_distrib['OKCUNM']),null,trim($infos_distrib['OKCUNO']),$agence, $codepostaldis,$info_industry['id_industry'],$potentiel,$numwprecu);
+ 
          } 
          
          if($this->getRequest()->isPost()) {
