@@ -464,48 +464,49 @@ class XdistribController extends Zend_Controller_Action
             $holondd =$user_connect->id_holon;
             var_dump($holondd);
             switch ($holondd){
-                case "18":
-                    $destinataireMail2 = $emailVars->listes->CDRNORD;
-                    break;
-                case "19":
-                    $destinataireMail2 = $emailVars->listes->CDRNORD;
-                    break;
-                case "20":
-                    $destinataireMail2 = $emailVars->listes->CDRNORD;
-                    break;
                 case "5":
-                    $destinataireMail2 = $emailVars->listes->CDREST;
+                    $d2 = $emailVars->listes->CDREST;
                     break;
                 case"6":
-                    $destinataireMail2 = $emailVars->listes->CDREST;
-                    break;
-                case "11":
-                    $destinataireMail2 = $emailVars->listes->CDREST;
-                    break;
-                case "13":
-                    $destinataireMail2 = $emailVars->listes->CDREST;
+                    $d2 = $emailVars->listes->CDREST;
                     break;
                 case "8":
-                    $destinataireMail2 = $emailVars->listes->CDROUEST;
+                    $d2 = $emailVars->listes->CDROUEST;
                     break;
                 case "9":
-                    $destinataireMail2 = $emailVars->listes->CDROUEST;
+                    $d2 = $emailVars->listes->CDROUEST;
                     break;
                 case "10":
-                    $destinataireMail2 = $emailVars->listes->CDROUEST;
+                    $d2 = $emailVars->listes->CDROUEST;
+                    break;
+                case "11":
+                    $d2 = $emailVars->listes->CDREST;
+                    break;
+                case "13":
+                    $d2 = $emailVars->listes->CDREST;
                     break;
                 case "14":
-                    $destinataireMail2 = $emailVars->listes->CDROUEST;
+                    $d2 = $emailVars->listes->CDROUEST;
                     break;
-                case "31":
-                    $destinataireMail2 = $emailVars->listes->CDROUEST;
+                case "18":
+                    $d2 = $emailVars->listes->CDRNORD;
                     break;
-                case "33":
-                    $destinataireMail2 = $emailVars->listes->IO;
+                case "19":
+                    $d2 = $emailVars->listes->CDRNORD;
+                    break;
+                case "20":
+                    $d2 = $emailVars->listes->CDRNORD;
                     break;
                 case "29":
-                    $destinataireMail2= $emailVars->listes->Export;
+                    $d2= $emailVars->listes->Export;
                     break;
+                case "31":
+                    $d2 = $emailVars->listes->CDROUEST;
+                    break;
+                case "33":
+                    $d2 = $emailVars->listes->IO;
+                    break;
+                
             }
             var_dump($destinataireMail2);
             $params2['destinataireMail2']=$destinataireMail2;
