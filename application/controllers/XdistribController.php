@@ -504,9 +504,10 @@ class XdistribController extends Zend_Controller_Action
                     $destinataireMail2 = $emailVars->listes->IO;
                     break;
                 case "29":
-                    $destinataireMail2=$emailVars->listes->Export;
+                    $destinataireMail2= $emailVars->listes->Export;
                     break;
             }
+            var_dump($destinataireMail2);
             $params2['destinataireMail2']=$destinataireMail2;
             $params2['url']="http://{$_SERVER['SERVER_NAME']}/xdistrib/validatedrv/numwp/{$numwprecu}";
             $params2['corpsMail']="Bonjour,\n"
