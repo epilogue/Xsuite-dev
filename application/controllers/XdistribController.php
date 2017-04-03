@@ -482,7 +482,7 @@ class XdistribController extends Zend_Controller_Action
                 case "11":
                     $d2 = $emailVars->listes->CDREST;
                     break;
-                case "11":
+                case "12":
                     $d2 = $emailVars->listes->CDREST;
                     break;
                 case "13":
