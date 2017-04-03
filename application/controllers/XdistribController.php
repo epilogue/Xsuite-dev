@@ -461,7 +461,7 @@ class XdistribController extends Zend_Controller_Action
         } 
         if ($user_connect->id_fonction == "6"){
             echo '<pre>',  var_export($infos_dd),'</pre>';
-            $holondd =$infos_dd->id_holon;
+            $holondd =$user_connect->id_holon;
             switch ($holondd){
                 case "18":
                     $destinataireMail2 = $emailVars->listes->CDRNORD;
