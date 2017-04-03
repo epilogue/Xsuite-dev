@@ -373,21 +373,21 @@ class XdistribController extends Zend_Controller_Action
          
         foreach ($prixciffob as $key => $value) {
             $insertprix = new Application_Model_DbTable_DemandeArticlexdistrib();
-            $inserprix = $insertprix->InserPrixFob($value->AJPUPR, $value->AJOBV2, $numwp);
+            $inserprix = $insertprix->InserPrixFob($value->AJPUPR, $value->AJOBV2, $numwprecu);
         }
         foreach($resultatacquis as $key=>$value){
             $insertacquis= new Application_Model_DbTable_DemandeArticlexdistrib();
-            $inseracquis = $insertacquis->InserCodeAcquis($value->MBPUIT, $value->MBITNO, $numwp);
+            $inseracquis = $insertacquis->InserCodeAcquis($value->MBPUIT, $value->MBITNO, $numwprecu);
         }
 
         $updatecif1 = new Application_Model_DbTable_DemandeArticlexdistrib();
-        $updatecif2 = $updatecif1->getDemandeArticlexdistrib($numwp); 
+        $updatecif2 = $updatecif1->getDemandeArticlexdistrib($numwprecu); 
         foreach($updatecif2 as $result){
             if($result['code_acquisition']=='2'){
                 $fob=$result['prix_fob_demande_article'];
                 $cifs=$fob*1.07;
                 $cif=round($cifs,2);
-                $updatecif3 = $updatecif1->updatecif($cif, $result['code_article'], $numwp);
+                $updatecif3 = $updatecif1->updatecif($cif, $result['code_article'], $numwprecu);
         }
         }
 
