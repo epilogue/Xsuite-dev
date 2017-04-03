@@ -463,57 +463,68 @@ class XdistribController extends Zend_Controller_Action
             echo '<pre>',  var_export($user_connect),'</pre>';
             $holondd =$user_connect->id_holon;
             var_dump($holondd);
-            switch ($holondd){
-                case "5":
-                    $d2 = $emailVars->listes->CDREST;
-                    break;
-                case"6":
-                    $d2 = $emailVars->listes->CDREST;
-                    break;
-                case "8":
-                    $d2 = $emailVars->listes->CDROUEST;
-                    break;
-                case "9":
-                    $d2 = $emailVars->listes->CDROUEST;
-                    break;
-                case "10":
-                    $d2 = $emailVars->listes->CDROUEST;
-                    break;
-                case "11":
-                    $d2 = $emailVars->listes->CDREST;
-                    break;
-                case "13":
-                    $d2 = $emailVars->listes->CDREST;
-                    break;
-                case "14":
-                    $d2 = $emailVars->listes->CDROUEST;
-                    break;
-                case "18":
-                    $d2 = $emailVars->listes->CDRNORD;
-                    break;
-                case "19":
-                    $d2 = $emailVars->listes->CDRNORD;
-                    break;
-                case "20":
-                    $d2 = $emailVars->listes->CDRNORD;
-                    break;
-                case "29":
-                    $d2= $emailVars->listes->Export;
-                    break;
-                case "31":
-                    $d2 = $emailVars->listes->CDROUEST;
-                    break;
-                case "33":
-                    $d2 = $emailVars->listes->IO;
-                    break;
-                
+            if($holondd =="5"){
+                $emailVars->listes->CDREST;
             }
+            elseif($holondd =="6"){
+                $emailVars->listes->CDREST;
+            }
+            elseif($holondd =="8"){
+                $emailVars->listes->CDROUEST;
+            }
+            elseif($holondd =="9"){
+                $emailVars->listes->CDROUEST;
+            }
+//                case "5":
+//                    $d2 = 
+//                    break;
+//                case"6":
+//                    $d2 = $emailVars->listes->CDREST;
+//                    break;
+//                case "8":
+//                    $d2 = $emailVars->listes->CDROUEST;
+//                    break;
+//                case "9":
+//                    $d2 = $emailVars->listes->CDROUEST;
+//                    break;
+//                case "10":
+//                    $d2 = $emailVars->listes->CDROUEST;
+//                    break;
+//                case "11":
+//                    $d2 = $emailVars->listes->CDREST;
+//                    break;
+//                case "13":
+//                    $d2 = $emailVars->listes->CDREST;
+//                    break;
+//                case "14":
+//                    $d2 = $emailVars->listes->CDROUEST;
+//                    break;
+//                case "18":
+//                    $d2 = $emailVars->listes->CDRNORD;
+//                    break;
+//                case "19":
+//                    $d2 = $emailVars->listes->CDRNORD;
+//                    break;
+//                case "20":
+//                    $d2 = $emailVars->listes->CDRNORD;
+//                    break;
+//                case "29":
+//                    $d2= $emailVars->listes->Export;
+//                    break;
+//                case "31":
+//                    $d2 = $emailVars->listes->CDROUEST;
+//                    break;
+//                case "33":
+//                    $d2 = $emailVars->listes->IO;
+//                    break;
+//                
+//            }
             var_dump($d2);
             $params2['destinataireMail2']=$d2;
             $params2['url']="http://{$_SERVER['SERVER_NAME']}/xdistrib/validatedrv/numwp/{$numwprecu}";
             $params2['corpsMail']="Bonjour,\n"
             . "\n"
-            . "la demande XDistrib({$trackingNumber}/{$numwp2}) de {$destinataire}/{$info_user['nom_user']} {$info_user['prenom_user']}  pour {$nom_distrib}/{$nom_client} est à valider .\n"
+            . "la demande XDistrib({$trackingNumber}/{$numwprecu}) de {$destinataire}/{$info_user['nom_user']} {$info_user['prenom_user']}  pour {$nom_distrib}/{$nom_client} est à valider .\n"
             . "pour la valider veuillez vous rendre à l'adresse url : \n"
             . "%s"
             . "\n\n"
