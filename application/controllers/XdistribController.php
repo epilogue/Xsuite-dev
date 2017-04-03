@@ -322,7 +322,7 @@ class XdistribController extends Zend_Controller_Action
         $date=implode('-',$datef);
 
        $Xdistribs = new Application_Model_DbTable_Xdistrib();
-       $new_Xdistrib= $Xdistribs->createXDistrib($numwp, $trackingNumber, null, $date, null, $infos_tc['id_user'], $infos_dd->id_user,null,$infos_client['OKCUNO'],$infos_distrib['OKCUNO']);
+       $new_Xdistrib= $Xdistribs->createXDistrib($numwprecu, $trackingNumber, null, $date, null, $infos_tc['id_user'], $infos_dd->id_user,null,$infos_client['OKCUNO'],$infos_distrib['OKCUNO']);
                 
          echo '<pre>',var_export($formData),'</pre>';    exit();
          } 
