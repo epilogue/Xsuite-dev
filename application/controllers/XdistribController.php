@@ -460,8 +460,9 @@ class XdistribController extends Zend_Controller_Action
            /*on envoi un mail au dd*/
         } 
         if ($user_connect->id_fonction == "6"){
-            echo '<pre>',  var_export($infos_dd),'</pre>';
+            echo '<pre>',  var_export($user_connect),'</pre>';
             $holondd =$user_connect->id_holon;
+            var_dump($holondd);
             switch ($holondd){
                 case "18":
                     $destinataireMail2 = $emailVars->listes->CDRNORD;
@@ -504,6 +505,7 @@ class XdistribController extends Zend_Controller_Action
                     break;
                 case "29":
                     $destinataireMail2=$emailVars->listes->Export;
+                    break;
             }
             $params2['destinataireMail2']=$destinataireMail2;
             $params2['url']="http://{$_SERVER['SERVER_NAME']}/xdistrib/validatedrv/numwp/{$numwprecu}";
