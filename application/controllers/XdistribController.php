@@ -439,6 +439,7 @@ class XdistribController extends Zend_Controller_Action
         $emailVars = Zend_Registry::get('emailVars');
         $params1 = array(); 
         $params2 = array();
+        $params3 = array();
         if($user_connect->id_fonction == "43" || $user_connect->id_fonction== "2" || $user_connect->id_fonction == "3" ){
             $mail_dd=$infos_dd->email_user;
             $params1['destinataireMail']=$mail_dd;
@@ -483,8 +484,8 @@ class XdistribController extends Zend_Controller_Action
                 $emailVars->listes->export;
             }
             
-            var_dump($d2);
-            $params2['destinataireMail2']=$d2;
+            //var_dump($d2);
+            $params2['destinataireMail']=$d2;
             $params2['url']="http://{$_SERVER['SERVER_NAME']}/xdistrib/validatedrv/numwp/{$numwprecu}";
             $params2['corpsMail']="Bonjour,\n"
             . "\n"
@@ -501,6 +502,59 @@ class XdistribController extends Zend_Controller_Action
             echo '<pre>',  var_export($params2),'</pre>';
             echo '<pre>',var_export($formData),'</pre>';    exit();
         }
+        if($user_connect->id_user=="78"||$user_connect->id_user=="62"){
+            $destinataireMail3 = $emailVars->export;
+             $params['destinataireMail']=$destinataireMail3;
+            $params3['url']="http://{$_SERVER['SERVER_NAME']}/xdistrib/validatedrv/numwp/{$numwprecu}";
+            $params3['corpsMail']="Bonjour,\n"
+            . "\n"
+            . "la demande XDistrib({$trackingNumber}/{$numwprecu}) de {$destinataire}/{$info_user['nom_user']} {$info_user['prenom_user']}  pour {$nom_distrib}/{$nom_client} est à valider .\n"
+            . "pour la valider veuillez vous rendre à l'adresse url : \n"
+            . "%s"
+            . "\n\n"
+            . "Cordialement,\n"
+            . "\n"
+            . "--\n"
+            . "Xsuite";
+            $params3['sujet']=" XDistrib :L'offre XDistrib {$trackingNumber}/{$numwprecu} de {$info_user['nom_user']} {$info_user['prenom_user']} pour {$nom_distrib}/{$nom_client} est à valider";
+            //$this->sendEmail($params2);
+            echo '<pre>',  var_export($params3),'</pre>';
+            echo '<pre>',var_export($formData),'</pre>';    exit();
+        }
+        $paramsRGCU1=array();
+        $paramsRGCU2=array();
+        if($user_connect->id_user==34 || $user_connect->id_user==97 || $user_connect->id_user==184 || $user_connect->id_user==217 ){
+            $paramsRGCU1['destinataireMail']="nberingue@smc-france.fr";
+            $paramsRGCU1['url']="http://{$_SERVER['SERVER_NAME']}/xdistrib/consult/numwp/{$numwprecu}";
+            $paramsRGCU1['corpsMail']="Bonjour,\n"
+            . "\n"
+            . "la demande XDistrib({$trackingNumber}/{$numwprecu}) de {$destinataire}/{$user_connect->nom_user} {$user_connect->prenom_user}  pour {$nom_distrib}/{$nom_client} est à consulter .\n"
+            . "pour la consulter veuillez vous rendre à l'adresse url : \n"
+            . "%s"
+            . "\n\n"
+            . "Cordialement,\n"
+            . "\n"
+            . "--\n"
+           . "Xsuite";
+            $paramsRGCU1['sujet']=" XDistrib :L'offre XDistrib {$trackingNumber}/{$numwprecu} de {$user_connect->nom_user} {$user_connect->prenom_user} pour {$nom_distrib}/{$nom_client} est à consulter";
+            $this->sendEmail($paramsRGCU1);
+        }
+        if($user_connect->id_user==124 || $user_connect->id_user==42 ||$user_connect->id_user==98 || $user_connect->id_user==199){
+             $paramsRGCU2['destinataireMail']="clemoine@smc-france.fr";
+             $paramsRGCU2['url']="http://{$_SERVER['SERVER_NAME']}/xdistrib/consult/numwp/{$numwprecu}";
+             $paramsRGCU2['corpsMail']="Bonjour,\n"
+            . "\n"
+            . "la demande XDistrib({$trackingNumber}/{$numwprecu}) de {$destinataire}/{$user_connect->nom_user} {$user_connect->prenom_user}  pour {$nom_distrib}/{$nom_client} est à consulter .\n"
+            . "pour la consulter veuillez vous rendre à l'adresse url : \n"
+            . "%s"
+            . "\n\n"
+            . "Cordialement,\n"
+            . "\n"
+            . "--\n"
+           . "Xsuite";
+             $paramsRGCU2['sujet']=" XDistrib :L'offre XDistrib {$trackingNumber}/{$numwprecu} de {$user_connect->nom_user} {$user_connect->prenom_user} pour {$nom_distrib}/{$nom_client} est à consulter";
+             $this->sendEmail($paramsRGCU2);
+                  }
 //       mail au rcd pour validation*/
 //       
 ////       if(){
