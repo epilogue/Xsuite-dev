@@ -462,55 +462,27 @@ class XdistribController extends Zend_Controller_Action
         if ($user_connect->id_fonction == "6"){
             echo '<pre>',  var_export($user_connect),'</pre>';
             $holondd =$user_connect->id_holon;
-            var_dump($holondd);
-            switch ($holondd){
-                case "5":
-                    $d2 = $emailVars->listes->CDREST;
-                    break;
-                case"6":
-                    $d2 = $emailVars->listes->CDREST;
-                    break;
-                case "8":
-                    $d2 = $emailVars->listes->CDROUEST;
-                    break;
-                case "9":
-                    $d2 = $emailVars->listes->CDROUEST;
-                    break;
-                case "10":
-                    $d2 = $emailVars->listes->CDROUEST;
-                    break;
-                case "11":
-                    $d2 = $emailVars->listes->CDREST;
-                    break;
-                case "12":
-                    $d2 = $emailVars->listes->CDREST;
-                    break;
-                case "13":
-                    $d2 = $emailVars->listes->CDREST;
-                    break;
-                case "14":
-                    $d2 = $emailVars->listes->CDROUEST;
-                    break;
-                case "18":
-                    $d2 = $emailVars->listes->CDRNORD;
-                    break;
-                case "19":
-                    $d2 = $emailVars->listes->CDRNORD;
-                    break;
-                case "20":
-                    $d2 = $emailVars->listes->CDRNORD;
-                    break;
-                case "29":
-                    $d2= $emailVars->listes->Export;
-                    break;
-                case "31":
-                    $d2 = $emailVars->listes->CDROUEST;
-                    break;
-                case "33":
-                    $d2 = $emailVars->listes->IO;
-                    break;
-                
+            $holonnord=array(18,19,20,21,22,23,32);
+            $holonouest = array(8,9,10,14,15,16,17,31);
+            $holonest = array(5,6,7,11,12,13,31);
+            $holonIO = array(33);
+            $holonexport = array(28,29);
+            if(in_array($holondd, $holonnord)){
+                $d2 = $emailVars->listes->CDRNORD;
             }
+            elseif(in_array($holondd, $holonouest)){
+                $d2 = $emailVars->listes->CDROUEST;
+            }
+            elseif(in_array($holondd, $holonest)){
+                $d2 = $emailVars->listes->CDREST;
+            }
+            elseif(in_array($holondd, $holonIO)){
+                $emailVars->listes->IO;
+            }
+            elseif(in_array($holondd, $holonexport)){
+                $emailVars->listes->export;
+            }
+            
             var_dump($d2);
             $params2['destinataireMail2']=$d2;
             $params2['url']="http://{$_SERVER['SERVER_NAME']}/xdistrib/validatedrv/numwp/{$numwprecu}";
