@@ -323,7 +323,38 @@ class XdistribController extends Zend_Controller_Action
 
        $Xdistribs = new Application_Model_DbTable_Xdistrib();
        $new_Xdistrib= $Xdistribs->createXDistrib($numwprecu, $trackingNumber, null, $date, null, $infos_tc['id_user'], $infos_dd->id_user,null,$infos_client['OKCUNO'],$infos_distrib['OKCUNO']);
-                
+        /*create article_Xdistrib*/
+           $article_Xdistrib=new Application_Model_DbTable_DemandeArticlexdistrib();
+          
+           $affiche_offre1=array_filter($affiche_offre);
+            echo '<pre>',var_export($affiche_offre1),'</pre>';
+           foreach($affiche_offre1 as $demande){
+              //var_dump($demande['OBITDS']);
+              
+               $data =array( 'prix_tarif'=>$demande['OBSAPR'],
+                   'prix_achat_actuel'=>($demande['OBSAPR']*40)/100,
+                   'prix_demande_article'=>$demande['OBNEPR'],
+                   'prix_client_final'=>$prix_client_final,
+                   'quantite_demande_article'=>$demande['OBORQT'], 
+                   'serie'=>$serie,
+                   'date_demande_xdistrib'=>$date,
+                   'prix_accorde_demande_article'=>$prix_accorde_demande_article, 
+                   'remise_accorde_demande_article'=>$remise_accorde_demande_article,
+                   'prix_fob_demande_article'=>$prix_fob_demande_article,
+                   'prix_cif_demande_article'=>$prix_cif_demande_article,
+                   'marge_demande_article'=>$marge_demande_article,
+                   'tracking_number_demande_xdistrib'=>$trackingNumber,
+                   'code_article'=>trim($demande['OBITNO']),
+                   'reference_article'=>trim($demande['OBITDS']),
+                   'num_workplace_demande_xdistrib'=>$numwp,
+                   'code_acquisition'=>$code_acquisition);
+                   
+             echo '<pre>',var_export($data, true),'</pre>';
+            
+            $new_demande_article_Xdistrib= $article_Xdistrib->createArticleDemandeNoFile($data) ;
+           
+           }
+               /*fin create article*/        
          echo '<pre>',var_export($formData),'</pre>';    exit();
          } 
         
@@ -334,36 +365,7 @@ class XdistribController extends Zend_Controller_Action
          /*demande xdistrib ( ok  en commentaire pour ne pas saturée la bdd de test )*/
             
            /*fin create demande*/
-//            /*create article_Xdistrib*/
-//           $article_Xdistrib=new Application_Model_DbTable_DemandeArticlexdistrib();
-//          
-//           $affiche_offre1=array_filter($affiche_offre);
-//            echo '<pre>',var_export($affiche_offre1),'</pre>';
-//           foreach($affiche_offre1 as $demande){
-//              //var_dump($demande['OBITDS']);
-//              
-//               $data =array( 'prix_tarif'=>$demande['OBSAPR'],
-//                   'prix_achat_actuel'=>($demande['OBSAPR']*40)/100,
-//                   'prix_demande_article'=>$demande['OBNEPR'],
-//                   'prix_client_final'=>$prix_client_final,
-//                   'quantite_demande_article'=>$demande['OBORQT'], 
-//                   'serie'=>$serie,
-//                   'date_demande_xdistrib'=>$date,
-//                   'prix_accorde_demande_article'=>$prix_accorde_demande_article, 
-//                   'remise_accorde_demande_article'=>$remise_accorde_demande_article,
-//                   'prix_fob_demande_article'=>$prix_fob_demande_article,
-//                   'prix_cif_demande_article'=>$prix_cif_demande_article,
-//                   'marge_demande_article'=>$marge_demande_article,
-//                   'tracking_number_demande_xdistrib'=>$trackingNumber,
-//                   'code_article'=>trim($demande['OBITNO']),
-//                   'reference_article'=>trim($demande['OBITDS']),
-//                   'num_workplace_demande_xdistrib'=>$numwp,
-//                   'code_acquisition'=>$code_acquisition);
-//                   
-//             echo '<pre>',var_export($data, true),'</pre>';
-//            
-//               $new_demande_article_Xdistrib= $article_Xdistrib->createArticleDemandeNoFile($data) ;
-//               /*fin create article*/
+//           
 //               
 //               /*recherche et insertion prif fob et cif*/
 //                $mmcono = "100";
