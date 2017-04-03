@@ -436,26 +436,26 @@ class XdistribController extends Zend_Controller_Action
 //        *  */
 //       /*
 //       si le user et un itc ,un rgcu, un rgci, un leader itc envoie mail au dd
-        echo '<pre>',  var_export($infos_dd),'</pre>';
-        echo '<pre>',var_export($formData),'</pre>';    exit();
+            $emailVars = Zend_Registry::get('emailVars');
+            $params1=array();    
         if($user_connect->id_fonction == "43" || $user_connect->id_fonction== "2" || $user_connect->id_fonction == "3" ){
-            $mail_dd=$formData['info_dd'];
-                $params1['destinataireMail']=$mail_dd;
-                $params1['url']="http://{$_SERVER['SERVER_NAME']}/xdistrib/validatedd/numwp/{$numwp}";
-                $params1['corpsMail']="Bonjour,\n"
-                            . "\n"
-                            . "la demande XDistrib({$trackingNumber}/{$numwp}) de {$destinataire}/{$info_user['nom_user']} {$info_user['prenom_user']}  pour {$nom_distrib}/{$nom_client} est à valider .\n"
-                            . "pour la valider veuillez vous rendre à l'adresse url : \n"
-                            . "%s"
-                            . "\n\n"
-                            . "Cordialement,\n"
-                            . "\n"
-                            . "--\n"
-                           . "Xsuite";
-                $params1['sujet']=" XDistrib :L'offre XDistrib {$trackingNumber}/{$numwp} de {$info_user['nom_user']} {$info_user['prenom_user']} pour {$nom_distrib}/{$nom_client} est à valider";
-                $this->sendEmail($params1);
-                $paramsRGCU1=array();
-                $paramsRGCU2=array();
+            $mail_dd=$infos_dd->email_user;
+            $params1['destinataireMail']=$mail_dd;
+            $params1['url']="http://{$_SERVER['SERVER_NAME']}/xdistrib/validatedd/numwp/{$numwp}";
+            $params1['corpsMail']="Bonjour,\n"
+            . "\n"
+            . "la demande XDistrib({$trackingNumber}/{$numwp}) de {$destinataire}/{$info_user['nom_user']} {$info_user['prenom_user']}  pour {$nom_distrib}/{$nom_client} est à valider .\n"
+            . "pour la valider veuillez vous rendre à l'adresse url : \n"
+            . "%s"
+            . "\n\n"
+            . "Cordialement,\n"
+            . "\n"
+            . "--\n"
+            . "Xsuite";
+            $params1['sujet']=" XDistrib :L'offre XDistrib {$trackingNumber}/{$numwp} de {$info_user['nom_user']} {$info_user['prenom_user']} pour {$nom_distrib}/{$nom_client} est à valider";
+            //$this->sendEmail($params1);
+            echo '<pre>',  var_export($params1),'</pre>';
+            echo '<pre>',var_export($formData),'</pre>';    exit();
            /*on envoi un mail au dd*/
        } 
 //       mail au rcd pour validation*/
@@ -966,7 +966,7 @@ if($this->getRequest()->isPost()){
     }
     public function maildispatchAction(){
          $user_connect = $this->_auth->getStorage()->read();
-          $emailVars = Zend_Registry::get('emailVars');
+         $emailVars = Zend_Registry::get('emailVars');
       if ($this->getRequest()->isPost()) {
         $formData = $this->getRequest()->getPost();
          //echo '<pre>',  var_export($formData),'</pre>'; 
