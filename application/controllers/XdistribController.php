@@ -297,40 +297,38 @@ class XdistribController extends Zend_Controller_Action
             $formData = $this->getRequest()->getPost();
             $redirector = $this->_helper->getHelper('Redirector');
                      /*insertion dans la table cleint_distrib*/
-         $adresse =trim($infos_client['OKCUA4']);
-         $codepostal = substr($adresse,0,5);
-         $ville = substr($adresse,5);
-         $clientDistrib = new Application_Model_DbTable_ClientDistrib();
-         $client_distrib = $clientDistrib->createClientDistrib($numwprecu, $infos_client['OKCUNO'], $codepostal, $ville, $info_industry['nom_industry'],  $info_industry['id_industry'], $infos_client['OKCUNM'], null);
-         
-         /*insertion dans la table distributeurs ( ok  en commentaire pour ne pas saturée la bdd de test )*/
+            $adresse =trim($infos_client['OKCUA4']);
+            $codepostal = substr($adresse,0,5);
+            $ville = substr($adresse,5);
+            $clientDistrib = new Application_Model_DbTable_ClientDistrib();
+            $client_distrib = $clientDistrib->createClientDistrib($numwprecu, $infos_client['OKCUNO'], $codepostal, $ville, $info_industry['nom_industry'],  $info_industry['id_industry'], $infos_client['OKCUNM'], null);
 
-         $adresse =trim($infos_client['OKCUA4']);
-         $codepostaldis = substr($adresse,0,5);
-         $agence = substr($adresse,5);
-         $potentiel = $infos_distrib['OKCFC7'];
-         $distribs = new Application_Model_DbTable_Distributeurs();
-         $distrib=$distribs->createDistributeur(trim($infos_distrib['OKCUNM']),null,trim($infos_distrib['OKCUNO']),$agence, $codepostaldis,$info_industry['id_industry'],$potentiel,$numwprecu);
-         $dateinit = $infos_offres->OBRGDT;
-        $dateinit3 = substr($dateinit, 0, 4);
-        $dateinit2 = substr($dateinit, 4, 2);
-        $dateinit1 = substr($dateinit, 6, 2);
-        $dateinitf = array($dateinit1, $dateinit2,$dateinit3);
-        $datefinal = implode('/', $dateinitf);
-        $this->view->datefinal = $datefinal;
-        $datef=array($dateinit3, $dateinit2,$dateinit1) ;
-        $date=implode('-',$datef);
+             /*insertion dans la table distributeurs ( ok  en commentaire pour ne pas saturée la bdd de test )*/
 
-       $Xdistribs = new Application_Model_DbTable_Xdistrib();
-       $new_Xdistrib= $Xdistribs->createXDistrib($numwprecu, $trackingNumber, null, $date, null, $infos_tc['id_user'], $infos_dd->id_user,null,$infos_client['OKCUNO'],$infos_distrib['OKCUNO']);
-        /*create article_Xdistrib*/
-           $article_Xdistrib=new Application_Model_DbTable_DemandeArticlexdistrib();
-          
-           $affiche_offre1=array_filter($affiche_offre);
+            $adresse =trim($infos_client['OKCUA4']);
+            $codepostaldis = substr($adresse,0,5);
+            $agence = substr($adresse,5);
+            $potentiel = $infos_distrib['OKCFC7'];
+            $distribs = new Application_Model_DbTable_Distributeurs();
+            $distrib=$distribs->createDistributeur(trim($infos_distrib['OKCUNM']),null,trim($infos_distrib['OKCUNO']),$agence, $codepostaldis,$info_industry['id_industry'],$potentiel,$numwprecu);
+            $dateinit = $infos_offres->OBRGDT;
+            $dateinit3 = substr($dateinit, 0, 4);
+            $dateinit2 = substr($dateinit, 4, 2);
+            $dateinit1 = substr($dateinit, 6, 2);
+            $dateinitf = array($dateinit1, $dateinit2,$dateinit3);
+            $datefinal = implode('/', $dateinitf);
+            $this->view->datefinal = $datefinal;
+            $datef=array($dateinit3, $dateinit2,$dateinit1) ;
+            $date=implode('-',$datef);
+
+            $Xdistribs = new Application_Model_DbTable_Xdistrib();
+            $new_Xdistrib= $Xdistribs->createXDistrib($numwprecu, $trackingNumber, null, $date, null, $infos_tc['id_user'], $infos_dd->id_user,null,$infos_client['OKCUNO'],$infos_distrib['OKCUNO']);
+            /*create article_Xdistrib*/
+            $article_Xdistrib=new Application_Model_DbTable_DemandeArticlexdistrib();
+
+            $affiche_offre1=array_filter($affiche_offre);
             echo '<pre>',var_export($affiche_offre1),'</pre>';
-           foreach($affiche_offre1 as $demande){
-              //var_dump($demande['OBITDS']);
-              
+            foreach($affiche_offre1 as $demande){
                $data =array( 'prix_tarif'=>$demande['OBSAPR'],
                    'prix_achat_actuel'=>($demande['OBSAPR']*40)/100,
                    'prix_demande_article'=>$demande['OBNEPR'],
@@ -347,132 +345,86 @@ class XdistribController extends Zend_Controller_Action
                    'code_article'=>trim($demande['OBITNO']),
                    'reference_article'=>trim($demande['OBITDS']),
                    'num_workplace_demande_xdistrib'=>$numwprecu,
-                   'code_acquisition'=>$code_acquisition);
-                   
-             echo '<pre>',var_export($data, true),'</pre>';
-            
-            $new_demande_article_Xdistrib= $article_Xdistrib->createArticleDemandeNoFile($data) ;
-           
+                   'code_acquisition'=>$code_acquisition);$new_demande_article_Xdistrib= $article_Xdistrib->createArticleDemandeNoFile($data) ;
            }
-           
-              /*recherche et insertion prif fob et cif*/
-        $mmcono = "100";
-        $division = "FR0";
-        $facility = "I01";
-        $type = "3";
-        $warehouse = "I02";
-        $agreement1 = "I000001";
-        $agreement2 = "I000002";
-        $agreement3 = "I000003";
-        $query5 = "select * from EIT.MVXCDTA.MPAGRP MPAGRP where MPAGRP.AJCONO = '$mmcono'  AND MPAGRP.AJOBV2 = '{$demande['OBITNO']}' AND MPAGRP.AJOBV1 = '$division'  ORDER BY MPAGRP.AJAGNB";
-        $resultats5 = odbc_Exec($this->odbc_conn2, $query5);
-        $prixciffob[] = odbc_fetch_object($resultats5);
-        $acquis= "select MITBAL.MBITNO, MITBAL.MBPUIT from EIT.MVXCDTA.MITBAL MITBAL where MITBAL.MBITNO ='{$demande['OBITNO']}'";
-        $resultatsacquis=odbc_Exec($this->odbc_conn2, $acquis);
-        $resultatacquis[] = odbc_fetch_object($resultatsacquis);
-         
-        foreach ($prixciffob as $key => $value) {
-            $insertprix = new Application_Model_DbTable_DemandeArticlexdistrib();
-            $inserprix = $insertprix->InserPrixFob($value->AJPUPR, $value->AJOBV2, $numwprecu);
-        }
-        foreach($resultatacquis as $key=>$value){
-            $insertacquis= new Application_Model_DbTable_DemandeArticlexdistrib();
-            $inseracquis = $insertacquis->InserCodeAcquis($value->MBPUIT, $value->MBITNO, $numwprecu);
-        }
 
-        $updatecif1 = new Application_Model_DbTable_DemandeArticlexdistrib();
-        $updatecif2 = $updatecif1->getDemandeArticlexdistrib($numwprecu); 
-        foreach($updatecif2 as $result){
-            if($result['code_acquisition']=='2'){
-                $fob=$result['prix_fob_demande_article'];
-                $cifs=$fob*1.07;
-                $cif=round($cifs,2);
-                $updatecif3 = $updatecif1->updatecif($cif, $result['code_article'], $numwprecu);
-        }
-        }
-$result = array_combine($formData['reference'],$formData['quantite']);
-     $result2 =  array_combine( $formData['reference'],$formData['prix_tarif_dis']);
-      $result3 = array_combine($formData['reference'],$formData['serie']);
-      $result4= array_combine($formData['reference'],$formData['prix_achat_client_final']);
-//     echo '<pre>',var_export($result3),'</pre>'; 
-//     echo '<pre>',var_export($result4),'</pre>'; 
-      /*update des articles avec les prix achat final serie...*/
-      $updateSerie = new Application_Model_DbTable_DemandeArticlexdistrib();
-      foreach ($result3 as $key=>$value) {
-          $upserie = $updateSerie->updateSerie($key,$trackingNumber,$value);
-      }
-      foreach ($result4 as $key=>$value) {
-          $upprix =$updateSerie->updatePrixClient($key,$trackingNumber,$value);
-      }
+                  /*recherche et insertion prif fob et cif*/
+            $mmcono = "100";
+            $division = "FR0";
+            $facility = "I01";
+            $type = "3";
+            $warehouse = "I02";
+            $agreement1 = "I000001";
+            $agreement2 = "I000002";
+            $agreement3 = "I000003";
+            $query5 = "select * from EIT.MVXCDTA.MPAGRP MPAGRP where MPAGRP.AJCONO = '$mmcono'  AND MPAGRP.AJOBV2 = '{$demande['OBITNO']}' AND MPAGRP.AJOBV1 = '$division'  ORDER BY MPAGRP.AJAGNB";
+            $resultats5 = odbc_Exec($this->odbc_conn2, $query5);
+            $prixciffob[] = odbc_fetch_object($resultats5);
+            $acquis= "select MITBAL.MBITNO, MITBAL.MBPUIT from EIT.MVXCDTA.MITBAL MITBAL where MITBAL.MBITNO ='{$demande['OBITNO']}'";
+            $resultatsacquis=odbc_Exec($this->odbc_conn2, $acquis);
+            $resultatacquis[] = odbc_fetch_object($resultatsacquis);
 
-               /*fin create article*/        
-         echo '<pre>',var_export($formData),'</pre>';    exit();
-         } 
-        
-//         $numwpexist = $demandes_xdistrib->getNumwp($numwp);
-//         $firstComment = null;
-//         if (is_null($numwpexist)){
-/*create demande*/
-         /*demande xdistrib ( ok  en commentaire pour ne pas saturée la bdd de test )*/
+            foreach ($prixciffob as $key => $value) {
+                $insertprix = new Application_Model_DbTable_DemandeArticlexdistrib();
+                $inserprix = $insertprix->InserPrixFob($value->AJPUPR, $value->AJOBV2, $numwprecu);
+            }
+            foreach($resultatacquis as $key=>$value){
+                $insertacquis= new Application_Model_DbTable_DemandeArticlexdistrib();
+                $inseracquis = $insertacquis->InserCodeAcquis($value->MBPUIT, $value->MBITNO, $numwprecu);
+            }
+
+            $updatecif1 = new Application_Model_DbTable_DemandeArticlexdistrib();
+            $updatecif2 = $updatecif1->getDemandeArticlexdistrib($numwprecu); 
+            foreach($updatecif2 as $result){
+                if($result['code_acquisition']=='2'){
+                    $fob=$result['prix_fob_demande_article'];
+                    $cifs=$fob*1.07;
+                    $cif=round($cifs,2);
+                    $updatecif3 = $updatecif1->updatecif($cif, $result['code_article'], $numwprecu);
+                }
+            }
+            $result = array_combine($formData['reference'],$formData['quantite']);
+            $result2 =  array_combine( $formData['reference'],$formData['prix_tarif_dis']);
+            $result3 = array_combine($formData['reference'],$formData['serie']);
+            $result4= array_combine($formData['reference'],$formData['prix_achat_client_final']);
+            /*update des articles avec les prix achat final serie...*/
+            $updateSerie = new Application_Model_DbTable_DemandeArticlexdistrib();
+            foreach ($result3 as $key=>$value) {
+                $upserie = $updateSerie->updateSerie($key,$trackingNumber,$value);
+            }
+            foreach ($result4 as $key=>$value) {
+                $upprix =$updateSerie->updatePrixClient($key,$trackingNumber,$value);
+            }
+                   /*fin create article*/ 
+
+           if(isset($_FILES['fichierDemandeDistrib']['name'])){
+               if($_FILES['fichierDemandeDistrib']['size']<= 2000000){
+                   $extension_valide = array('pdf');
+                   $extension_upload = strtolower(substr(strrchr($_FILES['fichierDemandeDistrib']['name'], '.'), 1));
+                   //var_dump($extension_upload);
+                   if(in_array($extension_upload, $extension_valide)){
+                       echo "extension correcte";
+                   }
+                   $nomFichier = 'Mail_'.$trackingNumber.'.'.$extension_upload;
+                   $uploaddir = "/home/mag/www-dev/Xsuite-dev_mag/public/mails/";
+                   $uploadfile = $uploaddir.$nomFichier;
+                   $tmp_name=$_FILES['fichierDemandeDistrib']['tmp_name'];
+                   if(move_uploaded_file($tmp_name, $uploadfile)){
+                       echo 'tout ok'; 
+                   } else{
+                       echo 'le transfert a échoué';
+                   }
+               }
+           }
+           $dbtValidationDemande = new Application_Model_DbTable_Validationsdemandexdistrib();
+                if (!is_null($formData['contexte']) && trim($formData['contexte']) != "") {
+                    $now = new DateTime();
+                    $validationDemande = $dbtValidationDemande->createValidation(null,$demandes_xdistrib->lastId(),$user_connect->id_user, "creation", $now->format('Y-m-d H:i:s'), "creation", null);
+                    $firstComment = $dbtValidationDemande->lastId();
+                }
             
-           /*fin create demande*/
-//           
-//               
 
-//       if ($this->getRequest()->isPost()) {
-//       $formData = $this->getRequest()->getPost();
-//       $redirector = $this->_helper->getHelper('Redirector');
-////    echo '<pre>',var_export($formData),'</pre>';    exit();
-//     
-      //$result = array_combine($formData['reference'],$formData['quantite']);
-     //$result2 =  array_combine( $formData['reference'],$formData['prix_tarif_dis']);
-//      $result3 = array_combine($formData['reference'],$formData['serie']);
-//      $result4= array_combine($formData['reference'],$formData['prix_achat_client_final']);
-////     echo '<pre>',var_export($result3),'</pre>'; 
-////     echo '<pre>',var_export($result4),'</pre>'; 
-//      /*update des articles avec les prix achat final serie...*/
-//      $updateSerie = new Application_Model_DbTable_DemandeArticlexdistrib();
-//      foreach ($result3 as $key=>$value) {
-//          $upserie = $updateSerie->updateSerie($key,$trackingNumber,$value);
-//      }
-//      foreach ($result4 as $key=>$value) {
-//          $upprix =$updateSerie->updatePrixClient($key,$trackingNumber,$value);
-//      }
-//       //var_dump($_FILES); 
-//       if(isset($_FILES['fichierDemandeDistrib']['name'])){
-//           if($_FILES['fichierDemandeDistrib']['size']<= 2000000){
-//               $extension_valide = array('pdf');
-//               $extension_upload = strtolower(substr(strrchr($_FILES['fichierDemandeDistrib']['name'], '.'), 1));
-//               //var_dump($extension_upload);
-//               if(in_array($extension_upload, $extension_valide)){
-//                   echo "extension correcte";
-//               }
-//               $nomFichier = 'Mail_'.$trackingNumber.'.'.$extension_upload;
-//               //var_dump($nomFichier);
-//               $uploaddir = "/home/mag/www-dev/Xsuite-dev_mag/public/mails/";
-//               //var_dump($uploaddir);$uploaddir = APPLICATION_PATH."/public/mails/";
-//               $uploadfile = $uploaddir.$nomFichier;
-//               //var_dump($uploadfile);
-//               $tmp_name=$_FILES['fichierDemandeDistrib']['tmp_name'];
-//               //var_dump($tmp_name);
-//               if(move_uploaded_file($tmp_name, $uploadfile)){
-//                   echo 'tout ok'; 
-//               } else{
-//                   echo 'le transfert a échoué';
-//               }
-//           }
-//       } 
-//       $demandes_xdistrib = new Application_Model_DbTable_Xdistrib();
-//        $numwpexist = $demandes_xdistrib->getNumwp($numwp);
-//        $firstComment = null;
-//        if (!is_null($numwpexist)) {
-//            $dbtValidationDemande = new Application_Model_DbTable_Validationsdemandexdistrib();
-//            if (!is_null($formData['contexte']) && trim($formData['contexte']) != "") {
-//                $now = new DateTime();
-//                $validationDemande = $dbtValidationDemande->createValidation(null,$demandes_xdistrib->lastId(),$user_connect->id_user, "creation", $now->format('Y-m-d H:i:s'), "creation", null);
-//                $firstComment = $dbtValidationDemande->lastId();
-//            }
-//        }  
+ 
 //       /*
 //        * envoi des mails
 //        * vérifier la fonction du createur de la demande Xdistrib
@@ -482,7 +434,32 @@ $result = array_combine($formData['reference'],$formData['quantite']);
 //        *        
 //        * 
 //        *  */
-//       /*mail qu rcd pour validation*/
+//       /*
+//       si le user et un itc ,un rgcu, un rgci, un leader itc envoie mail au dd
+        echo '<pre>',  var_export($infos_dd),'</pre>';
+        echo '<pre>',var_export($formData),'</pre>';    exit();
+        if($user_connect->id_fonction == "43" || $user_connect->id_fonction== "2" || $user_connect->id_fonction == "3" ){
+            $mail_dd=$formData['info_dd'];
+                $params1['destinataireMail']=$mail_dd;
+                $params1['url']="http://{$_SERVER['SERVER_NAME']}/xdistrib/validatedd/numwp/{$numwp}";
+                $params1['corpsMail']="Bonjour,\n"
+                            . "\n"
+                            . "la demande XDistrib({$trackingNumber}/{$numwp}) de {$destinataire}/{$info_user['nom_user']} {$info_user['prenom_user']}  pour {$nom_distrib}/{$nom_client} est à valider .\n"
+                            . "pour la valider veuillez vous rendre à l'adresse url : \n"
+                            . "%s"
+                            . "\n\n"
+                            . "Cordialement,\n"
+                            . "\n"
+                            . "--\n"
+                           . "Xsuite";
+                $params1['sujet']=" XDistrib :L'offre XDistrib {$trackingNumber}/{$numwp} de {$info_user['nom_user']} {$info_user['prenom_user']} pour {$nom_distrib}/{$nom_client} est à valider";
+                $this->sendEmail($params1);
+                $paramsRGCU1=array();
+                $paramsRGCU2=array();
+           /*on envoi un mail au dd*/
+       } 
+//       mail au rcd pour validation*/
+//       
 ////       if(){
 ////                  ;
 ////               }
@@ -492,8 +469,9 @@ $result = array_combine($formData['reference'],$formData['quantite']);
 //            $flashMessenger->addMessage($message);
 //            $redirector->gotoSimple('index', 'xdistrib');
 //  
-//              }  
-         }
+//              } 
+            }
+        }
     }
     
     public function uploadnumwpAction(){
