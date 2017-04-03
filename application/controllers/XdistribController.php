@@ -390,7 +390,20 @@ class XdistribController extends Zend_Controller_Action
                 $updatecif3 = $updatecif1->updatecif($cif, $result['code_article'], $numwprecu);
         }
         }
-
+$result = array_combine($formData['reference'],$formData['quantite']);
+     $result2 =  array_combine( $formData['reference'],$formData['prix_tarif_dis']);
+      $result3 = array_combine($formData['reference'],$formData['serie']);
+      $result4= array_combine($formData['reference'],$formData['prix_achat_client_final']);
+//     echo '<pre>',var_export($result3),'</pre>'; 
+//     echo '<pre>',var_export($result4),'</pre>'; 
+      /*update des articles avec les prix achat final serie...*/
+      $updateSerie = new Application_Model_DbTable_DemandeArticlexdistrib();
+      foreach ($result3 as $key=>$value) {
+          $upserie = $updateSerie->updateSerie($key,$trackingNumber,$value);
+      }
+      foreach ($result4 as $key=>$value) {
+          $upprix =$updateSerie->updatePrixClient($key,$trackingNumber,$value);
+      }
 
                /*fin create article*/        
          echo '<pre>',var_export($formData),'</pre>';    exit();
@@ -411,8 +424,8 @@ class XdistribController extends Zend_Controller_Action
 //       $redirector = $this->_helper->getHelper('Redirector');
 ////    echo '<pre>',var_export($formData),'</pre>';    exit();
 //     
-//      //$result = array_combine($formData['reference'],$formData['quantite']);
-//      //$result2 =  array_combine( $formData['reference'],$formData['prix_tarif_dis']);
+      //$result = array_combine($formData['reference'],$formData['quantite']);
+     //$result2 =  array_combine( $formData['reference'],$formData['prix_tarif_dis']);
 //      $result3 = array_combine($formData['reference'],$formData['serie']);
 //      $result4= array_combine($formData['reference'],$formData['prix_achat_client_final']);
 ////     echo '<pre>',var_export($result3),'</pre>'; 
