@@ -346,7 +346,7 @@ class XdistribController extends Zend_Controller_Action
                    'tracking_number_demande_xdistrib'=>$trackingNumber,
                    'code_article'=>trim($demande['OBITNO']),
                    'reference_article'=>trim($demande['OBITDS']),
-                   'num_workplace_demande_xdistrib'=>$numwp,
+                   'num_workplace_demande_xdistrib'=>$numwprecu,
                    'code_acquisition'=>$code_acquisition);
                    
              echo '<pre>',var_export($data, true),'</pre>';
