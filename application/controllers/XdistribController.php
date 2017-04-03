@@ -354,6 +354,44 @@ class XdistribController extends Zend_Controller_Action
             $new_demande_article_Xdistrib= $article_Xdistrib->createArticleDemandeNoFile($data) ;
            
            }
+           
+              /*recherche et insertion prif fob et cif*/
+        $mmcono = "100";
+        $division = "FR0";
+        $facility = "I01";
+        $type = "3";
+        $warehouse = "I02";
+        $agreement1 = "I000001";
+        $agreement2 = "I000002";
+        $agreement3 = "I000003";
+        $query5 = "select * from EIT.MVXCDTA.MPAGRP MPAGRP where MPAGRP.AJCONO = '$mmcono'  AND MPAGRP.AJOBV2 = '{$demande['OBITNO']}' AND MPAGRP.AJOBV1 = '$division'  ORDER BY MPAGRP.AJAGNB";
+        $resultats5 = odbc_Exec($this->odbc_conn2, $query5);
+        $prixciffob[] = odbc_fetch_object($resultats5);
+        $acquis= "select MITBAL.MBITNO, MITBAL.MBPUIT from EIT.MVXCDTA.MITBAL MITBAL where MITBAL.MBITNO ='{$demande['OBITNO']}'";
+        $resultatsacquis=odbc_Exec($this->odbc_conn2, $acquis);
+        $resultatacquis[] = odbc_fetch_object($resultatsacquis);
+         
+        foreach ($prixciffob as $key => $value) {
+            $insertprix = new Application_Model_DbTable_DemandeArticlexdistrib();
+            $inserprix = $insertprix->InserPrixFob($value->AJPUPR, $value->AJOBV2, $numwp);
+        }
+        foreach($resultatacquis as $key=>$value){
+            $insertacquis= new Application_Model_DbTable_DemandeArticlexdistrib();
+            $inseracquis = $insertacquis->InserCodeAcquis($value->MBPUIT, $value->MBITNO, $numwp);
+        }
+
+        $updatecif1 = new Application_Model_DbTable_DemandeArticlexdistrib();
+        $updatecif2 = $updatecif1->getDemandeArticlexdistrib($numwp); 
+        foreach($updatecif2 as $result){
+            if($result['code_acquisition']=='2'){
+                $fob=$result['prix_fob_demande_article'];
+                $cifs=$fob*1.07;
+                $cif=round($cifs,2);
+                $updatecif3 = $updatecif1->updatecif($cif, $result['code_article'], $numwp);
+        }
+        }
+
+
                /*fin create article*/        
          echo '<pre>',var_export($formData),'</pre>';    exit();
          } 
@@ -367,43 +405,7 @@ class XdistribController extends Zend_Controller_Action
            /*fin create demande*/
 //           
 //               
-//               /*recherche et insertion prif fob et cif*/
-//                $mmcono = "100";
-//                $division = "FR0";
-//                $facility = "I01";
-//                $type = "3";
-//                $warehouse = "I02";
-//                $agreement1 = "I000001";
-//                $agreement2 = "I000002";
-//                $agreement3 = "I000003";
-//                $query5 = "select * from EIT.MVXCDTA.MPAGRP MPAGRP where MPAGRP.AJCONO = '$mmcono'  AND MPAGRP.AJOBV2 = '{$demande['OBITNO']}' AND MPAGRP.AJOBV1 = '$division'  ORDER BY MPAGRP.AJAGNB";
-//                $resultats5 = odbc_Exec($this->odbc_conn2, $query5);
-//                $prixciffob[] = odbc_fetch_object($resultats5);
-//                $acquis= "select MITBAL.MBITNO, MITBAL.MBPUIT from EIT.MVXCDTA.MITBAL MITBAL where MITBAL.MBITNO ='{$demande['OBITNO']}'";
-//                $resultatsacquis=odbc_Exec($this->odbc_conn2, $acquis);
-//                $resultatacquis[] = odbc_fetch_object($resultatsacquis);
-//            } 
-//            foreach ($prixciffob as $key => $value) {
-//               $insertprix = new Application_Model_DbTable_DemandeArticlexdistrib();
-//               $inserprix = $insertprix->InserPrixFob($value->AJPUPR, $value->AJOBV2, $numwp);
-//            }
-//            foreach($resultatacquis as $key=>$value){
-//                $insertacquis= new Application_Model_DbTable_DemandeArticlexdistrib();
-//                $inseracquis = $insertacquis->InserCodeAcquis($value->MBPUIT, $value->MBITNO, $numwp);
-//            }
-//
-//            $updatecif1 = new Application_Model_DbTable_DemandeArticlexdistrib();
-//            $updatecif2 = $updatecif1->getDemandeArticlexdistrib($numwp); 
-//            foreach($updatecif2 as $result){
-//                if($result['code_acquisition']=='2'){
-//                    $fob=$result['prix_fob_demande_article'];
-//                    $cifs=$fob*1.07;
-//                    $cif=round($cifs,2);
-//                    $updatecif3 = $updatecif1->updatecif($cif, $result['code_article'], $numwp);
-//                }
-//            }
-//        
-//        
+
 //       if ($this->getRequest()->isPost()) {
 //       $formData = $this->getRequest()->getPost();
 //       $redirector = $this->_helper->getHelper('Redirector');
