@@ -436,8 +436,9 @@ class XdistribController extends Zend_Controller_Action
 //        *  */
 //       /*
 //       si le user et un itc ,un rgcu, un rgci, un leader itc envoie mail au dd
-            $emailVars = Zend_Registry::get('emailVars');
-            $params1=array();    
+        $emailVars = Zend_Registry::get('emailVars');
+        $params1 = array(); 
+        $params2 = array();
         if($user_connect->id_fonction == "43" || $user_connect->id_fonction== "2" || $user_connect->id_fonction == "3" ){
             $mail_dd=$infos_dd->email_user;
             $params1['destinataireMail']=$mail_dd;
@@ -452,12 +453,74 @@ class XdistribController extends Zend_Controller_Action
             . "\n"
             . "--\n"
             . "Xsuite";
-            $params1['sujet']=" XDistrib :L'offre XDistrib {$trackingNumber}/{$numwp} de {$info_user['nom_user']} {$info_user['prenom_user']} pour {$nom_distrib}/{$nom_client} est à valider";
+            $params1['sujet']=" XDistrib :L'offre XDistrib {$trackingNumber}/{$numwprecu} de {$info_user['nom_user']} {$info_user['prenom_user']} pour {$nom_distrib}/{$nom_client} est à valider";
             //$this->sendEmail($params1);
             echo '<pre>',  var_export($params1),'</pre>';
             echo '<pre>',var_export($formData),'</pre>';    exit();
            /*on envoi un mail au dd*/
-       } 
+        } 
+        if ($user_connect->id_fonction == "6"){
+            $holondd =$infos_dd->id_holon;
+            switch ($holondd){
+                case "18":
+                    $destinataireMail2 = $emailVars->listes->CDRNORD;
+                    break;
+                case "19":
+                    $destinataireMail2 = $emailVars->listes->CDRNORD;
+                    break;
+                case "20":
+                    $destinataireMail2 = $emailVars->listes->CDRNORD;
+                    break;
+                case "5":
+                    $destinataireMail2 = $emailVars->listes->CDREST;
+                    break;
+                case"6":
+                    $destinataireMail2 = $emailVars->listes->CDREST;
+                    break;
+                case "11":
+                    $destinataireMail2 = $emailVars->listes->CDREST;
+                    break;
+                case "13":
+                    $destinataireMail2 = $emailVars->listes->CDREST;
+                    break;
+                case "8":
+                    $destinataireMail2 = $emailVars->listes->CDROUEST;
+                    break;
+                case "9":
+                    $destinataireMail2 = $emailVars->listes->CDROUEST;
+                    break;
+                case "10":
+                    $destinataireMail2 = $emailVars->listes->CDROUEST;
+                    break;
+                case "14":
+                    $destinataireMail2 = $emailVars->listes->CDROUEST;
+                    break;
+                case "31":
+                    $destinataireMail2 = $emailVars->listes->CDROUEST;
+                    break;
+                case "33":
+                    $destinataireMail2 = $emailVars->listes->IO;
+                    break;
+                case "29":
+                    $destinataireMail2=$emailVars->listes->Export;
+            }
+            $params2['destinataireMail2']=$destinataireMail2;
+            $params2['url']="http://{$_SERVER['SERVER_NAME']}/xdistrib/validatedrv/numwp/{$numwprecu}";
+            $params2['corpsMail']="Bonjour,\n"
+            . "\n"
+            . "la demande XDistrib({$trackingNumber}/{$numwp2}) de {$destinataire}/{$info_user['nom_user']} {$info_user['prenom_user']}  pour {$nom_distrib}/{$nom_client} est à valider .\n"
+            . "pour la valider veuillez vous rendre à l'adresse url : \n"
+            . "%s"
+            . "\n\n"
+            . "Cordialement,\n"
+            . "\n"
+            . "--\n"
+            . "Xsuite";
+            $params2['sujet']=" XDistrib :L'offre XDistrib {$trackingNumber}/{$numwprecu} de {$info_user['nom_user']} {$info_user['prenom_user']} pour {$nom_distrib}/{$nom_client} est à valider";
+            //$this->sendEmail($params2);
+            echo '<pre>',  var_export($params2),'</pre>';
+            echo '<pre>',var_export($formData),'</pre>';    exit();
+        }
 //       mail au rcd pour validation*/
 //       
 ////       if(){
