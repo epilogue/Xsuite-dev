@@ -509,7 +509,7 @@ class XdistribController extends Zend_Controller_Action
                 
             }
             var_dump($d2);
-            $params2['destinataireMail2']=$destinataireMail2;
+            $params2['destinataireMail2']=$d2;
             $params2['url']="http://{$_SERVER['SERVER_NAME']}/xdistrib/validatedrv/numwp/{$numwprecu}";
             $params2['corpsMail']="Bonjour,\n"
             . "\n"
