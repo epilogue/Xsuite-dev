@@ -214,6 +214,18 @@ public function searchAll($tracking_number){
             } else {
                 return $rest;
             }
-        }        
+        }   
+        
+        public function getAlex($date){
+            $sql = "";
+                    $res = $this->getAdapter()->query($sql);
+            $rest=$res->fetchAll();
+            if (!$rest) {
+                return null;
+            } else {
+                return $rest;
+            }
+        }   
+        
 }
 
