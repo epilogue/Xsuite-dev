@@ -272,7 +272,7 @@ class XdistribController extends Zend_Controller_Action
             $querydisbis = "select * from EIT.MVXCDTA.OCUSMA OCUSMA where OCUSMA.OKCUNO = '{$infos_offres->OBCUNO}'";
             $infos_distrib = odbc_fetch_array(odbc_exec($this->odbc_conn2, $querydisbis));
             $this->view->infos_distrib=$infos_distrib;   
-             $query1quart2 = "select * from EIT.SMCCDTA.ZMCPJO  ZMCPJO where ZMCPJO.Z2CUNO= '{$infos_offres->OBCUNO}' ";
+            $query1quart2 = "select * from EIT.SMCCDTA.ZMCPJO  ZMCPJO where ZMCPJO.Z2CUNO= '{$infos_offres->OBCUNO}' ";
             $industriewp4 = odbc_fetch_array(odbc_exec($this->odbc_conn3, $query1quart2));
             
             $sqlaffiche = "select
@@ -287,7 +287,7 @@ class XdistribController extends Zend_Controller_Action
                 OOLINE.OBELNO
                 from EIT.CVXCDTA.OOLINE OOLINE WHERE OOLINE.OBORNO='{$numwprecu}'  AND OOLINE.OBDIVI LIKE 'FR0' AND OOLINE.OBCONO=100";
                 $affiche_offres=odbc_exec($this->odbc_conn, $sqlaffiche);
-          while ($affiche_offre[] = odbc_fetch_array($affiche_offres)){
+            while ($affiche_offre[] = odbc_fetch_array($affiche_offres)){
                 $this->view->affiche_offre = $affiche_offre;
             }
  
@@ -327,7 +327,7 @@ class XdistribController extends Zend_Controller_Action
             $article_Xdistrib=new Application_Model_DbTable_DemandeArticlexdistrib();
 
             $affiche_offre1=array_filter($affiche_offre);
-            echo '<pre>',var_export($affiche_offre1),'</pre>';
+            //echo '<pre>',var_export($affiche_offre1),'</pre>';
             foreach($affiche_offre1 as $demande){
                $data =array( 'prix_tarif'=>$demande['OBSAPR'],
                    'prix_achat_actuel'=>($demande['OBSAPR']*40)/100,
@@ -455,13 +455,12 @@ class XdistribController extends Zend_Controller_Action
             . "--\n"
             . "Xsuite";
             $params1['sujet']=" XDistrib :L'offre XDistrib {$trackingNumber}/{$numwprecu} de {$info_user['nom_user']} {$info_user['prenom_user']} pour {$nom_distrib}/{$nom_client} est à valider";
-            //$this->sendEmail($params1);
-            echo '<pre>',  var_export($params1),'</pre>';
-            echo '<pre>',var_export($formData),'</pre>';    exit();
+            $this->sendEmail($params1);
+            
            /*on envoi un mail au dd*/
         } 
         if ($user_connect->id_fonction == "6"){
-            echo '<pre>',  var_export($user_connect),'</pre>';
+            //echo '<pre>',  var_export($user_connect),'</pre>';
             $holondd =$user_connect->id_holon;
             $holonnord=array(18,19,20,21,22,23,32);
             $holonouest = array(8,9,10,14,15,16,17,31);
@@ -484,7 +483,6 @@ class XdistribController extends Zend_Controller_Action
                 $emailVars->listes->export;
             }
             
-            //var_dump($d2);
             $params2['destinataireMail']=$d2;
             $params2['url']="http://{$_SERVER['SERVER_NAME']}/xdistrib/validatedrv/numwp/{$numwprecu}";
             $params2['corpsMail']="Bonjour,\n"
@@ -498,9 +496,8 @@ class XdistribController extends Zend_Controller_Action
             . "--\n"
             . "Xsuite";
             $params2['sujet']=" XDistrib :L'offre XDistrib {$trackingNumber}/{$numwprecu} de {$info_user['nom_user']} {$info_user['prenom_user']} pour {$nom_distrib}/{$nom_client} est à valider";
-            //$this->sendEmail($params2);
-            echo '<pre>',  var_export($params2),'</pre>';
-            echo '<pre>',var_export($formData),'</pre>';    exit();
+            $this->sendEmail($params2);
+            
         }
         if($user_connect->id_user=="78"||$user_connect->id_user=="62"){
             $destinataireMail3 = $emailVars->export;
@@ -517,9 +514,7 @@ class XdistribController extends Zend_Controller_Action
             . "--\n"
             . "Xsuite";
             $params3['sujet']=" XDistrib :L'offre XDistrib {$trackingNumber}/{$numwprecu} de {$info_user['nom_user']} {$info_user['prenom_user']} pour {$nom_distrib}/{$nom_client} est à valider";
-            //$this->sendEmail($params2);
-            echo '<pre>',  var_export($params3),'</pre>';
-            echo '<pre>',var_export($formData),'</pre>';    exit();
+            $this->sendEmail($params3);
         }
         $paramsRGCU1=array();
         $paramsRGCU2=array();
@@ -551,22 +546,15 @@ class XdistribController extends Zend_Controller_Action
             . "Cordialement,\n"
             . "\n"
             . "--\n"
-           . "Xsuite";
+            . "Xsuite";
              $paramsRGCU2['sujet']=" XDistrib :L'offre XDistrib {$trackingNumber}/{$numwprecu} de {$user_connect->nom_user} {$user_connect->prenom_user} pour {$nom_distrib}/{$nom_client} est à consulter";
              $this->sendEmail($paramsRGCU2);
                   }
-//       mail au rcd pour validation*/
-//       
-////       if(){
-////                  ;
-////               }
-//       
-//            $flashMessenger = $this->_helper->getHelper('FlashMessenger');
-//            $message = "votre offre  a bien été créée.";
-//            $flashMessenger->addMessage($message);
-//            $redirector->gotoSimple('index', 'xdistrib');
-//  
-//              } 
+      
+            $flashMessenger = $this->_helper->getHelper('FlashMessenger');
+            $message = "votre offre  a bien été créée.";
+            $flashMessenger->addMessage($message);
+            $redirector->gotoSimple('index', 'xdistrib'); 
             }
         }
     }
