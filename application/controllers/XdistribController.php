@@ -442,7 +442,7 @@ class XdistribController extends Zend_Controller_Action
         $params3 = array();
         if($user_connect->id_fonction == "43" || $user_connect->id_fonction== "2" || $user_connect->id_fonction == "3" ){
             $mail_dd=$infos_dd->email_user;
-            $params1['destinataireMail']=$mail_dd;
+            $params1['destinataireMail']=/*$mail_dd*/"mhuby@smc-france.fr";
             $params1['url']="http://{$_SERVER['SERVER_NAME']}/xdistrib/validatedd/numwp/{$numwp}";
             $params1['corpsMail']="Bonjour,\n"
             . "\n"
@@ -474,7 +474,7 @@ class XdistribController extends Zend_Controller_Action
                 $d2 = $emailVars->listes->CDROUEST;
             }
             elseif(in_array($holondd, $holonest)){
-                $d2 = $emailVars->listes->CDREST;
+                $d2 ="mhuby@smc-france.fr"/* $emailVars->listes->CDREST*/;
             }
             elseif(in_array($holondd, $holonIO)){
                 $emailVars->listes->IO;
