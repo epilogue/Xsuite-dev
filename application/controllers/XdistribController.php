@@ -162,6 +162,10 @@ class XdistribController extends Zend_Controller_Action
              break;
          case 4:
             $tracking1='/SPD-FR-QI/';
+            $tracking2='/SPD-FR-QI/';            
+             break;
+         case 36:
+            $tracking1='/SPD-FR-QK/';
             $tracking2='/SPD-FR-QK/';            
              break;
      }
@@ -442,7 +446,7 @@ class XdistribController extends Zend_Controller_Action
         $params3 = array();
         if($user_connect->id_fonction == "43" || $user_connect->id_fonction== "2" || $user_connect->id_fonction == "3" ){
             $mail_dd=$infos_dd->email_user;
-            $params1['destinataireMail']=/*$mail_dd*/"mhuby@smc-france.fr";
+            $params1['destinataireMail']=$mail_dd;
             $params1['url']="http://{$_SERVER['SERVER_NAME']}/xdistrib/validatedd/numwp/{$numwp}";
             $params1['corpsMail']="Bonjour,\n"
             . "\n"
@@ -464,7 +468,8 @@ class XdistribController extends Zend_Controller_Action
             $holondd =$user_connect->id_holon;
             $holonnord=array(18,19,20,21,22,23,32);
             $holonouest = array(8,9,10,14,15,16,17,31);
-            $holonest = array(5,6,7,11,12,13,31);
+            $holonouest2 = array(36,37,38,39,41);
+            $holonest = array(5,6,7,11,12,13,30,40);
             $holonIO = array(33);
             $holonexport = array(28,29);
             if(in_array($holondd, $holonnord)){
@@ -473,14 +478,17 @@ class XdistribController extends Zend_Controller_Action
             elseif(in_array($holondd, $holonouest)){
                 $d2 = $emailVars->listes->CDROUEST;
             }
+            elseif(in_array($holondd, $holonouest2)){
+                $d2 = $emailVars->listes->CDROUEST2;
+            }
             elseif(in_array($holondd, $holonest)){
-                $d2 ="mhuby@smc-france.fr"/* $emailVars->listes->CDREST*/;
+                $d2 = $emailVars->listes->CDREST;
             }
             elseif(in_array($holondd, $holonIO)){
-                $emailVars->listes->IO;
+                $d2 =$emailVars->listes->IO;
             }
             elseif(in_array($holondd, $holonexport)){
-                $emailVars->listes->export;
+                $d2 =$emailVars->listes->export;
             }
             
             $params2['destinataireMail']=$d2;
@@ -1090,6 +1098,31 @@ if($this->getRequest()->isPost()){
         $params=array();
         if($user_connect->id_user=="78"||$user_connect->id_user=="62"||$user_connect->id_fonction == "6" || $user_connect->id_fonction == "34" || $user_connect->id_fonction == "35" || $user_connect->id_fonction == "36" || $user_connect->id_fonction == "37" ){
             switch ($id_holon){
+                case "5":
+                    $destinataireMail1 = $emailVars->listes->CDREST;
+                    break;
+                case"6":
+                    $destinataireMail1 = $emailVars->listes->CDREST;
+                    break;
+                 case "8":
+                    $destinataireMail1 = $emailVars->listes->CDROUEST;
+                    break;
+                case "9":
+                    $destinataireMail1 = $emailVars->listes->CDROUEST;
+                    break;
+                case "10":
+                    $destinataireMail1 = $emailVars->listes->CDROUEST;
+                    break;
+                 case "11":
+                    $destinataireMail1 = $emailVars->listes->CDREST;
+                    break;
+                case "13":
+                    $destinataireMail1 = $emailVars->listes->CDREST;
+                    break;
+               
+                case "14":
+                    $destinataireMail1 = $emailVars->listes->CDROUEST;
+                    break;
                 case "18":
                     $destinataireMail1 = $emailVars->listes->CDRNORD;
                     break;
@@ -1099,38 +1132,37 @@ if($this->getRequest()->isPost()){
                 case "20":
                     $destinataireMail1 = $emailVars->listes->CDRNORD;
                     break;
-                case "5":
+                 case "29":
+                    $destinataireMail1=$emailVars->listes->Export;
+                     break;
+                 case "30":
                     $destinataireMail1 = $emailVars->listes->CDREST;
-                    break;
-                case"6":
-                    $destinataireMail1 = $emailVars->listes->CDREST;
-                    break;
-                case "11":
-                    $destinataireMail1 = $emailVars->listes->CDREST;
-                    break;
-                case "13":
-                    $destinataireMail1 = $emailVars->listes->CDREST;
-                    break;
-                case "8":
-                    $destinataireMail1 = $emailVars->listes->CDROUEST;
-                    break;
-                case "9":
-                    $destinataireMail1 = $emailVars->listes->CDROUEST;
-                    break;
-                case "10":
-                    $destinataireMail1 = $emailVars->listes->CDROUEST;
-                    break;
-                case "14":
-                    $destinataireMail1 = $emailVars->listes->CDROUEST;
                     break;
                 case "31":
                     $destinataireMail1 = $emailVars->listes->CDROUEST;
                     break;
+                case "32":
+                    $destinataireMail1 = $emailVars->listes->CDNORD;
+                    break;
                 case "33":
                     $destinataireMail1 = $emailVars->listes->IO;
                     break;
-                case "29":
-                    $destinataireMail1=$emailVars->listes->Export;
+                case "37":
+                    $destinataireMail1 = $emailVars->listes->CDROUEST2;
+                    break;
+                case "38":
+                    $destinataireMail1 = $emailVars->listes->CDROUEST2;
+                    break;
+                case "39":
+                    $destinataireMail1 = $emailVars->listes->CDROUEST2;
+                    break;
+                case "40":
+                    $destinataireMail1 = $emailVars->listes->CDREST;
+                    break;
+                case "41":
+                    $destinataireMail1 = $emailVars->listes->CDROUEST2;
+                    break;
+               
             }
              $params['destinataireMail']=$destinataireMail1;
 //             var_dump($destinataireMail1);
@@ -1856,6 +1888,22 @@ if($this->getRequest()->isPost()){
                     break;
                 case "29":
                     $destinataireMail1=$emailVars->listes->Export;
+                    break;
+                case "37":
+                    $destinataireMail1 = $emailVars->listes->CDROUEST2;
+                    break;
+                case "38":
+                    $destinataireMail1 = $emailVars->listes->CDROUEST2;
+                    break;
+                case "39":
+                    $destinataireMail1 = $emailVars->listes->CDROUEST2;
+                    break;
+                case "40":
+                    $destinataireMail1 = $emailVars->listes->CDREST;
+                    break;
+                case "41":
+                    $destinataireMail1 = $emailVars->listes->CDROUEST2;
+                    break;
                 }
                     //
                     //echo '<pre>',  var_export($destinataireMail1),'</pre>'; exit();
@@ -3051,6 +3099,7 @@ if($this->getRequest()->isPost()){
                 
                 $this->sendEmail($params2);
                 $this->sendEmail($params3);
+                $id_holon=$user_info['id_holon'];
                 //envoi au leader 
                 if ($fonctioncreateur=="1") {
                         switch ($id_holon) {
@@ -3102,30 +3151,33 @@ if($this->getRequest()->isPost()){
                     }
                 //envoi au cdr
                 $zonetracking = substr($tracking, 7, 2);
+                $id_holon=$user_info['id_holon'];
                 if ($fonctioncreateur=="1" or $fonctioncreateur=="2" or $fonctioncreateur=="3") {
-                        switch ($zonetracking) {
-                            case "QA":
-                               $params5['destinataireMail'] = $emailVars->listes->QA;
-                                break;
-                            case "QC":
-                                $params5['destinataireMail'] = $emailVars->listes->CDRNORD;
-                                break;
-                            case "QF":
-                                $params5['destinataireMail'] = $emailVars->listes->CDRNORD;
-                                break;
-                            case "QE":
-                                $params5['destinataireMail'] = $emailVars->listes->CDREST;
-                                break;
-                            case "QH":
-                                $params5['destinataireMail'] = $emailVars->listes->CDREST;
-                                break;
-                            case "QI":
-                                $params5['destinataireMail'] = $emailVars->listes->CDROUEST;
-                                break;
-                            case "QK":
-                                $params5['destinataireMail'] = $emailVars->listes->CDROUEST;
-                                break;
+                        $holonnord=array(18,19,20,21,22,23,32);
+                        $holonouest = array(8,9,10,14,15,16,17,31);
+                        $holonouest2 = array(36,37,38,39,41);
+                        $holonest = array(5,6,7,11,12,13,30,40);
+                        $holonIO = array(33);
+                        $holonexport = array(28,29);
+                        if(in_array($id_holon, $holonnord)){
+                            $params5['destinataireMail'] = $emailVars->listes->CDRNORD;
                         }
+                        elseif(in_array($id_holon, $holonouest)){
+                            $params5['destinataireMail'] = $emailVars->listes->CDROUEST;
+                        }
+                        elseif(in_array($id_holon, $holonouest2)){
+                            $params5['destinataireMail'] = $emailVars->listes->CDROUEST2;
+                        }
+                        elseif(in_array($id_holon, $holonest)){
+                            $params5['destinataireMail'] = $emailVars->listes->CDREST;
+                        }
+                        elseif(in_array($id_holon, $holonIO)){
+                            $params5['destinataireMail'] =$emailVars->listes->IO;
+                        }
+                        elseif(in_array($id_holon, $holonexport)){
+                            $params5['destinataireMail']=$emailVars->listes->export;
+                        }    
+                    
                         $params5['url'] = "http://{$_SERVER['SERVER_NAME']}/xdistrib/consult/numwp/{$numwp}";
 
                          $params5['corpsMail'] = "Bonjour,\n"
@@ -3666,29 +3718,30 @@ if($this->getRequest()->isPost()){
                     //envoi au cdr
                      $zonetracking = substr($tracking, 7, 2);
                 if ($fonctioncreateur == "1" or $fonctioncreateur == "2" or $fonctioncreateur == "3") {
-                        switch ($zonetracking) {
-                            case "QA":
-                               $params3['destinataireMail'] = $emailVars->listes->QA;
-                                break;
-                            case "QC":
-                                $params3['destinataireMail'] = $emailVars->listes->CDRNORD;
-                                break;
-                            case "QF":
-                                $params3['destinataireMail'] = $emailVars->listes->CDRNORD;
-                                break;
-                            case "QE":
-                                $params3['destinataireMail'] = $emailVars->listes->CDREST;
-                                break;
-                            case "QH":
-                                $params3['destinataireMail'] = $emailVars->listes->CDREST;
-                                break;
-                            case "QI":
-                                $params3['destinataireMail'] = $emailVars->listes->CDROUEST;
-                                break;
-                            case "QK":
-                                $params3['destinataireMail'] = $emailVars->listes->CDROUEST;
-                                break;
+                       $holonnord=array(18,19,20,21,22,23,32);
+                        $holonouest = array(8,9,10,14,15,16,17,31);
+                        $holonouest2 = array(36,37,38,39,41);
+                        $holonest = array(5,6,7,11,12,13,30,40);
+                        $holonIO = array(33);
+                        $holonexport = array(28,29);
+                        if(in_array($id_holon, $holonnord)){
+                            $params5['destinataireMail'] = $emailVars->listes->CDRNORD;
                         }
+                        elseif(in_array($id_holon, $holonouest)){
+                            $params5['destinataireMail'] = $emailVars->listes->CDROUEST;
+                        }
+                        elseif(in_array($id_holon, $holonouest2)){
+                            $params5['destinataireMail'] = $emailVars->listes->CDROUEST2;
+                        }
+                        elseif(in_array($id_holon, $holonest)){
+                            $params5['destinataireMail'] = $emailVars->listes->CDREST;
+                        }
+                        elseif(in_array($id_holon, $holonIO)){
+                            $params5['destinataireMail'] =$emailVars->listes->IO;
+                        }
+                        elseif(in_array($id_holon, $holonexport)){
+                            $params5['destinataireMail']=$emailVars->listes->export;
+                        }    
                         $params3['url'] = "http://{$_SERVER['SERVER_NAME']}/xdistrib/consult/numwp/{$numwp}";
 
                         $params3['corpsMail'] = "Bonjour,\n"
