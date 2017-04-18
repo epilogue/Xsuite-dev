@@ -403,7 +403,7 @@ class XdistribController extends Zend_Controller_Action
 
            if(isset($_FILES['fichierDemandeDistrib']['name'])){
                if($_FILES['fichierDemandeDistrib']['size']<= 2000000){
-                   $extension_valide = array('pdf');
+                   $extension_valide = array('msg');
                    $extension_upload = strtolower(substr(strrchr($_FILES['fichierDemandeDistrib']['name'], '.'), 1));
                    //var_dump($extension_upload);
                    if(in_array($extension_upload, $extension_valide)){
