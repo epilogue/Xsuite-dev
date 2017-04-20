@@ -2973,7 +2973,7 @@ if($this->getRequest()->isPost()){
                 //essai  de creation de fichier csv  + envoi  en piece-jointe pour le distributeur brammer 
                 if($numwp_distributeur=='I02055' || $numwp_distributeur=='I01045'){
                  $mailRCDN= $emailVars->listes->brammer;}
-                elseif($numwp_distributeur=='I03624' ||                        
+                elseif( $numwp_distributeur=='I03624' ||                        
                         $numwp_distributeur=='I00789' ||
                         $numwp_distributeur=='I05285' ||
                         $numwp_distributeur=='I03317' ||
@@ -3193,8 +3193,8 @@ if($this->getRequest()->isPost()){
                         $params5['sujet']=" XDistrib :Offre Xdistrib$tracking/$numwp de {$user_info['nom_user']} pour $nomclients validée par le DBD";
                       $this->sendEmail($params5); 
                     }
-                     $destIndustry = $client_info['id_industry'];
-                     $car1=array(1,2,3,4,5,6,7,8,9,10,11,12,13,15,16,18,19,59,73,74,75,76);
+                    $destIndustry = $client_info['id_industry'];
+                    $car1=array(1,2,3,4,5,6,7,8,9,10,11,12,13,15,16,18,19,59,73,74,75,76);
                     $car2=array(14,17,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,
                         37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,
                         60,61,62,63,64,65,66,67,68,69,70,71,72);
@@ -3228,7 +3228,7 @@ if($this->getRequest()->isPost()){
                 $params6['url'] = "http://{$_SERVER['SERVER_NAME']}/xdistrib/consult/numwp/{$numwp}";
                 $params6['corpsMail'] = "Bonjour,\n"
                         . "\n"
-                        . "la demande XDistrib $numwp de {$user_info['nom_user']} pour le client $nomclients a été validée par le DBD.\n"
+                        . "la demande XDistrib $numwp de {$user_info['nom_user']} pour le client $nomclients  {$client_info['id_industry']} a été validée par le DBD.\n"
                         . "Pour consulter la demande Xdistrib $tracking/$numwp veuillez vous rendre à l'adresse url : \n"
                         . "%s"
                         . "\n\n"
@@ -3237,7 +3237,7 @@ if($this->getRequest()->isPost()){
                         . "--\n"
                         . "Xdistrib";
                 $params6['destinataireMail'] = $destinataireMail6;
-                $params6['sujet'] = " Xdistrib : La demande Xdistrib $tracking/$numwp de {$user_info['nom_user']} pour le client $nomclients a été validée par le DBD.";
+                $params6['sujet'] = " Xdistrib : La demande Xdistrib $tracking/$numwp de {$user_info['nom_user']} pour le client $nomclients {$client_info['id_industry']}  a été validée par le DBD.";
                 $this->sendEmail($params6);
                    $flashMessenger = $this->_helper->getHelper('FlashMessenger');
                 $message = "l'offre $numwp  pour le client $nomclients a bien été validée.";
