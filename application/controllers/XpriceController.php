@@ -1397,7 +1397,7 @@ elseif($mailServiceClients[0]['mail_service_client']== 'export'){
                         . "\n"
                         . "--\n"
                         . "dbd.";
-                    $params2['sujet'] = " XPrice :demande Xprice $trackingNumber/$numwp pour $nomclients validée par Directeur Business Developpement.";
+                    $params2['sujet'] = " envoi createur XPrice :demande Xprice $trackingNumber/$numwp pour $nomclients validée par Directeur Business Developpement.";
                     $params3['corpsMail'] = "Bonjour,\n"
                         . "\n"
                         . "la demande Xprice $trackingNumber/$numwp de {$info_user['nom_user']} pour le client $nomclients a été validée par le dbd .\n"
@@ -1408,7 +1408,7 @@ elseif($mailServiceClients[0]['mail_service_client']== 'export'){
                         . "\n"
                         . "--\n"
                         . "dbd.";
-                $params3['sujet'] = "  XPrice : la demande Xprice $trackingNumber/$numwp de {$info_user['nom_user']} pour le client $nomclients a été validée .";
+                $params3['sujet'] = " envoi service client  XPrice : la demande Xprice $trackingNumber/$numwp de {$info_user['nom_user']} pour le client $nomclients a été validée .";
                 
                 $this->sendEmail($params2);
                 $this->sendEmail($params3);
@@ -1473,7 +1473,7 @@ elseif($mailServiceClients[0]['mail_service_client']== 'export'){
                                 . "\n"
                                 . "--\n"
                                 . "Xsuite";
-                        $params4['sujet']=" XPrice :  Offre Xprice $trackingNumber/$numwp  de {$info_user['nom_user']} pour $nomclients validée par le DBD";
+                        $params4['sujet']=" envoi leader XPrice :  Offre Xprice $trackingNumber/$numwp  de {$info_user['nom_user']} pour $nomclients validée par le DBD";
                       $this->sendEmail($params4);           
                     }
                 //envoi au cdr
@@ -1495,7 +1495,7 @@ elseif($mailServiceClients[0]['mail_service_client']== 'export'){
                                 $params5['destinataireMail'] = $emailVars->listes->CDREST;
                                 break;
                             case "QI":
-                                $params5['destinataireMail'] = $emailVars->listes->CDROUEST;
+                                $params5['destinataireMail'] = $emailVars->listes->CDROUEST2;
                                 break;
                             case "QK":
                                 $params5['destinataireMail'] = $emailVars->listes->CDROUEST;
@@ -1513,7 +1513,7 @@ elseif($mailServiceClients[0]['mail_service_client']== 'export'){
                                 . "\n"
                                 . "--\n"
                                 . "Xsuite";
-                        $params5['sujet']=" XPrice :Offre Xprice $trackingNumber/$numwp de {$info_user['nom_user']} pour $nomclients validée par le DBD";
+                        $params5['sujet']=" envoi N+1 XPrice :Offre Xprice $trackingNumber/$numwp de {$info_user['nom_user']} pour $nomclients validée par le DBD";
                       $this->sendEmail($params5); 
                     }
                     $car1=array(1,2,3,4,5,6,7,8,9,10,11,12,13,15,16,18,19,59,73,74,75,76);
@@ -1560,7 +1560,7 @@ elseif($mailServiceClients[0]['mail_service_client']== 'export'){
                         . "--\n"
                         . "Xprice";
                 $params6['destinataireMail'] = $destinataireMail2;
-                $params6['sujet'] = " XPrice : La demande Xprice $trackingNumber/$numwp de {$info_user['nom_user']} pour le client $nomclients a été validée par le DBD.";
+                $params6['sujet'] = " envoi industrie XPrice : La demande Xprice $trackingNumber/$numwp de {$info_user['nom_user']} pour le client $nomclients a été validée par le DBD.";
                 $this->sendEmail($params6);
                    $flashMessenger = $this->_helper->getHelper('FlashMessenger');
                 $message = "l'offre $numwp  pour le client $nomclients a bien été validée.";
