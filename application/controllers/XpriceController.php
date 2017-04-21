@@ -149,6 +149,23 @@ if($user->id_fonction == 3){
          $recapitulatif2 = $r;
      }
      
+     if($user->id_user ==95){
+         $recapitulatif1 = new Application_Model_DbTable_Xprices;
+         $recapitulatif2=$recapitulatif1->searchFormez();
+         $r = array();
+         for ($index = 0; $index < count($recapitulatif2); $index++) {
+             if(($index +1) > count($recapitulatif2)-1) {
+                 $r[] = $recapitulatif2[$index];
+             } else {
+                 if($recapitulatif2[$index]['num_workplace_demande_xprice'] != $recapitulatif2[$index+1]['num_workplace_demande_xprice']) {
+                     $r[] = $recapitulatif2[$index];
+                 }
+             }
+         }
+         unset($recapitulatif2);
+         $recapitulatif2 = $r;
+     }
+     
      if($user->id_fonction == 48 || $user->id_fonction == 5 || $user->id_fonction == 13 || $user->id_fonction == 41 || $user->id_fonction == 23 || $user->id_fonction == 32 || $user->id_fonction==47){
          $recapitulatif1 = new Application_Model_DbTable_Xprices;
          $recapitulatif2=$recapitulatif1->searchforDBD();

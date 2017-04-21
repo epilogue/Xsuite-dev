@@ -47,7 +47,7 @@ $this->headScript()->appendFile('/js/controllers/xprice/popup.js');
              <td><a href="<?php echo $this->url(array("controller"=>"xprice","action"=>"validatedbd","numwp"=>$result['num_workplace_demande_xprice']));?>" <button class="retour" id="validate-<?php echo $k; ?>">Valider</button></a></td>
         <?php } elseif($this->fonction == 13){?>
              <td><a href="<?php echo $this->url(array("controller"=>"xprice","action"=>"validatedirco","numwp"=>$result['num_workplace_demande_xprice']));?>" <button class="retour" id="validate-<?php echo $k; ?>">Valider</button></a></td>
-        <?php } elseif( $this->fonction == 10 ){?>
+        <?php } elseif($this->fonction == 50 || $this->fonction == 10 ){?>
              <td><a href="<?php echo $this->url(array("controller"=>"xprice","action"=>"validatechefregion","numwp"=>$result['num_workplace_demande_xprice']));?>" <button class="retour" id="validate-<?php echo $k; ?>">Valider</button></a></td>
         <?php } elseif( $this->fonction == 45 || $this->fonction == 41){?>
              <td><a href="<?php echo $this->url(array("controller"=>"xprice","action"=>"validatechefregion","numwp"=>$result['num_workplace_demande_xprice']));?>" <button class="retour" id="validate-<?php echo $k; ?>">Valider</button></a></td>
