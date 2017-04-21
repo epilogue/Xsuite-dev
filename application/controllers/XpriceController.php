@@ -1319,13 +1319,13 @@ if($user->id_fonction == 3){
 $mailServiceClient = new Application_Model_DbTable_Xprices();
 $mailServiceClients = $mailServiceClient->getServiceClient($numwp);
 if($mailServiceClients[0]['mail_service_client']=='regionNord'){
-    $mailSC="regionnord@smc-france.fr";
+    $mailSC="commandes@smc-france.fr";
 } elseif($mailServiceClients[0]['mail_service_client']== 'regionSud'){
-    $mailSC="regionsud@smc-france.fr";
+    $mailSC="commandes@smc-france.fr";
 }elseif($mailServiceClients[0]['mail_service_client']== 'regionEst'){
-    $mailSC="regionest@smc-france.fr";
+    $mailSC="commandes@smc-france.fr";
 }elseif($mailServiceClients[0]['mail_service_client']== 'regionOuest'){
-    $mailSC="regionouest@smc-france.fr";
+    $mailSC="commandes@smc-france.fr";
 }elseif ($mailServiceClients[0]['mail_service_client']== 'grandcompte'){
     $mailSC="SCommande@smc-france.fr";
 }elseif($mailServiceClients[0]['mail_service_client']=='' || $mailServiceClients[0]['mail_service_client']== NULL){
@@ -1429,6 +1429,18 @@ elseif($mailServiceClients[0]['mail_service_client']== 'export'){
                                 break;
                             case "10":
                                 $params4['destinataireMail'] = $emailVars->listes->leaderiw03;
+                                break;
+                            case "37":
+                                $params4['destinataireMail'] = $emailVars->listes->leaderiv01;
+                                break;
+                            case "39":
+                                $params4['destinataireMail'] = $emailVars->listes->leaderiv02;
+                                break;
+                            case "38":
+                                $params4['destinataireMail'] = $emailVars->listes->leaderiv03;
+                                break;
+                            case "41":
+                                $params4['destinataireMail'] = $emailVars->listes->leaderiv05;
                                 break;
                             case "11":
                                 $params4['destinataireMail'] = $emailVars->listes->leaderis02;
