@@ -129,6 +129,14 @@ class XdistribController extends Zend_Controller_Action
          }
      
      }
+     if($user->id_user ==95){ 
+   $recapitulatif1 = new Application_Model_DbTable_Xdistrib();
+    $plop1=$recapitulatif1->recherchermez();
+          foreach($plop1 as $value){
+             $recapitulatif2[] =$recapitulatif1->rechercheDBD($value['id_demande_xdistrib']);
+         }
+     
+     }
      if($user->id_fonction == 10){
          if($holon==28){
 //             echo "plop";

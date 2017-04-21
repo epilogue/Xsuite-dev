@@ -289,6 +289,18 @@ JOIN validations_demande_xdistrib ON validations_demande_xdistrib.id_demande_xdi
             return $rest;
         }
     }
+    
+    public function recherchermez(){
+        $sql = "select id_demande_xdistrib from demande_xdistrib join users on users.id_user = demande_xdistrib.id_user where users.id_zone in (6,7)order by demande_xdistrib.date_demande_xdistrib desc";
+        $res = $this->getAdapter()->query($sql);
+        $rest=$res->fetchAll();
+        if (!$rest) {
+            return null;
+        } else {
+            return $rest;
+        }
+    }
+    
      public function rechercheridRCDN($values){
          $essai="'" . implode("','", $values) . "'";
         $sql ="select id_demande_xdistrib from demande_xdistrib where numwp_distributeur IN ($essai) order by demande_xdistrib.date_demande_xdistrib desc";
