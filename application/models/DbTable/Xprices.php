@@ -233,7 +233,41 @@ public function searchAll($tracking_number){
         }   
         
         public function getAlex($date){
-            $sql = "";
+            $sql = "SELECT 
+ `demande_article_xprices`.`date_demande_xprice` ,
+  `demande_article_xprices`.`tracking_number_demande_xprice` ,
+ `demande_article_xprices`.`reference_article`,
+ `demande_article_xprices`.`code_article` , 
+`demande_article_xprices`.`quantite_demande_article`, 
+`demande_article_xprices`.`prixwplace_demande_article`, 
+`demande_article_xprices`.`prix_demande_article`,
+`demande_article_xprices`.`prix_accorde_demande_article`,
+`demande_article_xprices`.`prix_fob_demande_article`,
+`demande_article_xprices`.`prix_cif_demande_article` ,
+`demande_xprices`.`numwp_client`,
+  `demande_xprices`.`id_user`,
+users.nom_user,
+users.prenom_user,
+users.numwp_user,
+users.id_holon,
+users.email_user,
+users.tel_user,
+holons.nom_holon,
+clients.nom_client,
+clients.potentiel,
+validations_demande_xprices.date_validation
+   FROM `demande_article_xprices`
+join demande_xprices on demande_xprices.tracking_number_demande_xprice =  `demande_article_xprices`.`tracking_number_demande_xprice`
+join users on users.id_user= demande_xprices.id_user 
+join holons on holons.id_holon=users.id_holon
+join clients on clients.numwp_client=demande_xprices.numwp_client
+join validations_demande_xprices on validations_demande_xprices.id_demande_xprice= demande_xprices.id_demande_xprice
+ WHERE 
+ demande_xprices.date_demande_xprice between '2015-04-01' and {$date }
+ and validations_demande_xprices.etat_validation = 'fermee'
+
+ order by demande_xprices.date_demande_xprice asc ,demande_xprices.tracking_number_demande_xprice";
+ var_dump($sql); exit();
                     $res = $this->getAdapter()->query($sql);
             $rest=$res->fetchAll();
             if (!$rest) {
