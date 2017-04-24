@@ -3083,9 +3083,7 @@ elseif($mailServiceClients[0]['mail_service_client']=='' || $mailServiceClients[
         $fonction = $user->id_fonction;
         $id = $user->id_user;
         $directalex =new Application_Model_DbTable_Xprices();
-       $date = new Datetime(); 
-       //$date_validation = date("Y-m-d H:i:s");
-       $date->format('Y-m-d');
+       $date =date('Y-m-j');
        echo '<pre>',  var_export($date),'</pre>';
         if($id=4 ||$id=67){
             $requetedirect = $directalex->getAlex($date);
