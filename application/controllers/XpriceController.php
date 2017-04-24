@@ -542,6 +542,18 @@ if($user->id_fonction == 3){
                             case "10":
                                 $destinataireMail2 = $emailVars->listes->leaderiw03;
                                 break;
+                            case "37":
+                                $destinataireMail2 = $emailVars->listes->leaderiv01;
+                                break;
+                            case "39":
+                                $destinataireMail2 = $emailVars->listes->leaderiv02;
+                                break;
+                            case "38":
+                                $destinataireMail2 = $emailVars->listes->leaderiv03;
+                                break;
+                            case "41":
+                                $destinataireMail2 = $emailVars->listes->leaderiv05;
+                                break;
                             case "11":
                                 $destinataireMail2 = $emailVars->listes->leaderis02;
                                 break;
@@ -675,6 +687,18 @@ if($user->id_fonction == 3){
                                 break;
                             case "13":
                                 $destinataireMail1 = $emailVars->listes->CDREST;
+                                break;
+                            case "37":
+                                $destinataireMail1 = $emailVars->listes->CDROUEST2;
+                                break;
+                            case "38":
+                                $destinataireMail1 = $emailVars->listes->CDROUEST2;
+                                break;
+                            case "39":
+                                $destinataireMail1 = $emailVars->listes->CDROUEST2;
+                                break;
+                            case "41":
+                                $destinataireMail1 = $emailVars->listes->CDROUEST2;
                                 break;
                             case "8":
                                 $destinataireMail1 = $emailVars->listes->CDROUEST;
