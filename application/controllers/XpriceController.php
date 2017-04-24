@@ -3084,10 +3084,17 @@ elseif($mailServiceClients[0]['mail_service_client']=='' || $mailServiceClients[
         $id = $user->id_user;
         $directalex =new Application_Model_DbTable_Xprices();
        $date =date('Y-m-j');
-       echo '<pre>',  var_export($date),'</pre>';
+       //echo '<pre>',  var_export($date),'</pre>';
         if($id=4 ||$id=67){
+            $this->_helper->layout->disableLayout();
+            header('Content-type: text/csv');
+            header('Content-Disposition : attachement; filename = "extractionMesuelle.csv"');
             $requetedirect = $directalex->getAlex($date);
-             $this->view->requetedirect=$requetedirect;
+            // $this->view->requetedirect=$requetedirect;
+            echo '"'. str_replace(';','";"',implode(';',array_keys($requetedirect[0]))).'"' . PHP_EOL;
+            foreach($requetedirect as $ligne){
+                 echo '"'. str_replace(';','";"',implode(';',$ligne)).'"' . PHP_EOL;
+            }
         }
         else{
              $flashMessenger = $this->_helper->getHelper('FlashMessenger');
