@@ -263,7 +263,7 @@ join holons on holons.id_holon=users.id_holon
 join clients on clients.numwp_client=demande_xprices.numwp_client
 join validations_demande_xprices on validations_demande_xprices.id_demande_xprice= demande_xprices.id_demande_xprice
  WHERE 
- demande_xprices.date_demande_xprice between '2015-04-01' and {$date }
+ demande_xprices.date_demande_xprice between '2015-04-01' and '{$date}'
  and validations_demande_xprices.etat_validation = 'fermee'
 
  order by demande_xprices.date_demande_xprice asc ,demande_xprices.tracking_number_demande_xprice";
