@@ -4170,5 +4170,32 @@ if($this->getRequest()->isPost()){
             $this->view->trackingNumber = $trackingNumber;
         }
     }
+    
+    public function bddalexandreDistribAction(){
+        $user = $this->_auth->getStorage()->read();
+        $fonction = $user->id_fonction;
+        $id = $user->id_user;
+        $directdistribalex =new Application_Model_DbTable_Xdistrib();
+       $date =date('Y-m-j');
+       //echo '<pre>',  var_export($date),'</pre>';
+        if($id=4 ||$id=67){
+            $this->_helper->layout->disableLayout();
+            header('Content-type: text/csv');
+            header('Content-Disposition : attachement; filename = "extractionMesuelledistrib.csv"');
+            $requetedirectdistrib = $directdistribalex->getAlexdistrib($date);
+            // $this->view->requetedirect=$requetedirect;
+            echo '"'. str_replace(';','";"',implode(';',array_keys($requetedirectdistrib[0]))).'"' . PHP_EOL;
+            foreach($requetedirectdistrib as $ligne){
+                 echo '"'. str_replace(';','";"',implode(';',$ligne)).'"' . PHP_EOL;
+            }
+        }
+        else{
+             $flashMessenger = $this->_helper->getHelper('FlashMessenger');
+             $message = "vous ne pouvez accéder à cette demande.";
+             $flashMessenger->addMessage($message);
+             $redirector = $this->_helper->getHelper('Redirector');
+             $redirector->gotoSimple('index', 'xprice');
+        }
+    }
 }
 
