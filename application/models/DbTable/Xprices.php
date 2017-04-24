@@ -267,7 +267,7 @@ join validations_demande_xprices on validations_demande_xprices.id_demande_xpric
  and validations_demande_xprices.etat_validation = 'fermee'
 
  order by demande_xprices.date_demande_xprice asc ,demande_xprices.tracking_number_demande_xprice";
- var_dump($sql); exit();
+ //var_dump($sql); exit();
                     $res = $this->getAdapter()->query($sql);
             $rest=$res->fetchAll();
             if (!$rest) {
