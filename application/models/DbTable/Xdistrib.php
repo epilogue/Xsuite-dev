@@ -369,61 +369,48 @@ JOIN validations_demande_xdistrib ON validations_demande_xdistrib.id_demande_xdi
     
     public function getAlexdistrib($date){
             $sql = "SELECT 
-  `demande_article_xdistrib`.`tracking_number_demande_xdistrib` ,
-
- `demande_article_xdistrib`.`reference_article`,
-
- `demande_article_xdistrib`.`code_article` , 
-
-`demande_article_xdistrib`.`quantite_demande_article`, 
-
-`demande_article_xdistrib`.`prix_tarif`, 
-
-`demande_article_xdistrib`.`prix_demande_article`,
-
-`demande_article_xdistrib`.`prix_accorde_demande_article`,
-
-`demande_article_xdistrib`.`remise_accorde_demande_article`,
-
-`demande_article_xdistrib`.`prix_fob_demande_article`,
-
-`demande_article_xdistrib`.`prix_cif_demande_article` ,
-
-`demande_xdistrib`.`numwp_client`,
-`demande_xdistrib`.`numwp_distributeur`,
-`demande_xdistrib`.`date_demande_xdistrib`,
-
-  `demande_xdistrib`.`id_user`,
-  `demande_xdistrib`.`id_dd`,
-u1.nom_user as user_nom_commer,
-u1.prenom_user as user_prenom_commer,
-u2.nom_user as user_nom_dd,
-u2.prenom_user as user_prenom_dd,
-u2.numwp_user as numwp_dd,
-u1.numwp_user,
-u1.id_holon,
-u1.email_user,
-u1.tel_user,
-holons.nom_holon,
-client_distrib.nom_client,
-distributeurs.nom_distributeur,
-distributeurs.contact_distributeur,
-validations_demande_xdistrib.date_validation
-   FROM `demande_article_xdistrib`
-join demande_xdistrib on demande_xdistrib.tracking_number_demande_xdistrib =  `demande_article_xdistrib`.`tracking_number_demande_xdistrib`
-join users as u1 on u1.id_user= demande_xdistrib.id_user 
-join users as u2 on u2.id_user= demande_xdistrib.id_dd
-join holons on holons.id_holon=u1.id_holon
-join client_distrib on client_distrib.numwp=demande_xdistrib.num_workplace_demande_xdistrib
-join distributeurs on distributeurs.num_workplace_demande_xdistrib=demande_xdistrib.num_workplace_demande_xdistrib
-join validations_demande_xdistrib on validations_demande_xdistrib.id_demande_xdistrib= demande_xdistrib.id_demande_xdistrib
- WHERE 
- demande_xdistrib.date_demande_xdistrib between '2015-06-01' and '{$date}' 
- and validations_demande_xdistrib.etat_validation = 'fermee'
-
- order by demande_xdistrib.date_demande_xdistrib asc ";
- //var_dump($sql); exit();
-                    $res = $this->getAdapter()->query($sql);
+              `demande_article_xdistrib`.`tracking_number_demande_xdistrib` ,
+             `demande_article_xdistrib`.`reference_article`,
+             `demande_article_xdistrib`.`code_article` , 
+            `demande_article_xdistrib`.`quantite_demande_article`, 
+            `demande_article_xdistrib`.`prix_tarif`, 
+            `demande_article_xdistrib`.`prix_demande_article`,
+            `demande_article_xdistrib`.`prix_accorde_demande_article`,
+            `demande_article_xdistrib`.`remise_accorde_demande_article`,
+            `demande_article_xdistrib`.`prix_fob_demande_article`,
+            `demande_article_xdistrib`.`prix_cif_demande_article` ,
+            `demande_xdistrib`.`numwp_client`,
+            `demande_xdistrib`.`numwp_distributeur`,
+            `demande_xdistrib`.`date_demande_xdistrib`,
+              `demande_xdistrib`.`id_user`,
+              `demande_xdistrib`.`id_dd`,
+            u1.nom_user as user_nom_commer,
+            u1.prenom_user as user_prenom_commer,
+            u2.nom_user as user_nom_dd,
+            u2.prenom_user as user_prenom_dd,
+            u2.numwp_user as numwp_dd,
+            u1.numwp_user,
+            u1.id_holon,
+            u1.email_user,
+            u1.tel_user,
+            holons.nom_holon,
+            client_distrib.nom_client,
+            distributeurs.nom_distributeur,
+            distributeurs.contact_distributeur,
+            validations_demande_xdistrib.date_validation
+               FROM `demande_article_xdistrib`
+            join demande_xdistrib on demande_xdistrib.tracking_number_demande_xdistrib =  `demande_article_xdistrib`.`tracking_number_demande_xdistrib`
+            join users as u1 on u1.id_user= demande_xdistrib.id_user 
+            join users as u2 on u2.id_user= demande_xdistrib.id_dd
+            join holons on holons.id_holon=u1.id_holon
+            join client_distrib on client_distrib.numwp=demande_xdistrib.num_workplace_demande_xdistrib
+            join distributeurs on distributeurs.num_workplace_demande_xdistrib=demande_xdistrib.num_workplace_demande_xdistrib
+            join validations_demande_xdistrib on validations_demande_xdistrib.id_demande_xdistrib= demande_xdistrib.id_demande_xdistrib
+             WHERE 
+             demande_xdistrib.date_demande_xdistrib between '2015-06-01' and '{$date}' 
+             and validations_demande_xdistrib.etat_validation = 'fermee'
+             order by demande_xdistrib.date_demande_xdistrib asc ";
+            $res = $this->getAdapter()->query($sql);
             $rest=$res->fetchAll();
             if (!$rest) {
                 return null;
