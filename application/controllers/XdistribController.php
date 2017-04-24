@@ -4171,7 +4171,7 @@ if($this->getRequest()->isPost()){
         }
     }
     
-    public function bddalexandreDistribAction(){
+    public function bddalexandredistribAction(){
         $user = $this->_auth->getStorage()->read();
         $fonction = $user->id_fonction;
         $id = $user->id_user;
