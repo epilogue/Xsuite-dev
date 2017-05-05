@@ -488,7 +488,18 @@ if($user->id_fonction == 3){
                     }elseif(in_array($destIndustry, $Elec)){
                        $destinataireMail4 = $emailVars->listes->Electronique;
                     }
-                 
+                 elseif(in_array($destIndustry, $food)){
+                       $destinataireMail4 = $emailVars->listes->foodIndustries;
+                    }
+                    elseif(in_array($destIndustry, $food1)){
+                       $destinataireMail4 = $emailVars->listes->foodIndustries1;
+                    }
+                    elseif(in_array($destIndustry, $EE)){
+                       $destinataireMail4 = $emailVars->listes->environnementEnergie;
+                    }
+                    elseif(in_array($destIndustry, $LS)){
+                       $destinataireMail4 = $emailVars->listes->LifeandScience;
+                    }
                 $params4['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/consultchefmarche/numwp/{$numwp}";
                 $params4['corpsMail'] = "Bonjour,\n"
                         . "\n"
