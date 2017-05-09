@@ -33,18 +33,24 @@ class MailAttachmentManager
   private $mbox;
 
   /**
+   * @var string nom de la boite mail
+   */
+  private $mboxName;
+
+  /**
    * Constructeur
    * @param string $host {host:port\params}BOX voir http://fr.php.net/imap_open
    * @param string $login
    * @param string $password
    * @param string $saveDirPath chemin de sauvegarde des pièces jointes
    */
-  public function __construct($host, $login, $password, $saveDirPath = './')
+  public function __construct($host, $login, $password, $saveDirPath = './', $mbName = '')
   {
     $this->host = $host;
     $this->login = $login;
     $this->password = $password;
     $this->saveDirPath = $savedirpath = substr($saveDirPath, -1) == "/" ? $saveDirPath : $saveDirPath."/";
+    $this->mboxName = $mbName;
   }
 
   /**
@@ -261,6 +267,76 @@ class MailAttachmentManager
     $header = imap_rfc822_parse_headers($header);
     return $header->from[0]->mailbox.'@'.$header->from[0]->host;
   }
+  
+  public function check() {
+      return imap_check($this->mbox);
+  }
+  
+  /**
+   * Liste les mails
+   * 
+   * @param string|null $limit
+   * @return array of objects
+   */
+  public function fetch_list($limit=null) {
+      if(is_null($limit)) {
+        $MN=$this->check()->Nmsgs;
+        $limit = "{$MN}:1";
+      }
+      return imap_fetch_overview($this->mbox, $limit);
+  }
+  
+  /**
+   * Liste les mails avec des pièces jointes
+   * 
+   * @param string|null $search
+   * @param string|null $limit
+   * @return array of objects
+   */
+  public function fetch_list_with_attachments($search = null, $limit = null) {
+      if(is_null($search)) {
+          $mails = $this->fetch_list($limit);
+      } else {
+          $mails = imap_search($this->mbox, $search);
+      }
+      
+      $res = array();
+      foreach ($mails as $mail) {
+          $parts = $this->getAttachments($mail->msgno);
+          if(!empty($parts)) {
+              $res[$mail->msgno] = $parts;
+          }
+      }
+      return $res;
+  }
+  
+  /**
+   * Enregistre les pièces jointes d'une liste de mails
+   * 
+   * Paramètres de save_all_attachements :
+   * $jk->($search = null, $limit = null);
+   * $search : si null : liste tous les mails de la boîte définie en paramètres
+   * $search : utilisé pour chercher des mails en fonctions de critères
+   *     voir "criteria" dans : http://php.net/manual/fr/function.imap-search.php
+   * $limit : utilisé si $search = null
+   * $limit : si null: cherche les pièces jointes dans tout les mails
+   * $limit : utilisé pour limiter la recherche à un certain nombre de mails
+   *  voir "sequence" dans : http://php.net/manual/fr/function.imap-fetch-overview.php
+   * -----------------------------------------------------------------------------------
+   * 
+   * @param string|null $search
+   * @param string|null $limit
+   */
+  public function save_all_attachements($search = null, $limit = null) {
+      $attachments = $this->fetch_list_with_attachments($search, $limit);
+      
+      
+      foreach ($attachments as $key => $mailAttachements) {
+          foreach ($mailAttachements as $mKey => $attachement) {
+//              echo '<pre>', var_export($attachement, true), '</pre>';
+              $this->saveAttachment("{$key}_{$mKey}_{$attachement['filename']}", $this->getFileData($key, $attachement['pos'], $attachement['type']));
+          }
+      }
+  }
 }
 
-?>
