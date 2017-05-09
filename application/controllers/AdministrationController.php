@@ -21,7 +21,7 @@ class AdministrationController extends Zend_Controller_Action
     
     public function testmailAction()
     {
-       require_once 'public/ClassphpImap.php';
+       //require_once 'public/ClassphpImap.php';
 $host="{webmail.smc-france.fr:143/imap}"; // voir http://fr.php.net/imap_open
 $login="frhubym"; //imap login
 $password="plop08"; //imap password
