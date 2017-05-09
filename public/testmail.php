@@ -5,7 +5,9 @@ $login="frhubym"; //imap login
 $password="plop08"; //imap password
 $savedirpath="/home/mag/Bureau/testconfig" ; // attachement will save in same directory where scripts run othrwise give abs path
 $jk=new MailAttachmentManager($host, $login, $password, $savedirpath);
-
+$jk->openMailBox();
+var_export($jk->getList());
+$jk->closeMailBox();
 echo $host;
 echo $jk;
 ?>
