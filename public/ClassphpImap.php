@@ -334,7 +334,13 @@ class MailAttachmentManager
       foreach ($attachments as $key => $mailAttachements) {
           foreach ($mailAttachements as $mKey => $attachement) {
 //              echo '<pre>', var_export($attachement, true), '</pre>';
-              $this->saveAttachment("{$key}_{$mKey}_{$attachement['filename']}", $this->getFileData($key, $attachement['pos'], $attachement['type']));
+              //$this->saveAttachment("{$key}_{$mKey}_{$attachement['filename']}", $this->getFileData($key, $attachement['pos'], $attachement['type']));
+              $extension[]= explode('.',$attachement['filename']);
+               foreach ($extension as $extensionpc) {
+                    if($extensionpc[count($extensionpc)-1]=='pdf'){
+                    echo '<pre>', var_export($extensionpc, true), '</pre>';
+                   }
+                }
           }
       }
   }
