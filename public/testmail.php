@@ -12,7 +12,7 @@ $extensionpc=$jk->fetch_list_with_attachments();
 foreach ($extensionpc as $key => $mailpc) {
           foreach ($mailpc as $mailKey => $pc) {
 //              echo '<pre>', var_export($attachement, true), '</pre>';
-              $extension[]=  substr("{$key}_{$mKey}_{$attachement['filename']}",'.');
+              $extension[]= explode('.',"{$key}_{$mKey}_{$attachement['filename']}");
           }
       }
       echo '<pre>', var_export($extension, true), '</pre>';
