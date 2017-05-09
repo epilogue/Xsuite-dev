@@ -7,7 +7,7 @@ $jk->openMailBox();
 //echo '<pre>', var_export($jk->check(), true), '</pre>';
 $extensionpc=$jk->fetch_list_with_attachments();
 foreach ($extensionpc as $extensionpc2){
-               $tableau[]=$extensionpc2 ;
+               $tableau=$extensionpc2['filename'] ;
               //$this->saveAttachment("{$key}_{$mKey}_{$attachement['filename']}", $this->getFileData($key, $attachement['pos'], $attachement['type']));
           }
           //echo '<pre>', var_export($jk->fetch_list_with_attachments(), true), '</pre>';
