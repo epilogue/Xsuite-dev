@@ -13,9 +13,11 @@ foreach ($extensionpc as $key => $mailpc) {
           foreach ($mailpc as $mailKey => $pc) {
 //              echo '<pre>', var_export($attachement, true), '</pre>';
               $extension[]= explode('.',"{$key}_{$mailKey}_{$pc['filename']}");
-              if($extension[1]=='pdf'){
-                  echo '<pre>', var_export($extension, true), '</pre>';
+               foreach ($extension as $extensionpc) {
+                    if($extensionpc[1]=='pdf'){
+                    echo '<pre>', var_export($extension, true), '</pre>';
                    }
+                }
           }
       }
       
