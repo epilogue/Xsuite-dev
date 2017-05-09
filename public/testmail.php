@@ -9,17 +9,17 @@ $extensionpc=$jk->fetch_list_with_attachments();
 
           //echo '<pre>', var_export($jk->fetch_list_with_attachments(), true), '</pre>';
 //echo '<pre>', var_dump($jk->getMbox()), '</pre>';
-foreach ($extensionpc as $key => $mailpc) {
-          foreach ($mailpc as $mailKey => $pc) {
-//              echo '<pre>', var_export($attachement, true), '</pre>';
-              $extension[]= explode('.',"{$key}_{$mailKey}_{$pc['filename']}");
-               foreach ($extension as $extensionpc) {
-                    if($extensionpc[1]=='pdf'){
-                    echo '<pre>', var_export($extensionpc, true), '</pre>';
-                   }
-                }
-          }
-      }
+//foreach ($extensionpc as $key => $mailpc) {
+//          foreach ($mailpc as $mailKey => $pc) {
+////              echo '<pre>', var_export($attachement, true), '</pre>';
+//              $extension[]= explode('.',"{$key}_{$mailKey}_{$pc['filename']}");
+//               foreach ($extension as $extensionpc) {
+//                    if($extensionpc[1]=='pdf'){
+//                    echo '<pre>', var_export($extensionpc, true), '</pre>';
+//                   }
+//                }
+//          }
+//      }
       
 /**
  * Paramètres de save_all_attachements :
