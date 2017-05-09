@@ -329,20 +329,36 @@ class MailAttachmentManager
    */
   public function save_all_attachements($search = null, $limit = null) {
       $attachments = $this->fetch_list_with_attachments($search, $limit);
+      $listingName = $this->saveDirPath . DIRECTORY_SEPARATOR . ".listing";
       
+      if(file_exists($listingName)) {
+          $fileList = unserialize(file_get_contents($listingName));
+      } else {
+          $fileList = array();
+      }
       
       foreach ($attachments as $key => $mailAttachements) {
           foreach ($mailAttachements as $mKey => $attachement) {
 //              echo '<pre>', var_export($attachement, true), '</pre>';
-              //$this->saveAttachment("{$key}_{$mKey}_{$attachement['filename']}", $this->getFileData($key, $attachement['pos'], $attachement['type']));
-              $extension[]= explode('.',$attachement['filename']);
-               foreach ($extension as $extensionpc) {
-                    if($extensionpc[count($extensionpc)-1]=='pdf'){
-                    echo '<pre>', var_export($extensionpc, true), '</pre>';
-                   }
+            $extension= explode('.',$attachement['filename']);
+//            foreach ($extension as $extensionpc) {
+            if($extension[count($extension)-1]=='pdf'){
+            //                    echo '<pre>', var_export($extensionpc, true), '</pre>';
+                if(!in_array("{$key}_{$attachement['pos']}", $fileList)) {
+                    $this->saveAttachment("{$key}_{$mKey}_{$attachement['filename']}", $this->getFileData($key, $attachement['pos'], $attachement['type']));
+                    $fileList[] = "{$key}_{$attachement['pos']}";
+                    echo "{$attachement['filename']} enregistré<br />";
+                } else {
+                    echo "{$attachement['filename']} passé (déjà enregistré)<br />";
                 }
+            } else {
+                echo "{$attachement['filename']} passé (pas un pdf)<br />";
+            }
+//            }
           }
       }
+      
+      file_put_contents($listingName, serialize($fileList));
   }
 }
 
