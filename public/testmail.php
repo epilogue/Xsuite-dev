@@ -6,14 +6,16 @@ $jk->openMailBox();
 //echo '<pre>', var_export($jk->getList($mbName), true), '</pre>';
 //echo '<pre>', var_export($jk->check(), true), '</pre>';
 $extensionpc=$jk->fetch_list_with_attachments();
-foreach ($extensionpc as $extensionpc2){
-               $tableau=$extensionpc2 ;
-              //$this->saveAttachment("{$key}_{$mKey}_{$attachement['filename']}", $this->getFileData($key, $attachement['pos'], $attachement['type']));
-          }
-          //echo '<pre>', var_export($jk->fetch_list_with_attachments(), true), '</pre>';
-echo '<pre>', var_export($tableau, true), '</pre>';
-//echo '<pre>', var_dump($jk->getMbox()), '</pre>';
 
+          //echo '<pre>', var_export($jk->fetch_list_with_attachments(), true), '</pre>';
+//echo '<pre>', var_dump($jk->getMbox()), '</pre>';
+foreach ($extensionpc as $key => $mailpc) {
+          foreach ($mailpc as $mailKey => $pc) {
+//              echo '<pre>', var_export($attachement, true), '</pre>';
+              $extension[]=  substr("{$key}_{$mKey}_{$attachement['filename']}",'.');
+          }
+      }
+      echo '<pre>', var_export($extension, true), '</pre>';
 /**
  * Paramètres de save_all_attachements :
  * $jk->($search = null, $limit = null);
