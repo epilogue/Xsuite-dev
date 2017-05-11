@@ -3,24 +3,8 @@ require_once ('./ClassphpImap.php');
 require_once './config.php';
 $jk=new MailAttachmentManager($host, $login, $password, $savedirpath);
 $jk->openMailBox();
-//echo '<pre>', var_export($jk->getList($mbName), true), '</pre>';
-//echo '<pre>', var_export($jk->check(), true), '</pre>';
 $extensionpc=$jk->fetch_list_with_attachments();
 
-          //echo '<pre>', var_export($jk->fetch_list_with_attachments(), true), '</pre>';
-//echo '<pre>', var_dump($jk->getMbox()), '</pre>';
-//foreach ($extensionpc as $key => $mailpc) {
-//          foreach ($mailpc as $mailKey => $pc) {
-////              echo '<pre>', var_export($attachement, true), '</pre>';
-//              $extension[]= explode('.',"{$key}_{$mailKey}_{$pc['filename']}");
-//               foreach ($extension as $extensionpc) {
-//                    if($extensionpc[1]=='pdf'){
-//                    echo '<pre>', var_export($extensionpc, true), '</pre>';
-//                   }
-//                }
-//          }
-//      }
-      
 /**
  * Paramètres de save_all_attachements :
  * $jk->($search = null, $limit = null);
@@ -35,6 +19,3 @@ $extensionpc=$jk->fetch_list_with_attachments();
 $jk->save_all_attachements();
 
 $jk->closeMailBox();
-
-//echo $host;
-//echo $jk;
