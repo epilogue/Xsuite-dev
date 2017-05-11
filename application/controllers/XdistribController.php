@@ -308,6 +308,8 @@ class XdistribController extends Zend_Controller_Action
          if($this->getRequest()->isPost()) {
             $formData = $this->getRequest()->getPost();
             $redirector = $this->_helper->getHelper('Redirector');
+            
+             echo '<pre>',var_export($formData),'</pre>';
                      /*insertion dans la table cleint_distrib*/
             $adresse =trim($infos_client['OKCUA4']);
             $codepostal = substr($adresse,0,5);
@@ -1122,6 +1124,9 @@ if($this->getRequest()->isPost()){
                     $destinataireMail1 = $emailVars->listes->CDROUEST;
                     break;
                  case "11":
+                    $destinataireMail1 = $emailVars->listes->CDREST;
+                    break;
+                case "12":
                     $destinataireMail1 = $emailVars->listes->CDREST;
                     break;
                 case "13":
