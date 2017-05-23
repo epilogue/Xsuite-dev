@@ -102,7 +102,7 @@ $this->headTitle($this->title);
             <div class="clear"></div>
             <div class="workplace">
                 <fieldset class="field"><legend>Mail du Distributeur</legend>
-                    <p class="obligatoire">Ce document est obligatoire  et doit impérativement être au format PDF</p>
+                    <p class="obligatoire">Ce document est obligatoire  et doit impérativement être au format outlook </p>
                     <input type="file" value ="" name="fichierDemandeDistrib" required="required">
                 </fieldset>
             </div>
@@ -153,12 +153,18 @@ $this->headTitle($this->title);
                         <td>Prix Tarif CONCURRENT</td>
                         <td>Prix spécial accordé CONCURRENT</td>
                     </tr>
-                    <?php foreach($this->affiche_offre as $ligne){ ;?>
                     <tr>
                         <td><input type="text" name="nom_concurrent" required="required"></td>
                         <td><input type="text" name="reference_produit"></td>
                         <td><input type="text" name="prix_tarif"></td>
                         <td><input type="text" name="prix_spe" required="required"></td>
+                    </tr> 
+                    <?php foreach($this->affiche_offre as $ligne){ ;?>
+                    <tr>
+                        <td><input type="text" name="nom_concurrent"></td>
+                        <td><input type="text" name="reference_produit"></td>
+                        <td><input type="text" name="prix_tarif"></td>
+                        <td><input type="text" name="prix_spe"</td>
                     </tr> 
                     <?php } ?>
                 </table>
