@@ -367,8 +367,8 @@ class XdistribController extends Zend_Controller_Action
            $newconcurrent = new Application_Model_DbTable_PrixConcurrent();
            $firconcurrent = $newconcurrent->create($formData['nom_concurrent1'], $formData['reference_article1'], $formData['prix_concurrent1'], $formData['prix_special_concurrent'], $numwprecu);
            foreach ($formData['offresConcurrents'] as $offreConcurrent) {
-               
-               if(!empty(trim($offreconcurrent['nom_concurrent']))){
+               $test = trim($offreconcurrent['nom_concurrent']);
+               if(!empty($test)){
                    $newconcurrent = new Application_Model_DbTable_PrixConcurrent();
                    $concurrent = $newconcurrent->create($offreConcurrent['nom_concurrent'], $$offreConcurrent['reference_article'], $$offreConcurrent['prix_concurrent'], $$offreConcurrent['prix_special_concurrent'], $numwprecu);
                 }    
