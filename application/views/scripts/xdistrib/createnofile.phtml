@@ -161,10 +161,10 @@ $this->headTitle($this->title);
                     </tr> 
                     <?php foreach($this->affiche_offre as $ligne){ ;?>
                     <tr>
-                        <td><input type="text" name="offresConcurrents[]['nom_concurrent']"></td>
-                        <td><input type="text" name="offresConcurrents[]['reference_produit']"></td>
-                        <td><input type="text" name="offresConcurrents[]['prix_tarif']"></td>
-                        <td><input type="text" name="offresConcurrents[]['prix_spe']"</td>
+                        <td><input type="text" name="offresConcurrents[][nom_concurrent]"></td>
+                        <td><input type="text" name="offresConcurrents[][reference_produit]"></td>
+                        <td><input type="text" name="offresConcurrents[][prix_tarif]"></td>
+                        <td><input type="text" name="offresConcurrents[][prix_spe]"</td>
                     </tr> 
                     <?php } ?>
                 </table>
