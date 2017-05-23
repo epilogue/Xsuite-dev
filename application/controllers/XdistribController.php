@@ -309,7 +309,7 @@ class XdistribController extends Zend_Controller_Action
             $formData = $this->getRequest()->getPost();
             $redirector = $this->_helper->getHelper('Redirector');
             
-             echo '<pre>',var_export($formData),'</pre>';
+             echo '<pre>',var_export($formData),'</pre>'; exit();
                      /*insertion dans la table cleint_distrib*/
             $adresse =trim($infos_client['OKCUA4']);
             $codepostal = substr($adresse,0,5);
@@ -334,9 +334,10 @@ class XdistribController extends Zend_Controller_Action
             $this->view->datefinal = $datefinal;
             $datef=array($dateinit3, $dateinit2,$dateinit1) ;
             $date=implode('-',$datef);
-
+            $servicededie = new Application_Model_DbTable_ServiceDistrib();
+            $newservicededie = $servicededie->createServiceDistrib($numwprecu, $formData['produitdedie'], $formData['ecatalogue'], $formData['journeetech'], $formData['accescom'], $formData['identconc'], $formData['interlocuteur'],$formData['service__associe']);
             $Xdistribs = new Application_Model_DbTable_Xdistrib();
-            $new_Xdistrib= $Xdistribs->createXDistrib($numwprecu, $trackingNumber, null, $date, null, $infos_tc['id_user'], $infos_dd->id_user,null,$infos_client['OKCUNO'],$infos_distrib['OKCUNO']);
+            $new_Xdistrib= $Xdistribs->createXDistrib($numwprecu, $trackingNumber, $formData['contexte'], $date, null, $infos_tc['id_user'], $infos_dd->id_user,null,$infos_client['OKCUNO'],$infos_distrib['OKCUNO']);
             /*create article_Xdistrib*/
             $article_Xdistrib=new Application_Model_DbTable_DemandeArticlexdistrib();
 
@@ -361,7 +362,10 @@ class XdistribController extends Zend_Controller_Action
                    'num_workplace_demande_xdistrib'=>$numwprecu,
                    'code_acquisition'=>$code_acquisition);$new_demande_article_Xdistrib= $article_Xdistrib->createArticleDemandeNoFile($data) ;
            }
-
+/*insertion service associé*/
+           /* insertion concurrent*/
+           $newconcurrent = new Application_Model_DbTable_PrixConcurrent();
+           $firconcurrent = $newconcurrent->create($formData['nom_concurrent1'], $formData['reference_article1'], $formData['prix_concurrent1'], $formData['prix_special_concurrent1'], $numwprecu);
                   /*recherche et insertion prif fob et cif*/
             $mmcono = "100";
             $division = "FR0";
