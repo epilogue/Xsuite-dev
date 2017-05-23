@@ -146,19 +146,21 @@ $this->headTitle($this->title);
                 <legend>Concurrence</legend>
                 <p class="obligatoire">Le nom du concurrent et le prix Spécial accordé par le concurrent doivent obligatoirement être remplis.</p>
                 <table  id="concurrents" class="enum">
-                    <?php $i=count($this->affiche_offre);?>
+                    
                     <tr>
                         <td>Concurrents</td>
                         <td>Références Produits</td>
                         <td>Prix Tarif CONCURRENT</td>
                         <td>Prix spécial accordé CONCURRENT</td>
                     </tr>
+                    <?php foreach($this->affiche_offre as $ligne){ ;?>
                     <tr>
                         <td><input type="text" name="nom_concurrent" required="required"></td>
                         <td><input type="text" name="reference_produit"></td>
                         <td><input type="text" name="prix_tarif"></td>
                         <td><input type="text" name="prix_spe" required="required"></td>
                     </tr> 
+                    <?php } ?>
                 </table>
             </fieldset>
         </div>
