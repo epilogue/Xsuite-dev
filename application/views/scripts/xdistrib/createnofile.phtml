@@ -157,14 +157,14 @@ $this->headTitle($this->title);
                         <td><input type="text" name="nom_concurrent1" required="required"></td>
                         <td><input type="text" name="reference_produit1"></td>
                         <td><input type="text" name="prix_tarif1"></td>
-                        <td><input type="text" name="prix_spe1" required="required"></td>
+                        <td><input type="text" name="prix_special_concurrent" required="required"></td>
                     </tr> 
                     <?php foreach($this->affiche_offre as $ligne){ ;?>
                     <tr>
                         <td><input type="text" name="offresConcurrents[][nom_concurrent]"></td>
                         <td><input type="text" name="offresConcurrents[][reference_produit]"></td>
                         <td><input type="text" name="offresConcurrents[][prix_tarif]"></td>
-                        <td><input type="text" name="offresConcurrents[][prix_spe]"</td>
+                        <td><input type="text" name="offresConcurrents[][prix_special_concurrent]"</td>
                     </tr> 
                     <?php } ?>
                 </table>

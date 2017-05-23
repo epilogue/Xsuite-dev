@@ -365,12 +365,13 @@ class XdistribController extends Zend_Controller_Action
            
            /* insertion concurrent*/
            $newconcurrent = new Application_Model_DbTable_PrixConcurrent();
-           $firconcurrent = $newconcurrent->create($formData['nom_concurrent1'], $formData['reference_article1'], $formData['prix_concurrent1'], $formData['prix_spe1'], $numwprecu);
+           $firconcurrent = $newconcurrent->create($formData['nom_concurrent1'], $formData['reference_article1'], $formData['prix_concurrent1'], $formData['prix_special_concurrent'], $numwprecu);
            foreach ($formData['offresConcurrents'] as $offreConcurrent) {
                $newconcurrent = new Application_Model_DbTable_PrixConcurrent();
-               $concurrent = $newconcurrent->create($offreConcurrent['nom_concurrent'], $$offreConcurrent['reference_article'], $$offreConcurrent['prix_concurrent'], $$offreConcurrent['prix_spe'], $numwprecu);
-             }    
-           
+               if(!empty($offreconcurrent['nom_concurrent']) and $offreconcurrent['nom_concurrent'] !="" ){
+               $concurrent = $newconcurrent->create($offreConcurrent['nom_concurrent'], $$offreConcurrent['reference_article'], $$offreConcurrent['prix_concurrent'], $$offreConcurrent['prix_special_concurrent'], $numwprecu);
+                }    
+           }
             /*recherche et insertion prif fob et cif*/
             $mmcono = "100";
             $division = "FR0";
