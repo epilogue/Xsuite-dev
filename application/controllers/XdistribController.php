@@ -374,7 +374,7 @@ class XdistribController extends Zend_Controller_Action
 //               echo var_export((!empty($test)), true);
                if(!empty($test)){
                    $newconcurrent = new Application_Model_DbTable_PrixConcurrent();
-                   $concurrent = $newconcurrent->create($offreConcurrent['nom_concurrent'], $$offreConcurrent['reference_article'], $$offreConcurrent['prix_concurrent'], $$offreConcurrent['prix_special_concurrent'], $numwprecu);
+                   $concurrent = $newconcurrent->create($offreConcurrent['nom_concurrent'], $$offreConcurrent['reference_article'], $$offreConcurrent['prix_concurrent'], $offreConcurrent['prix_special_concurrent'], $numwprecu);
                 }    
            }
 //           echo '</pre>'; exit();
