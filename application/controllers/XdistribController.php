@@ -362,11 +362,16 @@ class XdistribController extends Zend_Controller_Action
                    'num_workplace_demande_xdistrib'=>$numwprecu,
                    'code_acquisition'=>$code_acquisition);$new_demande_article_Xdistrib= $article_Xdistrib->createArticleDemandeNoFile($data) ;
            }
-/*insertion service associé*/
+           
            /* insertion concurrent*/
            $newconcurrent = new Application_Model_DbTable_PrixConcurrent();
-           $firconcurrent = $newconcurrent->create($formData['nom_concurrent1'], $formData['reference_article1'], $formData['prix_concurrent1'], $formData['prix_special_concurrent1'], $numwprecu);
-                  /*recherche et insertion prif fob et cif*/
+           $firconcurrent = $newconcurrent->create($formData['nom_concurrent1'], $formData['reference_article1'], $formData['prix_concurrent1'], $formData['prix_spe1'], $numwprecu);
+           foreach ($formData['offresConcurrents'] as $offreConcurrent) {
+               $newconcurrent = new Application_Model_DbTable_PrixConcurrent();
+               $concurrent = $newconcurrent->create($offreConcurrent['nom_concurrent'], $$offreConcurrent['reference_article'], $$offreConcurrent['prix_concurrent'], $$offreConcurrent['prix_spe'], $numwprecu);
+             }    
+           
+            /*recherche et insertion prif fob et cif*/
             $mmcono = "100";
             $division = "FR0";
             $facility = "I01";
