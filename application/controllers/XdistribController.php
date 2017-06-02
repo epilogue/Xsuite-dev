@@ -344,6 +344,9 @@ class XdistribController extends Zend_Controller_Action
             $affiche_offre1=array_filter($affiche_offre);
             //echo '<pre>',var_export($affiche_offre1),'</pre>';
             foreach($affiche_offre1 as $demande){
+               // round(100 - ( $art['prix_achat_demande_distrib'] * 100 / $art['prix_tarif']), 2);
+                //$achat_actuel =($demande['OBSAPR']*40)/100 ;
+               $remise= round (100 - ($demande['OBNEPR'] * 100 /$demande['OBSAPR']), 2);
                $data =array( 'prix_tarif'=>$demande['OBSAPR'],
                    'prix_achat_actuel'=>($demande['OBSAPR']*40)/100,
                    'prix_demande_article'=>$demande['OBNEPR'],
@@ -351,9 +354,8 @@ class XdistribController extends Zend_Controller_Action
                    'quantite_demande_article'=>$demande['OBORQT'], 
                    'serie'=>$serie,
                    'date_demande_xdistrib'=>$date,
-                   'prix_accorde_demande_article'=>$prix_accorde_demande_article, 
-                   'remise_accorde_demande_article'=>$remise_accorde_demande_article,
-                   'prix_fob_demande_article'=>$prix_fob_demande_article,
+                   'prix_accorde_demande_article'=>$demande['OBNEPR'], 
+                   'remise_accorde_demande_article'=>$remise,
                    'prix_cif_demande_article'=>$prix_cif_demande_article,
                    'marge_demande_article'=>$marge_demande_article,
                    'tracking_number_demande_xdistrib'=>$trackingNumber,
