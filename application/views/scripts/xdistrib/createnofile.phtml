@@ -126,7 +126,12 @@ $this->headTitle($this->title);
                         <td><input type="text" readonly="readonly" name="reference[]" value="<?php echo trim($value['OBITDS']); ?>" ></td>
                         <td><input type="text" readonly="readonly" name="quantite[]" value="<?php echo round($value['OBORQT'],2); ?>" ></td>
                         <td><input type="text" readonly="readonly" name="prix_tarif_dis[]" value="<?php echo round($value['OBSAPR'],2); ?>" ></td>
-                        <td><input type="text" readonly="readonly" name="remiseA[]"  value="<?php echo $value['OBVTCD'] ;?>"></td>
+                        <td>
+                            <?php
+                                $p1= ($value['OBSAPR']*40)/100;
+                            ?>
+                            <input type="text" readonly="readonly" name="remiseA[]"  
+                             value="<?php  echo round(100*(1-($p1/$value['OBSAPR']))); ?>"></td>
                         <td><input type="text" readonly="readonly" name="prix_demande[]" value="<?php echo round($value['OBNEPR'],2);?>"></td>
                         <td style="background-color: #74aaca;height:30px;margin-left: 10px !important;"><input required="required" type="text" name="prix_achat_client_final[]" id="Prix_achat_client_final" ></td>
                         <td><?php  $remiseB =(100-((100* $value['OBNEPR'])/$value['OBSAPR']));?><input type="text" name="remiseB[]" value="<?php echo round($remiseB,2).'%';?>"</td>
