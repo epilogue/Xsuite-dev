@@ -250,6 +250,12 @@ class XdistribController extends Zend_Controller_Action
             $infodd=new Application_Model_DbTable_Users();
             $infos_dd=$infodd->getUserName($nomdebu);
             $this->view->infos_dd=$infos_dd;
+            /* verifier dd  et user *identique*/
+            if($infos_dd->id_user != $user_connect->id_user){
+                $id_dd = $user_connect->id_user;
+            }
+            else $id_dd=$infos_dd->id_user;
+            
             $Xdistrib = new Application_Model_DbTable_Xdistrib();
             $trackingNumber = Application_Model_DbTable_Xdistrib::makeTrackingNumber($nom_zone['nom_zone'], $Xdistrib->lastId(true));
             $this->view->trackingNumber = $trackingNumber;
@@ -337,7 +343,7 @@ class XdistribController extends Zend_Controller_Action
             $servicededie = new Application_Model_DbTable_ServiceDistrib();
             $newservicededie = $servicededie->createServiceDistrib($numwprecu, $formData['produitdedie'], $formData['ecatalogue'], $formData['journeetech'], $formData['accescom'], $formData['identconc'], $formData['interlocuteur'],$formData['service__associe']);
             $Xdistribs = new Application_Model_DbTable_Xdistrib();
-            $new_Xdistrib= $Xdistribs->createXDistrib($numwprecu, $trackingNumber, $formData['contexte'], $date, null, $infos_tc['id_user'], $infos_dd->id_user,null,$infos_client['OKCUNO'],$infos_distrib['OKCUNO']);
+            $new_Xdistrib= $Xdistribs->createXDistrib($numwprecu, $trackingNumber, $formData['contexte'], $date, null, $infos_tc['id_user'], $id_dd,null,$infos_client['OKCUNO'],$infos_distrib['OKCUNO']);
             /*create article_Xdistrib*/
             $article_Xdistrib=new Application_Model_DbTable_DemandeArticlexdistrib();
 
