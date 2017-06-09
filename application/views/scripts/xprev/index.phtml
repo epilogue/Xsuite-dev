@@ -4,5 +4,16 @@ $this->headTitle($this->title);
 ?>
 <div class="contenu">
     <h2>Xprev</h2>
-    <h3>Demande de prévision en ligne </h3> 
+    <h3>Demande de prévision en ligne </h3>
+    <table class="enum">
+        <tr>
+             <?php if(in_array($this->fonction,$this->fn1)){?>
+            <th>Tracking</th>
+        <?php } ?>
+            <th>Date de création</th>
+            <th>Commercial</th>
+            <th>Client</th>
+             <th>Statut</th>
+             <th></th>
+        </tr>
 </div>

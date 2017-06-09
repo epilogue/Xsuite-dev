@@ -18,7 +18,10 @@ class XprevController extends Zend_Controller_Action
 
     public function indexAction()
     {
-        // action body
+        $user = $this->_auth->getStorage()->read();
+        $fn1 =array(1,2,4,6,43,44,46,26,27,28,229,30);
+        $this->view->fonction = $user->id_fonction;
+        $this->view->fn1 = $fn1;
     }
 
 
