@@ -35,6 +35,13 @@ class XprevController extends Zend_Controller_Action
         $this->view->fn3 = $fn3;
     }
 
-
+    public function creationAction(){
+        $user = $this->_auth->getStorage()->read();
+        /*information concernant la personne connectée*/
+        $User = new Application_Model_DbTable_Users();
+        $infoUser = $User->getUser($user->id_user);
+        
+        $this->view->infoUser=$infoUser;
+    }
 }
 

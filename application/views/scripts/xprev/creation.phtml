@@ -1,0 +1,30 @@
+<?php
+$this->title = 'Xdistrib/accueil';
+$this->headTitle($this->title);
+?>
+<div class="contenu">
+    <h2>Xprev</h2>
+    <h3>Demande de prévision en ligne </h3>
+    <table class="enum">
+        <tr>
+            <?php if(in_array($this->fonction,$this->fn0) or in_array($this->fonction,$this->fn1) ){?>
+            <th>Tracking</th>
+            <th>Date de création</th>
+            <th>Emetteur</th>
+            <th>Commercial</th>
+            <th>Client</th>
+             <th>Statut</th>
+             <th>consultation</th>
+        <?php } elseif(in_array($this->fonction, $this->fn2) or in_array($this->fonction, $this->fn3)) {?>
+            <th>Tracking</th>
+            <th>Date de création</th>
+            <th>émetteur</th>
+            <th>Commercial</th>
+            <th>Client</th>
+             <th>Statut</th>
+             <th>consultation</th>
+             <th>validation</th>
+         <?php } ?>
+         </tr>
+    </table>
+</div>
