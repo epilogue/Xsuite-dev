@@ -21,7 +21,7 @@ class XprevController extends Zend_Controller_Action
     {
         $user = $this->_auth->getStorage()->read();
         /*fonction niveau0*/
-        $fn0 = array(4);
+        $fn0 = array(4,18,38);
         /* fonction niveau1*/
         $fn1 =array(1,2,6,43,44,46,26,27,28,29,30,34,35,36,37,40);
         /*fonction niveau2*/
