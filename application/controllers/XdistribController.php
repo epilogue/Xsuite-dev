@@ -354,7 +354,7 @@ class XdistribController extends Zend_Controller_Action
                 //$achat_actuel =($demande['OBSAPR']*40)/100 ;
                $remise= round (100 - ($demande['OBNEPR'] * 100 /$demande['OBSAPR']), 2);
                $data =array( 'prix_tarif'=>$demande['OBSAPR'],
-                   'prix_achat_actuel'=>($demande['OBSAPR']*40)/100,
+                   'prix_achat_actuel'=>$prix_achat_actuel,
                    'prix_demande_article'=>$demande['OBNEPR'],
                    'prix_client_final'=>$prix_client_final,
                    'quantite_demande_article'=>$demande['OBORQT'], 
