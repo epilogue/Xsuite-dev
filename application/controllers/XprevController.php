@@ -5,6 +5,7 @@ class XprevController extends Zend_Controller_Action
 
     public function init()
     {
+        $this->_auth = Zend_Auth::getInstance();
         $auth = Zend_Auth::getInstance();
         $user = $auth->getIdentity();
         if (is_null($user)) {
