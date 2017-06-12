@@ -29,10 +29,10 @@ class XprevController extends Zend_Controller_Action
         /*fonction niveau3*/
         $fn3 = array(32,23,50,39);
         $this->view->fonction = $user->id_fonction;
-        $this->view->fn1 = $fn0;
+        $this->view->fn0 = $fn0;
         $this->view->fn1 = $fn1;
-        $this->view->fn1 = $fn2;
-        $this->view->fn1 = $fn3;
+        $this->view->fn2 = $fn2;
+        $this->view->fn3 = $fn3;
     }
 
 
