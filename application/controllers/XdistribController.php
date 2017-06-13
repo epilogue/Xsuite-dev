@@ -348,7 +348,7 @@ class XdistribController extends Zend_Controller_Action
             $article_Xdistrib=new Application_Model_DbTable_DemandeArticlexdistrib();
 
             $affiche_offre1=array_filter($affiche_offre);
-            //echo '<pre>',var_export($affiche_offre1),'</pre>';
+            echo '<pre>',var_export($affiche_offre1),'</pre>';
             foreach($affiche_offre1 as $demande){
                // round(100 - ( $art['prix_achat_demande_distrib'] * 100 / $art['prix_tarif']), 2);
                 //$achat_actuel =($demande['OBSAPR']*40)/100 ;
@@ -368,7 +368,9 @@ class XdistribController extends Zend_Controller_Action
                    'code_article'=>trim($demande['OBITNO']),
                    'reference_article'=>trim($demande['OBITDS']),
                    'num_workplace_demande_xdistrib'=>$numwprecu,
-                   'code_acquisition'=>$code_acquisition);$new_demande_article_Xdistrib= $article_Xdistrib->createArticleDemandeNoFile($data) ;
+                   'code_acquisition'=>$code_acquisition);
+               echo '<pre>',var_export($data),'</pre>'; exit();
+               $new_demande_article_Xdistrib= $article_Xdistrib->createArticleDemandeNoFile($data) ;
            }
            
            /* insertion concurrent*/
