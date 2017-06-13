@@ -437,7 +437,7 @@ class XdistribController extends Zend_Controller_Action
                 $upprix =$updateSerie->updatePrixClient($key,$trackingNumber,$value);
             }
              foreach ($result5 as $key=>$value) {
-                $upprix =$updateAchatActuel->updatePrixAchatActuel($key,$trackingNumber,$value);
+                $upprixachat =$updateSerie->updatePrixAchatActuel($key,$trackingNumber,$value);
             }
                    /*fin create article*/ 
 
