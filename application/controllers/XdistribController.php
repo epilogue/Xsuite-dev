@@ -348,7 +348,7 @@ class XdistribController extends Zend_Controller_Action
             $article_Xdistrib=new Application_Model_DbTable_DemandeArticlexdistrib();
 
             $affiche_offre1=array_filter($affiche_offre);
-            echo '<pre>',var_export($affiche_offre1),'</pre>';
+//            echo '<pre>',var_export($affiche_offre1),'</pre>';
             foreach($affiche_offre1 as $demande){
                // round(100 - ( $art['prix_achat_demande_distrib'] * 100 / $art['prix_tarif']), 2);
                 //$achat_actuel =($demande['OBSAPR']*40)/100 ;
@@ -369,7 +369,7 @@ class XdistribController extends Zend_Controller_Action
                    'reference_article'=>trim($demande['OBITDS']),
                    'num_workplace_demande_xdistrib'=>$numwprecu,
                    'code_acquisition'=>$code_acquisition);
-               echo '<pre>',var_export($data),'</pre>'; exit();
+//               echo '<pre>',var_export($data),'</pre>'; exit();
                $new_demande_article_Xdistrib= $article_Xdistrib->createArticleDemandeNoFile($data) ;
            }
            
@@ -427,6 +427,7 @@ class XdistribController extends Zend_Controller_Action
             $result2 =  array_combine( $formData['reference'],$formData['prix_tarif_dis']);
             $result3 = array_combine($formData['reference'],$formData['serie']);
             $result4= array_combine($formData['reference'],$formData['prix_achat_client_final']);
+             $result5= array_combine($formData['reference'],$formData['prix_achat_actuel']);
             /*update des articles avec les prix achat final serie...*/
             $updateSerie = new Application_Model_DbTable_DemandeArticlexdistrib();
             foreach ($result3 as $key=>$value) {
@@ -434,6 +435,9 @@ class XdistribController extends Zend_Controller_Action
             }
             foreach ($result4 as $key=>$value) {
                 $upprix =$updateSerie->updatePrixClient($key,$trackingNumber,$value);
+            }
+             foreach ($result5 as $key=>$value) {
+                $upprix =$updateAchatActuel->updatePrixAchatActuel($key,$trackingNumber,$value);
             }
                    /*fin create article*/ 
 

@@ -130,8 +130,19 @@ public function createArticleDemandeNoFile($data){
         }
        
     }
+public function updatePrixAchatActuel($reference,$tracking_number,$prix){
+     $sql ="UPDATE `demande_article_xdistrib` SET `prix_achat_actuel`='{$prix}' WHERE `reference_article`='{$reference}' and `tracking_number_demande_xdistrib`='{$tracking_number}'";
+        // var_dump($sql);exit();
+          $res = $this->getAdapter()->query($sql);
+        
+        if (!$res) {
+            return null;
+        } else {
+            return $res;
+        }
+}
 
-    public function listtracking($tracking_number) {
+public function listtracking($tracking_number) {
         $db = $this->getAdapter();
         $select = $db->select()
                 ->from(array("demande_xprices"), array("demande_xprices.tracking_number_demande_xprice",
