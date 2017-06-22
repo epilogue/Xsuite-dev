@@ -441,7 +441,7 @@ class XdistribController extends Zend_Controller_Action
             }
             
             echo '<pre>',var_export($formData),'</pre>';
-             echo '<pre>',var_export($resultatacquis),'</pre>';
+             echo '<pre>',var_export($resultatacquis),'</pre>'; exit();
                    /*fin create article*/ 
 
            if(isset($_FILES['fichierDemandeDistrib']['name'])){
