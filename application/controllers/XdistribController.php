@@ -440,8 +440,7 @@ class XdistribController extends Zend_Controller_Action
                 $upprixachat =$updateSerie->updatePrixAchatActuel($key,$trackingNumber,$value);
             }
             
-            echo '<pre>',var_export($formData),'</pre>';
-             echo '<pre>',var_export($resultatacquis),'</pre>'; exit();
+            
                    /*fin create article*/ 
 
            if(isset($_FILES['fichierDemandeDistrib']['name'])){
