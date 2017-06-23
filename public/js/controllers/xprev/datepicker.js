@@ -30,13 +30,9 @@ $( ".selector" ).datepicker({
  */
 
 $(document).ready(function(){
-    $( function() {
-    $("#datepicker").datepicker({
+     $("#datepicker").datepicker({
         
-        dateFormat :"dd-mm-yy"
-    });
-    $("#datepicker").datepicker({
+        dateFormat :"dd-mm-yy",
         minDate : new Date("+1m")
     });
-});
 });
