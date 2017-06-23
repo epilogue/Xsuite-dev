@@ -13,7 +13,10 @@ html{
 body{ 
      
 }
-
+.datepicker{
+    height: 20px;
+    width: 150px;
+}
 .obligatoire{
     color:#990000;
     font-style: italic;
