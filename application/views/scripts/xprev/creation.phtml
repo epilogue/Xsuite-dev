@@ -8,7 +8,7 @@ $this->headTitle($this->title);
     <table>
         <tr> 
             <td>date de création</td>
-            <td></td>
+            <td><input type="text" name="date_create" value=""></td>
             <td>niveau de risque</td>
             <td>
                 <select>
@@ -24,7 +24,7 @@ $this->headTitle($this->title);
         </tr>
         <tr> 
             <td>statut</td>
-            <td><input name="statut" value=""></td>
+            <td><input type="text" name="statut" value=""></td>
             <td>type de demande</td>
             <td>
                 <select>
@@ -32,17 +32,13 @@ $this->headTitle($this->title);
                 </select>
             </td>
             <td>nom client</td>
-            <td>
-                <select>
-                    <option></option>
-                </select>
-            </td>
+            <td><input type="text" name="nom_client" value=""></td>
         </tr>
         <tr> 
             <td>émetteur prévision</td>
-            <td><input name="emetteur" value="<?php echo $this->infoUser[nom_user] ?>"></td>
+            <td><input type="text" name="emetteur" value="<?php echo $this->infoUser['nom_user'] ?>"></td>
             <td>date de début de prévision</td>
-            <td></td>
+            <td><input type="text" name="date_debut" id="datepicker" value="<?php echo $this->infoUser['nom_user'] ?>"></td>
             <td>code user</td>
             <td>
                 <select>
@@ -52,11 +48,11 @@ $this->headTitle($this->title);
         </tr>
         <tr> 
             <td>commercial</td>
-            <td><input name="commercial" value=""></td>
+            <td><input type="text" name="commercial" value="<?php echo $this->infoUser['nom_user'] ?>"></td>
             <td>ajout de document</td>
             <td></td>
             <td>nom user</td>
-            <td></td>
+            <td><input type="text" name="nom_client_user" value=""></td>
         </tr>
         
     </table>
