@@ -30,13 +30,14 @@ $( ".selector" ).datepicker({
  */
 
 $(document).ready(function(){
+    var now=moment();
     $( function() {
     $("#datepicker").datepicker({
         
         dateFormat :"dd-mm-yyyy"
     });
     $("#datepicker").datepicker({
-        minDate : new Date("+1m")
+        minDate : now('months',1)
     });
 });
 });
