@@ -36,7 +36,7 @@ $(document).ready(function(){
         dateFormat :"dd-mm-yyyy"
     });
     $("#datepicker").datepicker({
-        minDate : ("+1m")
+        minDate : new Date("+1m")
     });
 });
 });
