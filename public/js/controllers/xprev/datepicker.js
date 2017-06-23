@@ -32,8 +32,8 @@ $( ".selector" ).datepicker({
 $(document).ready(function(){
      $("#datepicker").datepicker({
         dateFormat :"dd-mm-yy"
-    });
-//        ,
-//        minDate:"+1m"
 //    });
+        ,
+        minDate:"+1m"
+    });
 });
