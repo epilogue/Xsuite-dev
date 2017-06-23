@@ -13,9 +13,11 @@ html{
 body{ 
      
 }
-.ui-datepicker table th span {
-	display: block;
-	padding: .2em;
+.ui-datepicker-calendar thead tr th span {
+	display: block !important;
+	padding: .2em !important;
+        width: auto !important;
+        margin: inherit !important;
 	text-align: right;
 	text-decoration: none;
 }
