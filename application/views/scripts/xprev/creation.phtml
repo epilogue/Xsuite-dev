@@ -1,6 +1,7 @@
 <?php
 $this->title = 'Xprev/creation';
 $this->headTitle($this->title);
+$this->headScript()->appendFile('/js/controllers/xprev/datepicker.js');
 ?>
 <div class="contenu">
     <h2>Xprev</h2>
@@ -38,7 +39,7 @@ $this->headTitle($this->title);
             <td>émetteur prévision</td>
             <td><input type="text" name="emetteur" value="<?php echo $this->infoUser['nom_user'] ?>"></td>
             <td>date de début de prévision</td>
-            <td><input type="text" name="date_debut" id="datepicker" value="<?php echo $this->infoUser['nom_user'] ?>"></td>
+            <td><input type="text" name="date_debut" id="datepicker" value=""></td>
             <td>code user</td>
             <td>
                 <select>
