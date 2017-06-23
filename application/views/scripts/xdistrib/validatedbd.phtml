@@ -187,7 +187,7 @@ $this->headScript()->appendFile('/js/controllers/xprice/afficher_masquer_validat
                         <td style="width: 70px;"><?php echo $value['reference_article']; ?></td>
                         <td id="qt-<?php echo $k; ?>"><?php echo $value['quantite_demande_article']; ?></td>
                         <td><input class="pwp" id="pwp-<?php echo $k;?>"  value="<?php echo $value['prix_tarif']; ?>" name="ptarif" ></td>
-                        <td><?php $remiseDistrib= (100*(100-($value['prix_achat_actuel'])/$value['prix_tarif']));  echo round($remiseDistrib,1).'%'; ?></td>
+                        <td><?php $remiseDistrib= (100*(1-($value['prix_achat_actuel'])/$value['prix_tarif']));  echo round($remiseDistrib,1).'%'; ?></td>
                         <td id="pd-<?php echo $k; ?>"><?php echo $value['prix_demande_article']; ?></td>
                         <td><?php echo $value['serie']; ?></td>
                         <td id="pcf-<?php echo $k;?>"><?php echo $value['prix_client_final']; ?></td>
