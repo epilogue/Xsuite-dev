@@ -13,6 +13,12 @@ html{
 body{ 
      
 }
+.ui-datepicker table th span {
+	display: block;
+	padding: .2em;
+	text-align: right;
+	text-decoration: none;
+}
 .datepicker{
     height: 20px;
     width: 150px;
