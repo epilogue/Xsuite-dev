@@ -5,6 +5,60 @@ $this->headTitle($this->title);
 <div class="contenu">
     <h2>Xprev</h2>
     <h3> création de Demande de prévision en ligne </h3>
-    <table> </table>
+    <table>
+        <tr> 
+            <td>date de création</td>
+            <td></td>
+            <td>niveau de risque</td>
+            <td>
+                <select>
+                    <option></option>
+                </select>
+            </td>
+            <td>code client</td>
+            <td>
+                <select>
+                    <option></option>
+                </select>
+            </td>
+        </tr>
+        <tr> 
+            <td>statut</td>
+            <td><input name="statut" value=""></td>
+            <td>type de demande</td>
+            <td>
+                <select>
+                    <option></option>
+                </select>
+            </td>
+            <td>nom client</td>
+            <td>
+                <select>
+                    <option></option>
+                </select>
+            </td>
+        </tr>
+        <tr> 
+            <td>émetteur prévision</td>
+            <td><input name="emetteur" value="<?php echo $this->infoUser[nom_user] ?>"></td>
+            <td>date de début de prévision</td>
+            <td></td>
+            <td>code user</td>
+            <td>
+                <select>
+                    <option></option>
+                </select>
+            </td>
+        </tr>
+        <tr> 
+            <td>commercial</td>
+            <td><input name="commercial" value=""></td>
+            <td>ajout de document</td>
+            <td></td>
+            <td>nom user</td>
+            <td></td>
+        </tr>
+        
+    </table>
     <?php echo $this->infoUser; ?>
 </div>
