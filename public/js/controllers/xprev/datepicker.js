@@ -33,7 +33,7 @@ $(document).ready(function(){
     $( function() {
     $("#datepicker").datepicker({
         
-        dateFormat :"dd-mm-yyyy"
+        dateFormat :"dd-mm-yy"
     });
     $("#datepicker").datepicker({
         minDate : new Date("+1m")
