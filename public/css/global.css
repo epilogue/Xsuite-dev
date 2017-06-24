@@ -720,7 +720,7 @@ h3{
     font-size: 20px;
     font-family: verdana;
 }
-span {
+.prob span {
     width: 700px;
     float:left;
     text-align: center;
