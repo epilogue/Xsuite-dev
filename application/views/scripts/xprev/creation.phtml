@@ -8,56 +8,79 @@ $this->headScript()->appendFile('/js/controllers/xprev/datepicker.js');
 <div class="contenu">
     <h2>Xprev</h2>
     <h3> création de Demande de prévision en ligne </h3>
-    <table>
-        <tr> 
-            <td>date de création</td>
-            <td><input type="text" name="date_create" value=""></td>
-            <td>niveau de risque</td>
-            <td>
-                <select>
-                    <option></option>
-                </select>
-            </td>
-            <td>code client</td>
-            <td>
-                <select>
-                    <option></option>
-                </select>
-            </td>
-        </tr>
-        <tr> 
-            <td>statut</td>
-            <td><input type="text" name="statut" value=""></td>
-            <td>type de demande</td>
-            <td>
-                <select>
-                    <option></option>
-                </select>
-            </td>
-            <td>nom client</td>
-            <td><input type="text" name="nom_client" value=""></td>
-        </tr>
-        <tr> 
-            <td>émetteur prévision</td>
-            <td><input type="text" name="emetteur" value="<?php echo $this->infoUser['nom_user'] ?>"></td>
-            <td>date de début de prévision</td>
-            <td><input type="text" name="date_debut" id="datepicker" value=""></td>
-            <td>code user</td>
-            <td>
-                <select>
-                    <option></option>
-                </select>
-            </td>
-        </tr>
-        <tr> 
-            <td>commercial</td>
-            <td><input type="text" name="commercial" value="<?php echo $this->infoUser['nom_user'] ?>"></td>
-            <td>ajout de document</td>
-            <td></td>
-            <td>nom user</td>
-            <td><input type="text" name="nom_client_user" value=""></td>
-        </tr>
-        
-    </table>
+    <form method="post" enctype="multipart/form-data" action="#" >
+        <table>
+            <tr> 
+                <td>date de création</td>
+                <td><input type="text" name="date_create" value=""></td>
+                <td>niveau de risque</td>
+                <td>
+                    <select>
+                        <option></option>
+                    </select>
+                </td>
+                <td>code client</td>
+                <td>
+                    <select>
+                        <option></option>
+                    </select>
+                </td>
+            </tr>
+            <tr> 
+                <td>statut</td>
+                <td><input type="text" name="statut" value=""></td>
+                <td>type de demande</td>
+                <td>
+                    <select>
+                        <option></option>
+                    </select>
+                </td>
+                <td>nom client</td>
+                <td><input type="text" name="nom_client" value=""></td>
+            </tr>
+            <tr> 
+                <td>émetteur prévision</td>
+                <td><input type="text" name="emetteur" value="<?php echo $this->infoUser['nom_user'] ?>"></td>
+                <td>date de début de prévision</td>
+                <td><input type="text" name="date_debut" id="datepicker" value=""></td>
+                <td>code user</td>
+                <td>
+                    <select>
+                        <option></option>
+                    </select>
+                </td>
+            </tr>
+            <tr> 
+                <td>commercial</td>
+                <td><input type="text" name="commercial" value="<?php echo $this->infoUser['nom_user'] ?>"></td>
+                <td>ajout de document</td>
+                <td><input type="file" value ="" name="fichierDemandeDistrib" ></td>
+                <td>nom user</td>
+                <td><input type="text" name="nom_client_user" value=""></td>
+            </tr>
+
+        </table>
+        <textarea name="motif_create" required="required" cols="120" rows="7"> </textarea>
+        <table>
+            <thead>
+                <tr>
+                    <th>référence</th>
+                    <th>code article</th>
+                    <th>m1</th>
+                    <th>m2</th>
+                    <th>m3</th>
+                    <th>m4</th>
+                    <th>m5</th>
+                    <th>m6</th>
+                    <th>m7</th>
+                    <th>m8</th>
+                    <th>m9</th>
+                    <th>m10</th>
+                    <th>m11</th>
+                    <th>m12</th>
+                </tr>
+            </thead>
+        </table>
+    </form>
     <?php echo $this->infoUser; ?>
 </div>
