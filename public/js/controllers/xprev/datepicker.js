@@ -30,10 +30,8 @@ $( ".selector" ).datepicker({
  */
 
 $(document).ready(function(){
-     $("#datepicker").datepicker({
-        dateFormat :"dd-mm-yy"
-//    });
-        ,
-        minDate:"+1m"
+     $("#monthpicker").monthpicker({
+       lang:'fr',
+       minMonth :july
     });
 });

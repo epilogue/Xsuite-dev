@@ -3,6 +3,7 @@ $this->title = 'Xprev/creation';
 $this->headTitle($this->title);
 $this->headLink()->appendStylesheet('/css/jquery-ui.css');
 $this->headScript()->appendFile('/js/controllers/xprev/datepicker.js');
+$this->headScript()->appendFile('/js/controllers/xprev/jquery.monthpicker.min.js');
 
 ?>
 <div class="contenu">
@@ -42,7 +43,7 @@ $this->headScript()->appendFile('/js/controllers/xprev/datepicker.js');
                 <td>émetteur prévision</td>
                 <td><input type="text" name="emetteur" value="<?php echo $this->infoUser['nom_user'] ?>"></td>
                 <td>date de début de prévision</td>
-                <td><input type="text" name="date_debut" id="datepicker" value=""></td>
+                <td><input type="text" name="date_debut" id="monthpicker" value=""></td>
                 <td>code user</td>
                 <td>
                     <select>
