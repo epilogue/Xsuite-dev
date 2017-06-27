@@ -31,7 +31,6 @@ $( ".selector" ).datepicker({
 
 $(document).ready(function(){
      $("#monthpicker").monthpicker({
-       lang:'fr',
-       minMonth :july
+       lang:'fr'
     });
 });
