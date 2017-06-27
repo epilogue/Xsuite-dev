@@ -525,8 +525,8 @@ class XdistribController extends Zend_Controller_Action
                 $d2 = $emailVars->listes->CDROUEST2;
             }
             elseif(in_array($holondd, $holonest)){
-               // $d2 = $emailVars->listes->CDREST;
-                $d2="mhuby@smc-france.fr";
+                $d2 = $emailVars->listes->CDREST;
+                //$d2="mhuby@smc-france.fr";
             }
             elseif(in_array($holondd, $holonIO)){
                 $d2 =$emailVars->listes->IO;
