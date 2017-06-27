@@ -2545,10 +2545,10 @@ if($this->getRequest()->isPost()){
             $nomclients=trim($client_info['nom_client']);
 //            foreach ($formData as $datas) {
             $fobs = array_combine($datas['code_article'], $datas['prix_fob']);
-            $cifs = array_combine($datas['code_article'], $datas['prix_cif']);
+            $cifs = array_combine($datas['code_article'], $datas['prix_fob']);
             $marges = array_combine($datas['code_article'],$datas['marge']);
 
-            foreach ($cifs as $key => $value) {
+            foreach ($fobs as $key => $value) {
                 $prixcifs = new Application_Model_DbTable_DemandeArticlexdistrib();
                 $prixcif = $prixcifs->updatecif($value, $key, $datas['tracking']);
             }
@@ -2703,10 +2703,10 @@ if($this->getRequest()->isPost()){
             $datas = $this->getRequest()->getPost();
             $nomclients=trim($client_info['nom_client']);
             $fobs = array_combine($datas['code_article'], $datas['prix_fob']);
-            $cifs = array_combine($datas['code_article'], $datas['prix_cif']);
+            $cifs = array_combine($datas['code_article'], $datas['prix_fob']);
             $marges = array_combine($datas['code_article'],$datas['marge']);
 
-            foreach ($cifs as $key => $value) {
+            foreach ($fobs as $key => $value) {
                 $prixcifs = new Application_Model_DbTable_DemandeArticlexdistrib();
                 $prixcif = $prixcifs->updatecif($value, $key, $datas['tracking']);
             }
