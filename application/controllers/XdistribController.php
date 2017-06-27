@@ -397,6 +397,7 @@ class XdistribController extends Zend_Controller_Action
             $agreement1 = "I000001";
             $agreement2 = "I000002";
             $agreement3 = "I000003";
+            foreach($affiche_offre1 as $demande){
             $query5 = "select * from EIT.MVXCDTA.MITFAC MITFAC where MITFAC.M9CONO = '$mmcono'  AND MITFAC.M9ITNO = '{$demande['OBITNO']}' ";
             $resultats5 = odbc_Exec($this->odbc_conn2, $query5);
             $prixciffob[] = odbc_fetch_object($resultats5);
@@ -412,7 +413,7 @@ class XdistribController extends Zend_Controller_Action
                 $insertacquis= new Application_Model_DbTable_DemandeArticlexdistrib();
                 $inseracquis = $insertacquis->InserCodeAcquis($value->MBPUIT, $value->MBITNO, $numwprecu);
             }
-
+            }
             $updatecif1 = new Application_Model_DbTable_DemandeArticlexdistrib();
             $updatecif2 = $updatecif1->getDemandeArticlexdistrib($numwprecu); 
             foreach($updatecif2 as $result){
