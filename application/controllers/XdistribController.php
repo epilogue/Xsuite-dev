@@ -397,7 +397,7 @@ class XdistribController extends Zend_Controller_Action
             $agreement1 = "I000001";
             $agreement2 = "I000002";
             $agreement3 = "I000003";
-            $query5 = "select * from EIT.MVXCDTA.MPAGRP MPAGRP where MPAGRP.AJCONO = '$mmcono'  AND MPAGRP.AJOBV2 = '{$demande['OBITNO']}' AND MPAGRP.AJOBV1 = '$division'  ORDER BY MPAGRP.AJAGNB";
+            $query5 = "select * from EIT.MVXCDTA.MITFAC MITFAC where MITFAC.M9CONO = '$mmcono'  AND MITFAC.M9ITNO = '{$demande['OBITNO']}' ";
             $resultats5 = odbc_Exec($this->odbc_conn2, $query5);
             $prixciffob[] = odbc_fetch_object($resultats5);
             $acquis= "select MITBAL.MBITNO, MITBAL.MBPUIT from EIT.MVXCDTA.MITBAL MITBAL where MITBAL.MBITNO ='{$demande['OBITNO']}'";
@@ -406,7 +406,7 @@ class XdistribController extends Zend_Controller_Action
 
             foreach ($prixciffob as $key => $value) {
                 $insertprix = new Application_Model_DbTable_DemandeArticlexdistrib();
-                $inserprix = $insertprix->InserPrixFob($value->AJPUPR, $value->AJOBV2, $numwprecu);
+                $inserprix = $insertprix->InserPrixFob($value->M9UCOS, $value->M9ITNO, $numwprecu);
             }
             foreach($resultatacquis as $key=>$value){
                 $insertacquis= new Application_Model_DbTable_DemandeArticlexdistrib();
@@ -416,9 +416,9 @@ class XdistribController extends Zend_Controller_Action
             $updatecif1 = new Application_Model_DbTable_DemandeArticlexdistrib();
             $updatecif2 = $updatecif1->getDemandeArticlexdistrib($numwprecu); 
             foreach($updatecif2 as $result){
-                if($result['code_acquisition']=='2'){
+                if($result['code_acquisition']=='2' or $result['code_acquisition']=='1' or $result['code_acquisition']=='3'){
                     $fob=$result['prix_fob_demande_article'];
-                    $cifs=$fob*1.07;
+                    $cifs=$fob;
                     $cif=round($cifs,2);
                     $updatecif3 = $updatecif1->updatecif($cif, $result['code_article'], $numwprecu);
                 }
