@@ -190,7 +190,7 @@ $this->headScript()->appendFile('/js/numFormat.js');
                             }?> value="<?php echo number_format($Cfob, 2, '.', ' '); ?>">
                             <input id="cfob" type="hidden" class="calculHidden" value="<?php echo $Cfob; ?>">
                         </td>
-                        <td>marge moyenne <input id="mamofob" <?php $mamofob = 100*(1-($Ccif/$tpd))?> value ="<?php echo round($mamofob,2)."%";?>"></td>
+                        <td>marge moyenne <input id="mamofob" <?php $mamofob = 100*(1-($Cfob/$tpd))?> value ="<?php echo round($mamofob,2)."%";?>"></td>
                         </tr>
                 </table>
             </fieldset>
