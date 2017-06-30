@@ -41,6 +41,12 @@ class XprevController extends Zend_Controller_Action
         $User = new Application_Model_DbTable_Users();
         $infoUser = $User->getUser($user->id_user);
         echo '<pre>',  var_export($infoUser),'</pre>';
+        
+        /*info base de donnees*/
+        $basecodeclient = new Application_Model_DbTable_Baseclient();
+        $listecodeclient = $basecodeclient->getAllcodeclient();
+        /*passage a la vue*/
+        $this->view->infoCodeClient=$listecodeclient;
         $this->view->infoUser=$infoUser;
     }
 }

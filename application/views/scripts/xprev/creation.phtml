@@ -3,7 +3,8 @@ $this->title = 'Xprev/creation';
 $this->headTitle($this->title);
 $this->headLink()->appendStylesheet('/css/jquery-ui.css');
 $this->headScript()->appendFile('/js/controllers/xprev/datepicker.js');
-$this->headScript()->appendFile('/js/controllers/xprev/jquery.monthpicker.min.js');
+$this->headScript()->appendFile('/js/controllers/xprev/MonthPicker.js');
+$this->headLink()->appendStylesheet('/css/MonthPicker.css');
 
 ?>
 <div class="contenu">
@@ -23,7 +24,9 @@ $this->headScript()->appendFile('/js/controllers/xprev/jquery.monthpicker.min.js
                 <td>code client</td>
                 <td>
                     <select>
-                        <option></option>
+                        <?php foreach($this->infoCodeClient as $listeclient ){?>
+                        <option><?php echo $listeclient['code_client']?></option>
+                        <?php } ?>
                     </select>
                 </td>
             </tr>
