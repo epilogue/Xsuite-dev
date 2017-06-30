@@ -507,34 +507,36 @@ class XdistribController extends Zend_Controller_Action
            /*on envoi un mail au dd*/
         } 
         if ($user_connect->id_fonction == "6"){
-            //echo '<pre>',  var_export($user_connect),'</pre>';
-            $holondd =$user_connect->id_holon;
-            $holonnord=array(18,19,20,21,22,23,32);
-            $holonouest = array(8,9,10,14,15,16,17,31);
-            $holonouest2 = array(36,37,38,39,41);
-            $holonest = array(5,6,7,11,12,13,30,40);
-            $holonIO = array(33);
-            $holonexport = array(28,29);
-            if(in_array($holondd, $holonnord)){
-                $d2 = $emailVars->listes->CDRNORD;
-            }
-            elseif(in_array($holondd, $holonouest)){
-                $d2 = $emailVars->listes->CDROUEST;
-            }
-            elseif(in_array($holondd, $holonouest2)){
-                $d2 = $emailVars->listes->CDROUEST2;
-            }
-            elseif(in_array($holondd, $holonest)){
-                $d2 = $emailVars->listes->CDREST;
-                //$d2="mhuby@smc-france.fr";
-            }
-            elseif(in_array($holondd, $holonIO)){
-                $d2 =$emailVars->listes->IO;
-            }
-            elseif(in_array($holondd, $holonexport)){
-                $d2 =$emailVars->listes->export;
-            }
-            
+            if($infos_tc['id_fonction']== 46){
+                 $d2 =$emailVars->listes->IO; }
+            else {
+                    $holondd =$user_connect->id_holon;
+                    $holonnord=array(18,19,20,21,22,23,32);
+                    $holonouest = array(8,9,10,14,15,16,17,31);
+                    $holonouest2 = array(36,37,38,39,41);
+                    $holonest = array(5,6,7,11,12,13,30,40);
+                    $holonIO = array(33);
+                    $holonexport = array(28,29);
+                    if(in_array($holondd, $holonnord)){
+                        $d2 = $emailVars->listes->CDRNORD;
+                    }
+                    elseif(in_array($holondd, $holonouest)){
+                        $d2 = $emailVars->listes->CDROUEST;
+                    }
+                    elseif(in_array($holondd, $holonouest2)){
+                        $d2 = $emailVars->listes->CDROUEST2;
+                    }
+                    elseif(in_array($holondd, $holonest)){
+                        $d2 = $emailVars->listes->CDREST;
+                        //$d2="mhuby@smc-france.fr";
+                    }
+                    elseif(in_array($holondd, $holonIO)){
+                        $d2 =$emailVars->listes->IO;
+                    }
+                    elseif(in_array($holondd, $holonexport)){
+                        $d2 =$emailVars->listes->export;
+                    }
+             }
             $params2['destinataireMail']=$d2;
             $params2['url']="http://{$_SERVER['SERVER_NAME']}/xdistrib/validatedrv/numwp/{$numwprecu}";
             $params2['corpsMail']="Bonjour,\n"
