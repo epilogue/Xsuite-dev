@@ -493,7 +493,7 @@ class XdistribController extends Zend_Controller_Action
             $params1['url']="http://{$_SERVER['SERVER_NAME']}/xdistrib/validatedd/numwp/{$numwp}";
             $params1['corpsMail']="Bonjour,\n"
             . "\n"
-            . "la demande XDistrib({$trackingNumber}/{$numwp}) de {$destinataire}/{$info_user['nom_user']} {$info_user['prenom_user']}  pour {$nom_distrib}/{$nom_client} est à valider .\n"
+            . "la demande XDistrib({$trackingNumber}/{$numwp}) de {$destinataire}/{$user_connect->nom_user} {$user_connect->prenom_user}  pour {$nom_distrib}/{$nom_client} est à valider .\n"
             . "pour la valider veuillez vous rendre à l'adresse url : \n"
             . "%s"
             . "\n\n"
@@ -501,7 +501,7 @@ class XdistribController extends Zend_Controller_Action
             . "\n"
             . "--\n"
             . "Xsuite";
-            $params1['sujet']=" XDistrib :L'offre XDistrib {$trackingNumber}/{$numwprecu} de {$info_user['nom_user']} {$info_user['prenom_user']} pour {$nom_distrib}/{$nom_client} est à valider";
+            $params1['sujet']=" XDistrib :L'offre XDistrib {$trackingNumber}/{$numwprecu} de {$user_connect->nom_user} {$user_connect->prenom_user} pour {$nom_distrib}/{$nom_client} est à valider";
             $this->sendEmail($params1);
             
            /*on envoi un mail au dd*/
@@ -541,7 +541,7 @@ class XdistribController extends Zend_Controller_Action
             $params2['url']="http://{$_SERVER['SERVER_NAME']}/xdistrib/validatedrv/numwp/{$numwprecu}";
             $params2['corpsMail']="Bonjour,\n"
             . "\n"
-            . "la demande XDistrib({$trackingNumber}/{$numwprecu}) de {$destinataire}/{$info_user['nom_user']} {$info_user['prenom_user']}  pour {$nom_distrib}/{$nom_client} est à valider .\n"
+            . "la demande XDistrib({$trackingNumber}/{$numwprecu}) de {$destinataire}/{$infos_tc['nom_user']} {$info_tc['prenom_user']}  pour {$nom_distrib}/{$nom_client} est à valider .\n"
             . "pour la valider veuillez vous rendre à l'adresse url : \n"
             . "%s"
             . "\n\n"
@@ -549,7 +549,7 @@ class XdistribController extends Zend_Controller_Action
             . "\n"
             . "--\n"
             . "Xsuite";
-            $params2['sujet']=" XDistrib :L'offre XDistrib {$trackingNumber}/{$numwprecu} de {$info_user['nom_user']} {$info_user['prenom_user']} pour {$nom_distrib}/{$nom_client} est à valider";
+            $params2['sujet']=" XDistrib :L'offre XDistrib {$trackingNumber}/{$numwprecu} de {$infos_tc['nom_user']} {$infos_tc['prenom_user']} pour {$nom_distrib}/{$nom_client} est à valider";
             $this->sendEmail($params2);
             
         }
@@ -559,7 +559,7 @@ class XdistribController extends Zend_Controller_Action
             $params3['url']="http://{$_SERVER['SERVER_NAME']}/xdistrib/validatedrv/numwp/{$numwprecu}";
             $params3['corpsMail']="Bonjour,\n"
             . "\n"
-            . "la demande XDistrib({$trackingNumber}/{$numwprecu}) de {$destinataire}/{$info_user['nom_user']} {$info_user['prenom_user']}  pour {$nom_distrib}/{$nom_client} est à valider .\n"
+            . "la demande XDistrib({$trackingNumber}/{$numwprecu}) de {$destinataire}/{$user_connect->nom_user} {$user_connect->prenom_user}  pour {$nom_distrib}/{$nom_client} est à valider .\n"
             . "pour la valider veuillez vous rendre à l'adresse url : \n"
             . "%s"
             . "\n\n"
@@ -567,7 +567,7 @@ class XdistribController extends Zend_Controller_Action
             . "\n"
             . "--\n"
             . "Xsuite";
-            $params3['sujet']=" XDistrib :L'offre XDistrib {$trackingNumber}/{$numwprecu} de {$info_user['nom_user']} {$info_user['prenom_user']} pour {$nom_distrib}/{$nom_client} est à valider";
+            $params3['sujet']=" XDistrib :L'offre XDistrib {$trackingNumber}/{$numwprecu} de {$user_connect->nom_user} {$user_connect->prenom_user} pour {$nom_distrib}/{$nom_client} est à valider";
             $this->sendEmail($params3);
         }
         $paramsRGCU1=array();
