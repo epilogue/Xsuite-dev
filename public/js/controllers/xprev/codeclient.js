@@ -8,12 +8,7 @@ $(document).ready(function(){
     
     $('#num_client').change(function(e)
     {
-        e.preventDefault();
-        $.get($(this).val(),
-        {},
-        function(data){
-            $('#nom_client').replaceWith(data);
-        },'html')
+       console.log(data-nom);
     });
 });
 
