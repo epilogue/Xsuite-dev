@@ -25,7 +25,7 @@ $this->headLink()->appendStylesheet('/css/MonthPicker.css');
                 <td>
                     <select>
                         <?php foreach($this->infoCodeClient as $listeclient ){?>
-                        <option><?php echo substr($listeclient['code_client'],6)?></option>
+                        <option><?php echo substr($listeclient['code_client'],0,6)?></option>
                         <?php } ?>
                     </select>
                 </td>
