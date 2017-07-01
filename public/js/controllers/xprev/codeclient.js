@@ -10,8 +10,9 @@ $(document).ready(function(){
     {
         e.preventDefault();
         console.log( $('#nom_client option[value="'+$(this).val()+'"]'));
+        console.log( $('#nom_client option[value="'+$(this).val()+'"]'));
         console.log( $('#num_client option[value="'+$(this).val()+'"]'));
-         $('#nom_client option[value="'+$(this).val()+'"]');
+         $('#nom_client option[value="'+$(this).data-nom+'"]');
     });
 });
 
