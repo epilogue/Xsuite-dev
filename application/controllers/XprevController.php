@@ -49,6 +49,9 @@ class XprevController extends Zend_Controller_Action
         $listetypedemande = $typedemande->alltypedemande();
         $niveaurisque = new Application_Model_DbTable_NiveauRisqueXprev();
         $listeniveaurisque = $niveaurisque->allniveaurisque();
+        
+        echo '<pre>',  var_export($listeniveaurisque),'</pre>';
+        echo '<pre>',  var_export($listetypedemande),'</pre>';
         /*passage a la vue*/
         $this->view->listetypedemande=$listetypedemande;
         $this->view->listeniveaurisque=$listeniveaurisque;

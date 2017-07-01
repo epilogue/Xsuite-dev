@@ -17,9 +17,11 @@ $this->headLink()->appendStylesheet('/css/MonthPicker.css');
                 <td><input type="text" name="date_create" value=""></td>
                 <td>niveau de risque</td>
                 <td>
+                    <select>
                     <?php foreach($this->listeniveaurisque as $listeniveau ){?>
                         <option><?php echo $listeniveau['nom_niveau_xprev']?></option>
                     <?php } ?>
+                    </select>
                 </td>
                 <td>code client</td>
                 <td>
@@ -35,9 +37,11 @@ $this->headLink()->appendStylesheet('/css/MonthPicker.css');
                 <td><input type="text" name="statut" value=""></td>
                 <td>type de demande</td>
                 <td>
+                    <select>
                     <?php foreach($this->listetypedemande as $listetype ){?>
                         <option><?php echo $listetype['nom_type_demande_xprev']?></option>
                     <?php } ?>
+                    </select>
                 </td>
                 <td>nom client</td>
                 <td><input type="text" name="nom_client" value=""></td>
