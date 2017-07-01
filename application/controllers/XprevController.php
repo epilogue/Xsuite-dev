@@ -45,7 +45,13 @@ class XprevController extends Zend_Controller_Action
         /*info base de donnees*/
         $basecodeclient = new Application_Model_DbTable_Baseclient();
         $listecodeclient = $basecodeclient->getAllcodeclient();
+        $typedemande = new Application_Model_DbTable_TypeDemandeXprev();
+        $listetypedemande = $typedemande->alltypedemande();
+        $niveaurisque = new Application_Model_DbTable_NiveauRisqueXprev();
+        $listeniveaurisque = $niveaurisque->allniveaurisque();
         /*passage a la vue*/
+        $this->view->listetypedemande=$listetypedemande;
+        $this->view->listeniveaurisque=$listeniveaurisque;
         $this->view->infoCodeClient=$listecodeclient;
         $this->view->infoUser=$infoUser;
     }
