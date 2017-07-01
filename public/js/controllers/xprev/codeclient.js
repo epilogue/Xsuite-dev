@@ -8,7 +8,7 @@ $(document).ready(function(){
     
     $('#num_client').change(function(e)
     {
-       console.log(data-nom);
+       console.log($('#num_client').data('nom'));
     });
 });
 
