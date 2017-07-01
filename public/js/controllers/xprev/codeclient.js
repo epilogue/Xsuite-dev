@@ -9,10 +9,11 @@ $(document).ready(function(){
     $('#num_client').change(function(e)
     {
         e.preventDefault();
-        console.log( $('#nom_client option[value="'+$(this).val()+'"]'));
-        console.log( $('#nom_client option[value="'+$(this).val()+'"]'));
-        console.log( $('#num_client option[value="'+$(this).val()+'"]'));
-         $('#nom_client option[value="'+$(this).data-nom+'"]');
+        $get($(this).val(),
+        {},
+        function(data){
+            $('#nom_client').replaceWith(data);
+        },'html')
     });
 });
 
