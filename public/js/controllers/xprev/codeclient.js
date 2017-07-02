@@ -15,7 +15,7 @@ $(document).ready(function(){
               $('#code_user').html(data);
           },'html');
     });
-    $('#num_client').change(function(e)
+    $('#code_user').change(function(e)
     {
           $('#nom_client_user').val($('#code_user option:selected').data('nom'));});
 });
