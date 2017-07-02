@@ -16,7 +16,7 @@ class XprevController extends Zend_Controller_Action
              */
         }
     }
-    public function liaisoncodeuser(){
+    public function liaisoncodeuserAction(){
         $this->helper->layout->disableLayout();
         $num_client = $this->getRequest()->getParam('num_client',null);
         $codeuser = new Application_Model_DbTable_Baseclient();
