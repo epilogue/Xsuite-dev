@@ -30,7 +30,9 @@ $( ".selector" ).datepicker({
  */
 
 $(document).ready(function(){
-     $("#monthpicker").monthpicker({
-       lang:'fr'
+     $("#monthpicker").MonthPicker({
+       lang:'fr',
+       MinMonth:0,
+       MaxMonth:'+1y'
     });
 });
