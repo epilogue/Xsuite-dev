@@ -32,7 +32,7 @@ $( ".selector" ).datepicker({
 $(document).ready(function(){
      $("#monthpicker").MonthPicker({
        lang:'fr',
-       MinMonth:0,
+       MinMonth:1,
        MaxMonth:'+1y'
     });
 });
