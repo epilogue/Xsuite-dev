@@ -16,6 +16,9 @@ class XprevController extends Zend_Controller_Action
              */
         }
     }
+    /*
+     * fonction qui permet d'afficher la liste des codes user en fonction du code client choisi dans le select code_client
+     */
     public function liaisoncodeuserAction(){
         $this->_helper->layout->disableLayout();
         $num_client = substr($this->getRequest()->getParam('num_client',null),0,6);
@@ -57,6 +60,7 @@ class XprevController extends Zend_Controller_Action
         $listeniveaurisque = $niveaurisque->allniveaurisque();
         $datejour = date('d-m-Y');
         $moiscreate = date('mm-YYYY');
+        var_dump($moiscreate);
         /*passage a la vue*/
         $this->view->listetypedemande=$listetypedemande;
         $this->view->datecreate=$datejour;
