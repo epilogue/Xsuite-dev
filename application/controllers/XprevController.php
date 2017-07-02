@@ -59,8 +59,7 @@ class XprevController extends Zend_Controller_Action
         $niveaurisque = new Application_Model_DbTable_NiveauRisqueXprev();
         $listeniveaurisque = $niveaurisque->allniveaurisque();
         $datejour = date('d-m-Y');
-        $moiscreate = date('mm-YYYY');
-        var_dump($moiscreate);
+        $moiscreate = date('m-Y');
         /*passage a la vue*/
         $this->view->listetypedemande=$listetypedemande;
         $this->view->datecreate=$datejour;
