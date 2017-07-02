@@ -9,6 +9,11 @@ $(document).ready(function(){
     $('#num_client').change(function(e)
     {
           $('#nom_client').val($('#num_client option:selected').data('nom'));
+          $.get ('/xprev/liaisoncodeuser/num_client/'+$(this).val(),
+          {},
+          function(data){
+              $('#code_user').html(data);
+          },'html');
     });
 });
 

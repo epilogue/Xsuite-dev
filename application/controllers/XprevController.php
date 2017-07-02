@@ -16,7 +16,13 @@ class XprevController extends Zend_Controller_Action
              */
         }
     }
-
+    public function liaisoncodeuser(){
+        $this->helper->layout->disableLayout();
+        $numclient = $this->getRequest()->getParam('num_client',null);
+        $codeuser = new Application_Model_DbTable_Baseclient();
+        $listecodeuser = $codeuser->getAllcodeuser($numclient);
+        $this->view->listecodeuser = $listecodeuser;
+    }
     public function indexAction()
     {
         $user = $this->_auth->getStorage()->read();
