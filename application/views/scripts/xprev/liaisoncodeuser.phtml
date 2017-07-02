@@ -1,5 +1,5 @@
 <select id="code_user" name="code_user">
     <?php  foreach($this->listecodeuser as $listeclientuser ){?>
-    <option data-nom ="<?php echo $listeclientuser['nom_client']?>" value="<?php echo $listeclientuser['code_client']?>"><?php echo substr($listeclient['code_client'],0,6)?></option>
+    <option data-nom ="<?php echo $listeclientuser['nom_client']?>" value="<?php echo $listeclientuser['code_client']?>"><?php $listeclientuser['code_client']; ?></option>
     <?php } ?>
 </select>
