@@ -32,7 +32,7 @@ $( ".selector" ).datepicker({
 $(document).ready(function(){
      $("#date_debut").MonthPicker({
        lang:'fr',
-        dateFormat: 'm-y',
+        MonthFormat: 'MM-YYYY',
        MinMonth:1,
        MaxMonth:'+1y',
        OnAfterChooseMonth: function() { 
