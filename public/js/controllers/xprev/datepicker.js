@@ -30,13 +30,13 @@ $( ".selector" ).datepicker({
  */
 
 $(document).ready(function(){
-     $("#monthpicker").MonthPicker({
+     $("#date_debut").MonthPicker({
        lang:'fr',
        MinMonth:1,
        MaxMonth:'+1y'
     });
     
-    $("#monthpicker").change(function(e){
+    $("#date_debut").change(function(e){
         
     $.get ('/xprev/liaisonmois/date_debut/'+$(this).val(),
           {},
