@@ -35,4 +35,13 @@ $(document).ready(function(){
        MinMonth:1,
        MaxMonth:'+1y'
     });
+    
+    $("#monthpicker").change(function(e){
+        
+    $.get ('/xprev/liaisonmois/date_debut/'+$(this).val(),
+          {},
+          function(data){
+              $('#motif_create').html(data);
+          },'html');
+    });
 });
