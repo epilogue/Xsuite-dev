@@ -33,15 +33,18 @@ $(document).ready(function(){
      $("#date_debut").MonthPicker({
        lang:'fr',
        MinMonth:1,
-       MaxMonth:'+1y'
+       MaxMonth:'+1y',
+       OnAfterChooseMonth: function() { 
+        alert($(this).val());
+    }
     });
     
-    $("#date_debut").change(function(e){
-        console.log($(this).val());
-    $.get ('/xprev/liaisonmois/date_debut/'+$(this).val(),
-          {},
-          function(data){
-              $('#motif_create').html(data);
-          },'html');
-    });
+//    $("#date_debut").change(function(e){
+//        console.log($(this).val());
+//    $.get ('/xprev/liaisonmois/date_debut/'+$(this).val(),
+//          {},
+//          function(data){
+//              $('#motif_create').html(data);
+//          },'html');
+//    });
 });
