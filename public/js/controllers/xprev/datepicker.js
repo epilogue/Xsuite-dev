@@ -35,7 +35,7 @@ $(document).ready(function(){
        MinMonth:1,
        MaxMonth:'+1y'
     });
-    
+    console.log($(this).val());
     $("#date_debut").change(function(e){
         
     $.get ('/xprev/liaisonmois/date_debut/'+$(this).val(),
