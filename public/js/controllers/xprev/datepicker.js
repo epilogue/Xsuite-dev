@@ -36,6 +36,11 @@ $(document).ready(function(){
        MaxMonth:'+1y',
        OnAfterChooseMonth: function() { 
         alert($(this).val());
+        $.get ('/xprev/liaisonmois/date_debut/'+$(this).val(),
+          {},
+          function(data){
+              $('#motif_create').html(data);
+          },'html');
     }
     });
     
