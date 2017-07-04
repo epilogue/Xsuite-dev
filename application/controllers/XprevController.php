@@ -40,7 +40,7 @@ class XprevController extends Zend_Controller_Action
          * 
          *  */
     $r = array();
-    //$date = strtotime($year.'-'.$month.'-01');
+    $date = strtotime($month.'-'.$year);
     //Boucle sur 12 mois
     for($i = 1, $mm = $month, $yy = $year; $i < 13; $i++, $mm++)
     {
@@ -58,11 +58,9 @@ class XprevController extends Zend_Controller_Action
             //Ce que je veux >> $r[ANNEE][MOIS][JOUR] = JOUR DE LA SEMAINE
             $y = date('Y', $date);
             $m = date('n', $date);
-            $d = date('j', $date);
-            $n = date('N', $date);
-            $r[$y][$m][$d] = $n;
+            $r[$y][$m] = $n;
             //Rajoute 1 jour à la date
-            $date = strtotime(date('Y-m-d', $date).' +1 DAY');
+            $date = strtotime(date('m-Y', $date));
         }
         echo "itération = ".$countit." ";
     }
