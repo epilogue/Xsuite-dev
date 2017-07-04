@@ -15,6 +15,25 @@ class XprevController extends Zend_Controller_Action
              * Et donc, ici, on peut faire de l'acl de manière plus fine
              */
         }
+        /*connexions à Movex*/
+        $this->dsn = Zend_Registry::get("dsnString");
+        $this->odbc_conn = odbc_connect('Movex', "EU65535", "CCS65535");
+        if (!$this->odbc_conn) {
+            echo "pas d'accès à la base de données CVXDTA";
+        }
+        $this->dsn2 = Zend_Registry::get("dsn2String");
+        $this->odbc_conn2 = odbc_connect('Movex2', "EU65535", "CCS65535");
+        if (!$this->odbc_conn2) {
+            echo "pas d'accès à la base de données MVXCDTA";
+        }
+        $this->odbc_conn3 = odbc_connect('Movex3', "EU65535", "CCS65535");
+        if (!$this->odbc_conn3) {
+            echo "pas d'accès à la base de données SMCCDTA";
+        }
+         $this->odbc_conn4 = odbc_connect('Movex4', "EU65535", "CCS65535");
+        if (!$this->odbc_conn4) {
+            echo "pas d'accès à la base de données ZEUCDTA";
+        }
     }
     /*
      * fonction qui permet d'afficher la liste des codes user en fonction du code client choisi dans le select code_client
