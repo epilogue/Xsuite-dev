@@ -17,15 +17,19 @@ function newArticleLine() {
 $(document).ready(function(){
      $("#ajout_article").click(function(e){
          e.preventDefault();
+         console.log('plop');
         newArticleLine();
-        $('input[name="refart['+$(this).data('id')+'][reference]"]').change(function(e)
+                 //name="refart[__id__][reference]"
+        $('input[name="refart['+articleId - 1+'][reference]"]').change(function(e)
         {
+            console.log('tagada');
               $.get ('/xprev/verifReference/reference/'+$(this).val(),
               {},
               function(data){
                   $('#refart['+$(this).data(id)+'][code_article]').html(data);
               },'html');
         });
+    //});
         $('.resetbuton').unbind('click');
         $('.resetbuton').click(function(e){
              e.preventDefault();
