@@ -34,6 +34,7 @@ class XprevController extends Zend_Controller_Action
         $year = intval(substr($num_mois,-2));
         var_dump($year);
         var_dump($month);
+        $tab = array();
     //Boucle sur 12 mois
         for($i = 1, $month, $year; $i < 13; $i++, $month++)
         {
@@ -43,10 +44,12 @@ class XprevController extends Zend_Controller_Action
                 $month = 1;
                 $year++;
             }
-            var_dump($month);
+//            var_dump($month);
 
-                var_dump($year) ;
+//                var_dump($year) ;
+            $tab[]= array('month'=>$month, 'year'=>$year);
         }
+        var_dump($tab);
     }
     public function indexAction()
     {
