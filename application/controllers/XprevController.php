@@ -44,14 +44,13 @@ class XprevController extends Zend_Controller_Action
     //Boucle sur 12 mois
     for($i = 1, $mm = $month, $yy = $year; $i < 13; $i++, $mm++)
     {
-        $countit = 0;
         //Arrivé en Décembre, on remet le mois à Janvier pour parcourir les 12 mois et on incrémente l'année
         if($mm > 12)
         {
             $mm = 1;
             $yy++;
             $date = strtotime($yy.'-'.$mm);
-            echo $date;
+            var_dump($date) ;
         }
 //        while(date('n', $date) == $mm)
 //        {
