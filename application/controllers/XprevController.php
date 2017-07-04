@@ -50,6 +50,7 @@ class XprevController extends Zend_Controller_Action
             $tab[]= array('month'=>$month, 'year'=>$year);
         }
         var_dump($tab);
+         $this->view->tab = $tab;
     }
     public function indexAction()
     {
