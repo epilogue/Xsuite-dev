@@ -25,7 +25,7 @@ $(document).ready(function(){
         $('input[name="refart['+id+'][reference]"]').change(function(e)
         {
             console.log('tagada');
-              $.get ('/xprev/verifReference/reference/'+$(this).val(),
+              $.get ('/xprev/verifreference/reference/'+$(this).val(),
               {},
               function(data){
                   $('#refart['+$(this).data(id)+'][code_article]').html(data);
@@ -55,7 +55,7 @@ $(document).ready(function(){
     var id = newArticleLine();
     $('input[name="refart['+id+'][reference]"]').change(function(e)
         {
-              $.get ('/xprev/verifReference/reference/'+$(this).val(),
+              $.get ('/xprev/verifreference/reference/'+$(this).val(),
               {},
               function(data){
                   $('#refart['+$(this).data(id)+'][code_article]').html(data);
