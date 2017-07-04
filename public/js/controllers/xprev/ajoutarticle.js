@@ -28,9 +28,11 @@ $(document).ready(function(){
               $.get ('/xprev/verifreference/reference/'+$(this).val(),
               {},
               function(data){
-                  alert($('input[name="refart['+id+'][code_article]"]').val(data));
                   $('input[name="refart['+id+'][code_article]"]').val(data);
               },'html');
+              if(data.length <1){
+                  alert("la reference rentree n'existepas dans movex");
+              }
         });
     //});
         $('.resetbuton').unbind('click');
@@ -59,7 +61,7 @@ $(document).ready(function(){
               $.get ('/xprev/verifreference/reference/'+$(this).val(),
               {},
               function(data){
-                  alert($('input[name="refart['+id+'][code_article]"]').val(data));
+                 
                   $('input[name="refart['+id+'][code_article]"]').val(data);
               },'html');
         });
