@@ -40,7 +40,7 @@ $(document).ready(function(){
         $.get ('/xprev/liaisonmois/date_debut/'+$(this).val(),
           {},
           function(data){
-              $('#motif_create').html(data);
+              $('#table_mois').html(data);
           },'html');
     }
     });
