@@ -10,17 +10,19 @@ function newArticleLine() {
     var baseHtml = $('#addRefTPL').html();
     var toHtml = baseHtml.replace(/__id__/g, articleId);
     $("#table_mois").append(toHtml);
-    
-    articleId += 1;
+    var usedAid = articleId;
+    articleId++;
+    return usedAid;
 }
 
 $(document).ready(function(){
      $("#ajout_article").click(function(e){
          e.preventDefault();
          console.log('plop');
-        newArticleLine();
+        var id = newArticleLine();
+        console.log(id);
                  //name="refart[__id__][reference]"
-        $('input[name="refart['+articleId - 1+'][reference]"]').change(function(e)
+        $('input[name="refart['+id+'][reference]"]').change(function(e)
         {
             console.log('tagada');
               $.get ('/xprev/verifReference/reference/'+$(this).val(),
@@ -50,8 +52,8 @@ $(document).ready(function(){
              $('input[name="refart['+$(this).data('id')+'][m12]"]').val(""); 
         });
     });
-    newArticleLine();
-    $('input[name="refart[0][reference]"]').change(function(e)
+    var id = newArticleLine();
+    $('input[name="refart['+id+'][reference]"]').change(function(e)
         {
               $.get ('/xprev/verifReference/reference/'+$(this).val(),
               {},
