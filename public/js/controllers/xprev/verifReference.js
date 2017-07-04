@@ -6,12 +6,5 @@
 
 $(document).ready(function(){
     
-    $('.refartReference').change(function(e)
-    {
-          $.get ('/xprev/verifReference/reference/'+$(this).val(),
-          {},
-          function(data){
-              $('#refart['+$(this).data(id)+'][code_article]').html(data);
-          },'html');
-    });
+    
 });

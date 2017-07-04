@@ -18,6 +18,14 @@ $(document).ready(function(){
      $("#ajout_article").click(function(e){
          e.preventDefault();
         newArticleLine();
+        $('input[name="refart['+$(this).data('id')+'][reference]"]').change(function(e)
+        {
+              $.get ('/xprev/verifReference/reference/'+$(this).val(),
+              {},
+              function(data){
+                  $('#refart['+$(this).data(id)+'][code_article]').html(data);
+              },'html');
+        });
         $('.resetbuton').unbind('click');
         $('.resetbuton').click(function(e){
              e.preventDefault();
@@ -39,7 +47,16 @@ $(document).ready(function(){
         });
     });
     newArticleLine();
+    $('input[name="refart[0][reference]"]').change(function(e)
+        {
+              $.get ('/xprev/verifReference/reference/'+$(this).val(),
+              {},
+              function(data){
+                  $('#refart['+$(this).data(id)+'][code_article]').html(data);
+              },'html');
+        });
     $('select[name="refart[0][reference]"]').attr('required',true);
     $('input[name="refart[0][code_article]"]').attr('required',true);
+    
 });
 
