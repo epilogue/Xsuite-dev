@@ -30,8 +30,8 @@ class XprevController extends Zend_Controller_Action
         $this->_helper->layout->disableLayout();
         $num_mois = $this->getRequest()->getParam('date_debut',null);
         var_dump($num_mois);
-        $month= substr($num_mois,0,2);
-        $year = substr($num_mois,-2);
+        $month= intval(substr($num_mois,0,2)) ;
+        $year = intval(substr($num_mois,-2));
         var_dump($year);
         var_dump($month);
         
