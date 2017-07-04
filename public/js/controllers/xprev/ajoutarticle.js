@@ -28,7 +28,7 @@ $(document).ready(function(){
               $.get ('/xprev/verifreference/reference/'+$(this).val(),
               {},
               function(data){
-                  $('#refart['+$(this).data(id)+'][code_article]').val(data);
+                  $('#refart['+$(this).data('id')+'][code_article]').val(data);
               },'html');
         });
     //});
@@ -58,7 +58,7 @@ $(document).ready(function(){
               $.get ('/xprev/verifreference/reference/'+$(this).val(),
               {},
               function(data){
-                  $('#refart['+$(this).data(id)+'][code_article]').val(data);
+                  $('#refart['+$(this).data('id')+'][code_article]').val(data);
               },'html');
         });
     $('select[name="refart[0][reference]"]').attr('required',true);
