@@ -50,7 +50,8 @@ class XprevController extends Zend_Controller_Action
         {
             $mm = 1;
             $yy++;
-            $date = strtotime($yy.'-'.$mm.'-01');
+            $date = strtotime($yy.'-'.$mm);
+            echo $date;
         }
 //        while(date('n', $date) == $mm)
 //        {
@@ -62,9 +63,9 @@ class XprevController extends Zend_Controller_Action
 //            //Rajoute 1 jour à la date
 //            $date = strtotime(date('m-Y', $date));
 //        }
-//        echo "itération = ".$countit." ";
+       echo "itération = ".$countit." ";
     }
-    return $r;
+  echo '<pre>',  var_export($r),'</pre>';
 
 
 
