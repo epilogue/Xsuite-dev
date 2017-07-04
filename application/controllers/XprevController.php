@@ -62,9 +62,9 @@ class XprevController extends Zend_Controller_Action
 //            //Rajoute 1 jour à la date
 //            $date = strtotime(date('m-Y', $date));
 //        }
-       echo "itération = ".$countit." ";
+      // echo "itération = ".$countit." ";
     }
-  echo '<pre>',  var_export($r),'</pre>';
+  //echo '<pre>',  var_export($r),'</pre>';
 
 
 
