@@ -42,10 +42,10 @@ class XprevController extends Zend_Controller_Action
             {
                 $month = 1;
                 $year++;
-                var_dump($month);
+            }
+            var_dump($month);
 
                 var_dump($year) ;
-            }
         }
     }
     public function indexAction()
