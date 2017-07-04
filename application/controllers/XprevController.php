@@ -56,7 +56,7 @@ class XprevController extends Zend_Controller_Action
     /*
      * action qui va permettre d'aller verifier si la reference existe dans movex et remplir en ajax le champ code article
      */
-    public function verifReferenceAction(){
+    public function verifreferenceAction(){
         $this->_helper->layout->disableLayout();
         $reference_article= $this->getRequest()->getParam('reference');
         $requete1 ="select MITMAS.MMITNO from EIT.MVXCDTA.MITMAS MITMAS where  MITMAS.MMITDS ='{$reference_article}' and  MITMAS.MMCONO='100'";
