@@ -82,7 +82,7 @@ class XprevController extends Zend_Controller_Action
         //var_dump($requete1);
         $results1 = odbc_exec($this->odbc_conn2, $requete1);
         $res =  odbc_fetch_array($results1);
-        echo '<pre>',  var_export($res),'</pre>';
+       // echo '<pre>',  var_export($res),'</pre>';
 
         $this->view->code_article = $res['MMITNO'];
 
