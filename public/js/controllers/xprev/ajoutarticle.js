@@ -58,6 +58,7 @@ $(document).ready(function(){
               $.get ('/xprev/verifreference/reference/'+$(this).val(),
               {},
               function(data){
+                   console.log(data);
                   $('input[name="refart['+$(this).data('id')+'][code_article]"]').val(data);
               },'html');
         });
