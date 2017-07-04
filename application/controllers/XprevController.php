@@ -34,40 +34,19 @@ class XprevController extends Zend_Controller_Action
         $year = intval(substr($num_mois,-2));
         var_dump($year);
         var_dump($month);
-        
-        /* tant que $i + 1 est inferieur à 12 on ne change pas d'année
-         * si $i+1 > 12 on change d'année et on reprend a 1  avec la nouvelle année 
-         * 
-         *  */
-    $r = array();
-    $date = strtotime($month.'-'.$year);
     //Boucle sur 12 mois
-    for($i = 1, $mm = $month, $yy = $year; $i < 13; $i++, $mm++)
-    {
-        //Arrivé en Décembre, on remet le mois à Janvier pour parcourir les 12 mois et on incrémente l'année
-        if($mm > 12)
+        for($i = 1, $month, $year; $i < 13; $i++, $month++)
         {
-            $mm = 1;
-            $yy++;
-            $date = strtotime($yy.'-'.$mm);
-            var_dump($date) ;
+            //Arrivé en Décembre, on remet le mois à Janvier pour parcourir les 12 mois et on incrémente l'année
+            if($month > 12)
+            {
+                $month = 1;
+                $year++;
+                var_dump($month);
+
+                var_dump($year) ;
+            }
         }
-//        while(date('n', $date) == $mm)
-//        {
-//            $countit = $countit + 1;
-//            //Ce que je veux >> $r[ANNEE][MOIS][JOUR] = JOUR DE LA SEMAINE
-//            $y = date('Y', $date);
-//            $m = date('n', $date);
-//            $r[$y][$m] = $n;
-//            //Rajoute 1 jour à la date
-//            $date = strtotime(date('m-Y', $date));
-//        }
-      // echo "itération = ".$countit." ";
-    }
-  //echo '<pre>',  var_export($r),'</pre>';
-
-
-
     }
     public function indexAction()
     {
