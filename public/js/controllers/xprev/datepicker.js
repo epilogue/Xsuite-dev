@@ -36,7 +36,8 @@ $(document).ready(function(){
        MinMonth:1,
        MaxMonth:'+1y',
        OnAfterChooseMonth: function() { 
-        alert($(this).val());
+        //alert($(this).val());
+        $("#table_mois").show();
         $.get ('/xprev/liaisonmois/date_debut/'+$(this).val(),
           {},
           function(data){
@@ -44,13 +45,4 @@ $(document).ready(function(){
           },'html');
     }
     });
-    
-//    $("#date_debut").change(function(e){
-//        console.log($(this).val());
-//    $.get ('/xprev/liaisonmois/date_debut/'+$(this).val(),
-//          {},
-//          function(data){
-//              $('#motif_create').html(data);
-//          },'html');
-//    });
 });
