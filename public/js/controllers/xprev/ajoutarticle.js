@@ -64,6 +64,9 @@ $(document).ready(function(){
                  
                   $('input[name="refart['+id+'][code_article]"]').val(data);
               },'html');
+               if(data.length <1){
+                  alert("la reference rentree n'existepas dans movex");
+              }
         });
     $('select[name="refart[0][reference]"]').attr('required',true);
     $('input[name="refart[0][code_article]"]').attr('required',true);
