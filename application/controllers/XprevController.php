@@ -52,17 +52,17 @@ class XprevController extends Zend_Controller_Action
             $yy++;
             $date = strtotime($yy.'-'.$mm.'-01');
         }
-        while(date('n', $date) == $mm)
-        {
-            $countit = $countit + 1;
-            //Ce que je veux >> $r[ANNEE][MOIS][JOUR] = JOUR DE LA SEMAINE
-            $y = date('Y', $date);
-            $m = date('n', $date);
-            $r[$y][$m] = $n;
-            //Rajoute 1 jour à la date
-            $date = strtotime(date('m-Y', $date));
-        }
-        echo "itération = ".$countit." ";
+//        while(date('n', $date) == $mm)
+//        {
+//            $countit = $countit + 1;
+//            //Ce que je veux >> $r[ANNEE][MOIS][JOUR] = JOUR DE LA SEMAINE
+//            $y = date('Y', $date);
+//            $m = date('n', $date);
+//            $r[$y][$m] = $n;
+//            //Rajoute 1 jour à la date
+//            $date = strtotime(date('m-Y', $date));
+//        }
+//        echo "itération = ".$countit." ";
     }
     return $r;
 
