@@ -28,11 +28,12 @@ $(document).ready(function(){
               $.get ('/xprev/verifreference/reference/'+$(this).val(),
               {},
               function(data){
-                  $('input[name="refart['+id+'][code_article]"]').val(data);
-              },'html');
-              if(data.length <1){
+                  if(data.length <1){
                   alert("la reference rentree n'existepas dans movex");
               }
+                  $('input[name="refart['+id+'][code_article]"]').val(data);
+              },'html');
+              
         });
     //});
         $('.resetbuton').unbind('click');
@@ -61,12 +62,11 @@ $(document).ready(function(){
               $.get ('/xprev/verifreference/reference/'+$(this).val(),
               {},
               function(data){
-                 
+                  if(data.length <1){
+                  alert("la reference rentree n'existepas dans movex"); }
                   $('input[name="refart['+id+'][code_article]"]').val(data);
               },'html');
-               if(data.length <1){
-                  alert("la reference rentree n'existepas dans movex");
-              }
+             
         });
     $('select[name="refart[0][reference]"]').attr('required',true);
     $('input[name="refart[0][code_article]"]').attr('required',true);
