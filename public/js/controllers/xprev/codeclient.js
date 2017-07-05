@@ -18,10 +18,6 @@ $(document).ready(function(){
     $('#code_user').change(function(e)
     {
           $('#nom_client_user').val($('#code_user option:selected').data('nom'));});
-      $.get ('/xprev/liaisoncodeuser/num_client/'+$(this).val(),
-          {},
-          function(data){
-              $('#code_user').html(data);
-          },'html');
+      
 });
 
