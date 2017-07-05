@@ -28,7 +28,7 @@ $(document).ready(function(){
               $.get ('/xprev/verifreference/reference/'+$(this).val(),
               {},
               function(data){
-                  if(data.length <1){
+                  if(!$.trim(data)){
                   alert("la reference rentree n'existepas dans movex");
               }
                   $('input[name="refart['+id+'][code_article]"]').val(data);
@@ -62,7 +62,7 @@ $(document).ready(function(){
               $.get ('/xprev/verifreference/reference/'+$(this).val(),
               {},
               function(data){
-                  if(data.length <1){
+                   if(!$.trim(data)){
                   alert("la reference rentree n'existepas dans movex"); }
                   $('input[name="refart['+id+'][code_article]"]').val(data);
               },'html');
