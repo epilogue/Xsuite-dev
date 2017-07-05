@@ -1,6 +1,7 @@
 <select id="code_user" name="code_user">
    
     <?php  foreach($this->listecodeuser as $listeclientuser ){
+      var_dump(count($listeclientuser));
     if(count($listeclientuser) >1){ ?>
     <option selected="selected" data-nom ="<?php echo $listeclientuser['nom_client']?>" value="<?php echo $listeclientuser['code_client']?>"><?php echo $listeclientuser['code_client']; ?></option>
     <?php }else{ ?><option  data-nom ="<?php echo $listeclientuser['nom_client']?>" value="<?php echo $listeclientuser['code_client']?>"><?php echo $listeclientuser['code_client']; ?></option><?php }} ?>
