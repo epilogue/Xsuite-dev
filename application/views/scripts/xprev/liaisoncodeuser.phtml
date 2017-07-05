@@ -6,5 +6,6 @@
 <?php }?>
 </select>
     <?php  }else { ?> }
-        <input type="text" value="<?php echo $listeclientuser['code_client']?>">
-        <?php  } ?>
+        <?php  foreach($this->listecodeuser as $listeclientuser ){ ?>
+    <option selected="selected" data-nom ="<?php echo $listeclientuser['nom_client']?>" value="<?php echo $listeclientuser['code_client']?>"><?php echo $listeclientuser['code_client']; ?></option>
+    <?php  }} ?>
