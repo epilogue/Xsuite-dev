@@ -110,6 +110,7 @@ class XprevController extends Zend_Controller_Action
         /*information concernant la personne connectée*/
         $User = new Application_Model_DbTable_Users();
         $infoUser = $User->getUser($user->id_user);
+        $etatcreat=4;
        // echo '<pre>',  var_export($infoUser),'</pre>';
         
         /*info base de donnees*/
@@ -119,9 +120,12 @@ class XprevController extends Zend_Controller_Action
         $listetypedemande = $typedemande->alltypedemande();
         $niveaurisque = new Application_Model_DbTable_NiveauRisqueXprev();
         $listeniveaurisque = $niveaurisque->allniveaurisque();
+        $etatvalidation = new Application_Model_DbTable_EtatValidationXprev();
+        $newetatvalidation = $etatvalidation->getEtat($etatcreat);
         $datejour = date('d-m-Y');
         $moiscreate = date('m-Y');
         /*passage a la vue*/
+        $this->view->newetatvalidation=$newetatvalidation;
         $this->view->listetypedemande=$listetypedemande;
         $this->view->datecreate=$datejour;
         $this->view->moiscreate=$moiscreate;
