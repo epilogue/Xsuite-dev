@@ -12,13 +12,8 @@ $(document).ready(function(){
           $.get ('/xprev/liaisoncodeuser/num_client/'+$(this).val(),
           {},
           function(data){
-              var i = 0;
-              $(data).find('select option').each(function(ii, ee){
-                  i++;
-              });
-              
               $('#code_user').html(data);
-              if(i == 1) {
+              if($('#code_user option').length == 1) {
                   $('#code_user').change();
               }
           },'html');
