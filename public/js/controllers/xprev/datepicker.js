@@ -38,6 +38,7 @@ $(document).ready(function(){
        OnAfterChooseMonth: function() { 
         //alert($(this).val());
         $("#table_mois").show();
+        $("#ajout_article").show();
         $.get ('/xprev/liaisonmois/date_debut/'+$(this).val(),
           {},
           function(data){
