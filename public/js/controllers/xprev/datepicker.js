@@ -55,7 +55,6 @@ $(document).ready(function(){
           },'html');
           $("#ajout_article").click(function(e){
          e.preventDefault();
-         console.log('plop');
         var id = newArticleLine();
         console.log(id);
                  //name="refart[__id__][reference]"
@@ -93,20 +92,20 @@ $(document).ready(function(){
              $('input[name="refart['+$(this).data('id')+'][m12]"]').val(""); 
         });
     });
-    var id = newArticleLine();
-    $('input[name="refart['+id+'][reference]"]').change(function(e)
-        {
-              $.get ('/xprev/verifreference/reference/'+$(this).val(),
-              {},
-              function(data){
-                   if(!$.trim(data)){
-                  alert("la reference rentree n'existepas dans movex"); }
-                  $('input[name="refart['+id+'][code_article]"]').val(data);
-              },'html');
-             
-        });
-    $('input[name="refart[0][reference]"]').attr('required',true);
-    $('input[name="refart[0][code_article]"]').attr('required',true);
+//    var id = newArticleLine();
+//    $('input[name="refart['+id+'][reference]"]').change(function(e)
+//        {
+//              $.get ('/xprev/verifreference/reference/'+$(this).val(),
+//              {},
+//              function(data){
+//                   if(!$.trim(data)){
+//                  alert("la reference rentree n'existepas dans movex"); }
+//                  $('input[name="refart['+id+'][code_article]"]').val(data);
+//              },'html');
+//             
+//        });
+//    $('input[name="refart[0][reference]"]').attr('required',true);
+//    $('input[name="refart[0][code_article]"]').attr('required',true);
     }
     });
 });
