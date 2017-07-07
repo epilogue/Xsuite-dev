@@ -9,10 +9,11 @@ $this->headScript()->appendFile('/js/controllers/xprev/MonthPicker.js');
 $this->headScript()->appendFile('/js/controllers/xprev/verifReference.js');
 $this->headLink()->appendStylesheet('/css/MonthPicker.css');
 
+//<table style="display: none;" >
+//    <tbody>
 ?>
-<table style="display: none;" >
-    <tbody>
-        <tr id="addRefTPL">
+<script type="text/html" id="addRefTPL">
+        <tr>
             <td><button class="resetbuton" data-id="__id__" name="boutonreset[_id_]">reset</button></td>
             <td><input class="refartReference" data-id="__id__" type="text" name="refart[__id__][reference]" value="" /></td>
             <td><input type="text" name="refart[__id__][code_article]" value="" /></td>
@@ -29,8 +30,7 @@ $this->headLink()->appendStylesheet('/css/MonthPicker.css');
             <td><input class="petit_input" type="text" name="refart[__id__][m11]" value="" /></td>
             <td><input class="petit_input" type="text" name="refart[__id__][m12]" value="" /></td>
         </tr>
-    </tbody>
-</table>
+</script>
 <div class="contenu">
     <h2>Xprev</h2>
     <h3> création de Demande de prévision en ligne </h3>
