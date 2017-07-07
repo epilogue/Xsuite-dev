@@ -367,6 +367,22 @@ background:#2A60AA;
     margin-bottom: 10px;
     
 }
+
+.submit{
+   color: white;
+    height: 50px;
+    width:auto;
+    border-radius: 10px;
+    background-color: #2A60AA;
+    border-right-width: 0px; 
+    border-left-width: 0px;
+    border-bottom-width:0px;
+    border-top-width:0px;
+    margin-left: 40%;
+    margin-right: auto;
+    margin-bottom: 10px;
+    
+}
 .retour{ color: white;
    float: left;
    margin-left: 20px;
@@ -389,7 +405,6 @@ background:#2A60AA;
     border-left-width: 0px;
     border-bottom-width:0px;
     border-top-width:0px;
-    margin-left: 40%;
     margin-right: auto;
 }
 
