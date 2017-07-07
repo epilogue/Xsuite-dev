@@ -33,7 +33,7 @@ var articleId = 0;
 function newArticleLine() {
     var baseHtml = $('#addRefTPL').html();
     var toHtml = baseHtml.replace(/__id__/g, articleId);
-    $("#table_mois").append(toHtml);
+    $("#table_mois tbody").append(toHtml);
     var usedAid = articleId;
     articleId++;
     return usedAid;
@@ -51,7 +51,7 @@ $(document).ready(function(){
         $.get ('/xprev/liaisonmois/date_debut/'+$(this).val(),
           {},
           function(data){
-              $('#table_mois').html(data);
+              $('#table_mois thead').html(data);
           },'html');
           $("#ajout_article").click(function(e){
          e.preventDefault();
@@ -92,20 +92,21 @@ $(document).ready(function(){
              $('input[name="refart['+$(this).data('id')+'][m12]"]').val(""); 
         });
     });
-//    var id = newArticleLine();
-//    $('input[name="refart['+id+'][reference]"]').change(function(e)
-//        {
-//              $.get ('/xprev/verifreference/reference/'+$(this).val(),
-//              {},
-//              function(data){
-//                   if(!$.trim(data)){
-//                  alert("la reference rentree n'existepas dans movex"); }
-//                  $('input[name="refart['+id+'][code_article]"]').val(data);
-//              },'html');
-//             
-//        });
-//    $('input[name="refart[0][reference]"]').attr('required',true);
-//    $('input[name="refart[0][code_article]"]').attr('required',true);
+//    
     }
     });
+    var id = newArticleLine();
+    $('input[name="refart['+id+'][reference]"]').change(function(e)
+        {
+              $.get ('/xprev/verifreference/reference/'+$(this).val(),
+              {},
+              function(data){
+                   if(!$.trim(data)){
+                  alert("la reference rentree n'existepas dans movex"); }
+                  $('input[name="refart['+id+'][code_article]"]').val(data);
+              },'html');
+             
+        });
+    $('input[name="refart[0][reference]"]').attr('required',true);
+    $('input[name="refart[0][code_article]"]').attr('required',true);
 });
