@@ -45,6 +45,9 @@ class XprevController extends Zend_Controller_Action
         $listecodeuser = $codeuser->getAllcodeuser($num_client);
         $this->view->listecodeuser = $listecodeuser;
     }
+    public function trackingnumberAction(){
+        
+    }
     public function liaisonmoisAction(){
         $this->_helper->layout->disableLayout();
         $num_mois = $this->getRequest()->getParam('date_debut',null);

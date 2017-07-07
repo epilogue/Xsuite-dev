@@ -41,7 +41,7 @@ $this->headLink()->appendStylesheet('/css/MonthPicker.css');
                 <td><input  type="text" name="date_create" value="<?php echo $this->datecreate ;?>"></td>
                 <td>niveau de risque</td>
                 <td>
-                    <select >
+                    <select>
                         <option>choisissez un niveau de risque</option>
                     <?php foreach($this->listeniveaurisque as $listeniveau ){?>
                         <option><?php echo $listeniveau['nom_risque_xprev']?></option>
@@ -97,7 +97,7 @@ $this->headLink()->appendStylesheet('/css/MonthPicker.css');
 
         </table>
         <p class="obligatoire">motif  de la demande :</p>
-        <textarea name="motif_create" required="required" cols="120" rows="7"> </textarea>
+        <textarea name="motif_create" required cols="120" rows="7"> </textarea>
         <table id="table_mois" name="table_mois" class="enum" hidden="hidden">
             <thead>
             </thead>
