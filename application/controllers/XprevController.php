@@ -136,6 +136,7 @@ class XprevController extends Zend_Controller_Action
         if($this->getRequest()->isPost()){
             $formData =  $this->getRequest()->getPost();
             echo '<pre>',  var_export($formData),'</pre>';
+            var_dump($_FILES);
             
         }
     }
