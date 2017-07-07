@@ -132,6 +132,12 @@ class XprevController extends Zend_Controller_Action
         $this->view->listeniveaurisque=$listeniveaurisque;
         $this->view->infoCodeClient=$listecodeclient;
         $this->view->infoUser=$infoUser;
+        
+        if($this->getRequest()->isPost()){
+            $formData =  $this->getRequest()->getPost();
+            echo '<pre>',  var_export($formData),'</pre>';
+            
+        }
     }
 }
 
