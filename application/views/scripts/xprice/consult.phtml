@@ -154,10 +154,11 @@ $this->headScript()->appendFile('/js/controllers/xprice/fermeturevalide.js');
                                 }?> value="<?php echo number_format($Ccif, 2, '.', ' '); ?>">
                                 <input id="ccif" type="hidden" class="calculHidden" value="<?php echo $Ccif; ?>" >
                             </td>
-                             <td ><?php $Cfob=0; foreach($this->info_demande_article_xprice as $result){
+<!--                             <td ><?php $Cfob=0; foreach($this->info_demande_article_xprice as $result){
                                     $Cfob+=($result['quantite_demande_article']*$result['prix_fob_demande_article']);
                                 }$Cfob2=number_format($Cfob,2,'.',' '); echo $Cfob2; ?>
-                            </td><td><input id="mamo"<?php $mamo = 100*(1-($Ccif/$CAa))?> value ="<?php echo round($mamo,2)."%";?>"></td>
+                            </td>-->
+                            <td><input id="mamo"<?php $mamo = 100*(1-($Ccif/$CAa))?> value ="<?php echo round($mamo,2)."%";?>"></td>
                             
                         </tr><?php } elseif($this->utilisateur == '10') {?>
                         <tr>
