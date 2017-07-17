@@ -126,8 +126,7 @@ $this->headScript()->appendFile('/js/controllers/xprice/afficher_masquer_validat
                         <th>prix tarif</th>
                         <th>prix demandé</th>
                         <th>remise demandée</th>
-                        <th>prix fob</th>
-                        <th>prix cif</th>
+                        <th colspan="2">prix revient</th>
                         <th>Marge</th>
                     </tr>
                     <?php foreach ($this->info_demande_article_xprice as $k=>$result) { ?>
@@ -138,8 +137,8 @@ $this->headScript()->appendFile('/js/controllers/xprice/afficher_masquer_validat
                             <td id="pwp-<?php echo $k; ?>"><?php echo $result['prixwplace_demande_article']; ?></td>
                             <td id="pd-<?php echo $k; ?>"><?php echo $result['prix_demande_article']; ?></td>
                             <td><?php echo $result['remise_demande_article'] . "% "; ?></td>
-                            <td><input id="prixfob" style="background-color: #74aaca;" type="text" name="prix_fob[]" value="<?php echo $result['prix_fob_demande_article']; ?>"></td>
-                            <td><input class="prixcif" id="prixcif-<?php echo $k;?>" value="<?php echo $result['prix_cif_demande_article']; ?>" name="prix_cif[]" style="background-color: #74aaca;"></td>
+                            <td colspan="2"><input id="prixfob" style="background-color: #74aaca;" type="text" name="prix_fob[]" value="<?php echo $result['prix_fob_demande_article']; ?>"></td>
+                            
                             <td><input class="margefob" id="margefob-<?php echo $k;?>" <?php $margefob=100*(1-($result['prix_cif_demande_article']/$result['prix_demande_article']));?> value="<?php  echo round($margefob,2)."%" ;?>" name="marge[]"></td>
                         </tr>
                     <?php } ?>

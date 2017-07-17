@@ -301,7 +301,7 @@ if($user->id_fonction == 3){
                 $agreement1 = "I000001";
                 $agreement2 = "I000002";
                 $agreement3 = "I000003";
-                $query3 = "select * from EIT.MVXCDTA.MPAGRP MPAGRP where MPAGRP.AJCONO = '$mmcono' AND MPAGRP.AJSUNO = '$supplier' AND (MPAGRP.AJAGNB = '$agreement3'  OR MPAGRP.AJAGNB = '$agreement2' OR MPAGRP.AJAGNB = '$agreement1') AND MPAGRP.AJOBV2 = '{$itnoarticle['OBITNO']}' AND MPAGRP.AJOBV1 = '$division'  ORDER BY MPAGRP.AJAGNB";
+                $query3 = "select * from EIT.MVXCDTA.MITFAC MITFAC where MITFAC.M9CONO = '$mmcono' AND MITFAC.M9ITNO = '{$itnoarticle['OBITNO']}' ";
                 $resultats3 = odbc_Exec($this->odbc_conn2, $query3);
                 $prixciffob[] = odbc_fetch_object($resultats3);
 //                echo '<pre>',(var_export($prixciffob)),'</pre>';
@@ -404,7 +404,7 @@ if($user->id_fonction == 3){
                          * 
                          *                          */
                         $insertprix = new Application_Model_DbTable_DemandeArticlexprices();
-                        $inserprix = $insertprix->InserPrixFob($value->AJPUPR, $value->AJOBV2, $numwp);
+                        $inserprix = $insertprix->InserPrixFob($value->M9UCOS, $value->M9ITNO, $numwp);
                     }
                     foreach($resultatacquis as $key=>$value){
                         $insertacquis= new Application_Model_DbTable_DemandeArticlexprices();
@@ -414,8 +414,9 @@ if($user->id_fonction == 3){
                     $updatecif1 = new Application_Model_DbTable_DemandeArticlexprices();
                     $updatecif2 = $updatecif1->getDemandeArticlexprice($numwp);                   
                         foreach($updatecif2 as $result){
-                            if($result['code_acquisition']=='2'){
-                                $cifs= ($result['prix_fob_demande_article'])*1.07;
+                            if($result['code_acquisition']=='2' or $result['code_acquisition']=='1' or $result['code_acquisition']=='3'){
+                                $fob = $result['prix_fob_demande_article'];
+                                $cifs= $fob;
                                 $cif=round($cifs,2);
                                 $updatecif3 = $updatecif1->updatecif($cif, $result['code_article'], $result['tracking_number_demande_xprice']);
                             }     
