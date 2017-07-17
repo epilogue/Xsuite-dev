@@ -148,7 +148,7 @@ $this->headScript()->appendFile('/js/controllers/xprice/fermeturevalide.js');
                                 <input id="caat" type="hidden" class="calculHidden" value="<?php echo $CAa; ?>" >
                             </td>
                             <td><input id="mo"  <?php $mo=100*(1-($CAa/$cab));?> value="<?php echo round($mo,2)."%"; ?>"></td>
-                           <td >
+                            <td colspan="2" >
                                <input  id="ccif-affiche"<?php $Ccif=0; foreach($this->info_demande_article_xprice as $result){
                                     $Ccif+=($result['quantite_demande_article']*$result['prix_cif_demande_article']);
                                 }?> value="<?php echo number_format($Ccif, 2, '.', ' '); ?>">
