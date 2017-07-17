@@ -106,7 +106,7 @@ $this->headScript()->appendFile('/js/controllers/xprice/fermeturevalide.js');
                     <th>Prix accordés</th>
                     <th>Remises accordées</th>
                     <?php if($this->utilisateur =='5' or $this->utilisateur== '13'  or $this->utilisateur== '38' or $this->utilisateur =="213"){ ?>
-                    <th colspan="2">Prix revient</th>
+                    <th>Prix revient</th>
                     
                     <th>Marge</th><?php } else {}?>
                 </tr>
@@ -126,7 +126,7 @@ $this->headScript()->appendFile('/js/controllers/xprice/fermeturevalide.js');
                         <td><?php echo $result['remise_accorde_demande_article'] . "%"; ?></td>
                         <?php }?>
                          <?php if($this->utilisateur =='5' or $this->utilisateur== '13' or $this->utilisateur =='38' or $this->utilisateur =="213"){ ?>
-                        <td colspan="2"><?php echo number_format($result['prix_cif_demande_article'],2,'.',' ') ; ?></td>
+                        <td ><?php echo number_format($result['prix_cif_demande_article'],2,'.',' ') ; ?></td>
                         <td><?php echo $result['marge_demande_article'] . "%"; ?></td><?php } else {}?>
                     </tr>
                 <?php } ?>
@@ -148,7 +148,7 @@ $this->headScript()->appendFile('/js/controllers/xprice/fermeturevalide.js');
                                 <input id="caat" type="hidden" class="calculHidden" value="<?php echo $CAa; ?>" >
                             </td>
                             <td><input id="mo"  <?php $mo=100*(1-($CAa/$cab));?> value="<?php echo round($mo,2)."%"; ?>"></td>
-                            <td colspan="2" >
+                            <td >
                                <input  id="ccif-affiche"<?php $Ccif=0; foreach($this->info_demande_article_xprice as $result){
                                     $Ccif+=($result['quantite_demande_article']*$result['prix_cif_demande_article']);
                                 }?> value="<?php echo number_format($Ccif, 2, '.', ' '); ?>">
