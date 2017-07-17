@@ -2750,7 +2750,7 @@ elseif($mailServiceClients[0]['mail_service_client']=='' || $mailServiceClients[
 
         $this->view->info_user = $info_user;
         $infos_client = new Application_Model_DbTable_Clients();
-        var_dump(trim($info_demande_xprice['numwp_client']));
+        //var_dump(trim($info_demande_xprice['numwp_client']));
         $info_client = $infos_client->getClientnumwp($info_demande_xprice['numwp_client']);
 //        echo '<pre>',var_export($info_client),'</pre>';
         $this->view->info_client = $info_client[0];
