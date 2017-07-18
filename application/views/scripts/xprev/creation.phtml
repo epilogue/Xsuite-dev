@@ -44,7 +44,7 @@ $this->headLink()->appendStylesheet('/css/MonthPicker.css');
                     <select required>
                         <option value="">choisissez un niveau de risque</option>
                     <?php foreach($this->listeniveaurisque as $listeniveau ){?>
-                        <option><?php echo $listeniveau['nom_risque_xprev']?></option>
+                        <option value="<?php echo $listeniveau['id_risque_xprev']?>"><?php echo $listeniveau['nom_risque_xprev']?></option>
                     <?php } ?>
                     </select>
                 </td>
@@ -61,13 +61,13 @@ $this->headLink()->appendStylesheet('/css/MonthPicker.css');
             </tr>
             <tr> 
                 <td>statut</td>
-                <td><input type="text" name="statut" value="<?php echo $this->newetatvalidation['nom_etat_validation_xprev'] ?>"></td>
+                <td><input type="text" name="statut" value="<?php echo $this->newetatvalidation['id_etat_validation_xprev'] ?>"><?php echo $this->newetatvalidation['nom_etat_validation_xprev'] ?>"</td>
                 <td>type de demande</td>
                 <td>
                     <select required >
                         <option value="">choisissez un type de demande</option>
                     <?php foreach($this->listetypedemande as $listetype ){?>
-                        <option><?php echo $listetype['nom_type_demande_xprev']?></option>
+                        <option value="<?php echo $listetype['id_type_demande_xprev']?>"><?php echo $listetype['nom_type_demande_xprev']?></option>
                     <?php } ?>
                     </select>
                 </td>
@@ -76,7 +76,7 @@ $this->headLink()->appendStylesheet('/css/MonthPicker.css');
             </tr>
             <tr> 
                 <td>émetteur prévision</td>
-                <td><input type="text" name="emetteur" value="<?php echo $this->infoUser['nom_user'] ?>"></td>
+                <td><input type="text" name="emetteur" value="<?php echo $this->infoUser['id_user'] ?>"><?php echo $this->infoUser['nom_user'] ?></td>
                 <td>date de début de prévision</td>
                 <td><input required type="text" name="date_debut" id="date_debut" value=""></td>
                 <td>code user</td>
@@ -88,7 +88,7 @@ $this->headLink()->appendStylesheet('/css/MonthPicker.css');
             </tr>
             <tr> 
                 <td>commercial</td>
-                <td><input type="text" name="commercial" value="<?php echo $this->infoUser['nom_user'] ?>"></td>
+                <td><input type="text" name="commercial" value="<?php echo $this->infoUser['id_user'] ?>"><?php echo $this->infoUser['nom_user'] ?></td>
                 <td>ajout de document</td>
                 <td><input type="file" value="" name="fichierCreationXprev"></td>
                 <td>nom user</td>
