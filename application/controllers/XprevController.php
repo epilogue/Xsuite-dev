@@ -45,9 +45,7 @@ class XprevController extends Zend_Controller_Action
         $listecodeuser = $codeuser->getAllcodeuser($num_client);
         $this->view->listecodeuser = $listecodeuser;
     }
-    public function trackingnumberAction(){
-        
-    }
+    
     public function liaisonmoisAction(){
         $this->_helper->layout->disableLayout();
         $num_mois = $this->getRequest()->getParam('date_debut',null);
@@ -140,6 +138,10 @@ class XprevController extends Zend_Controller_Action
             $formData =  $this->getRequest()->getPost();
             echo '<pre>',  var_export($formData),'</pre>';
             var_dump($_FILES);
+            $newprev= new Application_Model_DbTable_DemandeXprev();
+            $prevnew = $newprev->getdatetrack( $datejour);
+            $trackingnumber = Application_Model_DbTable_DemandeXprev::makeTrackingNumber($prevnew);
+            var_dump($trackingnumber);
             
         }
     }
