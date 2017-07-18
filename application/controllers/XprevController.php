@@ -166,7 +166,7 @@ class XprevController extends Zend_Controller_Action
         }
         
             $date_fin1= end($tab);
-            $date_fin = $date_fin1['0']['month'].'-'.$date_fin1['0']['year'];
+            $date_fin = $date_fin1[0]['month'].'-'.$date_fin1[0]['year'];
             var_dump($date_fin);
             $idclient = $basecodeclient->getId($formData['num_client']);
             $idclientuser = $basecodeclient->getId($formData['code_user']);
