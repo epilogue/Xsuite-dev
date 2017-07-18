@@ -21,6 +21,7 @@ class Application_Model_DbTable_DemandeXprev extends Zend_Db_Table_Abstract {
         * si la date du jour et superieur a la date precedemment alors reprendre l'incrementation a A si la date et la meme poursuivre l'incrementation alphabet
         */
        var_dump($requestResult);
+       if(!is_null($requestResult)){
         $letters = 'abcdefghijklmnopqrstuvwxyz';
     $date = DateTime::createFromFormat('Y-m-d', $requestResult['d']);
     $res = $date->format('Ymd');
@@ -35,6 +36,11 @@ class Application_Model_DbTable_DemandeXprev extends Zend_Db_Table_Abstract {
             $nNum = 0;
         }
     } while ($nNum > 0);
+       } else {
+           $date=new DateTime();
+           $res = $date->format('Ymd');
+           $res .="A";
+       }
     $track = "PV-".$res;
     
     return $track;
