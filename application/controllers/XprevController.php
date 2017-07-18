@@ -141,14 +141,14 @@ class XprevController extends Zend_Controller_Action
             $newprev= new Application_Model_DbTable_DemandeXprev();
             $prevnew = $newprev->getdatetrack( $datejour);
             $trackingnumber = Application_Model_DbTable_DemandeXprev::makeTrackingNumber($prevnew);
-            var_dump($trackingnumber);
+            //var_dump($trackingnumber);
             /**/
             $num_mois = $this->getRequest()->getParam('date_debut',null);
-        var_dump($num_mois);
+        //var_dump($num_mois);
         $month= intval(substr($num_mois,0,2)) ;
         $year = intval(substr($num_mois,-2));
-        var_dump($year);
-        var_dump($month);
+        //var_dump($year);
+        //var_dump($month);
         $tab = array();
     //Boucle sur 12 mois
         for($i = 1, $month, $year; $i < 13; $i++, $month++)
@@ -166,25 +166,25 @@ class XprevController extends Zend_Controller_Action
         }
         
             $date_fin1= end($tab);
-            $date_fin = $date_fin1['month'].'-'.$date_fin1['year'];
-            var_dump($date_fin);
+            $date_fin = $date_fin1['month'].'-20'.$date_fin1['year'];
+            //var_dump($date_fin);
             $idclient = $basecodeclient->getId($formData['num_client']);
             $idclientuser = $basecodeclient->getId($formData['code_user']);
             $data =array (
                     'tracking'=>$trackingnumber,
-'id_users'=>$infoUser['id_user'],
-'id_commercial'=>$infoUser['id_user'],
-'date_create'=>$datejour,
-'date_debut'=>$formData['date_debut'],
-'date_fin'=>$date_fin,
-'id_client_xprev'=>$idclient,
-'id_client_user_xprev'=>$idclientuser,
-'valeur_totale'=>null,
-'id_statut_xprev'=>$etatcreat,
-'id_niveau_risque_xprev'=>$formData['risque'],
-'id_type_demande_xprev'=>$formData['type']
-                    );
-            
+                    'id_users'=>$infoUser['id_user'],
+                    'id_commercial'=>$infoUser['id_user'],
+                    'date_create'=>$datejour,
+                    'date_debut'=>$formData['date_debut'],
+                    'date_fin'=>$date_fin,
+                    'id_client_xprev'=>$idclient,
+                    'id_client_user_xprev'=>$idclientuser,
+                    'valeur_totale'=>null,
+                    'id_statut_xprev'=>$etatcreat,
+                    'id_niveau_risque_xprev'=>$formData['risque'],
+                    'id_type_demande_xprev'=>$formData['type']
+                                        );
+             echo '<pre>',  var_export($data),'</pre>';
         }
     }
 }
