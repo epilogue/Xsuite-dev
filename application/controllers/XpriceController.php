@@ -2427,7 +2427,7 @@ elseif($mailServiceClients[0]['mail_service_client']=='' || $mailServiceClients[
 //echo '<pre>',var_export($formData),'<pre>';
 //            foreach ($formData as $datas) {
             $fobs = array_combine($datas['code_article'], $datas['prix_fob']);
-            $cifs = array_combine($datas['code_article'], $datas['prix_cif']);
+            $cifs = array_combine($datas['code_article'], $datas['prix_fob']);
 
             foreach ($cifs as $key => $value) {
                 $prixcifs = new Application_Model_DbTable_DemandeArticlexprices();
