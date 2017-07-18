@@ -165,10 +165,10 @@ class XprevController extends Zend_Controller_Action
             $tab[]= array('month'=>$month, 'year'=>$year);
         }
         
-            $date_fin= end($tab);
+            $date_fin= end($tab['month'].'-'.end($tab['year']));
             var_dump($date_fin);
             $idclient = $basecodeclient->getId($formData['num_client']);
-            $idclientuser = $basecodeclient->getId($formData['code_user_']);
+            $idclientuser = $basecodeclient->getId($formData['code_user']);
             $data =array (
                     'tracking'=>$trackingnumber,
 'id_users'=>$infoUser['id_user'],
