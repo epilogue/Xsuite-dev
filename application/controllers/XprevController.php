@@ -175,7 +175,7 @@ class XprevController extends Zend_Controller_Action
 'id_commercial'=>$infoUser['id_user'],
 'date_create'=>$datejour,
 'date_debut'=>$formData['date_debut'],
-'date_fin'=>$$date_fin,
+'date_fin'=>$date_fin,
 'id_client_xprev'=>$idclient,
 'id_client_user_xprev'=>$idclientuser,
 'valeur_totale'=>null,
