@@ -172,7 +172,7 @@ $this->headScript()->appendFile('/js/numFormat.js');
                         <td><?php echo $value['serie']; ?></td>
                         <td colspan="2"><input class="prixfob" id="prixfob-<?php echo $k;?>" style="background-color: #74aaca;" type="text" name="prix_fob[]" value="<?php echo $value['prix_fob_demande_article']; ?>"></td><input class="totfob" type="hidden" id="totfob-<?php echo $k;?>" value ="<?php echo $value['quantite_demande_article']*$value['prix_fob_demande_article']; ?>">
                         
-                        <td><input class="margefob" id="margefob-<?php echo $k;?>" <?php $margefob=100*(1-($value['prix_cif_demande_article']/$value['prix_demande_article']));?> value="<?php  echo round($margefob,2)."%" ;?>" name="marge[]"></td></td>
+                        <td><input class="margefob" id="margefob-<?php echo $k;?>" <?php $margefob=100*(1-($value['prix_fob_demande_article']/$value['prix_demande_article']));?> value="<?php  echo round($margefob,2)."%" ;?>" name="marge[]"></td></td>
                     </tr> <?php }?>
                     <tr>
                         <td colspan="7">total</td>
