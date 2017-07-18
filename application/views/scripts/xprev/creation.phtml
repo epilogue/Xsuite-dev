@@ -41,7 +41,7 @@ $this->headLink()->appendStylesheet('/css/MonthPicker.css');
                 <td><input  type="text" name="date_create" value="<?php echo $this->datecreate ;?>"></td>
                 <td>niveau de risque</td>
                 <td>
-                    <select required>
+                    <select required name="risque">
                         <option value="">choisissez un niveau de risque</option>
                     <?php foreach($this->listeniveaurisque as $listeniveau ){?>
                         <option value="<?php echo $listeniveau['id_risque_xprev']?>"><?php echo $listeniveau['nom_risque_xprev']?></option>
@@ -61,10 +61,10 @@ $this->headLink()->appendStylesheet('/css/MonthPicker.css');
             </tr>
             <tr> 
                 <td>statut</td>
-                <td><input type="text" name="statut" value="<?php echo $this->newetatvalidation['id_etat_validation_xprev'] ?>"><?php echo $this->newetatvalidation['nom_etat_validation_xprev'] ?>"</td>
+                <td><?php echo $this->newetatvalidation['nom_etat_validation_xprev'] ?>"</td>
                 <td>type de demande</td>
                 <td>
-                    <select required >
+                    <select required name="type">
                         <option value="">choisissez un type de demande</option>
                     <?php foreach($this->listetypedemande as $listetype ){?>
                         <option value="<?php echo $listetype['id_type_demande_xprev']?>"><?php echo $listetype['nom_type_demande_xprev']?></option>
