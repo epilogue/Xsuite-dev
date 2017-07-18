@@ -122,6 +122,7 @@ class XprevController extends Zend_Controller_Action
         $niveaurisque = new Application_Model_DbTable_NiveauRisqueXprev();
         $listeniveaurisque = $niveaurisque->allniveaurisque();
         $etatvalidation = new Application_Model_DbTable_EtatValidationXprev();
+        $xprev = new Application_Model_DbTable_DemandeXprev();
         $newetatvalidation = $etatvalidation->getEtat($etatcreat);
         $datejour = date('d-m-Y');
         $moiscreate = date('m-Y');
@@ -185,6 +186,7 @@ class XprevController extends Zend_Controller_Action
                     'id_type_demande_xprev'=>$formData['type']
                                         );
              echo '<pre>',  var_export($data),'</pre>';
+             $newdemande = $xprev->createDemande($data);
         }
     }
 }

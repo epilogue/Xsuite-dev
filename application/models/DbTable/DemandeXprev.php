@@ -65,4 +65,8 @@ public function getAllcodeuser($code_client) {
             return $rest;
         }
     }
+    public function createDemande($data) {
+        $this->insert($data);
+        return $this;
+    }
 }
