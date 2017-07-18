@@ -155,8 +155,8 @@ class XprevController extends Zend_Controller_Action
 'id_client_user_xprev'=>$idclientuser,
 'valeur_totale'=>null,
 'id_statut_xprev'=>$etatcreat,
-'id_niveau_risque_xprev'=>$formData[''],
-'id_type_demande_xprev'=>$formData['']
+'id_niveau_risque_xprev'=>$formData['risque'],
+'id_type_demande_xprev'=>$formData['type']
                     );
             
         }

@@ -44,7 +44,7 @@ $this->headLink()->appendStylesheet('/css/MonthPicker.css');
                     <select required name="risque">
                         <option value="">choisissez un niveau de risque</option>
                     <?php foreach($this->listeniveaurisque as $listeniveau ){?>
-                        <option value="<?php echo $listeniveau['id_risque_xprev']?>"><?php echo $listeniveau['nom_risque_xprev']?></option>
+                        <option value="<?php echo $listeniveau['id_niveau_risque_xprev']?>"><?php echo $listeniveau['nom_risque_xprev']?></option>
                     <?php } ?>
                     </select>
                 </td>
