@@ -20,6 +20,7 @@ class Application_Model_DbTable_DemandeXprev extends Zend_Db_Table_Abstract {
         * commencer l'incrementation a A et la poursuivre  si la date et toujours la meme/ par rapport a la date precedemment insereee
         * si la date du jour et superieur a la date precedemment alors reprendre l'incrementation a A si la date et la meme poursuivre l'incrementation alphabet
         */
+       var_dump($requestResult);
         $letters = 'abcdefghijklmnopqrstuvwxyz';
     $date = DateTime::createFromFormat('Y-m-d', $requestResult['d']);
     $res = $date->format('Ymd');
