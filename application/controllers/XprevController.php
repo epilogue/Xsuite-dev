@@ -215,7 +215,7 @@ class XprevController extends Zend_Controller_Action
                     'm10'=>$refart['m10'],
                     'm11'=>$refart['m11'],
                     'm12'=>$refart['m12'],
-                    'valeur_totale'=>$valeur
+                    'valeur_totale'=>null
                 );
               echo '<pre>',  var_export($data2),'</pre>';
              }
