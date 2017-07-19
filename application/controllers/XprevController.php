@@ -199,6 +199,7 @@ class XprevController extends Zend_Controller_Action
              /* insertion en bdd dans la table demande_article_xprev*/
              foreach ($formData['refart'] as $refart){
              $data2 = array(
+                 'tracking'=>$trackingnumber,
                  'code_article'=>$refart['code_article'],
                     'reference_article'=>$refart['reference'],
                     'prix_revient'=>null,
