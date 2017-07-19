@@ -125,6 +125,7 @@ class XprevController extends Zend_Controller_Action
         $xprev = new Application_Model_DbTable_DemandeXprev();
         $newetatvalidation = $etatvalidation->getEtat($etatcreat);
         $datejour = date('d-m-Y');
+        $datecreate =date('Y-m-d');
         $moiscreate = date('m-Y');
         /*passage a la vue*/
         $this->view->newetatvalidation=$newetatvalidation;
@@ -145,29 +146,33 @@ class XprevController extends Zend_Controller_Action
             //var_dump($trackingnumber);
             /**/
             $num_mois = $this->getRequest()->getParam('date_debut',null);
-        //var_dump($num_mois);
-        $month= intval(substr($num_mois,0,2)) ;
-        $year = intval(substr($num_mois,-2));
-        //var_dump($year);
-        //var_dump($month);
-        $tab = array();
-    //Boucle sur 12 mois
-        for($i = 1, $month, $year; $i < 13; $i++, $month++)
-        {
-            //Arrivé en Décembre, on remet le mois à Janvier pour parcourir les 12 mois et on incrémente l'année
-            if($month > 12)
+            //var_dump($num_mois);
+            $month= intval(substr($num_mois,0,2)) ;
+            $year = intval(substr($num_mois,-2));
+            //var_dump($year);
+            //var_dump($month);
+            $tab = array();
+        //Boucle sur 12 mois
+            for($i = 1, $month, $year; $i < 13; $i++, $month++)
             {
-                $month = 1;
-                $year++;
-            }
-//            var_dump($month);
+                //Arrivé en Décembre, on remet le mois à Janvier pour parcourir les 12 mois et on incrémente l'année
+                if($month > 12)
+                {
+                    $month = 1;
+                    $year++;
+                }
+    //            var_dump($month);
 
-//                var_dump($year) ;
-            $tab[]= array('month'=>$month, 'year'=>$year);
-        }
-        
+    //                var_dump($year) ;
+                $tab[]= array('month'=>$month, 'year'=>$year);
+            }
+            $datedebut1= '01-'.$formData['date_debut'];
+            $datedebut2 = date_create_from_format('d-m-Y',$datedebut1);
+            $datedebut3= date_format($datedebut2, 'Y-m-d');
             $date_fin1= end($tab);
-            $date_fin = $date_fin1['month'].'-20'.$date_fin1['year'];
+            $date_fin2 ='01-'.$date_fin1['month'].'-20'.$date_fin1['year'];
+            $date_fin3 = date_create_from_format('d-m-Y',$date_fin2);
+            $date_fin4 = date_format($date_fin3,'Y-m-d');
             //var_dump($date_fin);
             $idclient = $basecodeclient->getId($formData['num_client']);
             $idclientuser = $basecodeclient->getId($formData['code_user']);
@@ -175,9 +180,9 @@ class XprevController extends Zend_Controller_Action
                     'tracking'=>$trackingnumber,
                     'id_users'=>$infoUser['id_user'],
                     'id_commercial'=>$infoUser['id_user'],
-                    'date_create'=>$datejour,
-                    'date_debut'=>$formData['date_debut'],
-                    'date_fin'=>$date_fin,
+                    'date_create'=>$datecreate,
+                    'date_debut'=>$datedebut3,
+                    'date_fin'=>$date_fin4,
                     'id_client_xprev'=>$idclient[0]['id'],
                     'id_client_user_xprev'=>$idclientuser[0]['id'],
                     'valeur_totale'=>null,
