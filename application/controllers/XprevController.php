@@ -138,13 +138,14 @@ class XprevController extends Zend_Controller_Action
         
         if($this->getRequest()->isPost()){
             $formData =  $this->getRequest()->getPost();
-            echo '<pre>',  var_export($formData),'</pre>';
-            var_dump($_FILES);
+            //echo '<pre>',  var_export($formData),'</pre>';
+            //var_dump($_FILES);
+            /*creation du tracking number */
             $newprev= new Application_Model_DbTable_DemandeXprev();
-            $prevnew = $newprev->getdatetrack( $datecreate);
+            $prevnew = $newprev->getdatetrack($datecreate);
             $trackingnumber = Application_Model_DbTable_DemandeXprev::makeTrackingNumber($prevnew);
             //var_dump($trackingnumber);
-            /**/
+            /*creation de la date de fin */
             $num_mois = $this->getRequest()->getParam('date_debut',null);
             //var_dump($num_mois);
             $month= intval(substr($num_mois,0,2)) ;
@@ -166,18 +167,20 @@ class XprevController extends Zend_Controller_Action
     //                var_dump($year) ;
                 $tab[]= array('month'=>$month, 'year'=>$year);
             }
+            
+            /** mise au format des date*/
             $datedebut1= '01-'.$formData['date_debut'];
             $datedebut2 = date_create_from_format('d-m-Y',$datedebut1);
             $datedebut3= date_format($datedebut2, 'Y-m-d');
             $date_fin1= end($tab);
             $date_fin2 ='01-'.$date_fin1['month'].'-20'.$date_fin1['year'];
-//            $date_fin3 = DateTime::createFromFormat('d-m-Y',$date_fin2);
-//            $date_fin4 = date_format($date_fin3,'Y-m-d');
             $date_fin1['month'] = ($date_fin1['month']<10)?'0'.$date_fin1['month']:$date_fin1['month'];
             $date_fin4 ='20'.$date_fin1['year'].'-'.$date_fin1['month'].'-01';
-            var_dump($date_fin4);
+            //var_dump($date_fin4);
+            /*recuperation des id client  et client_user*/
             $idclient = $basecodeclient->getId($formData['num_client']);
             $idclientuser = $basecodeclient->getId($formData['code_user']);
+            /*insertion en bdd dans la table demande_xprev*/
             $data =array (
                     'tracking'=>$trackingnumber,
                     'id_users'=>$infoUser['id_user'],
@@ -192,8 +195,30 @@ class XprevController extends Zend_Controller_Action
                     'id_niveau_risque_xprev'=>$formData['risque'],
                     'id_type_demande_xprev'=>$formData['type']
                                         );
-             echo '<pre>',  var_export($data),'</pre>';
              $newdemande = $xprev->createDemande($data);
+             /* insertion en bdd dans la table demande_article_xprev*/
+             foreach ($formData['refart'] as $refart){
+             $data2 = array(
+                 'code_article'=>$refart['code_article'],
+                    'reference_article'=>$refart['reference'],
+                    'prix_revient'=>null,
+                    'shikomi'=>null,
+                    'm1'=>$refart['m1'],
+                    'm2'=>$refart['m2'],
+                    'm3'=>$refart['m3'],
+                    'm4'=>$refart['m4'],
+                    'm5'=>$refart['m5'],
+                    'm6'=>$refart['m6'],
+                    'm7'=>$refart['m7'],
+                    'm8'=>$refart['m8'],
+                    'm9'=>$refart['m9'],
+                    'm10'=>$refart['m10'],
+                    'm11'=>$refart['m11'],
+                    'm12'=>$refart['m12'],
+                    'valeur_totale'=>$valeur
+                );
+              echo '<pre>',  var_export($data2),'</pre>';
+             }
         }
     }
 }
