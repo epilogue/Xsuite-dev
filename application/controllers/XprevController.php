@@ -171,9 +171,11 @@ class XprevController extends Zend_Controller_Action
             $datedebut3= date_format($datedebut2, 'Y-m-d');
             $date_fin1= end($tab);
             $date_fin2 ='01-'.$date_fin1['month'].'-20'.$date_fin1['year'];
-            $date_fin3 = date_create_from_format('d-m-Y',$date_fin2);
-            $date_fin4 = date_format($date_fin3,'Y-m-d');
-            //var_dump($date_fin);
+//            $date_fin3 = DateTime::createFromFormat('d-m-Y',$date_fin2);
+//            $date_fin4 = date_format($date_fin3,'Y-m-d');
+            $date_fin1['month'] = ($date_fin1['month']<10)?'0'.$date_fin1['month']:$date_fin1['month'];
+            $date_fin4 ='20'.$date_fin1['year'].'-'.$date_fin1['month'].'-01';
+            var_dump($date_fin4);
             $idclient = $basecodeclient->getId($formData['num_client']);
             $idclientuser = $basecodeclient->getId($formData['code_user']);
             $data =array (
