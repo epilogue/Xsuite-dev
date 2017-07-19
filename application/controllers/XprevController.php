@@ -219,6 +219,8 @@ class XprevController extends Zend_Controller_Action
                     'valeur_totale'=>null
                 );
               echo '<pre>',  var_export($data2),'</pre>';
+              $xprevarticle = new Application_Model_DbTable_DemandeArticleXprev();
+              $newarticle = $xprevarticle->createDemandeArticle($data2);
              }
         }
     }
