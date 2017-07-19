@@ -141,7 +141,7 @@ class XprevController extends Zend_Controller_Action
             echo '<pre>',  var_export($formData),'</pre>';
             var_dump($_FILES);
             $newprev= new Application_Model_DbTable_DemandeXprev();
-            $prevnew = $newprev->getdatetrack( $datejour);
+            $prevnew = $newprev->getdatetrack( $datecreate);
             $trackingnumber = Application_Model_DbTable_DemandeXprev::makeTrackingNumber($prevnew);
             //var_dump($trackingnumber);
             /**/
