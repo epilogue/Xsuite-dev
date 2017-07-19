@@ -26,9 +26,9 @@ class Application_Model_DbTable_DemandeXprev extends Zend_Db_Table_Abstract {
        var_dump($requestResult);
        if(!is_null($requestResult)){
         $letters = 'abcdefghijklmnopqrstuvwxyz';
-    $date = DateTime::createFromFormat('Y-m-d', $requestResult['d']);
+    $date = DateTime::createFromFormat('Y-m-d', $requestResult[0]['d']);
     $res = $date->format('Ymd');
-    $nNum = $requestResult['c'];
+    $nNum = $requestResult[0]['c'];
     
     do {
         if($nNum > 25) {
