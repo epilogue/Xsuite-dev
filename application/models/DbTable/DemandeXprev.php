@@ -6,6 +6,7 @@ class Application_Model_DbTable_DemandeXprev extends Zend_Db_Table_Abstract {
 
     public function getdatetrack($date){
         $sql="SELECT count(id_demande_xprev) as c, date_create as d from demande_xprev where date_create={$date} group by date_create";
+         var_dump($sql);
         $res = $this->getAdapter()->query($sql);
         $rest=$res->fetchAll();
         var_dump($rest);
