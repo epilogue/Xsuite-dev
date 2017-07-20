@@ -193,7 +193,7 @@ class XprevController extends Zend_Controller_Action
             /*recuperation des id client  et client_user*/
             $idclient = $basecodeclient->getId($formData['num_client']);
             $idclientuser = $basecodeclient->getId($formData['code_user']);
-            var_dump($idclientuser);exit();
+            var_dump($idclientuser);
             /*insertion en bdd pour la table client_user_xprev*/
              $client_user = new Application_Model_DbTable_ClientUserXprev();
              $datauserclient = array(
