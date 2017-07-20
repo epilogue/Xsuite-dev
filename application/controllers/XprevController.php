@@ -231,8 +231,8 @@ class XprevController extends Zend_Controller_Action
              }
              /**envoi mail au N+1*/
              /*recherche du destinataire*/
-             $id_holon = $infoUser[0]['id_holon'];
-             $id_fonction = $infoUser[0]['id_fonction'];
+             $id_holon = $infoUser['id_holon'];
+             $id_fonction = $infoUser['id_fonction'];
              $hierarchie = new Application_Model_DbTable_HierarchieXprev();
              $destinataire = $hierarchie->gethierarchie($id_holon,$id_fonction);
              var_dump($destinataire);
