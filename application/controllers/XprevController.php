@@ -8,6 +8,7 @@ class XprevController extends Zend_Controller_Action
         $this->_auth = Zend_Auth::getInstance();
         $auth = Zend_Auth::getInstance();
         $user = $auth->getIdentity();
+        $this->view->messages = $this->_helper->flashMessenger->getMessages();
         if (is_null($user)) {
             $this->_helper->redirector('index', 'login');
         } else {
@@ -240,7 +241,7 @@ class XprevController extends Zend_Controller_Action
              $emailVars = Zend_Registry::get('emailVars');
              /* creation des parametre du mail*/
              $params=array();
-            // $params['destinataire']=$destinataire->email_user;
+             //$params['destinataireMail']=$destinataire->email_user;
              $params['destinataireMail']="mhuby@smc-france.fr";
              $params['url'] = "http://{$_SERVER['SERVER_NAME']}/xprev/validn1/tracking/{$trackingnumber}";
              $params['corpsMail']="Bonjour,\n"
@@ -254,8 +255,13 @@ class XprevController extends Zend_Controller_Action
                                 . "--\n"
                                 . "Xsuite";
              $params['sujet']="validation Xprev $trackingnumber ";
-              echo '<pre>',  var_export($params),'</pre>';
+              //echo '<pre>',  var_export($params),'</pre>';
                $this->sendEmail($params);
+            $redirector = $this->_helper->getHelper('Redirector');
+            $flashMessenger = $this->_helper->getHelper('FlashMessenger');
+            $message = "votre demande de prévision a bien été créée.";
+            $flashMessenger->addMessage($message);
+            $redirector->gotoSimple('index', 'xprev'); 
         }
     }
 }
