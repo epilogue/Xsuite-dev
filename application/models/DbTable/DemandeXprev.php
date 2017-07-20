@@ -74,7 +74,7 @@ public function getAllcodeuser($code_client) {
     }
     
     public function getuserxprev($id_user){
-        $sql="select demande_xprev.tracking,demande_xprev.date_create,users.nom_user,commercial.nom_user,designation_validation_xprev.nom_validation_xprev,client_user_xprev.nom_client_user_xprev from demande_xprev "
+        $sql="select demande_xprev.tracking,demande_xprev.date_create,users.nom_user,(commercial.nom_user)as nom_commercial,designation_validation_xprev.nom_validation_xprev,client_user_xprev.nom_client_user_xprev from demande_xprev "
                 . " join users on users.id_user = demande_xprev.id_users "
                 . " join users as commercial on commercial.id_user = demande_xprev.id_commercial "
                 . " join client_user_xprev on client_user_xprev.id_client_user_xprev=demande_xprev.id_client_user_xprev "
