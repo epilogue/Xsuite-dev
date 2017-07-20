@@ -202,7 +202,7 @@ class XprevController extends Zend_Controller_Action
                  'nom_client_user_xprev'=>$idclientuser[0]['nom_client']  
              );
              $newclientuser = $client_user->createclientuser($datauserclient);
-             $id_client_user = $client_user->lastId($tracking);
+             $id_client_user = $client_user->lastId($trackingnumber);
              /*insertion en bdd pour la table client_xprev*/
              $client = new Application_Model_DbTable_ClientXprev();
              $dataclient = array(
