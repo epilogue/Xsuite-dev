@@ -10,7 +10,7 @@ class Application_Model_DbTable_ClientUserXprev extends Zend_Db_Table_Abstract {
    }
    
     public function lastId($tracking) {
-        $sql = "select id from client_user_xprev where tracking = {$tracking};";
+        $sql = "select id_client_user_xprev from client_user_xprev where tracking = {$tracking};";
         
         $res = $this->getAdapter()->query($sql);
         $rest = $res->fetchObject();
