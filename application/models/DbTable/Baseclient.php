@@ -25,7 +25,7 @@ public function getAllcodeuser($code_client) {
         }
     }
     public function getId($codeclient){
-        $sql="select id from baseclient where baseclient.code_client='{$codeclient}'";
+        $sql="select id,code_client from baseclient where baseclient.code_client='{$codeclient}'";
         $res = $this->getAdapter()->query($sql);
         $rest=$res->fetchAll();
         if (!$rest) {
