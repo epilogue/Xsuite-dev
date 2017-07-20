@@ -35,6 +35,13 @@ class XprevController extends Zend_Controller_Action
             echo "pas d'accès à la base de données ZEUCDTA";
         }
     }
+    protected function sendEmail($params) {
+        $mail = new Xsuite_Mail();
+        $mail->setSubject($params['sujet'])
+                ->setBodyText(sprintf($params['corpsMail'], $params['url']))
+                ->addTo($params['destinataireMail'])
+                ->send();
+    }
     /*
      * fonction qui permet d'afficher la liste des codes user en fonction du code client choisi dans le select code_client
      */
@@ -222,6 +229,31 @@ class XprevController extends Zend_Controller_Action
               $xprevarticle = new Application_Model_DbTable_DemandeArticleXprev();
               $newarticle = $xprevarticle->createDemandeArticle($data2);
              }
+             /**envoi mail au N+1*/
+             /*recherche du destinataire*/
+             $id_holon = $infoUser[0][''];
+             $id_fonction = $infoUser[0][''];
+             $hierarchie = new Application_Model_DbTable_HierarchieXprev();
+             $destinataire = $hierarchie->gethierarchie($id_holon,$id_fonction);
+             var_dump($destinataire);
+             /* appel de la fonction send mail*/
+             $emailVars = Zend_Registry::get('emailVars');
+             /* creation des parametre du mail*/
+             $params=array();
+             $params['destinataire']=$destinataire['email_user'];
+             $params['sujet']="validation Xprev $trackingnumber ";
+             $params['corpsMail']="Bonjour,\n"
+                                . "\n"
+                                . "Vous avez une nouvelle demande Xprev({$trackingNumber}) à valider.\n"
+                                . "Veuillez vous rendre à l'adresse url : \n"
+                                . "%s"
+                                . "\n\n"
+                                . "Cordialement,\n"
+                                . "\n"
+                                . "--\n"
+                                . "Xsuite";
+             $params4['url'] = "http://{$_SERVER['SERVER_NAME']}/xprev/validn1/tracking/{$trackingnumber}";
+              echo '<pre>',  var_export($params),'</pre>';
         }
     }
 }
