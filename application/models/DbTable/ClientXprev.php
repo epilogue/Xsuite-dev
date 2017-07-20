@@ -8,7 +8,7 @@ public function createclient($data){
         return $this;
    }
     public function lastId($tracking) {
-        $sql = "select id_client_xprev from client_xprev where tracking = {$tracking};";
+        $sql = "select id_client_xprev from client_xprev where tracking ='{$tracking}'";
         
         $res = $this->getAdapter()->query($sql);
         $rest = $res->fetchObject();
