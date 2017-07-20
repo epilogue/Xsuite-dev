@@ -241,7 +241,7 @@ class XprevController extends Zend_Controller_Action
              /* creation des parametre du mail*/
              $params=array();
              $params['destinataire']=$destinataire->email_user;
-             $params['sujet']="validation Xprev $trackingnumber ";
+             
              $params['url'] = "http://{$_SERVER['SERVER_NAME']}/xprev/validn1/tracking/{$trackingnumber}";
              $params['corpsMail']="Bonjour,\n"
                                 . "\n"
@@ -253,7 +253,7 @@ class XprevController extends Zend_Controller_Action
                                 . "\n"
                                 . "--\n"
                                 . "Xsuite";
-             
+             $params['sujet']="validation Xprev $trackingnumber ";
               echo '<pre>',  var_export($params),'</pre>';
         }
     }
