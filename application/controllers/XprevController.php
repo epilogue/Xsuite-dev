@@ -247,7 +247,7 @@ class XprevController extends Zend_Controller_Action
                                 . "\n"
                                 . "Vous avez une nouvelle demande Xprev({$trackingnumber}) à valider.\n"
                                 . "Veuillez vous rendre à l'adresse url : \n"
-                                . "%s "
+                                . "%s"
                                 . "\n\n"
                                 . "Cordialement,\n"
                                 . "\n"
