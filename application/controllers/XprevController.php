@@ -240,7 +240,7 @@ class XprevController extends Zend_Controller_Action
              $emailVars = Zend_Registry::get('emailVars');
              /* creation des parametre du mail*/
              $params=array();
-             $params['destinataire']=$destinataire['email_user'];
+             $params['destinataire']=$destinataire->email_user;
              $params['sujet']="validation Xprev $trackingnumber ";
              $params['corpsMail']="Bonjour,\n"
                                 . "\n"
