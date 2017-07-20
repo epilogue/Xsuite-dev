@@ -78,7 +78,7 @@ public function getAllcodeuser($code_client) {
                 . " join users on users.id_user = demande_xprev.id_users "
                 . " join users as commercial on commercial.id_user = demande_xprev.id_commercial "
                 . " join client_user_xprev on client_user_xprev.id_client_user_xprev=demande_xprev.id_client_user_xprev "
-                . " join designation_validation_xprev  on designation_validation_xprev.id_designation_validation_xprev = demande_xprev.etat "
+                . " join designation_validation_xprev  on designation_validation_xprev.id_designation_validation_xprev = demande_xprev.id_statut_xprev "
                 . " where demande_xprev.id_users = {$id_user}";
         $res = $this->getAdapter()->query($sql);
         $rest=$res->fetchAll();
