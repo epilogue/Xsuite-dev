@@ -72,4 +72,15 @@ public function getAllcodeuser($code_client) {
       $this->insert($data);
         return $this;
     }
+    
+    public function getuserxprev($id_user){
+        $sql="select * from demande_xprev where demande_xprev.id_user = {$id_user}";
+        $res = $this->getAdapter()->query($sql);
+        $rest=$res->fetchAll();
+        if (!$rest) {
+            return null;
+        } else {
+            return $rest;
+        }
+    }
 }

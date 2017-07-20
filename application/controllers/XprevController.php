@@ -99,11 +99,15 @@ class XprevController extends Zend_Controller_Action
     public function indexAction()
     {
         $user = $this->_auth->getStorage()->read();
+        $xprev = new Application_Model_DbTable_DemandeXprev();
         /*fonction niveau0*/
         $fn0 = array(4,18,38);
         /* fonction niveau1*/
         $fn1 =array(1,2,6,43,44,46,26,27,28,29,30,34,35,36,37,40);
-        /*fonction niveau2*/
+        if( in_array($fn1,$user->id_fonction)){
+            $listeXprev= $xprev->getuserxprev($user->id_user);
+        }
+        /*fonction niveau2*
         $fn2 = array(3,10,41,45,42);
         /*fonction niveau3*/
         $fn3 = array(32,23,50,39);
@@ -226,7 +230,7 @@ class XprevController extends Zend_Controller_Action
                     'm12'=>$refart['m12'],
                     'valeur_totale'=>null
                 );
-              echo '<pre>',  var_export($data2),'</pre>';
+              //echo '<pre>',  var_export($data2),'</pre>';
               $xprevarticle = new Application_Model_DbTable_DemandeArticleXprev();
               $newarticle = $xprevarticle->createDemandeArticle($data2);
              }
