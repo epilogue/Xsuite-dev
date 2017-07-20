@@ -74,7 +74,12 @@ public function getAllcodeuser($code_client) {
     }
     
     public function getuserxprev($id_user){
-        $sql="select * from demande_xprev where demande_xprev.id_user = {$id_user}";
+        $sql="select demande_xprev.tracking,demande_xprev.date_create,users.nom_user,commercial.nom_commercial,designation_validation_xprev.nom_validation_xprev,client_user_xprev.nom_client_user_xprev from demande_xprev "
+                . " join users on users.id_user = demande_xprev.id_users "
+                . " join users as commercial on commercial.id_user = demande_xprev.id_commercial "
+                . " join client_user_xprev on client_user_xprev.id_client_users_xprev=demande_xprev.id_user_clien_xprev "
+                . " join designation_validation_xprev  on designation_validation_xprev.id_designation_validation_xprev = demande_xprev.etat "
+                . " where demande_xprev.id_users = {$id_user}";
         $res = $this->getAdapter()->query($sql);
         $rest=$res->fetchAll();
         if (!$rest) {

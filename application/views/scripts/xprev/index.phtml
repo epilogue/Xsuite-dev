@@ -8,6 +8,7 @@ $this->headTitle($this->title);
     <table class="enum">
         <tr>
             <?php if(in_array($this->fonction,$this->fn0) or in_array($this->fonction,$this->fn1) ){?>
+            
             <th>Tracking</th>
             <th>Date de création</th>
             <th>Emetteur</th>
@@ -15,6 +16,17 @@ $this->headTitle($this->title);
             <th>Client</th>
              <th>Statut</th>
              <th>consultation</th>
+             <?php foreach($this->listexprev as $xprev){ ?>
+                <tr>
+                    <td><?php echo $xprev['tracking'] ?></td>
+                    <td><?php echo $xprev['datecreate'] ?><</td>
+                    <td><?php echo $xprev['nom_user'] ?><</td>
+                    <td><?php echo $xprev['nom_commercial'] ?><</td>
+                    <td><?php echo $xprev['nom_client'] ?><</td>
+                    <td><?php echo $xprev['nom_statut'] ?><</td>
+                    <td></td>
+                </tr>
+                 <?php } ?>
         <?php } elseif(in_array($this->fonction, $this->fn2) or in_array($this->fonction, $this->fn3)) {?>
             <th>Tracking</th>
             <th>Date de création</th>
@@ -26,5 +38,6 @@ $this->headTitle($this->title);
              <th>validation</th>
          <?php } ?>
          </tr>
+         
     </table>
 </div>

@@ -112,6 +112,7 @@ class XprevController extends Zend_Controller_Action
         /*fonction niveau3*/
         $fn3 = array(32,23,50,39);
         $this->view->fonction = $user->id_fonction;
+        $this->view->listexprev = $listeXprev;
         $this->view->fn0 = $fn0;
         $this->view->fn1 = $fn1;
         $this->view->fn2 = $fn2;
@@ -192,6 +193,24 @@ class XprevController extends Zend_Controller_Action
             /*recuperation des id client  et client_user*/
             $idclient = $basecodeclient->getId($formData['num_client']);
             $idclientuser = $basecodeclient->getId($formData['code_user']);
+            /*insertion en bdd pour la table client_user_xprev*/
+             $client_user = new Application_Model_DbTable_ClientUserXprev();
+             $datauserclient = array(
+                 'tracking'=>$trackingnumber,
+                 'code_client_users_xprev'=>$idclientuser[0]['code_user'],
+                 'nom_client_user_xprev'=>$idclientuser[0]['nom_user']  
+             );
+             $newclientuser = $client_user->createclientuser($datauserclient);
+             $id_client_user = $client_user->lastId($tracking);
+             /*insertion en bdd pour la table client_xprev*/
+             $client = new Application_Model_DbTable_ClientXprev();
+             $dataclient = array(
+                 'tracking'=>$trackingnumber,
+                 'code_client_xprev'=>$idclientuser[0]['code_user'],
+                 'nom_client_xprev'=>$idclientuser[0]['nom_user']  
+             );
+             $newclient = $client->createclient($dataclient);
+              $id_client = $client->lastId($tracking);
             /*insertion en bdd dans la table demande_xprev*/
             $data =array (
                     'tracking'=>$trackingnumber,
@@ -200,14 +219,15 @@ class XprevController extends Zend_Controller_Action
                     'date_create'=>$datecreate,
                     'date_debut'=>$datedebut3,
                     'date_fin'=>$date_fin4,
-                    'id_client_xprev'=>$idclient[0]['id'],
-                    'id_client_user_xprev'=>$idclientuser[0]['id'],
+                    'id_client_xprev'=>$id_client->id_client_xprev,
+                    'id_client_user_xprev'=>$id_client_user->id_client_user_xprev,
                     'valeur_totale'=>null,
                     'id_statut_xprev'=>$etatcreat,
                     'id_niveau_risque_xprev'=>$formData['risque'],
                     'id_type_demande_xprev'=>$formData['type']
                                         );
              $newdemande = $xprev->createDemande($data);
+             
              /* insertion en bdd dans la table demande_article_xprev*/
              foreach ($formData['refart'] as $refart){
              $data2 = array(
