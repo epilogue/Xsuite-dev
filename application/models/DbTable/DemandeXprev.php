@@ -88,4 +88,10 @@ public function getAllcodeuser($code_client) {
             return $rest;
         }
     }
+    public function getusern1xprev($id_holon){
+        
+    }
+     public function getuserregxprev($id_holon){
+        
+    }
 }
