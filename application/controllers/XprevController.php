@@ -115,6 +115,7 @@ class XprevController extends Zend_Controller_Action
         $fn3 = array(32,23,50,39);
         if( in_array($user->id_fonction,$fn1)){
             $listeXprev= $xprev->getuserxprev($user->id_user);
+            $listeN1Xprev= null;
         }else if($user->id_fonction =3){
              $listeN1Xprev= $xprev->getusern1xprev($user->id_holon);
              $listeXprev= $xprev->getuserxprev($user->id_user);
@@ -127,7 +128,7 @@ class XprevController extends Zend_Controller_Action
        
         $this->view->fonction = $user->id_fonction;
         $this->view->listexprev = $listeXprev;
-         $this->view->listeN1xprev = $listeN1Xprev;
+        $this->view->listeN1xprev = $listeN1Xprev;
         $this->view->fn0 = $fn0;
         $this->view->fn1 = $fn1;
         $this->view->fn2 = $fn2;

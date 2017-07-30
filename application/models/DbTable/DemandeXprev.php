@@ -89,9 +89,34 @@ public function getAllcodeuser($code_client) {
         }
     }
     public function getusern1xprev($id_holon){
-        
+        $sql="select demande_xprev.tracking,demande_xprev.date_create,users.nom_user,(commercial.nom_user)as nom_commercial,designation_validation_xprev.nom_validation_xprev,client_user_xprev.nom_client_user_xprev from demande_xprev "
+                . " join users on users.id_user = demande_xprev.id_users "
+                . " join users as commercial on commercial.id_user = demande_xprev.id_commercial "
+                . " join client_user_xprev on client_user_xprev.id_client_user_xprev=demande_xprev.id_client_user_xprev "
+                . " join designation_validation_xprev  on designation_validation_xprev.id_designation_validation_xprev = demande_xprev.id_statut_xprev "
+                . " where users.id_holon = {$id_holon}";
+                $res = $this->getAdapter()->query($sql);
+        $rest=$res->fetchAll();
+        if (!$rest) {
+            return null;
+        } else {
+            return $rest;
+        }
     }
-     public function getuserregxprev($id_holon){
-        
+     public function getuserregxprev($holon_court){
+        $sql="select demande_xprev.tracking,demande_xprev.date_create,users.nom_user,(commercial.nom_user)as nom_commercial,designation_validation_xprev.nom_validation_xprev,client_user_xprev.nom_client_user_xprev from demande_xprev "
+                . " join users on users.id_user = demande_xprev.id_users "
+                . " join users as commercial on commercial.id_user = demande_xprev.id_commercial "
+                . " join holon on holon.id_holon=users.id_holon "
+                . " join client_user_xprev on client_user_xprev.id_client_user_xprev=demande_xprev.id_client_user_xprev "
+                . " join designation_validation_xprev  on designation_validation_xprev.id_designation_validation_xprev = demande_xprev.id_statut_xprev "
+                . " where holon.nom_holon like '{$holon_court}%'";
+                $res = $this->getAdapter()->query($sql);
+        $rest=$res->fetchAll();
+        if (!$rest) {
+            return null;
+        } else {
+            return $rest;
+        }
     }
 }
