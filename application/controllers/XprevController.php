@@ -99,6 +99,7 @@ class XprevController extends Zend_Controller_Action
     public function indexAction()
     {
         $user = $this->_auth->getStorage()->read();
+        $User = new Application_Model_DbTable_Users();
          $infoUser = $User->getUser($user->id_user);
         $xprev = new Application_Model_DbTable_DemandeXprev();
         $Holon = new Application_Model_DbTable_Holons();
