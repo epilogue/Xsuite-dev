@@ -100,11 +100,13 @@ class XprevController extends Zend_Controller_Action
     {
         $user = $this->_auth->getStorage()->read();
         $User = new Application_Model_DbTable_Users();
-         $infoUser = $User->getUser($user->id_user);
+        $infoUser = $User->getUser($user->id_user);
         $xprev = new Application_Model_DbTable_DemandeXprev();
         $Holon = new Application_Model_DbTable_Holons();
         $infoHolon =$Holon->getHolon($user->id_holon);
+        var_dump($user->id_fonction);
         var_dump($infoHolon);
+        var_dump($infoUser);
         /*fonction niveau0*/
         $fn0 = array(4,18,38);
         /* fonction niveau1*/
