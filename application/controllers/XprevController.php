@@ -118,11 +118,11 @@ class XprevController extends Zend_Controller_Action
         if( in_array($user->id_fonction,$fn1)){
             $listeXprev= $xprev->getuserxprev($user->id_user);
             $listeN1Xprev= null;
-        }else if($user->id_fonction =3){
+        }else if($infoUser['id_fonction'] ='3'){
              $listeN1Xprev= $xprev->getusern1xprev($user->id_holon);
              $listeXprev= $xprev->getuserxprev($user->id_user);
         }
-        else if($user->id_fonction =10){
+        else if($infoUser['id_fonction'] ='10'){
             /* recherche sur les 2 premiers caratères du holon*/
             $nom_holon = $infoHolon['nom_holon'];
             $holon= substr($nom_holon,0,2);
