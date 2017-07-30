@@ -128,6 +128,8 @@ class XprevController extends Zend_Controller_Action
             $holon= substr($nom_holon,0,2);
             var_dump($holon);
             $listeRegXprev= $xprev->getuserregxprev($holon);
+            $listeN1Xprev= null;
+            $listeXprev= null;
         }
         echo '<pre>',  var_export($listeN1Xprev),'</pre>';
         echo '<pre>',  var_export($listeXprev),'</pre>';
