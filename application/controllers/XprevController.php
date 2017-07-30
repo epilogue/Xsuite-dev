@@ -123,10 +123,11 @@ class XprevController extends Zend_Controller_Action
         else if($user->id_fonction =10){
             /* recherche sur les 2 premiers caratères du holon*/
             $holon=  substr($nom_holon,0,2);
-             $listeRegXprev= $xprev->getuserregxprev($holon);
+            $listeRegXprev= $xprev->getuserregxprev($holon);
         }
         echo '<pre>',  var_export($listeN1Xprev),'</pre>';
-         echo '<pre>',  var_export($listeXprev),'</pre>';
+        echo '<pre>',  var_export($listeXprev),'</pre>';
+        echo '<pre>',  var_export($listeRegXprev),'</pre>';
         $this->view->fonction = $user->id_fonction;
         $this->view->listexprev = $listeXprev;
         $this->view->listeN1xprev = $listeN1Xprev;
