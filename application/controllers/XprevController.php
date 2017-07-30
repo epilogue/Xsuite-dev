@@ -115,7 +115,7 @@ class XprevController extends Zend_Controller_Action
         $fn2 = array(3,10,41,45,42);
         /*fonction niveau3*/
         $fn3 = array(32,23,50,39);
-        if( in_array($user->id_fonction,$fn1)){
+        if($infoUser['id_fonction'] ='2'){
             $listeXprev= $xprev->getuserxprev($user->id_user);
             $listeN1Xprev= null;
         }else if($infoUser['id_fonction'] ='3'){
