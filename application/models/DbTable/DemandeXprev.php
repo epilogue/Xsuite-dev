@@ -111,6 +111,7 @@ public function getAllcodeuser($code_client) {
                 . " join client_user_xprev on client_user_xprev.id_client_user_xprev=demande_xprev.id_client_user_xprev "
                 . " join designation_validation_xprev  on designation_validation_xprev.id_designation_validation_xprev = demande_xprev.id_statut_xprev "
                 . " where holons.nom_holon like '{$holon_court}%'";
+        var_dump($sql);
                 $res = $this->getAdapter()->query($sql);
         $rest=$res->fetchAll();
         if (!$rest) {
