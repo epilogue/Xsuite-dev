@@ -122,7 +122,9 @@ class XprevController extends Zend_Controller_Action
         }
         else if($user->id_fonction =10){
             /* recherche sur les 2 premiers caratères du holon*/
-            $holon=  substr($nom_holon,0,2);
+            $nom_holon = $infoHolon['nom_holon'];
+            $holon= substr($nom_holon,0,2);
+            var_dump($holon);
             $listeRegXprev= $xprev->getuserregxprev($holon);
         }
         echo '<pre>',  var_export($listeN1Xprev),'</pre>';
