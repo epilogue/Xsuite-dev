@@ -852,7 +852,7 @@ if($user->id_fonction == 3){
                     } 
                     else {
                         $corpsMail = "tagada";
-                        $mailto = $info_user['email_user'];
+                        $mailto ="mhuby@smc-france.fr";
                         $mail = new Xsuite_Mail;
                         $mail->setSubject("plop")
                                 ->setBodyText(sprintf($corpsMail))
