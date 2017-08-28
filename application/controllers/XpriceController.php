@@ -485,7 +485,7 @@ if($user->id_fonction == 3){
                     if(in_array($destIndustry, $car1)){
                         $destinataireMail4 = $emailVars->listes->carIndustries1;
                     }elseif(in_array($destIndustry, $car2)){
-                        $destinataireMail4 = $emailVars->listes->carIndustries;
+                        $destinataireMail4 = $emailVars->listes->carIndustries2;
                     }elseif(in_array($destIndustry, $Elec)){
                        $destinataireMail4 = $emailVars->listes->Electronique;
                     }
