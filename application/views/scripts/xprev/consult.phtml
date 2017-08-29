@@ -1,39 +1,43 @@
 <div class="contenu">
     <h2>Xprev</h2>
     <h3>Consultation de la demande de prev: <?php echo $this->infoPrev['tracking'] ;?> </h3>
-    <table id="information3">
-        <tr> 
-            <td>date de création</td>
-            <td><?php echo $this->infoPrev['date_create'] ;?></td>
-            <td>niveau de risque</td>
-            <td><?php echo $this->infoPrev['nom_risque_xprev'] ;?></td>
-            <td>code client</td>
-            <td><?php echo $this->infoPrev['code_user_client_xprev'] ;?></td>
-        </tr>
-        <tr> 
-            <td>statut</td>
-            <td><?php echo $this->infoPrev['date_create'] ;?></td>
-            <td>type de demande</td>
-            <td><?php echo $this->infoPrev['nom_type_demande_xprev'] ;?></td>
-            <td>nom client</td>
-            <td><?php echo $this->infoPrev['nom_client_xprev'] ;?></td>
-        </tr>
-        <tr> 
-            <td>émetteur prévision</td>
-            <td><?php echo $this->infoPrev['nom_user'] ;?></td>
-            <td>date de début de prévision</td>
-            <td><?php echo $this->infoPrev['date_debut'] ;?></td>
-            <td>code user</td>
-            <td><?php echo $this->infoPrev['code_client_users_xprev'] ;?></td>
-        </tr>
-        <tr> 
-            <td>commercial</td>
-            <td><?php echo $this->infoPrev['nom_commercial'] ;?></td>
-            <td></td>
-            <td></td>
-            <td>nom user</td>
-            <td><?php echo $this->infoPrev['nom_client_user_xprev'] ;?></td>
-        </tr></table>
+    <fieldset class="field">
+        <legend>Informations générales</legend>
+        <table id="information3">
+            <tr> 
+                <td>date de création</td>
+                <td><?php echo $this->infoPrev['date_create'] ;?></td>
+                <td>niveau de risque</td>
+                <td><?php echo $this->infoPrev['nom_risque_xprev'] ;?></td>
+                <td>code client</td>
+                <td><?php echo $this->infoPrev['code_user_client_xprev'] ;?></td>
+            </tr>
+            <tr> 
+                <td>statut</td>
+                <td><?php echo $this->infoPrev['date_create'] ;?></td>
+                <td>type de demande</td>
+                <td><?php echo $this->infoPrev['nom_type_demande_xprev'] ;?></td>
+                <td>nom client</td>
+                <td><?php echo $this->infoPrev['nom_client_xprev'] ;?></td>
+            </tr>
+            <tr> 
+                <td>émetteur prévision</td>
+                <td><?php echo $this->infoPrev['nom_user'] ;?></td>
+                <td>date de début de prévision</td>
+                <td><?php echo $this->infoPrev['date_debut'] ;?></td>
+                <td>code user</td>
+                <td><?php echo $this->infoPrev['code_client_users_xprev'] ;?></td>
+            </tr>
+            <tr> 
+                <td>commercial</td>
+                <td><?php echo $this->infoPrev['nom_commercial'] ;?></td>
+                <td></td>
+                <td></td>
+                <td>nom user</td>
+                <td><?php echo $this->infoPrev['nom_client_user_xprev'] ;?></td>
+            </tr>
+        </table>
+    </fieldset>
     <p class="obligatoire">motif  de la demande :</p>
     <table>
         <thead>
