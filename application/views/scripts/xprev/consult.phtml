@@ -14,7 +14,7 @@
             </tr>
             <tr> 
                 <td>statut</td>
-                <td><?php echo $this->infoPrev['date_create'] ;?></td>
+                <td><?php echo $this->infoPrev['nom_validation_xprev'] ;?></td>
                 <td>type de demande</td>
                 <td><?php echo $this->infoPrev['nom_type_demande_xprev'] ;?></td>
                 <td>nom client</td>
@@ -38,7 +38,7 @@
             </tr>
         </table>
     </fieldset>
-    <p class="obligatoire">motif  de la demande :</p>
+    <p class="obligatoire">motif  de la demande :<?php echo $this->infoPrev['justification'] ;?></p>
     <table>
         <thead>
         </thead>
