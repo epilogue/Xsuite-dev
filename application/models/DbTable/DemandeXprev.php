@@ -121,8 +121,22 @@ public function getAllcodeuser($code_client) {
         }
     }
     public function getprev($tracking){
-        $sql="select demande_xprev.tracking,demande_xprev.date_create,users.nom_user,(commercial.nom_user)as nom_commercial,designation_validation_xprev.nom_validation_xprev,client_user_xprev.nom_client_user_xprev from demande_xprev"
+        $sql="select "
+                . " demande_xprev.tracking,"
+                . "demande_xprev.date_create,"
+                . "users.nom_user,(commercial.nom_user)as nom_commercial,"
+                . "designation_validation_xprev.nom_validation_xprev,"
+                . "client_user_xprev.nom_client_user_xprev,"
+                . "client_user_xprev.code_client_users_xprev,"
+                . "niveau_risque_xprev.nom_niveau_risque_xprev,"
+                . "type_demande_xprev.nom_type_demande_xprev,"
+                . "client_xprev.nom_client_xprev,"
+                . "demande_xprev.date_debut "
+                . " from demande_xprev "
+                . " join client_xprev on client_xprev.id_client = demande_xprev_id_client_xprev "
                 . " join users on users.id_user = demande_xprev.id_users "
+                . " join niveau_risque_xprev on niveau_risque_xprev.id_niveau_risque_xprev = demande_xprev.id_niveau_risque_xprev "
+                . " join type_demande_xprev on type_demande_xprev.id_type_demande_xprev = demande_xprev.id_type_demande_xprev "
                 . " join users as commercial on commercial.id_user = demande_xprev.id_commercial "
                 . " join holons on holons.id_holon=users.id_holon "
                 . " join client_user_xprev on client_user_xprev.id_client_user_xprev=demande_xprev.id_client_user_xprev "
