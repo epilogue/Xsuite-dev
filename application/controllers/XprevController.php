@@ -178,7 +178,7 @@ class XprevController extends Zend_Controller_Action
             $formData =  $this->getRequest()->getPost();
             //echo '<pre>',  var_export($formData),'</pre>';
             var_dump($_FILES);
-            $uploaddir = APPLICATION_PATH."/../public/fichier/xprev/creation/{$tracking}/";
+            $uploaddir = APPLICATION_PATH."/../public/fichiers/Xprev/Creation/";
             if(isset($_FILES['fichierCreationXprev']['name'])){
                 if($_FILES['fichierCreationXprev']['size']<=2000000){
                     $extension_upload1 =strrchr($_FILES['fichierCreationXprev']['name'],'.');
@@ -190,7 +190,7 @@ class XprevController extends Zend_Controller_Action
                         $datafichier = array(
                             'tracking_xprev'=>$tracking,
                             'nom_fichier_xprev'=>$file,
-                            'chemin_fichier_xprev'=>"/fichier/xprev/creation/$tracking/".$file
+                            'chemin_fichier_xprev'=>"/fichiers/Xprev/Creation/".$file
                         );
                         $newfichier = $fichier->createFichierXprev($datafichier);
                     }
