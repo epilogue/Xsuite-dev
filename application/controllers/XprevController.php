@@ -249,7 +249,9 @@ class XprevController extends Zend_Controller_Action
                     'valeur_totale'=>null,
                     'id_statut_xprev'=>$etatcreat,
                     'id_niveau_risque_xprev'=>$formData['risque'],
-                    'id_type_demande_xprev'=>$formData['type']
+                    'id_type_demande_xprev'=>$formData['type'],
+                    'id_validation'=>2,
+                    'justification'=>$formData['motif_create']
                                         );
              $newdemande = $xprev->createDemande($data);
              
