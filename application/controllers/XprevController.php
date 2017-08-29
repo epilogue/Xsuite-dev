@@ -176,7 +176,7 @@ class XprevController extends Zend_Controller_Action
         
         if($this->getRequest()->isPost()){
             $formData =  $this->getRequest()->getPost();
-            echo '<pre>',  var_export($formData),'</pre>';
+            //echo '<pre>',  var_export($formData),'</pre>';
             
             /*creation du tracking number */
             $newprev= new Application_Model_DbTable_DemandeXprev();
@@ -184,14 +184,19 @@ class XprevController extends Zend_Controller_Action
             $trackingnumber = Application_Model_DbTable_DemandeXprev::makeTrackingNumber($prevnew);
             //var_dump($trackingnumber);
             
-            var_dump($_FILES);            exit();
+            var_dump($_FILES);            
             $uploaddir = APPLICATION_PATH."/../public/fichiers/Xprev/Creation/";
             if(isset($_FILES['fichierCreationXprev']['name'])){
                 if($_FILES['fichierCreationXprev']['size']<=2000000){
                     $extension_upload1 =strrchr($_FILES['fichierCreationXprev']['name'],'.');
                     $name = explode('.',$_FILES['fichierCreationXprev']['name']);
-                    $file = $name[0].$tracking.$extension_upload1;
+                    $file = $name[0].$trackingnumber.$extension_upload1;
                     $uploadfile = $uploaddir.$file;
+                    var_dump($uploadfile);
+                    var_dump($name);
+                    var_dump($file);
+                    var_dump($extension_upload1);
+                    exit();
                     if(move_uploaded_file($_FILES['fichierCreationXprev']['tmp_name'], $uploadfile)){
                         echo "tout ok";
                         $datafichier = array(
