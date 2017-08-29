@@ -131,6 +131,7 @@ public function getAllcodeuser($code_client) {
                 . "niveau_risque_xprev.nom_risque_xprev,"
                 . "type_demande_xprev.nom_type_demande_xprev,"
                 . "client_xprev.nom_client_xprev,"
+                . "client_xprev.code_user_client_xprev,"
                 . "demande_xprev.date_debut "
                 . " from demande_xprev "
                 . " join client_xprev on client_xprev.id_client_xprev = demande_xprev.id_client_xprev "
