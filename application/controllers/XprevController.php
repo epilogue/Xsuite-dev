@@ -322,6 +322,9 @@ class XprevController extends Zend_Controller_Action
         var_dump($tracking);
         $Prev = new Application_Model_DbTable_DemandeXprev();
         $infoPrev = $Prev->getprev($tracking);
+        $ArticlePrev = new Application_Model_DbTable_DemandeArticleXprev();
+        $infoArticle = $ArticlePrev->getarticleprev($tracking);
+                
         
     }
 }
