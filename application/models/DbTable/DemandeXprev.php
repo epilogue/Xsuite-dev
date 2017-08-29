@@ -120,4 +120,15 @@ public function getAllcodeuser($code_client) {
             return $rest;
         }
     }
+    public function getprev($tracking){
+        $sql="select * from demande_xprev where demande_xprev.tracking like {$tracking} ";
+        var_dump($sql);
+                $res = $this->getAdapter()->query($sql);
+        $rest=$res->fetchAll();
+        if (!$rest) {
+            return null;
+        } else {
+            return $rest;
+        }
+    }
 }

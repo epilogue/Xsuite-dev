@@ -320,6 +320,9 @@ class XprevController extends Zend_Controller_Action
         $infoUser = $User->getUser($user->id_user);
         $tracking = $this->getRequest()->getParam('tracking', null);
         var_dump($tracking);
+        $Prev = new Application_Model_DbTable_DemandeXprev();
+        $infoPrev = $Prev->getprev($tracking);
+        
     }
 }
 
