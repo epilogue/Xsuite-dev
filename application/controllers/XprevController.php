@@ -184,7 +184,7 @@ class XprevController extends Zend_Controller_Action
             $trackingnumber = Application_Model_DbTable_DemandeXprev::makeTrackingNumber($prevnew);
             //var_dump($trackingnumber);
             
-            var_dump($_FILES);
+            var_dump($_FILES);            exit();
             $uploaddir = APPLICATION_PATH."/../public/fichiers/Xprev/Creation/";
             if(isset($_FILES['fichierCreationXprev']['name'])){
                 if($_FILES['fichierCreationXprev']['size']<=2000000){
