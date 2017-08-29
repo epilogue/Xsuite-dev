@@ -152,6 +152,7 @@ class XprevController extends Zend_Controller_Action
        // echo '<pre>',  var_export($infoUser),'</pre>';
         
         /*info base de donnees*/
+        $fichier = new Application_Model_DbTable_FichierXprev();
         $basecodeclient = new Application_Model_DbTable_Baseclient();
         $listecodeclient = $basecodeclient->getAllcodeclient();
         $typedemande = new Application_Model_DbTable_TypeDemandeXprev();
@@ -176,7 +177,25 @@ class XprevController extends Zend_Controller_Action
         if($this->getRequest()->isPost()){
             $formData =  $this->getRequest()->getPost();
             //echo '<pre>',  var_export($formData),'</pre>';
-            //var_dump($_FILES);
+            var_dump($_FILES);
+            $uploaddir = APPLICATION_PATH."/../public/fichier/xprev/creation/{$tracking}/";
+            if(isset($_FILES['fichierCreationXprev']['name'])){
+                if($_FILES['fichierCreationXprev']['size']<=2000000){
+                    $extension_upload1 =strrchr($_FILES['fichierCreationXprev']['name'],'.');
+                    $name = explode('.',$_FILES['fichierCreationXprev']['name']);
+                    $file = $name[0].$tracking.$extension_upload1;
+                    $uploadfile = $uploaddir.$file;
+                    if(move_uploaded_file($_FILES['fichierCreationXprev']['tmp_name'], $uploadfile)){
+                        echo "tout ok";
+                        $datafichier = array(
+                            'tracking_xprev'=>$tracking,
+                            'nom_fichier_xprev'=>$file,
+                            'chemin_fichier_xprev'=>"/fichier/xprev/creation/$tracking/".$file
+                        );
+                        $newfichier = $fichier->createFichierXprev($datafichier);
+                    }
+                }
+            }
             /*creation du tracking number */
             $newprev= new Application_Model_DbTable_DemandeXprev();
             $prevnew = $newprev->getdatetrack($datecreate);
