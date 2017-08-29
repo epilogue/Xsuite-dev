@@ -185,7 +185,7 @@ class XprevController extends Zend_Controller_Action
             //var_dump($trackingnumber);
             
             var_dump($_FILES);            
-            $uploaddir = APPLICATION_PATH."/../public/fichiers/Xprev/Creation/";
+            $uploaddir ="/home/mag/www-dev/Xsuite-dev_mag/public/fichiers/Xprev/Creation/";
             if(isset($_FILES['fichierCreationXprev']['name'])){
                 if($_FILES['fichierCreationXprev']['size']<=2000000){
                     $extension_upload1 =strrchr($_FILES['fichierCreationXprev']['name'],'.');
@@ -202,7 +202,7 @@ class XprevController extends Zend_Controller_Action
                         $datafichier = array(
                             'tracking_xprev'=>$trackingnumber,
                             'nom_fichier_xprev'=>$file,
-                            'chemin_fichier_xprev'=>"/fichiers/Xprev/Creation/".$file
+                            'chemin_fichier_xprev'=>"/public/fichiers/Xprev/Creation/".$file
                         );
                         $newfichier = $fichier->createFichierXprev($datafichier);
                     }else{
