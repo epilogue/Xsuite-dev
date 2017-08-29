@@ -128,7 +128,7 @@ public function getAllcodeuser($code_client) {
                 . "designation_validation_xprev.nom_validation_xprev,"
                 . "client_user_xprev.nom_client_user_xprev,"
                 . "client_user_xprev.code_client_users_xprev,"
-                . "niveau_risque_xprev.nom_niveau_risque_xprev,"
+                . "niveau_risque_xprev.nom_risque_xprev,"
                 . "type_demande_xprev.nom_type_demande_xprev,"
                 . "client_xprev.nom_client_xprev,"
                 . "demande_xprev.date_debut "
