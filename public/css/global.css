@@ -633,7 +633,18 @@ h3{
 #information2 td{
     width: 150px;
 }
+#information3 table{
+    width: 800px;
+    height: 200px;
+}
 
+#information3 input{
+    width: 150px;
+}
+
+#information3 td{
+    width: 200px;
+}
 /* fin des tableaux*/
 #fieldset-commentaires{
     width: 725px;
