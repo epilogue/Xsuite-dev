@@ -638,7 +638,7 @@ h3{
     height: 200px;
 }
 
-#information3 table,#information3 tr,#information3 td{
+#information3 table,#information3 tr{
    border-style:solid;
     border-color:#268bd9;
     border-width: thin;
