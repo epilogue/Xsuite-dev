@@ -638,8 +638,10 @@ h3{
     height: 200px;
 }
 
-#information3 input{
-    width: 150px;
+#information3 tr{
+   border-style:solid;
+    border-color:#268bd9;
+    border-width: thin;
 }
 
 #information3 td{
