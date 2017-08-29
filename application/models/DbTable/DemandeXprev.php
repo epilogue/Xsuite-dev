@@ -133,7 +133,7 @@ public function getAllcodeuser($code_client) {
                 . "client_xprev.nom_client_xprev,"
                 . "demande_xprev.date_debut "
                 . " from demande_xprev "
-                . " join client_xprev on client_xprev.id_client = demande_xprev_id_client_xprev "
+                . " join client_xprev on client_xprev.id_client_xprev = demande_xprev_id_client_xprev "
                 . " join users on users.id_user = demande_xprev.id_users "
                 . " join niveau_risque_xprev on niveau_risque_xprev.id_niveau_risque_xprev = demande_xprev.id_niveau_risque_xprev "
                 . " join type_demande_xprev on type_demande_xprev.id_type_demande_xprev = demande_xprev.id_type_demande_xprev "
