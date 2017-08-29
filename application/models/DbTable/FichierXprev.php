@@ -11,6 +11,15 @@ class Application_Model_DbTable_FichierXprev extends Zend_Db_Table_Abstract
         $this->insert($data);
         return $this;
     }
-   
+   public function getfichier($tracking){
+       $sql="select from fichier_xprev where fichier_xprev.tracking like '{$tracking}'";
+        $res = $this->getAdapter()->query($sql);
+        $rest=$res->fetchAll();
+        if (!$rest) {
+            return null;
+        } else {
+            return $rest;
+        }
+   }
 }
 

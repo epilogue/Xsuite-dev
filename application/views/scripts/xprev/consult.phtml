@@ -39,8 +39,8 @@
         </table>
         
         <p>motif  de la demande :<?php echo $this->infoPrev['justification'] ;?></p>
-        
-        <p>fichier joint :<?php echo $this->infoPrev['nom_fichier_xprev'] ;?></p>
+        <?php foreach ($this->infoFichier as $fichier){ ?>
+        <p>fichier joint :<?php echo $fichier['nom_fichier_xprev'] ; }?></p>
     </fieldset>
     
     <table>
