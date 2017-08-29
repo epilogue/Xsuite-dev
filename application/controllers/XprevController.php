@@ -196,7 +196,7 @@ class XprevController extends Zend_Controller_Action
                     var_dump($name);
                     var_dump($file);
                     var_dump($extension_upload1);
-                    exit();
+                   
                     if(move_uploaded_file($_FILES['fichierCreationXprev']['tmp_name'], $uploadfile)){
                         echo "tout ok";
                         $datafichier = array(
@@ -205,6 +205,7 @@ class XprevController extends Zend_Controller_Action
                             'chemin_fichier_xprev'=>"/public/fichiers/Xprev/Creation/".$file
                         );
                         $newfichier = $fichier->createFichierXprev($datafichier);
+                         exit();
                     }else{
                         echo "tout foutu";
 ;                    }
