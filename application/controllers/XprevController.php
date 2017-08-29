@@ -176,7 +176,14 @@ class XprevController extends Zend_Controller_Action
         
         if($this->getRequest()->isPost()){
             $formData =  $this->getRequest()->getPost();
-            //echo '<pre>',  var_export($formData),'</pre>';
+            echo '<pre>',  var_export($formData),'</pre>';
+            
+            /*creation du tracking number */
+            $newprev= new Application_Model_DbTable_DemandeXprev();
+            $prevnew = $newprev->getdatetrack($datecreate);
+            $trackingnumber = Application_Model_DbTable_DemandeXprev::makeTrackingNumber($prevnew);
+            //var_dump($trackingnumber);
+            
             var_dump($_FILES);
             $uploaddir = APPLICATION_PATH."/../public/fichiers/Xprev/Creation/";
             if(isset($_FILES['fichierCreationXprev']['name'])){
@@ -188,19 +195,16 @@ class XprevController extends Zend_Controller_Action
                     if(move_uploaded_file($_FILES['fichierCreationXprev']['tmp_name'], $uploadfile)){
                         echo "tout ok";
                         $datafichier = array(
-                            'tracking_xprev'=>$tracking,
+                            'tracking_xprev'=>$trackingnumber,
                             'nom_fichier_xprev'=>$file,
                             'chemin_fichier_xprev'=>"/fichiers/Xprev/Creation/".$file
                         );
                         $newfichier = $fichier->createFichierXprev($datafichier);
-                    }
+                    }else{
+                        echo "tout foutu";
+;                    }
                 }
             }
-            /*creation du tracking number */
-            $newprev= new Application_Model_DbTable_DemandeXprev();
-            $prevnew = $newprev->getdatetrack($datecreate);
-            $trackingnumber = Application_Model_DbTable_DemandeXprev::makeTrackingNumber($prevnew);
-            //var_dump($trackingnumber);
             /*creation de la date de fin */
             $num_mois = $this->getRequest()->getParam('date_debut',null);
             //var_dump($num_mois);
