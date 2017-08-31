@@ -168,4 +168,15 @@ public function getAllcodeuser($code_client) {
             return $rest;
         }
     }
+    public function  upn1xprev($statut,$validation,$justification,$tracking){
+        $sql ="UPDATE `demande_xprev` SET `id_validation`='{$validation}',  `id_statut`='{$statut}', `justification_n1`='{$justification}'WHERE  `tracking`='{$tracking_number}'";
+        // var_dump($sql);exit();
+          $res = $this->getAdapter()->query($sql);
+        
+        if (!$res) {
+            return null;
+        } else {
+            return $res;
+        }
+    }
 }

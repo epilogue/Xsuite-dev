@@ -278,7 +278,10 @@ class XprevController extends Zend_Controller_Action
                     'id_niveau_risque_xprev'=>$formData['risque'],
                     'id_type_demande_xprev'=>$formData['type'],
                     'id_validation'=>2,
-                    'justification'=>$formData['motif_create']
+                    'justification'=>$formData['motif_create'],
+                    'justification_n1'=>null,
+                    'justification_log'=>null,
+                    'justification_dop'=>$null
                                         );
              $newdemande = $xprev->createDemande($data);
              
@@ -394,7 +397,10 @@ class XprevController extends Zend_Controller_Action
                  $params=array();
             /*envoi du mail à la log*/
             if($formdata['validn1']=='1'){
-                
+                $statut=1;
+                $validation = 3;
+                $justification = $formdata['motif_validation'];
+                $upn1 = $Prev->upn1xprev($statut,$validation,$justification);
                  //$params['destinataireMail']="logistique@smc-france.fr";
                  $params['destinataireMail']="mhuby@smc-france.fr";
 
@@ -419,6 +425,10 @@ class XprevController extends Zend_Controller_Action
                 $redirector->gotoSimple('index', 'xprev'); 
             }else{
                 /*on va chercher le mail du createur de la demande */
+                $statut=2;
+                $validation = 4;
+                $justification = $formdata['motif_validation'];
+                $upn1 = $Prev->upn1xprev($statut,$validation,$justification,$tracking);
                  //$params['destinataireMail']="";
                  $params['destinataireMail']="mhuby@smc-france.fr";
 
