@@ -94,9 +94,15 @@
         </table>
     </fieldset>
     <form action="#" method="post">
-        <input type="radio" name="validreg" value="1">validation <br>
-        <input type="radio" name="validreg" value="0">refus <br>
-        <p class="obligatoire">motif  de la demande :</p>
-        <textarea name="motif_validationreg" required cols="120" rows="7" value=""> </textarea>
+        <fieldset class="field">
+            <legend>validation</legend>
+            <input type="radio" name="validreg" value="1">validation <br>
+            <input type="radio" name="validreg" value="0">refus <br>
+            <p class="obligatoire">motif  de la demande :</p>
+            <textarea name="motif_validationreg" required cols="120" rows="7" value=""> </textarea>
+            <div class="soumission">
+                <input class="submit2" type="submit" value="valider la demande de prev">
+            </div>
+        </fieldset>
     </form>
 </div>
