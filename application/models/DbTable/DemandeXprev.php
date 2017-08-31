@@ -93,7 +93,7 @@ public function getAllcodeuser($code_client) {
                 . " join users on users.id_user = demande_xprev.id_users "
                 . " join users as commercial on commercial.id_user = demande_xprev.id_commercial "
                 . " join client_user_xprev on client_user_xprev.id_client_user_xprev=demande_xprev.id_client_user_xprev "
-                . " join designation_validation_xprev  on designation_validation_xprev.id_designation_validation_xprev = demande_xprev.validation "
+                . " join designation_validation_xprev  on designation_validation_xprev.id_designation_validation_xprev = demande_xprev.id_validation "
                 . " where users.id_holon = {$id_holon}";
                 $res = $this->getAdapter()->query($sql);
         $rest=$res->fetchAll();
@@ -125,8 +125,8 @@ public function getAllcodeuser($code_client) {
                 . " join users on users.id_user = demande_xprev.id_users "
                 . " join users as commercial on commercial.id_user = demande_xprev.id_commercial "
                 . " join client_user_xprev on client_user_xprev.id_client_user_xprev=demande_xprev.id_client_user_xprev "
-                . " join designation_validation_xprev  on designation_validation_xprev.id_designation_validation_xprev = demande_xprev.validation "
-               ;
+                . " join designation_validation_xprev  on designation_validation_xprev.id_designation_validation_xprev = demande_xprev.id_validation ";
+               
                 $res = $this->getAdapter()->query($sql);
         $rest=$res->fetchAll();
         if (!$rest) {
