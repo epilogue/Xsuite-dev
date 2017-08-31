@@ -321,6 +321,7 @@ class XprevController extends Zend_Controller_Action
              $params=array();
              //$params['destinataireMail']=$destinataire->email_user;
              $params['destinataireMail']="mhuby@smc-france.fr";
+             
              $params['url'] = "http://{$_SERVER['SERVER_NAME']}/xprev/validn1/tracking/{$trackingnumber}";
              $params['corpsMail']="Bonjour,\n"
                                 . "\n"
@@ -380,27 +381,72 @@ class XprevController extends Zend_Controller_Action
         $this->view->infoArticle = $infoArticle;
         $this->view->infoFichier = $infoFichier;
         $this->view->infoUser = $infoUser;
+        if($this->getRequest()->isPost()){
+            $formData =  $this->getRequest()->getPost();
+            echo '<pre>',  var_export($formData),'</pre>';
+            /*mettre à jour la demande xprev 
+             * au niveau du nom de la validation
+             * commentaire validation
+             * l'etat de la validation accepté/refusé
+             */
+            $emailVars = Zend_Registry::get('emailVars');
+                 /* creation des parametre du mail*/
+                 $params=array();
+            /*envoi du mail à la log*/
+            if($formdata['validn1']=='1'){
+                
+                 //$params['destinataireMail']="logistique@smc-france.fr";
+                 $params['destinataireMail']="mhuby@smc-france.fr";
+
+                 $params['url'] = "http://{$_SERVER['SERVER_NAME']}/xprev/validlog/tracking/{$trackingnumber}";
+                 $params['corpsMail']="Bonjour,\n"
+                                    . "\n"
+                                    . "Vous avez une nouvelle demande Xprev({$trackingnumber}) à valider.\n"
+                                    . "Veuillez vous rendre à l'adresse url : \n"
+                                    . "%s"
+                                    . "\n\n"
+                                    . "Cordialement,\n"
+                                    . "\n"
+                                    . "--\n"
+                                    . "Xsuite";
+                $params['sujet']="validation Xprev $trackingnumber ";
+                  //echo '<pre>',  var_export($params),'</pre>';
+                $this->sendEmail($params);
+                $redirector = $this->_helper->getHelper('Redirector');
+                $flashMessenger = $this->_helper->getHelper('FlashMessenger');
+                $message = "la demande de prévision a bien été prise en compte et envoyée à la logistique.";
+                $flashMessenger->addMessage($message);
+                $redirector->gotoSimple('index', 'xprev'); 
+            }else{
+                /*on va chercher le mail du createur de la demande */
+                 //$params['destinataireMail']="";
+                 $params['destinataireMail']="mhuby@smc-france.fr";
+
+                 $params['url'] = "http://{$_SERVER['SERVER_NAME']}/xprev/consult/tracking/{$trackingnumber}";
+                 $params['corpsMail']="Bonjour,\n"
+                                    . "\n"
+                                    . "Votre demande Xprev({$trackingnumber})a été refusée.\n"
+                                    . "Veuillez vous rendre à l'adresse url : \n"
+                                    . "%s"
+                                    . "\n\n"
+                                    . "pour la consulter."
+                                    . "Cordialement,\n"
+                                    . "\n"
+                                    . "--\n"
+                                    . "Xsuite";
+                $params['sujet']="refus Xprev $trackingnumber ";
+                  //echo '<pre>',  var_export($params),'</pre>';
+                $this->sendEmail($params);
+                $redirector = $this->_helper->getHelper('Redirector');
+                $flashMessenger = $this->_helper->getHelper('FlashMessenger');
+                $message = "la demande de prévision a bien été refusée.";
+                $flashMessenger->addMessage($message);
+                $redirector->gotoSimple('index', 'xprev');
+            }
+        }
     }
-    public function validregAction(){
-        $user = $this->_auth->getStorage()->read();
-        /*information concernant la personne connectée*/
-        $User = new Application_Model_DbTable_Users();
-        $infoUser = $User->getUser($user->id_user);
-        $tracking = $this->getRequest()->getParam('tracking', null);
-        var_dump($tracking);
-        $Prev = new Application_Model_DbTable_DemandeXprev();
-        $infoPrev = $Prev->getprev($tracking);
-        $fichier = new Application_Model_DbTable_FichierXprev();
-        $infoFichier = $fichier->getfichier($tracking);
-        $ArticlePrev = new Application_Model_DbTable_DemandeArticleXprev();
-        $infoArticle = $ArticlePrev->getarticleprev($tracking);
-        echo '<pre>',  var_export($infoUser),'</pre>';
-        $this->view->infoPrev = $infoPrev[0];
-        $this->view->infoArticle = $infoArticle;
-        $this->view->infoFichier = $infoFichier;
-        $this->view->infoUser = $infoUser;
-    }
-    public function validfobAction(){
+   
+    public function validlogAction(){
         
     }
 }
