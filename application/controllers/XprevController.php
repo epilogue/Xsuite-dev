@@ -130,13 +130,20 @@ class XprevController extends Zend_Controller_Action
             $listeRegXprev= $xprev->getuserregxprev($holon);
             $listeN1Xprev= null;
             $listeXprev= null;
+        } else if($infoUser['id_fonction']=='23' || $infoUser['id_fonction']=='39' ||$infoUser['id_fonction']=='32' || $infoUser['id_fonction']=='50'){
+            $listeAllXprev= $xprev->getallxprev();
+            $listeRegXprev= null;
+            $listeN1Xprev= null;
+            $listeXprev= null;
         }
         echo '<pre>',  var_export($listeN1Xprev),'</pre>';
         echo '<pre>',  var_export($listeXprev),'</pre>';
         echo '<pre>',  var_export($listeRegXprev),'</pre>';
         $this->view->fonction = $user->id_fonction;
         $this->view->listexprev = $listeXprev;
+        $this->view->listeAllxprev = $listeAllXprev;
         $this->view->listeN1xprev = $listeN1Xprev;
+        $this->view->listeRegxprev = $listeRegXprev;
         $this->view->fn0 = $fn0;
         $this->view->fn1 = $fn1;
         $this->view->fn2 = $fn2;
