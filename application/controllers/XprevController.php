@@ -348,10 +348,11 @@ class XprevController extends Zend_Controller_Action
         $infoFichier = $fichier->getfichier($tracking);
         $ArticlePrev = new Application_Model_DbTable_DemandeArticleXprev();
         $infoArticle = $ArticlePrev->getarticleprev($tracking);
-        echo '<pre>',  var_export($infoFichier),'</pre>';
+        echo '<pre>',  var_export($infoUser),'</pre>';
         $this->view->infoPrev = $infoPrev[0];
         $this->view->infoArticle = $infoArticle;
         $this->view->infoFichier = $infoFichier;
+        $this->view->infoUser = $infoUser;
         
     }
 }
