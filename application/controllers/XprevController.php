@@ -362,5 +362,14 @@ class XprevController extends Zend_Controller_Action
         $this->view->infoUser = $infoUser;
         
     }
+    public function validn1Action(){
+        
+    }
+    public function validregAction(){
+        
+    }
+    public function validfobAction(){
+        
+    }
 }
 
