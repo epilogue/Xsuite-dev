@@ -858,4 +858,12 @@ h3{
 	text-decoration: none;
 }
 
+.fichier_joint a:hover,a:visited, a:link {
+    color: #2A60AA;
+    padding: 15px 10px 0 5px;
+    margin-top:10px;
+    text-align:center;
+    text-decoration: underline;
+}
+
 

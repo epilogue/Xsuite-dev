@@ -40,7 +40,7 @@
         
         <p>motif  de la demande :<?php echo $this->infoPrev['justification'] ;?></p>
         
-        <p>fichier joint :<?php foreach ($this->infoFichier as $fichier){ ?> <a  href=" <?php echo $fichier['chemin_fichier_xprev']; ?>" target="_blank"><?php echo $fichier['nom_fichier_xprev']; ?></a><?php  }?></p>
+        <p>fichier joint :<?php foreach ($this->infoFichier as $fichier){ ?> <a class="fichier_joint" href=" <?php echo $fichier['chemin_fichier_xprev']; ?>" target="_blank"><?php echo $fichier['nom_fichier_xprev']; ?></a><br><?php  }?></p>
     </fieldset>
     
     <table>
