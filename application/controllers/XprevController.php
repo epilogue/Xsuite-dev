@@ -398,10 +398,10 @@ class XprevController extends Zend_Controller_Action
                  //$params['destinataireMail']="logistique@smc-france.fr";
                  $params['destinataireMail']="mhuby@smc-france.fr";
 
-                 $params['url'] = "http://{$_SERVER['SERVER_NAME']}/xprev/validlog/tracking/{$trackingnumber}";
+                 $params['url'] = "http://{$_SERVER['SERVER_NAME']}/xprev/validlog/tracking/{$tracking}";
                  $params['corpsMail']="Bonjour,\n"
                                     . "\n"
-                                    . "Vous avez une nouvelle demande Xprev({$trackingnumber}) à valider.\n"
+                                    . "Vous avez une nouvelle demande Xprev({$tracking}) à valider.\n"
                                     . "Veuillez vous rendre à l'adresse url : \n"
                                     . "%s"
                                     . "\n\n"
@@ -409,7 +409,7 @@ class XprevController extends Zend_Controller_Action
                                     . "\n"
                                     . "--\n"
                                     . "Xsuite";
-                $params['sujet']="validation Xprev $trackingnumber ";
+                $params['sujet']="validation Xprev $tracking ";
                   //echo '<pre>',  var_export($params),'</pre>';
                 $this->sendEmail($params);
                 $redirector = $this->_helper->getHelper('Redirector');
@@ -422,10 +422,10 @@ class XprevController extends Zend_Controller_Action
                  //$params['destinataireMail']="";
                  $params['destinataireMail']="mhuby@smc-france.fr";
 
-                 $params['url'] = "http://{$_SERVER['SERVER_NAME']}/xprev/consult/tracking/{$trackingnumber}";
+                 $params['url'] = "http://{$_SERVER['SERVER_NAME']}/xprev/consult/tracking/{$tracking}";
                  $params['corpsMail']="Bonjour,\n"
                                     . "\n"
-                                    . "Votre demande Xprev({$trackingnumber})a été refusée.\n"
+                                    . "Votre demande Xprev({$tracking})a été refusée.\n"
                                     . "Veuillez vous rendre à l'adresse url : \n"
                                     . "%s"
                                     . "\n\n"
