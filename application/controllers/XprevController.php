@@ -183,7 +183,7 @@ class XprevController extends Zend_Controller_Action
         
         if($this->getRequest()->isPost()){
             $formData =  $this->getRequest()->getPost();
-            //echo '<pre>',  var_export($formData),'</pre>';
+            echo '<pre>',  var_export($formData),'</pre>'; exit();
             
             /*creation du tracking number */
             $newprev= new Application_Model_DbTable_DemandeXprev();
@@ -281,12 +281,13 @@ class XprevController extends Zend_Controller_Action
                     'justification'=>$formData['motif_create'],
                     'justification_n1'=>null,
                     'justification_log'=>null,
-                    'justification_dop'=>$null
+                    'justification_dop'=>null
                                         );
              $newdemande = $xprev->createDemande($data);
              
              /* insertion en bdd dans la table demande_article_xprev*/
-             foreach ($formData['refart'] as $refart){
+             
+             foreach($formData['refart'] as $refart){
              $data2 = array(
                  'tracking'=>$trackingnumber,
                  'code_article'=>$refart['code_article'],
