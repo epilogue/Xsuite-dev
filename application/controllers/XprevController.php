@@ -405,7 +405,7 @@ class XprevController extends Zend_Controller_Action
             /*envoi du mail à la log*/
             if($formData['validn1']=='1'){
                 $statut=1;
-                $validation = 3;
+                $validation =3;
                 $justification =$formData['motif_validation'];
                 $upn1 = $Prev->upn1xprev($statut,$validation,$justification);
                  //$params['destinataireMail']="logistique@smc-france.fr";
