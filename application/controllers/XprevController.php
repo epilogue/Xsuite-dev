@@ -149,6 +149,7 @@ class XprevController extends Zend_Controller_Action
         $this->view->fn0 = $fn0;
         $this->view->fn1 = $fn1;
         $this->view->fn2 = $fn2;
+        $this->view->fn2bis = $fn2bis;
         $this->view->fn3 = $fn3;
     }
 
