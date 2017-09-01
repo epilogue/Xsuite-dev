@@ -190,25 +190,7 @@ class XprevController extends Zend_Controller_Action
             $prevnew = $newprev->getdatetrack($datecreate);
             $trackingnumber = Application_Model_DbTable_DemandeXprev::makeTrackingNumber($prevnew);           
             $uploaddir =APPLICATION_PATH."/../public/fichiers/Xprev/Creation/";
-            if(isset($_FILES['fichierCreationXprev']['name'])){
-                if($_FILES['fichierCreationXprev']['size']<=2000000){
-                    $extension_upload1 =strrchr($_FILES['fichierCreationXprev']['name'],'.');
-                    $name = explode('.',$_FILES['fichierCreationXprev']['name']);
-                    $file = $name[0].$trackingnumber.$extension_upload1;
-                    $uploadfile = $uploaddir.$file;
-                    if(move_uploaded_file($_FILES['fichierCreationXprev']['tmp_name'], $uploadfile)){
-                        echo "tout ok";
-                        $datafichier = array(
-                            'tracking_xprev'=>$trackingnumber,
-                            'nom_fichier_xprev'=>$file,
-                            'chemin_fichier_xprev'=>"/fichiers/Xprev/Creation/".$file
-                        );
-                        $newfichier = $fichier->createFichierXprev($datafichier);
-                    }else{
-                        echo "tout foutu";
-;                    }
-                }
-            }
+            
             /*creation de la date de fin */
             $num_mois = $this->getRequest()->getParam('date_debut',null);
             //var_dump($num_mois);
@@ -312,6 +294,26 @@ class XprevController extends Zend_Controller_Action
               $xprevarticle = new Application_Model_DbTable_DemandeArticleXprev();
               $newarticle = $xprevarticle->createDemandeArticle($data2);
              }
+             
+             if(isset($_FILES['fichierCreationXprev']['name'])){
+                if($_FILES['fichierCreationXprev']['size']<=2000000){
+                    $extension_upload1 =strrchr($_FILES['fichierCreationXprev']['name'],'.');
+                    $name = explode('.',$_FILES['fichierCreationXprev']['name']);
+                    $file = $name[0].$trackingnumber.$extension_upload1;
+                    $uploadfile = $uploaddir.$file;
+                    if(move_uploaded_file($_FILES['fichierCreationXprev']['tmp_name'], $uploadfile)){
+                        echo "tout ok";
+                        $datafichier = array(
+                            'tracking_xprev'=>$trackingnumber,
+                            'nom_fichier_xprev'=>$file,
+                            'chemin_fichier_xprev'=>"/fichiers/Xprev/Creation/".$file
+                        );
+                        $newfichier = $fichier->createFichierXprev($datafichier);
+                    }else{
+                        echo "tout foutu";
+                    }
+                }
+            }
              /**envoi mail au N+1*/
              /*recherche du destinataire*/
              $id_holon = $infoUser['id_holon'];
