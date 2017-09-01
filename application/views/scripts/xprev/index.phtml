@@ -70,10 +70,14 @@ $this->headTitle($this->title);
                     <td><?php echo $xprev['nom_validation_xprev'] ?></td>
                     <td><a href="<?php echo $this->url(array("controller"=>"xprev","action"=>"consult","tracking"=>$xprev['tracking']));?>" <button class="retour">historique</button></a>
              </td>
-             <?php if($xprev['nom_validation_xprev']!='refusée'  || $xprev['nom_validation_xprev']!='validation n+1' ){ ?>
+             <?php if($xprev['nom_validation_xprev']!='refusée' ){ ?>
                     <td><a href="<?php echo $this->url(array("controller"=>"xprev","action"=>"validn1","tracking"=>$xprev['tracking']));?>" <button class="retour">validation</button></a></td>
                 </tr>
-                    <?php } } ?>
+                    <?php }
+                    
+                elseif ($xprev['nom_validation_xprev']!='validation N+1') { ?>
+                <td></td>
+             <?php   }} ?>
          <?php } 
          elseif(in_array($this->fonction, $this->fn2bis)) {?>
             <th>Tracking</th>
