@@ -1,0 +1,109 @@
+<div class="contenu">
+    <h2>Xprev</h2>
+    <h3>Validation Logistique  de la demande de prev: <?php echo $this->infoPrev['tracking'] ;?> </h3>
+    <fieldset class="field">
+        <legend>Informations générales</legend>
+        <table id="information3">
+            <tr> 
+                <td>date de création</td>
+                <td><?php echo $this->infoPrev['date_create'] ;?></td>
+                <td>niveau de risque</td>
+                <td><?php echo $this->infoPrev['nom_risque_xprev'] ;?></td>
+                <td>code client</td>
+                <td><?php echo $this->infoPrev['code_user_client_xprev'] ;?></td>
+            </tr>
+            <tr> 
+                <td>statut</td>
+                <td><?php echo $this->infoPrev['nom_validation_xprev'] ;?></td>
+                <td>type de demande</td>
+                <td><?php echo $this->infoPrev['nom_type_demande_xprev'] ;?></td>
+                <td>nom client</td>
+                <td><?php echo $this->infoPrev['nom_client_xprev'] ;?></td>
+            </tr>
+            <tr> 
+                <td>émetteur prévision</td>
+                <td><?php echo $this->infoPrev['nom_user'] ;?></td>
+                <td>date de début de prévision</td>
+                <td><?php echo $this->infoPrev['date_debut'] ;?></td>
+                <td>code user</td>
+                <td><?php echo $this->infoPrev['code_client_users_xprev'] ;?></td>
+            </tr>
+            <tr> 
+                <td>commercial</td>
+                <td><?php echo $this->infoPrev['nom_commercial'] ;?></td>
+                <td></td>
+                <td></td>
+                <td>nom user</td>
+                <td><?php echo $this->infoPrev['nom_client_user_xprev'] ;?></td>
+            </tr>
+        </table>
+        
+        <p>motif  de la demande :<?php echo $this->infoPrev['justification'] ;?></p>
+        
+        <p class="decale">fichier joint :<?php foreach ($this->infoFichier as $fichier){ ?> <a class="fichier_joint" href=" <?php echo $fichier['chemin_fichier_xprev']; ?>" target="_blank"><?php echo $fichier['nom_fichier_xprev']; ?></a><br><?php  }?></p>
+    </fieldset>
+    <fieldset class="field">
+        <legend>Informations article</legend>
+        <table class="enum">
+            <thead>
+                <tr>
+                    <th>référence</th>
+                    <th>code article</th>
+                     <?php if($this->infoUser['niveau']=='niveau4'){ ;?>
+                    <th>prix de revient</th>
+                    <th>shikomi</th>
+                    <?php }?>
+                    <th>m1</th>
+                    <th>m2</th>
+                    <th>m3</th>
+                    <th>m4</th>
+                    <th>m5</th>
+                    <th>m6</th>
+                    <th>m7</th>
+                    <th>m8</th>
+                    <th>m9</th>
+                    <th>m10</th>
+                    <th>m11</th>
+                    <th>m12</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($this->infoArticle as $article){ ?>
+                <tr>
+                    <td><?php echo $article['reference_article'] ;?></td>
+                    <td><?php echo $article['code_article'] ;?></td>
+                    <?php if($this->infoUser['niveau']=='niveau4'){ ;?>
+                    <td></td>
+                    <td></td>
+                    <?php }?>
+                    <td><?php echo $article['m1'] ;?></td>
+                    <td><?php echo $article['m2'] ;?></td>
+                    <td><?php echo $article['m3'] ;?></td>
+                    <td><?php echo $article['m4'] ;?></td>
+                    <td><?php echo $article['m5'] ;?></td>
+                    <td><?php echo $article['m6'] ;?></td>
+                    <td><?php echo $article['m7'] ;?></td>
+                    <td><?php echo $article['m8'] ;?></td>
+                    <td><?php echo $article['m9'] ;?></td>
+                    <td><?php echo $article['m10'] ;?></td>
+                    <td><?php echo $article['m11'] ;?></td>
+                    <td><?php echo $article['m12'] ;?></td>
+                </tr>
+                <?php  }?>
+            </tbody>
+        </table>
+    </fieldset>
+    <form action="#" method="post">
+        
+        <fieldset class="field">
+            <legend>validation</legend>
+            <input type="radio" name="validlog" value="1" required>validation <br>
+            <input type="radio" name="validlog" value="0">refus <br>
+            <p class="obligatoire">motif  de la demande :</p>
+            <textarea required name="motif_validation" cols="120" rows="7" value=""></textarea>
+            <div class="soumission">
+                <input class="submit2" type="submit" value="valider la demande de prev">
+            </div>
+        </fieldset>
+    </form>
+</div>

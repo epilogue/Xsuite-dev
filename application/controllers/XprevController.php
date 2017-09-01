@@ -467,7 +467,98 @@ class XprevController extends Zend_Controller_Action
     }
    
     public function validlogAction(){
-        
+        $user = $this->_auth->getStorage()->read();
+        /*information concernant la personne connectée*/
+        $User = new Application_Model_DbTable_Users();
+        $infoUser = $User->getUser($user->id_user);
+        $tracking = $this->getRequest()->getParam('tracking', null);
+        var_dump($tracking);
+        $Prev = new Application_Model_DbTable_DemandeXprev();
+        $infoPrev = $Prev->getprev($tracking);
+        $fichier = new Application_Model_DbTable_FichierXprev();
+        $infoFichier = $fichier->getfichier($tracking);
+        $ArticlePrev = new Application_Model_DbTable_DemandeArticleXprev();
+        $infoArticle = $ArticlePrev->getarticleprev($tracking);
+        echo '<pre>',  var_export($infoUser),'</pre>';
+        $this->view->infoPrev = $infoPrev[0];
+        $this->view->infoArticle = $infoArticle;
+        $this->view->infoFichier = $infoFichier;
+        $this->view->infoUser = $infoUser;
+        if($this->getRequest()->isPost()){
+            $formData =  $this->getRequest()->getPost();
+            echo '<pre>',  var_export($formData),'</pre>'; 
+            /*mettre à jour la demande xprev 
+             * au niveau du nom de la validation
+             * commentaire validation
+             * l'etat de la validation accepté/refusé
+             * shikomi ou pas 
+             * prix de revient
+             */
+            $emailVars = Zend_Registry::get('emailVars');
+                 /* creation des parametre du mail*/
+                 $params=array();
+            /*envoi du mail à la log*/
+            if($formData['validlog']=='1'){
+                echo 'plop'; 
+                $statut=1;
+                $validation =3;
+                $justification =$formData['motif_validation'];
+                var_dump($justification);
+                
+                $upn1 = $Prev->uplogxprev($statut,$validation,$justification,$tracking);
+                 //$params['destinataireMail']="dop@smc-france.fr";
+                 $params['destinataireMail']="mhuby@smc-france.fr";
+
+                 $params['url'] = "http://{$_SERVER['SERVER_NAME']}/xprev/validdop/tracking/{$tracking}";
+                 $params['corpsMail']="Bonjour,\n"
+                                    . "\n"
+                                    . "Vous avez une nouvelle demande Xprev({$tracking}) à valider.\n"
+                                    . "Veuillez vous rendre à l'adresse url : \n"
+                                    . "%s"
+                                    . "\n\n"
+                                    . "Cordialement,\n"
+                                    . "\n"
+                                    . "--\n"
+                                    . "Xsuite";
+                $params['sujet']="validation Xprev $tracking ";
+                  //echo '<pre>',  var_export($params),'</pre>';
+                $this->sendEmail($params);
+                $redirector = $this->_helper->getHelper('Redirector');
+                $flashMessenger = $this->_helper->getHelper('FlashMessenger');
+                $message = "la demande de prévision a bien été prise en compte et envoyée à DOP.";
+                $flashMessenger->addMessage($message);
+                $redirector->gotoSimple('index', 'xprev'); 
+            }else{
+                /*on va chercher le mail du createur de la demande */
+                $statut=2;
+                $validation =5;
+                $justification = $formData['motif_validation'];
+                $upn1 = $Prev->uplogxprev($statut,$validation,$justification,$tracking);
+                 //$params['destinataireMail']="";
+                 $params['destinataireMail']="mhuby@smc-france.fr";
+
+                 $params['url'] = "http://{$_SERVER['SERVER_NAME']}/xprev/consult/tracking/{$tracking}";
+                 $params['corpsMail']="Bonjour,\n"
+                                    . "\n"
+                                    . "Votre demande Xprev({$tracking})a été refusée.\n"
+                                    . "Veuillez vous rendre à l'adresse url : \n"
+                                    . "%s"
+                                    . "\n\n"
+                                    . "pour la consulter."
+                                    . "Cordialement,\n"
+                                    . "\n"
+                                    . "--\n"
+                                    . "Xsuite";
+                $params['sujet']="refus Xprev $tracking ";
+                  //echo '<pre>',  var_export($params),'</pre>';
+                $this->sendEmail($params);
+                $redirector = $this->_helper->getHelper('Redirector');
+                $flashMessenger = $this->_helper->getHelper('FlashMessenger');
+                $message = "la demande de prévision a bien été refusée.";
+                $flashMessenger->addMessage($message);
+                $redirector->gotoSimple('index', 'xprev');
+            }
+        }
     }
 }
 
