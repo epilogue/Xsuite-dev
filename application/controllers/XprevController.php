@@ -118,11 +118,11 @@ class XprevController extends Zend_Controller_Action
         if($infoUser['id_fonction'] =='2'){
             $listeXprev= $xprev->getuserxprev($user->id_user);
             $listeN1Xprev= null;
-        }else if($infoUser['id_fonction'] =='3'){
+        }elseif($infoUser['id_fonction'] =='3'){
              $listeN1Xprev= $xprev->getusern1xprev($user->id_holon);
              $listeXprev= $xprev->getuserxprev($user->id_user);
         }
-        else if($infoUser['id_fonction'] =='10'){
+        elseif($infoUser['id_fonction'] =='10'){
             /* recherche sur les 2 premiers caratères du holon*/
             $nom_holon = $infoHolon['nom_holon'];
             $holon= substr($nom_holon,0,2);
@@ -130,7 +130,7 @@ class XprevController extends Zend_Controller_Action
             $listeRegXprev= $xprev->getuserregxprev($holon);
             $listeN1Xprev= null;
             $listeXprev= null;
-        } else if($infoUser['id_fonction']=='23' || $infoUser['id_fonction']=='39' ||$infoUser['id_fonction']=='32' || $infoUser['id_fonction']=='50'){
+        } elseif($infoUser['id_fonction']=='23' || $infoUser['id_fonction']=='39' ||$infoUser['id_fonction']=='32' || $infoUser['id_fonction']=='50'){
             $listeAllXprev= $xprev->getallxprev();
             $listeRegXprev= null;
             $listeN1Xprev= null;
@@ -308,7 +308,7 @@ class XprevController extends Zend_Controller_Action
                     'm12'=>$refart['m12'],
                     'valeur_totale'=>null
                 );
-              //echo '<pre>',  var_export($data2),'</pre>';
+              //echo '<pre>',  var_export($data2),'</pre>'; exit();
               $xprevarticle = new Application_Model_DbTable_DemandeArticleXprev();
               $newarticle = $xprevarticle->createDemandeArticle($data2);
              }
