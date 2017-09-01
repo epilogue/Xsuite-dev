@@ -403,7 +403,7 @@ class XprevController extends Zend_Controller_Action
                  /* creation des parametre du mail*/
                  $params=array();
             /*envoi du mail à la log*/
-            if($formData['validn1']=='1'){
+            if($formData['validn1']==1){
                 $statut=1;
                 $validation =3;
                 $justification =$formData['motif_validation'];
