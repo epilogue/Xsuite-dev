@@ -429,7 +429,7 @@ class XprevController extends Zend_Controller_Action
             }else{
                 /*on va chercher le mail du createur de la demande */
                 $statut=2;
-                $validation =3;
+                $validation =5;
                 $justification = $formdata['motif_validation'];
                 $upn1 = $Prev->upn1xprev($statut,$validation,$justification,$tracking);
                  //$params['destinataireMail']="";
