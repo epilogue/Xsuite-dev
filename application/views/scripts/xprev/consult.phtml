@@ -39,8 +39,18 @@
         </table>
         
         <p>motif  de la demande :<?php echo $this->infoPrev['justification'] ;?></p>
+        <?php if( $this->infoPrev['justification_n1']!= null) { ?>
+        <p>validation n+1 :<?php echo $this->infoPrev['justification_n1'] ;?></p>
+        <?php } ;?>
         
+        <?php if( $this->infoPrev['justification_log']!= null) { ?>
+        <p>validation logistique :<?php echo $this->infoPrev['justification_log'] ;?></p>
+        <?php } ;?>
+        <?php if( $this->infoPrev['justification_dop']!= null) { ?>
+        <p>validation directeur des opérations :<?php echo $this->infoPrev['justification_dop'] ;?></p>
+        <?php } ;?>
         <p class="decale">fichier joint :<?php foreach ($this->infoFichier as $fichier){ ?> <a href=" <?php echo $fichier['chemin_fichier_xprev']; ?>" target="_blank"><?php echo $fichier['nom_fichier_xprev']; ?></a><br><?php  }?></p>
+        
     </fieldset>
     <fieldset class="field">
         <legend>Informations article</legend>
