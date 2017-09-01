@@ -142,6 +142,7 @@ class XprevController extends Zend_Controller_Action
         echo '<pre>',  var_export($listeXprev),'</pre>';
         echo '<pre>',  var_export($listeRegXprev),'</pre>';
         $this->view->fonction = $user->id_fonction;
+        $this->view->nom = $user->nom;
         $this->view->listexprev = $listeXprev;
         $this->view->listeAllxprev = $listeAllXprev;
         $this->view->listeN1xprev = $listeN1Xprev;
