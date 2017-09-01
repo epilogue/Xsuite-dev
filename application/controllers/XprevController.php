@@ -399,10 +399,10 @@ class XprevController extends Zend_Controller_Action
                  /* creation des parametre du mail*/
                  $params=array();
             /*envoi du mail à la log*/
-            if($formdata['validn1']=='1'){
+            if($formData['validn1']=='1'){
                 $statut=1;
                 $validation = 3;
-                $justification = $formdata['motif_validation'];
+                $justification =$formData['motif_validation'];
                 $upn1 = $Prev->upn1xprev($statut,$validation,$justification);
                  //$params['destinataireMail']="logistique@smc-france.fr";
                  $params['destinataireMail']="mhuby@smc-france.fr";
@@ -430,7 +430,7 @@ class XprevController extends Zend_Controller_Action
                 /*on va chercher le mail du createur de la demande */
                 $statut=2;
                 $validation =5;
-                $justification = $formdata['motif_validation'];
+                $justification = $formData['motif_validation'];
                 $upn1 = $Prev->upn1xprev($statut,$validation,$justification,$tracking);
                  //$params['destinataireMail']="";
                  $params['destinataireMail']="mhuby@smc-france.fr";
@@ -447,7 +447,7 @@ class XprevController extends Zend_Controller_Action
                                     . "\n"
                                     . "--\n"
                                     . "Xsuite";
-                $params['sujet']="refus Xprev $trackingnumber ";
+                $params['sujet']="refus Xprev $tracking ";
                   //echo '<pre>',  var_export($params),'</pre>';
                 $this->sendEmail($params);
                 $redirector = $this->_helper->getHelper('Redirector');
