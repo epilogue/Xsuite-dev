@@ -393,7 +393,7 @@ class XprevController extends Zend_Controller_Action
         $this->view->infoUser = $infoUser;
         if($this->getRequest()->isPost()){
             $formData =  $this->getRequest()->getPost();
-            echo '<pre>',  var_export($formData),'</pre>'; exit();
+            echo '<pre>',  var_export($formData),'</pre>'; 
             /*mettre à jour la demande xprev 
              * au niveau du nom de la validation
              * commentaire validation
@@ -403,7 +403,8 @@ class XprevController extends Zend_Controller_Action
                  /* creation des parametre du mail*/
                  $params=array();
             /*envoi du mail à la log*/
-            if($formData['validn1']==1){
+            if($formData['validn1']=='1'){
+                echo 'plop'; exit();
                 $statut=1;
                 $validation =3;
                 $justification =$formData['motif_validation'];
