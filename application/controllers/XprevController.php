@@ -183,7 +183,7 @@ class XprevController extends Zend_Controller_Action
         
         if($this->getRequest()->isPost()){
             $formData =  $this->getRequest()->getPost();
-            echo '<pre>',  var_export($formData),'</pre>'; exit();
+            echo '<pre>',  var_export($formData),'</pre>'; 
             
             /*creation du tracking number */
             $newprev= new Application_Model_DbTable_DemandeXprev();
