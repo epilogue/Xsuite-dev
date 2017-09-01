@@ -74,7 +74,7 @@ $this->headTitle($this->title);
                 </tr>
                  <?php } ?>
          <?php } 
-                elseif(in_array($this->fonction, $this->fn3)) {?>
+                elseif(in_array($this->fonction, $this->fn3)&& $this->fonction=='10') {?>
             <th>Tracking</th>
             <th>Date de création</th>
             <th>émetteur</th>
@@ -83,7 +83,7 @@ $this->headTitle($this->title);
              <th>Statut</th>
              <th>consultation</th>
              <th>validation</th>
-             <?php foreach($this->listeAllxprev as $xprev){ ?>
+             <?php foreach($this->listeRegxprev as $xprev){ ?>
                 <tr>
                     <td><?php echo $xprev['tracking'] ?></td>
                     <td><?php echo $xprev['date_create'] ?></td>
