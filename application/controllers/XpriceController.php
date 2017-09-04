@@ -301,7 +301,7 @@ if($user->id_fonction == 3){
                 $agreement1 = "I000001";
                 $agreement2 = "I000002";
                 $agreement3 = "I000003";
-                $query3 = "select * from EIT.MVXCDTA.MITFAC MITFAC where MITFAC.M9CONO = '$mmcono' AND MITFAC.M9ITNO = '{$itnoarticle['OBITNO']}' ";
+                $query3 = "select * from EIT.MVXCDTA.MITFAC MITFAC where MITFAC.M9CONO = '$mmcono' AND MITFAC.M9ITNO = '{$itnoarticle['OBITNO']}' and MITFAC.M9FACI='I01' ";
                 $resultats3 = odbc_Exec($this->odbc_conn2, $query3);
                 $prixciffob[] = odbc_fetch_object($resultats3);
 //                echo '<pre>',(var_export($prixciffob)),'</pre>';

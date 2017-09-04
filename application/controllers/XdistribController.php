@@ -398,7 +398,7 @@ class XdistribController extends Zend_Controller_Action
             $agreement2 = "I000002";
             $agreement3 = "I000003";
             foreach($affiche_offre1 as $demande){
-            $query5 = "select * from EIT.MVXCDTA.MITFAC MITFAC where MITFAC.M9CONO = '$mmcono'  AND MITFAC.M9ITNO = '{$demande['OBITNO']}' ";
+            $query5 = "select * from EIT.MVXCDTA.MITFAC MITFAC where MITFAC.M9CONO = '$mmcono'  AND MITFAC.M9ITNO = '{$demande['OBITNO']}' and MITFAC.M9FACI='I01'";
             $resultats5 = odbc_Exec($this->odbc_conn2, $query5);
             $prixciffob[] = odbc_fetch_object($resultats5);
             $acquis= "select MITBAL.MBITNO, MITBAL.MBPUIT from EIT.MVXCDTA.MITBAL MITBAL where MITBAL.MBITNO ='{$demande['OBITNO']}'";
