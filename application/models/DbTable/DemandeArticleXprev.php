@@ -24,11 +24,12 @@ class Application_Model_DbTable_DemandeArticleXprev extends Zend_Db_Table_Abstra
         $sql = "update demande_article_xprev set prix_revient={$prix_revient} where code_article={$code_article} and tracking like '{$tracking}'";
        // var_dump($sql); exit();
         $res = $this->getAdapter()->query($sql);
-        $rest=$res->fetchAll();
-        if (!$rest) {
+        $res = $this->getAdapter()->query($sql);
+        
+        if (!$res) {
             return null;
         } else {
-            return $rest;
+            return $res;
         }
     }
 }
