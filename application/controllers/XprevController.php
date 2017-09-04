@@ -307,7 +307,7 @@ class XprevController extends Zend_Controller_Action
              }
              foreach($prixrevient as $key=>$value1){
                  $totalarticle = $xprevarticle->sommemois($value1->M9ITNO, $trackingnumber);
-                 var_dump($totalarticle); exit();
+                 var_dump($totalarticle); 
                  $datauprevient = $xprevarticle->uprevient($trackingnumber,$value1->M9ITNO,$value1->M9UCOS);
                  $upvaleurtotale = $xprevarticle->upvaleurtotale($value1->M9ITNO, $trackingnumber,$totalarticle[0]['total']);
                  
