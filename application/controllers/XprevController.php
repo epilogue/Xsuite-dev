@@ -300,7 +300,7 @@ class XprevController extends Zend_Controller_Action
              }
              foreach($formData['refart'] as $refart){
                  $mmcono = "100";
-                 $query3 = "select * from EIT.MVXCDTA.MITFAC MITFAC where MITFAC.M9CONO = '$mmcono' AND MITFAC.M9ITNO = '{$refart['code_article']}' ";
+                 $query3 = "select * from EIT.MVXCDTA.MITFAC MITFAC where MITFAC.M9CONO = '$mmcono' AND MITFAC.M9ITNO = '{$refart['code_article']}' MITFAC.M9FACI ='I01'";
                  $resultats3 = odbc_Exec($this->odbc_conn2, $query3);
                  $prixrevient[] = odbc_fetch_object($resultats3);
                 echo '<pre>',(var_export($prixrevient)),'</pre>'; 
