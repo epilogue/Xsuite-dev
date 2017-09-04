@@ -306,7 +306,7 @@ class XprevController extends Zend_Controller_Action
                 echo '<pre>',(var_export($prixrevient)),'</pre>'; 
              }
              foreach($prixrevient as $key=>$value1){
-                 $datauprevient = $xprevarticle->uprevient($trackingnumber,$value1['M9ITNO'],$value1['M9UCOS']);
+                 $datauprevient = $xprevarticle->uprevient($trackingnumber,$value1->M9ITNO,$value1->M9UCOS);
              }
              if(isset($_FILES['fichierCreationXprev']['name'])){
                 if($_FILES['fichierCreationXprev']['size']<=2000000){
