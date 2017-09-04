@@ -20,4 +20,8 @@ class Application_Model_DbTable_DemandeArticleXprev extends Zend_Db_Table_Abstra
             return $rest;
         }
     }
+    public function uprevient($tracking,$code_article,$prix_revient){
+        $sql = "update demande_article_xprev set 'prix_revient'={$prix_revient} where 'code_article'={$code_article} and $trackinglike '{$tracking}'";
+        var_dump($sql); exit();
+    }
 }

@@ -303,7 +303,10 @@ class XprevController extends Zend_Controller_Action
                  $query3 = "select * from EIT.MVXCDTA.MITFAC MITFAC where MITFAC.M9CONO = '$mmcono' AND MITFAC.M9ITNO = '{$refart['code_article']}' ";
                  $resultats3 = odbc_Exec($this->odbc_conn2, $query3);
                  $prixrevient[] = odbc_fetch_object($resultats3);
-                echo '<pre>',(var_export($prixrevient)),'</pre>'; exit();
+                echo '<pre>',(var_export($prixrevient)),'</pre>'; 
+             }
+             foreach($prixrevient[] as $key=>$value1){
+                 $datauprevient = $xprevarticle->uprevient($trackingnumber,$value1['M9ITNO'],$value1['M9UCOS']);
              }
              if(isset($_FILES['fichierCreationXprev']['name'])){
                 if($_FILES['fichierCreationXprev']['size']<=2000000){
