@@ -305,7 +305,7 @@ class XprevController extends Zend_Controller_Action
                  $prixrevient[] = odbc_fetch_object($resultats3);
                 echo '<pre>',(var_export($prixrevient)),'</pre>'; 
              }
-             foreach($prixrevient[] as $key=>$value1){
+             foreach($prixrevient as $key=>$value1){
                  $datauprevient = $xprevarticle->uprevient($trackingnumber,$value1['M9ITNO'],$value1['M9UCOS']);
              }
              if(isset($_FILES['fichierCreationXprev']['name'])){
