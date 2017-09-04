@@ -298,7 +298,13 @@ class XprevController extends Zend_Controller_Action
               $xprevarticle = new Application_Model_DbTable_DemandeArticleXprev();
               $newarticle = $xprevarticle->createDemandeArticle($data2);
              }
-             
+             foreach($formData['refart'] as $refart){
+                 $mmcono = "100";
+                 $query3 = "select * from EIT.MVXCDTA.MITFAC MITFAC where MITFAC.M9CONO = '$mmcono' AND MITFAC.M9ITNO = '{$refart['code_article']}' ";
+                 $resultats3 = odbc_Exec($this->odbc_conn2, $query3);
+                 $prixrevient[] = odbc_fetch_object($resultats3);
+                echo '<pre>',(var_export($prixrevient)),'</pre>'; exit();
+             }
              if(isset($_FILES['fichierCreationXprev']['name'])){
                 if($_FILES['fichierCreationXprev']['size']<=2000000){
                     $extension_upload1 =strrchr($_FILES['fichierCreationXprev']['name'],'.');

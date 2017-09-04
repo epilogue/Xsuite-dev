@@ -313,7 +313,7 @@ if($user->id_fonction == 3){
              * à partir du code client de la table ooline on va chercher dans la table ocusma
              * les informations concernant le client pour pouvoir les afficher dans la vue phtml
              */
-             $query1ter = "select * from EIT.MVXCDTA.OOHEAD OOHEAD where OOHEAD.OACUNO = '{$resultat[0]['OBDLSP']}'";
+            $query1ter = "select * from EIT.MVXCDTA.OOHEAD OOHEAD where OOHEAD.OACUNO = '{$resultat[0]['OBDLSP']}'";
             $numclientwp = odbc_fetch_array(odbc_exec($this->odbc_conn2, $query1ter));
             $numwpclient2 = $resultat[0]['OBDLSP'];
             $this->view->numclientwp =  $numwpclient2 ;/*-$numclientwp['OACHL1'];*/
