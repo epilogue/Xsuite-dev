@@ -43,4 +43,9 @@ class Application_Model_DbTable_DemandeArticleXprev extends Zend_Db_Table_Abstra
             return $rest;
         }
     }
+    public function upvaleurtotale($code_article,$tracking,$total){
+        $sql ="update demande_article_xprev set valeur_totale = prix_revient*$total where code_article ={$code_article} and tracking like '$tracking'";
+        var_dump($sql);
+                exit();
+    }
 }
