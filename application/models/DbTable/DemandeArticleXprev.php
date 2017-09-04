@@ -34,7 +34,7 @@ class Application_Model_DbTable_DemandeArticleXprev extends Zend_Db_Table_Abstra
     }
     
     public function sommemois($code_article,$tracking){
-        $sql = "select sum(m1+m2+m3+m4+m5+m6+m7+m8+m9+m10+m11+m12) as total from demande_article_xprev where code_article ={$code_article} and tracking like {$tracking}";
+        $sql = "select sum(m1+m2+m3+m4+m5+m6+m7+m8+m9+m10+m11+m12) as total from demande_article_xprev where code_article ={$code_article} and tracking like '{$tracking}'";
         $res = $this->getAdapter()->query($sql);
         $rest=$res->fetchAll();
         if (!$rest) {
