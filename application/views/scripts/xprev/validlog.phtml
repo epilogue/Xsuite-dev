@@ -43,11 +43,12 @@
         <p>validation n+1 :<?php echo $this->infoPrev['justification_n1'] ;?></p>
         <?php } ;?>
         <p class="decale">fichier joint :<?php foreach ($this->infoFichier as $fichier){ ?> <a class="fichier_joint" href=" <?php echo $fichier['chemin_fichier_xprev']; ?>" target="_blank"><?php echo $fichier['nom_fichier_xprev']; ?></a><br><?php  }?></p>
+        
     </fieldset>
     <fieldset class="field">
         <legend>Informations article</legend>
         
-    <form action="#" method="post">
+    <form action="#" enctype="multipart/form-data" method="post">
         <table class="enum">
             <thead>
                 <tr>
@@ -81,7 +82,7 @@
                     <td><?php echo $article['code_article'] ;?></td>
                     <?php if($this->infoUser['niveau']=='niveau4'){ ;?>
                     <td><input name ="prix_revient" type="text" value="<?php echo $article['prix_revient'] ;?>"></td>
-                    <td><input type="checkbox" value="1"name="shikomi"></td>
+                    <td><input type="checkbox" value="1" name="shikomi"></td>
                     <?php }?>
                     <td><?php echo $article['m1'] ;?></td>
                     <td><?php echo $article['m2'] ;?></td>
@@ -110,6 +111,8 @@
             <input type="radio" name="validlog" value="0">refus <br>
             <p class="obligatoire">motif  de la demande :</p>
             <textarea required name="motif_validation" cols="120" rows="7" value=""></textarea>
+            
+            <p>Ajout de document : <input type="file" value="" name="fichierLogXprev"></p>
             <div class="soumission">
                 <input class="submit2" type="submit" value="valider la demande de prev">
             </div>
