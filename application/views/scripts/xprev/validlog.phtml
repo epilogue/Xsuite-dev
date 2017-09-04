@@ -39,7 +39,9 @@
         </table>
         
         <p>motif  de la demande :<?php echo $this->infoPrev['justification'] ;?></p>
-        
+        <?php if( $this->infoPrev['justification_n1']!= null) { ?>
+        <p>validation n+1 :<?php echo $this->infoPrev['justification_n1'] ;?></p>
+        <?php } ;?>
         <p class="decale">fichier joint :<?php foreach ($this->infoFichier as $fichier){ ?> <a class="fichier_joint" href=" <?php echo $fichier['chemin_fichier_xprev']; ?>" target="_blank"><?php echo $fichier['nom_fichier_xprev']; ?></a><br><?php  }?></p>
     </fieldset>
     <fieldset class="field">
@@ -65,6 +67,9 @@
                     <th>m10</th>
                     <th>m11</th>
                     <th>m12</th>
+                    <?php if($this->infoUser['niveau']=='niveau4'){ ;?>
+                    <th>valeur totale</th>
+                    <?php }?>
                 </tr>
             </thead>
             <tbody>
@@ -73,7 +78,7 @@
                     <td><?php echo $article['reference_article'] ;?></td>
                     <td><?php echo $article['code_article'] ;?></td>
                     <?php if($this->infoUser['niveau']=='niveau4'){ ;?>
-                    <td></td>
+                    <td><?php echo $article['prix_revient'] ;?></td>
                     <td></td>
                     <?php }?>
                     <td><?php echo $article['m1'] ;?></td>
@@ -88,6 +93,9 @@
                     <td><?php echo $article['m10'] ;?></td>
                     <td><?php echo $article['m11'] ;?></td>
                     <td><?php echo $article['m12'] ;?></td>
+                    <?php if($this->infoUser['niveau']=='niveau4'){ ;?>
+                    <td><?php echo $article['valeur_totale'] ;?></td>
+                    <?php }?>
                 </tr>
                 <?php  }?>
             </tbody>
