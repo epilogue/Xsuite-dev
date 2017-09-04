@@ -2178,7 +2178,7 @@ elseif($mailServiceClients[0]['mail_service_client']=='' || $mailServiceClients[
             $agreement2 = "I000002";
             $agreement3 = "I000003";
 //var_dump($value->code_article);
-            $query = " select * from EIT.MVXCDTA.MITFAC MITFAC where MITFAC.M9CONO = '$mmcono' AND MITFAC.M9ITNO =  '{$value['code_article']}'";
+            $query = " select * from EIT.MVXCDTA.MITFAC MITFAC where MITFAC.M9CONO = '$mmcono' AND MITFAC.M9ITNO =  '{$value['code_article']}' and MITFAC.M9FACI='I01'";
 
             $infos_prixfobfr = odbc_fetch_array(odbc_exec($this->odbc_conn2, $query));
 //            if($infos_prixfobfr =""){
