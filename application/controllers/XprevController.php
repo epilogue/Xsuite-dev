@@ -120,7 +120,7 @@ class XprevController extends Zend_Controller_Action
         if($infoUser['id_fonction'] =='2'){
             $listeXprev= $xprev->getuserxprev($user->id_user);
             $listeN1Xprev= null;
-        }elseif($infoUser['id_fonction'] =='3'){
+        }elseif($infoUser['id_fonction'] =='3' || $infoUser['id_fonction'] =='46' || $infoUser['id_fonction'] =='44' ||$infoUser['id_fonction'] =='43' ){
              $listeN1Xprev= $xprev->getusern1xprev($user->id_holon);
              $listeXprev= $xprev->getuserxprev($user->id_user);
         }
