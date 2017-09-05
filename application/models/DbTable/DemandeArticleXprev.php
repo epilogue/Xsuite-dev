@@ -55,4 +55,16 @@ class Application_Model_DbTable_DemandeArticleXprev extends Zend_Db_Table_Abstra
             return $res;
         }
     }
+    public function upvaleurtotale1($code_article,$tracking,$total){
+        $sql ="update demande_article_xprev set valeur_totale = $total where code_article ={$code_article} and tracking like '$tracking'";
+        //var_dump($sql);
+                $res = $this->getAdapter()->query($sql);
+       
+        
+        if (!$res) {
+            return null;
+        } else {
+            return $res;
+        }
+    }
 }

@@ -520,7 +520,7 @@ class XprevController extends Zend_Controller_Action
                 $uprevient1= $ArticlePrev->uprevient($tracking, $keys, $value);
             }
             foreach($valeur as $keys=>$value){
-                $valeur1 = $ArticlePrev->upvaleurtotale($keys, $tracking, $value);
+                $valeur1 = $ArticlePrev->upvaleurtotale1($keys, $tracking, $value);
             }
             exit();
             if(isset($_FILES['fichierLogXprev']['name'])){
