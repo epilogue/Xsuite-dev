@@ -94,6 +94,9 @@
                     <td><?php echo $article['m10'] ;?></td>
                     <td><?php echo $article['m11'] ;?></td>
                     <td><?php echo $article['m12'] ;?></td>
+                    <?php if($this->infoUser['niveau']=='niveau4'){ ;?>
+                    <td><?php echo $article['valeur_totale'] ;?> </td>
+                    <?php }?>
                 </tr>
                 <?php  }?>
             </tbody>
