@@ -505,9 +505,10 @@ class XprevController extends Zend_Controller_Action
             
             $revient = array_combine($formData['code_article'], $formData['prix_revient']);
             $valeur = array_combine($formData['code_article'], $formData['valeur_totale']);
+            $shikomi = array_combine($formData['code_article'], $formData['shikomi']);
             echo '<pre>',  var_export($revient),'</pre>';
             echo '<pre>',  var_export($valeur),'</pre>';
-                    
+                  
             /*mettre à jour la demande xprev 
              * au niveau du nom de la validation
              * commentaire validation
@@ -522,6 +523,9 @@ class XprevController extends Zend_Controller_Action
             foreach($valeur as $keys=>$value){
                 $valeur1 = $ArticlePrev->upvaleurtotale1($keys, $tracking, $value);
             }
+           foreach($shikomi as $key=>$value){
+                  $shikomi1 = $ArticlePrev->upshikomi($value, $key, $tracking);
+              }  
             exit();
             if(isset($_FILES['fichierLogXprev']['name'])){
                 if($_FILES['fichierLogXprev']['size']<=2000000){
