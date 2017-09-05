@@ -506,7 +506,27 @@ class XprevController extends Zend_Controller_Action
              * l'etat de la validation accepté/refusé
              * shikomi ou pas 
              * prix de revient
+             * insertion pour les fichiers
              */
+            if(isset($_FILES['fichierLogXprev']['name'])){
+                if($_FILES['fichierLogXprev']['size']<=2000000){
+                    $extension_upload1 =strrchr($_FILES['fichierLogXprev']['name'],'.');
+                    $name = explode('.',$_FILES['fichierLogXprev']['name']);
+                    $file = $name[0].$trackingnumber.$extension_upload1;
+                    $uploadfile = $uploaddir.$file;
+                    if(move_uploaded_file($_FILES['fichierLogXprev']['tmp_name'], $uploadfile)){
+                        echo "tout ok";
+                        $datafichier = array(
+                            'tracking_xprev'=>$trackingnumber,
+                            'nom_fichier_xprev'=>$file,
+                            'chemin_fichier_xprev'=>"/fichiers/Xprev/Log/".$file
+                        );
+                        $newfichier = $fichier->createFichierXprev($datafichier);
+                    }else{
+                        echo "tout foutu";
+                    }
+                }
+            }
             $emailVars = Zend_Registry::get('emailVars');
                  /* creation des parametre du mail*/
                  $params=array();
