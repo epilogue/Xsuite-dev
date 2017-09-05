@@ -79,8 +79,8 @@
                     <td><?php echo $article['reference_article'] ;?></td>
                     <td><?php echo $article['code_article'] ;?></td>
                     <?php if($this->infoUser['niveau']=='niveau4'){ ;?>
-                    <td></td>
-                    <td></td>
+                    <td><?php echo $article['prix_revient'] ;?></td>
+                    <td><?php if($article['shikomi']==1){?><input type="checkbox" checked="checked"><?php } ?></td>
                     <?php }?>
                     <td><?php echo $article['m1'] ;?></td>
                     <td><?php echo $article['m2'] ;?></td>
