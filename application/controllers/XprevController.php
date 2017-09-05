@@ -274,6 +274,7 @@ class XprevController extends Zend_Controller_Action
              /* insertion en bdd dans la table demande_article_xprev*/
              
              foreach($formData['refart'] as $refart){
+                 $total_article_mois =($refart['m1']+$refart['m2']+$refart['m3']+$refart['m4']+$refart['m5']+$refart['m6']+$refart['m7']+$refart['m8']+$refart['m9']+$refart['m10']+$refart['m11']+$refart['m12']);
              $data2 = array(
                  'tracking'=>$trackingnumber,
                  'code_article'=>$refart['code_article'],
@@ -292,6 +293,7 @@ class XprevController extends Zend_Controller_Action
                     'm10'=>$refart['m10'],
                     'm11'=>$refart['m11'],
                     'm12'=>$refart['m12'],
+                    'total_article_mois'=>$total_article_mois,
                     'valeur_totale'=>null
                 );
               //echo '<pre>',  var_export($data2),'</pre>'; exit();
@@ -309,7 +311,7 @@ class XprevController extends Zend_Controller_Action
                  $totalarticle = $xprevarticle->sommemois($value1->M9ITNO, $trackingnumber);
                  var_dump($totalarticle); 
                  $datauprevient = $xprevarticle->uprevient($trackingnumber,$value1->M9ITNO,$value1->M9UCOS);
-                 $upvaleurtotale = $xprevarticle->upvaleurtotale($value1->M9ITNO, $trackingnumber,$totalarticle[0]['total']);
+                 $upvaleurtotale =$xprevarticle->upvaleurtotale($value1->M9ITNO, $trackingnumber,$totalarticle[0]['total_article_mois']);
                  
              }
              if(isset($_FILES['fichierCreationXprev']['name'])){

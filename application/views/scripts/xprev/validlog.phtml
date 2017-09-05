@@ -97,7 +97,7 @@
                     <td><?php echo $article['m11'] ;?></td>
                     <td><?php echo $article['m12'] ;?></td>
                     <?php if($this->infoUser['niveau']=='niveau4'){ ;?>
-                    <td><input type="text" id="valeur_totale-<?php echo $k;?>" name="valeur_totale[]"><?php echo $article['valeur_totale'] ;?></td>
+                    <td><input type="text" id="valeur_totale-<?php echo $k;?>" name="valeur_totale[]" value="<?php echo $article['valeur_totale'] ;?>"> </td>
                     <?php }?>
                 </tr>
                 <?php  }?>
