@@ -80,7 +80,7 @@
                     <td><?php echo $article['code_article'] ;?></td>
                     <?php if($this->infoUser['niveau']=='niveau4'){ ;?>
                     <td><?php echo $article['prix_revient'] ;?></td>
-                    <td><?php if($article['shikomi']==1){?><input type="checkbox" checked="checked"><?php }else { ?><input type="checkbox" readonly="readonly"></td>
+                    <td><?php if($article['shikomi']==1){?><input type="checkbox" checked="checked"><?php }else { ?><input type="checkbox" readonly disabled></td>
                     <?php } }?>
                     <td><?php echo $article['m1'] ;?></td>
                     <td><?php echo $article['m2'] ;?></td>
