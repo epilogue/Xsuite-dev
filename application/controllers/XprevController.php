@@ -507,7 +507,7 @@ class XprevController extends Zend_Controller_Action
             $valeur = array_combine($formData['code_article'], $formData['valeur_totale']);
             echo '<pre>',  var_export($revient),'</pre>';
             echo '<pre>',  var_export($valeur),'</pre>';
-                    exit();
+                    
             /*mettre à jour la demande xprev 
              * au niveau du nom de la validation
              * commentaire validation
@@ -522,6 +522,7 @@ class XprevController extends Zend_Controller_Action
             foreach($valeur as $keys=>$value){
                 $valeur1 = $ArticlePrev->upvaleurtotale($keys, $tracking, $value);
             }
+            exit();
             if(isset($_FILES['fichierLogXprev']['name'])){
                 if($_FILES['fichierLogXprev']['size']<=2000000){
                     $extension_upload1 =strrchr($_FILES['fichierLogXprev']['name'],'.');
