@@ -407,6 +407,7 @@ class XprevController extends Zend_Controller_Action
             }
             
         echo '<pre>',var_export($tab),'</pre>';
+        $this->view->infoMois = $tab;
         $this->view->infoPrev = $infoPrev[0];
         $this->view->infoArticle = $infoArticle;
         $this->view->infoFichier = $infoFichier;
