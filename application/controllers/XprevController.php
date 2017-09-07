@@ -375,13 +375,38 @@ class XprevController extends Zend_Controller_Action
         $infoUser = $User->getUser($user->id_user);
         $tracking = $this->getRequest()->getParam('tracking', null);
         //var_dump($tracking);
+        
         $Prev = new Application_Model_DbTable_DemandeXprev();
         $infoPrev = $Prev->getprev($tracking);
         $fichier = new Application_Model_DbTable_FichierXprev();
         $infoFichier = $fichier->getfichier($tracking);
         $ArticlePrev = new Application_Model_DbTable_DemandeArticleXprev();
         $infoArticle = $ArticlePrev->getarticleprev($tracking);
-        //echo '<pre>',  var_export($infoUser),'</pre>';
+        
+        /*creation de la date de fin */
+            $num_mois = $infoPrev[0]['date_debut'];
+            //var_dump($num_mois);
+            $month= intval(substr($num_mois,0,2)) ;
+            $year = intval(substr($num_mois,-2));
+            //var_dump($year);
+            //var_dump($month);
+            $tab = array();
+        //Boucle sur 12 mois
+            for($i = 1, $month, $year; $i < 13; $i++, $month++)
+            {
+                //Arrivé en Décembre, on remet le mois à Janvier pour parcourir les 12 mois et on incrémente l'année
+                if($month > 12)
+                {
+                    $month = 1;
+                    $year++;
+                }
+    //            var_dump($month);
+
+    //                var_dump($year) ;
+                $tab[]= array('month'=>$month, 'year'=>$year);
+            }
+            
+        echo '<pre>',var_export($tab),'</pre>';
         $this->view->infoPrev = $infoPrev[0];
         $this->view->infoArticle = $infoArticle;
         $this->view->infoFichier = $infoFichier;
