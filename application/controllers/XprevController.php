@@ -501,13 +501,13 @@ class XprevController extends Zend_Controller_Action
         $this->view->infoUser = $infoUser;
         if($this->getRequest()->isPost()){
             $formData =  $this->getRequest()->getPost();
-            echo '<pre>',  var_export($formData),'</pre>';
+           // echo '<pre>',  var_export($formData),'</pre>';
             
             $revient = array_combine($formData['code_article'], $formData['prix_revient']);
             $valeur = array_combine($formData['code_article'], $formData['valeur_totale']);
             $shikomi = array_combine($formData['code_article'], $formData['shikomi']);
-            echo '<pre>',  var_export($revient),'</pre>';
-            echo '<pre>',  var_export($valeur),'</pre>';
+           // echo '<pre>',  var_export($revient),'</pre>';
+            //echo '<pre>',  var_export($valeur),'</pre>';
                   
             /*mettre à jour la demande xprev 
              * au niveau du nom de la validation
@@ -549,7 +549,7 @@ class XprevController extends Zend_Controller_Action
             $emailVars = Zend_Registry::get('emailVars');
                  /* creation des parametre du mail*/
                  $params=array();
-            /*envoi du mail à la log*/
+            /*envoi du mail à dop*/
             if($formData['validlog']=='1'){
                 echo 'plop'; 
                 $statut=1;
@@ -677,7 +677,7 @@ class XprevController extends Zend_Controller_Action
                 $statut=2;
                 $validation =5;
                 $justification = $formData['motif_validation'];
-                $upn1 = $Prev->upn1xprev($statut,$validation,$justification,$tracking);
+                $upn1 = $Prev->updopxprev($statut,$validation,$justification,$tracking);
                  //$params['destinataireMail']="";
                  $params['destinataireMail']="mhuby@smc-france.fr";
 
