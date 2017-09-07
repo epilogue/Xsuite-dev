@@ -384,10 +384,10 @@ class XprevController extends Zend_Controller_Action
         $infoArticle = $ArticlePrev->getarticleprev($tracking);
         
         /*creation de la date de fin */
-            $num_mois = $infoPrev[0]['date_debut'];
+            $num_mois = intval( $infoPrev[0]['date_debut']);
             var_dump($num_mois);
             $month= intval(substr($num_mois,0,2)) ;
-            $year = intval(substr($num_mois,-4));
+            $year = substr($num_mois,0,4);
             var_dump($year);
             //var_dump($month);
             $tab = array();
