@@ -92,7 +92,7 @@
                 <?php  }?>
                 <tr>
                     <td colspan="15"></td>
-                    <td><?php echo $total=sum($article['total_article_mois']) ?></td>
+                    <td><?php echo $total=+$article['total_article_mois']; ?></td>
                 </tr>
             </tbody>
         </table>
