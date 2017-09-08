@@ -205,4 +205,16 @@ public function getAllcodeuser($code_client) {
             return $res;
         }
     }
+    
+    public function  upcommercial($id_commercial,$tracking){
+        $sql ="UPDATE `demande_xprev` SET `id_commercial`='{$id_commercial}' WHERE  `tracking`='{$tracking}'";
+//         var_dump($sql); exit();
+          $res = $this->getAdapter()->query($sql);
+        
+        if (!$res) {
+            return null;
+        } else {
+            return $res;
+        }
+    }
 }

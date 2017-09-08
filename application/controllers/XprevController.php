@@ -584,8 +584,11 @@ class XprevController extends Zend_Controller_Action
         $this->view->infoUser = $infoUser;
         if($this->getRequest()->isPost()){
             $formData =  $this->getRequest()->getPost();
-            echo '<pre>',  var_export($formData),'</pre>'; exit();
-            
+            echo '<pre>',  var_export($formData),'</pre>'; 
+            /*mis a jour de la demande de xprev  si le commercial change */
+            if($formData['nom_commercial']!=$infoPrev[0]['id_commercial']){
+                $modifcomm = $Prev->upcommercial($formData['nom_commercial'],$tracking);exit();
+            }
             $revient = array_combine($formData['code_article'], $formData['prix_revient']);
             $valeur = array_combine($formData['code_article'], $formData['valeur_totale']);
             $shikomi = array_combine($formData['code_article'], $formData['shikomi']);
