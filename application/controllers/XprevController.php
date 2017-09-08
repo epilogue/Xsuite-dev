@@ -584,7 +584,7 @@ class XprevController extends Zend_Controller_Action
         $this->view->infoUser = $infoUser;
         if($this->getRequest()->isPost()){
             $formData =  $this->getRequest()->getPost();
-           // echo '<pre>',  var_export($formData),'</pre>';
+            echo '<pre>',  var_export($formData),'</pre>'; exit();
             
             $revient = array_combine($formData['code_article'], $formData['prix_revient']);
             $valeur = array_combine($formData['code_article'], $formData['valeur_totale']);
