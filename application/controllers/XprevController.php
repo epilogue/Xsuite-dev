@@ -383,16 +383,15 @@ class XprevController extends Zend_Controller_Action
         $ArticlePrev = new Application_Model_DbTable_DemandeArticleXprev();
         $infoArticle = $ArticlePrev->getarticleprev($tracking);
         
-        /*creation de la date de fin */
+        /*creation du tableau de date  */
             $num_mois =  $infoPrev[0]['date_debut'];
-            var_dump($num_mois);
+           
             $date=explode('-',$num_mois);
-            var_dump($date[0]);
+            
             $month = intval($date[1]);
-            //$year1=  intval($date[0]);
+           
             $year = intval(substr($date[0],-2));
-            var_dump($year);
-            var_dump($month);
+            
             $tab = array();
         //Boucle sur 12 mois
             for($i = 1, $month, $year; $i < 13; $i++, $month++)
@@ -431,6 +430,32 @@ class XprevController extends Zend_Controller_Action
         $ArticlePrev = new Application_Model_DbTable_DemandeArticleXprev();
         $infoArticle = $ArticlePrev->getarticleprev($tracking);
         //echo '<pre>',  var_export($infoUser),'</pre>';
+         $num_mois =  $infoPrev[0]['date_debut'];
+           
+            $date=explode('-',$num_mois);
+            
+            $month = intval($date[1]);
+           
+            $year = intval(substr($date[0],-2));
+            
+            $tab = array();
+        //Boucle sur 12 mois
+            for($i = 1, $month, $year; $i < 13; $i++, $month++)
+            {
+                //Arrivé en Décembre, on remet le mois à Janvier pour parcourir les 12 mois et on incrémente l'année
+                if($month > 12)
+                {
+                    $month = 1;
+                    $year++;
+                }
+    //            var_dump($month);
+
+    //                var_dump($year) ;
+                $tab[]= array('month'=>$month, 'year'=>$year);
+            }
+            
+       // echo '<pre>',var_export($tab),'</pre>';
+        $this->view->infoMois = $tab;
         $this->view->infoPrev = $infoPrev[0];
         $this->view->infoArticle = $infoArticle;
         $this->view->infoFichier = $infoFichier;
@@ -524,6 +549,32 @@ class XprevController extends Zend_Controller_Action
         $ArticlePrev = new Application_Model_DbTable_DemandeArticleXprev();
         $infoArticle = $ArticlePrev->getarticleprev($tracking);
         echo '<pre>',  var_export($infoUser),'</pre>';
+         $num_mois =  $infoPrev[0]['date_debut'];
+           
+            $date=explode('-',$num_mois);
+            
+            $month = intval($date[1]);
+           
+            $year = intval(substr($date[0],-2));
+            
+            $tab = array();
+        //Boucle sur 12 mois
+            for($i = 1, $month, $year; $i < 13; $i++, $month++)
+            {
+                //Arrivé en Décembre, on remet le mois à Janvier pour parcourir les 12 mois et on incrémente l'année
+                if($month > 12)
+                {
+                    $month = 1;
+                    $year++;
+                }
+    //            var_dump($month);
+
+    //                var_dump($year) ;
+                $tab[]= array('month'=>$month, 'year'=>$year);
+            }
+            
+        echo '<pre>',var_export($tab),'</pre>';
+        $this->view->infoMois = $tab;
         $this->view->infoPrev = $infoPrev[0];
         $this->view->infoArticle = $infoArticle;
         $this->view->infoFichier = $infoFichier;
@@ -655,6 +706,32 @@ class XprevController extends Zend_Controller_Action
         $ArticlePrev = new Application_Model_DbTable_DemandeArticleXprev();
         $infoArticle = $ArticlePrev->getarticleprev($tracking);
         //echo '<pre>',  var_export($infoUser),'</pre>';
+         $num_mois =  $infoPrev[0]['date_debut'];
+           
+            $date=explode('-',$num_mois);
+            
+            $month = intval($date[1]);
+           
+            $year = intval(substr($date[0],-2));
+            
+            $tab = array();
+        //Boucle sur 12 mois
+            for($i = 1, $month, $year; $i < 13; $i++, $month++)
+            {
+                //Arrivé en Décembre, on remet le mois à Janvier pour parcourir les 12 mois et on incrémente l'année
+                if($month > 12)
+                {
+                    $month = 1;
+                    $year++;
+                }
+    //            var_dump($month);
+
+    //                var_dump($year) ;
+                $tab[]= array('month'=>$month, 'year'=>$year);
+            }
+            
+        //echo '<pre>',var_export($tab),'</pre>';
+        $this->view->infoMois = $tab;
         $this->view->infoPrev = $infoPrev[0];
         $this->view->infoArticle = $infoArticle;
         $this->view->infoFichier = $infoFichier;
@@ -701,7 +778,7 @@ class XprevController extends Zend_Controller_Action
                 $message = "la demande de prévision a bien été prise en compte et envoyée à la logistique.";
                 $flashMessenger->addMessage($message);
                 $redirector->gotoSimple('index', 'xprev'); 
-            }else{
+            }elseif($formData['validdop']=='0'){
                 /*on va chercher le mail du createur de la demande */
                 $statut=2;
                 $validation =5;
@@ -731,7 +808,13 @@ class XprevController extends Zend_Controller_Action
                 $flashMessenger->addMessage($message);
                 $redirector->gotoSimple('index', 'xprev');
             }
+            elseif ($formData['validdop']=='2') {
+            
+            }
         }
+    }
+    public function supplementinfoAction(){
+        
     }
     public function traitementAction(){
         

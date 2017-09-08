@@ -53,18 +53,8 @@
                     <th>prix de revient</th>
                     <th>shikomi</th>
                     <?php }?>
-                    <th>m1</th>
-                    <th>m2</th>
-                    <th>m3</th>
-                    <th>m4</th>
-                    <th>m5</th>
-                    <th>m6</th>
-                    <th>m7</th>
-                    <th>m8</th>
-                    <th>m9</th>
-                    <th>m10</th>
-                    <th>m11</th>
-                    <th>m12</th>
+                    <?php foreach ($this->infoMois as $mois){ ?>
+                    <th><?php echo $mois['month'] ."/".$mois['year']?></th><?php }?>
                 </tr>
             </thead>
             <tbody>

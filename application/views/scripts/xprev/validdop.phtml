@@ -59,18 +59,8 @@
                     <th>prix de revient</th>
                     <th>shikomi</th>
                     <?php }?>
-                    <th>m1</th>
-                    <th>m2</th>
-                    <th>m3</th>
-                    <th>m4</th>
-                    <th>m5</th>
-                    <th>m6</th>
-                    <th>m7</th>
-                    <th>m8</th>
-                    <th>m9</th>
-                    <th>m10</th>
-                    <th>m11</th>
-                    <th>m12</th>
+                    <?php foreach ($this->infoMois as $mois){ ?>
+                    <th><?php echo $mois['month'] ."/".$mois['year']?></th><?php }?>
                 </tr>
             </thead>
             <tbody>
@@ -108,6 +98,7 @@
             <legend>validation</legend>
             <input type="radio" name="validdop" value="1" required>validation <br>
             <input type="radio" name="validdop" value="0">refus <br>
+            <input type="radio" name="validdop" value="2">demande d'information <br>
             <p class="obligatoire">motif  de la demande :</p>
             <textarea required name="motif_validation" cols="120" rows="7" value=""></textarea>
             <div class="soumission">
