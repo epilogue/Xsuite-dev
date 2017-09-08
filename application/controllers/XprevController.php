@@ -539,6 +539,7 @@ class XprevController extends Zend_Controller_Action
         $user = $this->_auth->getStorage()->read();
         /*information concernant la personne connectée*/
         $User = new Application_Model_DbTable_Users();
+        $listeallcommercial = $User->rechercheUserCompletion();
         $infoUser = $User->getUser($user->id_user);
         $tracking = $this->getRequest()->getParam('tracking', null);
         var_dump($tracking);
@@ -574,6 +575,7 @@ class XprevController extends Zend_Controller_Action
             }
             
         echo '<pre>',var_export($tab),'</pre>';
+        $this->view->listeallcommercial=$listeallcommercial;
         $this->view->infoMois = $tab;
         $this->view->infoPrev = $infoPrev[0];
         $this->view->infoArticle = $infoArticle;
@@ -809,7 +811,34 @@ class XprevController extends Zend_Controller_Action
                 $redirector->gotoSimple('index', 'xprev');
             }
             elseif ($formData['validdop']=='2') {
-            
+             /*on va chercher le mail du createur de la demande */
+                $statut=2;
+                $validation =4;
+                $justification = $formData['motif_validation'];
+                $upn1 = $Prev->updopxprev($statut,$validation,$justification,$tracking);
+                 //$params['destinataireMail']="";
+                 $params['destinataireMail']="mhuby@smc-france.fr";
+
+                 $params['url'] = "http://{$_SERVER['SERVER_NAME']}/xprev/consult/tracking/{$tracking}";
+                 $params['corpsMail']="Bonjour,\n"
+                                    . "\n"
+                                    . "Votre demande Xprev({$tracking})a été refusée.\n"
+                                    . "Veuillez vous rendre à l'adresse url : \n"
+                                    . "%s"
+                                    . "\n\n"
+                                    . "pour la consulter."
+                                    . "Cordialement,\n"
+                                    . "\n"
+                                    . "--\n"
+                                    . "Xsuite";
+                $params['sujet']="refus Xprev $tracking ";
+                  //echo '<pre>',  var_export($params),'</pre>';
+                $this->sendEmail($params);
+                $redirector = $this->_helper->getHelper('Redirector');
+                $flashMessenger = $this->_helper->getHelper('FlashMessenger');
+                $message = "la demande de prévision a bien été refusée.";
+                $flashMessenger->addMessage($message);
+                $redirector->gotoSimple('index', 'xprev');
             }
         }
     }
