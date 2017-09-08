@@ -144,6 +144,7 @@ public function getAllcodeuser($code_client) {
                 . "demande_xprev.justification_dop,"
                 . "demande_xprev.justification_log,"
                 . "users.nom_user,(commercial.nom_user)as nom_commercial,"
+                . "users.id_user,(commercial.id_user)as id_commercial,"
                 . "designation_validation_xprev.nom_validation_xprev,"
                 . "client_user_xprev.nom_client_user_xprev,"
                 . "client_user_xprev.code_client_users_xprev,"
