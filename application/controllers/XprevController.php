@@ -387,11 +387,12 @@ class XprevController extends Zend_Controller_Action
             $num_mois =  $infoPrev[0]['date_debut'];
             var_dump($num_mois);
             $date=explode('-',$num_mois);
+            var_dump($date[0]);
             $month = intval($date[1]);
-            $year1=  intval($date[0]);
-            $year = substr($date,-2);
+            //$year1=  intval($date[0]);
+            $year = intval(substr($date[0],-2));
             var_dump($year);
-            //var_dump($month);
+            var_dump($month);
             $tab = array();
         //Boucle sur 12 mois
             for($i = 1, $month, $year; $i < 13; $i++, $month++)
