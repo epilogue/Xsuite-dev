@@ -587,7 +587,7 @@ class XprevController extends Zend_Controller_Action
             echo '<pre>',  var_export($formData),'</pre>'; 
             /*mis a jour de la demande de xprev  si le commercial change */
             if($formData['nom_commercial']!=$infoPrev[0]['id_commercial']){
-                $modifcomm = $Prev->upcommercial($formData['nom_commercial'],$tracking);exit();
+                $modifcomm = $Prev->upcommercial($formData['nom_commercial'],$tracking);
             }
             $revient = array_combine($formData['code_article'], $formData['prix_revient']);
             $valeur = array_combine($formData['code_article'], $formData['valeur_totale']);
@@ -612,7 +612,7 @@ class XprevController extends Zend_Controller_Action
            foreach($shikomi as $key=>$value){
                   $shikomi1 = $ArticlePrev->upshikomi($value, $key, $tracking);
               }  
-            exit();
+            
             if(isset($_FILES['fichierLogXprev']['name'])){
                 if($_FILES['fichierLogXprev']['size']<=2000000){
                     $extension_upload1 =strrchr($_FILES['fichierLogXprev']['name'],'.');
