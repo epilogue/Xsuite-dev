@@ -101,8 +101,13 @@ $this->headScript()->appendFile('/js/controllers/xprev/calculTotal.js');
                     <?php if($this->infoUser['niveau']=='niveau4'){ ;?>
                     <td><input type="text" id="valeur_totale-<?php echo $k;?>" name="valeur_totale[]" value="<?php echo $article['valeur_totale'] ;?>"> </td>
                     <?php }?>
+                 <?php echo $total[].=+ $article['valeur_totale']; ?>
                 </tr>
                 <?php  }?>
+                <tr>
+                    <td colspan="13"></td>
+                    <td colspan="3"><?php echo "valeur totale=" . array_sum($total) ; ?></td>
+                </tr>
             </tbody>
         </table>
     </fieldset>
