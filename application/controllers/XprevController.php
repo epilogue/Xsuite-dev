@@ -550,6 +550,7 @@ class XprevController extends Zend_Controller_Action
         $ArticlePrev = new Application_Model_DbTable_DemandeArticleXprev();
         $infoArticle = $ArticlePrev->getarticleprev($tracking);
         echo '<pre>',  var_export($listeallcommercial),'</pre>';
+         echo '<pre>',  var_export($infoPrev),'</pre>';
          $num_mois =  $infoPrev[0]['date_debut'];
            
             $date=explode('-',$num_mois);
