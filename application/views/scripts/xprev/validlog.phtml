@@ -39,7 +39,7 @@ $this->headScript()->appendFile('/js/controllers/xprev/calculTotal.js');
                 <td>
                     <select required name="nom_commercial">
                     <?php foreach($this->listeallcommercial as $listecommercial ){?>
-                    <option value="<?php echo $listecommercial['id_user']?>" <?php if($listecommercial['id_user']==$infoprev['id_commercial']){?> selected="selected" <?php } ?> ><?php echo $listecommercial['nom_user'];}?></option>
+                    <option value="<?php echo $listecommercial['id_user']?>" <?php if($listecommercial['id_user']==$this->infoPrev['id_commercial']){?> selected="selected" <?php } ?> ><?php echo $listecommercial['nom_user'];}?></option>
                    
                     </select>
                     </td>
