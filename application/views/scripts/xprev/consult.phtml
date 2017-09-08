@@ -90,7 +90,12 @@
                     <td><?php echo $article['m12'] ;?></td>
                 </tr>
                 <?php  }?>
+                <tr>
+                    <td colspan="15"></td>
+                    <td><?php echo $total=sum($article['total_article_mois']) ?></td>
+                </tr>
             </tbody>
         </table>
+        <p></p>
     </fieldset>
 </div>
