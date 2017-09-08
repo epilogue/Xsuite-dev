@@ -88,11 +88,12 @@
                     <td><?php echo $article['m10'] ;?></td>
                     <td><?php echo $article['m11'] ;?></td>
                     <td><?php echo $article['m12'] ;?></td>
+                    <?php echo $total=+ $article['valeur_totale']; ?>
                 </tr>
                 <?php  }?>
                 <tr>
                     <td colspan="15"></td>
-                    <td><?php echo $total .=+ $article['valeur_totale']; ?></td>
+                    <td><?php echo $total ; ?></td>
                 </tr>
             </tbody>
         </table>
