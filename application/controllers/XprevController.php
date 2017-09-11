@@ -575,7 +575,7 @@ class XprevController extends Zend_Controller_Action
                 $tab[]= array('month'=>$month, 'year'=>$year);
             }
             
-        echo '<pre>',var_export($tab),'</pre>';
+        //echo '<pre>',var_export($tab),'</pre>';
         $this->view->listeallcommercial=$listeallcommercial;
         $this->view->infoMois = $tab;
         $this->view->infoPrev = $infoPrev[0];
@@ -639,7 +639,7 @@ class XprevController extends Zend_Controller_Action
             if($formData['validlog']=='1'){
                 echo 'plop'; 
                 $statut=1;
-                $validation =3;
+                $validation =4;
                 $justification =$formData['motif_validation'];
                 var_dump($justification);
                 
@@ -786,7 +786,7 @@ class XprevController extends Zend_Controller_Action
                 $redirector->gotoSimple('index', 'xprev'); 
             }elseif($formData['validdop']=='0'){
                 /*on va chercher le mail du createur de la demande */
-                $statut=2;
+                $statut=3;
                 $validation =5;
                 $justification = $formData['motif_validation'];
                 $upn1 = $Prev->updopxprev($statut,$validation,$justification,$tracking);
@@ -816,7 +816,7 @@ class XprevController extends Zend_Controller_Action
             }
             elseif ($formData['validdop']=='2') {
              /*on va chercher le mail du createur de la demande */
-                $statut=2;
+                $statut=1;
                 $validation =4;
                 $justification = $formData['motif_validation'];
                 $upn1 = $Prev->updopxprev($statut,$validation,$justification,$tracking);
