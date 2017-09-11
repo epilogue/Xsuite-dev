@@ -98,7 +98,8 @@ $this->headTitle($this->title);
                     <?php } } ?>
          <?php } 
          
-         elseif(in_array($this->fonction, $this->fn3) && $this->fonction == '50') {?>
+         
+         elseif(in_array($this->fonction, $this->fn3) && $this->fonction !='50') {?>
             <th>Tracking</th>
             <th>Date de création</th>
             <th>émetteur</th>
