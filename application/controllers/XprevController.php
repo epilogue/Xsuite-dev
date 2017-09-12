@@ -910,6 +910,26 @@ class XprevController extends Zend_Controller_Action
                 //var_dump($justification);
                 
                 $upsup = $Prev->upsuppxprev($statut,$validation,$justification,$tracking);
+                
+                if(isset($_FILES['fichierSuppXprev']['name'])){
+                if($_FILES['fichierSuppXprev']['size']<=2000000){
+                    $extension_upload1 =strrchr($_FILES['fichierSuppXprev']['name'],'.');
+                    $name = explode('.',$_FILES['fichierSuppXprev']['name']);
+                    $file = $name[0].$trackingnumber.$extension_upload1;
+                    $uploadfile = $uploaddir.$file;
+                    if(move_uploaded_file($_FILES['fichierSuppXprev']['tmp_name'], $uploadfile)){
+                        echo "tout ok";
+                        $datafichier = array(
+                            'tracking_xprev'=>$trackingnumber,
+                            'nom_fichier_xprev'=>$file,
+                            'chemin_fichier_xprev'=>"/fichiers/Xprev/Sup/".$file
+                        );
+                        $newfichier = $fichier->createFichierXprev($datafichier);
+                    }else{
+                        echo "tout foutu";
+                    }
+                }
+            }
                  //$params['destinataireMail']="dop@smc-france.fr";
                  $params['destinataireMail']="mhuby@smc-france.fr";
 
