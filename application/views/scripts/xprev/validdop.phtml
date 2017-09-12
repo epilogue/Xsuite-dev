@@ -88,11 +88,11 @@
                     <?php $total[].=+ $article['valeur_totale']; ?>
                     <?php }?>
                 </tr>
-                <tr>
+               
+                <?php  }?><tr>
                     <td colspan="13"></td>
                     <td colspan="3"><?php echo "valeur totale=" . array_sum($total) ; ?></td>
                 </tr>
-                <?php  }?>
             </tbody>
         </table>
     </fieldset>
