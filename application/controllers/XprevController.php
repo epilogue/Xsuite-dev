@@ -922,7 +922,7 @@ class XprevController extends Zend_Controller_Action
                         $datafichier = array(
                             'tracking_xprev'=>$trackingnumber,
                             'nom_fichier_xprev'=>$file,
-                            'chemin_fichier_xprev'=>"/fichiers/Xprev/Sup/".$file
+                            'chemin_fichier_xprev'=>"/fichiers/Xprev/Supp/".$file
                         );
                         $newfichier = $fichier->createFichierXprev($datafichier);
                     }else{
@@ -956,6 +956,13 @@ class XprevController extends Zend_Controller_Action
         }
     }
     public function traitementAction(){
+        
+    }
+    public function rechercheAction(){
+        
+    }
+    
+    public function extractAction(){
         
     }
 }
