@@ -99,14 +99,16 @@ $this->headScript()->appendFile('/js/controllers/xprev/calculTotal.js');
                     <td><?php echo $article['m11'] ;?></td>
                     <td><?php echo $article['m12'] ;?></td>
                     <?php if($this->infoUser['niveau']=='niveau4'){ ;?>
-                    <td><input type="text" id="valeur_totale-<?php echo $k;?>" name="valeur_totale[]" value="<?php echo $article['valeur_totale'] ;?>"> </td>
+                    <td><input type="text" id="valeur_totale-<?php echo $k;?>" name="valeur_totale[]"
+                               value="<?php echo $article['valeur_totale'] ;?>"
+                               class="valeurTotale"> </td>
                     <?php }?>
                  <?php echo $total[].=+ $article['valeur_totale']; ?>
                 </tr>
                 <?php  }?>
                 <tr>
                     <td colspan="13"></td>
-                    <td colspan="3"><?php echo "valeur totale=" . array_sum($total) ; ?></td>
+                    <td colspan="3">valeur totale = <span id="spanTotal"><?php  array_sum($total) ; ?></span></td>
                 </tr>
             </tbody>
         </table>
