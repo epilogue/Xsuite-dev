@@ -823,10 +823,10 @@ class XprevController extends Zend_Controller_Action
                  //$params['destinataireMail']="";
                  $params['destinataireMail']="mhuby@smc-france.fr";
 
-                 $params['url'] = "http://{$_SERVER['SERVER_NAME']}/xprev/consult/tracking/{$tracking}";
+                 $params['url'] = "http://{$_SERVER['SERVER_NAME']}/xprev/supplementinfo/tracking/{$tracking}";
                  $params['corpsMail']="Bonjour,\n"
                                     . "\n"
-                                    . "Votre demande Xprev({$tracking})a été refusée.\n"
+                                    . "demande de renseignement complémentaire\n"
                                     . "Veuillez vous rendre à l'adresse url : \n"
                                     . "%s"
                                     . "\n\n"
@@ -840,7 +840,7 @@ class XprevController extends Zend_Controller_Action
                 $this->sendEmail($params);
                 $redirector = $this->_helper->getHelper('Redirector');
                 $flashMessenger = $this->_helper->getHelper('FlashMessenger');
-                $message = "la demande de prévision a bien été refusée.";
+                $message = "demande de complément d'information pour la demande de prévision a bien été envoyée.";
                 $flashMessenger->addMessage($message);
                 $redirector->gotoSimple('index', 'xprev');
             }
