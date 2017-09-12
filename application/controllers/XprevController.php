@@ -956,6 +956,120 @@ class XprevController extends Zend_Controller_Action
         }
     }
     public function traitementAction(){
+        $user = $this->_auth->getStorage()->read();
+        /*information concernant la personne connectée*/
+        $User = new Application_Model_DbTable_Users();
+        $listeallcommercial = $User->rechercheUserCompletion();
+        $infoUser = $User->getUser($user->id_user);
+        $tracking = $this->getRequest()->getParam('tracking', null);
+        var_dump($tracking);
+        $Prev = new Application_Model_DbTable_DemandeXprev();
+        $infoPrev = $Prev->getprev($tracking);
+        $fichier = new Application_Model_DbTable_FichierXprev();
+        $infoFichier = $fichier->getfichier($tracking);
+        $ArticlePrev = new Application_Model_DbTable_DemandeArticleXprev();
+        $infoArticle = $ArticlePrev->getarticleprev($tracking);
+//        echo '<pre>',  var_export($listeallcommercial),'</pre>';
+//         echo '<pre>',  var_export($infoPrev),'</pre>';
+         $num_mois =  $infoPrev[0]['date_debut'];
+           
+            $date=explode('-',$num_mois);
+            
+            $month = intval($date[1]);
+           
+            $year = intval(substr($date[0],-2));
+            
+            $tab = array();
+        //Boucle sur 12 mois
+            for($i = 1, $month, $year; $i < 13; $i++, $month++)
+            {
+                //Arrivé en Décembre, on remet le mois à Janvier pour parcourir les 12 mois et on incrémente l'année
+                if($month > 12)
+                {
+                    $month = 1;
+                    $year++;
+                }
+    //            var_dump($month);
+
+    //                var_dump($year) ;
+                $tab[]= array('month'=>$month, 'year'=>$year);
+            }
+            
+        //echo '<pre>',var_export($tab),'</pre>';
+        $this->view->listeallcommercial=$listeallcommercial;
+        $this->view->infoMois = $tab;
+        $this->view->infoPrev = $infoPrev[0];
+        $this->view->infoArticle = $infoArticle;
+        $this->view->infoFichier = $infoFichier;
+        $this->view->infoUser = $infoUser;
+        if($this->getRequest()->isPost()){
+            $formData =  $this->getRequest()->getPost();
+//            echo '<pre>',  var_export($formData),'</pre>'; 
+            /*mis a jour de la demande de xprev  si le commercial change */
+            if($formData['nom_commercial']!=$infoPrev[0]['id_commercial']){
+                $modifcomm = $Prev->upcommercial($formData['nom_commercial'],$tracking);
+            }
+            $revient = array_combine($formData['code_article'], $formData['prix_revient']);
+            $valeur = array_combine($formData['code_article'], $formData['valeur_totale']);
+            $shikomi = array_combine($formData['code_article'], $formData['shikomi']);
+           // echo '<pre>',  var_export($revient),'</pre>';
+            //echo '<pre>',  var_export($valeur),'</pre>';
+                  
+            /*mettre à jour la demande xprev 
+             * au niveau du nom de la validation
+             * commentaire validation
+             * l'etat de la validation accepté/refusé
+             * shikomi ou pas 
+             * prix de revient
+             * insertion pour les fichiers
+             */
+            foreach($revient as $keys=>$value){
+                $uprevient1= $ArticlePrev->uprevient($tracking, $keys, $value);
+            }
+            foreach($valeur as $keys=>$value){
+                $valeur1 = $ArticlePrev->upvaleurtotale1($keys, $tracking, $value);
+            }
+           foreach($shikomi as $key=>$value){
+                  $shikomi1 = $ArticlePrev->upshikomi($value, $key, $tracking);
+              }  
+            
+            
+            $emailVars = Zend_Registry::get('emailVars');
+                 /* creation des parametre du mail*/
+                 $params=array();
+//                echo 'plop'; 
+                $statut=1;
+                $validation =6;
+                $justification =$formData['motif_validation'];
+                var_dump($justification);
+                
+                $upn1 = $Prev->uplogxprev($statut,$validation,$justification,$tracking);
+                 //$params['destinataireMail']="logistique@smc-france.fr";
+                 $params['destinataireMail']="mhuby@smc-france.fr";
+
+                 $params['url'] = "http://{$_SERVER['SERVER_NAME']}/xprev/cloture/tracking/{$tracking}";
+                 $params['corpsMail']="Bonjour,\n"
+                                    . "\n"
+                                    . "Vous avez une nouvelle demande Xprev({$tracking}) à cloturer.\n"
+                                    . "Veuillez vous rendre à l'adresse url : \n"
+                                    . "%s"
+                                    . "\n\n"
+                                    . "Cordialement,\n"
+                                    . "\n"
+                                    . "--\n"
+                                    . "Xsuite";
+                $params['sujet']="cloture Xprev $tracking ";
+                  //echo '<pre>',  var_export($params),'</pre>';
+                $this->sendEmail($params);
+                $redirector = $this->_helper->getHelper('Redirector');
+                $flashMessenger = $this->_helper->getHelper('FlashMessenger');
+                $message = "la demande de prévision a bien été traitée par la logistique.";
+                $flashMessenger->addMessage($message);
+                $redirector->gotoSimple('index', 'xprev'); 
+            
+        }
+    }
+    public function clotureAction(){
         
     }
     public function rechercheAction(){

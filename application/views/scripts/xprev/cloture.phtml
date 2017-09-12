@@ -1,13 +1,7 @@
-<?php
-$this->title = 'Xprev/traitement';
-$this->headTitle($this->title);
-$this->headScript()->appendFile('/js/controllers/xprev/calculTotal.js');
-?>
 <div class="contenu">
     <h2>Xprev</h2>
-    <h3>traitement logistique  de la demande de prev: <?php echo $this->infoPrev['tracking'] ;?> </h3>
+    <h3>traitement de la prévision: <?php echo $this->infoPrev['tracking'] ;?>  traitée</h3>
     <fieldset class="field">
-        <form action="#" enctype="multipart/form-data" method="post">
         <legend>Informations générales</legend>
         <table id="information3">
             <tr> 
@@ -36,13 +30,7 @@ $this->headScript()->appendFile('/js/controllers/xprev/calculTotal.js');
             </tr>
             <tr> 
                 <td>commercial</td>
-                <td>
-                    <select required name="nom_commercial">
-                    <?php foreach($this->listeallcommercial as $listecommercial ){?>
-                    <option value="<?php echo $listecommercial['id_user']?>" <?php if($listecommercial['id_user']==$this->infoPrev['id_commercial']){?> selected="selected" <?php } ?> ><?php echo $listecommercial['nom_user'];}?></option>
-                   
-                    </select>
-                    </td>
+                <td><?php echo $this->infoPrev['nom_commercial'] ;?></td>
                 <td></td>
                 <td></td>
                 <td>nom user</td>
@@ -54,13 +42,14 @@ $this->headScript()->appendFile('/js/controllers/xprev/calculTotal.js');
         <?php if( $this->infoPrev['justification_n1']!= null) { ?>
         <p>validation n+1 :<?php echo $this->infoPrev['justification_n1'] ;?></p>
         <?php } ;?>
-        <p class="decale">fichier joint :<?php foreach ($this->infoFichier as $fichier){ ?> <a class="fichier_joint" href=" <?php echo $fichier['chemin_fichier_xprev']; ?>" target="_blank"><?php echo $fichier['nom_fichier_xprev']; ?></a><br><?php  }?></p>
+        <?php if( $this->infoPrev['justification_log']!= null) { ?>
+        <p>validation n+1 :<?php echo $this->infoPrev['justification_log'] ;?></p>
+        <?php } ;?>
         
+        <p class="decale">fichier joint :<?php foreach ($this->infoFichier as $fichier){ ?> <a class="fichier_joint" href=" <?php echo $fichier['chemin_fichier_xprev']; ?>" target="_blank"><?php echo $fichier['nom_fichier_xprev']; ?></a><br><?php  }?></p>
     </fieldset>
     <fieldset class="field">
         <legend>Informations article</legend>
-        
-    <form action="#" enctype="multipart/form-data" method="post">
         <table class="enum">
             <thead>
                 <tr>
@@ -72,20 +61,17 @@ $this->headScript()->appendFile('/js/controllers/xprev/calculTotal.js');
                     <?php }?>
                     <?php foreach ($this->infoMois as $mois){ ?>
                     <th><?php echo $mois['month'] ."/".$mois['year']?></th><?php }?>
-                    <?php if($this->infoUser['niveau']=='niveau4'){ ;?>
-                    <th>valeur totale</th>
-                    <?php }?>
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($this->infoArticle as $k=>$article){ ?>
+                <?php foreach ($this->infoArticle as $article){ ?>
                 <tr>
                     <td><?php echo $article['reference_article'] ;?></td>
-                    <td><input readonly type="text" name="code_article[]" value="<?php echo $article['code_article'] ;?>"></td>
+                    <td><?php echo $article['code_article'] ;?></td>
                     <?php if($this->infoUser['niveau']=='niveau4'){ ;?>
-                    <td><input class="changepr" data-msums="<?php echo $article['total_article_mois'] ;?>" data-targetid="valeur_totale-<?php echo $k;?>" id="prix_revient-<?php echo $k;?>" name ="prix_revient[]" type="text" value="<?php echo $article['prix_revient'] ;?>"></td>
-                    <td><input type="hidden" value="0" name="shikomi[<?php echo $k;?>]"><input id="shikomi-<?php echo $k;?>" type="checkbox" value="1" name="shikomi[<?php echo $k;?>]"></td>
-                    <?php }?>
+                    <td><?php echo $article['prix_revient'] ;?></td>
+                    <td><?php if($article['shikomi']==1){?><input type="checkbox" checked="checked"><?php }else { ?><input type="checkbox" readonly disabled></td>
+                    <?php } }?>
                     <td><?php echo $article['m1'] ;?></td>
                     <td><?php echo $article['m2'] ;?></td>
                     <td><?php echo $article['m3'] ;?></td>
@@ -99,28 +85,27 @@ $this->headScript()->appendFile('/js/controllers/xprev/calculTotal.js');
                     <td><?php echo $article['m11'] ;?></td>
                     <td><?php echo $article['m12'] ;?></td>
                     <?php if($this->infoUser['niveau']=='niveau4'){ ;?>
-                    <td><input type="text" id="valeur_totale-<?php echo $k;?>" name="valeur_totale[]"
-                               value="<?php echo $article['valeur_totale'] ;?>"
-                               class="valeurTotale"> </td>
+                    <?php $total[].=+ $article['valeur_totale']; ?>
                     <?php }?>
-                 <?php echo $total[].=+ $article['valeur_totale']; ?>
                 </tr>
-                <?php  }?>
-                <tr>
-                    <td colspan="15"></td>
-                    <td colspan="2">valeur totale = <span id="spanTotal"><?php echo array_sum($total) ; ?></span></td>
+               
+                <?php  }?><tr>
+                    <td colspan="13"></td>
+                    <td colspan="3"><?php echo "valeur totale=" . array_sum($total) ; ?></td>
                 </tr>
             </tbody>
         </table>
     </fieldset>
+    <form action="#" method="post" enctype="multipart/form-data">
         
         <fieldset class="field">
-            <legend>traitement de la demande</legend>
+            <legend>Informations supplémentaires </legend>
             
             <p class="obligatoire">commentaire :</p>
             <textarea required name="motif_validation" cols="120" rows="7" value=""></textarea>
+            <p>Ajout de document : <input type="file" value="" name="fichierClotureXprev"></p>
             <div class="soumission">
-                <input class="submit2" type="submit" value="valider la demande de prev">
+                <input class="submit2" type="submit" value="envoyer">
             </div>
         </fieldset>
     </form>
