@@ -108,7 +108,7 @@ $this->headScript()->appendFile('/js/controllers/xprev/calculTotal.js');
                 <?php  }?>
                 <tr>
                     <td colspan="13"></td>
-                    <td colspan="3">valeur totale = <span id="spanTotal"><?php  array_sum($total) ; ?></span></td>
+                    <td colspan="3">valeur totale = <span id="spanTotal"><?php echo array_sum($total) ; ?></span></td>
                 </tr>
             </tbody>
         </table>
