@@ -119,7 +119,7 @@ $this->headTitle($this->title);
                     <td><a href="<?php echo $this->url(array("controller"=>"xprev","action"=>"validlog","tracking"=>$xprev['tracking']));?>" <button class="retour">validation</button></a></td>
                 </tr>
                     <?php }elseif($xprev['nom_validation_xprev']!='refusée' && $xprev['nom_validation_xprev']=='validation dop' && $this->fonction =='50'){ ?>
-                    <td><a href="<?php echo $this->url(array("controller"=>"xprev","action"=>"validop","tracking"=>$xprev['tracking'])); ?>" <button class="retour">validation</button></a></td>
+                    <td><a href="<?php echo $this->url(array("controller"=>"xprev","action"=>"validdop","tracking"=>$xprev['tracking'])); ?>" <button class="retour">validation</button></a></td>
                 </tr>
                     <?php } } ?>
          <?php } elseif(in_array($this->fonction, $this->fn3) && $this->fonction =='50') {?>
@@ -144,7 +144,7 @@ $this->headTitle($this->title);
                     <td><a href="<?php echo $this->url(array("controller"=>"xprev","action"=>"validlog","tracking"=>$xprev['tracking']));?>" <button class="retour">validation</button></a></td>
                 </tr>
                     <?php }elseif($xprev['nom_validation_xprev']!='refusée' && $xprev['nom_validation_xprev']=='validation dop' && $this->fonction =='50'){ ?>
-                    <td><a href="<?php echo $this->url(array("controller"=>"xprev","action"=>"validop","tracking"=>$xprev['tracking'])); ?>" <button class="retour">validation</button></a></td>
+                    <td><a href="<?php echo $this->url(array("controller"=>"xprev","action"=>"validdop","tracking"=>$xprev['tracking'])); ?>" <button class="retour">validation</button></a></td>
                 </tr>
                     <?php } } ?>
          <?php } ?>
