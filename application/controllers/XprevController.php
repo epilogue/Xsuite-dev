@@ -138,9 +138,9 @@ class XprevController extends Zend_Controller_Action
             $listeN1Xprev= null;
             $listeXprev= null;
         }
-        echo '<pre>',  var_export($listeN1Xprev),'</pre>';
-        echo '<pre>',  var_export($listeXprev),'</pre>';
-        echo '<pre>',  var_export($listeRegXprev),'</pre>';
+//        echo '<pre>',  var_export($listeN1Xprev),'</pre>';
+//        echo '<pre>',  var_export($listeXprev),'</pre>';
+//        echo '<pre>',  var_export($listeRegXprev),'</pre>';
         $this->view->fonction = $user->id_fonction;
         $this->view->nom = $user->nom_user;
         $this->view->listexprev = $listeXprev;
@@ -187,7 +187,7 @@ class XprevController extends Zend_Controller_Action
         
         if($this->getRequest()->isPost()){
             $formData =  $this->getRequest()->getPost();
-            echo '<pre>',  var_export($formData),'</pre>'; 
+//            echo '<pre>',  var_export($formData),'</pre>'; 
             
             /*creation du tracking number */
             $newprev= new Application_Model_DbTable_DemandeXprev();
@@ -408,7 +408,7 @@ class XprevController extends Zend_Controller_Action
                 $tab[]= array('month'=>$month, 'year'=>$year);
             }
             
-        echo '<pre>',var_export($tab),'</pre>';
+//        echo '<pre>',var_export($tab),'</pre>';
         $this->view->infoMois = $tab;
         $this->view->infoPrev = $infoPrev[0];
         $this->view->infoArticle = $infoArticle;
@@ -473,7 +473,7 @@ class XprevController extends Zend_Controller_Action
                  $params=array();
             /*envoi du mail à la log*/
             if($formData['validn1']=='1'){
-                echo 'plop'; 
+//                echo 'plop'; 
                 $statut=1;
                 $validation =3;
                 $justification =$formData['motif_validation'];
@@ -549,8 +549,8 @@ class XprevController extends Zend_Controller_Action
         $infoFichier = $fichier->getfichier($tracking);
         $ArticlePrev = new Application_Model_DbTable_DemandeArticleXprev();
         $infoArticle = $ArticlePrev->getarticleprev($tracking);
-        echo '<pre>',  var_export($listeallcommercial),'</pre>';
-         echo '<pre>',  var_export($infoPrev),'</pre>';
+//        echo '<pre>',  var_export($listeallcommercial),'</pre>';
+//         echo '<pre>',  var_export($infoPrev),'</pre>';
          $num_mois =  $infoPrev[0]['date_debut'];
            
             $date=explode('-',$num_mois);
@@ -584,7 +584,7 @@ class XprevController extends Zend_Controller_Action
         $this->view->infoUser = $infoUser;
         if($this->getRequest()->isPost()){
             $formData =  $this->getRequest()->getPost();
-            echo '<pre>',  var_export($formData),'</pre>'; 
+//            echo '<pre>',  var_export($formData),'</pre>'; 
             /*mis a jour de la demande de xprev  si le commercial change */
             if($formData['nom_commercial']!=$infoPrev[0]['id_commercial']){
                 $modifcomm = $Prev->upcommercial($formData['nom_commercial'],$tracking);
@@ -637,7 +637,7 @@ class XprevController extends Zend_Controller_Action
                  $params=array();
             /*envoi du mail à dop*/
             if($formData['validlog']=='1'){
-                echo 'plop'; 
+//                echo 'plop'; 
                 $statut=1;
                 $validation =4;
                 $justification =$formData['motif_validation'];
@@ -755,7 +755,7 @@ class XprevController extends Zend_Controller_Action
                  $params=array();
             /*envoi du mail à la log*/
             if($formData['validdop']=='1'){
-                echo 'plop'; 
+//                echo 'plop'; 
                 $statut=1;
                 $validation =6;
                 $justification =$formData['motif_validation'];
@@ -903,7 +903,7 @@ class XprevController extends Zend_Controller_Action
                  $params=array();
             /*envoi du mail à la log*/
            
-                echo 'plop'; 
+              //  echo 'plop'; 
                 $statut=1;
                 $validation =4;
                 $justification =$formData['supplement'];
