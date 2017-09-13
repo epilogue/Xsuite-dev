@@ -1174,7 +1174,7 @@ class XprevController extends Zend_Controller_Action
         $listeAlltracking = $Xprev->getAlltracking();
         $listeAllreference =$ArticleXprev->getAllreference() ;
         $listeAllstatut = $Statut->getAllStatut();
-        echo '<pre>',  var_export($listAllcommercial),'</pre>';
+        echo '<pre>',  var_export($listeAllcommercial),'</pre>';
         $this->view->listeallreference=$listeAllreference;
         $this->view->listeallcommercial=$listeAllcommercial;
         $this->view->listealltracking=$listeAlltracking;
