@@ -57,11 +57,11 @@ class XprevController extends Zend_Controller_Action
     public function liaisonmoisAction(){
         $this->_helper->layout->disableLayout();
         $num_mois = $this->getRequest()->getParam('date_debut',null);
-        var_dump($num_mois);
+        //var_dump($num_mois);
         $month= intval(substr($num_mois,0,2)) ;
         $year = intval(substr($num_mois,-2));
-        var_dump($year);
-        var_dump($month);
+        //var_dump($year);
+        //var_dump($month);
         $tab = array();
     //Boucle sur 12 mois
         for($i = 1, $month, $year; $i < 13; $i++, $month++)
@@ -77,7 +77,7 @@ class XprevController extends Zend_Controller_Action
 //                var_dump($year) ;
             $tab[]= array('month'=>$month, 'year'=>$year);
         }
-        var_dump($tab);
+       // var_dump($tab);
          $this->view->tab = $tab;
     }
     
@@ -106,7 +106,7 @@ class XprevController extends Zend_Controller_Action
         $infoHolon =$Holon->getHolon($user->id_holon);
         //var_dump($user);
         //var_dump($infoHolon);
-        var_dump($infoUser['id_fonction']);
+        //var_dump($infoUser['id_fonction']);
         /*fonction niveau0*/
         $fn0 = array(4,18,38);
         /* fonction niveau1*/
@@ -962,7 +962,7 @@ class XprevController extends Zend_Controller_Action
         $listeallcommercial = $User->rechercheUserCompletion();
         $infoUser = $User->getUser($user->id_user);
         $tracking = $this->getRequest()->getParam('tracking', null);
-        var_dump($tracking);
+        //var_dump($tracking);
         $Prev = new Application_Model_DbTable_DemandeXprev();
         $infoPrev = $Prev->getprev($tracking);
         $fichier = new Application_Model_DbTable_FichierXprev();
@@ -1070,9 +1070,117 @@ class XprevController extends Zend_Controller_Action
         }
     }
     public function clotureAction(){
-        
+        $user = $this->_auth->getStorage()->read();
+        /*information concernant la personne connectée*/
+        $User = new Application_Model_DbTable_Users();
+        $infoUser = $User->getUser($user->id_user);
+        $tracking = $this->getRequest()->getParam('tracking', null);
+        //var_dump($tracking);
+        $Prev = new Application_Model_DbTable_DemandeXprev();
+        $infoPrev = $Prev->getprev($tracking);
+        $fichier = new Application_Model_DbTable_FichierXprev();
+        $infoFichier = $fichier->getfichier($tracking);
+        $ArticlePrev = new Application_Model_DbTable_DemandeArticleXprev();
+        $infoArticle = $ArticlePrev->getarticleprev($tracking);
+        //echo '<pre>',  var_export($infoUser),'</pre>';
+         $num_mois =  $infoPrev[0]['date_debut'];
+           
+            $date=explode('-',$num_mois);
+            
+            $month = intval($date[1]);
+           
+            $year = intval(substr($date[0],-2));
+            
+            $tab = array();
+        //Boucle sur 12 mois
+            for($i = 1, $month, $year; $i < 13; $i++, $month++)
+            {
+                //Arrivé en Décembre, on remet le mois à Janvier pour parcourir les 12 mois et on incrémente l'année
+                if($month > 12)
+                {
+                    $month = 1;
+                    $year++;
+                }
+    //            var_dump($month);
+
+    //                var_dump($year) ;
+                $tab[]= array('month'=>$month, 'year'=>$year);
+            }
+            
+        //echo '<pre>',var_export($tab),'</pre>';
+        $this->view->infoMois = $tab;
+        $this->view->infoPrev = $infoPrev[0];
+        $this->view->infoArticle = $infoArticle;
+        $this->view->infoFichier = $infoFichier;
+        $this->view->infoUser = $infoUser;
+        if($this->getRequest()->isPost()){
+            $formData =  $this->getRequest()->getPost();
+            //echo '<pre>',  var_export($formData),'</pre>'; 
+            /*mettre à jour la demande xprev 
+             * au niveau du nom de la validation
+             * commentaire validation
+             * l'etat de la validation accepté/refusé
+             */
+            $emailVars = Zend_Registry::get('emailVars');
+                 /* creation des parametre du mail*/
+                 $params=array();
+            /*envoi du mail à la log*/
+            
+//                echo 'plop'; 
+                $statut=1;
+                $validation =6;
+                $justification =$formData['motif_validation'];
+                //var_dump($justification);
+                
+                $updop = $Prev->updopxprev($statut,$validation,$justification,$tracking);
+                 //$params['destinataireMail']="user@smc-france.fr";
+                 $params['destinataireMail']="mhuby@smc-france.fr";
+
+                 $params['url'] = "http://{$_SERVER['SERVER_NAME']}/xprev/consult/tracking/{$tracking}";
+                 $params['corpsMail']="Bonjour,\n"
+                                    . "\n"
+                                    . "la demande Xprev({$tracking}) est cloturée.\n"
+                                    . "Veuillez vous rendre à l'adresse url : \n"
+                                    . "%s"
+                                    . "\n\n"
+                                    . "Cordialement,\n"
+                                    . "\n"
+                                    . "--\n"
+                                    . "Xsuite";
+                $params['sujet']="Cloture Xprev $tracking ";
+                  //echo '<pre>',  var_export($params),'</pre>';
+                $this->sendEmail($params);
+                $redirector = $this->_helper->getHelper('Redirector');
+                $flashMessenger = $this->_helper->getHelper('FlashMessenger');
+                $message = "la demande de prévision est cloturée.";
+                $flashMessenger->addMessage($message);
+                $redirector->gotoSimple('index', 'xprev'); 
+            
+        }
     }
+
     public function rechercheAction(){
+        $user = $this->_auth->getStorage()->read();
+        /*information concernant la personne connectée*/
+        $User = new Application_Model_DbTable_Users();
+        $infoUser = $User->getUser($user->id_user);
+        $Xprev = new Application_Model_DbTable_DemandeXprev();
+        $ArticleXprev = new Application_Model_DbTable_DemandeArticleXprev();
+        $Statut = new Application_Model_DbTable_StatutXprev();
+        $Client = new Application_Model_DbTable_ClientXprev();
+        $listeAllclient =$Client->searchClient() ;
+        $listeAllcommercial =$User->getAll() ;
+        $listeAlluser =$User->getAllUser() ;
+        $listeAlltracking = $Xprev->getAlltracking();
+        $listeAllreference =$ArticleXprev->getAllreference() ;
+        $listeAllstatut = $Statut->getAllStatut();
+        $this->view->listeallreference=$listeAllreference;
+        $this->view->listeallcommercial=$listeAllcommercial;
+        $this->view->listealltracking=$listeAlltracking;
+        $this->view->listeallstatut=$listeAllstatut;
+        $this->view->listeallclient=$listeAllclient;
+        $this->view->listealluser=$listeAlluser;
+        $this->view->infoUser = $infoUser;
         
     }
     

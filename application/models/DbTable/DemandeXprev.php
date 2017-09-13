@@ -217,4 +217,14 @@ public function getAllcodeuser($code_client) {
             return $res;
         }
     }
+    public function getAlltracking(){
+        $sql="select tracking, id_demande_xprev from demande_xprev";
+        $res = $this->getAdapter()->query($sql);
+        $rest=$res->fetchAll();
+        if (!$rest) {
+            return null;
+        } else {
+            return $rest;
+        }
+    }
 }

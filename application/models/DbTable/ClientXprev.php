@@ -19,4 +19,14 @@ public function createclient($data){
         }
         
     }
+    public function searchClient(){
+        $sql="SELECT distinct(`code_user_client_xprev`), `nom_client_xprev` FROM `client_xprev`";
+        $res = $this->getAdapter()->query($sql);
+        $rest=$res->fetchAll();
+        if (!$rest) {
+            return null;
+        } else {
+            return $rest;
+        }
+    }
 }
