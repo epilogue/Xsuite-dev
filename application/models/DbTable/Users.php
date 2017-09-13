@@ -24,7 +24,7 @@ class Application_Model_DbTable_Users extends Zend_Db_Table_Abstract {
         }
     }
     public function getAllUser(){
-        $sql = "select id_user as id_emetteur nom_user as nom_emetteur from users ";
+        $sql = "select id_user as id_emetteur, nom_user as nom_emetteur from users ";
           $res = $this->getAdapter()->query($sql);
         $rest=$res->fetchAll();
         if (!$rest) {
