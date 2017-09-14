@@ -217,6 +217,18 @@ public function getAllcodeuser($code_client) {
             return $res;
         }
     }
+    
+    public function  uptraitementxprev($statut,$validation,$justification,$tracking){
+        $sql ="UPDATE `demande_xprev` SET `id_validation`='{$validation}',  `id_statut_xprev`='{$statut}', `justification_traitement`='{$justification}' WHERE  `tracking`='{$tracking}'";
+//         var_dump($sql); exit();
+          $res = $this->getAdapter()->query($sql);
+        
+        if (!$res) {
+            return null;
+        } else {
+            return $res;
+        }
+    }
     public function getAlltracking(){
         $sql="select tracking, id_demande_xprev from demande_xprev";
         $res = $this->getAdapter()->query($sql);

@@ -1045,7 +1045,7 @@ class XprevController extends Zend_Controller_Action
                 $justification =$formData['motif_validation'];
                 var_dump($justification);
                 
-                $upn1 = $Prev->uplogxprev($statut,$validation,$justification,$tracking);
+                $upn1 = $Prev->uptraitementxprev($statut,$validation,$justification,$tracking);
                  //$params['destinataireMail']="logistique@smc-france.fr";
                  $params['destinataireMail']="mhuby@smc-france.fr";
 
