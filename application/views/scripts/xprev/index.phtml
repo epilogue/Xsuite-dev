@@ -70,7 +70,7 @@ $this->headTitle($this->title);
                     <td><?php echo $xprev['nom_validation_xprev'] ?></td>
                     <td><a href="<?php echo $this->url(array("controller"=>"xprev","action"=>"consult","tracking"=>$xprev['tracking']));?>" <button class="retour">historique</button></a>
              </td>
-             <?php if($xprev['nom_validation_xprev']!='refusée' && $xprev['nom_validation_xprev']=='validation N+1' ){ ?>
+             <?php if($xprev['nom_validation_xprev']!='refusée' && $xprev['nom_validation_xprev']=='en cours de validation N+1' ){ ?>
                     <td><a href="<?php echo $this->url(array("controller"=>"xprev","action"=>"validn1","tracking"=>$xprev['tracking']));?>" <button class="retour">validation</button></a></td>
                 </tr><?php }} ?>
          <?php } 
@@ -92,7 +92,7 @@ $this->headTitle($this->title);
                     <td><?php echo $xprev['nom_client_user_xprev'] ?></td>
                     <td><?php echo $xprev['nom_validation_xprev'] ?></td>
                     <td><a href="<?php echo $this->url(array("controller"=>"xprev","action"=>"consult","tracking"=>$xprev['tracking']));?>" <button class="retour">historique</button></a></td>
-                    <?php if($xprev['nom_validation_xprev']!='refusée' && $xprev['nom_validation_xprev']=='validation N+1' ){ ?>
+                    <?php if($xprev['nom_validation_xprev']!='refusée' && $xprev['nom_validation_xprev']=='en cours de validation N+1' ){ ?>
                     <td><a href="<?php echo $this->url(array("controller"=>"xprev","action"=>"validn1","tracking"=>$xprev['tracking']));?>" <button class="retour">validation</button></a></td>
                 </tr>
                     <?php } } ?>
@@ -115,13 +115,13 @@ $this->headTitle($this->title);
                     <td><?php echo $xprev['nom_client_user_xprev'] ?></td>
                     <td><?php echo $xprev['nom_validation_xprev'] ?></td>
                     <td><a href="<?php echo $this->url(array("controller"=>"xprev","action"=>"consult","tracking"=>$xprev['tracking']));?>" <button class="retour">historique</button></a></td>
-                    <?php if($xprev['nom_validation_xprev']!='refusée' && $xprev['nom_validation_xprev']=='validation logistique' ){ ?>
+                    <?php if($xprev['nom_validation_xprev']!='refusée' && $xprev['nom_validation_xprev']=='en cours de validation logistique' ){ ?>
                     <td><a href="<?php echo $this->url(array("controller"=>"xprev","action"=>"validlog","tracking"=>$xprev['tracking']));?>" <button class="retour">validation</button></a></td>
                 </tr>
-                    <?php }elseif($xprev['nom_validation_xprev']!='refusée' && $xprev['nom_validation_xprev']=='validation dop' && $this->fonction =='50'){ ?>
+                    <?php }elseif($xprev['nom_validation_xprev']!='refusée' && $xprev['nom_validation_xprev']=='en cours de validation dop' && $this->fonction =='50'){ ?>
                     <td><a href="<?php echo $this->url(array("controller"=>"xprev","action"=>"validdop","tracking"=>$xprev['tracking'])); ?>" <button class="retour">validation</button></a></td>
                 </tr>
-                    <?php } elseif($xprev['nom_validation_xprev']!='refusée' && $xprev['nom_validation_xprev']=='traitement' ){ ?>
+                    <?php } elseif($xprev['nom_validation_xprev']!='refusée' && $xprev['nom_validation_xprev']=='en cours de traitement' ){ ?>
                     <td><a href="<?php echo $this->url(array("controller"=>"xprev","action"=>"traitement","tracking"=>$xprev['tracking'])); ?>" <button class="retour">traiter</button></a></td>
                 </tr>
                     <?php }elseif($xprev['nom_validation_xprev']!='refusée' && $xprev['nom_validation_xprev']=='traitée' && $this->fonction !='50'){ ?>
@@ -146,10 +146,10 @@ $this->headTitle($this->title);
                     <td><?php echo $xprev['nom_client_user_xprev'] ?></td>
                     <td><?php echo $xprev['nom_validation_xprev'] ?></td>
                     <td><a href="<?php echo $this->url(array("controller"=>"xprev","action"=>"consult","tracking"=>$xprev['tracking']));?>" <button class="retour">historique</button></a></td>
-                    <?php if($xprev['nom_validation_xprev']!='refusée' && $xprev['nom_validation_xprev']=='validation logistique' ){ ?>
+                    <?php if($xprev['nom_validation_xprev']!='refusée' && $xprev['nom_validation_xprev']=='en cours de validation logistique' ){ ?>
                     <td><a href="<?php echo $this->url(array("controller"=>"xprev","action"=>"validlog","tracking"=>$xprev['tracking']));?>" <button class="retour">validation</button></a></td>
                 </tr>
-                    <?php }elseif($xprev['nom_validation_xprev']!='refusée' && $xprev['nom_validation_xprev']=='validation dop' && $this->fonction =='50'){ ?>
+                    <?php }elseif($xprev['nom_validation_xprev']!='refusée' && $xprev['nom_validation_xprev']=='en cours de validation dop' && $this->fonction =='50'){ ?>
                     <td><a href="<?php echo $this->url(array("controller"=>"xprev","action"=>"validdop","tracking"=>$xprev['tracking'])); ?>" <button class="retour">validation</button></a></td>
                 </tr>
                     <?php }
