@@ -1041,7 +1041,7 @@ class XprevController extends Zend_Controller_Action
                  $params=array();
 //                echo 'plop'; 
                 $statut=1;
-                $validation =6;
+                $validation =7;
                 $justification =$formData['motif_validation'];
                 var_dump($justification);
                 
@@ -1129,8 +1129,8 @@ class XprevController extends Zend_Controller_Action
             /*envoi du mail à la log*/
             
 //                echo 'plop'; 
-                $statut=1;
-                $validation =6;
+                $statut=3;
+                $validation =8;
                 $justification =$formData['motif_validation'];
                 //var_dump($justification);
                 
