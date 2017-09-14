@@ -148,7 +148,7 @@ $this->headTitle($this->title);
                 </tr>
                     <?php }
                     elseif($xprev['nom_validation_xprev']!='refusée' && $xprev['nom_validation_xprev']=='traitée' && $this->fonction !='50'){ ?>
-                    <td><a href="<?php echo $this->url(array("controller"=>"xprev","action"=>"validdop","tracking"=>$xprev['tracking'])); ?>" <button class="retour">cloturer</button></a></td>
+                    <td><a href="<?php echo $this->url(array("controller"=>"xprev","action"=>"cloture","tracking"=>$xprev['tracking'])); ?>" <button class="retour">cloturer</button></a></td>
                 </tr>
                     <?php }} ?>
          <?php } ?>
