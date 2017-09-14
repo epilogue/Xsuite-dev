@@ -50,10 +50,10 @@
         <p>validation directeur des opérations :<?php echo $this->infoPrev['justification_dop'] ;?></p>
         <?php } ;?>
         <?php if( $this->infoPrev['justification_traitement']!= null) { ?>
-        <p>validation directeur des opérations :<?php echo $this->infoPrev['justification_traitement'] ;?></p>
+        <p>commentaire traitement :<?php echo $this->infoPrev['justification_traitement'] ;?></p>
         <?php } ;?>
         <?php if( $this->infoPrev['justification_cloture']!= null) { ?>
-        <p>commentaire traitement :<?php echo $this->infoPrev['justification_cloture'] ;?></p>
+        <p>commentaire cloture :<?php echo $this->infoPrev['justification_cloture'] ;?></p>
         <?php } ;?>
         <p class="decale">fichier joint :<?php foreach ($this->infoFichier as $fichier){ ?> <a href=" <?php echo $fichier['chemin_fichier_xprev']; ?>" target="_blank"><?php echo $fichier['nom_fichier_xprev']; ?></a><br><?php  }?></p>
         
