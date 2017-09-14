@@ -267,7 +267,9 @@ class XprevController extends Zend_Controller_Action
                     'justification'=>$formData['motif_create'],
                     'justification_n1'=>null,
                     'justification_log'=>null,
-                    'justification_dop'=>null
+                    'justification_dop'=>null,
+                    'justification_traitement'=>null,
+                    'justification_cloture'=>null
                                         );
              $newdemande = $xprev->createDemande($data);
              
