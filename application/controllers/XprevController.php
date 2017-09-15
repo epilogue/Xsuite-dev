@@ -1176,7 +1176,7 @@ class XprevController extends Zend_Controller_Action
         $listeAlltracking = $Xprev->getAlltracking();
         $listeAllreference =$ArticleXprev->getAllreference() ;
         $listeAllstatut = $Statut->getAllStatut();
-        echo '<pre>',  var_export($listeAllcommercial),'</pre>';
+        
         $this->view->listeallreference=$listeAllreference;
         $this->view->listeallcommercial=$listeAllcommercial[0];
         $this->view->listealltracking=$listeAlltracking;
@@ -1184,7 +1184,10 @@ class XprevController extends Zend_Controller_Action
         $this->view->listeallclient=$listeAllclient;
         $this->view->listealluser=$listeAlluser;
         $this->view->infoUser = $infoUser;
-        
+        if($this->getRequest()->isPost()){
+            $formData =  $this->getRequest()->getPost();
+            echo '<pre>',  var_export($formData),'</pre>';
+        }
     }
     
     public function extractAction(){
