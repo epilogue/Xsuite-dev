@@ -17,10 +17,10 @@ class Application_Model_DbTable_DemandeXprev extends Zend_Db_Table_Abstract {
         }
     }
     public function recherche($formdata){
-        $sql ="select distinct (demande_xprev.id_demande_xprev),demande_xprev.tracking,demande_xprev.date_create,demande_article_xprev.reference_article,(commercial.nom_user) as nom_commercial,(emetteur.nom_user) as nom_emetteur,client_xprev.nom_client_xprev,statut.nom_statut from demande_xprev "
+        $sql ="select distinct (demande_xprev.id_demande_xprev),demande_xprev.tracking,demande_xprev.date_create,demande_article_xprev.reference_article,(commercial.nom_user) as nom_commercial,(emetteur.nom_user) as nom_emetteur,client_xprev.nom_client_xprev,statut.nom_statut_xprev from demande_xprev "
                 . "left join users as commercial on commercial.id_user = demande_xprev.id_commercial "
                 . "left join users as emetteur  on emetteur.id_user = demande_xprev.id_users "
-                . "left join statut_xprev on statut_xprev.id = demande_xprev.id_statut "
+                . "left join statut_xprev on statut_xprev.id_statut_xprev = demande_xprev.id_statut "
                 . "left join client_xprev on client_xprev.id_client_xprev = demande_xprev.id_client_xprev "
                 . "left join demande_article_xprev on demande_article_xprev.tracking = demande_xprev.tracking "
                 . "where 1 ";
@@ -49,7 +49,7 @@ class Application_Model_DbTable_DemandeXprev extends Zend_Db_Table_Abstract {
             
         }
         if(!empty($formdata['nom_statut'])){
-            $sql.= " and statut_xprev.id_statut= {$formdata['nom_statut']}";
+            $sql.= " and statut_xprev.id_statut_xprev= {$formdata['nom_statut']}";
             
         }
         
