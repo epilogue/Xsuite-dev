@@ -1171,14 +1171,14 @@ class XprevController extends Zend_Controller_Action
         $Statut = new Application_Model_DbTable_StatutXprev();
         $Client = new Application_Model_DbTable_ClientXprev();
         $listeAllclient =$Client->searchClient() ;
-        $listeAllcommercial[] =$User->getAll() ;
+        $listeAllcommercial=$User->getAll() ;
         $listeAlluser =$User->getAllUser() ;
         $listeAlltracking = $Xprev->getAlltracking();
         $listeAllreference =$ArticleXprev->getAllreference() ;
         $listeAllstatut = $Statut->getAllStatut();
         
         $this->view->listeallreference=$listeAllreference;
-        $this->view->listeallcommercial=$listeAllcommercial[0];
+        $this->view->listeallcommercial=$listeAllcommercial;
         $this->view->listealltracking=$listeAlltracking;
         $this->view->listeallstatut=$listeAllstatut;
         $this->view->listeallclient=$listeAllclient;
