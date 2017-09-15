@@ -18,11 +18,11 @@ class Application_Model_DbTable_DemandeXprev extends Zend_Db_Table_Abstract {
     }
     public function recherche($formdata){
         $sql ="select distinct (demande_xprev.id_demande_xprev),demande_xprev.tracking,demande_xprev.date_create,demande_article_xprev.reference_article,(commercial.nom.user) as nom_commercial,(emetteur.nom_user) as nom_emetteur,client_xprev.nom_client,statut.nom_statut from demande_xprev "
-                . "left join users as commercial on commercial.id_user = demande_xprev.id_commercial"
+                . "left join users as commercial on commercial.id_user = demande_xprev.id_commercial "
                 . "left join users as emetteur  on emetteur.id_user = demande_xprev.id_users "
                 . "left join statut_xprev on statut_xprev.id = demande_xprev.id_statut "
                 . "left join demande_article_xprev on demande_article_xprev.tracking = demande_xprev.tracking "
-                . "where 1";
+                . "where 1 ";
         if(!empty($formdata['tracking'])){
             $sql.= " and demande_xprev.tracking= {$formdata['tracking']}";
             
