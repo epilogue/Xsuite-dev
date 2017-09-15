@@ -16,7 +16,46 @@ class Application_Model_DbTable_DemandeXprev extends Zend_Db_Table_Abstract {
             return $rest;
         }
     }
-
+    public function recherche($formdata){
+        $sql ="select distinct (demande_xprev.id_demande_xprev),demande_xprev.tracking,demande_xprev.date_create,demande_article_xprev.reference_article,(commercial.nom.user) as nom_commercial,(emetteur.nom_user) as nom_emetteur,client_xprev.nom_client,statut.nom_statut from demande_xprev "
+                . "left join users as commercial on commercial.id_user = demande_xprev.id_commercial"
+                . "left join users as emetteur  on emetteur.id_user = demande_xprev.id_users "
+                . "left join statut_xprev on statut_xprev.id = demande_xprev.id_statut "
+                . "left join demande_article_xprev on demande_article_xprev.tracking = demande_xprev.tracking "
+                . "where 1";
+        if(!empty($formdata['tracking'])){
+            $sql.= " and demande_xprev.tracking= {$formdata['tracking']}";
+            
+        }
+        if(!empty($formdata['datecreate'])){
+            $sql.= " and demande_xprev.date_create= {$formdata['datecreate']}";
+            
+        }
+        if(!empty($formdata['reference'])){
+            $sql.= " and demande_article_xprev.reference_article= {$formdata['reference']}";
+            
+        }
+        if(!empty($formdata['nom_commercial'])){
+            $sql.= " and commercial.id_user= {$formdata['nom_commercial']}";
+            
+        }
+        if(!empty($formdata['nom_emetteur'])){
+            $sql.= " and emetteur.id_user= {$formdata['nom_emetteur']}";
+            
+        }
+        if(!empty($formdata['nom_statut'])){
+            $sql.= " and statut_xprev.id_statut= {$formdata['nom_statut']}";
+            
+        }
+        
+        $res = $this->getAdapter()->query($sql);
+        $rest=$res->fetchAll();
+        if (!$rest) {
+            return null;
+        } else {
+            return $rest;
+        }
+    }
     public static function makeTrackingNumber($requestResult) {
        /*dabord choisr la date de debut
         * commencer l'incrementation a A et la poursuivre  si la date et toujours la meme/ par rapport a la date precedemment insereee

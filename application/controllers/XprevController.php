@@ -1187,7 +1187,33 @@ class XprevController extends Zend_Controller_Action
         if($this->getRequest()->isPost()){
             $formData =  $this->getRequest()->getPost();
             echo '<pre>',  var_export($formData),'</pre>';
+            if(!array_key_exists(['nom_client'], $formData)){
+                $formData['nom_client']=null;
+            }
+            if(!array_key_exists(['nom_commercial'], $formData)){
+                $formData['nom_commercial']=null;
+            }
+            if(!array_key_exists(['nom_emetteur'], $formData)){
+                $formData['nom_emetteur']=null;
+            }
+            if(!array_key_exists(['nom_statut'], $formData)){
+                $formData['nom_statut']=null;
+            }
+            if(!array_key_exists(['reference'], $formData)){
+                $formData['reference']=null;
+            }
+            if(!array_key_exists(['tracking'], $formData)){
+                $formData['tracking']=null;
+            }
+            if(!array_key_exists(['datecreate'], $formData)){
+                $formData['datecreate']=null;
+            }
+        }else{
+            $formData=array();
         }
+        $recherche = new Application_Model_DbTable_DemandeXprev();
+        $newRecherche =$recherche->recherche($formData);
+        echo '<pre>',  var_export($newRecherche),'</pre>';
     }
     
     public function extractAction(){
