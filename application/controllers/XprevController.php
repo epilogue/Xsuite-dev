@@ -1210,7 +1210,8 @@ class XprevController extends Zend_Controller_Action
             }
             
             $recherche = new Application_Model_DbTable_DemandeXprev();
-            $newRecherche =$recherche->recherche($formData);
+            $newRecherche =$recherche->recherche($data);
+            echo '<pre>',  var_export($data),'</pre>';
             echo '<pre>',  var_export($newRecherche),'</pre>';
         }
         else{
