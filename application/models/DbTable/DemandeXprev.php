@@ -25,7 +25,7 @@ class Application_Model_DbTable_DemandeXprev extends Zend_Db_Table_Abstract {
                 . "left join demande_article_xprev on demande_article_xprev.tracking = demande_xprev.tracking "
                 . "where 1 ";
         if(!empty($formdata['tracking'])){
-            $sql.= " and demande_xprev.tracking= {$formdata['tracking']}";
+            $sql.= " and demande_xprev.tracking='{$formdata['tracking']}'";
             
         }
         if(!empty($formdata['datecreate'])){
@@ -52,7 +52,7 @@ class Application_Model_DbTable_DemandeXprev extends Zend_Db_Table_Abstract {
             $sql.= " and demande_xprev.id_statut_xprev= {$formdata['nom_statut']}";
             
         }
-        
+        var_dump($sql);
         $res = $this->getAdapter()->query($sql);
         $rest=$res->fetchAll();
         if (!$rest) {
