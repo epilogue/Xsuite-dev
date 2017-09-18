@@ -17,6 +17,7 @@ class Application_Model_DbTable_DemandeXprev extends Zend_Db_Table_Abstract {
         }
     }
     public function recherche($formdata){
+        var_dump($formdata);
         $sql ="select distinct (demande_xprev.id_demande_xprev),demande_xprev.tracking,demande_xprev.date_create,demande_article_xprev.reference_article,(commercial.nom_user) as nom_commercial,(emetteur.nom_user) as nom_emetteur,client_xprev.nom_client_xprev,statut_xprev.nom_statut_xprev from demande_xprev "
                 . "left join users as commercial on commercial.id_user = demande_xprev.id_commercial "
                 . "left join users as emetteur  on emetteur.id_user = demande_xprev.id_users "
