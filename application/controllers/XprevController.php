@@ -1188,35 +1188,36 @@ class XprevController extends Zend_Controller_Action
             $formData =  $this->getRequest()->getPost();
             echo '<pre>',  var_export($formData),'</pre>';
             if(!array_key_exists($formData['nom_client'], $formData)){
-                $formData['nom_client']=null;
+                $data['nom_client']=null;
             }
             if(!array_key_exists($formData['nom_commercial'], $formData)){
-                $formData['nom_commercial']=null;
+                $data['nom_commercial']=null;
             }
             if(!array_key_exists($formData['nom_emetteur'], $formData)){
-                $formData['nom_emetteur']=null;
+                $data['nom_emetteur']=null;
             }
             if(!array_key_exists($formData['nom_statut'], $formData)){
-                $formData['nom_statut']=null;
+                $data['nom_statut']=null;
             }
             if(!array_key_exists($formData['reference'], $formData)){
-                $formData['reference']=null;
+                $data['reference']=null;
             }
             if(!array_key_exists($formData['tracking'], $formData)){
-                $formData['tracking']=null;
+                $data['tracking']=null;
             }
             if(!array_key_exists($formData['datecreate'], $formData)){
-                $formData['datecreate']=null;
+                $data['datecreate']=null;
             }
-            
+            else{
+            $data=array();
+            $data=$formData;
+            }
             $recherche = new Application_Model_DbTable_DemandeXprev();
             $newRecherche =$recherche->recherche($data);
             echo '<pre>',  var_export($data),'</pre>';
             echo '<pre>',  var_export($newRecherche),'</pre>';
         }
-        else{
-            $formData=array();
-            }
+        
     }
     
     public function extractAction(){
