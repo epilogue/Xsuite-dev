@@ -1208,15 +1208,17 @@ class XprevController extends Zend_Controller_Action
 //            if(!array_key_exists($formData['datecreate'], $formData)){
 //                $formData['datecreate']=null;
 //            }
-            echo '<pre>',  var_export($data),'</pre>';
-            echo '<pre>',  var_export($newRecherche),'</pre>';
+           
+           
             $recherche = new Application_Model_DbTable_DemandeXprev();
             $newRecherche =$recherche->recherche($formData);
+             echo '<pre>',  var_export($newRecherche),'</pre>';
         }
         else{
-             $formData=array();
-             $recherche = new Application_Model_DbTable_DemandeXprev();
-        $newRecherche =$recherche->recherche($formData);
+             echo 'plop';
+//             $formData=array();
+//             $recherche = new Application_Model_DbTable_DemandeXprev();
+//        $newRecherche =$recherche->recherche($formData);
              
         }
         
