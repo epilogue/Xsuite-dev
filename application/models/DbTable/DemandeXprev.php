@@ -25,27 +25,46 @@ class Application_Model_DbTable_DemandeXprev extends Zend_Db_Table_Abstract {
                 . "left join client_xprev on client_xprev.id_client_xprev = demande_xprev.id_client_xprev "
                 . "left join demande_article_xprev on demande_article_xprev.tracking = demande_xprev.tracking "
                 . "where 1";
-        if(!empty($formdata['tracking'])){
-            $sql.= " or demande_xprev.tracking='{$formdata['tracking']}'";    
+        $sqlsuite="";
+        $sqlsuite2="";
+        if(empty($sqlsuite)){
+            if(!empty($formdata['tracking'])){
+                $sqlsuite.= " and demande_xprev.tracking='{$formdata['tracking']}'"; 
+                if(!empty($formdata['nom_client'])){
+                    $sqlsuite2.= " or client_xprev.code_client_user_xprev= {$formdata['nom_client']}";
+                }
+                if(!empty($formdata['reference'])){
+                    $sqlsuite2.= " or demande_article_xprev.reference_article='{$formdata['reference']}'";    
+                }
+                
+            }
+            
+            
+        }  else {
+            if(!empty($formdata['nom_client'])){
+                    $sql.= " and client_xprev.code_client_user_xprev= {$formdata['nom_client']}";
+                    if(!empty($formdata['tracking'])){
+                        $sqlsuite2.= " or demande_xprev.tracking='{$formdata['tracking']}'";
+                     }
+                }
         }
-        if(!empty($formdata['datecreate'])){
-            $sql.= " or demande_xprev.date_create= {$formdata['datecreate']}";    
-        }
-        if(!empty($formdata['nom_client'])){
-            $sql.= " or client_xprev.code_client_user_xprev= {$formdata['nom_client']}";    
-        }
-        if(!empty($formdata['reference'])){
-            $sql.= " or demande_article_xprev.reference_article='{$formdata['reference']}'";    
-        }
-        if(!empty($formdata['nom_commercial'])){
-            $sql.= " or commercial.id_user= {$formdata['nom_commercial']}";    
-        }
-        if(!empty($formdata['nom_emetteur'])){
-            $sql.= " or emetteur.id_user= {$formdata['nom_emetteur']}";   
-        }
-        if(!empty($formdata['nom_statut'])){
-            $sql.= " or demande_xprev.id_statut_xprev= {$formdata['nom_statut']}";   
-        }
+        
+        
+        
+//        if(!empty($formdata['nom_commercial'])){
+//            $sql.= " and commercial.id_user= {$formdata['nom_commercial']}";    
+//        }
+//        if(!empty($formdata['nom_emetteur'])){
+//            $sql.= " and emetteur.id_user= {$formdata['nom_emetteur']}";   
+//        }
+//        if(!empty($formdata['nom_statut'])){
+//            $sql.= " and demande_xprev.id_statut_xprev= {$formdata['nom_statut']}";   
+//        }
+//        if(!empty($formdata['datecreate'])){
+//            $sqlsuite.= " and demande_xprev.date_create= {$formdata['datecreate']}";
+//        }
+        $sql.=$sqlsuite;
+                $sql.=$sqlsuite2;
         var_dump($sql);
         $res = $this->getAdapter()->query($sql);
         $rest=$res->fetchAll();
