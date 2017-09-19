@@ -35,7 +35,7 @@ class Application_Model_DbTable_DemandeXprev extends Zend_Db_Table_Abstract {
             $sql.= " and client_xprev.code_client_user_xprev= {$formdata['nom_client']}";    
         }
         if(!empty($formdata['reference'])){
-            $sql.= " and demande_article_xprev.reference_article= {$formdata['reference']}";    
+            $sql.= " and demande_article_xprev.reference_article='{$formdata['reference']}'";    
         }
         if(!empty($formdata['nom_commercial'])){
             $sql.= " and commercial.id_user= {$formdata['nom_commercial']}";    
