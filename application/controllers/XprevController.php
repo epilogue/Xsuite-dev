@@ -1219,6 +1219,7 @@ class XprevController extends Zend_Controller_Action
         }
         $recherche = new Application_Model_DbTable_DemandeXprev();
         $newRecherche =$recherche->recherche($formData);
+        $this->view->formData=$formData;
     }
     
     public function extractAction(){
