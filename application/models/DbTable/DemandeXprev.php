@@ -26,25 +26,25 @@ class Application_Model_DbTable_DemandeXprev extends Zend_Db_Table_Abstract {
                 . "left join demande_article_xprev on demande_article_xprev.tracking = demande_xprev.tracking "
                 . "where 1";
         if(!empty($formdata['tracking'])){
-            $sql.= " and demande_xprev.tracking='{$formdata['tracking']}'";    
+            $sql.= " or demande_xprev.tracking='{$formdata['tracking']}'";    
         }
         if(!empty($formdata['datecreate'])){
-            $sql.= " and demande_xprev.date_create= {$formdata['datecreate']}";    
+            $sql.= " or demande_xprev.date_create= {$formdata['datecreate']}";    
         }
         if(!empty($formdata['nom_client'])){
-            $sql.= " and client_xprev.code_client_user_xprev= {$formdata['nom_client']}";    
+            $sql.= " or client_xprev.code_client_user_xprev= {$formdata['nom_client']}";    
         }
         if(!empty($formdata['reference'])){
-            $sql.= " and demande_article_xprev.reference_article='{$formdata['reference']}'";    
+            $sql.= " or demande_article_xprev.reference_article='{$formdata['reference']}'";    
         }
         if(!empty($formdata['nom_commercial'])){
-            $sql.= " and commercial.id_user= {$formdata['nom_commercial']}";    
+            $sql.= " or commercial.id_user= {$formdata['nom_commercial']}";    
         }
         if(!empty($formdata['nom_emetteur'])){
-            $sql.= " and emetteur.id_user= {$formdata['nom_emetteur']}";   
+            $sql.= " or emetteur.id_user= {$formdata['nom_emetteur']}";   
         }
         if(!empty($formdata['nom_statut'])){
-            $sql.= " and demande_xprev.id_statut_xprev= {$formdata['nom_statut']}";   
+            $sql.= " or demande_xprev.id_statut_xprev= {$formdata['nom_statut']}";   
         }
         var_dump($sql);
         $res = $this->getAdapter()->query($sql);
