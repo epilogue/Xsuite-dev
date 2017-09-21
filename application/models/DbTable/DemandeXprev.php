@@ -38,7 +38,7 @@ class Application_Model_DbTable_DemandeXprev extends Zend_Db_Table_Abstract {
                 }
                 
             }if(!empty($formdata['nom_client'])){
-                    $sqlsuite.= " and client_xprev.code_client_user_xprev= {$formdata['nom_client']}";
+                    $sqlsuite.= " and client_xprev.code_client_user_xprev='{$formdata['nom_client']}'";
                     if(!empty($formdata['reference'])){
                     $sqlsuite2.= " or demande_article_xprev.reference_article='{$formdata['reference']}'";    
                     }
