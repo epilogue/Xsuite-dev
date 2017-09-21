@@ -1186,7 +1186,7 @@ class XprevController extends Zend_Controller_Action
         $this->view->infoUser = $infoUser;
         if($this->getRequest()->isPost()){
             $formData =  $this->getRequest()->getPost();
-//            echo '<pre>',  var_export($formData),'</pre>';
+          echo '<pre>',  var_export($formData),'</pre>';
 //            if(!array_key_exists($formData['nom_client'], $formData)){
 //                $formData['nom_client']=null;
 //            }
