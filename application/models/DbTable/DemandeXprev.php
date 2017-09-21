@@ -40,7 +40,7 @@ class Application_Model_DbTable_DemandeXprev extends Zend_Db_Table_Abstract {
                     $sqlsuite2.= " or commercial.id_user= {$formdata['nom_commercial']}";    
                 }
                 if(!empty($formdata['nom_emetteur'])){
-                    $sqlsuite2.= " and emetteur.id_user= {$formdata['nom_emetteur']}";   
+                    $sqlsuite2.= " or emetteur.id_user= {$formdata['nom_emetteur']}";   
                 }
                 if(!empty($formdata['nom_statut'])){
                     $sqlsuite2.= " or demande_xprev.id_statut_xprev= {$formdata['nom_statut']}";   
@@ -84,9 +84,7 @@ class Application_Model_DbTable_DemandeXprev extends Zend_Db_Table_Abstract {
                 if(!empty($formdata['nom_commercial'])){
                     $sqlsuite2.= " or commercial.id_user= {$formdata['nom_commercial']}";    
                 }
-                if(!empty($formdata['nom_emetteur'])){
-                    $sqlsuite2.= " or emetteur.id_user= {$formdata['nom_emetteur']}";   
-                }
+                
                 if(!empty($formdata['nom_statut'])){
                     $sqlsuite2.= " or demande_xprev.id_statut_xprev= {$formdata['nom_statut']}";   
                 }
