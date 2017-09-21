@@ -42,7 +42,7 @@ class Application_Model_DbTable_DemandeXprev extends Zend_Db_Table_Abstract {
             
         }  else {
             if(!empty($formdata['nom_client'])){
-                    $sql.= " and client_xprev.code_client_user_xprev= {$formdata['nom_client']}";
+                    $sqlsuite.= " and client_xprev.code_client_user_xprev= {$formdata['nom_client']}";
                     if(!empty($formdata['tracking'])){
                         $sqlsuite2.= " or demande_xprev.tracking='{$formdata['tracking']}'";
                      }
