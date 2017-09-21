@@ -67,6 +67,18 @@ class Application_Model_DbTable_DemandeXprev extends Zend_Db_Table_Abstract {
                     $sqlsuite2.= " or demande_xprev.date_create= {$formdata['datecreate']}";
                 }
             }
+            if(!empty($formdata['nom_emetteur'])){
+                $sqlsuite.= " and emetteur.id_user= {$formdata['nom_emetteur']}";
+                if(!empty($formdata['reference'])){
+                    $sqlsuite2.= " or demande_article_xprev.reference_article='{$formdata['reference']}'";    
+                }
+                if(!empty($formdata['nom_statut'])){
+                    $sqlsuite2.= " or demande_xprev.id_statut_xprev= {$formdata['nom_statut']}";   
+                }
+                if(!empty($formdata['datecreate'])){
+                    $sqlsuite2.= " or demande_xprev.date_create= {$formdata['datecreate']}";
+                }
+            }
             if(!empty($formdata['reference'])){
                 $sqlsuite.= " and demande_article_xprev.reference_article='{$formdata['reference']}'";
                 if(!empty($formdata['nom_commercial'])){
@@ -94,15 +106,7 @@ class Application_Model_DbTable_DemandeXprev extends Zend_Db_Table_Abstract {
                     $sqlsuite2.= " or demande_xprev.date_create= {$formdata['datecreate']}";
                 }
             }
-            if(!empty($formdata['nom_emetteur'])){
-                $sqlsuite.= " and emetteur.id_user= {$formdata['nom_emetteur']}";
-                if(!empty($formdata['nom_statut'])){
-                    $sqlsuite2.= " or demande_xprev.id_statut_xprev= {$formdata['nom_statut']}";   
-                }
-                if(!empty($formdata['datecreate'])){
-                    $sqlsuite2.= " or demande_xprev.date_create= {$formdata['datecreate']}";
-                }
-            }
+            
             if(!empty($formdata['nom_statut'])){
                 $sqlsuite.= " and demande_xprev.id_statut_xprev= {$formdata['nom_statut']}";
                 if(!empty($formdata['datecreate'])){
