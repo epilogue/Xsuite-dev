@@ -116,6 +116,24 @@ class Application_Model_DbTable_DemandeXprev extends Zend_Db_Table_Abstract {
             }
             
         }  else {
+            if(!empty($formdata['nom_client'])){
+                    $sqlsuite2.= " or client_user_xprev.code_client_users_xprev= {$formdata['nom_client']}";
+                }
+                if(!empty($formdata['reference'])){
+                    $sqlsuite2.= " or demande_article_xprev.reference_article='{$formdata['reference']}'";    
+                }
+                if(!empty($formdata['nom_commercial'])){
+                    $sqlsuite2.= " or commercial.id_user= {$formdata['nom_commercial']}";    
+                }
+                if(!empty($formdata['nom_emetteur'])){
+                    $sqlsuite2.= " or emetteur.id_user= {$formdata['nom_emetteur']}";   
+                }
+                if(!empty($formdata['nom_statut'])){
+                    $sqlsuite2.= " or demande_xprev.id_statut_xprev= {$formdata['nom_statut']}";   
+                }
+                if(!empty($formdata['datecreate'])){
+                    $sqlsuite2.= " or demande_xprev.date_create= {$formdata['datecreate']}";
+                }
             
         }
         
