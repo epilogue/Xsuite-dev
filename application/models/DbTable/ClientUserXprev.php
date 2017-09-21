@@ -21,4 +21,14 @@ class Application_Model_DbTable_ClientUserXprev extends Zend_Db_Table_Abstract {
         }
         
     }
+    public function searchClientUser(){
+        $sql="SELECT distinct(`code_client_users_xprev`), `nom_client_user_xprev` FROM `client_user_xprev`";
+        $res = $this->getAdapter()->query($sql);
+        $rest=$res->fetchAll();
+        if (!$rest) {
+            return null;
+        } else {
+            return $rest;
+        }
+    }
 }

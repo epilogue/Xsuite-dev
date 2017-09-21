@@ -18,11 +18,11 @@ class Application_Model_DbTable_DemandeXprev extends Zend_Db_Table_Abstract {
     }
     public function recherche($formdata){
         var_dump($formdata);
-        $sql ="select distinct (demande_xprev.id_demande_xprev),demande_xprev.tracking,demande_xprev.date_create,demande_article_xprev.reference_article,(commercial.nom_user) as nom_commercial,(emetteur.nom_user) as nom_emetteur,client_xprev.nom_client_xprev,statut_xprev.nom_statut_xprev from demande_xprev "
+        $sql ="select distinct (demande_xprev.id_demande_xprev),demande_xprev.tracking,demande_xprev.date_create,demande_article_xprev.reference_article,(commercial.nom_user) as nom_commercial,(emetteur.nom_user) as nom_emetteur,client_user_xprev.nom_client_user_xprev,statut_xprev.nom_statut_xprev from demande_xprev "
                 . "left join users as commercial on commercial.id_user = demande_xprev.id_commercial "
                 . "left join users as emetteur  on emetteur.id_user = demande_xprev.id_users "
                 . "left join statut_xprev on statut_xprev.id_statut_xprev = demande_xprev.id_statut_xprev "
-                . "left join client_xprev on client_xprev.id_client_xprev = demande_xprev.id_client_xprev "
+                . "left join client_user_xprev on client_user_xprev.id_client_user_xprev = demande_xprev.id_client_user_xprev "
                 . "left join demande_article_xprev on demande_article_xprev.tracking = demande_xprev.tracking "
                 . "where 1";
         $sqlsuite="";
@@ -31,14 +31,14 @@ class Application_Model_DbTable_DemandeXprev extends Zend_Db_Table_Abstract {
             if(!empty($formdata['tracking'])){
                 $sqlsuite.= " and demande_xprev.tracking='{$formdata['tracking']}'"; 
                 if(!empty($formdata['nom_client'])){
-                    $sqlsuite2.= " or client_xprev.code_client_user_xprev= {$formdata['nom_client']}";
+                    $sqlsuite2.= " or client_user_xprev.code_client_users_xprev= {$formdata['nom_client']}";
                 }
                 if(!empty($formdata['reference'])){
                     $sqlsuite2.= " or demande_article_xprev.reference_article='{$formdata['reference']}'";    
                 }
                 
             }if(!empty($formdata['nom_client'])){
-                    $sqlsuite.= " and client_xprev.code_user_client_xprev='{$formdata['nom_client']}'";
+                    $sqlsuite.= " and client_user_xprev.code_client_users_xprev='{$formdata['nom_client']}'";
                     if(!empty($formdata['reference'])){
                     $sqlsuite2.= " or demande_article_xprev.reference_article='{$formdata['reference']}'";    
                     }
