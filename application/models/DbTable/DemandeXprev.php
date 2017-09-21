@@ -36,14 +36,82 @@ class Application_Model_DbTable_DemandeXprev extends Zend_Db_Table_Abstract {
                 if(!empty($formdata['reference'])){
                     $sqlsuite2.= " or demande_article_xprev.reference_article='{$formdata['reference']}'";    
                 }
+                if(!empty($formdata['nom_commercial'])){
+                    $sqlsuite2.= " or commercial.id_user= {$formdata['nom_commercial']}";    
+                }
+                if(!empty($formdata['nom_emetteur'])){
+                    $sqlsuite2.= " and emetteur.id_user= {$formdata['nom_emetteur']}";   
+                }
+                if(!empty($formdata['nom_statut'])){
+                    $sqlsuite2.= " or demande_xprev.id_statut_xprev= {$formdata['nom_statut']}";   
+                }
+                if(!empty($formdata['datecreate'])){
+                    $sqlsuite2.= " or demande_xprev.date_create= {$formdata['datecreate']}";
+                }
                 
             }if(!empty($formdata['nom_client'])){
-                    $sqlsuite.= " and client_user_xprev.code_client_users_xprev='{$formdata['nom_client']}'";
-                    if(!empty($formdata['reference'])){
+                $sqlsuite.= " and client_user_xprev.code_client_users_xprev='{$formdata['nom_client']}'";
+                if(!empty($formdata['reference'])){
                     $sqlsuite2.= " or demande_article_xprev.reference_article='{$formdata['reference']}'";    
-                    }
                 }
-            
+                if(!empty($formdata['nom_commercial'])){
+                    $sqlsuite2.= " or commercial.id_user= {$formdata['nom_commercial']}";    
+                }
+                if(!empty($formdata['nom_emetteur'])){
+                    $sqlsuite2.= " or emetteur.id_user= {$formdata['nom_emetteur']}";   
+                }
+                if(!empty($formdata['nom_statut'])){
+                    $sqlsuite2.= " or demande_xprev.id_statut_xprev= {$formdata['nom_statut']}";   
+                }
+                if(!empty($formdata['datecreate'])){
+                    $sqlsuite2.= " or demande_xprev.date_create= {$formdata['datecreate']}";
+                }
+            }
+            if(!empty($formdata['reference'])){
+                $sqlsuite.= " and demande_article_xprev.reference_article='{$formdata['reference']}'";
+                if(!empty($formdata['nom_commercial'])){
+                    $sqlsuite2.= " or commercial.id_user= {$formdata['nom_commercial']}";    
+                }
+                if(!empty($formdata['nom_emetteur'])){
+                    $sqlsuite2.= " or emetteur.id_user= {$formdata['nom_emetteur']}";   
+                }
+                if(!empty($formdata['nom_statut'])){
+                    $sqlsuite2.= " or demande_xprev.id_statut_xprev= {$formdata['nom_statut']}";   
+                }
+                if(!empty($formdata['datecreate'])){
+                    $sqlsuite2.= " or demande_xprev.date_create= {$formdata['datecreate']}";
+                }
+            }
+            if(!empty($formdata['nom_commercial'])){
+                $sqlsuite.= " and commercial.id_user= {$formdata['nom_commercial']}";
+                if(!empty($formdata['nom_emetteur'])){
+                    $sqlsuite2.= " or emetteur.id_user= {$formdata['nom_emetteur']}";   
+                }
+                if(!empty($formdata['nom_statut'])){
+                    $sqlsuite2.= " or demande_xprev.id_statut_xprev= {$formdata['nom_statut']}";   
+                }
+                if(!empty($formdata['datecreate'])){
+                    $sqlsuite2.= " or demande_xprev.date_create= {$formdata['datecreate']}";
+                }
+            }
+            if(!empty($formdata['nom_emetteur'])){
+                $sqlsuite.= " and emetteur.id_user= {$formdata['nom_emetteur']}";
+                if(!empty($formdata['nom_statut'])){
+                    $sqlsuite2.= " or demande_xprev.id_statut_xprev= {$formdata['nom_statut']}";   
+                }
+                if(!empty($formdata['datecreate'])){
+                    $sqlsuite2.= " or demande_xprev.date_create= {$formdata['datecreate']}";
+                }
+            }
+            if(!empty($formdata['nom_statut'])){
+                $sqlsuite.= " and demande_xprev.id_statut_xprev= {$formdata['nom_statut']}";
+                if(!empty($formdata['datecreate'])){
+                    $sqlsuite2.= " or demande_xprev.date_create= {$formdata['datecreate']}";
+                }
+            }
+            if(!empty($formdata['datecreate'])){
+                $sqlsuite.= " and demande_xprev.date_create= {$formdata['datecreate']}";
+            }
             
         }  else {
             
