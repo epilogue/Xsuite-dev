@@ -1962,7 +1962,7 @@ elseif($mailServiceClients[0]['mail_service_client']=='' || $mailServiceClients[
                                 $params3['destinataireMail'] = $emailVars->listes->CDREST;
                                 break;
                             case "QI":
-                                $params3['destinataireMail'] = $emailVars->listes->CDROUEST;
+                                $params3['destinataireMail'] = $emailVars->listes->CDROUEST2;
                                 break;
                             case "QK":
                                 $params3['destinataireMail'] = $emailVars->listes->CDROUEST;
