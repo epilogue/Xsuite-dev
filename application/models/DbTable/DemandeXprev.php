@@ -27,132 +27,32 @@ class Application_Model_DbTable_DemandeXprev extends Zend_Db_Table_Abstract {
                 . "where 1";
         $sqlsuite="";
         $sqlsuite2="";
+        
+       
         if(empty($sqlsuite)){
-            if(!empty($formdata['tracking'])){
-//                $sqlsuite.= " and demande_xprev.tracking='{$formdata['tracking']}'"; 
-//                if(!empty($formdata['nom_client'])){
-//                    $sqlsuite2.= " or client_user_xprev.code_client_users_xprev= {$formdata['nom_client']}";
-//                }
-//                if(!empty($formdata['reference'])){
-//                    $sqlsuite2.= " or demande_article_xprev.reference_article='{$formdata['reference']}'";    
-//                }
-//                if(!empty($formdata['nom_commercial'])){
-//                    $sqlsuite2.= " or commercial.id_user= {$formdata['nom_commercial']}";    
-//                }
-//                if(!empty($formdata['nom_emetteur'])){
-//                    $sqlsuite2.= " or emetteur.id_user= {$formdata['nom_emetteur']}";   
-//                }
-//                if(!empty($formdata['nom_statut'])){
-//                    $sqlsuite2.= " or demande_xprev.id_statut_xprev= {$formdata['nom_statut']}";   
-//                }
-//                if(!empty($formdata['datecreate'])){
-//                    $sqlsuite2.= " or demande_xprev.date_create= {$formdata['datecreate']}";
-//                }
-                
-            }elseif(!empty($formdata['nom_client'])){
-                $sqlsuite.= " and client_user_xprev.code_client_users_xprev='{$formdata['nom_client']}'";
-//                if(!empty($formdata['reference'])){
-//                    $sqlsuite2.= " or demande_article_xprev.reference_article='{$formdata['reference']}'";    
-//                }
-//                if(!empty($formdata['nom_commercial'])){
-//                    $sqlsuite2.= " or commercial.id_user= {$formdata['nom_commercial']}";    
-//                }
-//                if(!empty($formdata['nom_emetteur'])){
-//                    $sqlsuite2.= " or emetteur.id_user= {$formdata['nom_emetteur']}";   
-//                }
-//                if(!empty($formdata['nom_statut'])){
-//                    $sqlsuite2.= " or demande_xprev.id_statut_xprev= {$formdata['nom_statut']}";   
-//                }
-//                if(!empty($formdata['datecreate'])){
-//                    $sqlsuite2.= " or demande_xprev.date_create= {$formdata['datecreate']}";
-//                }
-            }
-            elseif(!empty($formdata['nom_emetteur'])){
-                $sqlsuite.= " and emetteur.id_user= {$formdata['nom_emetteur']}";
-//                if(!empty($formdata['reference'])){
-//                    $sqlsuite2.= " or demande_article_xprev.reference_article='{$formdata['reference']}'";    
-//                }
-//                if(!empty($formdata['nom_statut'])){
-//                    $sqlsuite2.= " or demande_xprev.id_statut_xprev= {$formdata['nom_statut']}";   
-//                }
-//                if(!empty($formdata['datecreate'])){
-//                    $sqlsuite2.= " or demande_xprev.date_create= {$formdata['datecreate']}";
-//                }
-            }
-            elseif(!empty($formdata['reference'])){
-                $sqlsuite.= " and demande_article_xprev.reference_article='{$formdata['reference']}'";
-//                if(!empty($formdata['nom_commercial'])){
-//                    $sqlsuite2.= " or commercial.id_user= {$formdata['nom_commercial']}";    
-//                }
-//                
-//                if(!empty($formdata['nom_statut'])){
-//                    $sqlsuite2.= " or demande_xprev.id_statut_xprev= {$formdata['nom_statut']}";   
-//                }
-//                if(!empty($formdata['datecreate'])){
-//                    $sqlsuite2.= " or demande_xprev.date_create= {$formdata['datecreate']}";
-//                }
-            }
-            if(!empty($formdata['nom_commercial'])){
-                $sqlsuite.= " and commercial.id_user= {$formdata['nom_commercial']}";
-//                if(!empty($formdata['nom_emetteur'])){
-//                    $sqlsuite2.= " or emetteur.id_user= {$formdata['nom_emetteur']}";   
-//                }
-//                if(!empty($formdata['nom_statut'])){
-//                    $sqlsuite2.= " or demande_xprev.id_statut_xprev= {$formdata['nom_statut']}";   
-//                }
-//                if(!empty($formdata['datecreate'])){
-//                    $sqlsuite2.= " or demande_xprev.date_create= {$formdata['datecreate']}";
-//                }
-            }
-            
-            if(!empty($formdata['nom_statut'])){
-                $sqlsuite.= " and demande_xprev.id_statut_xprev= {$formdata['nom_statut']}";
-//                if(!empty($formdata['datecreate'])){
-//                    $sqlsuite2.= " or demande_xprev.date_create= {$formdata['datecreate']}";
-//                }
-            }
-            if(!empty($formdata['datecreate'])){
-                $sqlsuite.= " and demande_xprev.date_create= {$formdata['datecreate']}";
-            }
-            
-        }  else {
             if(!empty($formdata['nom_client'])){
-                    $sqlsuite2.= " or client_user_xprev.code_client_users_xprev= {$formdata['nom_client']}";
-                }
-                if(!empty($formdata['reference'])){
-                    $sqlsuite2.= " or demande_article_xprev.reference_article='{$formdata['reference']}'";    
-                }
-                if(!empty($formdata['nom_commercial'])){
-                    $sqlsuite2.= " or commercial.id_user= {$formdata['nom_commercial']}";    
-                }
-                if(!empty($formdata['nom_emetteur'])){
-                    $sqlsuite2.= " or emetteur.id_user= {$formdata['nom_emetteur']}";   
-                }
-                if(!empty($formdata['nom_statut'])){
-                    $sqlsuite2.= " or demande_xprev.id_statut_xprev= {$formdata['nom_statut']}";   
-                }
-                if(!empty($formdata['datecreate'])){
-                    $sqlsuite2.= " or demande_xprev.date_create= {$formdata['datecreate']}";
-                }
+                $sqlsuite.=" and client_user_xprev.code_client_users_xprev ='{$formdata['nom_client']}'";
+            }
+            elseif(!empty($formdata['nom_statut'])){
+                $sqlsuite.=" and  demande_xprev.id_statut_xprev='{$formdata['nom_statut']}'";
+            }
+            elseif (!empty($formdata['tracking'])) {
+                $sqlsuite.=" and  demande_xprev.tracking='{$formdata['tracking']}'";
+            }
+        }else{
+            if(!empty($formdata['nom_client'])){
+                $sqlsuite2.=" or client_user_xprev.code_client_users_xprev ='{$formdata['nom_client']}'";
+            }
+            elseif(!empty($formdata['nom_statut'])){
+                $sqlsuite2.=" or  demande_xprev.id_statut_xprev='{$formdata['nom_statut']}'";
+            }
+            elseif (!empty($formdata['tracking'])) {
+                $sqlsuite2.=" or demande_xprev.tracking='{$formdata['tracking']}'";
+            }
             
         }
-        
-        
-        
-//        if(!empty($formdata['nom_commercial'])){
-//            $sql.= " and commercial.id_user= {$formdata['nom_commercial']}";    
-//        }
-//        if(!empty($formdata['nom_emetteur'])){
-//            $sql.= " and emetteur.id_user= {$formdata['nom_emetteur']}";   
-//        }
-//        if(!empty($formdata['nom_statut'])){
-//            $sql.= " and demande_xprev.id_statut_xprev= {$formdata['nom_statut']}";   
-//        }
-//        if(!empty($formdata['datecreate'])){
-//            $sqlsuite.= " and demande_xprev.date_create= {$formdata['datecreate']}";
-//        }
-        $sql.=$sqlsuite;
-                $sql.=$sqlsuite2;
+         $sql.=$sqlsuite;
+        $sql.=$sqlsuite2;
         var_dump($sql);
         $res = $this->getAdapter()->query($sql);
         $rest=$res->fetchAll();
