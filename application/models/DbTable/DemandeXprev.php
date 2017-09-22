@@ -52,7 +52,7 @@ class Application_Model_DbTable_DemandeXprev extends Zend_Db_Table_Abstract {
             
         }
          $sql.=$sqlsuite;
-         var_dump( $sqlsuite);
+         var_dump($sqlsuite);
          var_dump($sqlsuite2);
         $sql.=$sqlsuite2;
         var_dump($sql);
