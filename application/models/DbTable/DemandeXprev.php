@@ -62,12 +62,12 @@ class Application_Model_DbTable_DemandeXprev extends Zend_Db_Table_Abstract {
         if(!empty($sqlsuite) and !empty($formdata['nom_commercial'])){
             $sqlsuite2.=" or  demande_xprev.id_commercial='{$formdata['nom_commercial']}'";
         }
-         var_dump($sqlsuite);
-         var_dump($sqlsuite2);
+         //var_dump($sqlsuite);
+         //var_dump($sqlsuite2);
          $sql.=$sqlsuite;
         
         $sql.=$sqlsuite2;
-        var_dump($sql);
+       // var_dump($sql);
         $res = $this->getAdapter()->query($sql);
         $rest=$res->fetchAll();
         if (!$rest) {
