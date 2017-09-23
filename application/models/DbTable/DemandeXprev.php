@@ -41,6 +41,12 @@ class Application_Model_DbTable_DemandeXprev extends Zend_Db_Table_Abstract {
         if (empty($sqlsuite) and !empty($formdata['reference'])) {
             $sqlsuite.=" and  demande_article_xprev.reference_article='{$formdata['reference']}'";
         }
+        if(empty($sqlsuite) and !empty($formdata['nom_commercial'])){
+            $sqlsuite.=" and  demande_xprev.id_commercial='{$formdata['nom_commercial']}'";
+        }
+        if(empty($sqlsuite) and !empty($formdata['nom_emetteur'])){
+            $sqlsuite.=" and  demande_xprev.id_users='{$formdata['nom_emmetteur']}'";
+        }
         if(!empty($sqlsuite) and !empty($formdata['nom_client'])){
                 $sqlsuite2.=" or client_user_xprev.code_client_users_xprev ='{$formdata['nom_client']}'";
             }
@@ -52,6 +58,9 @@ class Application_Model_DbTable_DemandeXprev extends Zend_Db_Table_Abstract {
             }
         if (!empty($sqlsuite) and !empty($formdata['reference'])) {
             $sqlsuite2.=" or demande_article_xprev.reference_article='{$formdata['reference']}'";
+        }
+        if(!empty($sqlsuite) and !empty($formdata['nom_commercial'])){
+            $sqlsuite2.=" or  demande_xprev.id_commercial='{$formdata['nom_commercial']}'";
         }
          var_dump($sqlsuite);
          var_dump($sqlsuite2);
