@@ -45,7 +45,7 @@ class Application_Model_DbTable_DemandeXprev extends Zend_Db_Table_Abstract {
                 $sqlsuite2.=" and  demande_xprev.id_statut_xprev='{$formdata['nom_statut']}'";
             }
         if (!empty($sqlsuite) and !empty($formdata['tracking'])) {
-                $sqlsuite.=" and  demande_xprev.tracking='{$formdata['tracking']}'";
+                $sqlsuite2.=" and  demande_xprev.tracking='{$formdata['tracking']}'";
             }
          var_dump($sqlsuite);
          var_dump($sqlsuite2);
