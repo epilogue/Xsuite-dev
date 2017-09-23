@@ -29,28 +29,24 @@ class Application_Model_DbTable_DemandeXprev extends Zend_Db_Table_Abstract {
         $sqlsuite2="";
         
        
-        if(empty($sqlsuite)){
-            if(!empty($formdata['nom_client'])){
+        if(empty($sqlsuite) and !empty($formdata['nom_client'])){
                 $sqlsuite.=" and client_user_xprev.code_client_users_xprev ='{$formdata['nom_client']}'";
             }
-            if(!empty($formdata['nom_statut'])){
+        if(empty($sqlsuite) and !empty($formdata['nom_statut'])){
                 $sqlsuite.=" and  demande_xprev.id_statut_xprev='{$formdata['nom_statut']}'";
             }
-            if (!empty($formdata['tracking'])) {
+        if (empty($sqlsuite) and !empty($formdata['tracking'])) {
                 $sqlsuite.=" and  demande_xprev.tracking='{$formdata['tracking']}'";
             }
-        }else{
-            if(!empty($formdata['nom_client'])){
+        if(!empty($sqlsuite) and !empty($formdata['nom_client'])){
                 $sqlsuite2.=" or client_user_xprev.code_client_users_xprev ='{$formdata['nom_client']}'";
             }
-            if(!empty($formdata['nom_statut'])){
-                $sqlsuite2.=" or  demande_xprev.id_statut_xprev='{$formdata['nom_statut']}'";
+        if(!empty($sqlsuite) and !empty($formdata['nom_statut'])){
+                $sqlsuite2.=" and  demande_xprev.id_statut_xprev='{$formdata['nom_statut']}'";
             }
-            if(!empty($formdata['tracking'])) {
-                $sqlsuite2.=" or demande_xprev.tracking='{$formdata['tracking']}'";
+        if (!empty($sqlsuite) and !empty($formdata['tracking'])) {
+                $sqlsuite.=" and  demande_xprev.tracking='{$formdata['tracking']}'";
             }
-            
-        }
          var_dump($sqlsuite);
          var_dump($sqlsuite2);
          $sql.=$sqlsuite;
