@@ -1194,6 +1194,7 @@ class XprevController extends Zend_Controller_Action
         }
         
         $this->view->formData=$formData;
+        $this->view->formdata=$newRecherche;
     }
     
     public function extractAction(){
