@@ -38,6 +38,9 @@ class Application_Model_DbTable_DemandeXprev extends Zend_Db_Table_Abstract {
         if (empty($sqlsuite) and !empty($formdata['tracking'])) {
                 $sqlsuite.=" and  demande_xprev.tracking='{$formdata['tracking']}'";
             }
+        if (empty($sqlsuite) and !empty($formdata['reference'])) {
+            $sqlsuite.=" and  demande_article_xprev.reference_article='{$formdata['reference']}'";
+        }
         if(!empty($sqlsuite) and !empty($formdata['nom_client'])){
                 $sqlsuite2.=" or client_user_xprev.code_client_users_xprev ='{$formdata['nom_client']}'";
             }
@@ -47,6 +50,9 @@ class Application_Model_DbTable_DemandeXprev extends Zend_Db_Table_Abstract {
         if (!empty($sqlsuite) and !empty($formdata['tracking'])) {
                 $sqlsuite2.=" or  demande_xprev.tracking='{$formdata['tracking']}'";
             }
+        if (!empty($sqlsuite) and !empty($formdata['reference'])) {
+            $sqlsuite2.=" or demande_article_xprev.reference_article='{$formdata['reference']}'";
+        }
          var_dump($sqlsuite);
          var_dump($sqlsuite2);
          $sql.=$sqlsuite;
