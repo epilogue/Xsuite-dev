@@ -1186,7 +1186,7 @@ class XprevController extends Zend_Controller_Action
         $this->view->infoUser = $infoUser;
         if($this->getRequest()->isPost()){
             $formData =  $this->getRequest()->getPost();
-//          echo '<pre>',  var_export($formData),'</pre>';
+          echo '<pre>',  var_export($formData),'</pre>';
            $recherche = new Application_Model_DbTable_DemandeXprev();
            $newRecherche =$recherche->recherche($formData);     
         }
