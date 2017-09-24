@@ -1200,7 +1200,17 @@ class XprevController extends Zend_Controller_Action
     }
     
     public function extractAction(){
+        $this->_helper->layout->disableLayout();
+        header('Content-type: text/csv');
+        $formdata=$_POST;
+        header('Content-Disposition: attachment; filename="extractXprev.csv"');
+        $Xprev = new Application_Model_DbTable_DemandeXprev();
+        $listXprev = $Xprev->extractxprev($formdata);
         
+       echo '"'. str_replace(';', '";"',implode(';', array_keys($listXprev[0]))).'"' . PHP_EOL;
+       foreach ($listXprev as $ligne) {
+           echo '"'. str_replace(';', '";"', implode(';',  $ligne)).'"' . PHP_EOL;
+       }
     }
 }
 

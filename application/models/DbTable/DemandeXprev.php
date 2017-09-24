@@ -311,4 +311,20 @@ public function getAllcodeuser($code_client) {
             return $rest;
         }
     }
+    
+    public function extractxprev($formdata){
+        $sql=" (demande_xprev.tracking) as tracking, "
+                . " (emetteur.nom_user) as emetteur, "
+                . " (commercial.nom_user) as commercial, "
+                . " (demande_xprev.date_create) as date_creation, "
+                . " (statut.nom_statut) as etat, "
+                . " (client_user_xprev.code_client_users_xprev) as code_client, "
+                . " (client_user_xprev.nom_client_user_xprev) as nom client, "
+                . " (demande_article_xprev.code_article) as code_article, "
+                . " (demande_article_xprev.reference_article) as reference_article, "
+                . " (demande_xprev.date_debut) as debut_prevision,"
+                . " (demande_xprev.date_fin) as fin_prevision, "
+                . " (demande_article_xprev.total_article_mois)as quantite prevision,"
+                . " (demande_xprev.justification_log)as commentaire_logistique";
+    }
 }
