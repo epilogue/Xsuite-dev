@@ -713,6 +713,7 @@ class XprevController extends Zend_Controller_Action
         $infoFichier = $fichier->getfichier($tracking);
         $ArticlePrev = new Application_Model_DbTable_DemandeArticleXprev();
         $infoArticle = $ArticlePrev->getarticleprev($tracking);
+        $info_createur = $User->getUser($infoPrev[0]['id_users']);
         //echo '<pre>',  var_export($infoUser),'</pre>';
          $num_mois =  $infoPrev[0]['date_debut'];
            
@@ -792,7 +793,7 @@ class XprevController extends Zend_Controller_Action
                 $validation =5;
                 $justification = $formData['motif_validation'];
                 $upn1 = $Prev->updopxprev($statut,$validation,$justification,$tracking);
-                 //$params['destinataireMail']="";
+                 //$params['destinataireMail']="$info_createur['mail_user']";
                  $params['destinataireMail']="mhuby@smc-france.fr";
 
                  $params['url'] = "http://{$_SERVER['SERVER_NAME']}/xprev/consult/tracking/{$tracking}";
@@ -822,7 +823,7 @@ class XprevController extends Zend_Controller_Action
                 $validation =4;
                 $justification = $formData['motif_validation'];
                 $upn1 = $Prev->updopxprev($statut,$validation,$justification,$tracking);
-                 //$params['destinataireMail']="";
+                 //$params['destinataireMail']="$info_createur['mail_user']";
                  $params['destinataireMail']="mhuby@smc-france.fr";
 
                  $params['url'] = "http://{$_SERVER['SERVER_NAME']}/xprev/supplementinfo/tracking/{$tracking}";
@@ -837,7 +838,7 @@ class XprevController extends Zend_Controller_Action
                                     . "\n"
                                     . "--\n"
                                     . "Xsuite";
-                $params['sujet']="refus Xprev $tracking ";
+                $params['sujet']="demande d'information Xprev $tracking ";
                   //echo '<pre>',  var_export($params),'</pre>';
                 $this->sendEmail($params);
                 $redirector = $this->_helper->getHelper('Redirector');
