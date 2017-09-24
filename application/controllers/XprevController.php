@@ -268,6 +268,7 @@ class XprevController extends Zend_Controller_Action
                     'justification_n1'=>null,
                     'justification_log'=>null,
                     'justification_dop'=>null,
+                    'justification_supp'=>null,
                     'justification_traitement'=>null,
                     'justification_cloture'=>null
                                         );
@@ -904,7 +905,7 @@ class XprevController extends Zend_Controller_Action
             $emailVars = Zend_Registry::get('emailVars');
                  /* creation des parametre du mail*/
                  $params=array();
-            /*envoi du mail à la log*/
+            /*envoi du mail à dop*/
            
               //  echo 'plop'; 
                 $statut=1;

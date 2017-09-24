@@ -49,6 +49,9 @@
         <?php if( $this->infoPrev['justification_dop']!= null) { ?>
         <p>validation directeur des opérations :<?php echo $this->infoPrev['justification_dop'] ;?></p>
         <?php } ;?>
+        <?php if( $this->infoPrev['justification_supp']!= null) { ?>
+        <p>informations supplémentaires :<?php echo $this->infoPrev['justification_supp'] ;?></p>
+        <?php } ;?>
         <?php if( $this->infoPrev['justification_traitement']!= null) { ?>
         <p>commentaire traitement :<?php echo $this->infoPrev['justification_traitement'] ;?></p>
         <?php } ;?>
@@ -94,13 +97,15 @@
                     <td><?php echo $article['m10'] ;?></td>
                     <td><?php echo $article['m11'] ;?></td>
                     <td><?php echo $article['m12'] ;?></td>
+                    <?php if($this->infoUser['niveau']=='niveau4'){ ;?>
                     <?php echo $total[].=+ $article['valeur_totale']; ?>
                 </tr>
-                <?php  }?>
+                    <?php }?>
                 <tr>
                     <td colspan="13"></td>
                     <td colspan="3"><?php echo "valeur totale=" . array_sum($total) ; ?></td>
                 </tr>
+                 <?php }?>
             </tbody>
         </table>
         <p></p>
