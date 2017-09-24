@@ -256,7 +256,7 @@ public function getAllcodeuser($code_client) {
         }
     }
     public function  updopxprev($statut,$validation,$justification,$tracking){
-        $sql ="UPDATE `demande_xprev` SET `id_validation`='{$validation}',  `id_statut_xprev`='{$statut}', `justification_dop`='{$justification}' WHERE  `tracking`='{$tracking}'";
+        $sql ="UPDATE `demande_xprev` SET `id_validation`='{$validation}',  `id_statut_xprev`='{$statut}', `justification_dop`='{$justification}'  WHERE  `tracking`='{$tracking}'";
 //         var_dump($sql); exit();
           $res = $this->getAdapter()->query($sql);
         
