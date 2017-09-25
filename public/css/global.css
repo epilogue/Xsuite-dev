@@ -486,6 +486,9 @@ fieldset legend{
     padding-bottom: 5px;
     width : 65px;
 }
+.refartReference{
+    width: 250px;
+}
 .bouton{
   width:100%;  
 }
