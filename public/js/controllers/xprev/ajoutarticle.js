@@ -29,7 +29,7 @@ $(document).ready(function(){
               {},
               function(data){
                   if(!$.trim(data)){
-                  alert("la reference rentree n'existepas dans movex");
+                  alert("la reference rentree n'existe pas dans movex");
               }
                   $('input[name="refart['+id+'][code_article]"]').val(data);
               },'html');
@@ -63,7 +63,7 @@ $(document).ready(function(){
               {},
               function(data){
                    if(!$.trim(data)){
-                  alert("la reference rentree n'existepas dans movex"); }
+                  alert("la reference rentree n'existe pas dans movex"); }
                   $('input[name="refart['+id+'][code_article]"]').val(data);
               },'html');
              
