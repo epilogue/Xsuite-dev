@@ -59,7 +59,7 @@ $this->headTitle($this->title);
             <th>Client</th>
              <th>Statut</th>
              <th>consultation</th>
-             <th>validation</th>
+             <th>action</th>
              <?php foreach($this->listeN1xprev as $xprev){ ?>
                 <tr>
                     <td><?php echo $xprev['tracking'] ?></td>
@@ -82,7 +82,7 @@ $this->headTitle($this->title);
             <th>Client</th>
              <th>Statut</th>
              <th>consultation</th>
-             <th>validation</th>
+             <th>action</th>
              <?php foreach($this->listeRegxprev as $xprev){ ?>
                 <tr>
                     <td><?php echo $xprev['tracking'] ?></td>
@@ -105,7 +105,7 @@ $this->headTitle($this->title);
             <th>Client</th>
              <th>Statut</th>
              <th>consultation</th>
-             <th>validation</th>
+             <th>action</th>
              <?php foreach($this->listeAllxprev as $xprev){ ?>
                 <tr>
                     <td><?php echo $xprev['tracking'] ?></td>
@@ -125,7 +125,7 @@ $this->headTitle($this->title);
                     <td><a href="<?php echo $this->url(array("controller"=>"xprev","action"=>"traitement","tracking"=>$xprev['tracking'])); ?>" <button class="retour">traiter</button></a></td>
                 </tr>
                     <?php }elseif($xprev['nom_validation_xprev']!='refusée' && $xprev['nom_validation_xprev']=='traitée' && $this->fonction !='50'){ ?>
-                    <td><a href="<?php echo $this->url(array("controller"=>"xprev","action"=>"cloture","tracking"=>$xprev['tracking'])); ?>" <button class="retour">cloturer</button></a></td>
+                    <td><a href="<?php echo $this->url(array("controller"=>"xprev","action"=>"cloture","tracking"=>$xprev['tracking'])); ?>" <button class="retour">modifier</button></a></td>
                 </tr>
                     <?php } } ?>
          <?php } elseif(in_array($this->fonction, $this->fn3) && $this->fonction =='50') {?>
@@ -136,7 +136,7 @@ $this->headTitle($this->title);
             <th>Client</th>
              <th>Statut</th>
              <th>consultation</th>
-             <th>validation</th>
+             <th>action</th>
              <?php foreach($this->listeAllxprev as $xprev){ ?>
                 <tr>
                     <td><?php echo $xprev['tracking'] ?></td>
