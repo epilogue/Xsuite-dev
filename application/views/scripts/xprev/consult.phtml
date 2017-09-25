@@ -97,14 +97,15 @@
                     <td><?php echo $article['m10'] ;?></td>
                     <td><?php echo $article['m11'] ;?></td>
                     <td><?php echo $article['m12'] ;?></td>
+                    
+                <?php  echo $total[].=+ $article['valeur_totale'];} ?>
                     <?php if($this->infoUser['niveau']=='niveau4'){ ;?>
-                    <?php echo $total[].=+ $article['valeur_totale']; ?>
                 </tr>
                 <tr>
                     <td colspan="13"></td>
                     <td colspan="3"><?php echo "valeur totale=" . array_sum($total) ; ?></td>
                 </tr>
-                    <?php }}?>
+                    <?php }?>
             </tbody>
         </table>
         <p></p>
