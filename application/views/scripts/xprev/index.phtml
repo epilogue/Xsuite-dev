@@ -122,14 +122,14 @@ $this->headTitle($this->title);
                     
                         <td><?php if($xprev['nom_validation_xprev']!='refusée' && $xprev['nom_validation_xprev']=='en cours de validation logistique' ){ ?>
                     <a href="<?php echo $this->url(array("controller"=>"xprev","action"=>"validlog","tracking"=>$xprev['tracking']));?>" <button class="retour">validation</button></a></td>
-                </tr>
+                </tr><td>
                     <?php }elseif($xprev['nom_validation_xprev']!='refusée' && $xprev['nom_validation_xprev']=='en cours de validation dop' && $this->fonction =='50'){ ?>
-                    <td><a href="<?php echo $this->url(array("controller"=>"xprev","action"=>"validdop","tracking"=>$xprev['tracking'])); ?>" <button class="retour">validation</button></a></td>
-                </tr>
+                    <a href="<?php echo $this->url(array("controller"=>"xprev","action"=>"validdop","tracking"=>$xprev['tracking'])); ?>" <button class="retour">validation</button></a></td>
+                </tr><td>
                     <?php } elseif($xprev['nom_validation_xprev']!='refusée' && $xprev['nom_validation_xprev']=='en cours de traitement' ){ ?>
-                    <td><a href="<?php echo $this->url(array("controller"=>"xprev","action"=>"traitement","tracking"=>$xprev['tracking'])); ?>" <button class="retour">traiter</button></a></td>
-                </tr>
-                   <td> <?php }elseif($xprev['nom_validation_xprev']!='refusée' && $xprev['nom_validation_xprev']=='traitée' && $this->fonction !='50'){ ?>
+                    <a href="<?php echo $this->url(array("controller"=>"xprev","action"=>"traitement","tracking"=>$xprev['tracking'])); ?>" <button class="retour">traiter</button></a></td>
+                </tr><td>
+                    <?php }elseif($xprev['nom_validation_xprev']!='refusée' && $xprev['nom_validation_xprev']=='traitée' && $this->fonction !='50'){ ?>
                     <a href="<?php echo $this->url(array("controller"=>"xprev","action"=>"cloture","tracking"=>$xprev['tracking'])); ?>" <button class="retour">modifier</button></a></td>
                 <?php } ?>  </td>
     </tr>
