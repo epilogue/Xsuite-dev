@@ -202,6 +202,7 @@ public function getAllcodeuser($code_client) {
                 . "demande_xprev.justification_n1,"
                 . "demande_xprev.justification_dop,"
                 . "demande_xprev.justification_log,"
+                . "demande_xprev.justification_supp,"
                 . "demande_xprev.justification_traitement,"
                 . "demande_xprev.justification_cloture,"
                 . "users.nom_user,(commercial.nom_user)as nom_commercial,"
