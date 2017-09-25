@@ -669,7 +669,7 @@ class XprevController extends Zend_Controller_Action
                 $message = "la demande de prévision a bien été prise en compte et envoyée à DOP.";
                 $flashMessenger->addMessage($message);
                 $redirector->gotoSimple('index', 'xprev'); 
-            }else{
+            }elseif($formData['validlog']=='0'){
                 /*on va chercher le mail du createur de la demande */
                 $statut=2;
                 $validation =5;
@@ -696,6 +696,36 @@ class XprevController extends Zend_Controller_Action
                 $redirector = $this->_helper->getHelper('Redirector');
                 $flashMessenger = $this->_helper->getHelper('FlashMessenger');
                 $message = "la demande de prévision a bien été refusée.";
+                $flashMessenger->addMessage($message);
+                $redirector->gotoSimple('index', 'xprev');
+            }
+            elseif ($formData['validlog']=='2') {
+             /*si demande d'info envoiau createur */
+                $statut=1;
+                $validation =4;
+                $justification = $formData['motif_validation'];
+               // $upn1 = $Prev->updopxprev($statut,$validation,$justification,$tracking);
+                 //$params['destinataireMail']="createur@smc-france.fr";
+                 $params['destinataireMail']="mhuby@smc-france.fr";
+
+                 $params['url'] = "http://{$_SERVER['SERVER_NAME']}/xprev/supplementinfo/tracking/{$tracking}";
+                 $params['corpsMail']="Bonjour,\n"
+                                    . "\n"
+                                    . "demande de renseignement complémentaire\n"
+                                    . "Veuillez vous rendre à l'adresse url : \n"
+                                    . "%s"
+                                    . "\n\n"
+                                    . "pour la consulter."
+                                    . "Cordialement,\n"
+                                    . "\n"
+                                    . "--\n"
+                                    . "Xsuite";
+                $params['sujet']="demande d'information Xprev $tracking ";
+                  //echo '<pre>',  var_export($params),'</pre>';
+                $this->sendEmail($params);
+                $redirector = $this->_helper->getHelper('Redirector');
+                $flashMessenger = $this->_helper->getHelper('FlashMessenger');
+                $message = "demande de complément d'information pour la demande de prévision a bien été envoyée.";
                 $flashMessenger->addMessage($message);
                 $redirector->gotoSimple('index', 'xprev');
             }
@@ -819,7 +849,7 @@ class XprevController extends Zend_Controller_Action
                 $redirector->gotoSimple('index', 'xprev');
             }
             elseif ($formData['validdop']=='2') {
-             /*on va chercher le mail du createur de la demande */
+             /*si demande d'info envoi a la logistique */
                 $statut=1;
                 $validation =4;
                 $justification = $formData['motif_validation'];
