@@ -824,7 +824,7 @@ class XprevController extends Zend_Controller_Action
                 $validation =4;
                 $justification = $formData['motif_validation'];
                 $upn1 = $Prev->updopxprev($statut,$validation,$justification,$tracking);
-                 //$params['destinataireMail']="$info_createur['mail_user']";
+                 //$params['destinataireMail']="logistique@smc-france.fr";
                  $params['destinataireMail']="mhuby@smc-france.fr";
 
                  $params['url'] = "http://{$_SERVER['SERVER_NAME']}/xprev/supplementinfo/tracking/{$tracking}";
