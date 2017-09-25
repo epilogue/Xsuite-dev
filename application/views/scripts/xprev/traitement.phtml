@@ -52,13 +52,13 @@ $this->headScript()->appendFile('/js/controllers/xprev/calculTotal.js');
         
         <p>motif  de la demande :<?php echo $this->infoPrev['justification'] ;?></p>
         <?php if( $this->infoPrev['justification_n1']!= null) { ?>
-        <p>validation n+1 :<?php echo $this->infoPrev['justification_n1'] ;?></p>
+        <p>commentaire n+1 :<?php echo $this->infoPrev['justification_n1'] ;?></p>
         <?php } ;?>
         <?php if( $this->infoPrev['justification_log']!= null) { ?>
-        <p>validation logistique :<?php echo $this->infoPrev['justification_log'] ;?></p>
+        <p>commentaire logistique :<?php echo $this->infoPrev['justification_log'] ;?></p>
         <?php } ;?>
         <?php if( $this->infoPrev['justification_dop']!= null) { ?>
-        <p>validation direction des opérations :<?php echo $this->infoPrev['justification_dop'] ;?></p>
+        <p>commentaire direction des opérations :<?php echo $this->infoPrev['justification_dop'] ;?></p>
         <?php } ;?>
         <p class="decale">fichier joint :<?php foreach ($this->infoFichier as $fichier){ ?> <a class="fichier_joint" href=" <?php echo $fichier['chemin_fichier_xprev']; ?>" target="_blank"><?php echo $fichier['nom_fichier_xprev']; ?></a><br><?php  }?></p>
         
@@ -86,7 +86,7 @@ $this->headScript()->appendFile('/js/controllers/xprev/calculTotal.js');
             <tbody>
                 <?php foreach ($this->infoArticle as $k=>$article){ ?>
                 <tr>
-                    <td><?php echo $article['reference_article'] ;?></td>
+                    <td style="width: 250px;"><?php echo $article['reference_article'] ;?></td>
                     <td><input readonly type="text" name="code_article[]" value="<?php echo $article['code_article'] ;?>"></td>
                     <?php if($this->infoUser['niveau']=='niveau4'){ ;?>
                     <td><input class="changepr" data-msums="<?php echo $article['total_article_mois'] ;?>" data-targetid="valeur_totale-<?php echo $k;?>" id="prix_revient-<?php echo $k;?>" name ="prix_revient[]" type="text" value="<?php echo $article['prix_revient'] ;?>"></td>

@@ -40,14 +40,14 @@
         
         <p>motif  de la demande :<?php echo $this->infoPrev['justification'] ;?></p>
         <?php if( $this->infoPrev['justification_n1']!= null) { ?>
-        <p>validation n+1 :<?php echo $this->infoPrev['justification_n1'] ;?></p>
+        <p>commentaire n+1 :<?php echo $this->infoPrev['justification_n1'] ;?></p>
         <?php } ;?>
         
         <?php if( $this->infoPrev['justification_log']!= null) { ?>
-        <p>validation logistique :<?php echo $this->infoPrev['justification_log'] ;?></p>
+        <p>commentaire logistique :<?php echo $this->infoPrev['justification_log'] ;?></p>
         <?php } ;?>
         <?php if( $this->infoPrev['justification_dop']!= null) { ?>
-        <p>validation directeur des opérations :<?php echo $this->infoPrev['justification_dop'] ;?></p>
+        <p>commentaire directeur des opérations :<?php echo $this->infoPrev['justification_dop'] ;?></p>
         <?php } ;?>
         <?php if( $this->infoPrev['justification_supp']!= null) { ?>
         <p>informations supplémentaires :<?php echo $this->infoPrev['justification_supp'] ;?></p>
@@ -56,7 +56,7 @@
         <p>commentaire traitement :<?php echo $this->infoPrev['justification_traitement'] ;?></p>
         <?php } ;?>
         <?php if( $this->infoPrev['justification_cloture']!= null) { ?>
-        <p>commentaire cloture :<?php echo $this->infoPrev['justification_cloture'] ;?></p>
+        <p>commentaire:<?php echo $this->infoPrev['justification_cloture'] ;?></p>
         <?php } ;?>
         <p class="decale">fichier joint :<?php foreach ($this->infoFichier as $fichier){ ?> <a href=" <?php echo $fichier['chemin_fichier_xprev']; ?>" target="_blank"><?php echo $fichier['nom_fichier_xprev']; ?></a><br><?php  }?></p>
         
@@ -79,7 +79,7 @@
             <tbody>
                 <?php foreach ($this->infoArticle as $article){ ?>
                 <tr>
-                    <td><?php echo $article['reference_article'] ;?></td>
+                    <td style="width: 250px;"><?php echo $article['reference_article'] ;?></td>
                     <td><?php echo $article['code_article'] ;?></td>
                     <?php if($this->infoUser['niveau']=='niveau4'){ ;?>
                     <td><?php echo $article['prix_revient'] ;?></td>
