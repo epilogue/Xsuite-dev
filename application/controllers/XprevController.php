@@ -749,7 +749,7 @@ class XprevController extends Zend_Controller_Action
                  $params['url'] = "http://{$_SERVER['SERVER_NAME']}/xprev/supplementinfolog/tracking/{$tracking}";
                  $params['corpsMail']="Bonjour,\n"
                                     . "\n"
-                                    . "demande de renseignement complémentaire\n"
+                                    . "demande de renseignement de la log complémentaire\n"
                                     . "Veuillez vous rendre à l'adresse url : \n"
                                     . "%s"
                                     . "\n\n"
@@ -758,7 +758,7 @@ class XprevController extends Zend_Controller_Action
                                     . "\n"
                                     . "--\n"
                                     . "Xsuite";
-                $params['sujet']="demande d'information Xprev $tracking ";
+                $params['sujet']="demande d'information de la log  Xprev $tracking ";
                   //echo '<pre>',  var_export($params),'</pre>';
                 $this->sendEmail($params);
                 $redirector = $this->_helper->getHelper('Redirector');
@@ -910,7 +910,7 @@ class XprevController extends Zend_Controller_Action
                  //$params['destinataireMail']="logistique@smc-france.fr";
                  $params['destinataireMail']="mhuby@smc-france.fr";
 
-                 $params['url'] = "http://{$_SERVER['SERVER_NAME']}/xprev/supplementinfo/tracking/{$tracking}";
+                 $params['url'] = "http://{$_SERVER['SERVER_NAME']}/xprev/supplementinfodop/tracking/{$tracking}";
                  $params['corpsMail']="Bonjour,\n"
                                     . "\n"
                                     . "demande de renseignement complémentaire\n"
