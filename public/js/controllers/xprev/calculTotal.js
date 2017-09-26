@@ -7,13 +7,9 @@ $(document).ready(function (){
         
         $('#'+$(this).data('targetid')).val(finalAmount);
         
-        console.log(valeurTotal);
         $('.valeurTotale').each(function(i,e){
-            console.log(parseFloat($(e).val()));
             valeurTotal+=parseFloat($(e).val());
-            console.log(valeurTotal);
         });
-            console.log(valeurTotal);
         $('#spanTotal').html(valeurTotal);
     });
 });
