@@ -23,4 +23,15 @@ class Application_Model_DbTable_Infolog extends Zend_Db_Table_Abstract {
             return $rest;
         }
     }
+    public function updateinfolog($tracking,$id_infolog,$supplement){
+        $sql = "update infolog set reponse_infolog ='{$supplement}' where tracking='{$tracking}' and id_infolog ={$id_infolog} ";
+        $res = $this->getAdapter()->query($sql);
+       
+        
+        if (!$res) {
+            return null;
+        } else {
+            return $res;
+        }
+    }
 }

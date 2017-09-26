@@ -841,6 +841,7 @@ class XprevController extends Zend_Controller_Action
                     }
                 }
             }
+            $updateinfosupp = $infolog->updateinfolog($tracking,$formData['id_infolog'],$formData['supplement']);
         }
     }
     public function validdopAction(){
