@@ -589,6 +589,7 @@ class XprevController extends Zend_Controller_Action
         $ArticlePrev = new Application_Model_DbTable_DemandeArticleXprev();
         $infoArticle = $ArticlePrev->getarticleprev($tracking);
         $infolog = new Application_Model_DbTable_Infolog();
+        $uploaddir =APPLICATION_PATH."/../public/fichiers/Xprev/Log/";
 //        echo '<pre>',  var_export($listeallcommercial),'</pre>';
 //         echo '<pre>',  var_export($infoPrev),'</pre>';
          $num_mois =  $infoPrev[0]['date_debut'];
