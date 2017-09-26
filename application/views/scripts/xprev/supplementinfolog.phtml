@@ -95,17 +95,17 @@
             <legend>supplément d'information </legend>
             <fieldset class="field">
                 <legend>demande de la logistique</legend>
-                <?php foreach($this->infodemandelog as $infologdemande){ ;?>
+                <?php foreach($this->infodemandelog as $key=>$value){ ;?>
                 
-                 <?php if($infologdemande['reponse_infolog']!= null){?>
-                <p>demande de la log :<?php echo  $infologdemande['demande_infolog']?></p>
-                <p>réponse: <?php echo  $infologdemande['reponse_infolog']?></p>
+                 <?php if($value['reponse_infolog']!= null){?>
+                <p>demande de la log :<?php echo  $value['demande_infolog']?></p>
+                <p>réponse: <?php echo  $value['reponse_infolog']?></p>
                      <?php  } else { ?>
                 <fieldset class="field">
-                    <p>demande de la log :<?php echo  $infologdemande['demande_infolog']?></p>
-                    <input hidden="hidden" value="<?php echo  $infologdemande['id_infolog']?>" name="id_infolog">
+                    <p>demande de la log :<?php echo  $value['demande_infolog']?></p>
+                    <input id="id_infolog_<?php echo $k;?>" hidden="hidden" value="<?php echo  $value['id_infolog']?>" name="id_infolog">
                     <legend>réponse</legend>
-                    <textarea required name="supplement" cols="120" rows="7" value=""></textarea>
+                    <textarea required id="supplement_<?php echo $k;?>" name="supplement" cols="120" rows="7" value=""></textarea>
                      <p>Ajout de document : <input type="file" value="" name="fichierSupplogXprev"></p>
                   </fieldset>
                          <?php  }  ?>
