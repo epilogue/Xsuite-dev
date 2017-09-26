@@ -187,7 +187,7 @@ class XprevController extends Zend_Controller_Action
         
         if($this->getRequest()->isPost()){
             $formData =  $this->getRequest()->getPost();
-           echo '<pre>',  var_export($formData),'</pre>'; exit();
+//           echo '<pre>',  var_export($formData),'</pre>'; 
             
             /*creation du tracking number */
             $newprev= new Application_Model_DbTable_DemandeXprev();
@@ -277,7 +277,42 @@ class XprevController extends Zend_Controller_Action
              /* insertion en bdd dans la table demande_article_xprev*/
              
              foreach($formData['refart'] as $refart){
-                 
+                 if($refart['m1']==''){
+                     $$refart['m1']=0;
+                 }
+                 if($refart['m2']==''){
+                     $$refart['m2']=0;
+                 }
+                 if($refart['m3']==''){
+                     $$refart['m3']=0;
+                 }
+                 if($refart['m4']==''){
+                     $$refart['m4']=0;
+                 }
+                 if($refart['m5']==''){
+                     $$refart['m5']=0;
+                 }
+                 if($refart['m6']==''){
+                     $$refart['m6']=0;
+                 }
+                 if($refart['m7']==''){
+                     $$refart['m7']=0;
+                 }
+                 if($refart['m8']==''){
+                     $$refart['m8']=0;
+                 }
+                 if($refart['m9']==''){
+                     $$refart['m9']=0;
+                 }
+                 if($refart['m10']==''){
+                     $$refart['m10']=0;
+                 }
+                 if($refart['m11']==''){
+                     $$refart['m11']=0;
+                 }
+                 if($refart['m12']==''){
+                     $$refart['m12']=0;
+                 }
                  $total_article_mois =($refart['m1']+$refart['m2']+$refart['m3']+$refart['m4']+$refart['m5']+$refart['m6']+$refart['m7']+$refart['m8']+$refart['m9']+$refart['m10']+$refart['m11']+$refart['m12']);
              $data2 = array(
                  'tracking'=>$trackingnumber,
