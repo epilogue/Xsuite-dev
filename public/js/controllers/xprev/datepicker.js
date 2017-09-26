@@ -56,6 +56,18 @@ $(document).ready(function(){
           $("#ajout_article").click(function(e){
          e.preventDefault();
         var id = newArticleLine();
+        $('.champM').unbind('change');
+        $('.champM').change(function(){
+            console.log('plopM');
+            var valeurTotal = 0;
+            $('.champM').each(function(i,e){
+                valeurTotal+=parseFloat($(e).val());
+            });
+            if(valeurTotal > 0) {
+                $('#submitM').attr('disabled', false);
+                $('#mVide').hide();
+            }
+        });
         console.log(id);
                  //name="refart[__id__][reference]"
         $('input[name="refart['+id+'][reference]"]').change(function(e)
