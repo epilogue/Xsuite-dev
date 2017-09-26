@@ -108,6 +108,19 @@ $(document).ready(function(){
     }
     });
     var id = newArticleLine();
+    $('.champM').unbind('change');
+        $('.champM').change(function(){
+            console.log('plopM');
+            var valeurTotal = 0;
+            $('.champM').each(function(i,e){
+                valeurTotal+=parseFloat($(e).val());
+            });
+            console.log("tagadaM : "+valeurTotal);
+            if(valeurTotal > 0) {
+                $('#submitM').attr('disabled', false);
+                $('#mVide').hide();
+            }
+        });
     $('input[name="refart['+id+'][reference]"]').change(function(e)
         {
               $.get ('/xprev/verifreference/reference/'+$(this).val(),
