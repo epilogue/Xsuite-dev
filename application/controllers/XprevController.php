@@ -783,6 +783,36 @@ class XprevController extends Zend_Controller_Action
         $infoArticle = $ArticlePrev->getarticleprev($tracking);
         $infolog = new Application_Model_DbTable_Infolog();
         $infodemandeinfolog = $infolog->getinfolog($tracking);
+        $num_mois =  $infoPrev[0]['date_debut'];
+           
+            $date=explode('-',$num_mois);
+            
+            $month = intval($date[1]);
+           
+            $year = intval(substr($date[0],-2));
+            
+            $tab = array();
+        //Boucle sur 12 mois
+            for($i = 1, $month, $year; $i < 13; $i++, $month++)
+            {
+                //Arrivé en Décembre, on remet le mois à Janvier pour parcourir les 12 mois et on incrémente l'année
+                if($month > 12)
+                {
+                    $month = 1;
+                    $year++;
+                }
+    //            var_dump($month);
+
+    //                var_dump($year) ;
+                $tab[]= array('month'=>$month, 'year'=>$year);
+            }
+            
+        //echo '<pre>',var_export($tab),'</pre>';
+        $this->view->infoMois = $tab;
+        $this->view->infoPrev = $infoPrev[0];
+        $this->view->infoArticle = $infoArticle;
+        $this->view->infoFichier = $infoFichier;
+        $this->view->infoUser = $infoUser;
     }
     public function validdopAction(){
         $user = $this->_auth->getStorage()->read();
