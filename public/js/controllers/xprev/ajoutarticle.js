@@ -26,7 +26,7 @@ $(document).ready(function(){
                 valeurTotal+=parseFloat($(e).val());
             });
             if(valeurTotal > 0) {
-                $('input[type="submit"]').attr('disabled', false);
+                $('#submitM').attr('disabled', false);
                 $('#mVide').hide();
             }
         });
