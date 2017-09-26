@@ -783,6 +783,7 @@ class XprevController extends Zend_Controller_Action
         $infoArticle = $ArticlePrev->getarticleprev($tracking);
         $infolog = new Application_Model_DbTable_Infolog();
         $infodemandeinfolog = $infolog->getinfolog($tracking);
+        echo '<pre>',  var_export($infodemandeinfolog),'</pre>';
         $num_mois =  $infoPrev[0]['date_debut'];
            
             $date=explode('-',$num_mois);
