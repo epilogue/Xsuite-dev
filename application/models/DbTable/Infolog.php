@@ -15,5 +15,12 @@ class Application_Model_DbTable_Infolog extends Zend_Db_Table_Abstract {
     }
     public function getinfolog($tracking){
         $sql = "select * from infolog where tracking = '{$tracking}'";
+        $res = $this->getAdapter()->query($sql);
+        $rest=$res->fetchAll();
+        if (!$rest) {
+            return null;
+        } else {
+            return $rest;
+        }
     }
 }
