@@ -657,12 +657,12 @@ class XprevController extends Zend_Controller_Action
                 if($_FILES['fichierLogXprev']['size']<=2000000){
                     $extension_upload1 =strrchr($_FILES['fichierLogXprev']['name'],'.');
                     $name = explode('.',$_FILES['fichierLogXprev']['name']);
-                    $file = $name[0].$trackingnumber.$extension_upload1;
+                    $file = $name[0].$tracking.$extension_upload1;
                     $uploadfile = $uploaddir.$file;
                     if(move_uploaded_file($_FILES['fichierLogXprev']['tmp_name'], $uploadfile)){
                         echo "tout ok";
                         $datafichier = array(
-                            'tracking_xprev'=>$trackingnumber,
+                            'tracking_xprev'=>$tracking,
                             'nom_fichier_xprev'=>$file,
                             'chemin_fichier_xprev'=>"/fichiers/Xprev/Log/".$file
                         );
@@ -749,11 +749,11 @@ class XprevController extends Zend_Controller_Action
                  $params['url'] = "http://{$_SERVER['SERVER_NAME']}/xprev/supplementinfolog/tracking/{$tracking}";
                  $params['corpsMail']="Bonjour,\n"
                                     . "\n"
-                                    . "demande de renseignement de la log complémentaire\n"
+                                    . "demande de renseignement  complémentaire de la logistique \n"
                                     . "Veuillez vous rendre à l'adresse url : \n"
                                     . "%s"
                                     . "\n\n"
-                                    . "pour répondre."
+                                    . "pour répondre. \n"
                                     . "Cordialement,\n"
                                     . "\n"
                                     . "--\n"
