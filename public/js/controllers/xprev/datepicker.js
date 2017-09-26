@@ -132,6 +132,25 @@ $(document).ready(function(){
                 $('#mVide').hide();
             }
         });
+        $('.resetbuton').unbind('click');
+        $('.resetbuton').click(function(e){
+             e.preventDefault();
+            //alert($(this).data('id'));
+             $('input[name="refart['+$(this).data('id')+'][reference]"]').val("");
+             $('input[name="refart['+$(this).data('id')+'][code_article]"]').val("");
+             $('input[name="refart['+$(this).data('id')+'][m1]"]').val("");
+             $('input[name="refart['+$(this).data('id')+'][m2]"]').val("");
+             $('input[name="refart['+$(this).data('id')+'][m3]"]').val("");
+             $('input[name="refart['+$(this).data('id')+'][m4]"]').val("");
+             $('input[name="refart['+$(this).data('id')+'][m5]"]').val("");
+             $('input[name="refart['+$(this).data('id')+'][m6]"]').val("");
+             $('input[name="refart['+$(this).data('id')+'][m7]"]').val(""); 
+             $('input[name="refart['+$(this).data('id')+'][m8]"]').val("");
+             $('input[name="refart['+$(this).data('id')+'][m9]"]').val("");
+             $('input[name="refart['+$(this).data('id')+'][m10]"]').val("");
+             $('input[name="refart['+$(this).data('id')+'][m11]"]').val("");
+             $('input[name="refart['+$(this).data('id')+'][m12]"]').val(""); 
+        });
     $('input[name="refart['+id+'][reference]"]').change(function(e)
         {
               $.get ('/xprev/verifreference/reference/'+$(this).val(),
