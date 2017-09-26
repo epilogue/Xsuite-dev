@@ -20,7 +20,9 @@ $(document).ready(function(){
          e.preventDefault();
          console.log('plop');
         var id = newArticleLine();
+        $('.champM').unbind('change');
         $('.champM').change(function(){
+            console.log('plopM');
             var valeurTotal = 0;
             $('.champM').each(function(i,e){
                 valeurTotal+=parseFloat($(e).val());
