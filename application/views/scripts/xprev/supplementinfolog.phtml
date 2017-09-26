@@ -93,11 +93,21 @@
         
         <fieldset class="field">
             <legend>supplément d'information </legend>
-            <textarea required name="supplement" cols="120" rows="7" value=""></textarea>
-             <p>Ajout de document : <input type="file" value="" name="fichierSuppXprev"></p>
+            <fieldset class="field">
+                <legend>demande de la logistique</legend>
+                <?php foreach($this->infodemandelog as $infologdemande){ ;?>
+                <p><?php echo  $infologdemande['demande_infolog']?></p>
+                <?php  }?>
+            </fieldset>
+            <fieldset class="field">
+                <legend>réponse</legend>
+                <textarea required name="supplement" cols="120" rows="7" value=""></textarea>
+                 <p>Ajout de document : <input type="file" value="" name="fichierSuppXprev"></p>
+          </fieldset>
             <div class="soumission">
                 <input class="submit2" type="submit" value="valider">
             </div>
+             
         </fieldset>
     </form>
 </div>
