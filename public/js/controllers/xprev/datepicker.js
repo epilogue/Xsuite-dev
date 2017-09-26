@@ -72,6 +72,9 @@ $(document).ready(function(){
             if(valeurTotal > 0) {
                 $('#submitM').attr('disabled', false);
                 $('#mVide').hide();
+            } else {
+                $('#submitM').attr('disabled', true);
+                $('#mVide').show();
             }
         });
         console.log(id);
@@ -107,7 +110,8 @@ $(document).ready(function(){
              $('input[name="refart['+$(this).data('id')+'][m9]"]').val("");
              $('input[name="refart['+$(this).data('id')+'][m10]"]').val("");
              $('input[name="refart['+$(this).data('id')+'][m11]"]').val("");
-             $('input[name="refart['+$(this).data('id')+'][m12]"]').val(""); 
+             $('input[name="refart['+$(this).data('id')+'][m12]"]').val("");
+             $('.champM').first().change();
         });
     });
 //    
@@ -130,6 +134,9 @@ $(document).ready(function(){
             if(valeurTotal > 0) {
                 $('#submitM').attr('disabled', false);
                 $('#mVide').hide();
+            } else {
+                $('#submitM').attr('disabled', true);
+                $('#mVide').show();
             }
         });
         $('.resetbuton').unbind('click');
@@ -150,6 +157,7 @@ $(document).ready(function(){
              $('input[name="refart['+$(this).data('id')+'][m10]"]').val("");
              $('input[name="refart['+$(this).data('id')+'][m11]"]').val("");
              $('input[name="refart['+$(this).data('id')+'][m12]"]').val(""); 
+             $('.champM').first().change();
         });
     $('input[name="refart['+id+'][reference]"]').change(function(e)
         {
