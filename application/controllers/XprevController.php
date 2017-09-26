@@ -784,6 +784,7 @@ class XprevController extends Zend_Controller_Action
         $infoArticle = $ArticlePrev->getarticleprev($tracking);
         $infolog = new Application_Model_DbTable_Infolog();
         $infodemandeinfolog = $infolog->getinfolog($tracking);
+        $uploaddir =APPLICATION_PATH."/../public/fichiers/Xprev/Supp/log/";
 //        echo '<pre>',  var_export($infodemandeinfolog),'</pre>';
         $num_mois =  $infoPrev[0]['date_debut'];
            
@@ -818,9 +819,28 @@ class XprevController extends Zend_Controller_Action
         $this->view->infodemandelog = $infodemandeinfolog;
         if($this->getRequest()->isPost()){
             $formData =  $this->getRequest()->getPost();
-           echo '<pre>',  var_export($formData),'</pre>';   
-           echo '<pre>',  var_export($_FILES),'</pre>';  
-           exit();
+//           echo '<pre>',  var_export($formData),'</pre>';   
+//           echo '<pre>',  var_export($_FILES),'</pre>';  
+//           exit();
+            if(isset($_FILES['fichierSupplogXprev']['name'])){
+                if($_FILES['fichierSupplogXprev']['size']<=2000000){
+                    $extension_upload1 =strrchr($_FILES['fichierSupplogXprev']['name'],'.');
+                    $name = explode('.',$_FILES['fichierSupplogXprev']['name']);
+                    $file = $name[0].$tracking.$extension_upload1;
+                    $uploadfile = $uploaddir.$file;
+                    if(move_uploaded_file($_FILES['fichierSupplogXprev']['tmp_name'], $uploadfile)){
+                        echo "tout ok";
+                        $datafichier = array(
+                            'tracking_xprev'=>$tracking,
+                            'nom_fichier_xprev'=>$file,
+                            'chemin_fichier_xprev'=>"/fichiers/Xprev/Supp/log/".$file
+                        );
+                        $newfichier = $fichier->createFichierXprev($datafichier);
+                    }else{
+                        echo "tout foutu";
+                    }
+                }
+            }
         }
     }
     public function validdopAction(){
