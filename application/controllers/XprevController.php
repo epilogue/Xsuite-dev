@@ -813,6 +813,7 @@ class XprevController extends Zend_Controller_Action
         $this->view->infoArticle = $infoArticle;
         $this->view->infoFichier = $infoFichier;
         $this->view->infoUser = $infoUser;
+        $this->view->infodemandelog = $infodemandeinfolog;
     }
     public function validdopAction(){
         $user = $this->_auth->getStorage()->read();
