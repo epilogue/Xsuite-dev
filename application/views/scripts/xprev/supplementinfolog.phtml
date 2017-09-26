@@ -96,14 +96,22 @@
             <fieldset class="field">
                 <legend>demande de la logistique</legend>
                 <?php foreach($this->infodemandelog as $infologdemande){ ;?>
-                <p><?php echo  $infologdemande['demande_infolog']?></p>
+                
+                 <?php if($infologdemande['reponse_infolog']!= null){?>
+                <p>demande de la log :<?php echo  $infologdemande['demande_infolog']?></p>
+                <p>réponse: <?php echo  $infologdemande['reponse_infolog']?></p>
+                     <?php  } else { ?>
+                <fieldset class="field">
+                    <p>demande de la log :<?php echo  $infologdemande['demande_infolog']?></p>
+                    <input hidden="hidden" value="<?php echo  $infologdemande['id_infolog']?>" name="id_infolog">
+                    <legend>réponse</legend>
+                    <textarea required name="supplement" cols="120" rows="7" value=""></textarea>
+                     <p>Ajout de document : <input type="file" value="" name="fichierSupplogXprev"></p>
+                  </fieldset>
+                         <?php  }  ?>
                 <?php  }?>
             </fieldset>
-            <fieldset class="field">
-                <legend>réponse</legend>
-                <textarea required name="supplement" cols="120" rows="7" value=""></textarea>
-                 <p>Ajout de document : <input type="file" value="" name="fichierSupplogXprev"></p>
-          </fieldset>
+            
             <div class="soumission">
                 <input class="submit2" type="submit" value="valider">
             </div>
