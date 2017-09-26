@@ -103,9 +103,9 @@
                      <?php  } else { ?>
                 <fieldset class="field">
                     <p>demande de la log :<?php echo  $value['demande_infolog']?></p>
-                    <input id="id_infolog_<?php echo $k;?>" hidden="hidden" value="<?php echo  $value['id_infolog']?>" name="id_infolog">
+                    <input id="id_infolog_<?php echo $key;?>" hidden="hidden" value="<?php echo  $value['id_infolog']?>" name="id_infolog">
                     <legend>réponse</legend>
-                    <textarea required id="supplement_<?php echo $k;?>" name="supplement" cols="120" rows="7" value=""></textarea>
+                    <textarea required id="supplement_<?php echo $key;?>" name="supplement" cols="120" rows="7" value=""></textarea>
                      <p>Ajout de document : <input type="file" value="" name="fichierSupplogXprev"></p>
                   </fieldset>
                          <?php  }  ?>
