@@ -63,6 +63,7 @@ $(document).ready(function(){
             $('.champM').each(function(i,e){
                 valeurTotal+=parseFloat($(e).val());
             });
+            console.log("tagadaM : "+valeurTotal);
             if(valeurTotal > 0) {
                 $('#submitM').attr('disabled', false);
                 $('#mVide').hide();
