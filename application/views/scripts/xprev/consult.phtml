@@ -41,25 +41,27 @@
         <p>motif  de la demande :<?php echo $this->infoPrev['justification'] ;?></p>
         <?php if( $this->infoPrev['justification_n1']!= null) { ?>
         <p>commentaire n+1 :<?php echo $this->infoPrev['justification_n1'] ;?></p>
-        <?php } ;?>
+        <?php } ?>
         
         <?php if( $this->infoPrev['justification_log']!= null) { ?>
         <p>commentaire logistique :<?php echo $this->infoPrev['justification_log'] ;?></p>
-        <?php } ;?>
+        <?php } ?>
         <?php if( $this->infoPrev['justification_dop']!= null) { ?>
         <p>commentaire directeur des opérations :<?php echo $this->infoPrev['justification_dop'] ;?></p>
-        <?php } ;?>
+        <?php } ?>
         <?php if( $this->infoPrev['justification_supp']!= null) { ?>
         <p>informations supplémentaires :<?php echo $this->infoPrev['justification_supp'] ;?></p>
-        <?php } ;?>
+        <?php } ?>
         <?php if( $this->infoPrev['justification_traitement']!= null) { ?>
         <p>commentaire traitement :<?php echo $this->infoPrev['justification_traitement'] ;?></p>
-        <?php } ;?>
+        <?php } ?>
         <?php if( $this->infoPrev['justification_cloture']!= null) { ?>
         <p>commentaire:<?php echo $this->infoPrev['justification_cloture'] ;?></p>
-        <?php } ;?>
-        <p class="decale">fichier joint :<?php foreach ($this->infoFichier as $fichier){ ?> <a href=" <?php echo $fichier['chemin_fichier_xprev']; ?>" target="_blank"><?php echo $fichier['nom_fichier_xprev']; ?></a><br><?php  }?></p>
+        <?php } ?>
         
+         <?php if( !empty($this->infoFichier)) { ?>
+        <p class="decale">fichier joint creation:<?php foreach ($this->infoFichier as $fichier){ ?> <a href=" <?php echo $fichier['chemin_fichier_xprev']; ?>" target="_blank"><?php echo $fichier['nom_fichier_xprev']; ?></a><br><?php  }?></p>
+         <?php } ?>
     </fieldset>
     <fieldset class="field">
         <legend>Informations article</legend>
