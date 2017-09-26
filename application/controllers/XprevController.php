@@ -817,7 +817,8 @@ class XprevController extends Zend_Controller_Action
         $this->view->infodemandelog = $infodemandeinfolog;
         if($this->getRequest()->isPost()){
             $formData =  $this->getRequest()->getPost();
-           echo '<pre>',  var_export($formData),'</pre>';           exit();
+           echo '<pre>',  var_export($formData),'</pre>';   
+           echo $_FILES;exit();
         }
     }
     public function validdopAction(){
