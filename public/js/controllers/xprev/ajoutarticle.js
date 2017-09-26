@@ -20,6 +20,16 @@ $(document).ready(function(){
          e.preventDefault();
          console.log('plop');
         var id = newArticleLine();
+        $('.champM').change(function(){
+            var valeurTotal = 0;
+            $('.champM').each(function(i,e){
+                valeurTotal+=parseFloat($(e).val());
+            });
+            if(valeurTotal > 0) {
+                $('input[type="submit"]').attr('disabled', false);
+                $('#mVide').hide();
+            }
+        });
         console.log(id);
                  //name="refart[__id__][reference]"
         $('input[name="refart['+id+'][reference]"]').change(function(e)
@@ -71,15 +81,6 @@ $(document).ready(function(){
     $('select[name="refart[0][reference]"]').attr('required',true);
     $('input[name="refart[0][code_article]"]').attr('required',true);
     
-    $('.champM').change(function(){
-        var valeurTotal = 0;
-        $('.champM').each(function(i,e){
-            valeurTotal+=parseFloat($(e).val());
-        });
-        if(valeurTotal > 0) {
-            $('input[type="submit"]').attr('disabled', false);
-            $('#mVide').hide();
-        }
-    });
+    
 });
 
