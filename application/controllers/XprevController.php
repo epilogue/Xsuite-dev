@@ -588,6 +588,7 @@ class XprevController extends Zend_Controller_Action
         $infoFichier = $fichier->getfichier($tracking);
         $ArticlePrev = new Application_Model_DbTable_DemandeArticleXprev();
         $infoArticle = $ArticlePrev->getarticleprev($tracking);
+        $infolog = new Application_Model_DbTable_Infolog();
 //        echo '<pre>',  var_export($listeallcommercial),'</pre>';
 //         echo '<pre>',  var_export($infoPrev),'</pre>';
          $num_mois =  $infoPrev[0]['date_debut'];
@@ -740,18 +741,19 @@ class XprevController extends Zend_Controller_Action
                 $statut=1;
                 $validation =4;
                 $justification = $formData['motif_validation'];
-               // $upn1 = $Prev->updopxprev($statut,$validation,$justification,$tracking);
+                $datalog=array( 'tracking'=>$tracking,'demande_infolog'=>$justification,'reponse_infolog'=>null);
+                $newinfolog = $infolog->createinfolog($datalog);
                  //$params['destinataireMail']="createur@smc-france.fr";
                  $params['destinataireMail']="mhuby@smc-france.fr";
 
-                 $params['url'] = "http://{$_SERVER['SERVER_NAME']}/xprev/supplementinfo/tracking/{$tracking}";
+                 $params['url'] = "http://{$_SERVER['SERVER_NAME']}/xprev/supplementinfolog/tracking/{$tracking}";
                  $params['corpsMail']="Bonjour,\n"
                                     . "\n"
                                     . "demande de renseignement complémentaire\n"
                                     . "Veuillez vous rendre à l'adresse url : \n"
                                     . "%s"
                                     . "\n\n"
-                                    . "pour la consulter."
+                                    . "pour répondre."
                                     . "Cordialement,\n"
                                     . "\n"
                                     . "--\n"
@@ -766,6 +768,21 @@ class XprevController extends Zend_Controller_Action
                 $redirector->gotoSimple('index', 'xprev');
             }
         }
+    }
+    public function supplementinfologAction(){
+        $user = $this->_auth->getStorage()->read();
+        /*information concernant la personne connectée*/
+        $User = new Application_Model_DbTable_Users();
+        $infoUser = $User->getUser($user->id_user);
+        $tracking = $this->getRequest()->getParam('tracking', null);
+        $Prev = new Application_Model_DbTable_DemandeXprev();
+        $infoPrev = $Prev->getprev($tracking);
+        $fichier = new Application_Model_DbTable_FichierXprev();
+        $infoFichier = $fichier->getfichier($tracking);
+        $ArticlePrev = new Application_Model_DbTable_DemandeArticleXprev();
+        $infoArticle = $ArticlePrev->getarticleprev($tracking);
+        $infolog = new Application_Model_DbTable_Infolog();
+        $infodemandeinfolog = $infolog->getinfolog($tracking);
     }
     public function validdopAction(){
         $user = $this->_auth->getStorage()->read();
