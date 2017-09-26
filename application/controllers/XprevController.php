@@ -819,7 +819,7 @@ class XprevController extends Zend_Controller_Action
         $this->view->infodemandelog = $infodemandeinfolog;
         if($this->getRequest()->isPost()){
             $formData =  $this->getRequest()->getPost();
-//           echo '<pre>',  var_export($formData),'</pre>';   
+           echo '<pre>',  var_export($formData),'</pre>';  exit(); 
 //           echo '<pre>',  var_export($_FILES),'</pre>';  
 //           exit();
             if(isset($_FILES['fichierSupplogXprev']['name'])){
