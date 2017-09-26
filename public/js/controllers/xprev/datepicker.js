@@ -61,7 +61,12 @@ $(document).ready(function(){
             console.log('plopM');
             var valeurTotal = 0;
             $('.champM').each(function(i,e){
-                valeurTotal+=parseFloat($(e).val());
+                var valM = $(e).val();
+                if(valM == "") {
+                    valeurTotal+=0;
+                } else {
+                    valeurTotal+=parseFloat($(e).val());
+                }
             });
             console.log("tagadaM : "+valeurTotal);
             if(valeurTotal > 0) {
@@ -114,7 +119,12 @@ $(document).ready(function(){
             console.log('plopM');
             var valeurTotal = 0;
             $('.champM').each(function(i,e){
-                valeurTotal+=parseFloat($(e).val());
+                var valM = $(e).val();
+                if(valM == "") {
+                    valeurTotal+=0;
+                } else {
+                    valeurTotal+=parseFloat($(e).val());
+                }
             });
             console.log("tagadaM : "+valeurTotal);
             if(valeurTotal > 0) {
