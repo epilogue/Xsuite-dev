@@ -589,6 +589,7 @@ class XprevController extends Zend_Controller_Action
         $ArticlePrev = new Application_Model_DbTable_DemandeArticleXprev();
         $infoArticle = $ArticlePrev->getarticleprev($tracking);
         $infolog = new Application_Model_DbTable_Infolog();
+        $infodemandeinfolog = $infolog->getinfolog($tracking);
         $uploaddir =APPLICATION_PATH."/../public/fichiers/Xprev/Log/";
 //        echo '<pre>',  var_export($listeallcommercial),'</pre>';
 //         echo '<pre>',  var_export($infoPrev),'</pre>';
@@ -619,6 +620,7 @@ class XprevController extends Zend_Controller_Action
         //echo '<pre>',var_export($tab),'</pre>';
         $this->view->listeallcommercial=$listeallcommercial;
         $this->view->infoMois = $tab;
+        $this->view->infodemandeinfo = $infodemandeinfolog;
         $this->view->infoPrev = $infoPrev[0];
         $this->view->infoArticle = $infoArticle;
         $this->view->infoFichier = $infoFichier;

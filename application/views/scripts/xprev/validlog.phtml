@@ -113,7 +113,15 @@ $this->headScript()->appendFile('/js/controllers/xprev/calculTotal.js');
             </tbody>
         </table>
     </fieldset>
-        
+     <?php if(!empty($this->infodemandeinfo)){ ?>
+    <fieldset class="field">
+        <legend>demande d'information</legend>
+         <?php foreach ($this->infodemandeinfo as $demandeinfo){ ?>
+             <p>demande :<?php echo $demandeinfo['demande_infolog'] ;?></p>
+             <p>réponse:<?php echo $demandeinfo['reponse_infolog'] ;?></p>
+         <?php }?>
+    </fieldset>
+         <?php }?>
         <fieldset class="field">
             <legend>validation</legend>
             <input type="radio" name="validlog" value="1" required>validation <br>
