@@ -842,6 +842,29 @@ class XprevController extends Zend_Controller_Action
                 }
             }
             $updateinfosupp = $infolog->updateinfolog($tracking,$formData['id_infolog'],$formData['supplement']);
+            $emailVars = Zend_Registry::get('emailVars');
+             //$params['destinataireMail']="logistique@smc-france.fr";
+                 $params['destinataireMail']="mhuby@smc-france.fr";
+
+                 $params['url'] = "http://{$_SERVER['SERVER_NAME']}/xprev/validlog/tracking/{$tracking}";
+                 $params['corpsMail']="Bonjour,\n"
+                                    . "\n"
+                                    . "l'itc a répondu à votre demande d'information pour la demande Xprev({$tracking}) à traiter.\n"
+                                    . "Veuillez vous rendre à l'adresse url : \n"
+                                    . "%s"
+                                    . "\n\n"
+                                    . "Cordialement,\n"
+                                    . "\n"
+                                    . "--\n"
+                                    . "Xsuite";
+                $params['sujet']="réponse demande d'information  Xprev $tracking ";
+                  //echo '<pre>',  var_export($params),'</pre>';
+                $this->sendEmail($params);
+                $redirector = $this->_helper->getHelper('Redirector');
+                $flashMessenger = $this->_helper->getHelper('FlashMessenger');
+                $message = "la réponse pour la demande de prévision a bien été prise en compte et envoyée à la logistique.";
+                $flashMessenger->addMessage($message);
+                $redirector->gotoSimple('index', 'xprev'); 
         }
     }
     public function validdopAction(){
