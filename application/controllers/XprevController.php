@@ -933,7 +933,7 @@ class XprevController extends Zend_Controller_Action
             }
         }
     }
-    public function supplementinfoAction(){
+    public function supplementinfodopAction(){
         $user = $this->_auth->getStorage()->read();
         /*information concernant la personne connectée*/
         $User = new Application_Model_DbTable_Users();
