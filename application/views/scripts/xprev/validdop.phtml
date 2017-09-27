@@ -45,9 +45,15 @@
         <?php if( $this->infoPrev['justification_log']!= null) { ?>
         <p>commentaire logistique :<?php echo $this->infoPrev['justification_log'] ;?></p>
         <?php } ;?>
-        <?php if( $this->infoPrev['justification_supp']!= null) { ?>
-        <p>informations supplémentaires :<?php echo $this->infoPrev['justification_supp'] ;?></p>
-        <?php } ;?>
+       <?php if(!empty($this->infodemandeinfolog)){ ?>
+    <fieldset class="field">
+        <legend>demande d'information logistique</legend>
+         <?php foreach ($this->infodemandeinfolog as $demandeinfolog){ ?>
+             <p>demande :<?php echo $demandeinfolog['demande_infolog'] ;?></p>
+             <p>réponse:<?php echo $demandeinfolog['reponse_infolog'] ;?></p>
+         <?php }?>
+    </fieldset>
+         <?php }?>
         <p class="decale">fichier joint :<?php foreach ($this->infoFichier as $fichier){ ?> <a class="fichier_joint" href=" <?php echo $fichier['chemin_fichier_xprev']; ?>" target="_blank"><?php echo $fichier['nom_fichier_xprev']; ?></a><br><?php  }?></p>
     </fieldset>
     <fieldset class="field">
@@ -99,7 +105,15 @@
         </table>
     </fieldset>
     <form action="#" method="post">
-        
+        <?php if(!empty($this->infodemandeinfodop)){ ?>
+    <fieldset class="field">
+        <legend>demande d'information</legend>
+         <?php foreach ($this->infodemandeinfodop as $demandeinfodop){ ?>
+             <p>demande :<?php echo $demandeinfodop['demande_infodop'] ;?></p>
+             <p>réponse:<?php echo $demandeinfodop['reponse_infodop'] ;?></p>
+         <?php }?>
+    </fieldset>
+         <?php }?>
         <fieldset class="field">
             <legend>validation</legend>
             <input type="radio" name="validdop" value="1" required>validation <br>

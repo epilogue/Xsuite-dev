@@ -882,6 +882,10 @@ class XprevController extends Zend_Controller_Action
         $infoFichier = $fichier->getfichier($tracking);
         $ArticlePrev = new Application_Model_DbTable_DemandeArticleXprev();
         $infoArticle = $ArticlePrev->getarticleprev($tracking);
+        $infolog = new Application_Model_DbTable_Infolog();
+        $infodemandeinfolog = $infolog->getinfolog($tracking);
+        $infodop = new Application_Model_DbTable_Infodop();
+        $infodemandeinfodop = $infodop->getinfodop($tracking);
         //$info_createur = $User->getUser($infoPrev[0]['id_users']);
         //echo '<pre>',  var_export($infoUser),'</pre>';
          $num_mois =  $infoPrev[0]['date_debut'];
@@ -910,6 +914,8 @@ class XprevController extends Zend_Controller_Action
             
         //echo '<pre>',var_export($tab),'</pre>';
         $this->view->infoMois = $tab;
+        $this->view->infodemandeinfolog = $infodemandeinfolog;
+        $this->view->infodemandeinfodop = $infodemandeinfodop;
         $this->view->infoPrev = $infoPrev[0];
         $this->view->infoArticle = $infoArticle;
         $this->view->infoFichier = $infoFichier;
@@ -1002,7 +1008,7 @@ class XprevController extends Zend_Controller_Action
                                     . "Veuillez vous rendre à l'adresse url : \n"
                                     . "%s"
                                     . "\n\n"
-                                    . "pour la consulter."
+                                    . "pour répondre."
                                     . "Cordialement,\n"
                                     . "\n"
                                     . "--\n"
@@ -1031,6 +1037,11 @@ class XprevController extends Zend_Controller_Action
         $infoFichier = $fichier->getfichier($tracking);
         $ArticlePrev = new Application_Model_DbTable_DemandeArticleXprev();
         $infoArticle = $ArticlePrev->getarticleprev($tracking);
+        $infolog = new Application_Model_DbTable_Infolog();
+        $infodemandeinfolog = $infolog->getinfolog($tracking);
+        $infodop = new Application_Model_DbTable_Infodop();
+        $infodemandeinfodop = $infodop->getinfodop($tracking);
+        $uploaddir =APPLICATION_PATH."/../public/fichiers/Xprev/Supp/dop/";
         //echo '<pre>',  var_export($infoUser),'</pre>';
          $num_mois =  $infoPrev[0]['date_debut'];
            
@@ -1057,6 +1068,8 @@ class XprevController extends Zend_Controller_Action
             }
             
        // echo '<pre>',var_export($tab),'</pre>';
+        $this->view->infodemandeinfolog = $infodemandeinfolog;
+        $this->view->infodemandedop = $infodemandeinfodop;
         $this->view->infoMois = $tab;
         $this->view->infoPrev = $infoPrev[0];
         $this->view->infoArticle = $infoArticle;
@@ -1064,37 +1077,18 @@ class XprevController extends Zend_Controller_Action
         $this->view->infoUser = $infoUser;
         if($this->getRequest()->isPost()){
             $formData =  $this->getRequest()->getPost();
-            //echo '<pre>',  var_export($formData),'</pre>'; 
-            /*mettre à jour la demande xprev 
-             * au niveau du nom de la validation
-             * commentaire validation
-             * l'etat de la validation accepté/refusé
-             */
-            $emailVars = Zend_Registry::get('emailVars');
-                 /* creation des parametre du mail*/
-                 $params=array();
-            /*envoi du mail à dop*/
-           
-              //  echo 'plop'; 
-                $statut=1;
-                $validation =4;
-                $justification =$formData['supplement'];
-                //var_dump($justification);
-                
-                $upsup = $Prev->upsuppxprev($statut,$validation,$justification,$tracking);
-                
-                if(isset($_FILES['fichierSuppXprev']['name'])){
-                if($_FILES['fichierSuppXprev']['size']<=2000000){
-                    $extension_upload1 =strrchr($_FILES['fichierSuppXprev']['name'],'.');
-                    $name = explode('.',$_FILES['fichierSuppXprev']['name']);
-                    $file = $name[0].$trackingnumber.$extension_upload1;
+           if(isset($_FILES['fichierSuppdopXprev']['name'])){
+                if($_FILES['fichierSuppdopXprev']['size']<=2000000){
+                    $extension_upload1 =strrchr($_FILES['fichierSuppdopXprev']['name'],'.');
+                    $name = explode('.',$_FILES['fichierSuppdopXprev']['name']);
+                    $file = $name[0].$tracking.$extension_upload1;
                     $uploadfile = $uploaddir.$file;
-                    if(move_uploaded_file($_FILES['fichierSuppXprev']['tmp_name'], $uploadfile)){
+                    if(move_uploaded_file($_FILES['fichierSuppdopXprev']['tmp_name'], $uploadfile)){
                         echo "tout ok";
                         $datafichier = array(
-                            'tracking_xprev'=>$trackingnumber,
+                            'tracking_xprev'=>$tracking,
                             'nom_fichier_xprev'=>$file,
-                            'chemin_fichier_xprev'=>"/fichiers/Xprev/Supp/".$file
+                            'chemin_fichier_xprev'=>"/fichiers/Xprev/Supp/dop/".$file
                         );
                         $newfichier = $fichier->createFichierXprev($datafichier);
                     }else{
@@ -1102,6 +1096,11 @@ class XprevController extends Zend_Controller_Action
                     }
                 }
             }
+            $updateinfosupp = $infodop->updateinfodop($tracking,$formData['id_infodop'],$formData['supplement']);
+            $emailVars = Zend_Registry::get('emailVars');
+                 /* creation des parametre du mail*/
+                 $params=array();
+            /*envoi du mail à dop*/
                  //$params['destinataireMail']="dop@smc-france.fr";
                  $params['destinataireMail']="mhuby@smc-france.fr";
 
@@ -1116,7 +1115,7 @@ class XprevController extends Zend_Controller_Action
                                     . "\n"
                                     . "--\n"
                                     . "Xsuite";
-                $params['sujet']="demande d'information complémentaire Xprev $tracking ";
+                $params['sujet']="réponse demande d'information complémentaire Xprev $tracking ";
                   //echo '<pre>',  var_export($params),'</pre>';
                 $this->sendEmail($params);
                 $redirector = $this->_helper->getHelper('Redirector');
