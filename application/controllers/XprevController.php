@@ -1335,6 +1335,8 @@ class XprevController extends Zend_Controller_Action
         /*information concernant la personne connectée*/
         $User = new Application_Model_DbTable_Users();
         $infoUser = $User->getUser($user->id_user);
+        $Holon = new Application_Model_DbTable_Holons();
+        $infoHolon =$Holon->getHolon($user->id_holon);
         $Xprev = new Application_Model_DbTable_DemandeXprev();
         $ArticleXprev = new Application_Model_DbTable_DemandeArticleXprev();
         $Statut = new Application_Model_DbTable_StatutXprev();
@@ -1345,7 +1347,15 @@ class XprevController extends Zend_Controller_Action
         $listeAlltracking = $Xprev->getAlltracking();
         $listeAllreference =$ArticleXprev->getAllreference() ;
         $listeAllstatut = $Statut->getAllStatut();
-        
+         $fn0 = array(4,18,38);
+        /* fonction niveau1*/
+        $fn1 =array(1,2,6,43,44,46,26,27,28,29,30,34,35,36,37,40);
+         /*fonction niveau2*/
+        $fn2 = array(3,41,45,42);
+        /*fonction niveau2bis*/
+        $fn2bis = array(10,41);
+        /*fonction niveau3*/
+        $fn3 = array(32,23,50,39);
         $this->view->listeallreference=$listeAllreference;
         $this->view->listeallcommercial=$listeAllcommercial;
         $this->view->listealltracking=$listeAlltracking;
@@ -1353,6 +1363,11 @@ class XprevController extends Zend_Controller_Action
         $this->view->listeallclient=$listeAllclient;
         $this->view->listealluser=$listeAlluser;
         $this->view->infoUser = $infoUser;
+        $this->view->fn0 = $fn0;
+        $this->view->fn1 = $fn1;
+        $this->view->fn2 = $fn2;
+        $this->view->fn2bis = $fn2bis;
+        $this->view->fn3 = $fn3;
         if($this->getRequest()->isPost()){
             $formData =  $this->getRequest()->getPost();
           echo '<pre>',  var_export($formData),'</pre>';
