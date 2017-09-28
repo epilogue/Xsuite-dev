@@ -78,7 +78,7 @@
             <th>Commercial</th>
             <th>Client</th>
              <th>Statut</th>
-             <th>consultation</th>
+             <th colspan="2">action</th>
         </tr>
              <?php foreach($this->formdata as $xprev){ ?>
                 <tr>
@@ -90,6 +90,7 @@
                     <td><?php echo $xprev['nom_statut_xprev'] ?></td>
                     <td><a href="<?php echo $this->url(array("controller"=>"xprev","action"=>"consult","tracking"=>$xprev['tracking']));?>" <button class="retour">historique</button></a>
              </td>
+             <td></td>
                 </tr>
              <?php } } ?>
         </table>
