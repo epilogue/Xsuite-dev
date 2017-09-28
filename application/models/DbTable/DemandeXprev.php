@@ -247,7 +247,7 @@ public function getAllcodeuser($code_client) {
         }
     }
     public function  uplogxprev($statut,$validation,$justification,$tracking){
-        $sql ="UPDATE `demande_xprev` SET `id_validation`='{$validation}',  `id_statut_xprev`='{$statut}', `justification_log`='{$justification}' WHERE  `tracking`='{$tracking}'";
+        $sql ="UPDATE `demande_xprev` SET `id_validation`='{$validation}',  `id_statut_xprev`='{$statut}', `justification_log`=\"{$justification}\" WHERE  `tracking`='{$tracking}'";
 //         var_dump($sql); exit();
           $res = $this->getAdapter()->query($sql);
         
@@ -258,7 +258,7 @@ public function getAllcodeuser($code_client) {
         }
     }
     public function  updopxprev($statut,$validation,$justification,$tracking){
-        $sql ="UPDATE `demande_xprev` SET `id_validation`='{$validation}',  `id_statut_xprev`='{$statut}', `justification_dop`='{$justification}'  WHERE  `tracking`='{$tracking}'";
+        $sql ="UPDATE `demande_xprev` SET `id_validation`='{$validation}',  `id_statut_xprev`='{$statut}', `justification_dop`=\"{$justification}\"  WHERE  `tracking`='{$tracking}'";
 //         var_dump($sql); exit();
           $res = $this->getAdapter()->query($sql);
         
@@ -269,7 +269,7 @@ public function getAllcodeuser($code_client) {
         }
     }
     public function  upsuppxprev($statut,$validation,$justification,$tracking){
-        $sql ="UPDATE `demande_xprev` SET `id_validation`='{$validation}',  `id_statut_xprev`='{$statut}', `justification_supp`='{$justification}'  WHERE  `tracking`='{$tracking}'";
+        $sql ="UPDATE `demande_xprev` SET `id_validation`='{$validation}',  `id_statut_xprev`='{$statut}', `justification_supp`=\"{$justification}\"  WHERE  `tracking`='{$tracking}'";
 //         var_dump($sql); exit();
           $res = $this->getAdapter()->query($sql);
         
@@ -293,7 +293,7 @@ public function getAllcodeuser($code_client) {
     }
     
     public function  uptraitementxprev($statut,$validation,$justification,$tracking){
-        $sql ="UPDATE `demande_xprev` SET `id_validation`='{$validation}',  `id_statut_xprev`='{$statut}', `justification_traitement`='{$justification}' WHERE  `tracking`='{$tracking}'";
+        $sql ="UPDATE `demande_xprev` SET `id_validation`='{$validation}',  `id_statut_xprev`='{$statut}', `justification_traitement`=\"{$justification}\" WHERE  `tracking`='{$tracking}'";
 //         var_dump($sql); exit();
           $res = $this->getAdapter()->query($sql);
         

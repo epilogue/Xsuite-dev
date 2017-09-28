@@ -24,7 +24,7 @@ class Application_Model_DbTable_Infodop extends Zend_Db_Table_Abstract {
         }
     }
     public function updateinfodop($tracking,$id_infodop,$supplement){
-        $sql = "update infodop set reponse_infodop ='{$supplement}' where tracking='{$tracking}' and id_infodop ={$id_infodop} ";
+        $sql = "update infodop set reponse_infodop =\"{$supplement}\" where tracking='{$tracking}' and id_infodop ={$id_infodop} ";
         $res = $this->getAdapter()->query($sql);
        
         
