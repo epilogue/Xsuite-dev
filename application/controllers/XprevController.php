@@ -745,7 +745,7 @@ class XprevController extends Zend_Controller_Action
                 $statut=1;
                 $validation =4;
                 $justification = $formData['motif_validation'];
-                $datalog=array( 'tracking'=>$tracking,'demande_infolog'=>"{$justification}",'reponse_infolog'=>null);
+                $datalog=array( 'tracking'=>$tracking,'demande_infolog'=>$justification,'reponse_infolog'=>null);
                 $newinfolog = $infolog->createinfolog($datalog);
                  //$params['destinataireMail']="createur@smc-france.fr";
                  $params['destinataireMail']="mhuby@smc-france.fr";
