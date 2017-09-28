@@ -70,28 +70,160 @@
         </div>
     </form>
     <?php if(!empty($this->formData)){ ?>
-        <table class="enum">
+         <table class="enum">
         <tr>
+            <?php if(in_array($this->fonction,$this->fn0)){?>
+            
             <th>Tracking</th>
             <th>Date de création</th>
             <th>Emetteur</th>
             <th>Commercial</th>
             <th>Client</th>
              <th>Statut</th>
-             <th colspan="2">action</th>
-        </tr>
+             <th>action</th>
              <?php foreach($this->formdata as $xprev){ ?>
                 <tr>
                     <td><?php echo $xprev['tracking'] ?></td>
                     <td><?php echo $xprev['date_create'] ?></td>
-                    <td><?php echo $xprev['nom_emetteur'] ?></td>
+                    <td><?php echo $xprev['nom_user'] ?></td>
                     <td><?php echo $xprev['nom_commercial'] ?></td>
                     <td><?php echo $xprev['nom_client_user_xprev'] ?></td>
-                    <td><?php echo $xprev['nom_statut_xprev'] ?></td>
+                    <td><?php echo $xprev['nom_validation_xprev'] ?></td>
                     <td><a href="<?php echo $this->url(array("controller"=>"xprev","action"=>"consult","tracking"=>$xprev['tracking']));?>" <button class="retour">historique</button></a>
              </td>
-             <td></td>
                 </tr>
-             <?php } } ?>
+                 <?php } ?>
+        <?php }
+        elseif( in_array($this->fonction,$this->fn1) ){?>
+            <th>Tracking</th>
+            <th>Date de création</th>
+            <th>Emetteur</th>
+            <th>Commercial</th>
+            <th>Client</th>
+             <th>Statut</th>
+             <th>consultation</th>
+             <?php foreach($this->formdata as $xprev){ ?>
+                <tr>
+                    <td><?php echo $xprev['tracking'] ?></td>
+                    <td><?php echo $xprev['date_create'] ?></td>
+                    <td><?php echo $xprev['nom_user'] ?></td>
+                    <td><?php echo $xprev['nom_commercial'] ?></td>
+                    <td><?php echo $xprev['nom_client_user_xprev'] ?></td>
+                    <td><?php echo $xprev['nom_validation_xprev'] ?></td>
+                    <td><a href="<?php echo $this->url(array("controller"=>"xprev","action"=>"consult","tracking"=>$xprev['tracking']));?>" <button class="retour">historique</button></a>
+             </td>
+             
+                </tr>
+                 <?php } ?>
+        <?php }
+        elseif(in_array($this->fonction, $this->fn2)) {?>
+            <th>Tracking</th>
+            <th>Date de création</th>
+            <th>émetteur</th>
+            <th>Commercial</th>
+            <th>Client</th>
+             <th>Statut</th>
+             <th colspan="2">action</th>
+             <?php foreach($this->formdata as $xprev){ ?>
+                <tr>
+                    <td><?php echo $xprev['tracking'] ?></td>
+                    <td><?php echo $xprev['date_create'] ?></td>
+                    <td><?php echo $xprev['nom_user'] ?></td>
+                    <td><?php echo $xprev['nom_commercial'] ?></td>
+                    <td><?php echo $xprev['nom_client_user_xprev'] ?></td>
+                    <td><?php echo $xprev['nom_validation_xprev'] ?></td>
+                    <td><a href="<?php echo $this->url(array("controller"=>"xprev","action"=>"consult","tracking"=>$xprev['tracking']));?>" <button class="retour">historique</button></a>
+             </td>
+             <td>
+             <?php if($xprev['nom_validation_xprev']!='refusée' && $xprev['nom_validation_xprev']=='en cours de validation N+1' ){ ?>
+                    <a href="<?php echo $this->url(array("controller"=>"xprev","action"=>"validn1","tracking"=>$xprev['tracking']));?>" <button class="retour">validation</button></a>
+             <?php } ?>  </td>
+                </tr><?php } ?>
+         <?php } 
+         elseif(in_array($this->fonction, $this->fn2bis)) {?>
+            <th>Tracking</th>
+            <th>Date de création</th>
+            <th>émetteur</th>
+            <th>Commercial</th>
+            <th>Client</th>
+             <th>Statut</th>
+             <th colspan="2">action</th>
+             <?php foreach($this->formdata as $xprev){ ?>
+                <tr>
+                    <td><?php echo $xprev['tracking'] ?></td>
+                    <td><?php echo $xprev['date_create'] ?></td>
+                    <td><?php echo $xprev['nom_user'] ?></td>
+                    <td><?php echo $xprev['nom_commercial'] ?></td>
+                    <td><?php echo $xprev['nom_client_user_xprev'] ?></td>
+                    <td><?php echo $xprev['nom_validation_xprev'] ?></td>
+                    <td><a href="<?php echo $this->url(array("controller"=>"xprev","action"=>"consult","tracking"=>$xprev['tracking']));?>" <button class="retour">historique</button></a></td>
+                    <td>
+                        <?php if($xprev['nom_validation_xprev']!='refusée' && $xprev['nom_validation_xprev']=='en cours de validation N+1' ){ ?>
+                    <a href="<?php echo $this->url(array("controller"=>"xprev","action"=>"validn1","tracking"=>$xprev['tracking']));?>" <button class="retour">validation</button></a></td>
+                <?php } ?>  </td>
+                </tr>
+                    <?php  } ?>
+         <?php } 
+         elseif(in_array($this->fonction, $this->fn3) && $this->fonction !='50') {?>
+            <th>Tracking</th>
+            <th>Date de création</th>
+            <th>émetteur</th>
+            <th>Commercial</th>
+            <th>Client</th>
+             <th>Statut</th>
+             <th colspan="2">action</th>
+             <?php foreach($this->formdata as $xprev){ ?>
+                <tr>
+                    <td><?php echo $xprev['tracking'] ?></td>
+                    <td><?php echo $xprev['date_create'] ?></td>
+                    <td><?php echo $xprev['nom_user'] ?></td>
+                    <td><?php echo $xprev['nom_commercial'] ?></td>
+                    <td><?php echo $xprev['nom_client_user_xprev'] ?></td>
+                    <td><?php echo $xprev['nom_validation_xprev'] ?></td>
+                    <td><a href="<?php echo $this->url(array("controller"=>"xprev","action"=>"consult","tracking"=>$xprev['tracking']));?>" <button class="retour">historique</button></a></td>
+                    
+                        <td><?php if($xprev['nom_validation_xprev']!='refusée' && $xprev['nom_validation_xprev']=='en cours de validation logistique' ){ ?>
+                    <a href="<?php echo $this->url(array("controller"=>"xprev","action"=>"validlog","tracking"=>$xprev['tracking']));?>" <button class="retour">validation</button></a></td>
+                </tr><td>
+                    <?php }elseif($xprev['nom_validation_xprev']!='refusée' && $xprev['nom_validation_xprev']=='en cours de validation dop' && $this->fonction =='50'){ ?>
+                    <a href="<?php echo $this->url(array("controller"=>"xprev","action"=>"validdop","tracking"=>$xprev['tracking'])); ?>" <button class="retour">validation</button></a></td>
+                </tr><td>
+                    <?php } elseif($xprev['nom_validation_xprev']!='refusée' && $xprev['nom_validation_xprev']=='en cours de traitement' ){ ?>
+                    <a href="<?php echo $this->url(array("controller"=>"xprev","action"=>"traitement","tracking"=>$xprev['tracking'])); ?>" <button class="retour">traiter</button></a></td>
+                </tr><td>
+                    <?php }elseif($xprev['nom_validation_xprev']!='refusée' && $xprev['nom_validation_xprev']=='traitée' && $this->fonction !='50'){ ?>
+                    <a href="<?php echo $this->url(array("controller"=>"xprev","action"=>"cloture","tracking"=>$xprev['tracking'])); ?>" <button class="retour">modifier</button></a></td>
+                <?php } ?>  </td>
+    </tr>
+                    <?php  } ?>
+         <?php } elseif(in_array($this->fonction, $this->fn3) && $this->fonction =='50') {?>
+            <th>Tracking</th>
+            <th>Date de création</th>
+            <th>émetteur</th>
+            <th>Commercial</th>
+            <th>Client</th>
+             <th>Statut</th>
+             <th colspan="2">action</th>
+             <?php foreach($this->formdata as $xprev){ ?>
+                <tr>
+                    <td><?php echo $xprev['tracking'] ?></td>
+                    <td><?php echo $xprev['date_create'] ?></td>
+                    <td><?php echo $xprev['nom_user'] ?></td>
+                    <td><?php echo $xprev['nom_commercial'] ?></td>
+                    <td><?php echo $xprev['nom_client_user_xprev'] ?></td>
+                    <td><?php echo $xprev['nom_validation_xprev'] ?></td>
+                    <td><a href="<?php echo $this->url(array("controller"=>"xprev","action"=>"consult","tracking"=>$xprev['tracking']));?>" <button class="retour">historique</button></a></td>
+                    <td><?php if($xprev['nom_validation_xprev']!='refusée' && $xprev['nom_validation_xprev']=='en cours de validation logistique' ){ ?>
+                    <a href="<?php echo $this->url(array("controller"=>"xprev","action"=>"validlog","tracking"=>$xprev['tracking']));?>" <button class="retour">validation</button></a>
+                </tr> <td>
+                    <?php }elseif($xprev['nom_validation_xprev']!='refusée' && $xprev['nom_validation_xprev']=='en cours de validation dop' && $this->fonction =='50'){ ?>
+               <a href="<?php echo $this->url(array("controller"=>"xprev","action"=>"validdop","tracking"=>$xprev['tracking'])); ?>" <button class="retour">validation</button></a></td>
+                 <?php } ?>  </td>
+    </tr>
+                    <?php 
+                   } ?>
+         <?php } ?>
+         </tr>
+             <?php  } ?>
         </table>
 </div>
