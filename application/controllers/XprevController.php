@@ -543,7 +543,7 @@ class XprevController extends Zend_Controller_Action
                 $redirector->gotoSimple('index', 'xprev'); 
             }else{
                 /*on va chercher le mail du createur de la demande */
-                $statut=2;
+                $statut=4;
                 $validation =5;
                 $justification = $formData['motif_validation'];
                 $upn1 = $Prev->upn1xprev($statut,$validation,$justification,$tracking);
@@ -711,7 +711,7 @@ class XprevController extends Zend_Controller_Action
                 $redirector->gotoSimple('index', 'xprev'); 
             }elseif($formData['validlog']=='0'){
                 /*on va chercher le mail du createur de la demande */
-                $statut=2;
+                $statut=4;
                 $validation =5;
                 $justification = $formData['motif_validation'];
                 $upn1 = $Prev->uplogxprev($statut,$validation,$justification,$tracking);
@@ -964,7 +964,7 @@ class XprevController extends Zend_Controller_Action
                 $redirector->gotoSimple('index', 'xprev'); 
             }elseif($formData['validdop']=='0'){
                 /*on va chercher le mail du createur de la demande */
-                $statut=3;
+                $statut=4;
                 $validation =5;
                 $justification = $formData['motif_validation'];
                 $upn1 = $Prev->updopxprev($statut,$validation,$justification,$tracking);
