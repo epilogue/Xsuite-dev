@@ -1003,8 +1003,11 @@ class XprevController extends Zend_Controller_Action
              /*si demande d'info envoi a la logistique */
                 $statut=1;
                 $validation =4;
-                $justification = $formData['motif_validation'];
-                $upn1 = $Prev->updopxprev($statut,$validation,$justification,$tracking);
+                  $justification = $formData['motif_validation'];
+                $datadop=array( 'tracking'=>$tracking,'demande_infodop'=>$justification,'reponse_infodop'=>null);
+                $newinfodop = $infodop->createinfodop($datadop);
+              
+               // $upn1 = $Prev->updopxprev($statut,$validation,$justification,$tracking);
                  //$params['destinataireMail']="logistique@smc-france.fr";
                  $params['destinataireMail']="mhuby@smc-france.fr";
 
