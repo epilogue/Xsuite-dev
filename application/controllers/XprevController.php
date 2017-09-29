@@ -422,6 +422,10 @@ class XprevController extends Zend_Controller_Action
         $infoFichier = $fichier->getfichier($tracking);
         $ArticlePrev = new Application_Model_DbTable_DemandeArticleXprev();
         $infoArticle = $ArticlePrev->getarticleprev($tracking);
+        $infolog = new Application_Model_DbTable_Infolog();
+        $infodemandeinfolog = $infolog->getinfolog($tracking);
+        $infodop = new Application_Model_DbTable_Infodop();
+        $infodemandeinfodop = $infodop->getinfodop($tracking);
         
         /*creation du tableau de date  */
             $num_mois =  $infoPrev[0]['date_debut'];
@@ -449,6 +453,8 @@ class XprevController extends Zend_Controller_Action
             }
             
 //        echo '<pre>',var_export($tab),'</pre>';
+        $this->view->infodemandeinfolog = $infodemandeinfolog;
+        $this->view->infodemandeinfodop = $infodemandeinfodop;
         $this->view->infoMois = $tab;
         $this->view->infoPrev = $infoPrev[0];
         $this->view->infoArticle = $infoArticle;
@@ -1254,6 +1260,11 @@ class XprevController extends Zend_Controller_Action
         $infoFichier = $fichier->getfichier($tracking);
         $ArticlePrev = new Application_Model_DbTable_DemandeArticleXprev();
         $infoArticle = $ArticlePrev->getarticleprev($tracking);
+        $infolog = new Application_Model_DbTable_Infolog();
+        $infodemandeinfolog = $infolog->getinfolog($tracking);
+        $infodop = new Application_Model_DbTable_Infodop();
+        $infodemandeinfodop = $infodop->getinfodop($tracking);
+        
         //echo '<pre>',  var_export($infoUser),'</pre>';
          $num_mois =  $infoPrev[0]['date_debut'];
            
@@ -1280,6 +1291,8 @@ class XprevController extends Zend_Controller_Action
             }
             
         //echo '<pre>',var_export($tab),'</pre>';
+            $this->view->infodemandeinfolog = $infodemandeinfolog;
+        $this->view->infodemandeinfodop = $infodemandeinfodop;
         $this->view->infoMois = $tab;
         $this->view->infoPrev = $infoPrev[0];
         $this->view->infoArticle = $infoArticle;
