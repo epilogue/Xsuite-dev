@@ -1387,7 +1387,7 @@ class XprevController extends Zend_Controller_Action
             }
             
         //echo '<pre>',var_export($tab),'</pre>';
-            $this->view->infodemandeinfolog = $infodemandeinfolog;
+        $this->view->infodemandeinfolog = $infodemandeinfolog;
         $this->view->infodemandeinfodop = $infodemandeinfodop;
         $this->view->infoMois = $tab;
         $this->view->infoPrev = $infoPrev[0];
@@ -1396,7 +1396,7 @@ class XprevController extends Zend_Controller_Action
         $this->view->infoUser = $infoUser;
         if($this->getRequest()->isPost()){
             $formData =  $this->getRequest()->getPost();
-            //echo '<pre>',  var_export($formData),'</pre>'; 
+            echo '<pre>',  var_export($formData),'</pre>';  exit();
             /*mettre à jour la demande xprev 
              * au niveau du nom de la validation
              * commentaire validation
