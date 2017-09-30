@@ -119,6 +119,14 @@
             </tbody>
         </table>
     </fieldset>
+    <?php if(!empty($this->infocloture)){ ?>
+    <fieldset class="field">
+        <legend>complément d'information</legend>
+         <?php foreach ($this->infocloture as $infocloturesupp){ ?>
+             <p>demande :<?php echo $infocloturesupp['infoclot'] ;?></p>
+         <?php }?>
+    </fieldset>
+         <?php }?>
     <form action="#" method="post" enctype="multipart/form-data">
         
         <fieldset class="field">

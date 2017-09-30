@@ -1360,6 +1360,8 @@ class XprevController extends Zend_Controller_Action
         $infodemandeinfolog = $infolog->getinfolog($tracking);
         $infodop = new Application_Model_DbTable_Infodop();
         $infodemandeinfodop = $infodop->getinfodop($tracking);
+        $infocloture = new Application_Model_DbTable_Infoclot();
+        $infoclot= $infocloture->getinfoclot($tracking);
         $uploaddir =APPLICATION_PATH."/../public/fichiers/Xprev/Cloture/";
         
         //echo '<pre>',  var_export($infoUser),'</pre>';
@@ -1390,6 +1392,7 @@ class XprevController extends Zend_Controller_Action
         //echo '<pre>',var_export($tab),'</pre>';
         $this->view->infodemandeinfolog = $infodemandeinfolog;
         $this->view->infodemandeinfodop = $infodemandeinfodop;
+        $this->view->infocloture=$infoclot;
         $this->view->infoMois = $tab;
         $this->view->infoPrev = $infoPrev[0];
         $this->view->infoArticle = $infoArticle;
@@ -1465,9 +1468,11 @@ class XprevController extends Zend_Controller_Action
             }else{
                 $infoclot = new Application_Model_DbTable_Infoclot();
                 $justification = $formData['motif_validation'];
-                $dataclotinfo=array( 'tracking'=>$tracking,'infoclot'=>$justification);
+                $dataclotinfo=array('tracking'=>$tracking,'infoclot'=>$justification);
                 $newinfoclot = $infoclot->createinfoclot($dataclotinfo);
-                
+                echo '<pre>',  var_export($tracking),'</pre>';
+                $this->sendEmail($params);
+                var_dump($newinfoclot);
                 $redirector = $this->_helper->getHelper('Redirector');
                 $flashMessenger = $this->_helper->getHelper('FlashMessenger');
                 $message = "les informations complémentaires sont bien été ajoutées.";
