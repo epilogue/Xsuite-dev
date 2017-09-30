@@ -379,7 +379,7 @@ class XprevController extends Zend_Controller_Action
              $id_fonction = $infoUser['id_fonction'];
              $hierarchie = new Application_Model_DbTable_HierarchieXprev();
              $destinataire = $hierarchie->gethierarchie($id_holon,$id_fonction);
-             $infoxprev=$xprev->getprev($trackingnumber);
+             $infoPrev=$xprev->getprev($trackingnumber);
              //var_dump($destinataire);
              /* appel de la fonction send mail*/
              $emailVars = Zend_Registry::get('emailVars');
