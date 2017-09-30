@@ -432,6 +432,8 @@ class XprevController extends Zend_Controller_Action
         $infodemandeinfolog = $infolog->getinfolog($tracking);
         $infodop = new Application_Model_DbTable_Infodop();
         $infodemandeinfodop = $infodop->getinfodop($tracking);
+        $infocloture = new Application_Model_DbTable_Infoclot();
+        $infoclot= $infocloture->getinfoclot($tracking);
         
         /*creation du tableau de date  */
             $num_mois =  $infoPrev[0]['date_debut'];
@@ -461,6 +463,7 @@ class XprevController extends Zend_Controller_Action
 //        echo '<pre>',var_export($tab),'</pre>';
         $this->view->infodemandeinfolog = $infodemandeinfolog;
         $this->view->infodemandeinfodop = $infodemandeinfodop;
+        $this->view->infocloture=$infoclot;
         $this->view->infoMois = $tab;
         $this->view->infoPrev = $infoPrev[0];
         $this->view->infoArticle = $infoArticle;

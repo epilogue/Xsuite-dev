@@ -55,7 +55,14 @@
         <?php if( $this->infoPrev['justification_cloture']!= null) { ?>
         <p>commentaire:<?php echo $this->infoPrev['justification_cloture'] ;?></p>
         <?php } ?>
-        
+        <?php if(!empty($this->infocloture)){ ?>
+    <fieldset class="field">
+        <legend>complément d'information</legend>
+         <?php foreach ($this->infocloture as $infocloturesupp){ ?>
+             <p><?php echo $infocloturesupp['infoclot'] ;?></p>
+         <?php }?>
+    </fieldset>
+         <?php }?>
          <?php if( !empty($this->infoFichier)) { ?>
         <p class="decale">fichier joint creation:<?php foreach ($this->infoFichier as $fichier){ ?> <a href=" <?php echo $fichier['chemin_fichier_xprev']; ?>" target="_blank"><?php echo $fichier['nom_fichier_xprev']; ?></a><br><?php  }?></p>
          <?php } ?>
