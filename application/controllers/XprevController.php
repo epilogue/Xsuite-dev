@@ -379,6 +379,7 @@ class XprevController extends Zend_Controller_Action
              $id_fonction = $infoUser['id_fonction'];
              $hierarchie = new Application_Model_DbTable_HierarchieXprev();
              $destinataire = $hierarchie->gethierarchie($id_holon,$id_fonction);
+             $infoxprev=$xprev->getprev($trackingnumber);
              //var_dump($destinataire);
              /* appel de la fonction send mail*/
              $emailVars = Zend_Registry::get('emailVars');
@@ -393,6 +394,10 @@ class XprevController extends Zend_Controller_Action
                                 . "Vous avez une nouvelle demande Xprev({$trackingnumber}) à valider.\n"
                                 . "Veuillez vous rendre à l'adresse url : \n"
                                 . "%s"
+                                ." nom client : {$infoPrev[0]['nom_client_user_xprev']} \n"
+                                . " nom commercial : {$infoPrev[0]['nom_commercial']} \n"
+                                . " date début de prévision : {$infoPrev[0]['date_debut']} \n"
+                                . " date fin prévision :{$infoPrev[0]['date_fin']}  \n"
                                 . "\n\n"
                                 . "Cordialement,\n"
                                 . "\n"
@@ -403,7 +408,7 @@ class XprevController extends Zend_Controller_Action
                $this->sendEmail($params);
             $redirector = $this->_helper->getHelper('Redirector');
             $flashMessenger = $this->_helper->getHelper('FlashMessenger');
-            $message = "votre demande de prévision a bien été créée.";
+            $message = "votre demande de prévision a bien été créée.{$destinataire->email_user}";
             $flashMessenger->addMessage($message);
             $redirector->gotoSimple('index', 'xprev'); 
         }
@@ -535,6 +540,10 @@ class XprevController extends Zend_Controller_Action
                                     . "Vous avez une nouvelle demande Xprev({$tracking}) à valider.\n"
                                     . "Veuillez vous rendre à l'adresse url : \n"
                                     . "%s"
+                                    . " nom client : {$infoPrev[0]['nom_client_user_xprev']} \n"
+                                    . " nom commercial : {$infoPrev[0]['nom_commercial']} \n"
+                                    . " date début de prévision : {$infoPrev[0]['date_debut']} \n"
+                                    . " date fin prévision :{$infoPrev[0]['date_fin']}  \n"
                                     . "\n\n"
                                     . "Cordialement,\n"
                                     . "\n"
@@ -703,6 +712,10 @@ class XprevController extends Zend_Controller_Action
                                     . "Vous avez une nouvelle demande Xprev({$tracking}) à valider.\n"
                                     . "Veuillez vous rendre à l'adresse url : \n"
                                     . "%s"
+                                    . " nom client : {$infoPrev[0]['nom_client_user_xprev']} \n"
+                                    . " nom commercial : {$infoPrev[0]['nom_commercial']} \n"
+                                    . " date début de prévision : {$infoPrev[0]['date_debut']} \n"
+                                    . " date fin prévision :{$infoPrev[0]['date_fin']}  \n"
                                     . "\n\n"
                                     . "Cordialement,\n"
                                     . "\n"
@@ -731,6 +744,10 @@ class XprevController extends Zend_Controller_Action
                                     . "Votre demande Xprev({$tracking})a été refusée.\n"
                                     . "Veuillez vous rendre à l'adresse url : \n"
                                     . "%s"
+                                    . " nom client : {$infoPrev[0]['nom_client_user_xprev']} \n"
+                                    . " nom commercial : {$infoPrev[0]['nom_commercial']} \n"
+                                    . " date début de prévision : {$infoPrev[0]['date_debut']} \n"
+                                    . " date fin prévision :{$infoPrev[0]['date_fin']}  \n"
                                     . "\n\n"
                                     . "pour la consulter."
                                     . "Cordialement,\n"
@@ -762,6 +779,10 @@ class XprevController extends Zend_Controller_Action
                                     . "demande de renseignement  complémentaire de la logistique \n"
                                     . "Veuillez vous rendre à l'adresse url : \n"
                                     . "%s"
+                                    . " nom client : {$infoPrev[0]['nom_client_user_xprev']} \n"
+                                    . " nom commercial : {$infoPrev[0]['nom_commercial']} \n"
+                                    . " date début de prévision : {$infoPrev[0]['date_debut']} \n"
+                                    . " date fin prévision :{$infoPrev[0]['date_fin']}  \n"
                                     . "\n\n"
                                     . "pour répondre. \n"
                                     . "Cordialement,\n"
@@ -861,6 +882,10 @@ class XprevController extends Zend_Controller_Action
                                     . "l'itc a répondu à votre demande d'information pour la demande Xprev({$tracking}) à traiter.\n"
                                     . "Veuillez vous rendre à l'adresse url : \n"
                                     . "%s"
+                                    . " nom client : {$infoPrev[0]['nom_client_user_xprev']} \n"
+                                    . " nom commercial : {$infoPrev[0]['nom_commercial']} \n"
+                                    . " date début de prévision : {$infoPrev[0]['date_debut']} \n"
+                                    . " date fin prévision :{$infoPrev[0]['date_fin']}  \n"
                                     . "\n\n"
                                     . "Cordialement,\n"
                                     . "\n"
@@ -938,6 +963,7 @@ class XprevController extends Zend_Controller_Action
             $emailVars = Zend_Registry::get('emailVars');
                  /* creation des parametre du mail*/
                  $params=array();
+                  $params1=array();
             /*envoi du mail à la log*/
             if($formData['validdop']=='1'){
 //                echo 'plop'; 
@@ -956,6 +982,10 @@ class XprevController extends Zend_Controller_Action
                                     . "Vous avez une nouvelle demande Xprev({$tracking}) à traiter.\n"
                                     . "Veuillez vous rendre à l'adresse url : \n"
                                     . "%s"
+                                    . " nom client : {$infoPrev[0]['nom_client_user_xprev']} \n"
+                                    . " nom commercial : {$infoPrev[0]['nom_commercial']} \n"
+                                    . " date début de prévision : {$infoPrev[0]['date_debut']} \n"
+                                    . " date fin prévision :{$infoPrev[0]['date_fin']}  \n"
                                     . "\n\n"
                                     . "Cordialement,\n"
                                     . "\n"
@@ -975,6 +1005,7 @@ class XprevController extends Zend_Controller_Action
                 $validation =5;
                 $justification = $formData['motif_validation'];
                 $upn1 = $Prev->updopxprev($statut,$validation,$justification,$tracking);
+                /*envoi mail au créateur*/
                  //$params['destinataireMail']="$info_createur['mail_user']";
                  $params['destinataireMail']="mhuby@smc-france.fr";
 
@@ -984,6 +1015,10 @@ class XprevController extends Zend_Controller_Action
                                     . "Votre demande Xprev({$tracking})a été refusée.\n"
                                     . "Veuillez vous rendre à l'adresse url : \n"
                                     . "%s"
+                                    . " nom client : {$infoPrev[0]['nom_client_user_xprev']} \n"
+                                    . " nom commercial : {$infoPrev[0]['nom_commercial']} \n"
+                                    . " date début de prévision : {$infoPrev[0]['date_debut']} \n"
+                                    . " date fin prévision :{$infoPrev[0]['date_fin']}  \n"
                                     . "\n\n"
                                     . "pour la consulter."
                                     . "Cordialement,\n"
@@ -993,6 +1028,29 @@ class XprevController extends Zend_Controller_Action
                 $params['sujet']="refus Xprev $tracking ";
                   //echo '<pre>',  var_export($params),'</pre>';
                 $this->sendEmail($params);
+                /*envoi mail a la log*/
+                
+                $params1['destinataireMail']="mhuby@smc-france.fr";
+
+                 $params1['url'] = "http://{$_SERVER['SERVER_NAME']}/xprev/consult/tracking/{$tracking}";
+                 $params1['corpsMail']="Bonjour,\n"
+                                    . "\n"
+                                    . "Votre demande Xprev({$tracking})a été refusée.\n"
+                                    . "Veuillez vous rendre à l'adresse url : \n"
+                                    . "%s"
+                                    . " nom client : {$infoPrev[0]['nom_client_user_xprev']} \n"
+                                    . " nom commercial : {$infoPrev[0]['nom_commercial']} \n"
+                                    . " date début de prévision : {$infoPrev[0]['date_debut']} \n"
+                                    . " date fin prévision :{$infoPrev[0]['date_fin']}  \n"
+                                    . "\n\n"
+                                    . "pour la consulter."
+                                    . "Cordialement,\n"
+                                    . "\n"
+                                    . "--\n"
+                                    . "Xsuite";
+                $params1['sujet']="refus Xprev $tracking ";
+                  //echo '<pre>',  var_export($params),'</pre>';
+                $this->sendEmail($params1);
                 $redirector = $this->_helper->getHelper('Redirector');
                 $flashMessenger = $this->_helper->getHelper('FlashMessenger');
                 $message = "la demande de prévision a bien été refusée.";
@@ -1017,6 +1075,10 @@ class XprevController extends Zend_Controller_Action
                                     . "demande de renseignement complémentaire\n"
                                     . "Veuillez vous rendre à l'adresse url : \n"
                                     . "%s"
+                                    . " nom client : {$infoPrev[0]['nom_client_user_xprev']} \n"
+                                    . " nom commercial : {$infoPrev[0]['nom_commercial']} \n"
+                                    . " date début de prévision : {$infoPrev[0]['date_debut']} \n"
+                                    . " date fin prévision :{$infoPrev[0]['date_fin']}  \n"
                                     . "\n\n"
                                     . "pour répondre."
                                     . "Cordialement,\n"
@@ -1120,6 +1182,10 @@ class XprevController extends Zend_Controller_Action
                                     . "les informations supplémentaires ont été ajoutées vous pouvez valider la demande Xprev({$tracking}) à valider.\n"
                                     . " à l'adresse url : \n"
                                     . "%s"
+                                    . " nom client : {$infoPrev[0]['nom_client_user_xprev']} \n"
+                                    . " nom commercial : {$infoPrev[0]['nom_commercial']} \n"
+                                    . " date début de prévision : {$infoPrev[0]['date_debut']} \n"
+                                    . " date fin prévision :{$infoPrev[0]['date_fin']}  \n"
                                     . "\n\n"
                                     . "Cordialement,\n"
                                     . "\n"
@@ -1150,6 +1216,10 @@ class XprevController extends Zend_Controller_Action
         $infoFichier = $fichier->getfichier($tracking);
         $ArticlePrev = new Application_Model_DbTable_DemandeArticleXprev();
         $infoArticle = $ArticlePrev->getarticleprev($tracking);
+        $infolog = new Application_Model_DbTable_Infolog();
+        $infodemandeinfolog = $infolog->getinfolog($tracking);
+        $infodop = new Application_Model_DbTable_Infodop();
+        $infodemandeinfodop = $infodop->getinfodop($tracking);
 //        echo '<pre>',  var_export($listeallcommercial),'</pre>';
 //         echo '<pre>',  var_export($infoPrev),'</pre>';
          $num_mois =  $infoPrev[0]['date_debut'];
@@ -1177,6 +1247,8 @@ class XprevController extends Zend_Controller_Action
             }
             
         //echo '<pre>',var_export($tab),'</pre>';
+        $this->view->infodemandeinfolog = $infodemandeinfolog;
+        $this->view->infodemandeinfodop = $infodemandeinfodop;
         $this->view->listeallcommercial=$listeallcommercial;
         $this->view->infoMois = $tab;
         $this->view->infoPrev = $infoPrev[0];
@@ -1234,12 +1306,16 @@ class XprevController extends Zend_Controller_Action
                                     . "Vous avez une nouvelle demande Xprev({$tracking}) à cloturer.\n"
                                     . "Veuillez vous rendre à l'adresse url : \n"
                                     . "%s"
+                                    . " nom client : {$infoPrev[0]['nom_client_user_xprev']} \n"
+                                    . " nom commercial : {$infoPrev[0]['nom_commercial']} \n"
+                                    . " date début de prévision : {$infoPrev[0]['date_debut']} \n"
+                                    . " date fin prévision :{$infoPrev[0]['date_fin']}  \n"
                                     . "\n\n"
                                     . "Cordialement,\n"
                                     . "\n"
                                     . "--\n"
                                     . "Xsuite";
-                $params['sujet']="cloture Xprev $tracking ";
+                $params['sujet']="prévision traitée Xprev $tracking ";
                   //echo '<pre>',  var_export($params),'</pre>';
                 $this->sendEmail($params);
                 $redirector = $this->_helper->getHelper('Redirector');
@@ -1321,7 +1397,7 @@ class XprevController extends Zend_Controller_Action
                 //var_dump($justification);
                 
                 $updop = $Prev->updopxprev($statut,$validation,$justification,$tracking);
-                 //$params['destinataireMail']="user@smc-france.fr";
+                 //$params['destinataireMail']="{$infoPrev[0]['email_emetteur']}";
                  $params['destinataireMail']="mhuby@smc-france.fr";
 
                  $params['url'] = "http://{$_SERVER['SERVER_NAME']}/xprev/consult/tracking/{$tracking}";
@@ -1330,6 +1406,10 @@ class XprevController extends Zend_Controller_Action
                                     . "la demande Xprev({$tracking}) est cloturée.\n"
                                     . "Veuillez vous rendre à l'adresse url : \n"
                                     . "%s"
+                                    . " nom client : {$infoPrev[0]['nom_client_user_xprev']} \n"
+                                    . " nom commercial : {$infoPrev[0]['nom_commercial']} \n"
+                                    . " date début de prévision : {$infoPrev[0]['date_debut']} \n"
+                                    . " date fin prévision :{$infoPrev[0]['date_fin']}  \n"
                                     . "\n\n"
                                     . "Cordialement,\n"
                                     . "\n"
