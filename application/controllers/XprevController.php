@@ -1075,7 +1075,7 @@ class XprevController extends Zend_Controller_Action
              /*si demande d'info envoi a la logistique */
                 $statut=1;
                 $validation =4;
-                  $justification = $formData['motif_validation'];
+                $justification = $formData['motif_validation'];
                 $datadop=array( 'tracking'=>$tracking,'demande_infodop'=>$justification,'reponse_infodop'=>null);
                 $newinfodop = $infodop->createinfodop($datadop);
               
@@ -1360,6 +1360,7 @@ class XprevController extends Zend_Controller_Action
         $infodemandeinfolog = $infolog->getinfolog($tracking);
         $infodop = new Application_Model_DbTable_Infodop();
         $infodemandeinfodop = $infodop->getinfodop($tracking);
+        $uploaddir =APPLICATION_PATH."/../public/fichiers/Xprev/Cloture/";
         
         //echo '<pre>',  var_export($infoUser),'</pre>';
          $num_mois =  $infoPrev[0]['date_debut'];
@@ -1396,7 +1397,27 @@ class XprevController extends Zend_Controller_Action
         $this->view->infoUser = $infoUser;
         if($this->getRequest()->isPost()){
             $formData =  $this->getRequest()->getPost();
-            echo '<pre>',  var_export($formData),'</pre>';  exit();
+            echo '<pre>',  var_export($formData),'</pre>'; 
+            if(isset($_FILES['fichierClotureXprev']['name'])){
+                if($_FILES['fichierClotureXprev']['size']<=2000000){
+                    $extension_upload1 =strrchr($_FILES['fichierClotureXprev']['name'],'.');
+                    $name = explode('.',$_FILES['fichierClotureXprev']['name']);
+                    $file = $name[0].$tracking.$extension_upload1;
+                    $uploadfile = $uploaddir.$file;
+                    if(move_uploaded_file($_FILES['fichierClotureXprev']['tmp_name'], $uploadfile)){
+                        echo "tout ok";
+                        $datafichier = array(
+                            'tracking_xprev'=>$tracking,
+                            'nom_fichier_xprev'=>$file,
+                            'chemin_fichier_xprev'=>"/fichiers/Xprev/Cloture/".$file
+                        );
+                        $newfichier = $fichier->createFichierXprev($datafichier);
+                    }else{
+                        echo "tout foutu";
+                    }
+                }
+            }
+            if($formData['validcloture']=='1'){
             /*mettre à jour la demande xprev 
              * au niveau du nom de la validation
              * commentaire validation
@@ -1441,8 +1462,20 @@ class XprevController extends Zend_Controller_Action
                 $message = "la demande de prévision est cloturée.";
                 $flashMessenger->addMessage($message);
                 $redirector->gotoSimple('index', 'xprev'); 
-            
+            }else{
+                $infoclot = new Application_Model_DbTable_Infoclot();
+                $justification = $formData['motif_validation'];
+                $dataclotinfo=array( 'tracking'=>$tracking,'infoclot'=>$justification);
+                $newinfoclot = $infoclot->createinfoclot($dataclotinfo);
+                
+                $redirector = $this->_helper->getHelper('Redirector');
+                $flashMessenger = $this->_helper->getHelper('FlashMessenger');
+                $message = "les informations complémentaires sont bien été ajoutées.";
+                $flashMessenger->addMessage($message);
+                $redirector->gotoSimple('index', 'xprev'); 
+            }
         }
+        
     }
 
     public function rechercheAction(){
