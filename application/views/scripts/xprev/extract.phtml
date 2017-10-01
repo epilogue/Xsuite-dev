@@ -4,12 +4,20 @@
     <form action="#" method="post">
         <table>
             <tr>
-                <td>recherche par client</td>
+                <td>nom client</td>
                 <td>
                     <select  name="nom_client">
                         <option value="">choisir un client</option>
                     <?php foreach($this->listeallclient as $listeclient ){?>
                     <option value="<?php echo $listeclient['code_client_users_xprev']?>" ><?php echo $listeclient['nom_client_user_xprev']; ?></option><?php }?>
+                    </select>
+                </td>
+                <td>code client</td>
+                <td>
+                    <select  name="code_client">
+                        <option value="">choisir un client</option>
+                    <?php foreach($this->listeallclient as $listeclient ){?>
+                    <option value="<?php echo $listeclient['code_client_users_xprev']?>" ><?php echo $listeclient['code_client_user_xprev']; ?></option><?php }?>
                     </select>
                 </td>
                 <td>recherche par commercial</td>
