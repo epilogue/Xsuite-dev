@@ -332,5 +332,12 @@ public function getAllcodeuser($code_client) {
                 . " (demande_xprev.date_fin) as fin_prevision, "
                 . " (demande_article_xprev.total_article_mois)as quantite prevision,"
                 . " (demande_xprev.justification_log)as commentaire_logistique";
+          $res = $this->getAdapter()->query($sql);
+        $rest=$res->fetchAll();
+        if (!$rest) {
+            return null;
+        } else {
+            return $rest;
+        }
     }
 }

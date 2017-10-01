@@ -1536,7 +1536,7 @@ class XprevController extends Zend_Controller_Action
     }
     
     public function extractAction(){
-        $this->_helper->layout->disableLayout();
+        //$this->_helper->layout->disableLayout();
         header('Content-type: text/csv');
         $formdata=$_POST;
         header('Content-Disposition: attachment; filename="extractXprev.csv"');
