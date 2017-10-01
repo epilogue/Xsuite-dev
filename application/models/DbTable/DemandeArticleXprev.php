@@ -89,4 +89,14 @@ class Application_Model_DbTable_DemandeArticleXprev extends Zend_Db_Table_Abstra
             return $rest;
         }
     }
+    public function getAllcode(){
+        $sql="select distinct(code_article) from demande_article_xprev";
+        $res = $this->getAdapter()->query($sql);
+        $rest=$res->fetchAll();
+        if (!$rest) {
+            return null;
+        } else {
+            return $rest;
+        }
+    }
 }

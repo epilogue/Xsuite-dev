@@ -1536,6 +1536,29 @@ class XprevController extends Zend_Controller_Action
     }
     
     public function extractAction(){
+        $client =new Application_Model_DbTable_ClientXprev();
+        $clientUser = new Application_Model_DbTable_ClientUserXprev();
+        $xprev = new Application_Model_DbTable_DemandeXprev();
+        $demandeArticleXprev= new Application_Model_DbTable_DemandeArticleXprev();
+        $users = new Application_Model_DbTable_Users();
+        $statut = new Application_Model_DbTable_StatutXprev();
+        
+        $listeClient = $client->searchClient();
+        $listeClientUser = $clientUser->searchClientUser();
+        $listeEmetteur = $users->getAllUser();
+        $listeCommercial = $users->getAll();
+        $listeReference = $demandeArticleXprev->getAllreference();
+        $listeCodeArticle = $demandeArticleXprev->getAllcode();
+        $listeStatut = $statut->getAllStatut();
+        $this->view->listeallclient=$listeClient;
+        $this->view->listeallclientuser = $listeClientUser;
+        $this->view->listeallcommercial = $listeCommercial;
+        $this->view->listealluser = $listeEmetteur;
+        $this->view->listeallstatut = $listeStatut;
+        $this->view->listeallreference = $listeReference;
+        $this->view->listeallcode = $listeCodeArticle;
+        
+        
         if($this->getRequest()->isPost()){
             $formData =  $this->getRequest()->getPost();
             $this->_helper->layout->disableLayout();
