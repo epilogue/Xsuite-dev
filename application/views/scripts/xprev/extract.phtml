@@ -35,7 +35,7 @@ $this->headScript()->appendFile('/js/controllers/xprev/datepicker2.js');
                 <td>nom user</td>
                 <td>
                     <select id="nom_user" name="nom_user">
-                        <option></option>
+                        <option>choisir un user</option>
                     <?php foreach($this->listeallclientuser as $listeclientuser ){?>
                     <option value="<?php echo $listeclientuser['code_client_users_xprev']?>" ><?php echo trim($listeclientuser['nom_client_user_xprev']); ?></option><?php }?>
                     </select>
@@ -43,7 +43,7 @@ $this->headScript()->appendFile('/js/controllers/xprev/datepicker2.js');
                 <td>code user</td>
                 <td>
                     <select id="code_user" name="code_user">
-                        <option></option>
+                        <option>choisir un code user</option>
                      <?php foreach($this->listeallclientuser as $listeclientuser ){?>
                     <option value="<?php echo $listeclientuser['code_client_users_xprev']?>" ><?php echo $listeclientuser['code_client_users_xprev']; ?></option><?php }?>
                     </select>
@@ -58,7 +58,7 @@ $this->headScript()->appendFile('/js/controllers/xprev/datepicker2.js');
                     <option value="<?php echo $listecommercial['id_commercial']?>"><?php echo $listecommercial['nom_commercial']; ?></option><?php }?>
                     </select>
                 </td>
-                <td>recherche par émetteur</td>
+                <td>nom émetteur</td>
                 <td>
                     <select name="nom_emetteur">
                         <option value="">choisir un émetteur</option>
