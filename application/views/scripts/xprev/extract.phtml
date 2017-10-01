@@ -1,0 +1,72 @@
+<div class="contenu">
+    <h2>Xprev</h2>
+    <h3>extraction</h3>
+    <form action="#" method="post">
+        <table>
+            <tr>
+                <td>recherche par client</td>
+                <td>
+                    <select  name="nom_client">
+                        <option value="">choisir un client</option>
+                    <?php foreach($this->listeallclient as $listeclient ){?>
+                    <option value="<?php echo $listeclient['code_client_users_xprev']?>" ><?php echo $listeclient['nom_client_user_xprev']; ?></option><?php }?>
+                    </select>
+                </td>
+                <td>recherche par commercial</td>
+                <td>
+                    <select name="nom_commercial">
+                        <option value="">choisir un commercial</option>
+                    <?php foreach($this->listeallcommercial as $listecommercial ){?>
+                    <option value="<?php echo $listecommercial['id_commercial']?>"><?php echo $listecommercial['nom_commercial']; ?></option><?php }?>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>recherche par statut</td>
+                <td>
+                    <select  name="nom_statut">
+                        <option value="">choisir un statut</option>
+                    <?php foreach($this->listeallstatut as $listestatut ){?>
+                    <option value="<?php echo $listestatut['id_statut_xprev']?>" ><?php echo $listestatut['nom_statut_xprev']; ?></option><?php }?>
+                   </select>
+                </td>
+                <td>recherche par émetteur</td>
+                <td>
+                    <select name="nom_emetteur">
+                        <option value="">choisir un émetteur</option>
+                    <?php foreach($this->listealluser as $listeuser ){?>
+                    <option value="<?php echo $listeuser['id_emetteur']?>" ><?php echo $listeuser['nom_emetteur']; ?></option><?php }?>
+                   </select>
+                </td>
+            </tr>
+            <tr>
+                <td>recherche par date de création</td>
+                <td></td>
+                <td>recherche par référence article</td>
+                <td>
+                    <select  name="reference">
+                        <option value="">choisir une référence</option>
+                    <?php foreach($this->listeallreference as $listereference ){?>
+                    <option value="<?php echo $listereference['reference_article']?>"  ><?php echo $listereference['reference_article']; ?></option><?php }?>
+                   </select>
+                </td>
+            </tr>
+            <tr>
+                <td>recherche par tracking</td>
+                <td>
+                    <select  name="tracking">
+                        <option value="">choisir un tracking</option>
+                    <?php foreach($this->listealltracking as $listetracking ){?>
+                    <option value="<?php echo $listetracking['tracking']?>"  ><?php echo $listetracking['tracking']; ?></option><?php }?>
+                   
+                    </select>
+                </td>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+        <div class="soumission">
+                <input class="submit2" type="submit" value="rechercher">
+        </div>
+    </form>
+    
