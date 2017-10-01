@@ -20,23 +20,28 @@
                     <option value="<?php echo $listeclient['code_client_users_xprev']?>" ><?php echo $listeclient['code_client_user_xprev']; ?></option><?php }?>
                     </select>
                 </td>
-                <td>recherche par commercial</td>
+                <td>code user</td>
+                <td>
+                    <select id="code_user" name="code_user">
+                        <option></option>
+                    </select>
+                </td>
+                <td>nom user</td>
+                <td>
+                    <select id="nom_user" name="nom_user">
+                        <option></option>
+                    </select>
+                </td>
+                
+            </tr>
+            <tr>
+                <td>nom commercial</td>
                 <td>
                     <select name="nom_commercial">
                         <option value="">choisir un commercial</option>
                     <?php foreach($this->listeallcommercial as $listecommercial ){?>
                     <option value="<?php echo $listecommercial['id_commercial']?>"><?php echo $listecommercial['nom_commercial']; ?></option><?php }?>
                     </select>
-                </td>
-            </tr>
-            <tr>
-                <td>recherche par statut</td>
-                <td>
-                    <select  name="nom_statut">
-                        <option value="">choisir un statut</option>
-                    <?php foreach($this->listeallstatut as $listestatut ){?>
-                    <option value="<?php echo $listestatut['id_statut_xprev']?>" ><?php echo $listestatut['nom_statut_xprev']; ?></option><?php }?>
-                   </select>
                 </td>
                 <td>recherche par émetteur</td>
                 <td>
@@ -46,6 +51,15 @@
                     <option value="<?php echo $listeuser['id_emetteur']?>" ><?php echo $listeuser['nom_emetteur']; ?></option><?php }?>
                    </select>
                 </td>
+                <td> statut</td>
+                <td>
+                    <select  name="nom_statut">
+                        <option value="">choisir un statut</option>
+                    <?php foreach($this->listeallstatut as $listestatut ){?>
+                    <option value="<?php echo $listestatut['id_statut_xprev']?>" ><?php echo $listestatut['nom_statut_xprev']; ?></option><?php }?>
+                   </select>
+                </td>
+                
             </tr>
             <tr>
                 <td>recherche par date de création</td>
