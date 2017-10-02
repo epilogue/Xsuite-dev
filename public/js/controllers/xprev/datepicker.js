@@ -169,5 +169,5 @@ $(document).ready(function(){
 //           });  
         });
     $('input[name="refart[0][reference]"]').attr('required',true);
-    //$('input[name="refart[0][code_article]"]').attr('required',true);
+    $('input[name="refart[0][code_article]"]').attr('required',true);
 });
