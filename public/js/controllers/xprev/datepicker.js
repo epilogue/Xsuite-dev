@@ -93,7 +93,11 @@ $(document).ready(function(){
         });
         $('.resetbuton').unbind('click');
         $('.resetbuton').click(function(e){
+            //supprimer toute la ligne
              e.preventDefault();
+             $('#table_mois tr').remove();
+             // $('#table_mois thead').html(data);
+//          },'html');
             //alert($(this).data('id'));
              $('input[name="refart['+$(this).data('id')+'][reference]"]').val("");
              $('input[name="refart['+$(this).data('id')+'][code_article]"]').val("");
@@ -142,7 +146,7 @@ $(document).ready(function(){
             
              e.preventDefault();
             //alert($(this).data('id'));
-             $('input[name="refart['+$(this).data('id')+'][reference]"]').val("").remove();
+             $('input[name="refart['+$(this).data('id')+'][reference]"]').val("");
              $('input[name="refart['+$(this).data('id')+'][code_article]"]').val("");
              $('input[name="refart['+$(this).data('id')+'][m1]"]').val("");
              $('input[name="refart['+$(this).data('id')+'][m2]"]').val("");
