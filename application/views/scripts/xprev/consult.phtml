@@ -107,9 +107,9 @@
                 <?php foreach ($this->infoArticle as $article){ ?>
                 <tr>
                      <?php if($this->infoUser['niveau']=='niveau4' && $this->infoUser['fonction'] != 50){ ;?>
-                    <td style="width: 250px;"><?php echo $article['reference_article'] ;?></td>
+                    <td><?php echo $article['reference_article'] ;?></td>
                     <td><?php echo $article['code_article'] ;?></td>
-                     <?php }else { ?><td colspan="2" style="width: 250px;"><?php echo $article['reference_article'] ;?></td> <?php }?>
+                     <?php }else { ?><td colspan="2" ><?php echo $article['reference_article'] ;?></td> <?php }?>
                     <?php if($this->infoUser['niveau']=='niveau4'){ ?>
                     <td><?php echo $article['prix_revient']; ?></td>
                     <td><?php if($article['shikomi']==1){?><input type="checkbox" checked="checked" readonly disabled><?php }else { ?><input type="checkbox" readonly disabled></td>
