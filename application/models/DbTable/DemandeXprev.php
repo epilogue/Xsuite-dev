@@ -45,7 +45,7 @@ class Application_Model_DbTable_DemandeXprev extends Zend_Db_Table_Abstract {
             $datefin1= explode('-',$formdata['date_createfin_prev']);
             $datedeb= $datedeb1[2]."-".$datedeb1[1]."-".$datedeb1[0];
             $datefin=$datefin1[2]."-".$datefin1[1]."-".$datefin1[0];
-            $sqlsuite .= " and (demande_xprev.date_create between str_to_date('{$datedeb}' ,'%Y-%m-%d') and str_to_date('{$datefin}','%Y-%m-%d')) ";
+            $sqlsuite .= " and demande_xprev.date_create between str_to_date('{$datedeb}' ,'%Y-%m-%d') and str_to_date('{$datefin}','%Y-%m-%d') ";
         }
 
         if (empty($sqlsuite) and !empty($formdata['reference'])) {
@@ -72,7 +72,7 @@ class Application_Model_DbTable_DemandeXprev extends Zend_Db_Table_Abstract {
             $datefin1= explode('-',$formdata['date_createfin_prev']);
             $datedeb= $datedeb1[2]."-".$datedeb1[1]."-".$datedeb1[0];
             $datefin=$datefin1[2]."-".$datefin1[1]."-".$datefin1[0];
-            $sqlsuite2 .= " or (demande_xprev.date_create between str_to_date('{$datedeb}' ,'%Y-%m-%d') and str_to_date('{$datefin}','%Y-%m-%d')) ";
+            $sqlsuite2 .= " or demande_xprev.date_create between str_to_date('{$datedeb}' ,'%Y-%m-%d') and str_to_date('{$datefin}','%Y-%m-%d') ";
         }
         if (!empty($sqlsuite) and !empty($formdata['reference'])) {
             $sqlsuite2.=" or demande_article_xprev.reference_article='{$formdata['reference']}'";
