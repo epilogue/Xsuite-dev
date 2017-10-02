@@ -486,6 +486,25 @@ fieldset legend{
     padding-bottom: 5px;
     width : 65px;
 }
+.enumxprev {
+    border-style:solid;
+    border-color:#2A60AA;
+    border-width: thin;
+    border-collapse: collapse;
+    padding-top:5px;
+    padding-bottom: 5px;
+    width:100%;
+    font-family: verdana,arial;
+}
+.enumxprev th,.enumxprev td{
+    border-style:solid;
+    border-color:#2A60AA;
+    border-width: thin;
+    border-collapse: collapse;
+    padding-top:5px;
+    padding-bottom: 5px;
+    //width : 65px;
+}
 .refartReference{
     width: 250px;
 }
