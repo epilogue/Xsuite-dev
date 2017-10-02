@@ -1,3 +1,9 @@
+<?php
+$this->title = 'Xprev/recherche';
+$this->headTitle($this->title);
+$this->headLink()->appendStylesheet('/css/jquery-ui.css');
+$this->headScript()->appendFile('/js/controllers/xprev/datepicker2.js');
+?>
 <div class="contenu">
     <h2>Xprev</h2>
     <h3>Recherche</h3>
@@ -42,8 +48,8 @@
             
             <tr>
                 <td> date de création</td>
-                <td>du <input class="datePicker" type="text" name="date_createdeb_prev" id='datepickerOO'></td>
-                <td>au <input class="datePicker" type="text" name="date_createfin_prev" id='datepickerO'></td>
+                <td>du <input class="datePicker" type="text" name="date_createdeb_prev" id='datepicker'></td>
+                <td>au <input class="datePicker" type="text" name="date_createfin_prev" id='datepicker0'></td>
             </tr>
             <tr>
                 
