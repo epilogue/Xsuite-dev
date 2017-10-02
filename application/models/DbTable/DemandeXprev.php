@@ -47,7 +47,14 @@ class Application_Model_DbTable_DemandeXprev extends Zend_Db_Table_Abstract {
             $datefin=$datefin1[2]."-".$datefin1[1]."-".$datefin1[0];
             $sqlsuite .= " and demande_xprev.date_create between str_to_date('{$datedeb}' ,'%Y-%m-%d') and str_to_date('{$datefin}','%Y-%m-%d') ";
         }
-
+        if(empty($sqlsuite) and !empty($formdata['date_findeb_prev']) && !empty($formdata['date_finfin_prev'])) {
+            
+            $datedeb1= explode('-',$formdata['date_findeb_prev']);
+            $datefin1= explode('-',$formdata['date_finfin_prev']);
+            $datedeb= $datedeb1[2]."-".$datedeb1[1]."-".$datedeb1[0];
+            $datefin=$datefin1[2]."-".$datefin1[1]."-".$datefin1[0];
+            $sqlsuite .= " and demande_xprev.date_fin between str_to_date('{$datedeb}' ,'%Y-%m-%d') and str_to_date('{$datefin}','%Y-%m-%d') ";
+        }
         if (empty($sqlsuite) and !empty($formdata['reference'])) {
             $sqlsuite.=" and  demande_article_xprev.reference_article='{$formdata['reference']}'";
         }
@@ -73,6 +80,14 @@ class Application_Model_DbTable_DemandeXprev extends Zend_Db_Table_Abstract {
             $datedeb= $datedeb1[2]."-".$datedeb1[1]."-".$datedeb1[0];
             $datefin=$datefin1[2]."-".$datefin1[1]."-".$datefin1[0];
             $sqlsuite2 .= " or demande_xprev.date_create between str_to_date('{$datedeb}' ,'%Y-%m-%d') and str_to_date('{$datefin}','%Y-%m-%d') ";
+        }
+        if(!empty($sqlsuite) and !empty($formdata['date_findeb_prev']) && !empty($formdata['date_finfin_prev'])) {
+            
+            $datedeb1= explode('-',$formdata['date_findeb_prev']);
+            $datefin1= explode('-',$formdata['date_finfin_prev']);
+            $datedeb= $datedeb1[2]."-".$datedeb1[1]."-".$datedeb1[0];
+            $datefin=$datefin1[2]."-".$datefin1[1]."-".$datefin1[0];
+            $sqlsuite2 .= " or demande_xprev.date_fin between str_to_date('{$datedeb}' ,'%Y-%m-%d') and str_to_date('{$datefin}','%Y-%m-%d') ";
         }
         if (!empty($sqlsuite) and !empty($formdata['reference'])) {
             $sqlsuite2.=" or demande_article_xprev.reference_article='{$formdata['reference']}'";

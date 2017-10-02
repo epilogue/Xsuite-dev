@@ -10,6 +10,12 @@ $(document).ready(function(){
      $("#datepickerO").datepicker({
         dateFormat:"dd-mm-yy"
     });
+    $("#datepicker").datepicker({
+        dateFormat:"dd-mm-yy"
+    });
+     $("#datepicker0").datepicker({
+        dateFormat:"dd-mm-yy"
+    });
     $("#datepicker1").datepicker({
         dateFormat:"dd-mm-yy"
     });

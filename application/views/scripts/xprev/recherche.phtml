@@ -52,6 +52,11 @@ $this->headScript()->appendFile('/js/controllers/xprev/datepicker2.js');
                 <td>au <input class="datePicker" type="text" name="date_createfin_prev" id='datepickerO'></td>
             </tr>
             <tr>
+                <td> date de fin de prévision</td>
+                <td>du <input class="datePicker" type="text" name="date_findeb_prev" id='datepicker'></td>
+                <td>au <input class="datePicker" type="text" name="date_finfin_prev" id='datepicker0'></td>
+            </tr>
+            <tr>
                 
                 <td>recherche par référence article</td>
                 <td>
@@ -61,8 +66,6 @@ $this->headScript()->appendFile('/js/controllers/xprev/datepicker2.js');
                     <option value="<?php echo $listereference['reference_article']?>"  ><?php echo $listereference['reference_article']; ?></option><?php }?>
                    </select>
                 </td>
-            </tr>
-            <tr>
                 <td>recherche par tracking</td>
                 <td>
                     <select  name="tracking">
