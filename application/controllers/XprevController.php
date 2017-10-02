@@ -178,7 +178,9 @@ class XprevController extends Zend_Controller_Action
         $datecreate =date('Y-m-d');
         $moiscreate = date('m-Y');
         $dateinterval= new DateInterval("P3M");
-        var_dump($dateinterval);
+        $nDate = new DateTime();
+        $nDate->diff($dateinterval);
+        var_dump($nDate->format('d/m/Y'));
         /*passage a la vue*/
         $this->view->newetatvalidation=$newetatvalidation;
         $this->view->listetypedemande=$listetypedemande;
