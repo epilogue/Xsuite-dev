@@ -95,13 +95,8 @@ $(document).ready(function(){
         $('.resetbuton').click(function(e){
             //supprimer toute la ligne
              e.preventDefault();
-             //$('tr[name ="ligne['+$(this).data('id')+']"]').remove();
-             //$("tr").eq($(this).data('id')).remove();
              var ligne=$(this).data('id')+1;
-             alert(ligne);
               $('#table_mois tr:eq('+ligne+')').remove();
-//              $('#table_mois tr:eq('+$(this).data('id')+')').remove();
-             // $('#table_mois thead').html(data);
 //          },'html');
             //alert($(this).data('id'));
              $('input[name="refart['+$(this).data('id')+'][reference]"]').val("");
