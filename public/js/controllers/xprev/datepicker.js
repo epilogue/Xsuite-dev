@@ -141,7 +141,7 @@ $(document).ready(function(){
         $('.resetbuton').click(function(e){
              e.preventDefault();
             //alert($(this).data('id'));
-             $('input[name="refart['+$(this).data('id')+'][reference]"]').val("");
+             $('input[name="refart['+$(this).data('id')+'][reference]"]').val("").hide();
              $('input[name="refart['+$(this).data('id')+'][code_article]"]').val("");
              $('input[name="refart['+$(this).data('id')+'][m1]"]').val("");
              $('input[name="refart['+$(this).data('id')+'][m2]"]').val("");
