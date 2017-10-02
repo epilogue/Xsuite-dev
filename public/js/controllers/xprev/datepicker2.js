@@ -4,6 +4,12 @@
  * and open the template in the editor.
  */
 $(document).ready(function(){
+     $("#datepicker").datepicker({
+        dateFormat:"dd-mm-yy"
+    });
+     $("#datepicker0").datepicker({
+        dateFormat:"dd-mm-yy"
+    });
     $("#datepicker1").datepicker({
         dateFormat:"dd-mm-yy"
     });
