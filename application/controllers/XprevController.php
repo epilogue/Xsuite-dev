@@ -1310,7 +1310,7 @@ class XprevController extends Zend_Controller_Action
                  /* creation des parametre du mail*/
                  $params=array();
 //                echo 'plop'; 
-                $statut=1;
+                $statut=5;
                 $validation =7;
                 $justification =$formData['motif_validation'];
                 var_dump($justification);
