@@ -139,8 +139,9 @@ $(document).ready(function(){
         });
         $('.resetbuton').unbind('click');
         $('.resetbuton').click(function(e){
-             $("#table_mois").hide();
+            
              e.preventDefault();
+              $("#table_mois").hide();
             //alert($(this).data('id'));
              $('input[name="refart['+$(this).data('id')+'][reference]"]').val("");
              $('input[name="refart['+$(this).data('id')+'][code_article]"]').val("");
