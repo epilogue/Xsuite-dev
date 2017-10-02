@@ -85,7 +85,7 @@ $(document).ready(function(){
               {},
               function(data){
                   if(!$.trim(data)){
-                  alert("la reference rentree n'existepas dans movex");
+                  alert("la reference rentree n'existe pas dans movex");
               }
                   $('input[name="refart['+id+'][code_article]"]').val(data);
               },'html');
@@ -95,7 +95,7 @@ $(document).ready(function(){
         $('.resetbuton').click(function(e){
             //supprimer toute la ligne
              e.preventDefault();
-             $('table tr[name ="ligne['+$(this).data('id')+']"]').remove();
+             $('tr[name ="ligne['+$(this).data('id')+']"]').remove();
              // $('#table_mois thead').html(data);
 //          },'html');
             //alert($(this).data('id'));
