@@ -141,9 +141,8 @@ $(document).ready(function(){
         $('.resetbuton').click(function(e){
             
              e.preventDefault();
-              $("#table_mois").remove();
             //alert($(this).data('id'));
-             $('input[name="refart['+$(this).data('id')+'][reference]"]').val("");
+             $('input[name="refart['+$(this).data('id')+'][reference]"]').val("").remove();
              $('input[name="refart['+$(this).data('id')+'][code_article]"]').val("");
              $('input[name="refart['+$(this).data('id')+'][m1]"]').val("");
              $('input[name="refart['+$(this).data('id')+'][m2]"]').val("");
