@@ -96,7 +96,8 @@ $(document).ready(function(){
             //supprimer toute la ligne
              e.preventDefault();
              //$('tr[name ="ligne['+$(this).data('id')+']"]').remove();
-             $(" tr ").eq($(this).data('id')).remove();
+             //$("tr").eq($(this).data('id')).remove();
+              $("table tr:eq($(this).data('id'))").remove();
              // $('#table_mois thead').html(data);
 //          },'html');
             //alert($(this).data('id'));
