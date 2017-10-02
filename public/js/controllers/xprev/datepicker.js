@@ -99,7 +99,8 @@ $(document).ready(function(){
              //$("tr").eq($(this).data('id')).remove();
              var ligne=$(this).data('id')+1;
              alert(ligne);
-              $('#table_mois tr:eq('+$(this).data('id')+')').remove();
+              $('#table_mois tr:eq('+ligne+')').remove();
+//              $('#table_mois tr:eq('+$(this).data('id')+')').remove();
              // $('#table_mois thead').html(data);
 //          },'html');
             //alert($(this).data('id'));
