@@ -95,7 +95,7 @@ $(document).ready(function(){
         $('.resetbuton').click(function(e){
             //supprimer toute la ligne
              e.preventDefault();
-             $('#table_mois tr').data('id').remove();
+             $('tr[name ="ligne['+$(this).data('id')+']"]').remove();
              // $('#table_mois thead').html(data);
 //          },'html');
             //alert($(this).data('id'));

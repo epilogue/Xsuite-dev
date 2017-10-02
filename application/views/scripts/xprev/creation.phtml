@@ -13,7 +13,7 @@ $this->headLink()->appendStylesheet('/css/MonthPicker.css');
 //    <tbody>
 ?>
 <script type="text/html" id="addRefTPL">
-        <tr  data-id="__id__" >
+        <tr data-id="__id__" name="ligne[_id_]" class="lign"  >
             <td><button class="resetbuton" data-id="__id__" name="boutonreset[_id_]">reset</button></td>
             <td colspan ="2"><input class="refartReference" data-id="__id__" type="text" name="refart[__id__][reference]" value="" />
             <input hidden="hidden" type="text" name="refart[__id__][code_article]" value="" /></td>
