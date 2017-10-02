@@ -96,7 +96,7 @@ $(document).ready(function(){
             //supprimer toute la ligne
              e.preventDefault();
              var ligne=$(this).data('id')+1;
-              $('#table_mois tr:eq('+ligne+')').remove();
+              $('#table_mois tr[data-id="'+$(this).data('id')+'"]').remove();
 //          },'html');
             //alert($(this).data('id'));
              $('input[name="refart['+$(this).data('id')+'][reference]"]').val("");
