@@ -58,7 +58,7 @@ $this->headScript()->appendFile('/js/controllers/xprev/calculTotal.js');
         <p>commentaire logistique :<?php echo $this->infoPrev['justification_log'] ;?></p>
         <?php } ;?>
         <?php if( $this->infoPrev['justification_dop']!= null) { ?>
-        <p>commentaire direction des opérations :<?php echo $this->infoPrev['justification_dop'] ;?></p>
+        <p>commentaire direction :<?php echo $this->infoPrev['justification_dop'] ;?></p>
         <?php } ;?>
         <?php if(!empty($this->infodemandeinfolog)){ ?>
     <fieldset class="field">
@@ -85,13 +85,13 @@ $this->headScript()->appendFile('/js/controllers/xprev/calculTotal.js');
         <legend>Informations article</legend>
         
     <form action="#" enctype="multipart/form-data" method="post">
-        <table class="enum">
+        <table class="enumxprev">
             <thead>
                 <tr>
                     <th>référence</th>
                     <th>code article</th>
                      <?php if($this->infoUser['niveau']=='niveau4'){ ;?>
-                    <th>prix de revient</th>
+                    <th>CU</th>
                     <th>shikomi</th>
                     <?php }?>
                     <?php foreach ($this->infoMois as $mois){ ?>
