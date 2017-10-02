@@ -91,7 +91,7 @@
         <table class="enumxprev">
             <thead>
                 <tr>
-                     <?php if($this->infoUser['niveau']=='niveau4' && $this->infoUser['fonction'] != 50){ ;?>
+                     <?php if($this->infoUser['niveau']=='niveau4' && $this->infoUser['id_fonction'] != 50){ ;?>
                     <th>référence</th>
                     <th>code article</th>
                      <?php }else { ?><th colspan="3">référence</th> <?php }?>
@@ -106,7 +106,7 @@
             <tbody>
                 <?php foreach ($this->infoArticle as $article){ ?>
                 <tr>
-                     <?php if($this->infoUser['niveau']=='niveau4' && $this->infoUser['fonction'] != 50){ ;?>
+                     <?php if($this->infoUser['niveau']=='niveau4' && $this->infoUser['id_fonction'] != 50){ ;?>
                     <td><?php echo $article['reference_article'] ;?></td>
                     <td><?php echo $article['code_article'] ;?></td>
                      <?php }else { ?><td colspan="3" ><?php echo $article['reference_article'] ;?></td> <?php }?>
