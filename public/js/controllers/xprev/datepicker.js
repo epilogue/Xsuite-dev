@@ -78,7 +78,6 @@ $(document).ready(function(){
             }
         });
         console.log(id);
-                 //name="refart[__id__][reference]"
         $('input[name="refart['+id+'][reference]"]').change(function(e)
         {
             console.log('tagada');
@@ -90,9 +89,8 @@ $(document).ready(function(){
               }
                   $('input[name="refart['+id+'][code_article]"]').val(data);
               },'html');
-              
+//               });
         });
-    //});
         $('.resetbuton').unbind('click');
         $('.resetbuton').click(function(e){
              e.preventDefault();
@@ -165,11 +163,11 @@ $(document).ready(function(){
               {},
               function(data){
                    if(!$.trim(data)){
-                  alert("la reference rentree n'existepas dans movex"); }
+                  alert("la reference rentree n'existe pas dans movex"); }
                   $('input[name="refart['+id+'][code_article]"]').val(data);
               },'html');
-             
+//           });  
         });
     $('input[name="refart[0][reference]"]').attr('required',true);
-    $('input[name="refart[0][code_article]"]').attr('required',true);
+    //$('input[name="refart[0][code_article]"]').attr('required',true);
 });

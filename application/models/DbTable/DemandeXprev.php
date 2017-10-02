@@ -320,18 +320,33 @@ public function getAllcodeuser($code_client) {
     
     public function extractxprev($formdata){
         $sql=" (demande_xprev.tracking) as tracking, "
-                . " (emetteur.nom_user) as emetteur, "
                 . " (commercial.nom_user) as commercial, "
+                . " (demande_article_xprev.code_article) as NO_PRODUIT, "
+                . " (demande_article_xprev.reference_article) as REF_PRODUIT, "
                 . " (demande_xprev.date_create) as date_creation, "
-                . " (statut.nom_statut) as etat, "
+                . " (demande_xprev.date_fin) as fin_de_validite, "
+                . " (statut_xprev.nom_statut_xprev) as statut_prevision "
                 . " (client_user_xprev.code_client_users_xprev) as code_client, "
-                . " (client_user_xprev.nom_client_user_xprev) as nom client, "
-                . " (demande_article_xprev.code_article) as code_article, "
-                . " (demande_article_xprev.reference_article) as reference_article, "
-                . " (demande_xprev.date_debut) as debut_prevision,"
-                . " (demande_xprev.date_fin) as fin_prevision, "
-                . " (demande_article_xprev.total_article_mois)as quantite prevision,"
-                . " (demande_xprev.justification_log)as commentaire_logistique";
+                . " (client_user_xprev.nom_client_user_xprev) as nom client,"
+                . "demande_article_xprev.m1, "
+                . "demande_article_xprev.m2, "
+                . "demande_article_xprev.m3, "
+                . "demande_article_xprev.m4, "
+                . "demande_article_xprev.m5, "
+                . "demande_article_xprev.m6, "
+                . "demande_article_xprev.m7, "
+                . "demande_article_xprev.m8, "
+                . "demande_article_xprev.m9, "
+                . "demande_article_xprev.m10, "
+                . "demande_article_xprev.m11, "
+                . "demande_article_xprev.m12, "
+                . "demande_xprev.date_debut "
+                . " from demande.xprev "
+                . " left join users as commercial on commercial.id_user = demande_xprev.id_commercial "
+                . " left join demande_article_xprev on demande_article_xprev.tracking =demande_xprev.tracking "
+                . " left join statut_xprev on statut_xprev.id_statut_xprev= demandexprev.id_statut_xprev "
+                . " left join client_user_xprev on client_user_xprev.id_client_user_xprev=demande_xprev.id_client_user_xprev  "
+                . " where 1";
           $res = $this->getAdapter()->query($sql);
         $rest=$res->fetchAll();
         if (!$rest) {
