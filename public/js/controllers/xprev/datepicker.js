@@ -141,7 +141,7 @@ $(document).ready(function(){
         $('.resetbuton').click(function(e){
             
              e.preventDefault();
-              $("#table_mois").hide();
+              $("#table_mois").remove();
             //alert($(this).data('id'));
              $('input[name="refart['+$(this).data('id')+'][reference]"]').val("");
              $('input[name="refart['+$(this).data('id')+'][code_article]"]').val("");
