@@ -97,7 +97,9 @@ $(document).ready(function(){
              e.preventDefault();
              //$('tr[name ="ligne['+$(this).data('id')+']"]').remove();
              //$("tr").eq($(this).data('id')).remove();
-              $('#table_mois tr:eq('+$(this).data('id')+'+1)').remove();
+             var ligne=$(this).data('id')+1;
+             alert(ligne);
+              $('#table_mois tr:eq('+$(this).data('id')+')').remove();
              // $('#table_mois thead').html(data);
 //          },'html');
             //alert($(this).data('id'));
