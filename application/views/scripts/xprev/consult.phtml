@@ -128,7 +128,14 @@
                     <td><?php echo $article['m12'] ;?></td>
                     
                 <?php  echo $total[].=+ $article['valeur_totale'];} ?>
-                    <?php if($this->infoUser['niveau']=='niveau4'){ ?>
+                    <?php if($this->infoUser['niveau']=='niveau4' && $this->infoUser['id_fonction']==50){ ?>
+                </tr>
+                <tr>
+                    <td colspan="14"></td>
+                    <td colspan="3"><?php echo "valeur totale=" . array_sum($total) ; ?></td>
+                </tr>
+                    <?php }
+                 elseif($this->infoUser['niveau']=='niveau4'){ ?>
                 </tr>
                 <tr>
                     <td colspan="13"></td>
