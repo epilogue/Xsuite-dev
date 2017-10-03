@@ -351,7 +351,7 @@ public function getAllcodeuser($code_client) {
     }
     
     public function extractxprev($formdata){
-        $sql=" (demande_xprev.tracking) as tracking, "
+        $sql=" select (demande_xprev.tracking) as tracking, "
                 . " (commercial.nom_user) as commercial, "
                 . " (demande_article_xprev.code_article) as NO_PRODUIT, "
                 . " (demande_article_xprev.reference_article) as REF_PRODUIT, "
