@@ -373,10 +373,10 @@ public function getAllcodeuser($code_client) {
                 . "demande_article_xprev.m11, "
                 . "demande_article_xprev.m12, "
                 . "demande_xprev.date_debut "
-                . " from demande.xprev "
+                . " from demande_xprev "
                 . " left join users as commercial on commercial.id_user = demande_xprev.id_commercial "
                 . " left join demande_article_xprev on demande_article_xprev.tracking =demande_xprev.tracking "
-                . " left join statut_xprev on statut_xprev.id_statut_xprev= demandexprev.id_statut_xprev "
+                . " left join statut_xprev on statut_xprev.id_statut_xprev= demande_xprev.id_statut_xprev "
                 . " left join client_user_xprev on client_user_xprev.id_client_user_xprev=demande_xprev.id_client_user_xprev  "
                 . " where 1";
         $sqlsuite="";
