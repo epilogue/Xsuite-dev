@@ -380,7 +380,7 @@ public function getAllcodeuser($code_client) {
                 . " left join client_user_xprev on client_user_xprev.id_client_user_xprev=demande_xprev.id_client_user_xprev  "
                 . " left join client_xprev on client_xprev.id_client_xprev=demande_xprev.id_client_xprev  "
                 . " where 1";
-        $sqlsuite="";
+         $sqlsuite="";
          if(!empty($formdata['nom_client'])){
                 $sqlsuite.=" and client_xprev.code_user_client_xprev ='{$formdata['nom_client']}'";
             }
