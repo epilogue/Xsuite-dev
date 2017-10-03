@@ -434,7 +434,7 @@ public function getAllcodeuser($code_client) {
         }
         
          $sql.=$sqlsuite;
-        var_dump($sql);
+        var_dump($sql);exit();
           $res = $this->getAdapter()->query($sql);
         $rest=$res->fetchAll();
         if (!$rest) {
