@@ -95,8 +95,10 @@ $(document).ready(function(){
         $('.resetbuton').click(function(e){
             //supprimer toute la ligne
              e.preventDefault();
-             var ligne=$(this).data('id')+1;
+            // var ligne=$(this).data('id')+1;
+            if($(this).data('id')!= 0){
               $('#table_mois tr[data-id="'+$(this).data('id')+'"]').remove();
+          }
 //          },'html');
             //alert($(this).data('id'));
              $('input[name="refart['+$(this).data('id')+'][reference]"]').val("");
