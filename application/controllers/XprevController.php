@@ -180,7 +180,7 @@ class XprevController extends Zend_Controller_Action
         $dateinterval= new DateInterval("P3M");
         $nDate = new DateTime();
         $nDate->add($dateinterval);
-        var_dump($nDate->format('d/m/Y'));
+        var_dump($nDate->format('Y-m-d'));
         /*passage a la vue*/
         $this->view->newetatvalidation=$newetatvalidation;
         $this->view->listetypedemande=$listetypedemande;
@@ -345,6 +345,7 @@ class XprevController extends Zend_Controller_Action
               $newarticle = $xprevarticle->createDemandeArticle($data2);
              }
              foreach($formData['refart'] as $refart){
+                 echo '<pre>',  var_export($refart),'</pre>'; exit();
                  $mmcono = "100";
                  $query3 = "select * from EIT.MVXCDTA.MITFAC MITFAC where MITFAC.M9CONO = '$mmcono' AND MITFAC.M9ITNO = '{$refart['code_article']}' and MITFAC.M9FACI ='I01'";
                  $resultats3 = odbc_Exec($this->odbc_conn2, $query3);
