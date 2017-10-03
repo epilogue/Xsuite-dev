@@ -381,16 +381,16 @@ public function getAllcodeuser($code_client) {
                 . " where 1";
         $sqlsuite="";
          if(!empty($formdata['nom_client'])){
-                $sqlsuite.=" and client_user_xprev.code_client_users_xprev ='{$formdata['nom_client']}'";
+                $sqlsuite.=" and client_xprev.code_user_client_xprev ='{$formdata['nom_client']}'";
             }
             if(!empty($formdata['code_client'])){
-                $sqlsuite.=" and client_user_xprev.code_client_users_xprev ='{$formdata['code_client']}'";
+                $sqlsuite.=" and client_xprev.code_user_client_xprev ='{$formdata['code_client']}'";
             }
             if(!empty($formdata['nom_user'])){
-                $sqlsuite.=" and client_xprev.code_user_client_xprev ='{$formdata['nom_user']}'";
+                $sqlsuite.=" and client_user_xprev.code_client_users_xprev ='{$formdata['nom_user']}'";
             }
             if(!empty($formdata['code_user'])){
-                $sqlsuite.=" and client_xprev.code_user_client_xprev ='{$formdata['code_user']}'";
+                $sqlsuite.=" and client_user_xprev.code_client_users_xprev ='{$formdata['code_user']}'";
             }
             if(!empty($formdata['nom_commercial'])){
                 $sqlsuite.=" and demande_xprev.id_commercial ='{$formdata['nom_commercial']}'";
