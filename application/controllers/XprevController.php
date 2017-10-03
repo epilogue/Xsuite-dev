@@ -1568,16 +1568,16 @@ class XprevController extends Zend_Controller_Action
         if($this->getRequest()->isPost()){
             $formData =  $this->getRequest()->getPost();
             echo '<pre>',  var_export($formData),'</pre>';
-            $this->_helper->layout->disableLayout();
-            header('Content-type: text/csv');
-            header('Content-Disposition: attachment; filename="extractXprev.csv"');
+//            $this->_helper->layout->disableLayout();
+//            header('Content-type: text/csv');
+//            header('Content-Disposition: attachment; filename="extractXprev.csv"');
             $Xprev = new Application_Model_DbTable_DemandeXprev();
             $listXprev = $Xprev->extractxprev($formData);
 
-           echo '"'. str_replace(';', '";"',implode(';', array_keys($listXprev[0]))).'"' . PHP_EOL;
-           foreach ($listXprev as $ligne) {
-               echo '"'. str_replace(';', '";"', implode(';',  $ligne)).'"' . PHP_EOL;
-           }
+//           echo '"'. str_replace(';', '";"',implode(';', array_keys($listXprev[0]))).'"' . PHP_EOL;
+//           foreach ($listXprev as $ligne) {
+//               echo '"'. str_replace(';', '";"', implode(';',  $ligne)).'"' . PHP_EOL;
+//           }
         }
     }
 }
