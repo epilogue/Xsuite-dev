@@ -280,7 +280,6 @@ class XprevController extends Zend_Controller_Action
              $newdemande = $xprev->createDemande($data);
              
              /* insertion en bdd dans la table demande_article_xprev*/
-             if($formData['refart']['reference']!= ""){
              foreach($formData['refart'] as $refart){
                  
                      if($refart['m1']==''){
@@ -321,7 +320,8 @@ class XprevController extends Zend_Controller_Action
                      }
                   
                  $total_article_mois =($refart['m1']+$refart['m2']+$refart['m3']+$refart['m4']+$refart['m5']+$refart['m6']+$refart['m7']+$refart['m8']+$refart['m9']+$refart['m10']+$refart['m11']+$refart['m12']);
-             $data2 = array(
+            if($refart['reference']!=''){
+                 $data2 = array(
                  'tracking'=>$trackingnumber,
                  'code_article'=>$refart['code_article'],
                     'reference_article'=>$refart['reference'],
@@ -341,7 +341,7 @@ class XprevController extends Zend_Controller_Action
                     'm12'=>$refart['m12'],
                     'total_article_mois'=>$total_article_mois,
                     'valeur_totale'=>null
-                );
+            );
               //echo '<pre>',  var_export($data2),'</pre>'; exit();
               $xprevarticle = new Application_Model_DbTable_DemandeArticleXprev();
               $newarticle = $xprevarticle->createDemandeArticle($data2);
@@ -352,7 +352,7 @@ class XprevController extends Zend_Controller_Action
                  $prixrevient[] = odbc_fetch_object($resultats3);
                // echo '<pre>',(var_export($prixrevient)),'</pre>'; 
              }
-         }
+             }
              foreach($prixrevient as $key=>$value1){
                  $totalarticle = $xprevarticle->sommemois($value1->M9ITNO, $trackingnumber);
                  //var_dump($totalarticle); 
