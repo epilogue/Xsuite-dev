@@ -383,19 +383,46 @@ public function getAllcodeuser($code_client) {
          if(!empty($formdata['nom_client'])){
                 $sqlsuite.=" and client_user_xprev.code_client_users_xprev ='{$formdata['nom_client']}'";
             }
+            if(!empty($formdata['code_client'])){
+                $sqlsuite.=" and client_user_xprev.code_client_users_xprev ='{$formdata['code_client']}'";
+            }
+            if(!empty($formdata['nom_user'])){
+                $sqlsuite.=" and client_xprev.code_user_client_xprev ='{$formdata['nom_user']}'";
+            }
+            if(!empty($formdata['code_user'])){
+                $sqlsuite.=" and client_xprev.code_user_client_xprev ='{$formdata['code_user']}'";
+            }
+            if(!empty($formdata['nom_commercial'])){
+                $sqlsuite.=" and demande_xprev.id_commercial ='{$formdata['nom_commercial']}'";
+            }
+            if(!empty($formdata['nom_emetteur'])){
+                $sqlsuite.=" and demande_xprev.id_users ='{$formdata['nom_emetteur']}'";
+            }
         if(!empty($formdata['nom_statut'])){
                 $sqlsuite.=" and  demande_xprev.id_statut_xprev='{$formdata['nom_statut']}'";
             }
-        if (!empty($formdata['tracking'])) {
-                $sqlsuite.=" and  demande_xprev.tracking='{$formdata['tracking']}'";
-            }
-        if(!empty($formdata['date_createdeb_prev']) && !empty($formdata['date_createfin_prev'])) {
+        if(!empty($formdata['date_creatdeb_prev']) && !empty($formdata['date_creatfin_prev'])) {
             
-            $datedeb1= explode('-',$formdata['date_createdeb_prev']);
-            $datefin1= explode('-',$formdata['date_createfin_prev']);
+            $datedeb1= explode('-',$formdata['date_creatdeb_prev']);
+            $datefin1= explode('-',$formdata['date_creatfin_prev']);
             $datedeb= $datedeb1[2]."-".$datedeb1[1]."-".$datedeb1[0];
             $datefin=$datefin1[2]."-".$datefin1[1]."-".$datefin1[0];
             $sqlsuite .= " and demande_xprev.date_create between str_to_date('{$datedeb}' ,'%Y-%m-%d') and str_to_date('{$datefin}','%Y-%m-%d') ";
+        }
+        
+        if (!empty($formdata['reference'])) {
+            $sqlsuite.=" and  demande_article_xprev.reference_article='{$formdata['reference']}'";
+        }
+        if (!empty($formdata['code_article'])) {
+            $sqlsuite.=" and  demande_article_xprev.code_article='{$formdata['code_article']}'";
+        }
+        if(!empty($formdata['date_debdeb_prev']) && !empty($formdata['date_debfin_prev'])) {
+            
+            $datedeb1= explode('-',$formdata['date_debdeb_prev']);
+            $datefin1= explode('-',$formdata['date_debfin_prev']);
+            $datedeb= $datedeb1[2]."-".$datedeb1[1]."-".$datedeb1[0];
+            $datefin=$datefin1[2]."-".$datefin1[1]."-".$datefin1[0];
+            $sqlsuite .= " and demande_xprev.date_debut between str_to_date('{$datedeb}' ,'%Y-%m-%d') and str_to_date('{$datefin}','%Y-%m-%d') ";
         }
         if(!empty($formdata['date_findeb_prev']) && !empty($formdata['date_finfin_prev'])) {
             
@@ -404,15 +431,6 @@ public function getAllcodeuser($code_client) {
             $datedeb= $datedeb1[2]."-".$datedeb1[1]."-".$datedeb1[0];
             $datefin=$datefin1[2]."-".$datefin1[1]."-".$datefin1[0];
             $sqlsuite .= " and demande_xprev.date_fin between str_to_date('{$datedeb}' ,'%Y-%m-%d') and str_to_date('{$datefin}','%Y-%m-%d') ";
-        }
-        if (!empty($formdata['reference'])) {
-            $sqlsuite.=" and  demande_article_xprev.reference_article='{$formdata['reference']}'";
-        }
-        if(!empty($formdata['nom_commercial'])){
-            $sqlsuite.=" and  demande_xprev.id_commercial='{$formdata['nom_commercial']}'";
-        }
-        if(!empty($formdata['nom_emetteur'])){
-            $sqlsuite.=" and  demande_xprev.id_users='{$formdata['nom_emmetteur']}'";
         }
           $res = $this->getAdapter()->query($sql);
         $rest=$res->fetchAll();
