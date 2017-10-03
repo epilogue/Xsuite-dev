@@ -432,6 +432,9 @@ public function getAllcodeuser($code_client) {
             $datefin=$datefin1[2]."-".$datefin1[1]."-".$datefin1[0];
             $sqlsuite .= " and demande_xprev.date_fin between str_to_date('{$datedeb}' ,'%Y-%m-%d') and str_to_date('{$datefin}','%Y-%m-%d') ";
         }
+        
+         $sql.=$sqlsuite;
+        var_dump($sql);
           $res = $this->getAdapter()->query($sql);
         $rest=$res->fetchAll();
         if (!$rest) {
