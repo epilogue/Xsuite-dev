@@ -96,7 +96,7 @@ $(document).ready(function(){
             //supprimer toute la ligne
              e.preventDefault();
             // var ligne=$(this).data('id')+1;
-            if($(this).data('id')!= 0){
+            if($(this).data('id')!== 0){
               $('#table_mois tr[data-id="'+$(this).data('id')+'"]').remove();
           }
 //          },'html');
