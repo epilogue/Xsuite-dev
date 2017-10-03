@@ -378,6 +378,7 @@ public function getAllcodeuser($code_client) {
                 . " left join demande_article_xprev on demande_article_xprev.tracking =demande_xprev.tracking "
                 . " left join statut_xprev on statut_xprev.id_statut_xprev= demande_xprev.id_statut_xprev "
                 . " left join client_user_xprev on client_user_xprev.id_client_user_xprev=demande_xprev.id_client_user_xprev  "
+                . " left join client_xprev on client_xprev.id_client_xprev=demande_xprev.id_client_xprev  "
                 . " where 1";
         $sqlsuite="";
          if(!empty($formdata['nom_client'])){
