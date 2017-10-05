@@ -177,10 +177,7 @@ class XprevController extends Zend_Controller_Action
         $datejour = date('d-m-Y');
         $datecreate =date('Y-m-d');
         $moiscreate = date('m-Y');
-        $dateinterval= new DateInterval("P3M");
-        $nDate = new DateTime();
-        $nDate->add($dateinterval);
-        var_dump($nDate->format('Y-m-d'));
+        
         /*passage a la vue*/
         $this->view->newetatvalidation=$newetatvalidation;
         $this->view->listetypedemande=$listetypedemande;
@@ -1587,6 +1584,13 @@ exit();
 //               echo '"'. str_replace(';', '";"', implode(';',  $ligne)).'"' . PHP_EOL;
 //           }
         }
+    }
+    public function routineAction(){
+        $dateinterval= new DateInterval("P3M");
+        $nDate = new DateTime();
+        $nDate->add($dateinterval);
+        var_dump($nDate->format('Y-m-d'));
+        
     }
 }
 
