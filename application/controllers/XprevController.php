@@ -1580,7 +1580,7 @@ var_dump($plop5);
 $keytab = $plop5-1;
 var_dump($keytab);
 echo '<pre>',  var_export($listXprev[0]['date_debut']),'</pre>';
-echo '<pre>',  var_export($listXprev[$keytab]['date_fin']),'</pre>';
+echo '<pre>',  var_export($listXprev[$keytab]['fin_de_validite']),'</pre>';
 exit();
 //           echo '"'. str_replace(';', '";"',implode(';', array_keys($listXprev[0]))).'"' . PHP_EOL;
 //           foreach ($listXprev as $ligne) {
