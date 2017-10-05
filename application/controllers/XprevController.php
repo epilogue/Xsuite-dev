@@ -1590,6 +1590,10 @@ exit();
         $nDate = new DateTime();
         $nDate->add($dateinterval);
         var_dump($nDate->format('Y-m-d'));
+        $datemailing = $nDate->format('Y-m-d');
+        $Mailing = new Application_Model_DbTable_DemandeXprev();
+        $listeMailing = $Mailing->mailinglist($datemailing);
+        echo '<pre>',  var_export($listeMailing),'</pre>';
         
     }
 }

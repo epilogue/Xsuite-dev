@@ -445,4 +445,14 @@ public function getAllcodeuser($code_client) {
             return $rest;
         }
     }
+    public function mailinglist($date){
+        $sql = "select * from demande_xprev where demande_xprev.date_fin =='{$date}'";
+        $res = $this->getAdapter()->query($sql);
+        $rest=$res->fetchAll();
+        if (!$rest) {
+            return null;
+        } else {
+            return $rest;
+        }
+    }
 }
