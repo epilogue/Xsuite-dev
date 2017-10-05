@@ -436,7 +436,7 @@ public function getAllcodeuser($code_client) {
         
          $sql.=$sqlsuite;
          $sql.=" order by demande_xprev.date_debut ASC ";
-        var_dump($sql);exit();
+        var_dump($sql);
           $res = $this->getAdapter()->query($sql);
         $rest=$res->fetchAll();
         if (!$rest) {
