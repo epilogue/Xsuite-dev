@@ -1577,7 +1577,9 @@ class XprevController extends Zend_Controller_Action
  echo '<pre>',  var_export($listXprev),'</pre>';
 $plop5= count($listXprev);
 var_dump($plop5);
-
+$keytab = $plop5-1;
+echo '<pre>',  var_export($listXprev[0]['date_debut']),'</pre>';
+echo '<pre>',  var_export($listXprev[$keytab]['date_fin']),'</pre>';
 exit();
 //           echo '"'. str_replace(';', '";"',implode(';', array_keys($listXprev[0]))).'"' . PHP_EOL;
 //           foreach ($listXprev as $ligne) {
