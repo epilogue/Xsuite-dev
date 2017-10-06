@@ -1,7 +1,7 @@
 <div class="">
     <fieldset>
         <legend>Région Nord</legend>
-        <table>
+        <table class="enum">
             <thead>
                 <tr>
                     <th>holon</th>
@@ -17,7 +17,7 @@
                         <td><?php echo $list['nom_holon'] ?></td>
                         <td><?php echo $list['nom_user'] ?></td>
                         <td><?php echo $list['nom_fonction'] ?></td>
-                        <td><a href="<?php echo $this->url(array("controller"=>"administration","action"=>"updateuser","user"=>$users['id_user']));?>" ><button class="retour">modification</button></a></td>
+                        <td><a href="<?php echo $this->url(array("controller"=>"administration","action"=>"updatehierarchie","holon"=>$list['id_holon'],"fonction"=>$list['id_fonction']));?>" ><button class="retour">modification</button></a></td>
                     </tr>
                  <?php } ?>
             </tbody>

@@ -15,7 +15,7 @@ class Application_Model_DbTable_HierarchieXprev extends Zend_Db_Table_Abstract {
         }
     }
     public function affichehierarchienord(){
-        $sql = "select distinct(users.id_user), users.nom_user,fonctions.nom_fonction, holons.nom_holon from hierarchie_xprev "
+        $sql = "select distinct(users.id_user), holons.id_holon, fonctions.id_fonction,users.nom_user,fonctions.nom_fonction, holons.nom_holon from hierarchie_xprev "
                 . "left join users on users.id_user = hierarchie_xprev.id_user "
                 . " left join holons on holons.id_holon = users.id_holon "
                 . " left join fonctions on fonctions.id_fonction= users.id_fonction "
