@@ -19,7 +19,7 @@ class Application_Model_DbTable_HierarchieXprev extends Zend_Db_Table_Abstract {
                 . "left join users on users.id_user = hierarchie_xprev.id_user "
                 . " left join holons on holons.id_holon = users.id_holon "
                 . " left join fonctions on fonctions.id_fonction= users.id_fonction "
-                . " where holons.nom_holon like 'IN%' ";
+                . " where holons.nom_holon like 'IN%' order by holons.nom_holon ";
         var_dump($sql);exit();
         $res = $this->getAdapter()->query($sql);
         $rest=$res->fetchAll();
