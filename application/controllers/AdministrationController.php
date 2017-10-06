@@ -46,7 +46,6 @@ class AdministrationController extends Zend_Controller_Action
         $malisteUser=$malisteUsers->rechercheUserCompletion(); 
         $this->view->holon=$Holon;
         $this->view->fonction=$Fonction;
-        
         $this->view->malisteUser = $malisteUser;
     }
     public function createuserAction(){
