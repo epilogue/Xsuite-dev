@@ -9,8 +9,8 @@
             <tr>
                 <td><?php echo $users['nom_user'] ?></td>
                 <td><?php echo $users['prenom_user'] ?><input hidden="hidden" name="user" value="<?php echo $users['id_user']?>"/></td>
-            <td><a href="<?php echo $this->url(array("controller"=>"administration","action"=>"consultuser","user"=>$users['id_user']));?>" <button class="retour" id="consultation-<?php echo $k; ?>">consultation</button></a></td>
-                <td><a href="<?php echo $this->url(array("controller"=>"administration","action"=>"updateuser","user"=>$users['id_user']));?>" <button class="retour" id="modification-<?php echo $k; ?>">modification</button></a></td>
+            <td><a href="<?php echo $this->url(array("controller"=>"administration","action"=>"consultuser","user"=>$users['id_user']));?>"> <button class="retour" id="consultation-<?php echo $k; ?>">consultation</button></a></td>
+                <td><a href="<?php echo $this->url(array("controller"=>"administration","action"=>"updateuser","user"=>$users['id_user']));?>" ><button class="retour" id="modification-<?php echo $k; ?>">modification</button></a></td>
         </tr><?php } ?>
         </table>
     </div>
