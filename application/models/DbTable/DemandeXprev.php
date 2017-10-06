@@ -339,6 +339,17 @@ public function getAllcodeuser($code_client) {
             return $res;
         }
     }
+    public function  upstatutxprev($statut,$validation,$tracking){
+        $sql ="UPDATE `demande_xprev` SET `id_validation`='{$validation}',  `id_statut_xprev`='{$statut}' WHERE  `tracking`='{$tracking}'";
+//         var_dump($sql); exit();
+          $res = $this->getAdapter()->query($sql);
+        
+        if (!$res) {
+            return null;
+        } else {
+            return $res;
+        }
+    }
     public function getAlltracking(){
         $sql="select tracking, id_demande_xprev from demande_xprev";
         $res = $this->getAdapter()->query($sql);
@@ -447,6 +458,21 @@ public function getAllcodeuser($code_client) {
     }
     public function mailinglist($date){
         $sql = "select * from demande_xprev "
+                . " left join  users on users.id_user=demande_xprev.id_commercial "
+                . " left join client_user_xprev on client_user_xprev.id_client_user_xprev=demande_xprev.id_client_user_xprev  "
+                . " left join client_xprev on client_xprev.id_client_xprev=demande_xprev.id_client_xprev  "
+                . " where demande_xprev.date_fin ='{$date}'";
+        $res = $this->getAdapter()->query($sql);
+        $rest=$res->fetchAll();
+        if (!$rest) {
+            return null;
+        } else {
+            return $rest;
+        }
+    }
+    
+    public function mailinglistob($date){
+         $sql = "select * from demande_xprev "
                 . " left join  users on users.id_user=demande_xprev.id_commercial "
                 . " left join client_user_xprev on client_user_xprev.id_client_user_xprev=demande_xprev.id_client_user_xprev  "
                 . " left join client_xprev on client_xprev.id_client_xprev=demande_xprev.id_client_xprev  "
