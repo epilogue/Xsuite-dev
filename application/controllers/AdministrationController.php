@@ -30,6 +30,16 @@ class AdministrationController extends Zend_Controller_Action
         $malisteUser=$malisteUsers->rechercheUserCompletion(); 
         $this->view->malisteUser = $malisteUser;
     }
+    public function indexhierarchieAction(){
+        $malisteUsers=new Application_Model_DbTable_Users;
+        $malisteUser=$malisteUsers->rechercheUserCompletion(); 
+        $this->view->malisteUser = $malisteUser;
+    }
+    public function updatehierarchieAction(){
+        $malisteUsers=new Application_Model_DbTable_Users;
+        $malisteUser=$malisteUsers->rechercheUserCompletion(); 
+        $this->view->malisteUser = $malisteUser;
+    }
     public function createuserAction(){
     
      /* on va chercher les infos  pour les dropdownlist*/

@@ -48,6 +48,12 @@ echo $this->doctype();
                 </div><?php } else { ?>
                 <div id="menu" >
                     <ul id="menu_haut">
+                        <li><a href="<?php echo $this->url(array('controller' => 'administration', 'action' => 'indexhierarchie'), null, true); ?>">Hierarchie</a>
+                            <ul>
+                                <li><a href="<?php echo $this->url(array('controller' => 'administration', 'action' => 'updatehierarchie'), null, true); ?>">modification</a></li>
+                                <li><a href="<?php echo $this->url(array('controller' => 'administration', 'action' => 'indexhierarchie'), null, true); ?>">Consultation</a></li>
+                            </ul>
+                        </li>
                         <li><a href="<?php echo $this->url(array('controller' => 'administration', 'action' => 'indexuser'), null, true); ?>">Utilisateurs</a>
                             <ul>
                                 <li><a href="<?php echo $this->url(array('controller' => 'administration', 'action' => 'createuser'), null, true); ?>">Cr&eacute;ation</a></li>

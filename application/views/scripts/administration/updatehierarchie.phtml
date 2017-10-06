@@ -1,0 +1,15 @@
+<div class="adminupdate">
+    <table class="enum">
+        <form method="post">
+        <tr>
+            <td>Nom de la fonction:</td>
+            <td><input hidden="hidden" name="fonction" value="<?php echo $this->fonction['id_fonction']?>"/><input type="text" name="nom_fonction" value="<?php  echo $this->fonction['nom_fonction'];?>"></td>
+        </tr>
+        <tr>
+            <td>Description de la fonction:</td>
+            <td><textarea name="description_fonction" value=""><?php echo $this->fonction['description_fonction'];?></textarea></td>
+        </tr>
+    </table>
+    <input id="updatefonction" class="submit" type="submit" value="mettre à jour">
+    </form>
+</div>
