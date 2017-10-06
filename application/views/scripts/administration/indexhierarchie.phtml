@@ -5,10 +5,22 @@
             <thead>
                 <th>
                     <td>holon</td>
-                    <td>ITC Leader</td>
+                    <td>nom</td>
+                    <td>fonction</td>
                     <td>action</td>
                 </th>
             </thead>
+            <tbody>
+                <?php foreach($this->listehierarchie as $list){ ?>
+               
+                    <tr>
+                        <td><?php echo $list['nom_holon'] ?></td>
+                        <td><?php echo $list['nom_user'] ?></td>
+                        <td><?php echo $list['nom_fonction'] ?></td>
+                        <td><a href="<?php echo $list[''] ?>">modifier</a></td>
+                    </tr>
+                 <?php } ?>
+            </tbody>
         </table>
     </fieldset>
 </div>
