@@ -38,8 +38,15 @@ class AdministrationController extends Zend_Controller_Action
     public function updatehierarchieAction(){
         $id_holon = $this->getRequest()->getParam('holon', null);
         $id_fonction = $this->getRequest()->getParam('fonction', null);
+        $holons = new Application_Model_DbTable_Holons();
+        $fonctions = new Application_Model_DbTable_Fonctions();
+        $Holon = $holons->getHolon($id_holon);
+        $Fonction =$fonctions->getFonction($id_fonction);
         $malisteUsers=new Application_Model_DbTable_Users;
         $malisteUser=$malisteUsers->rechercheUserCompletion(); 
+        $this->view->holon=$Holon;
+        $this->view->fonction=$Fonction;
+        
         $this->view->malisteUser = $malisteUser;
     }
     public function createuserAction(){
