@@ -31,9 +31,9 @@ class AdministrationController extends Zend_Controller_Action
         $this->view->malisteUser = $malisteUser;
     }
     public function indexhierarchieAction(){
-        $malisteUsers=new Application_Model_DbTable_Users;
-        $malisteUser=$malisteUsers->rechercheUserCompletion(); 
-        $this->view->malisteUser = $malisteUser;
+        $hierarchie = new Application_Model_DbTable_HierarchieXprev();
+        $listehierarchie = $hierarchie->affichehierarchienord(); 
+        $this->view->listehierarchie = $listehierarchie;
     }
     public function updatehierarchieAction(){
         $malisteUsers=new Application_Model_DbTable_Users;

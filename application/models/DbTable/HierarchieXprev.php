@@ -14,4 +14,19 @@ class Application_Model_DbTable_HierarchieXprev extends Zend_Db_Table_Abstract {
             return $rest;
         }
     }
+    public function affichehierarchienord(){
+        $sql = "select * from hierarchie_xprev "
+                . "left join users on users.id_user = hierarchie_xprev.id_user "
+                . " left join holons on holons.id_holon = hierarchie_xprev.id_holon "
+                . " left join fonctions on fonctions.id_fonction= hierarchie_xprev.id_fonction "
+                . " where holons.nom_holon like 'IN%' ";
+        var_dump($sql);exit();
+        $res = $this->getAdapter()->query($sql);
+        $rest=$res->fetchAll();
+        if (!$rest) {
+            return null;
+        } else {
+            return $rest;
+        }
+    }
 }
