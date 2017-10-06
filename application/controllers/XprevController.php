@@ -128,7 +128,7 @@ class XprevController extends Zend_Controller_Action
             /* recherche sur les 2 premiers caratères du holon*/
             $nom_holon = $infoHolon['nom_holon'];
             $holon= substr($nom_holon,0,2);
-            var_dump($holon);
+            //var_dump($holon);
             $listeRegXprev= $xprev->getuserregxprev($holon);
             $listeN1Xprev= null;
             $listeXprev= null;
@@ -232,7 +232,7 @@ class XprevController extends Zend_Controller_Action
             /*recuperation des id client  et client_user*/
             $idclient = $basecodeclient->getId($formData['num_client']);
             $idclientuser = $basecodeclient->getId($formData['code_user']);
-            var_dump($idclientuser);
+//            var_dump($idclientuser);
             /*insertion en bdd pour la table client_user_xprev*/
              $client_user = new Application_Model_DbTable_ClientUserXprev();
              $datauserclient = array(
@@ -610,7 +610,7 @@ class XprevController extends Zend_Controller_Action
         $listeallcommercial = $User->rechercheUserCompletion();
         $infoUser = $User->getUser($user->id_user);
         $tracking = $this->getRequest()->getParam('tracking', null);
-        var_dump($tracking);
+//        var_dump($tracking);
         $Prev = new Application_Model_DbTable_DemandeXprev();
         $infoPrev = $Prev->getprev($tracking);
         $fichier = new Application_Model_DbTable_FichierXprev();
@@ -713,7 +713,7 @@ class XprevController extends Zend_Controller_Action
                 $statut=1;
                 $validation =4;
                 $justification =$formData['motif_validation'];
-                var_dump($justification);
+               // var_dump($justification);
                 
                 $upn1 = $Prev->uplogxprev($statut,$validation,$justification,$tracking);
                  $params['destinataireMail']="kbelkacem@smc-france.fr";
@@ -865,7 +865,7 @@ class XprevController extends Zend_Controller_Action
         $this->view->infodemandelog = $infodemandeinfolog;
         if($this->getRequest()->isPost()){
             $formData =  $this->getRequest()->getPost();
-           echo '<pre>',  var_export($formData),'</pre>';  
+           //echo '<pre>',  var_export($formData),'</pre>';  
 //           echo '<pre>',  var_export($_FILES),'</pre>';  
 //           exit();
             if(isset($_FILES['fichierSupplogXprev']['name'])){
@@ -1316,7 +1316,7 @@ class XprevController extends Zend_Controller_Action
                 $statut=5;
                 $validation =7;
                 $justification =$formData['motif_validation'];
-                var_dump($justification);
+                //var_dump($justification);
                 
                 $upn1 = $Prev->uptraitementxprev($statut,$validation,$justification,$tracking);
                  $params['destinataireMail']="logistique@smc-france.fr";
@@ -1406,7 +1406,7 @@ class XprevController extends Zend_Controller_Action
         $this->view->infoUser = $infoUser;
         if($this->getRequest()->isPost()){
             $formData =  $this->getRequest()->getPost();
-            echo '<pre>',  var_export($formData),'</pre>'; 
+           // echo '<pre>',  var_export($formData),'</pre>'; 
             if(isset($_FILES['fichierClotureXprev']['name'])){
                 if($_FILES['fichierClotureXprev']['size']<=2000000){
                     $extension_upload1 =strrchr($_FILES['fichierClotureXprev']['name'],'.');
@@ -1527,7 +1527,7 @@ class XprevController extends Zend_Controller_Action
         $this->view->fn3 = $fn3;
         if($this->getRequest()->isPost()){
             $formData =  $this->getRequest()->getPost();
-          echo '<pre>',  var_export($formData),'</pre>';
+//          echo '<pre>',  var_export($formData),'</pre>';
            $recherche = new Application_Model_DbTable_DemandeXprev();
            $newRecherche =$recherche->recherche($formData);     
         }
@@ -1564,21 +1564,21 @@ class XprevController extends Zend_Controller_Action
         
         if($this->getRequest()->isPost()){
             $formData =  $this->getRequest()->getPost();
-            echo '<pre>',  var_export($formData),'</pre>';
+//            echo '<pre>',  var_export($formData),'</pre>';
 //            $this->_helper->layout->disableLayout();
 //            header('Content-type: text/csv');
 //            header('Content-Disposition: attachment; filename="extractXprev.csv"');
             $Xprev = new Application_Model_DbTable_DemandeXprev();
             $listXprev = $Xprev->extractxprev($formData);
             
- echo '<pre>',  var_export($listXprev),'</pre>';
+// echo '<pre>',  var_export($listXprev),'</pre>';
 $plop5= count($listXprev);
-var_dump($plop5);
+//var_dump($plop5);
 $keytab = $plop5-1;
 var_dump($keytab);
-echo '<pre>',  var_export($listXprev[0]['date_debut']),'</pre>';
-echo '<pre>',  var_export($listXprev[$keytab]['fin_de_validite']),'</pre>';
-exit();
+//echo '<pre>',  var_export($listXprev[0]['date_debut']),'</pre>';
+//echo '<pre>',  var_export($listXprev[$keytab]['fin_de_validite']),'</pre>';
+//exit();
 //           echo '"'. str_replace(';', '";"',implode(';', array_keys($listXprev[0]))).'"' . PHP_EOL;
 //           foreach ($listXprev as $ligne) {
 //               echo '"'. str_replace(';', '";"', implode(';',  $ligne)).'"' . PHP_EOL;
@@ -1594,6 +1594,30 @@ exit();
         $Mailing = new Application_Model_DbTable_DemandeXprev();
         $listeMailing = $Mailing->mailinglist($datemailing);
         echo '<pre>',  var_export($listeMailing),'</pre>';
+        
+         $emailVars = Zend_Registry::get('emailVars');
+             /* creation des parametre du mail*/
+         foreach($listeMailing as $listeMailing1){
+             $params=array();
+             $params['destinataireMail']=$listeMailing1['email_user'];
+//             $params['destinataireMail']="mhuby@smc-france.fr";
+             
+             //$params['url'] = "http://{$_SERVER['SERVER_NAME']}/xprev/validn1/tracking/{$trackingnumber}";
+             $params['corpsMail']="Bonjour,\n"
+                                . "\n"
+                                . "pour information la prévision {$listeMailing1['tracking']} pour le client {$listeMailing1['nom_client']} arrive à échéance {$listeMailing1['date_fin']}.\n"
+                                . "Nous avons besoin d'une nouvelle prévision afin de conserver la mise en stock et de raccourcir les délais.\n"
+                                ." Merci de faire le point avec client et de nous faire éventuellement une Xprev\n "
+                                . " avec un commentaire sur les raisons de la demande de mise en stock et les engagements clients.\n"
+                                . "\n\n"
+                                . "Cordialement,\n"
+                                . "\n"
+                                . "--\n"
+                                . "Le service Logistique";
+             $params['sujet']="fin de validité de la prévision dans 3 mois pour la prévision {$listeMailing1['tracking']} pour {$listeMailing1['nom_client']}";
+              //echo '<pre>',  var_export($params),'</pre>';
+               $this->sendEmail($params);
+         }
         
     }
 }

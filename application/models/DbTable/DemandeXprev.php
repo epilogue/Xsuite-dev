@@ -100,7 +100,7 @@ class Application_Model_DbTable_DemandeXprev extends Zend_Db_Table_Abstract {
          $sql.=$sqlsuite;
         
         $sql.=$sqlsuite2;
-        var_dump($sql);
+       // var_dump($sql);
         $res = $this->getAdapter()->query($sql);
         $rest=$res->fetchAll();
         if (!$rest) {
@@ -436,7 +436,7 @@ public function getAllcodeuser($code_client) {
         
          $sql.=$sqlsuite;
          $sql.=" order by demande_xprev.date_debut ASC ";
-        var_dump($sql);
+       // var_dump($sql);
           $res = $this->getAdapter()->query($sql);
         $rest=$res->fetchAll();
         if (!$rest) {
@@ -446,7 +446,11 @@ public function getAllcodeuser($code_client) {
         }
     }
     public function mailinglist($date){
-        $sql = "select * from demande_xprev where demande_xprev.date_fin ='{$date}'";
+        $sql = "select * from demande_xprev "
+                . " left join  users on users.id_user=demande_xprev.id_commercial "
+                . " left join client_user_xprev on client_user_xprev.id_client_user_xprev=demande_xprev.id_client_user_xprev  "
+                . " left join client_xprev on client_xprev.id_client_xprev=demande_xprev.id_client_xprev  "
+                . " where demande_xprev.date_fin ='{$date}'";
         $res = $this->getAdapter()->query($sql);
         $rest=$res->fetchAll();
         if (!$rest) {
