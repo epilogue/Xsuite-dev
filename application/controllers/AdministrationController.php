@@ -36,6 +36,8 @@ class AdministrationController extends Zend_Controller_Action
         $this->view->listehierarchie = $listehierarchie;
     }
     public function updatehierarchieAction(){
+        $id_holon = $this->getRequest()->getParam('holon', null);
+        $id_fonction = $this->getRequest()->getParam('fonction', null);
         $malisteUsers=new Application_Model_DbTable_Users;
         $malisteUser=$malisteUsers->rechercheUserCompletion(); 
         $this->view->malisteUser = $malisteUser;
