@@ -1,15 +1,24 @@
 <div class="adminupdate">
-    <table class="enum">
-        <form method="post">
-        <tr>
-            <td>Nom de la fonction:</td>
-            <td><input hidden="hidden" name="fonction" value="<?php echo $this->fonction['id_fonction']?>"/><input type="text" name="nom_fonction" value="<?php  echo $this->fonction['nom_fonction'];?>"></td>
-        </tr>
-        <tr>
-            <td>Description de la fonction:</td>
-            <td><textarea name="description_fonction" value=""><?php echo $this->fonction['description_fonction'];?></textarea></td>
-        </tr>
-    </table>
+    
+    <form method="post">
+        <table class="enum">
+            <tr>
+                <td>holon:</td>
+                <td><input hidden="hidden" name="holon" value="<?php echo $this->holon['id_holon']?>"/><input type="text" name="nom_holon" value="<?php  echo $this->holon['nom_holon'];?>"></td>
+            </tr>
+            <tr>
+                <td>fonction:</td>
+                <td><input hidden="hidden" name="fonction" value="<?php echo $this->fonction['id_fonction']?>"/><input type="text" name="nom_fonction" value="<?php  echo $this->fonction['nom_fonction'];?>"></td>
+            </tr>
+            <tr>
+                <td>nom :</td>
+                <td>
+                    <select>
+                        <?php foreach($this->malisteUserlist as $listuser){?><option value="<?php echo $listuser['id_user']?>"><?php echo $listuser['nom_user'] ?>&nbsp;<?php echo $listuser['prenom_user'] ?></option><?php } ?>
+                    </select>
+                </td>
+            </tr>
+        </table>
     <input id="updatefonction" class="submit" type="submit" value="mettre à jour">
     </form>
 </div>
