@@ -10,7 +10,7 @@ class Application_Model_DbTable_Extract extends Zend_Db_Table_Abstract {
    }
    
    public function upquantite($tracking,$code,$reference,$quantite){
-       $sql = "update extract_xprev set quantite = $quantite where tracking like '{$tracking}' and code_article = $code and reference_article = $reference";
+       $sql = "update extract_xprev set quantite = $quantite ,set code_article= $code where tracking like '{$tracking}'";
        $res = $this->getAdapter()->query($sql);
        
         
