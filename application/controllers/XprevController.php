@@ -240,7 +240,8 @@ class XprevController extends Zend_Controller_Action
              
              foreach ($formData['refart'] as $refart){
                  foreach($refart as $plop){
-                     var_dump($plop);
+                     echo '<pre>',  var_export($plop),'</pre>';
+                    
                      $quantite = $plop;
                      $upextract = $Extract->upquantite($trackingnumber,$refart['code_article'],$quantite);
                  }
