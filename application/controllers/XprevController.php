@@ -1600,7 +1600,7 @@ $d2=new DateTime($listXprev[$keytab]['fin_de_validite']);
 $interval =$d1 ->diff($d2);
 $nbremois = $interval->format('%m');
 var_dump($nbremois);
-while ($monthdeb !=$monthfin and $yeardeb != $yearfin){
+//while ($monthdeb !=$monthfin and $yeardeb != $yearfin){
             $tab = array();
         //Boucle sur 12 mois
             for($i = 1, $monthdeb, $yeardeb;$i==$nbremois ; $i++, $monthdeb++)
@@ -1617,7 +1617,8 @@ while ($monthdeb !=$monthfin and $yeardeb != $yearfin){
                 $tab[]= array('month'=>$monthdeb, 'year'=>$yeardeb);
             
             }
-} echo '<pre>',var_export($tab),'</pre>';exit();
+//} 
+echo '<pre>',var_export($tab),'</pre>';exit();
 //exit();
 //           echo '"'. str_replace(';', '";"',implode(';', array_keys($listXprev[0]))).'"' . PHP_EOL;
 //           foreach ($listXprev as $ligne) {
