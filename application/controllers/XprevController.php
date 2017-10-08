@@ -1584,7 +1584,7 @@ $datedeb=explode('-',$num_moisdeb);
 
 $monthdeb = intval($datedeb[1]);
 
-$yeardeb = intval(substr($datefin[0],-2));
+$yeardeb = intval(substr($datedeb[0],-2));
 
 $num_moisfin =$listXprev[$keytab]['fin_de_validite'] ;
            
