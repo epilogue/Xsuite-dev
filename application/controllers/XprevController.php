@@ -1595,7 +1595,9 @@ $monthfin = intval($datefin[1]);
 $yearfin = intval(substr($datefin[0],-2));
 
 //calculer le nombre d'intervalle entre debut  et fin 
-$interval = $listXprev[0]['date_debut']->diff($listXprev[$keytab]['fin_de_validite']);
+$d1=new DateTime($listXprev[0]['date_debut']);
+$d2=new DateTime($listXprev[$keytab]['fin_de_validite']);
+$interval =$d1 ->diff($d2);
 $nbremois = $interval->format('%m');
 var_dump($nbremois);
 while ($monthdeb !=$monthfin and $yeardeb != $yearfin){
