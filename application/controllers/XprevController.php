@@ -1578,7 +1578,7 @@ $keytab = $plop5-1;
 var_dump($keytab);
 echo '<pre>',  var_export($listXprev[0]['date_debut']),'</pre>';
 echo '<pre>',  var_export($listXprev[$keytab]['fin_de_validite']),'</pre>';
-$num_moisdeb =  $listXPrev[0]['date_debut'];
+$num_moisdeb =  $listXprev[0]['date_debut'];
            
 $datedeb=explode('-',$num_moisdeb);
 
