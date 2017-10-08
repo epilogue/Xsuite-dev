@@ -1594,11 +1594,14 @@ $monthfin = intval($datefin[1]);
 
 $yearfin = intval(substr($datefin[0],-2));
 
-            
+//calculer le nombre d'intervalle entre debut  et fin 
+$interval = $listXprev[0]['date_deb']->diff($listXprev[$keytab]['fin_de_validite']);
+$nbremois = $interval->format('%m');
+var_dump($nbremois);
 while ($monthdeb !=$monthfin and $yeardeb != $yearfin){
             $tab = array();
         //Boucle sur 12 mois
-            for($i = 1, $monthdeb, $yeardeb; $i < 13; $i++, $monthdeb++)
+            for($i = 1, $monthdeb, $yeardeb;$i==$nbremois ; $i++, $monthdeb++)
             {
                 //Arrivé en Décembre, on remet le mois à Janvier pour parcourir les 12 mois et on incrémente l'année
                 if($monthdeb > 12)
