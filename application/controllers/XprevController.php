@@ -232,15 +232,20 @@ class XprevController extends Zend_Controller_Action
              echo '<pre>',  var_export($date_extract),'</pre>';
              $countarticle = count($formData['refart']);
              for($i=1;$i<=$countarticle;$i++){
-             foreach($date_extract as $extracttable){
-                 $data=array(
-                         'tracking'=>$trackingnumber,
-                         'date'=>$extracttable['date']
-                         );
-                 $nexextract = $Extract->createextract($data);
+                 foreach($date_extract as $extracttable){
+                     $data=array(
+                             'tracking'=>$trackingnumber,
+                             'date'=>$extracttable['date']
+                             );
+                     $nexextract = $Extract->createextract($data);
+                 }
              }
+             foreach($formData['refart'] as $refart){
+                  foreach($date_extract as $extracttable){
+                      $plop[] = array_combine($extracttable,$refart);
+                  }
              }
-             
+              echo '<pre>',  var_export($plop),'</pre>';
             exit();
             /** mise au format des date*/
             $datedebut1= '01-'.$formData['date_debut'];
