@@ -1600,7 +1600,8 @@ var_dump($d1);
 $d2=new DateTime($listXprev[$keytab]['fin_de_validite']);
 var_dump($d2);
 $interval =$d1 ->diff($d2);
-$nbremois = $interval->format('%m');
+var_dump($interval);
+$nbremois = $interval->format('%d');
 var_dump($nbremois);
 //while ($monthdeb !=$monthfin and $yeardeb != $yearfin){
             $tab = array();
