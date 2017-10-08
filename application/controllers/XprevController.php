@@ -237,6 +237,13 @@ class XprevController extends Zend_Controller_Action
                          );
                  $nexextract = $Extract->createextract($data);
              }
+             
+             foreach ($formData['refart'] as $refart){
+                 foreach($refart as $plop){
+                     $quantite = $plop;
+                     $upextract = $Extract->upquantite($trackingnumber,$refart['code_article'],$refart['code_article'],$quantite);
+                 }
+             }
             exit();
             /** mise au format des date*/
             $datedebut1= '01-'.$formData['date_debut'];
