@@ -230,14 +230,17 @@ class XprevController extends Zend_Controller_Action
              $dateextractformat='20'.$table['year'].'-'.$table['month'].'-'.$table['day'];
              $date_extract[]=array("date"=>$dateextractformat);}
              echo '<pre>',  var_export($date_extract),'</pre>';
+             $countarticle = count($formData['refart']);
+             for($i=0;$i<=$countarticle;$i++){
              foreach($date_extract as $extracttable){
                  $data=array(
                          'tracking'=>$trackingnumber,
                          'date'=>$extracttable['date']
                          );
                  $nexextract = $Extract->createextract($data);
+                 $i++;
              }
-             
+             }
             var_dump(count($formData['refart']));
             exit();
             /** mise au format des date*/
