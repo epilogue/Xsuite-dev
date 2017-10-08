@@ -221,7 +221,7 @@ class XprevController extends Zend_Controller_Action
             }
             // creation des dates pour l'insertions dans la table extract_xprev
             foreach($tab as $table){
-                $table .=array('day'=>1);
+                array_unshift($table,"day",1);
                echo '<pre>',  var_export($table),'</pre>';
                exit();
             }
