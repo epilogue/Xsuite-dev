@@ -219,7 +219,10 @@ class XprevController extends Zend_Controller_Action
     //                var_dump($year) ;
                 $tab[]= array('month'=>$month, 'year'=>$year);
             }
-            
+            // creation des dates pour l'insertions dans la table extract_xprev
+            foreach($tab as $table){
+               echo '<pre>',  var_export($table),'</pre>'; exit();
+            }
             /** mise au format des date*/
             $datedebut1= '01-'.$formData['date_debut'];
             $datedebut2 = date_create_from_format('d-m-Y',$datedebut1);
