@@ -1606,7 +1606,7 @@ var_dump($nbremois);
 //while ($monthdeb !=$monthfin and $yeardeb != $yearfin){
             $tab = array();
         //Boucle sur 12 mois
-            for($i = 1, $monthdeb, $yeardeb;$i===$nbremois ; $i++, $monthdeb++)
+            for($i = 1, $monthdeb, $yeardeb;$i<=$nbremois ; $i++, $monthdeb++)
             {
                 //Arrivé en Décembre, on remet le mois à Janvier pour parcourir les 12 mois et on incrémente l'année
                 if($monthdeb > 12)
