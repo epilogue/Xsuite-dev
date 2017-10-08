@@ -238,7 +238,6 @@ class XprevController extends Zend_Controller_Action
                          'date'=>$extracttable['date']
                          );
                  $nexextract = $Extract->createextract($data);
-                 $i++;
              }
              }
             var_dump(count($formData['refart']));
