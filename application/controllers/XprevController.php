@@ -1576,8 +1576,43 @@ $plop5= count($listXprev);
 //var_dump($plop5);
 $keytab = $plop5-1;
 var_dump($keytab);
-//echo '<pre>',  var_export($listXprev[0]['date_debut']),'</pre>';
-//echo '<pre>',  var_export($listXprev[$keytab]['fin_de_validite']),'</pre>';
+echo '<pre>',  var_export($listXprev[0]['date_debut']),'</pre>';
+echo '<pre>',  var_export($listXprev[$keytab]['fin_de_validite']),'</pre>';
+$num_moisdeb =  $lisXPrev[0]['date_debut'];
+           
+$datedeb=explode('-',$num_moisdeb);
+
+$monthdeb = intval($datedeb[1]);
+
+$yeardeb = intval(substr($datefin[0],-2));
+
+$num_moisfin =$listXprev[$keytab]['fin_de_validite'] ;
+           
+$datefin=explode('-',$num_moisfin);
+
+$monthfin = intval($datefin[1]);
+
+$yearfin = intval(substr($datefin[0],-2));
+
+            
+while ($monthdeb !=$monthfin and $yeardeb != $yearfin){
+            $tab = array();
+        //Boucle sur 12 mois
+            for($i = 1, $monthdeb, $yeardeb; $i < 13; $i++, $monthdeb++)
+            {
+                //Arrivé en Décembre, on remet le mois à Janvier pour parcourir les 12 mois et on incrémente l'année
+                if($monthdeb > 12)
+                {
+                    $monthdeb = 1;
+                    $yeardeb++;
+                }
+    //            var_dump($month);
+
+    //                var_dump($year) ;
+                $tab[]= array('month'=>$monthdeb, 'year'=>$yeardeb);
+            
+            }
+} echo '<pre>',var_export($tab),'</pre>';exit();
 //exit();
 //           echo '"'. str_replace(';', '";"',implode(';', array_keys($listXprev[0]))).'"' . PHP_EOL;
 //           foreach ($listXprev as $ligne) {
