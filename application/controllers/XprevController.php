@@ -391,8 +391,8 @@ class XprevController extends Zend_Controller_Action
              $emailVars = Zend_Registry::get('emailVars');
              /* creation des parametre du mail*/
              $params=array();
-             $params['destinataireMail']=$destinataire->email_user;
-//             $params['destinataireMail']="mhuby@smc-france.fr";
+//             $params['destinataireMail']=$destinataire->email_user;
+             $params['destinataireMail']="mhuby@smc-france.fr";
              
              $params['url'] = "http://{$_SERVER['SERVER_NAME']}/xprev/validn1/tracking/{$trackingnumber}";
              $params['corpsMail']="Bonjour,\n"
@@ -541,8 +541,8 @@ class XprevController extends Zend_Controller_Action
                 //var_dump($justification);
                 
                 $upn1 = $Prev->upn1xprev($statut,$validation,$justification,$tracking);
-                 $params['destinataireMail']="logistique@smc-france.fr";
-//                 $params['destinataireMail']="mhuby@smc-france.fr";
+//                 $params['destinataireMail']="logistique@smc-france.fr";
+                 $params['destinataireMail']="mhuby@smc-france.fr";
 
                  $params['url'] = "http://{$_SERVER['SERVER_NAME']}/xprev/validlog/tracking/{$tracking}";
                  $params['corpsMail']="Bonjour,\n"
