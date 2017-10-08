@@ -224,6 +224,7 @@ class XprevController extends Zend_Controller_Action
            
              
              foreach($table_extract as $table){
+             $able['month'] = ($table['month']<10)?'0'.$table['month']:$table['month'];
              $dateextractformat='20'.$table['year'].'-'.$table['month'].'-'.$table['day'];
              $date_extract[]=array("date"=>$dateextractformat);}
              echo '<pre>',  var_export($date_extract),'</pre>';
