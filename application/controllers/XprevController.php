@@ -223,8 +223,10 @@ class XprevController extends Zend_Controller_Action
             foreach($tab as $table){
               $table["day"]=01;
                echo '<pre>',  var_export($table),'</pre>';
-               exit();
+               
             }
+             echo '<pre>',  var_export($tab),'</pre>';
+            exit();
             /** mise au format des date*/
             $datedebut1= '01-'.$formData['date_debut'];
             $datedebut2 = date_create_from_format('d-m-Y',$datedebut1);
