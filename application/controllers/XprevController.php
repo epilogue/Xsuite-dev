@@ -222,6 +222,7 @@ class XprevController extends Zend_Controller_Action
             }
             // creation des dates pour l'insertions dans la table extract_xprev
            
+             $Extract = new Application_Model_DbTable_Extract();
              
              foreach($table_extract as $table){
              $table['month'] = ($table['month']<10)?'0'.$table['month']:$table['month'];
@@ -229,9 +230,13 @@ class XprevController extends Zend_Controller_Action
              $dateextractformat='20'.$table['year'].'-'.$table['month'].'-'.$table['day'];
              $date_extract[]=array("date"=>$dateextractformat);}
              echo '<pre>',  var_export($date_extract),'</pre>';
-             foreach($formData['refart'] as $formdata){
-             $essai_extract=array_merge($formdata,$table_extract);}
-             echo '<pre>',  var_export($essai_extract),'</pre>';
+             foreach($date_extract as $extracttable){
+                 $data=array(
+                         'tracking'=>$trackingnumber,
+                         'date'=>$extracttable['date']
+                         );
+                 $nexextract = $Extract->createextract($data);
+             }
             exit();
             /** mise au format des date*/
             $datedebut1= '01-'.$formData['date_debut'];
