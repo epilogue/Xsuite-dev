@@ -229,7 +229,7 @@ class XprevController extends Zend_Controller_Action
              $dateextractformat='20'.$table['year'].'-'.$table['month'].'-'.$table['day'];
              $date_extract[]=array("date"=>$dateextractformat);}
              echo '<pre>',  var_export($date_extract),'</pre>';
-             $essai_extract=array_merge($formData,$table_extract);
+             $essai_extract=array_merge($formData['refart'],$table_extract);
              echo '<pre>',  var_export($essai_extract),'</pre>';
             exit();
             /** mise au format des date*/
