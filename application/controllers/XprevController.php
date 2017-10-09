@@ -230,8 +230,8 @@ class XprevController extends Zend_Controller_Action
              $dateextractformat='20'.$table['year'].'-'.$table['month'].'-'.$table['day'];
              $date_extract[]=array("date"=>$dateextractformat);}
              echo '<pre>',  var_export($date_extract),'</pre>';
-             $countarticle = count($formData['refart']);
-             for($i=1;$i<=$countarticle;$i++){
+//             $countarticle = count($formData['refart']);
+//             for($i=1;$i<=$countarticle;$i++){
                  foreach($date_extract as $extracttable){
                      $data=array(
                              'tracking'=>$trackingnumber,
@@ -239,13 +239,13 @@ class XprevController extends Zend_Controller_Action
                              );
                      $nexextract = $Extract->createextract($data);
                  }
-             }
-             foreach($formData['refart'] as $refart){
-                  foreach($date_extract as $extracttable){
-                      $plop[] = array_combine($extracttable,$refart);
-                  }
-             }
-              echo '<pre>',  var_export($plop),'</pre>';
+//             }
+//             foreach($formData['refart'] as $refart){
+//                  foreach($date_extract as $extracttable){
+//                      $plop[] = array_combine($extracttable,$refart);
+//                  }
+//             }
+//              echo '<pre>',  var_export($plop),'</pre>';
             exit();
             /** mise au format des date*/
             $datedebut1= '01-'.$formData['date_debut'];
@@ -1572,6 +1572,7 @@ class XprevController extends Zend_Controller_Action
         $demandeArticleXprev= new Application_Model_DbTable_DemandeArticleXprev();
         $users = new Application_Model_DbTable_Users();
         $statut = new Application_Model_DbTable_StatutXprev();
+        $mois = new Application_Model_DbTable_Extract();
         
         $listeClient = $client->searchClient();
         $listeClientUser = $clientUser->searchClientUser();
@@ -1591,13 +1592,15 @@ class XprevController extends Zend_Controller_Action
         
         if($this->getRequest()->isPost()){
             $formData =  $this->getRequest()->getPost();
-//            echo '<pre>',  var_export($formData),'</pre>';
+            echo '<pre>',  var_export($formData),'</pre>';
 //            $this->_helper->layout->disableLayout();
 //            header('Content-type: text/csv');
 //            header('Content-Disposition: attachment; filename="extractXprev.csv"');
             $Xprev = new Application_Model_DbTable_DemandeXprev();
             $listXprev = $Xprev->extractxprev($formData);
-            
+            foreach ($formData as $data){
+            $listeMois[] = $mois->getMois($data['tracking']);}
+            $this->view->listemois=$listeMois;
 // echo '<pre>',  var_export($listXprev),'</pre>';
 $plop5= count($listXprev);
 //var_dump($plop5);
@@ -1657,21 +1660,21 @@ echo '<pre>',var_export($tab),'</pre>';exit();
         }
     }
     public function routineAction(){
-        $dateinterval= new DateInterval("P3M");
-        $nDate = new DateTime();
-        $nDate->add($dateinterval);
-        var_dump($nDate->format('Y-m-d'));
-        $datemailing = $nDate->format('Y-m-d');
-        $Mailing = new Application_Model_DbTable_DemandeXprev();
-        $listeMailing = $Mailing->mailinglist($datemailing);
-        echo '<pre>',  var_export($listeMailing),'</pre>';
+//        $dateinterval= new DateInterval("P3M");
+//        $nDate = new DateTime();
+//        $nDate->add($dateinterval);
+//        var_dump($nDate->format('Y-m-d'));
+//        $datemailing = $nDate->format('Y-m-d');
+//        $Mailing = new Application_Model_DbTable_DemandeXprev();
+//        $listeMailing = $Mailing->mailinglist($datemailing);
+//       // echo '<pre>',  var_export($listeMailing),'</pre>';
         
          $emailVars = Zend_Registry::get('emailVars');
              /* creation des parametre du mail*/
-         foreach($listeMailing as $listeMailing1){
+//         foreach($listeMailing as $listeMailing1){
              $params=array();
-             $params['destinataireMail']=$listeMailing1['email_user'];
-//             $params['destinataireMail']="mhuby@smc-france.fr";
+//             $params['destinataireMail']=$listeMailing1['email_user'];
+             $params['destinataireMail']="mhuby@smc-france.fr";
              $params['corpsMail']="Bonjour,\n"
                                 . "\n"
                                 . "pour information la prévision {$listeMailing1['tracking']} pour le client {$listeMailing1['nom_client']} arrive à échéance {$listeMailing1['date_fin']}.\n"
@@ -1686,7 +1689,7 @@ echo '<pre>',var_export($tab),'</pre>';exit();
              $params['sujet']="fin de validité de la prévision dans 3 mois pour la prévision {$listeMailing1['tracking']} pour {$listeMailing1['nom_client']}";
               //echo '<pre>',  var_export($params),'</pre>';
                $this->sendEmail($params);
-         }
+//         }
         
     }
     public function routinebisAction(){

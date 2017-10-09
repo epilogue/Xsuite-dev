@@ -20,4 +20,13 @@ class Application_Model_DbTable_Extract extends Zend_Db_Table_Abstract {
             return $res;
         }
    }
+   public function getMois($tracking){
+       $sql="select * where tracking like '{$tracking}'";
+       $res = $this->getAdapter()->query($sql);
+        if (!$res) {
+            return null;
+        } else {
+            return $res;
+        }
+   }
 }
