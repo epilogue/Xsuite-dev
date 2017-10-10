@@ -222,31 +222,31 @@ class XprevController extends Zend_Controller_Action
             }
             // creation des dates pour l'insertions dans la table extract_xprev
            
-             $Extract = new Application_Model_DbTable_Extract();
-             
-             foreach($table_extract as $table){
-             $table['month'] = ($table['month']<10)?'0'.$table['month']:$table['month'];
-             $table['day'] = ($table['day']<10)?'0'.$table['day']:$table['day'];
-             $dateextractformat='20'.$table['year'].'-'.$table['month'].'-'.$table['day'];
-             $date_extract[]=array("date"=>$dateextractformat);}
-             echo '<pre>',  var_export($date_extract),'</pre>';
-//             $countarticle = count($formData['refart']);
-//             for($i=1;$i<=$countarticle;$i++){
-                 foreach($date_extract as $extracttable){
-                     $data=array(
-                             'tracking'=>$trackingnumber,
-                             'date'=>$extracttable['date']
-                             );
-                     $nexextract = $Extract->createextract($data);
-                 }
-//             }
-//             foreach($formData['refart'] as $refart){
-//                  foreach($date_extract as $extracttable){
-//                      $plop[] = array_combine($extracttable,$refart);
-//                  }
-//             }
-//              echo '<pre>',  var_export($plop),'</pre>';
-            exit();
+//             $Extract = new Application_Model_DbTable_Extract();
+//             
+//             foreach($table_extract as $table){
+//             $table['month'] = ($table['month']<10)?'0'.$table['month']:$table['month'];
+//             $table['day'] = ($table['day']<10)?'0'.$table['day']:$table['day'];
+//             $dateextractformat='20'.$table['year'].'-'.$table['month'].'-'.$table['day'];
+//             $date_extract[]=array("date"=>$dateextractformat);}
+//             echo '<pre>',  var_export($date_extract),'</pre>';
+////             $countarticle = count($formData['refart']);
+////             for($i=1;$i<=$countarticle;$i++){
+//                 foreach($date_extract as $extracttable){
+//                     $data=array(
+//                             'tracking'=>$trackingnumber,
+//                             'date'=>$extracttable['date']
+//                             );
+//                     $nexextract = $Extract->createextract($data);
+//                 }
+////             }
+////             foreach($formData['refart'] as $refart){
+////                  foreach($date_extract as $extracttable){
+////                      $plop[] = array_combine($extracttable,$refart);
+////                  }
+////             }
+////              echo '<pre>',  var_export($plop),'</pre>';
+//            exit();
             /** mise au format des date*/
             $datedebut1= '01-'.$formData['date_debut'];
             $datedebut2 = date_create_from_format('d-m-Y',$datedebut1);
@@ -415,8 +415,8 @@ class XprevController extends Zend_Controller_Action
              $emailVars = Zend_Registry::get('emailVars');
              /* creation des parametre du mail*/
              $params=array();
-//             $params['destinataireMail']=$destinataire->email_user;
-             $params['destinataireMail']="mhuby@smc-france.fr";
+             $params['destinataireMail']=$destinataire->email_user;
+//             $params['destinataireMail']="mhuby@smc-france.fr";
              
              $params['url'] = "http://{$_SERVER['SERVER_NAME']}/xprev/validn1/tracking/{$trackingnumber}";
              $params['corpsMail']="Bonjour,\n"
@@ -565,8 +565,8 @@ class XprevController extends Zend_Controller_Action
                 //var_dump($justification);
                 
                 $upn1 = $Prev->upn1xprev($statut,$validation,$justification,$tracking);
-//                 $params['destinataireMail']="logistique@smc-france.fr";
-                 $params['destinataireMail']="mhuby@smc-france.fr";
+                 $params['destinataireMail']="logistique@smc-france.fr";
+//                 $params['destinataireMail']="mhuby@smc-france.fr";
 
                  $params['url'] = "http://{$_SERVER['SERVER_NAME']}/xprev/validlog/tracking/{$tracking}";
                  $params['corpsMail']="Bonjour,\n"
@@ -1659,64 +1659,7 @@ echo '<pre>',var_export($tab),'</pre>';exit();
 //           }
         }
     }
-    public function routineAction(){
-//        $dateinterval= new DateInterval("P3M");
-//        $nDate = new DateTime();
-//        $nDate->add($dateinterval);
-//        var_dump($nDate->format('Y-m-d'));
-//        $datemailing = $nDate->format('Y-m-d');
-//        $Mailing = new Application_Model_DbTable_DemandeXprev();
-//        $listeMailing = $Mailing->mailinglist($datemailing);
-//       // echo '<pre>',  var_export($listeMailing),'</pre>';
-        
-         $emailVars = Zend_Registry::get('emailVars');
-             /* creation des parametre du mail*/
-//         foreach($listeMailing as $listeMailing1){
-             $params=array();
-//             $params['destinataireMail']=$listeMailing1['email_user'];
-             $params['destinataireMail']="mhuby@smc-france.fr";
-             $params['corpsMail']="Bonjour,\n"
-                                . "\n"
-                                . "pour information la prévision {$listeMailing1['tracking']} pour le client {$listeMailing1['nom_client']} arrive à échéance {$listeMailing1['date_fin']}.\n"
-                                . "Nous avons besoin d'une nouvelle prévision afin de conserver la mise en stock et de raccourcir les délais.\n"
-                                ." Merci de faire le point avec client et de nous faire éventuellement une Xprev\n "
-                                . " avec un commentaire sur les raisons de la demande de mise en stock et les engagements clients.\n"
-                                . "\n\n"
-                                . "Cordialement,\n"
-                                . "\n"
-                                . "--\n"
-                                . "Le service Logistique";
-             $params['sujet']="fin de validité de la prévision dans 3 mois pour la prévision {$listeMailing1['tracking']} pour {$listeMailing1['nom_client']}";
-              //echo '<pre>',  var_export($params),'</pre>';
-               $this->sendEmail($params);
-//         }
-        
-    }
-    public function routinebisAction(){
-        $date = new DateTime();
-        $newdate = $date->format('Y-m-d');
-         $Mailing = new Application_Model_DbTable_DemandeXprev();
-        $listeMailingob = $Mailing->mailinglistob($newdate);
-         $emailVars = Zend_Registry::get('emailVars');
-             /* creation des parametre du mail*/
-         foreach($listeMailingob as $listeMailingob1){
-             $params=array();
-             $params['destinataireMail']=$listeMailingob1['email_user'];
-//             $params['destinataireMail']="mhuby@smc-france.fr";
-             $params['corpsMail']="Bonjour,\n"
-                                . "\n"
-                                . "pour information la prévision {$listeMailingob1['tracking']} pour le client {$listeMailingob1['nom_client']}est arrivée en fin de validité.\n"
-                                ." Merci de faire le point avec client et de nous faire éventuellement une Xprev\n "
-                                . " avec un commentaire sur les raisons de la demande de mise en stock et les engagements clients.\n"
-                                . "\n\n"
-                                . "Cordialement,\n"
-                                . "\n"
-                                . "--\n"
-                                . "Le service Logistique";
-             $params['sujet']="fin de validité de la prévision  {$listeMailingob1['tracking']} pour {$listeMailingob1['nom_client']}";
-              //echo '<pre>',  var_export($params),'</pre>';
-             $this->sendEmail($params);
-         }
-    }
+   
+    
 }
 
