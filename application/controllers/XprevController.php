@@ -106,7 +106,7 @@ class XprevController extends Zend_Controller_Action
         $infoHolon =$Holon->getHolon($user->id_holon);
          $query1bis = "select * from EIT.MVXCDTA.OCUSMA OCUSMA where OCUSMA.OKCUNO like 'I05743%'";
             $infos_client = odbc_fetch_array(odbc_exec($this->odbc_conn2, $query1bis));
-           echo 'pre',var_export($infos_client),'</pre>'; exit();
+           echo '<pre>',var_export($infos_client),'</pre>'; exit();
         //var_dump($user);
         //var_dump($infoHolon);
         //var_dump($infoUser['id_fonction']);
