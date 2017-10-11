@@ -546,7 +546,7 @@ if($user->id_fonction == 3){
                     /*
                      * ici si itc envoie mail au leader en fonction du holon pour consultation
                      */
-                    if ($fonctioncreateur == 2) {
+                    if ($fonctioncreateur == 2 && $info_user['id_user']!=78) {
                         switch ($holoncreateur) {
                             case "5":
                                 $destinataireMail2 = $emailVars->listes->leaderis01;
