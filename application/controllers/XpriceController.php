@@ -378,7 +378,7 @@ if($user->id_fonction == 3){
                                 $validationDemande = $dbtValidationDemande->createValidation(
                                     "creation", $now->format('Y-m-d H:i:s'), "creation", $user_info['id_user'], $demande_xprice->lastId(), trim($formData['commentaire_demande_article']));
                             $firstComment = $dbtValidationDemande->lastId();
-                            $validationDemande = $dbtValidationDemande->createValidation(
+                            $validationDemande2 = $dbtValidationDemande->createValidation(
                                     "cdr", $now->format('Y-m-d H:i:s'), "validee", $user_info['id_user'], $demande_xprice->lastId(), trim($formData['commentaire_demande_article']));
                             $firstComment = $dbtValidationDemande->lastId();
                             }else{
