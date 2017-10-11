@@ -374,7 +374,7 @@ if($user->id_fonction == 3){
                         $dbtValidationDemande = new Application_Model_DbTable_Validationsdemandexprices();
                         if (!is_null($formData['commentaire_demande_article']) && trim($formData['commentaire_demande_article']) != "") {
                             $now = new DateTime();
-                            if($info_user['id_user']==78){
+                            if($user_info['id_user']==78){
                                 $validationDemande = $dbtValidationDemande->createValidation(
                                     "creation", $now->format('Y-m-d H:i:s'), "creation", $user_info['id_user'], $demande_xprice->lastId(), trim($formData['commentaire_demande_article']));
                             $firstComment = $dbtValidationDemande->lastId();
@@ -546,7 +546,7 @@ if($user->id_fonction == 3){
                     /*
                      * ici si itc envoie mail au leader en fonction du holon pour consultation
                      */
-                    if ($fonctioncreateur == 2 && $info_user['id_user']!=78) {
+                    if ($fonctioncreateur == 2 && $user_info['id_user']!=78) {
                         switch ($holoncreateur) {
                             case "5":
                                 $destinataireMail2 = $emailVars->listes->leaderis01;
@@ -619,7 +619,7 @@ if($user->id_fonction == 3){
                     }
                     /*envoi mail si fonction RGCU*/
                     
-                    if($info_user['id_user']==34 || $info_user['id_user']==97 || $info_user['id_user']==184 || $info_user['id_user']==217 ){
+                    if($user_info['id_user']==34 || $user_info['id_user']==97 || $user_info['id_user']==184 || $user_info['id_user']==217 ){
                       $urlRGCU = "http://{$_SERVER['SERVER_NAME']}/xprice/consult/numwp/{$numwp}";
                         $corpsMailRGCU = "Bonjour,\n"
                                 . "\n"
@@ -638,7 +638,7 @@ if($user->id_fonction == 3){
                                 ->addTo($destinataireMailRGCU)
                                 ->send();  
                     }
-                    if($info_user['id_user']==124 || $info_user['id_user']==42 || $info_user['id_user']==98 || $info_user['id_user']==199){
+                    if($user_info['id_user']==124 || $user_info['id_user']==42 || $user_info['id_user']==98 || $user_info['id_user']==199){
                          $urlRGCU2 = "http://{$_SERVER['SERVER_NAME']}/xprice/consult/numwp/{$numwp}";
                         $corpsMailRGCU2 = "Bonjour,\n"
                                 . "\n"
@@ -672,7 +672,7 @@ if($user->id_fonction == 3){
                     //echo '<pre>',  var_export($zonetracking),'</pre>';
                     
                     if ( $fonctioncreateur == 2 || $fonctioncreateur == 3 || $fonctioncreateur ==6)  {
-                        if($info_user['id_user']==62 || $info_user['id_user'] ==78){
+                        if($user_info['id_user']==62 || $user_info['id_user'] ==78){
                              $paramsexport= array();
                               $paramsexport['destinataireMail'] ="mhuby@smc-france.fr";
 //                $paramsexport['destinataireMail'] = $emailVars->listes->fobfr;
