@@ -250,6 +250,7 @@ class XdistribController extends Zend_Controller_Action
             $infodd=new Application_Model_DbTable_Users();
             $infos_dd=$infodd->getUserName($nomdebu);
             $this->view->infos_dd=$infos_dd;
+            $mail = new Application_Model_DbTable_MailXdistrib();
             /* verifier dd  et user *identique*/
             if($infos_dd->id_user != $user_connect->id_user){
                 $id_dd = $user_connect->id_user;
@@ -453,16 +454,22 @@ class XdistribController extends Zend_Controller_Action
                        echo "extension correcte";
                    }
                    $nomFichier = 'Mail_'.$trackingNumber.'.'.$extension_upload;
-                   $uploaddir = "/home/mag/www-dev/Xsuite-dev_mag/public/mails/";
+                   $uploaddir =APPLICATION_PATH."/../public/mails";
+//                   $uploaddir = "/home/mag/www-dev/Xsuite-dev_mag/public/mails/";
                    $uploadfile = $uploaddir.$nomFichier;
                    $tmp_name=$_FILES['fichierDemandeDistrib']['tmp_name'];
                    if(move_uploaded_file($tmp_name, $uploadfile)){
-                       echo 'tout ok'; 
+                      $datafichier = array(
+                            'tracking_xdistrib'=>$tracking,
+                            'nom_fichier_xprev'=>$nomFichier,
+                            'chemin_fichier_xprev'=>"/mails/".$nomFichier
+                        );
+                        $newmail= $mail->createMailXdistrib($datafichier);
                    } else{
                        echo 'le transfert a échoué';
                    }
                }
-           }
+           } exit();
            $dbtValidationDemande = new Application_Model_DbTable_Validationsdemandexdistrib();
                 if (!is_null($formData['contexte']) && trim($formData['contexte']) != "") {
                     $now = new DateTime();
@@ -2071,6 +2078,7 @@ if($this->getRequest()->isPost()){
         $info_contexte = new Application_Model_DbTable_Xdistrib();
         $contexte_info1= $info_contexte->getContext($numwp);
         $contexte_info2=$contexte_info1[0];
+        
         $contexte_info=$contexte_info2;
         $info_service = new Application_Model_DbTable_ServiceDistrib();
         $service_info = $info_service->getService($numwp);
@@ -2088,6 +2096,9 @@ if($this->getRequest()->isPost()){
          */
         $nomvalidationrecherche = "cdr";
         $tracking = $info_demande_xdistrib['tracking_number_demande_xdistrib'];
+        $mail= new Application_Model_DbTable_MailXdistrib();
+        $listemail = $mail->getmail($tracking);
+        $this->view->mail=$listemail;
         $recherchevalidation = new Application_Model_DbTable_Validationsxdistrib();
         $recherchesvalidation = $recherchevalidation->getValidation($nomvalidationrecherche, $tracking);
         
