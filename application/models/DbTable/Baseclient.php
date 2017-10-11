@@ -5,7 +5,7 @@ class Application_Model_DbTable_Baseclient extends Zend_Db_Table_Abstract {
     protected $_name = 'baseclient';
 
     public function getAllcodeclient() {
-       $sql="select distinct(code_client), nom_client from baseclient where baseclient.code_client like '%0000' or baseclient.code_client like '%XXXX'";
+       $sql="select distinct(code_client), nom_client from baseclient where baseclient.code_client like '%0000' or baseclient.code_client like '%XXXX' order by baseclient.code_client asc";
         $res = $this->getAdapter()->query($sql);
         $rest=$res->fetchAll();
         if (!$rest) {
