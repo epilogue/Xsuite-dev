@@ -674,7 +674,8 @@ if($user->id_fonction == 3){
                     if ( $fonctioncreateur == 2 || $fonctioncreateur == 3 || $fonctioncreateur ==6)  {
                         if($info_user['id_user']==62 || $info_user['id_user'] ==78){
                              $paramsexport= array();
-                $paramsexport['destinataireMail'] = $emailVars->listes->fobfr;
+                              $paramsexport['destinataireMail'] ="mhuby@smc-france.fr";
+//                $paramsexport['destinataireMail'] = $emailVars->listes->fobfr;
                         $paramsexport['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/prixfobfr/numwp/{$numwp}";
                 
                 $paramsexport['corpsMail'] = "Bonjour,\n"
