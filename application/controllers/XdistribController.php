@@ -461,8 +461,8 @@ class XdistribController extends Zend_Controller_Action
                    if(move_uploaded_file($tmp_name, $uploadfile)){
                       $datafichier = array(
                             'tracking_xdistrib'=>$tracking,
-                            'nom_fichier_xprev'=>$nomFichier,
-                            'chemin_fichier_xprev'=>"/mails/".$nomFichier
+                            'nom_mail_xdistrib'=>$nomFichier,
+                            'chemin_mail_xdistrib'=>"/mails/".$nomFichier
                         );
                         $newmail= $mail->createMailXdistrib($datafichier);
                    } else{
