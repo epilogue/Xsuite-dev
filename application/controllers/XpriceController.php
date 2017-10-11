@@ -374,9 +374,21 @@ if($user->id_fonction == 3){
                         $dbtValidationDemande = new Application_Model_DbTable_Validationsdemandexprices();
                         if (!is_null($formData['commentaire_demande_article']) && trim($formData['commentaire_demande_article']) != "") {
                             $now = new DateTime();
-                            $validationDemande = $dbtValidationDemande->createValidation(
+                            if($info_user['id_user']==78){
+                                $validationDemande = $dbtValidationDemande->createValidation(
                                     "creation", $now->format('Y-m-d H:i:s'), "creation", $user_info['id_user'], $demande_xprice->lastId(), trim($formData['commentaire_demande_article']));
                             $firstComment = $dbtValidationDemande->lastId();
+                            $validationDemande = $dbtValidationDemande->createValidation(
+                                    "cdr", $now->format('Y-m-d H:i:s'), "validee", $user_info['id_user'], $demande_xprice->lastId(), trim($formData['commentaire_demande_article']));
+                            $firstComment = $dbtValidationDemande->lastId();
+                            }else{
+                                $validationDemande = $dbtValidationDemande->createValidation(
+                                    "creation", $now->format('Y-m-d H:i:s'), "creation", $user_info['id_user'], $demande_xprice->lastId(), trim($formData['commentaire_demande_article']));
+                            $firstComment = $dbtValidationDemande->lastId();
+                            }
+//                            $validationDemande = $dbtValidationDemande->createValidation(
+//                                    "creation", $now->format('Y-m-d H:i:s'), "creation", $user_info['id_user'], $demande_xprice->lastId(), trim($formData['commentaire_demande_article']));
+//                            $firstComment = $dbtValidationDemande->lastId();
                         }
                     }
                     /*
@@ -659,7 +671,7 @@ if($user->id_fonction == 3){
                      *                      */
                     //echo '<pre>',  var_export($zonetracking),'</pre>';
                     
-                    if ( $fonctioncreateur == "2" || $fonctioncreateur == "3" || $fonctioncreateur =="6")  {
+                    if ( $fonctioncreateur == 2 || $fonctioncreateur == 3 || $fonctioncreateur ==6)  {
                         if($info_user['id_user']==62 || $info_user['id_user'] ==78){
                              $paramsexport= array();
                 $paramsexport['destinataireMail'] = $emailVars->listes->fobfr;
