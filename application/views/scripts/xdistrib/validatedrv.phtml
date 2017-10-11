@@ -104,10 +104,11 @@ $this->headTitle($this->title);
                     <td><?php echo $this->client_info['nom_industry']?></td>
                 </tr>
             </table>
-            <?php if( !empty($this->mail)) { ?>
+           
+       </fieldset>
+         <?php if( !empty($this->mail)) { ?>
         <p class="decale">mail:<?php foreach ($this->mail as $maildistrib){ ?> <a href=" <?php echo $maildistrib['chemin_mail_xdistrib']; ?>" target="_blank"><?php echo $maildistrib['nom_mail_xdistrib']; ?></a><br><?php  }?></p>
          <?php } ?>
-       </fieldset>
     </div>
      <div class="clear"></div>
     <div id="demandeArticle" class="workplace">
