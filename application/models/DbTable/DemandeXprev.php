@@ -100,7 +100,7 @@ class Application_Model_DbTable_DemandeXprev extends Zend_Db_Table_Abstract {
          $sql.=$sqlsuite;
         
         $sql.=$sqlsuite2;
-       // var_dump($sql);
+        var_dump($sql);
         $res = $this->getAdapter()->query($sql);
         $rest=$res->fetchAll();
         if (!$rest) {
