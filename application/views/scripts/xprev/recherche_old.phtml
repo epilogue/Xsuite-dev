@@ -11,7 +11,13 @@ $this->headScript()->appendFile('/js/controllers/xprev/datepicker2.js');
         <table>
             <tr>
                 <td>recherche par client</td>
-                <td><input type="text" value="" id="nom_client" name="nom_client" /></td>
+                <td>
+                    <select  name="nom_client">
+                        <option value="">choisir un client</option>
+                    <?php foreach($this->listeallclient as $listeclient ){?>
+                    <option value="<?php echo $listeclient['code_client_users_xprev']?>" ><?php echo $listeclient['nom_client_user_xprev']; ?></option><?php }?>
+                    </select>
+                </td>
                 <td>recherche par commercial</td>
                 <td>
                     <select name="nom_commercial">
@@ -53,9 +59,22 @@ $this->headScript()->appendFile('/js/controllers/xprev/datepicker2.js');
             <tr>
                 
                 <td>recherche par référence article</td>
-                <td><input type="text" value="" id="reference" name="reference"/></td>
+                <td>
+                    <select  name="reference">
+                        <option value="">choisir une référence</option>
+                    <?php foreach($this->listeallreference as $listereference ){?>
+                    <option value="<?php echo $listereference['reference_article']?>"  ><?php echo $listereference['reference_article']; ?></option><?php }?>
+                   </select>
+                </td>
                 <td>recherche par tracking</td>
-                <td><input type="text" value="" name="tracking" id="tracking"/></td>
+                <td>
+                    <select  name="tracking">
+                        <option value="">choisir un tracking</option>
+                    <?php foreach($this->listealltracking as $listetracking ){?>
+                    <option value="<?php echo $listetracking['tracking']?>"  ><?php echo $listetracking['tracking']; ?></option><?php }?>
+                   
+                    </select>
+                </td>
                 <td></td>
                 <td></td>
             </tr>
