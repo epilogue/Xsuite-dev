@@ -14,7 +14,7 @@ class Application_Model_DbTable_Users extends Zend_Db_Table_Abstract {
         return $row->toArray();
     }
     public function getAll(){
-        $sql = "select id_user as id_commercial, nom_user as nom_commercial from users order by nom_user desc";
+        $sql = "select id_user as id_commercial, nom_user as nom_commercial from users order by nom_user asc";
           $res = $this->getAdapter()->query($sql);
         $rest=$res->fetchAll();
         if (!$rest) {
@@ -24,7 +24,7 @@ class Application_Model_DbTable_Users extends Zend_Db_Table_Abstract {
         }
     }
     public function getAllUser(){
-        $sql = "select id_user as id_emetteur, nom_user as nom_emetteur from users order by nom_user desc";
+        $sql = "select id_user as id_emetteur, nom_user as nom_emetteur from users order by nom_user asc";
           $res = $this->getAdapter()->query($sql);
         $rest=$res->fetchAll();
         if (!$rest) {
