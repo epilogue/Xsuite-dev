@@ -469,7 +469,7 @@ class XdistribController extends Zend_Controller_Action
                        echo 'le transfert a échoué';
                    }
                }
-           } exit();
+           } 
            $dbtValidationDemande = new Application_Model_DbTable_Validationsdemandexdistrib();
                 if (!is_null($formData['contexte']) && trim($formData['contexte']) != "") {
                     $now = new DateTime();
