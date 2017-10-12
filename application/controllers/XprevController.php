@@ -163,7 +163,7 @@ class XprevController extends Zend_Controller_Action
         /*information concernant la personne connectée*/
         $User = new Application_Model_DbTable_Users();
         $infoUser = $User->getUser($user->id_user);
-        $etatcreat=4;
+        $etatcreat=1;
        // echo '<pre>',  var_export($infoUser),'</pre>';
         
         /*info base de donnees*/
@@ -292,7 +292,7 @@ class XprevController extends Zend_Controller_Action
                     'id_client_xprev'=>$id_client->id_client_xprev,
                     'id_client_user_xprev'=>$id_client_user->id_client_user_xprev,
                     'valeur_totale'=>null,
-                    'id_statut_xprev'=>$etatcreat,
+                    'id_statut_xprev'=> 1,
                     'id_niveau_risque_xprev'=>$formData['risque'],
                     'id_type_demande_xprev'=>$formData['type'],
                     'id_validation'=>2,
@@ -1014,7 +1014,7 @@ class XprevController extends Zend_Controller_Action
             /*envoi du mail à la log*/
             if($formData['validdop']=='1'){
 //                echo 'plop'; 
-                $statut=1;
+                $statut=2;
                 $validation =6;
                 $justification =$formData['motif_validation'];
                 //var_dump($justification);
@@ -1050,7 +1050,7 @@ class XprevController extends Zend_Controller_Action
             }elseif($formData['validdop']=='0'){
                 /*on va chercher le mail du createur de la demande */
                 $statut=4;
-                $validation =5;
+                $validation=5;
                 $justification = $formData['motif_validation'];
                 $upn1 = $Prev->updopxprev($statut,$validation,$justification,$tracking);
                 /*envoi mail au créateur*/
