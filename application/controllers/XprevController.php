@@ -91,10 +91,10 @@ class XprevController extends Zend_Controller_Action
         //var_dump($requete1);
         $results1 = odbc_exec($this->odbc_conn2, $requete1);
         $res =  odbc_fetch_array($results1);
-       // echo '<pre>',  var_export($res),'</pre>';
+        
 
         $this->view->code_article = trim($res['MMITNO']);
-
+echo '<pre>',  var_export($res),'</pre>'; exit();
     }
     public function indexAction()
     {
@@ -418,8 +418,8 @@ class XprevController extends Zend_Controller_Action
              $emailVars = Zend_Registry::get('emailVars');
              /* creation des parametre du mail*/
              $params=array();
-             $params['destinataireMail']=$destinataire->email_user;
-//             $params['destinataireMail']="mhuby@smc-france.fr";
+//             $params['destinataireMail']=$destinataire->email_user;
+             $params['destinataireMail']="mhuby@smc-france.fr";
              
              $params['url'] = "http://{$_SERVER['SERVER_NAME']}/xprev/validn1/tracking/{$trackingnumber}";
              $params['corpsMail']="Bonjour,\n"
