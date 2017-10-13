@@ -81,8 +81,9 @@ $(document).ready(function(){
         $('input[name="refart['+id+'][reference]"]').change(function(e)
         {
            // console.log('tagada');
-              $.get ('/xprev/verifreference/reference/'+$(this).val(),
-              {},
+//              $.get ('/xprev/verifreference/reference/'+$(this).val(),
+              $.get ('/xprev/verifreference',
+              {'reference': $(this).val()},
               function(data){
                  // console.log("tagada("+id+"): "+data);
                   if(data=='NULL'){
