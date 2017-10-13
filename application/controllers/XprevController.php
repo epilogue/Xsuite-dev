@@ -96,7 +96,7 @@ class XprevController extends Zend_Controller_Action
             $mmitno ='';
         }
         $this->view->code_article =$mmitno ;
-        var_dump($mmitno); exit();
+//        var_dump($mmitno); exit();
     }
     public function indexAction()
     {
