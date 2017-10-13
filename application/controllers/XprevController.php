@@ -112,7 +112,7 @@ class XprevController extends Zend_Controller_Action
         $results = odbc_exec($this->odbc_conn2, $requete);
         $res1 =  odbc_fetch_array($results);
          echo '<pre>',var_export($res1),'</pre>'; 
-         $requete1bis ="select MITMAS.MMITNO from EIT.MVXCDTA.MITMAS MITMAS where  trim(MITMAS.MMITDS) ='{$res1['MMITDS']}' and  MITMAS.MMCONO='100'";
+         $requete1bis ="select MITMAS.MMITNO ,trim(MITMAS.MMITDS) from EIT.MVXCDTA.MITMAS MITMAS where  trim(MITMAS.MMITDS) ='{$res1['MMITDS']}' and  MITMAS.MMCONO='100'";
         var_dump($requete1bis);
         $results1bis = odbc_exec($this->odbc_conn2, $requete1bis);
         $res1bis =  odbc_fetch_array($results1bis);
