@@ -88,7 +88,7 @@ class XprevController extends Zend_Controller_Action
         $this->_helper->layout->disableLayout();
         $reference_article= $this->getRequest()->getParam('reference');
         
-        $requete1 ="select MITMAS.MMITNO from EIT.MVXCDTA.MITMAS MITMAS where  trim(MITMAS.MMITDS) ='{$reference_article}' and  MITMAS.MMCONO='100'";
+        $requete1 ="select MITMAS.MMITNO from EIT.MVXCDTA.MITMAS MITMAS where  RTRIM(MITMAS.MMITDS) ='{$reference_article}' and  MITMAS.MMCONO='100'";
         var_dump($requete1);
         $results1 = odbc_exec($this->odbc_conn2, $requete1);
         $res =  odbc_fetch_array($results1);
