@@ -171,8 +171,8 @@ $(document).ready(function(){
               function(data){
                   console.log("tagada trim");
                   console.log(data);
-                  console.log($.trim(data)=="");
-                   if($.trim(data)==""){
+                  console.log($.trim(data).length);
+                   if($.trim(data).length==0){
                       // alert();
                   alert("la reference rentree n'existe pas dans movex");
               }
