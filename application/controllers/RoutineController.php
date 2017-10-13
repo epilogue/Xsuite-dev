@@ -32,7 +32,7 @@ class RoutineController extends Zend_Controller_Action {
         $datemailing = $nDate->format('Y-m-d');
         $Mailing = new Application_Model_DbTable_DemandeXprev();
         $listeMailing = $Mailing->mailinglist($datemailing);
-       // echo '<pre>',  var_export($listeMailing),'</pre>';
+        echo '<pre>',  var_export($listeMailing),'</pre>'; exit();
        $emailVars = Zend_Registry::get('emailVars');
              /* creation des parametre du mail*/
          foreach($listeMailing as $listeMailing1){
@@ -60,6 +60,7 @@ public function routinebisAction(){
         $newdate = $date->format('Y-m-d');
          $Mailing = new Application_Model_DbTable_DemandeXprev();
         $listeMailingob = $Mailing->mailinglistob($newdate);
+         echo '<pre>',  var_export($listeMailingob),'</pre>'; exit();
          $emailVars = Zend_Registry::get('emailVars');
              /* creation des parametre du mail*/
          foreach($listeMailingob as $listeMailingob1){
