@@ -84,7 +84,8 @@ $(document).ready(function(){
               $.get ('/xprev/verifreference/reference/'+$(this).val(),
               {},
               function(data){
-                  if(!$.trim(data)){
+                  console.log("tagada("+id+"): "+data);
+                  if(data=='NULL'){
                   alert("la reference rentree n'existe pas dans movex");
               }
                   $('input[name="refart['+id+'][code_article]"]').val(data);
@@ -169,7 +170,7 @@ $(document).ready(function(){
               $.get ('/xprev/verifreference/reference/'+$(this).val(),
               {},
               function(data){
-                  console.log("tagada: "+data);
+                  console.log("tagada("+id+"): "+data);
                    if(data=='NULL'){
                       // alert();
                       alert("la reference rentree n'existe pas dans movex");
