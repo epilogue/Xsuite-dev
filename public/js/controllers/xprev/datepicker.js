@@ -169,11 +169,11 @@ $(document).ready(function(){
               $.get ('/xprev/verifreference/reference/'+$(this).val(),
               {},
               function(data){
-                  console.log("tagada: "+data);
-                   if(data==""){
+                  console.log("tagada: "+data.length);
+                   if(data.length===0){
                       // alert();
-                  alert("la reference rentree n'existe pas dans movex");
-              }
+                      alert("la reference rentree n'existe pas dans movex");
+                  }
                   $('input[name="refart['+id+'][code_article]"]').val(data);
               },'text');
 //           });  
