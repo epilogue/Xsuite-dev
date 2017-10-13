@@ -80,11 +80,11 @@ $(document).ready(function(){
         console.log(id);
         $('input[name="refart['+id+'][reference]"]').change(function(e)
         {
-            console.log('tagada');
+           // console.log('tagada');
               $.get ('/xprev/verifreference/reference/'+$(this).val(),
               {},
               function(data){
-                  console.log("tagada("+id+"): "+data);
+                 // console.log("tagada("+id+"): "+data);
                   if(data=='NULL'){
                   alert("la reference rentree n'existe pas dans movex");
               }
