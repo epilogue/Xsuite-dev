@@ -105,13 +105,7 @@ class XprevController extends Zend_Controller_Action
         $infoUser = $User->getUser($user->id_user);
         $xprev = new Application_Model_DbTable_DemandeXprev();
         $Holon = new Application_Model_DbTable_Holons();
-        $infoHolon =$Holon->getHolon($user->id_holon);
-        $requete1 ="select MITMAS.MMITNO from EIT.MVXCDTA.MITMAS MITMAS where  trim(MITMAS.MMITDS) ='CHAPE G8X32+TOURILLON PM8X32' and  MITMAS.MMCONO='100'";
-        //var_dump($requete1);
-        $results1 = odbc_exec($this->odbc_conn2, $requete1);
-        $res =  odbc_fetch_array($results1);
-         echo '<pre>',var_export($res),'</pre>'; exit();
-        $mmitno = trim($res['MMITDS']);
+        $infoHolon =$Holon->getHolon($user->id_holon); 
 //         $query1bis = "select * from EIT.MVXCDTA.OCUSMA OCUSMA where OCUSMA.OKCUNO like 'I05743%'";
 //            $infos_client = odbc_fetch_array(odbc_exec($this->odbc_conn2, $query1bis));
 //           echo '<pre>',var_export($infos_client),'</pre>'; exit();
