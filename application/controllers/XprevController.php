@@ -94,7 +94,7 @@ class XprevController extends Zend_Controller_Action
         
 
         $this->view->code_article = trim($res['MMITNO']);
-echo '<pre>',  var_export($res),'</pre>'; exit();
+        var_dump($res['MMITNO']); exit();
     }
     public function indexAction()
     {
