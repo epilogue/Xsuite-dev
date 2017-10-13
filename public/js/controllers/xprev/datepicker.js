@@ -169,8 +169,8 @@ $(document).ready(function(){
               $.get ('/xprev/verifreference/reference/'+$(this).val(),
               {},
               function(data){
-                  console.log("tagada: "+data.length);
-                   if(data.length===0){
+                  console.log("tagada: "+data);
+                   if(data=='NULL'){
                       // alert();
                       alert("la reference rentree n'existe pas dans movex");
                   }
