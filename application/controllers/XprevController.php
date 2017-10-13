@@ -91,10 +91,12 @@ class XprevController extends Zend_Controller_Action
         //var_dump($requete1);
         $results1 = odbc_exec($this->odbc_conn2, $requete1);
         $res =  odbc_fetch_array($results1);
-        
-
-        $this->view->code_article = trim($res['MMITNO']);
-        var_dump($res['MMITNO']); exit();
+        $mmitno = trim($res['MMITNO']);
+        if(is_null($mmitno)){
+            $mmitno ='';
+        }
+        $this->view->code_article =$mmitno ;
+        var_dump($mmitno); exit();
     }
     public function indexAction()
     {
