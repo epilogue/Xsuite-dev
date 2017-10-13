@@ -64,8 +64,8 @@ public function routinebisAction(){
              /* creation des parametre du mail*/
          foreach($listeMailingob as $listeMailingob1){
              $params=array();
-             $params['destinataireMail']=$listeMailingob1['email_user'];
-//             $params['destinataireMail']="mhuby@smc-france.fr";
+//           $params['destinataireMail']=$listeMailingob1['email_user'];
+             $params['destinataireMail']="mhuby@smc-france.fr";
              $params['corpsMail']="Bonjour,\n"
                                 . "\n"
                                 . "pour information la prévision {$listeMailingob1['tracking']} pour le client {$listeMailingob1['nom_client']}est arrivée en fin de validité.\n"
