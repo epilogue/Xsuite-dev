@@ -11,7 +11,10 @@ $this->headScript()->appendFile('/js/controllers/xprev/datepicker2.js');
         <table>
             <tr>
                 <td>recherche par client</td>
-                <td><input type="text" value="" id="nom_client" name="nom_client" /></td>
+                <td>
+                    <input type="text" value="" id="nom_client_visuel" name="nom_client_visuel" />
+                    <input type="hidden" value="" id="nom_client" name="nom_client" />
+                </td>
                 <td>recherche par commercial</td>
                 <td>
                     <select name="nom_commercial">
@@ -219,3 +222,22 @@ $this->headScript()->appendFile('/js/controllers/xprev/datepicker2.js');
              <?php  } ?>
         </table>
 </div>
+<script>
+var listeClients=[];
+<?php $i = 0;?>
+var listeReferences=[
+    <?php foreach($this->listeallreference as $listereference ){?>
+        <?php echo '"', $listereference['reference_article'], (++$i<count($this->listeallreference))?'",\n':'"\n'; ?>
+    <?php } ?>
+];
+<?php $i = 0;?>
+var listeTrackings=[
+    <?php foreach($this->listealltracking as $listetracking ){?>
+        <?php echo '"', $listetracking['tracking'], (++$i<count($this->listealltracking))?'",\n':'"\n'; ?>
+    <?php } ?>
+];
+$(document).ready() {
+    $('#reference').autocomplete({source: listeReferences});
+    $('#tracking').autocomplete({source: listeTrackings});
+}
+</script>
