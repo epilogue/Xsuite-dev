@@ -236,7 +236,7 @@ var listeTrackings=[
         <?php echo '"', $listetracking['tracking'], (++$i<count($this->listealltracking))?'",':'"'; ?>
     <?php } ?>
 ];
-$(document).ready() {
+$(document).ready(function() {
     $('#reference').autocomplete({source: listeReferences});
     $('#tracking').autocomplete({source: listeTrackings});
 });
