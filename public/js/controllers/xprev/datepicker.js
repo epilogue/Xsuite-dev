@@ -170,7 +170,7 @@ $(document).ready(function(){
               {},
               function(data){
                    if(!$(this).trim(data)){
-                       alert();
+                      // alert();
                   alert("la reference rentree n'existe pas dans movex"); }
                   $('input[name="refart['+id+'][code_article]"]').val(data);
               },'html');
