@@ -169,7 +169,7 @@ $(document).ready(function(){
               $.get ('/xprev/verifreference/reference/'+$(this).val(),
               {},
               function(data){
-                   if(!$(this).data){
+                   if(!$.trim(data)==""){
                       // alert();
                   alert("la reference rentree n'existe pas dans movex"); }
                   $('input[name="refart['+id+'][code_article]"]').val(data);
