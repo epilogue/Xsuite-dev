@@ -28,7 +28,7 @@ class RoutineController extends Zend_Controller_Action {
         $dateinterval= new DateInterval("P3M");
         $nDate = new DateTime();
         $nDate->add($dateinterval);
-        //var_dump($nDate->format('Y-m-d'));
+        var_dump($nDate->format('Y-m-d'));
         $datemailing = $nDate->format('Y-m-d');
         $Mailing = new Application_Model_DbTable_DemandeXprev();
         $listeMailing = $Mailing->mailinglist($datemailing);
