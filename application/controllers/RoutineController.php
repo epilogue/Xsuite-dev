@@ -41,7 +41,7 @@ class RoutineController extends Zend_Controller_Action {
              $params['destinataireMail']="mhuby@smc-france.fr";
              $params['corpsMail']="Bonjour,\n"
                                 . "\n"
-                                . "pour information la prévision {$listeMailing1['tracking']} pour le client {$listeMailing1['nom_client']} arrive à échéance {$listeMailing1['date_fin']}.\n"
+                                . "pour information la prévision {$listeMailing1['tracking']} pour le client {$listeMailing1['nom_client_xprev']} arrive à échéance {$listeMailing1['date_fin']}.\n"
                                 . "Nous avons besoin d'une nouvelle prévision afin de conserver la mise en stock et de raccourcir les délais.\n"
                                 ." Merci de faire le point avec client et de nous faire éventuellement une Xprev\n "
                                 . " avec un commentaire sur les raisons de la demande de mise en stock et les engagements clients.\n"
@@ -50,7 +50,7 @@ class RoutineController extends Zend_Controller_Action {
                                 . "\n"
                                 . "--\n"
                                 . "Le service Logistique";
-             $params['sujet']="fin de validité de la prévision dans 3 mois pour la prévision {$listeMailing1['tracking']} pour {$listeMailing1['nom_client']}";
+             $params['sujet']="fin de validité de la prévision dans 3 mois pour la prévision {$listeMailing1['tracking']} pour {$listeMailing1['nom_client_xprev']}";
               //echo '<pre>',  var_export($params),'</pre>';
                $this->sendEmail($params);
          }
@@ -69,7 +69,7 @@ public function routinebisAction(){
              $params['destinataireMail']="mhuby@smc-france.fr";
              $params['corpsMail']="Bonjour,\n"
                                 . "\n"
-                                . "pour information la prévision {$listeMailingob1['tracking']} pour le client {$listeMailingob1['nom_client']}est arrivée en fin de validité.\n"
+                                . "pour information la prévision {$listeMailingob1['tracking']} pour le client {$listeMailingob1['nom_client_xprev']}est arrivée en fin de validité.\n"
                                 ." Merci de faire le point avec client et de nous faire éventuellement une Xprev\n "
                                 . " avec un commentaire sur les raisons de la demande de mise en stock et les engagements clients.\n"
                                 . "\n\n"
@@ -77,7 +77,7 @@ public function routinebisAction(){
                                 . "\n"
                                 . "--\n"
                                 . "Le service Logistique";
-             $params['sujet']="fin de validité de la prévision  {$listeMailingob1['tracking']} pour {$listeMailingob1['nom_client']}";
+             $params['sujet']="fin de validité de la prévision  {$listeMailingob1['tracking']} pour {$listeMailingob1['nom_client_xprev']}";
               //echo '<pre>',  var_export($params),'</pre>';
              $this->sendEmail($params);
          }
