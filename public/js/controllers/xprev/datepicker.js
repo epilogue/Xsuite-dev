@@ -175,7 +175,7 @@ $(document).ready(function(){
                   alert("la reference rentree n'existe pas dans movex");
               }
                   $('input[name="refart['+id+'][code_article]"]').val(data);
-              },'html');
+              },'text');
 //           });  
         });
     $('input[name="refart[0][reference]"]').attr('required',true);
