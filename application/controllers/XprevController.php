@@ -87,7 +87,7 @@ class XprevController extends Zend_Controller_Action
     public function verifreferenceAction(){
         $this->_helper->layout->disableLayout();
         $reference_article= $this->getRequest()->getParam('reference');
-        var_dump($reference_article);
+        
         $requete1 ="select MITMAS.MMITNO from EIT.MVXCDTA.MITMAS MITMAS where  trim(MITMAS.MMITDS) ='{$reference_article}' and  MITMAS.MMCONO='100'";
         //var_dump($requete1);
         $results1 = odbc_exec($this->odbc_conn2, $requete1);
