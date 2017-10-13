@@ -227,13 +227,13 @@ var listeClients=[];
 <?php $i = 0;?>
 var listeReferences=[
     <?php foreach($this->listeallreference as $listereference ){?>
-        <?php echo '"', $listereference['reference_article'], (++$i<count($this->listeallreference))?'",\n':'"\n'; ?>
+        <?php echo '"', $listereference['reference_article'], (++$i<count($this->listeallreference))?'",':'"'; ?>
     <?php } ?>
 ];
 <?php $i = 0;?>
 var listeTrackings=[
     <?php foreach($this->listealltracking as $listetracking ){?>
-        <?php echo '"', $listetracking['tracking'], (++$i<count($this->listealltracking))?'",\n':'"\n'; ?>
+        <?php echo '"', $listetracking['tracking'], (++$i<count($this->listealltracking))?'",':'"'; ?>
     <?php } ?>
 ];
 $(document).ready() {
