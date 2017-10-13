@@ -171,9 +171,11 @@ $(document).ready(function(){
               function(data){
                   console.log("tagada trim");
                   console.log(data);
+                  console.log($.trim(data)=="");
                    if($.trim(data)==""){
                       // alert();
-                  alert("la reference rentree n'existe pas dans movex"); }
+                  alert("la reference rentree n'existe pas dans movex");
+              }
                   $('input[name="refart['+id+'][code_article]"]').val(data);
               },'html');
 //           });  
