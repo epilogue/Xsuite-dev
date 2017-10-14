@@ -226,18 +226,32 @@ $this->headScript()->appendFile('/js/controllers/xprev/datepicker2.js');
 var listeClients=[];
 <?php $i = 0;?>
 var listeReferences=[
-    <?php foreach($this->listeallreference as $listereference ){?>
-        <?php echo '"', $listereference['reference_article'], (++$i<count($this->listeallreference))?'",':'"'; ?>
+    <?php foreach($this->listeallreference as $listereference ){ ?>
+        <?php echo '"', $listereference['reference_article'], (++$i<count($this->listeallreference))?'",'."\n":'"'."\n"; ?>
     <?php } ?>
 ];
 <?php $i = 0;?>
 var listeTrackings=[
-    <?php foreach($this->listealltracking as $listetracking ){?>
-        <?php echo '"', $listetracking['tracking'], (++$i<count($this->listealltracking))?'",':'"'; ?>
+    <?php foreach($this->listealltracking as $listetracking ){ ?>
+        <?php echo '"', $listetracking['tracking'], (++$i<count($this->listealltracking))?'",'."\n":'"'."\n"; ?>
     <?php } ?>
 ];
-$(document).ready(function() {
+<?php $i = 0;?>
+var listeClients=[
+    <?php foreach($this->listeallclient as $listeclient ){ ?>
+        <?php echo '"', $listeclient['nom_client_user_xprev'], "_", $listeclient['code_client_users_xprev'], (++$i<count($this->listealltracking))?'",'."\n":'"'."\n"; ?>
+    <?php } ?>
+];
+$(document).ready(function(){
     $('#reference').autocomplete({source: listeReferences});
     $('#tracking').autocomplete({source: listeTrackings});
+    $('#nom_client_visuel').autocomplete({source: listeClients, change: function( event, ui ) {
+            if($('#nom_client_visuel').val().length < 11) {
+                return false;
+            }
+            var codeClient = $('#nom_client_visuel').val().substr(-10);
+            $('#nom_client').val(codeClient);
+            console.debug($('#nom_client_visuel').val()+": "+codeClient);
+    }});
 });
 </script>
