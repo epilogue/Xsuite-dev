@@ -191,11 +191,11 @@ var listeCodesArticles=[
 $(document).ready(function(){
     $('#reference').autocomplete({source: listeReferences});
     $('#nom_client_visuel').autocomplete({source: listeClients, change: function( event, ui ) {
-            if($('#nom_client_visuel').val().length < 11) {
+            if($('#nom_client_visuel').val().length < 1) {
                 $('#code_client').val('');
                 return false;
             }
-            var codeClient = $('#nom_client_visuel').val().substr(-10);
+            var codeClient = $('#nom_client_visuel').val().split('_').pop();
             $('#code_client').val(codeClient);
     }});
     $('#code_client').autocomplete({source: listeCodesClients});
