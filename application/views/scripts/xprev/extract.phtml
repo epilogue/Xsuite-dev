@@ -1,6 +1,6 @@
 
 <?php
-$this->title = 'Xprev/creation';
+$this->title = 'Xprev/extract';
 $this->headTitle($this->title);
 $this->headLink()->appendStylesheet('/css/jquery-ui.css');
 $this->headScript()->appendFile('/js/controllers/xprev/datepicker2.js');
@@ -15,55 +15,75 @@ $this->headScript()->appendFile('/js/controllers/xprev/datepicker2.js');
             <tr>
                 <td>nom client</td>
                 <td>
-                    <select  name="nom_client">
+                    <?php /*
+                    <select name="nom_client">
                         <option value="">choisir un client</option>
                     <?php foreach($this->listeallclient as $listeclient ){?>
                     <option value="<?php echo $listeclient['code_user_client_xprev']?>" ><?php echo trim($listeclient['nom_client_xprev']); ?></option><?php }?>
                     </select>
+                     */ ?>
+                    <input type="text" value="" id="nom_client_visuel" name="nom_client_visuel" />
                 </td>
                 <td>code client</td>
                 <td>
+                    <?php /*
                     <select  name="code_client">
                         <option value="">choisir un client</option>
                     <?php foreach($this->listeallclient as $listeclient ){?>
                     <option value="<?php echo $listeclient['code_user_client_xprev']?>" ><?php echo $listeclient['code_user_client_xprev']; ?></option><?php }?>
                     </select>
+                     */ ?>
+                    <input type="text" value="" id="code_client" name="code_client" />
                 </td>
              </tr>
             <tr>
                 <td>nom user</td>
                 <td>
+                    <?php /*
                     <select id="nom_user" name="nom_user">
                         <option value="">choisir un user</option>
                     <?php foreach($this->listeallclientuser as $listeclientuser ){?>
                     <option value="<?php echo $listeclientuser['code_client_users_xprev']?>" ><?php echo trim($listeclientuser['nom_client_user_xprev']); ?></option><?php }?>
                     </select>
+                     */ ?>
+                    <input type="text" value="" id="nom_user_visuel" name="nom_user_visuel" />
                 </td>
                 <td>code user</td>
                 <td>
+                    <?php /*
                     <select id="code_user" name="code_user">
                         <option value="">choisir un code user</option>
                      <?php foreach($this->listeallclientuser as $listeclientuser ){?>
                     <option value="<?php echo $listeclientuser['code_client_users_xprev']?>" ><?php echo $listeclientuser['code_client_users_xprev']; ?></option><?php }?>
                     </select>
+                     */ ?>
+                    <input type="text" value="" id="code_user" name="code_user" />
                 </td>
             </tr>
             <tr>
                 <td>nom commercial</td>
                 <td>
+                    <?php /*
                     <select name="nom_commercial">
                         <option value="">choisir un commercial</option>
                     <?php foreach($this->listeallcommercial as $listecommercial ){?>
                     <option value="<?php echo $listecommercial['id_commercial']?>"><?php echo $listecommercial['nom_commercial']; ?></option><?php }?>
                     </select>
+                     */ ?>
+                    <input type="text" value="" id="nom_commercial_visuel" name="nom_commercial_visuel" />
+                    <input type="hidden" value="" id="nom_commercial" name="nom_commercial" />
                 </td>
                 <td>nom émetteur</td>
                 <td>
+                    <?php /*
                     <select name="nom_emetteur">
                         <option value="">choisir un émetteur</option>
                     <?php foreach($this->listealluser as $listeuser ){?>
                     <option value="<?php echo $listeuser['id_emetteur']?>" ><?php echo $listeuser['nom_emetteur']; ?></option><?php }?>
                    </select>
+                     */ ?>
+                    <input type="text" value="" id="nom_emetteur_visuel" name="nom_emetteur_visuel" />
+                    <input type="hidden" value="" id="nom_emetteur" name="nom_emetteur" />
                 </td>
                 <td> statut</td>
                 <td>
@@ -83,19 +103,25 @@ $this->headScript()->appendFile('/js/controllers/xprev/datepicker2.js');
                 
                 <td>référence article</td>
                 <td>
+                    <?php /*
                     <select  name="reference">
                         <option value="">choisir une référence</option>
                     <?php foreach($this->listeallreference as $listereference ){?>
                     <option value="<?php echo $listereference['reference_article']?>"  ><?php echo $listereference['reference_article']; ?></option><?php }?>
                    </select>
+                     */ ?>
+                    <input type="text" value="" id="reference" name="reference" />
                 </td>
                 <td>code article</td>
                 <td>
+                    <?php /*
                     <select  name="code_article">
                         <option value="">choisir un code article</option>
                     <?php foreach($this->listeallcode as $listecode ){?>
                     <option value="<?php echo $listecode['code_article']?>"  ><?php echo $listecode['code_article']; ?></option><?php }?>
                    </select>
+                     */ ?>
+                    <input type="text" value="" id="code_article" name="code_article" />
                 </td>
            </tr>
             <tr>
@@ -112,4 +138,92 @@ $this->headScript()->appendFile('/js/controllers/xprev/datepicker2.js');
                 <input class="submit2" type="submit" value="extraire">
         </div>
     </form>
-    
+
+<script>
+<?php $i = 0;?>
+var listeReferences=[
+    <?php foreach($this->listeallreference as $listereference ){ ?>
+        <?php echo '"', $listereference['reference_article'], (++$i<count($this->listeallreference))?'",'."\n":'"'."\n"; ?>
+    <?php } ?>
+];
+<?php $i = 0;?>
+var listeClients=[
+    <?php foreach($this->listeallclient as $listeclient ){ ?>
+        <?php echo '"', $listeclient['code_user_client_xprev'], "_", $listeclient['code_user_client_xprev'], (++$i<count($this->listeallclient))?'",'."\n":'"'."\n"; ?>
+    <?php } ?>
+];
+<?php $i = 0;?>
+var listeCodesClients=[
+    <?php foreach($this->listeallclient as $listeclient ){ ?>
+        <?php echo '"', $listeclient['code_user_client_xprev'], (++$i<count($this->listeallclient))?'",'."\n":'"'."\n"; ?>
+    <?php } ?>
+];
+<?php $i = 0;?>
+var listeClientUsers=[
+    <?php foreach($this->listeallclientuser as $listeclientuser ){ ?>
+        <?php echo '"', trim($listeclientuser['nom_client_user_xprev']), "_", $listeclientuser['code_client_users_xprev'], (++$i<count($this->listeallclientuser))?'",'."\n":'"'."\n"; ?>
+    <?php } ?>
+];
+<?php $i = 0;?>
+var listeCodesUsers=[
+    <?php foreach($this->listeallclientuser as $listeclientuser ){ ?>
+        <?php echo '"', $listeclientuser['code_client_users_xprev'], (++$i<count($this->listeallclientuser))?'",'."\n":'"'."\n"; ?>
+    <?php } ?>
+];
+<?php $i = 0;?>
+var listeCommerciaux=[
+    <?php foreach($this->listeallcommercial as $listecommercial ){ ?>
+        <?php echo '"', trim($listecommercial['nom_commercial']), "_", $listecommercial['id_commercial'], (++$i<count($this->listeallcommercial))?'",'."\n":'"'."\n"; ?>
+    <?php } ?>
+];
+<?php $i = 0;?>
+var listeEmmeteurs=[
+    <?php foreach($this->listealluser as $listeuser ){ ?>
+        <?php echo '"', trim($listeuser['nom_emetteur']), "_", $listeuser['id_emetteur'], (++$i<count($this->listealluser))?'",'."\n":'"'."\n"; ?>
+    <?php } ?>
+];
+<?php $i = 0;?>
+var listeCodesArticles=[
+    <?php foreach($this->listeallcode as $listecode ){ ?>
+        <?php echo '"', $listecode['code_article'], (++$i<count($this->listeallcode))?'",'."\n":'"'."\n"; ?>
+    <?php } ?>
+];
+$(document).ready(function(){
+    $('#reference').autocomplete({source: listeReferences});
+    $('#nom_client_visuel').autocomplete({source: listeClients, change: function( event, ui ) {
+            if($('#nom_client_visuel').val().length < 11) {
+                $('#code_client').val('');
+                return false;
+            }
+            var codeClient = $('#nom_client_visuel').val().substr(-10);
+            $('#code_client').val(codeClient);
+    }});
+    $('#code_client').autocomplete({source: listeCodesClients});
+    $('#nom_user_visuel').autocomplete({source: listeClientUsers, change: function( event, ui ) {
+            if($('#nom_user_visuel').val().length < 1) {
+                $('#code_user').val('');
+                return false;
+            }
+            var codeUser = $('#nom_user_visuel').split('_').pop();
+            $('#code_user').val(codeUser);
+    }});
+    $('#code_user').autocomplete({source: listeCodesUsers});
+    $('nom_commercial_visuel').autocomplete({source: listeCommerciaux, change: function( event, ui ) {
+            if($('#nom_commercial_visuel').val().length < 1) {
+                $('#nom_commercial').val('');
+                return false;
+            }
+            var idCommercial = $('#nom_commercial_visuel').split('_').pop();
+            $('#nom_commercial').val(idCommercial);
+    }});
+    $('nom_emetteur_visuel').autocomplete({source: listeEmmeteurs, change: function( event, ui ) {
+            if($('#nom_emetteur_visuel').val().length < 1) {
+                $('#nom_emetteur').val('');
+                return false;
+            }
+            var idEmmeteur = $('#nom_emetteur_visuel').split('_').pop();
+            $('#nom_emetteur').val(idEmmeteur);
+    }});
+    $('#code_article').autocomplete({source: listeCodesArticles});
+});
+</script>

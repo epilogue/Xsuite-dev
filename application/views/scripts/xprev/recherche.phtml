@@ -223,7 +223,6 @@ $this->headScript()->appendFile('/js/controllers/xprev/datepicker2.js');
         </table>
 </div>
 <script>
-var listeClients=[];
 <?php $i = 0;?>
 var listeReferences=[
     <?php foreach($this->listeallreference as $listereference ){ ?>
@@ -247,11 +246,11 @@ $(document).ready(function(){
     $('#tracking').autocomplete({source: listeTrackings});
     $('#nom_client_visuel').autocomplete({source: listeClients, change: function( event, ui ) {
             if($('#nom_client_visuel').val().length < 11) {
+                $('#nom_client').val('');
                 return false;
             }
             var codeClient = $('#nom_client_visuel').val().substr(-10);
             $('#nom_client').val(codeClient);
-            console.debug($('#nom_client_visuel').val()+": "+codeClient);
     }});
 });
 </script>
