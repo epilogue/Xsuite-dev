@@ -214,7 +214,9 @@ $(document).ready(function(){
                 return false;
             }
             var idCommercial = $('#nom_commercial_visuel').val().split('_').pop();
+            var nomCommercial = $('#nom_commercial_visuel').val().split('_').shift();
             $('#nom_commercial').val(idCommercial);
+            $('#nom_commercial_visuel').val(nomCommercial);
     }});
     $('#nom_emetteur_visuel').autocomplete({source: listeEmmeteurs, change: function( event, ui ) {
             if($('#nom_emetteur_visuel').val().length < 1) {
@@ -222,7 +224,9 @@ $(document).ready(function(){
                 return false;
             }
             var idEmmeteur = $('#nom_emetteur_visuel').val().split('_').pop();
+             var nomEmmeteur = $('#nom_emetteur_visuel').val().split('_').shift();
             $('#nom_emetteur').val(idEmmeteur);
+            $('#nom_emetteur_visuel').val(nomEmmeteur);
     }});
     $('#code_article').autocomplete({source: listeCodesArticles});
 });
