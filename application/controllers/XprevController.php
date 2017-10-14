@@ -55,7 +55,7 @@ class XprevController extends Zend_Controller_Action
     }
     public function liaisonnomclientAction(){
         $this->_helper->layout->disableLayout();
-        $num_client = substr($this->getRequest()->getParam('num_client',null),0,6);
+        $num_client =$this->getRequest()->getParam('num_client',null);
         $nomclient = new Application_Model_DbTable_Baseclient();
         $listenomclient = $nomclient->getNomClient($num_client);
         $this->view->listenomclient= $listenomclient[0];
