@@ -107,34 +107,7 @@ class XprevController extends Zend_Controller_Action
         $xprev = new Application_Model_DbTable_DemandeXprev();
         $Holon = new Application_Model_DbTable_Holons();
         $infoHolon =$Holon->getHolon($user->id_holon); 
-        $requete ="select MITMAS.MMITDS from EIT.MVXCDTA.MITMAS MITMAS where MITMAS.MMITNO='01425320' and  MITMAS.MMCONO='100'";
-        var_dump($requete);
-        $results = odbc_exec($this->odbc_conn2, $requete);
-        $res1 =  odbc_fetch_array($results);
-         echo '<pre>',var_export($res1),'</pre>'; 
-         $requete1bis ="select MITMAS.MMITNO  from EIT.MVXCDTA.MITMAS MITMAS where  RTRIM(MITMAS.MMITDS) ='{$res1['MMITDS']}' and  MITMAS.MMCONO='100'";
-        var_dump($requete1bis);
-        $results1bis = odbc_exec($this->odbc_conn2, $requete1bis);
-        $res1bis =  odbc_fetch_array($results1bis);
-         echo '<pre>',var_export($res1bis),'</pre>'; 
-         //echo '<pre>',var_export($res),'</pre>';
-         $query4 = "select * from EIT.MVXCDTA.MITFAC MITFAC where MITFAC.M9CONO = '100' AND MITFAC.M9ITNO = '{$res1bis['MMITNO']}' and MITFAC.M9FACI ='I01'";
-                 $resultats4 = odbc_Exec($this->odbc_conn2, $query4);
-                 $prixrevient4 = odbc_fetch_object($resultats4);
-                echo '<pre>',(var_export($prixrevient4)),'</pre>'; 
-        $requete1 ="select MITMAS.MMITNO from EIT.MVXCDTA.MITMAS MITMAS where  RTRIM(MITMAS.MMITDS) ='C85N16-200-QCI00014' and  MITMAS.MMCONO='100'";
-        var_dump($requete1);
-        $results1 = odbc_exec($this->odbc_conn2, $requete1);
-        $res =  odbc_fetch_array($results1);
-         echo '<pre>',var_export($res),'</pre>';
-         $query3 = "select * from EIT.MVXCDTA.MITFAC MITFAC where MITFAC.M9CONO = '100' AND MITFAC.M9ITNO = '{$res['MMITNO']}' and MITFAC.M9FACI ='I01'";
-                 $resultats3 = odbc_Exec($this->odbc_conn2, $query3);
-                 $prixrevient = odbc_fetch_object($resultats3);
-                echo '<pre>',(var_export($prixrevient)),'</pre>'; 
-         exit();
-//         $query1bis = "select * from EIT.MVXCDTA.OCUSMA OCUSMA where OCUSMA.OKCUNO like 'I05743%'";
-//            $infos_client = odbc_fetch_array(odbc_exec($this->odbc_conn2, $query1bis));
-//           echo '<pre>',var_export($infos_client),'</pre>'; exit();
+        
         //var_dump($user);
         //var_dump($infoHolon);
         //var_dump($infoUser['id_fonction']);
@@ -447,7 +420,7 @@ class XprevController extends Zend_Controller_Action
              /* creation des parametre du mail*/
              $params=array();
              $params['destinataireMail']=$destinataire->email_user;
-             $params['destinataireMail']="mhuby@smc-france.fr";
+            // $params['destinataireMail']="mhuby@smc-france.fr";
              
              $params['url'] = "http://{$_SERVER['SERVER_NAME']}/xprev/validn1/tracking/{$trackingnumber}";
              $params['corpsMail']="Bonjour,\n"
@@ -1629,60 +1602,8 @@ class XprevController extends Zend_Controller_Action
 //            header('Content-Disposition: attachment; filename="extractXprev.csv"');
             $Xprev = new Application_Model_DbTable_DemandeXprev();
             $listXprev = $Xprev->extractxprev($formData);
-            foreach ($formData as $data){
-            $listeMois[] = $mois->getMois($data['tracking']);}
-            $this->view->listemois=$listeMois;
-// echo '<pre>',  var_export($listXprev),'</pre>';
-$plop5= count($listXprev);
-//var_dump($plop5);
-$keytab = $plop5-1;
-var_dump($keytab);
-echo '<pre>',  var_export($listXprev[0]['date_debut']),'</pre>';
-echo '<pre>',  var_export($listXprev[$keytab]['fin_de_validite']),'</pre>';
-$num_moisdeb =  $listXprev[0]['date_debut'];
-           
-$datedeb=explode('-',$num_moisdeb);
 
-$monthdeb = intval($datedeb[1]);
-
-$yeardeb = intval(substr($datedeb[0],-2));
-
-$num_moisfin =$listXprev[$keytab]['fin_de_validite'] ;
-           
-$datefin=explode('-',$num_moisfin);
-
-$monthfin = intval($datefin[1]);
-
-$yearfin = intval(substr($datefin[0],-2));
-
-//calculer le nombre d'intervalle entre debut  et fin 
-$d1=new DateTime($listXprev[0]['date_debut']);
-var_dump($d1);
-$d2=new DateTime($listXprev[$keytab]['fin_de_validite']);
-var_dump($d2);
-$interval =$d1 ->diff($d2);
-var_dump($interval->y);
-$nbremois = ($interval->format('%y')*12)+($interval->format('%m')+1);
-var_dump($nbremois);
-//while ($monthdeb !=$monthfin and $yeardeb != $yearfin){
-            $tab = array();
-        //Boucle sur 12 mois
-            for($i = 1, $monthdeb, $yeardeb;$i<=$nbremois ; $i++, $monthdeb++)
-            {
-                //Arrivé en Décembre, on remet le mois à Janvier pour parcourir les 12 mois et on incrémente l'année
-                if($monthdeb > 12)
-                {
-                    $monthdeb = 1;
-                    $yeardeb++;
-                }
-    //            var_dump($month);
-
-    //                var_dump($year) ;
-                $tab[]= array('month'=>$monthdeb, 'year'=>$yeardeb);
-            
-            }
-//} 
-echo '<pre>',var_export($tab),'</pre>';exit();
+echo '<pre>',var_export($listXprev),'</pre>';exit();
 //exit();
 //           echo '"'. str_replace(';', '";"',implode(';', array_keys($listXprev[0]))).'"' . PHP_EOL;
 //           foreach ($listXprev as $ligne) {
@@ -1691,6 +1612,35 @@ echo '<pre>',var_export($tab),'</pre>';exit();
         }
     }
    
-    
+    public function requetesecoursAction(){
+        $requete ="select MITMAS.MMITDS from EIT.MVXCDTA.MITMAS MITMAS where MITMAS.MMITNO='01425320' and  MITMAS.MMCONO='100'";
+        var_dump($requete);
+        $results = odbc_exec($this->odbc_conn2, $requete);
+        $res1 =  odbc_fetch_array($results);
+         echo '<pre>',var_export($res1),'</pre>'; 
+         $requete1bis ="select MITMAS.MMITNO  from EIT.MVXCDTA.MITMAS MITMAS where  RTRIM(MITMAS.MMITDS) ='{$res1['MMITDS']}' and  MITMAS.MMCONO='100'";
+        var_dump($requete1bis);
+        $results1bis = odbc_exec($this->odbc_conn2, $requete1bis);
+        $res1bis =  odbc_fetch_array($results1bis);
+         echo '<pre>',var_export($res1bis),'</pre>'; 
+         //echo '<pre>',var_export($res),'</pre>';
+         $query4 = "select * from EIT.MVXCDTA.MITFAC MITFAC where MITFAC.M9CONO = '100' AND MITFAC.M9ITNO = '{$res1bis['MMITNO']}' and MITFAC.M9FACI ='I01'";
+                 $resultats4 = odbc_Exec($this->odbc_conn2, $query4);
+                 $prixrevient4 = odbc_fetch_object($resultats4);
+                echo '<pre>',(var_export($prixrevient4)),'</pre>'; 
+        $requete1 ="select MITMAS.MMITNO from EIT.MVXCDTA.MITMAS MITMAS where  RTRIM(MITMAS.MMITDS) ='C85N16-200-QCI00014' and  MITMAS.MMCONO='100'";
+        var_dump($requete1);
+        $results1 = odbc_exec($this->odbc_conn2, $requete1);
+        $res =  odbc_fetch_array($results1);
+         echo '<pre>',var_export($res),'</pre>';
+         $query3 = "select * from EIT.MVXCDTA.MITFAC MITFAC where MITFAC.M9CONO = '100' AND MITFAC.M9ITNO = '{$res['MMITNO']}' and MITFAC.M9FACI ='I01'";
+                 $resultats3 = odbc_Exec($this->odbc_conn2, $query3);
+                 $prixrevient = odbc_fetch_object($resultats3);
+                echo '<pre>',(var_export($prixrevient)),'</pre>'; 
+         exit();
+//         $query1bis = "select * from EIT.MVXCDTA.OCUSMA OCUSMA where OCUSMA.OKCUNO like 'I05743%'";
+//            $infos_client = odbc_fetch_array(odbc_exec($this->odbc_conn2, $query1bis));
+//           echo '<pre>',var_export($infos_client),'</pre>'; exit();
+    }
 }
 
