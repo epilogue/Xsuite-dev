@@ -82,10 +82,10 @@ $(document).ready(function(){
         {
            // console.log('tagada');
 //              $.get ('/xprev/verifreference/reference/'+$(this).val(),
-              $.get ('/xprev/verifreference',
-              {'reference': $(this).val()},
+              $.post('/xprev/verifreference',
+              {reference: $(this).val()},
               function(data){
-                 // console.log("tagada("+id+"): "+data);
+                  console.log("tagada: "+data);
                   if(data=='NULL'){
                   alert("la reference rentree n'existe pas dans movex");
               }
