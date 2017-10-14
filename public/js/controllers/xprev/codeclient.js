@@ -12,6 +12,7 @@ $(document).ready(function(){
           {},
           function(data){
               $('#nom_client').html(data);
+               $('#nom_client').change();
               
           },'html');
        
