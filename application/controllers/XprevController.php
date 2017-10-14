@@ -1597,6 +1597,7 @@ class XprevController extends Zend_Controller_Action
         if($this->getRequest()->isPost()){
             $formData =  $this->getRequest()->getPost();
            // echo '<pre>',  var_export($formData),'</pre>';
+            $this->_helper->viewRenderer->setNoRender();
             $this->_helper->layout->disableLayout();
             header('Content-type: text/csv');
             header('Content-Disposition: attachment; filename="extractXprev.csv"');
