@@ -11,9 +11,7 @@ $(document).ready(function(){
         $.get ('/xprev/liaisonnomclient/num_client/'+$(this).val(),
           {},
           function(data){
-              $('#nom_client').html(data);
-               $('#nom_client').change();
-              
+              $('#nom_client').val(data);              
           },'html');
        
           $.get ('/xprev/liaisoncodeuser/num_client/'+$(this).val(),
