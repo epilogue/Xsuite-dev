@@ -58,7 +58,6 @@ class XprevController extends Zend_Controller_Action
         $num_client =$this->getRequest()->getParam('num_client',null);
         $nomclient = new Application_Model_DbTable_Baseclient();
         $listenomclient = $nomclient->getNomClient($num_client);
-        var_dump($listenomclient[0]);
         $this->view->listenomclient= $listenomclient[0];
     }
     public function liaisonmoisAction(){
