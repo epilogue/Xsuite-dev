@@ -239,7 +239,7 @@ var listeTrackings=[
 <?php $i = 0;?>
 var listeClients=[
     <?php foreach($this->listeallclient as $listeclient ){ ?>
-        <?php echo '"', $listeclient['nom_client_user_xprev'], "_", $listeclient['code_client_users_xprev'], (++$i<count($this->listealltracking))?'",'."\n":'"'."\n"; ?>
+        <?php echo '"', $listeclient['nom_client_user_xprev'], "_", $listeclient['code_client_users_xprev'], (++$i<count($this->listeallclient))?'",'."\n":'"'."\n"; ?>
     <?php } ?>
 ];
 $(document).ready(function(){
