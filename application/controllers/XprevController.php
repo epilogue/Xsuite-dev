@@ -53,7 +53,13 @@ class XprevController extends Zend_Controller_Action
         $listecodeuser = $codeuser->getAllcodeuser($num_client);
         $this->view->listecodeuser = $listecodeuser;
     }
-    
+    public function liaisonnomclientAction(){
+        $this->_helper->layout->disableLayout();
+        $num_client = substr($this->getRequest()->getParam('num_client',null),0,6);
+        $nomclient = new Application_Model_DbTable_Baseclient();
+        $listenomclient = $nomclient->getNomClient($num_client);
+        $this->view->listecnomclient= $listenomclient;
+    }
     public function liaisonmoisAction(){
         $this->_helper->layout->disableLayout();
         $num_mois = $this->getRequest()->getParam('date_debut',null);
