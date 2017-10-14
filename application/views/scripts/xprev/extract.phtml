@@ -63,27 +63,23 @@ $this->headScript()->appendFile('/js/controllers/xprev/datepicker2.js');
             <tr>
                 <td>nom commercial</td>
                 <td>
-                    <?php /*
                     <select name="nom_commercial">
                         <option value="">choisir un commercial</option>
                     <?php foreach($this->listeallcommercial as $listecommercial ){?>
                     <option value="<?php echo $listecommercial['id_commercial']?>"><?php echo $listecommercial['nom_commercial']; ?></option><?php }?>
                     </select>
-                     */ ?>
-                    <input type="text" value="" id="nom_commercial_visuel" name="nom_commercial_visuel" />
-                    <input type="hidden" value="" id="nom_commercial" name="nom_commercial" />
+<!--                    <input type="text" value="" id="nom_commercial_visuel" name="nom_commercial_visuel" />
+                    <input type="hidden" value="" id="nom_commercial" name="nom_commercial" />-->
                 </td>
                 <td>nom émetteur</td>
                 <td>
-                    <?php /*
                     <select name="nom_emetteur">
                         <option value="">choisir un émetteur</option>
                     <?php foreach($this->listealluser as $listeuser ){?>
                     <option value="<?php echo $listeuser['id_emetteur']?>" ><?php echo $listeuser['nom_emetteur']; ?></option><?php }?>
                    </select>
-                     */ ?>
-                    <input type="text" value="" id="nom_emetteur_visuel" name="nom_emetteur_visuel" />
-                    <input type="hidden" value="" id="nom_emetteur" name="nom_emetteur" />
+<!--                    <input type="text" value="" id="nom_emetteur_visuel" name="nom_emetteur_visuel" />
+                    <input type="hidden" value="" id="nom_emetteur" name="nom_emetteur" />-->
                 </td>
                 <td> statut</td>
                 <td>
@@ -170,17 +166,17 @@ var listeCodesUsers=[
         <?php echo '"', $listeclientuser['code_client_users_xprev'], (++$i<count($this->listeallclientuser))?'",'."\n":'"'."\n"; ?>
     <?php } ?>
 ];
-<?php $i = 0;?>
+//<?php $i = 0;?>
 var listeCommerciaux=[
-    <?php foreach($this->listeallcommercial as $listecommercial ){ ?>
-        <?php echo '"', trim($listecommercial['nom_commercial']), "_", $listecommercial['id_commercial'], (++$i<count($this->listeallcommercial))?'",'."\n":'"'."\n"; ?>
-    <?php } ?>
+    //<?php foreach($this->listeallcommercial as $listecommercial ){ ?>
+        //<?php echo '"', trim($listecommercial['nom_commercial']), "_", $listecommercial['id_commercial'], (++$i<count($this->listeallcommercial))?'",'."\n":'"'."\n"; ?>
+    //<?php } ?>
 ];
-<?php $i = 0;?>
+//<?php $i = 0;?>
 var listeEmmeteurs=[
-    <?php foreach($this->listealluser as $listeuser ){ ?>
-        <?php echo '"', trim($listeuser['nom_emetteur']), "_", $listeuser['id_emetteur'], (++$i<count($this->listealluser))?'",'."\n":'"'."\n"; ?>
-    <?php } ?>
+    //<?php foreach($this->listealluser as $listeuser ){ ?>
+        //<?php echo '"', trim($listeuser['nom_emetteur']), "_", $listeuser['id_emetteur'], (++$i<count($this->listealluser))?'",'."\n":'"'."\n"; ?>
+    //<?php } ?>
 ];
 <?php $i = 0;?>
 var listeCodesArticles=[
@@ -208,26 +204,26 @@ $(document).ready(function(){
             $('#code_user').val(codeUser);
     }});
     $('#code_user').autocomplete({source: listeCodesUsers});
-    $('#nom_commercial_visuel').autocomplete({source: listeCommerciaux, change: function( event, ui ) {
-            if($('#nom_commercial_visuel').val().length < 1) {
-                $('#nom_commercial').val('');
-                return false;
-            }
-            var idCommercial = $('#nom_commercial_visuel').val().split('_').pop();
-            var nomCommercial = $('#nom_commercial_visuel').val().split('_').shift();
-            $('#nom_commercial').val(idCommercial);
-            $('#nom_commercial_visuel').val(nomCommercial);
-    }});
-    $('#nom_emetteur_visuel').autocomplete({source: listeEmmeteurs, change: function( event, ui ) {
-            if($('#nom_emetteur_visuel').val().length < 1) {
-                $('#nom_emetteur').val('');
-                return false;
-            }
-            var idEmmeteur = $('#nom_emetteur_visuel').val().split('_').pop();
-             var nomEmmeteur = $('#nom_emetteur_visuel').val().split('_').shift();
-            $('#nom_emetteur').val(idEmmeteur);
-            $('#nom_emetteur_visuel').val(nomEmmeteur);
-    }});
+//    $('#nom_commercial_visuel').autocomplete({source: listeCommerciaux, change: function( event, ui ) {
+//            if($('#nom_commercial_visuel').val().length < 1) {
+//                $('#nom_commercial').val('');
+//                return false;
+//            }
+//            var idCommercial = $('#nom_commercial_visuel').val().split('_').pop();
+//            var nomCommercial = $('#nom_commercial_visuel').val().split('_').shift();
+//            $('#nom_commercial').val(idCommercial);
+//            $('#nom_commercial_visuel').val(nomCommercial);
+//    }});
+//    $('#nom_emetteur_visuel').autocomplete({source: listeEmmeteurs, change: function( event, ui ) {
+//            if($('#nom_emetteur_visuel').val().length < 1) {
+//                $('#nom_emetteur').val('');
+//                return false;
+//            }
+//            var idEmmeteur = $('#nom_emetteur_visuel').val().split('_').pop();
+//             var nomEmmeteur = $('#nom_emetteur_visuel').val().split('_').shift();
+//            $('#nom_emetteur').val(idEmmeteur);
+//            $('#nom_emetteur_visuel').val(nomEmmeteur);
+//    }});
     $('#code_article').autocomplete({source: listeCodesArticles});
 });
 </script>
