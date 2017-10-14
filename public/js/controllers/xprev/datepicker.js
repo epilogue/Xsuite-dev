@@ -168,14 +168,13 @@ $(document).ready(function(){
         });
     $('input[name="refart['+id+'][reference]"]').change(function(e)
         {
-              $.get ('/xprev/verifreference/reference/'+$(this).val(),
-              {},
+               $.post('/xprev/verifreference',
+              {reference: $(this).val()},
               function(data){
-                  console.log("tagada("+id+"): "+data);
-                   if(data=='NULL'){
-                      // alert();
-                      alert("la reference rentree n'existe pas dans movex");
-                  }
+                  console.log("tagada: "+data);
+                  if(data=='NULL'){
+                  alert("la reference rentree n'existe pas dans movex");
+              }
                   $('input[name="refart['+id+'][code_article]"]').val(data);
               },'html');
 //           });  
