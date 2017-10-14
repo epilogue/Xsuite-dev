@@ -34,4 +34,14 @@ public function getAllcodeuser($code_client) {
             return $rest;
         }
     }
+    public function getNomClient($codeclient){
+        $sql="select nom_client from baseclient where baseclient.code_client='{$codeclient}'";
+        $res = $this->getAdapter()->query($sql);
+        $rest=$res->fetchAll();
+        if (!$rest) {
+            return null;
+        } else {
+            return $rest;
+        }
+    }
 }
