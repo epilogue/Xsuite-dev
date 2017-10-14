@@ -149,7 +149,7 @@ var listeReferences=[
 <?php $i = 0;?>
 var listeClients=[
     <?php foreach($this->listeallclient as $listeclient ){ ?>
-        <?php echo '"', $listeclient['code_user_client_xprev'], "_", $listeclient['code_user_client_xprev'], (++$i<count($this->listeallclient))?'",'."\n":'"'."\n"; ?>
+        <?php echo '"', trim($listeclient['nom_client_xprev']), "_", $listeclient['code_user_client_xprev'], (++$i<count($this->listeallclient))?'",'."\n":'"'."\n"; ?>
     <?php } ?>
 ];
 <?php $i = 0;?>
