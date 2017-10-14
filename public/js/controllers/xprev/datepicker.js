@@ -87,6 +87,7 @@ $(document).ready(function(){
               function(data){
                   console.log("tagada: "+data);
                   if(data=='NULL'){
+                      $(this).val('');
                   alert("la référence rentrée n'existe pas dans movex");
                   /* on efface la reference rentree */
               }
@@ -174,6 +175,7 @@ $(document).ready(function(){
               function(data){
                   console.log("tagada: "+data);
                   if(data=='NULL'){
+                      $(this).val('');
                   alert("la reference rentree n'existe pas dans movex");
               }
                   $('input[name="refart['+id+'][code_article]"]').val(data);
