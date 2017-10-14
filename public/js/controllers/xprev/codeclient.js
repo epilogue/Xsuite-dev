@@ -8,7 +8,7 @@ $(document).ready(function(){
     
     $('#num_client').change(function(e)
     {
-          $('#nom_client').val($('#num_client option:selected').data('nom'));
+          $('#nom_client').val($('#num_client').data('nom'));
           $.get ('/xprev/liaisoncodeuser/num_client/'+$(this).val(),
           {},
           function(data){
