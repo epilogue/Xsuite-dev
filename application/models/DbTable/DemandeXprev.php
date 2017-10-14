@@ -372,7 +372,7 @@ public function getAllcodeuser($code_client) {
                 . " (client_user_xprev.code_client_users_xprev) as code_client, "
                 . " (client_user_xprev.nom_client_user_xprev) as nom_client, "
                 . "demande_xprev.date_debut, "
-                . "demande_xprev.date_fin "
+                . "demande_xprev.date_fin, "
                 . "demande_article_xprev.m1, "
                 . "demande_article_xprev.m2, "
                 . "demande_article_xprev.m3, "
