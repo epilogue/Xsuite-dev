@@ -208,7 +208,7 @@ $(document).ready(function(){
             $('#code_user').val(codeUser);
     }});
     $('#code_user').autocomplete({source: listeCodesUsers});
-    $('nom_commercial_visuel').autocomplete({source: listeCommerciaux, change: function( event, ui ) {
+    $('#nom_commercial_visuel').autocomplete({source: listeCommerciaux, change: function( event, ui ) {
             if($('#nom_commercial_visuel').val().length < 1) {
                 $('#nom_commercial').val('');
                 return false;
@@ -216,7 +216,7 @@ $(document).ready(function(){
             var idCommercial = $('#nom_commercial_visuel').val().split('_').pop();
             $('#nom_commercial').val(idCommercial);
     }});
-    $('nom_emetteur_visuel').autocomplete({source: listeEmmeteurs, change: function( event, ui ) {
+    $('#nom_emetteur_visuel').autocomplete({source: listeEmmeteurs, change: function( event, ui ) {
             if($('#nom_emetteur_visuel').val().length < 1) {
                 $('#nom_emetteur').val('');
                 return false;
