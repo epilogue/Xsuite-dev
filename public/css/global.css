@@ -505,6 +505,9 @@ fieldset legend{
     padding-bottom: 5px;
     //width : 65px;
 }
+.enumxprev input{
+    width: 70px;
+}
 .refartReference{
     width: 250px;
 }
