@@ -56,7 +56,7 @@ class Application_Model_DbTable_DemandeXprev extends Zend_Db_Table_Abstract {
             $sqlsuite .= " and demande_xprev.date_fin between str_to_date('{$datedeb}' ,'%Y-%m-%d') and str_to_date('{$datefin}','%Y-%m-%d') ";
         }
         if (empty($sqlsuite) and !empty($formdata['reference'])) {
-            $sqlsuite.=" and  demande_article_xprev.reference_article='trim({$formdata['reference']})'";
+            $sqlsuite.=" and  demande_article_xprev.reference_article='{$formdata['reference']}'";
         }
         if(empty($sqlsuite) and !empty($formdata['nom_commercial'])){
             $sqlsuite.=" and  demande_xprev.id_commercial='{$formdata['nom_commercial']}'";
