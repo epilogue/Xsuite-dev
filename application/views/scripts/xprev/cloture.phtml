@@ -46,7 +46,7 @@
         <p>commentaire logistique :<?php echo $this->infoPrev['justification_log'] ;?></p>
         <?php } ;?>
         <?php if( $this->infoPrev['justification_dop']!= null) { ?>
-        <p>commentaire direction des opérations :<?php echo $this->infoPrev['justification_dop'] ;?></p>
+        <p>commentaire direction:<?php echo $this->infoPrev['justification_dop'] ;?></p>
         <?php } ;?>
         <?php if( $this->infoPrev['justification_traitement']!= null) { ?>
         <p>commentaire traitement :<?php echo $this->infoPrev['justification_traitement'] ;?></p>
@@ -77,7 +77,7 @@
             <thead>
                 <tr>
                     <th>référence</th>
-                    <th>code article</th>
+                    <th>article</th>
                      <?php if($this->infoUser['niveau']=='niveau4'){ ;?>
                     <th>CU</th>
                     <th>shikomi</th>

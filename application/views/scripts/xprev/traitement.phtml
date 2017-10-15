@@ -89,7 +89,7 @@ $this->headScript()->appendFile('/js/controllers/xprev/calculTotal.js');
             <thead>
                 <tr>
                     <th>référence</th>
-                    <th>code article</th>
+                    <th>article</th>
                      <?php if($this->infoUser['niveau']=='niveau4'){ ;?>
                     <th>CU</th>
                     <th>shikomi</th>
@@ -104,7 +104,7 @@ $this->headScript()->appendFile('/js/controllers/xprev/calculTotal.js');
             <tbody>
                 <?php foreach ($this->infoArticle as $k=>$article){ ?>
                 <tr>
-                    <td style="width: 250px;"><?php echo $article['reference_article'] ;?></td>
+                    <td><?php echo $article['reference_article'] ;?></td>
                     <td><input readonly type="text" name="code_article[]" value="<?php echo $article['code_article'] ;?>"></td>
                     <?php if($this->infoUser['niveau']=='niveau4'){ ;?>
                     <td><input class="changepr" data-msums="<?php echo $article['total_article_mois'] ;?>" data-targetid="valeur_totale-<?php echo $k;?>" id="prix_revient-<?php echo $k;?>" name ="prix_revient[]" type="text" value="<?php echo $article['prix_revient'] ;?>"></td>
