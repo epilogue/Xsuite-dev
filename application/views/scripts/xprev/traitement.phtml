@@ -107,7 +107,7 @@ $this->headScript()->appendFile('/js/controllers/xprev/calculTotal.js');
                     <td><?php echo $article['reference_article'] ;?></td>
                     <td><input readonly type="text" name="code_article[]" value="<?php echo $article['code_article'] ;?>"></td>
                     <?php if($this->infoUser['niveau']=='niveau4'){ ;?>
-                    <td><input class="changepr" data-msums="<?php echo $article['total_article_mois'] ;?>" data-targetid="valeur_totale-<?php echo $k;?>" id="prix_revient-<?php echo $k;?>" name ="prix_revient[]" type="text" value="<?php echo $article['prix_revient'] ;?>"></td>
+                    <td><input class="changepr" data-msums="<?php echo $article['total_article_mois'] ;?>" data-targetid="valeur_totale-<?php echo $k;?>" id="prix_revient-<?php echo $k;?>" name ="prix_revient[]" type="text" value="<?php echo round($article['prix_revient'],2) ;?>"></td>
                     <td><input type="hidden" value="0" name="shikomi[<?php echo $k;?>]"><input id="shikomi-<?php echo $k;?>" type="checkbox" value="1" name="shikomi[<?php echo $k;?>]" <?php if($article['shikomi']==1){ ?> checked="checked" <?php }?> ></td>
                     <?php }?>
                     <td><?php echo $article['m1'] ;?></td>
