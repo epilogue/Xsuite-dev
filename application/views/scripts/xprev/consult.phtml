@@ -111,7 +111,7 @@
                     <td><?php echo $article['code_article'] ;?></td>
                      <?php }else { ?><td colspan="3" ><?php echo $article['reference_article'] ;?></td> <?php }?>
                     <?php if($this->infoUser['niveau']=='niveau4'){ ?>
-                    <td><?php echo $article['prix_revient']; ?></td>
+                    <td><?php echo round($article['prix_revient'],2); ?></td>
                     <td><?php if($article['shikomi']==1){?><input type="checkbox" checked="checked" readonly disabled><?php }else { ?><input type="checkbox" readonly disabled></td>
                     <?php }}?>
                     <td><?php echo $article['m1'] ;?></td>
