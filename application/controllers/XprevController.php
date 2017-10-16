@@ -199,7 +199,7 @@ class XprevController extends Zend_Controller_Action
         
         if($this->getRequest()->isPost()){
             $formData =  $this->getRequest()->getPost();
-          echo '<pre>',  var_export($formData),'</pre>'; 
+         // echo '<pre>',  var_export($formData),'</pre>'; 
             
             /*creation du tracking number */
             $newprev= new Application_Model_DbTable_DemandeXprev();
@@ -269,16 +269,15 @@ class XprevController extends Zend_Controller_Action
             /*recuperation des id client  et client_user*/
             $idclient = $basecodeclient->getId($formData['num_client']);
             $idclientuser = $basecodeclient->getId($formData['code_user']);
-            var_dump($idclientuser);
+           // var_dump($idclientuser);
             /*insertion en bdd pour la table client_user_xprev*/
              $client_user = new Application_Model_DbTable_ClientUserXprev();
              $datauserclient = array(
                  'tracking'=>$trackingnumber,
                  'code_client_users_xprev'=>$idclientuser[0]['code_client'],
                  'nom_client_user_xprev'=>$idclientuser[0]['nom_client']  
-             );
-             echo '<pre>',  var_export($datauserclient),'</pre>'; 
-             $newclientuser = $client_user->createclientuser($datauserclient);exit();
+             ); 
+             $newclientuser = $client_user->createclientuser($datauserclient);
              $id_client_user = $client_user->lastId($trackingnumber);
              /*insertion en bdd pour la table client_xprev*/
              $client = new Application_Model_DbTable_ClientXprev();
