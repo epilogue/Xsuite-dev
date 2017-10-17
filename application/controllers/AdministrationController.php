@@ -32,8 +32,14 @@ class AdministrationController extends Zend_Controller_Action
     }
     public function indexhierarchieAction(){
         $hierarchie = new Application_Model_DbTable_HierarchieXprev();
-        $listehierarchie = $hierarchie->affichehierarchienord(); 
-        $this->view->listehierarchie = $listehierarchie;
+        $listehierarchienord = $hierarchie->affichehierarchienord(); 
+        $listehierarchieest = $hierarchie->affichehierarchieest();
+        $listehierarchieouest = $hierarchie->affichehierarchieouest();
+        $listehierarchieouestsud = $hierarchie->affichehierarchieouestsud(); 
+        $this->view->listehierarchienord = $listehierarchienord;
+        $this->view->listehierarchieest = $listehierarchieest;
+        $this->view->listehierarchieouest = $listehierarchieuest;
+        $this->view->listehierarchieouestsud = $listehierarchieouestsud;
     }
     public function updatehierarchieAction(){
         $id_holon = $this->getRequest()->getParam('holon', null);

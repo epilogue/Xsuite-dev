@@ -1,5 +1,28 @@
 <div class="">
     <fieldset>
+        <legend>Région Est</legend>
+        <table class="enum">
+            <thead>
+                <tr>
+                    <th>holon</th>
+                    <th>nom</th>
+                    <th>fonction</th>
+                    <th>action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach($this->listehierarchieest as $listest){ ?>
+                    <tr>
+                        <td><?php echo $listest['nom_holon'] ?></td>
+                        <td><?php echo $listest['nom_user'] ?></td>
+                        <td><?php echo $listest['nom_fonction'] ?></td>
+                        <td><a href="<?php echo $this->url(array("controller"=>"administration","action"=>"updatehierarchie","holon"=>$listest['id_holon'],"fonction"=>$listest['id_fonction']));?>" <button class="retour">modification</button></a></td>
+                    </tr>
+                 <?php } ?>
+            </tbody>
+        </table>
+    </fieldset>
+    <fieldset>
         <legend>Région Nord</legend>
         <table class="enum">
             <thead>
@@ -11,12 +34,58 @@
                 </tr>
             </thead>
             <tbody>
-                <?php foreach($this->listehierarchie as $list){ ?>
+                <?php foreach($this->listehierarchienord as $list){ ?>
                     <tr>
                         <td><?php echo $list['nom_holon'] ?></td>
                         <td><?php echo $list['nom_user'] ?></td>
                         <td><?php echo $list['nom_fonction'] ?></td>
                         <td><a href="<?php echo $this->url(array("controller"=>"administration","action"=>"updatehierarchie","holon"=>$list['id_holon'],"fonction"=>$list['id_fonction']));?>" <button class="retour">modification</button></a></td>
+                    </tr>
+                 <?php } ?>
+            </tbody>
+        </table>
+    </fieldset>
+    <fieldset>
+        <legend>Région Ouest</legend>
+        <table class="enum">
+            <thead>
+                <tr>
+                    <th>holon</th>
+                    <th>nom</th>
+                    <th>fonction</th>
+                    <th>action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach($this->listehierarchieouest as $listouest){ ?>
+                    <tr>
+                        <td><?php echo $listouest['nom_holon'] ?></td>
+                        <td><?php echo $listouest['nom_user'] ?></td>
+                        <td><?php echo $listouest['nom_fonction'] ?></td>
+                        <td><a href="<?php echo $this->url(array("controller"=>"administration","action"=>"updatehierarchie","holon"=>$listouest['id_holon'],"fonction"=>$listouest['id_fonction']));?>" <button class="retour">modification</button></a></td>
+                    </tr>
+                 <?php } ?>
+            </tbody>
+        </table>
+    </fieldset>
+    <fieldset>
+        <legend>Région Sud Ouest</legend>
+        <table class="enum">
+            <thead>
+                <tr>
+                    <th>holon</th>
+                    <th>nom</th>
+                    <th>fonction</th>
+                    <th>action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach($this->listehierarchieouestsud as $listsudouest){ ?>
+                    <tr>
+                        <td><?php echo $listsudouest['nom_holon'] ?></td>
+                        <td><?php echo $listsudouest['nom_user'] ?></td>
+                        <td><?php echo $listsudouest['nom_fonction'] ?></td>
+                        <td><a href="<?php echo $this->url(array("controller"=>"administration","action"=>"updatehierarchie","holon"=>$listsudouest['id_holon'],"fonction"=>$listsudouest['id_fonction']));?>" <button class="retour">modification</button></a></td>
                     </tr>
                  <?php } ?>
             </tbody>
