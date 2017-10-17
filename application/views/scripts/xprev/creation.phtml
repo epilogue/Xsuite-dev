@@ -113,14 +113,3 @@ $this->headLink()->appendStylesheet('/css/MonthPicker.css');
         
     </form>
 </div>
-<script>
-    <?php $i = 0;?>
-var listeCodesClients=[
-    <?php foreach($this->infoCodeClient as $listeclient ){ ?>
-        <?php echo '"', $listeclient['code_client'], (++$i<count($this->infoCodeClient))?'",'."\n":'"'."\n"; ?>
-    <?php } ?>
-];
-$(document).ready(function(){
-    $('#num_client').autocomplete({source: listeCodesClients});
-});
-</script>
