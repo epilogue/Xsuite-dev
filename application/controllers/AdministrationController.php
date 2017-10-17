@@ -50,6 +50,7 @@ class AdministrationController extends Zend_Controller_Action
         $Fonction =$fonctions->getFonction($id_fonction);
         $malisteUsers=new Application_Model_DbTable_Users;
         $malisteUser=$malisteUsers->rechercheUserCompletion(); 
+        $hierarchie = new Application_Model_DbTable_HierarchieXprev();
         
         $this->view->holon=$Holon;
         $this->view->fonction=$Fonction;
@@ -57,13 +58,14 @@ class AdministrationController extends Zend_Controller_Action
          if ($this->getRequest()->isPost()) {
             $formData = $this->getRequest()->getPost();
              echo '<pre>', var_export($formData),'</pre>';
+          
              $data=array(
                  "id_user"=>$formData['user'],
                  "id_fonction"=>$formData['fonction'],
                  "id_holon"=>$formData['holon']
              );
              echo '<pre>', var_export($data),'</pre>';
-             
+             $uphierarchie= $hierarchie->uphierarchie($data); 
              $upuser = $malisteUsers->updatefonctionuser($data);
              exit();
          }
