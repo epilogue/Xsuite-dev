@@ -69,6 +69,9 @@ echo $this->doctype();
                             <ul>
                                 <li><a href="<?php echo $this->url(array('controller' => 'xprev', 'action' => 'creation'), null, true); ?>">Cr&eacute;ation</a></li>
                                 <li><a href="<?php echo $this->url(array('controller' => 'xprev', 'action' => 'recherche'), null, true); ?>">Recherche</a></li>
+                                <?php if($user->id_fonction = 32){ ?>
+                                <li><a href="<?php echo $this->url(array('controller' => 'xprev', 'action' => 'extract'), null, true); ?>">Extraction</a></li>
+                                <?php } ?>
                             </ul>
                         </li>
                         <li><a href="http://intrasmc/P_Technique/Engineering/X-SUITE/X-PERTISE/index.php">Xpertise</a>
