@@ -56,7 +56,16 @@ class AdministrationController extends Zend_Controller_Action
         $this->view->malisteUser = $malisteUser;
          if ($this->getRequest()->isPost()) {
             $formData = $this->getRequest()->getPost();
-             echo '<pre>', var_export($formData),'</pre>'; exit();
+             echo '<pre>', var_export($formData),'</pre>';
+             $data=array(
+                 "id_user"=>$formData['user'],
+                 "id_fonction"=>$formData['fonction'],
+                 "id_holon"=>$formData['holon']
+             );
+             echo '<pre>', var_export($data),'</pre>';
+             exit();
+             $upuser = $malisteUsers->updatefonctionuser($data);
+             exit();
          }
     }
     public function createuserAction(){
