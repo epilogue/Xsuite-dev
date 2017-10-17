@@ -186,7 +186,7 @@ public function getAllcodeuser($code_client) {
                 . " join users as commercial on commercial.id_user = demande_xprev.id_commercial "
                 . " join client_user_xprev on client_user_xprev.id_client_user_xprev=demande_xprev.id_client_user_xprev "
                 . " join designation_validation_xprev  on designation_validation_xprev.id_designation_validation_xprev = demande_xprev.id_validation "
-                . " where users.id_holon = {$id_holon}";
+                . " where users.id_holon = {$id_holon} order by demande_xprev.tracking desc";
                 $res = $this->getAdapter()->query($sql);
         $rest=$res->fetchAll();
         if (!$rest) {
@@ -202,7 +202,7 @@ public function getAllcodeuser($code_client) {
                 . " join holons on holons.id_holon=users.id_holon "
                 . " join client_user_xprev on client_user_xprev.id_client_user_xprev=demande_xprev.id_client_user_xprev "
                 . " join designation_validation_xprev  on designation_validation_xprev.id_designation_validation_xprev = demande_xprev.id_validation "
-                . " where holons.nom_holon like '{$holon_court}%'";
+                . " where holons.nom_holon like '{$holon_court}%' order by demande_xprev.tracking desc";
        // var_dump($sql);
                 $res = $this->getAdapter()->query($sql);
         $rest=$res->fetchAll();
