@@ -8,8 +8,8 @@ $this->headScript()->appendFile('/js/controllers/xprev/MonthPicker.js');
 //$this->headScript()->appendFile('/js/controllers/xprev/ajoutarticle.js');
 $this->headScript()->appendFile('/js/controllers/xprev/verifReference.js');
 $this->headLink()->appendStylesheet('/css/MonthPicker.css');
-$this->headMeta()->appendHttpEquiv('http-equiv', 'X-UA-Compatible');
-$this->headMeta()->appendHttpEquiv('content', 'IE=11');
+//$this->headMeta()->appendHttpEquiv('http-equiv', 'X-UA-Compatible');
+//$this->headMeta()->appendHttpEquiv('content', 'IE=11');
 //<table style="display: none;" >
 //    <tbody>
 ?>
@@ -51,14 +51,14 @@ $this->headMeta()->appendHttpEquiv('content', 'IE=11');
                 </td>
                 <td>code client</td>
                <td>
-                    <?php /* 
+                    
                     <select autocomplete="autocomplete" required id="num_client" name="num_client">
                         <option value="">choisissez un code client</option>
                         <?php  foreach($this->infoCodeClient as $listeclient ){?>
                         <option  data-nom ="<?php echo $listeclient['nom_client']?>" value="<?php echo $listeclient['code_client']?>"><?php echo substr($listeclient['code_client'],0,6)?></option>
                         <?php } ?>
-                    </select>*/ ?>
-                     <input data-nom="<?php echo $listeclient['nom_client']?>" type="text" value="" id="num_client" name="num_client" />
+                    </select>
+                     
                 </td>
             </tr>
             <tr> 
