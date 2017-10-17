@@ -50,9 +50,14 @@ class AdministrationController extends Zend_Controller_Action
         $Fonction =$fonctions->getFonction($id_fonction);
         $malisteUsers=new Application_Model_DbTable_Users;
         $malisteUser=$malisteUsers->rechercheUserCompletion(); 
+        
         $this->view->holon=$Holon;
         $this->view->fonction=$Fonction;
         $this->view->malisteUser = $malisteUser;
+         if ($this->getRequest()->isPost()) {
+            $formData = $this->getRequest()->getPost();
+             echo '<pre>', var_export($formData),'</pre>'; exit();
+         }
     }
     public function createuserAction(){
     
