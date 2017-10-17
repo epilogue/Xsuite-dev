@@ -1392,6 +1392,7 @@ class XprevController extends Zend_Controller_Action
         $User = new Application_Model_DbTable_Users();
         $infoUser = $User->getUser($user->id_user);
         $tracking = $this->getRequest()->getParam('tracking', null);
+        $listeallcommercial = $User->rechercheUserCompletion();
         //var_dump($tracking);
         $Prev = new Application_Model_DbTable_DemandeXprev();
         $infoPrev = $Prev->getprev($tracking);
@@ -1441,8 +1442,12 @@ class XprevController extends Zend_Controller_Action
         $this->view->infoArticle = $infoArticle;
         $this->view->infoFichier = $infoFichier;
         $this->view->infoUser = $infoUser;
+        $this->view->listeallcommercial=$listeallcommercial;
         if($this->getRequest()->isPost()){
             $formData =  $this->getRequest()->getPost();
+            if($formData['commercial'] != $infoPrev[0]['id_commercial']){
+                $upprev = $Prev->upcommercial($formData['commercial'], $tracking);    
+                }
            // echo '<pre>',  var_export($formData),'</pre>'; 
             if(isset($_FILES['fichierClotureXprev']['name'])){
                 if($_FILES['fichierClotureXprev']['size']<=2000000){
@@ -1464,6 +1469,7 @@ class XprevController extends Zend_Controller_Action
                 }
             }
             if($formData['validcloture']=='1'){
+                
             /*mettre à jour la demande xprev 
              * au niveau du nom de la validation
              * commentaire validation

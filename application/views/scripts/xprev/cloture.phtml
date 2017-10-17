@@ -30,7 +30,12 @@
             </tr>
             <tr> 
                 <td>commercial</td>
-                <td><?php echo $this->infoPrev['nom_commercial'] ;?></td>
+                <td>
+                    <select name="commercial">
+                    <?php foreach($this->listeallcommercial as $listecommercial ){?>
+                    <option value="<?php echo $listecommercial['id_user']?>" <?php if($listecommercial['id_user']==$this->infoPrev['id_commercial']){?> selected="selected" <?php } ?> ><?php echo $listecommercial['nom_user'];}?></option>
+                   
+                    </select>
                 <td></td>
                 <td></td>
                 <td>nom user</td>
