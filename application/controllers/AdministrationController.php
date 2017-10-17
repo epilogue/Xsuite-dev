@@ -58,16 +58,32 @@ class AdministrationController extends Zend_Controller_Action
          if ($this->getRequest()->isPost()) {
             $formData = $this->getRequest()->getPost();
              echo '<pre>', var_export($formData),'</pre>';
-          
-             $data=array(
-                 "id_user"=>$formData['user'],
-                 "id_fonction"=>$formData['fonction'],
-                 "id_holon"=>$formData['holon']
-             );
-             echo '<pre>', var_export($data),'</pre>';
-             $uphierarchie= $hierarchie->uphierarchie($data); 
-             $upuser = $malisteUsers->updatefonctionuser($data);
-             exit();
+              if($formData['fonction']==3){
+                  $niveau = "niveau1bis";
+                 $data=array(
+                     "id_user"=>$formData['user'],
+                     "id_fonction"=>$formData['fonction'],
+                     "id_holon"=>$formData['holon'],
+                     "niveau"=>$niveau
+                 );
+                 echo '<pre>', var_export($data),'</pre>';
+                 $uphierarchie= $hierarchie->uphierarchie($data); 
+                 $upuser = $malisteUsers->updatefonctionuser($data);
+                 exit();
+              }
+              elseif($formData['fonction']==10){
+                 $niveau = "niveau3";
+                 $data=array(
+                     "id_user"=>$formData['user'],
+                     "id_fonction"=>$formData['fonction'],
+                     "id_holon"=>$formData['holon'],
+                     "niveau"=>$niveau
+                 );
+                 echo '<pre>', var_export($data),'</pre>';
+                 $uphierarchie= $hierarchie->uphierarchie($data); 
+                 $upuser = $malisteUsers->updatefonctionuser($data);
+                 exit();
+              }
          }
     }
     public function createuserAction(){
