@@ -38,7 +38,7 @@ class AdministrationController extends Zend_Controller_Action
         $listehierarchieouestsud = $hierarchie->affichehierarchieouestsud(); 
         $this->view->listehierarchienord = $listehierarchienord;
         $this->view->listehierarchieest = $listehierarchieest;
-        $this->view->listehierarchieouest = $listehierarchieuest;
+        $this->view->listehierarchieouest = $listehierarchieouest;
         $this->view->listehierarchieouestsud = $listehierarchieouestsud;
     }
     public function updatehierarchieAction(){
