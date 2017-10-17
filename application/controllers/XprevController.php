@@ -1445,11 +1445,11 @@ class XprevController extends Zend_Controller_Action
         $this->view->listeallcommercial=$listeallcommercial;
         if($this->getRequest()->isPost()){
             $formData =  $this->getRequest()->getPost();
-            echo '<pre>',  var_export($formData),'</pre>'; exit();
+           // echo '<pre>',  var_export($formData),'</pre>'; exit();
             if($formData['commercial'] != $infoPrev[0]['id_commercial']){
                 $upprev = $Prev->upcommercial($formData['commercial'], $tracking);    
                 }
-            echo '<pre>',  var_export($formData),'</pre>'; 
+            //echo '<pre>',  var_export($formData),'</pre>'; 
             if(isset($_FILES['fichierClotureXprev']['name'])){
                 if($_FILES['fichierClotureXprev']['size']<=2000000){
                     $extension_upload1 =strrchr($_FILES['fichierClotureXprev']['name'],'.');
