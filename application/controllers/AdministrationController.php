@@ -60,11 +60,13 @@ class AdministrationController extends Zend_Controller_Action
              echo '<pre>', var_export($formData),'</pre>';
               if($formData['fonction']==3){
                   $niveau = "niveau1bis";
+                  $fonctionn1 = 3;
                  $data=array(
                      "id_user"=>$formData['user'],
                      "id_fonction"=>$formData['fonction'],
                      "id_holon"=>$formData['holon'],
-                     "niveau"=>$niveau
+                     "niveau"=>$niveau,
+                     "fonctionn1"=>$fonctionn1
                  );
                  echo '<pre>', var_export($data),'</pre>';
                  $uphierarchie= $hierarchie->uphierarchie($data); 
@@ -73,11 +75,16 @@ class AdministrationController extends Zend_Controller_Action
               }
               elseif($formData['fonction']==10){
                  $niveau = "niveau3";
+                 $fonctionn1 = 3;
+                 $fonctionn2 = 6;
                  $data=array(
                      "id_user"=>$formData['user'],
                      "id_fonction"=>$formData['fonction'],
                      "id_holon"=>$formData['holon'],
-                     "niveau"=>$niveau
+                     "niveau"=>$niveau,
+                     "fonctionn1"=>$fonctionn1,
+                     "fonctionn2"=>$fonctionn2
+                         
                  );
                  echo '<pre>', var_export($data),'</pre>';
                  $uphierarchie= $hierarchie->uphierarchie($data); 
