@@ -63,7 +63,7 @@ class AdministrationController extends Zend_Controller_Action
                  "id_holon"=>$formData['holon']
              );
              echo '<pre>', var_export($data),'</pre>';
-             exit();
+             
              $upuser = $malisteUsers->updatefonctionuser($data);
              exit();
          }
