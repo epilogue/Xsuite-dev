@@ -189,6 +189,13 @@ class Application_Model_DbTable_Users extends Zend_Db_Table_Abstract {
     
     public function updatefonctionuser($data){
         $sql="update users set id_fonction = {$data['id_fonction']} , id_holon = {$data['id_holon']} where id_user={$data['id_user']}";
-        var_dump($sql); exit();
+        $res = $this->getAdapter()->query($sql);
+       
+        
+        if (!$res) {
+            return null;
+        } else {
+            return $res;
+        }
     }
 }

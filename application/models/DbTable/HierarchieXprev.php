@@ -77,6 +77,13 @@ class Application_Model_DbTable_HierarchieXprev extends Zend_Db_Table_Abstract {
     public function uphierarchie($data){
         $sql="update hierarchie_prev set id_user = {$data['id_user']} where id_holon = {$data['id_holon']}";
         var_dump($sql);
-        exit();
+        $res = $this->getAdapter()->query($sql);
+       
+        
+        if (!$res) {
+            return null;
+        } else {
+            return $res;
+        }
     }
 }
