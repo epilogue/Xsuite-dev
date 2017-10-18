@@ -608,7 +608,7 @@ class XprevController extends Zend_Controller_Action
                 $validation =5;
                 $justification = $formData['motif_validation'];
                 $upn1 = $Prev->upn1xprev($statut,$validation,$justification,$tracking);
-                 $params['destinataireMail']="{$infoPrev[0]['email_emetteur']}";
+                 $params['destinataireMail']=$infoPrev[0]['email_emetteur'];
 //                 $params['destinataireMail']="mhuby@smc-france.fr";
 
                  $params['url'] = "http://{$_SERVER['SERVER_NAME']}/xprev/consult/tracking/{$tracking}";
@@ -786,7 +786,7 @@ class XprevController extends Zend_Controller_Action
                 $validation =5;
                 $justification = $formData['motif_validation'];
                 $upn1 = $Prev->uplogxprev($statut,$validation,$justification,$tracking);
-                 $params['destinataireMail']="{$infoPrev[0]['email_emetteur']}";
+                 $params['destinataireMail']=$infoPrev[0]['email_emetteur'];
 //                 $params['destinataireMail']="mhuby@smc-france.fr";
 
                  $params['url'] = "http://{$_SERVER['SERVER_NAME']}/xprev/consult/tracking/{$tracking}";
@@ -822,7 +822,7 @@ class XprevController extends Zend_Controller_Action
                 $justification = $formData['motif_validation'];
                 $datalog=array( 'tracking'=>$tracking,'demande_infolog'=>$justification,'reponse_infolog'=>null);
                 $newinfolog = $infolog->createinfolog($datalog);
-                 $params['destinataireMail']="{$infoPrev[0]['email_emetteur']}";
+                 $params['destinataireMail']=$infoPrev[0]['email_emetteur'];
 //                 $params['destinataireMail']="mhuby@smc-france.fr";
 
                  $params['url'] = "http://{$_SERVER['SERVER_NAME']}/xprev/supplementinfolog/tracking/{$tracking}";
@@ -1061,7 +1061,7 @@ class XprevController extends Zend_Controller_Action
                 $justification = $formData['motif_validation'];
                 $upn1 = $Prev->updopxprev($statut,$validation,$justification,$tracking);
                 /*envoi mail au créateur*/
-                 $params['destinataireMail']="$infoPrev[0]['email_emetteur']";
+                 $params['destinataireMail']=$infoPrev[0]['email_emetteur'];
 //                 $params['destinataireMail']="mhuby@smc-france.fr";
 
                  $params['url'] = "http://{$_SERVER['SERVER_NAME']}/xprev/consult/tracking/{$tracking}";
@@ -1488,7 +1488,7 @@ class XprevController extends Zend_Controller_Action
                 //var_dump($justification);
                 
                 $updop = $Prev->updopxprev($statut,$validation,$justification,$tracking);
-                 $params['destinataireMail']="{$infoPrev[0]['email_emetteur']}";
+                 $params['destinataireMail']=$infoPrev[0]['email_emetteur'];
 //                 $params['destinataireMail']="mhuby@smc-france.fr";
 
                  $params['url'] = "http://{$_SERVER['SERVER_NAME']}/xprev/consult/tracking/{$tracking}";
