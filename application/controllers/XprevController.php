@@ -1027,8 +1027,8 @@ class XprevController extends Zend_Controller_Action
                 //var_dump($justification);
                 
                 $updop = $Prev->updopxprev($statut,$validation,$justification,$tracking);
-                 $params['destinataireMail']="logistique@smc-france.fr";
-//                 $params['destinataireMail']="mhuby@smc-france.fr";
+//                 $params['destinataireMail']="logistique@smc-france.fr";
+                 $params['destinataireMail']="mhuby@smc-france.fr";
 
                  $params['url'] = "http://{$_SERVER['SERVER_NAME']}/xprev/traitement/tracking/{$tracking}";
                  $params['corpsMail']="Bonjour,\n"
