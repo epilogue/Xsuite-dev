@@ -926,8 +926,8 @@ class XprevController extends Zend_Controller_Action
             }
             $updateinfosupp = $infolog->updateinfolog($tracking,$formData['id_infolog'],$formData['supplement']);
             $emailVars = Zend_Registry::get('emailVars');
-             $params['destinataireMail']="logistique@smc-france.fr";
-//                 $params['destinataireMail']="mhuby@smc-france.fr";
+//             $params['destinataireMail']="logistique@smc-france.fr";
+                 $params['destinataireMail']="mhuby@smc-france.fr";
 
                  $params['url'] = "http://{$_SERVER['SERVER_NAME']}/xprev/validlog/tracking/{$tracking}";
                  $params['corpsMail']="Bonjour,\n"
@@ -1231,8 +1231,8 @@ class XprevController extends Zend_Controller_Action
                  /* creation des parametre du mail*/
                  $params=array();
             /*envoi du mail à dop*/
-                 $params['destinataireMail']="kbelkacem@smc-france.fr";
-//                 $params['destinataireMail']="mhuby@smc-france.fr";
+//                 $params['destinataireMail']="kbelkacem@smc-france.fr";
+                $params['destinataireMail']="mhuby@smc-france.fr";
 
                  $params['url'] = "http://{$_SERVER['SERVER_NAME']}/xprev/validdop/tracking/{$tracking}";
                  $params['corpsMail']="Bonjour,\n"
