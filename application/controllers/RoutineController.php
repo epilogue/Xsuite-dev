@@ -37,8 +37,7 @@ class RoutineController extends Zend_Controller_Action {
              /* creation des parametre du mail*/
          foreach($listeMailing as $listeMailing1){
              $params=array();
-             //$params['destinataireMail']=$listeMailing1['email_user'];
-             $params['destinataireMail']="mhuby@smc-france.fr";
+             $params['destinataireMail']=$listeMailing1['email_user'];
              $params['corpsMail']="Bonjour,\n"
                                 . "\n"
                                 . "pour information la prévision {$listeMailing1['tracking']} pour le client {$listeMailing1['nom_client_xprev']} arrive à échéance {$listeMailing1['date_fin']}.\n"
@@ -60,13 +59,12 @@ public function routinebisAction(){
         $newdate = $date->format('Y-m-d');
          $Mailing = new Application_Model_DbTable_DemandeXprev();
         $listeMailingob = $Mailing->mailinglistob($newdate);
-         echo '<pre>',  var_export($listeMailingob),'</pre>';
+//         echo '<pre>',  var_export($listeMailingob),'</pre>';
          $emailVars = Zend_Registry::get('emailVars');
              /* creation des parametre du mail*/
          foreach($listeMailingob as $listeMailingob1){
              $params=array();
-//           $params['destinataireMail']=$listeMailingob1['email_user'];
-             $params['destinataireMail']="mhuby@smc-france.fr";
+           $params['destinataireMail']=$listeMailingob1['email_user'];
              $params['corpsMail']="Bonjour,\n"
                                 . "\n"
                                 . "pour information la prévision {$listeMailingob1['tracking']} pour le client {$listeMailingob1['nom_client_xprev']}est arrivée en fin de validité.\n"
