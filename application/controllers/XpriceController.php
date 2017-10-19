@@ -1957,30 +1957,56 @@ elseif($mailServiceClients[0]['mail_service_client']=='' || $mailServiceClients[
                       $this->sendEmail($params2);           
                     }
                     //envoi au cdr
-                if ($fonctioncreateur == "1" or $fonctioncreateur == "2" or $fonctioncreateur == "3") {
-                        switch ($zonetracking) {
-                            case "QA":
-                               $params3['destinataireMail'] = $emailVars->listes->QA;
-                                break;
-                            case "QC":
-                                $params3['destinataireMail'] = $emailVars->listes->CDRNORD;
-                                break;
-                            case "QF":
-                                $params3['destinataireMail'] = $emailVars->listes->CDRNORD;
-                                break;
-                            case "QE":
-                                $params3['destinataireMail'] = $emailVars->listes->CDREST;
-                                break;
-                            case "QH":
-                                $params3['destinataireMail'] = $emailVars->listes->CDREST;
-                                break;
-                            case "QI":
-                                $params3['destinataireMail'] = $emailVars->listes->CDROUEST2;
-                                break;
-                            case "QK":
-                                $params3['destinataireMail'] = $emailVars->listes->CDROUEST;
-                                break;
+//                if ($fonctioncreateur == "1" or $fonctioncreateur == "2" or $fonctioncreateur == "3") {
+//                        switch ($zonetracking) {
+//                            case "QA":
+//                               $params3['destinataireMail'] = $emailVars->listes->QA;
+//                                break;
+//                            case "QC":
+//                                $params3['destinataireMail'] = $emailVars->listes->CDRNORD;
+//                                break;
+//                            case "QF":
+//                                $params3['destinataireMail'] = $emailVars->listes->CDRNORD;
+//                                break;
+//                            case "QE":
+//                                $params3['destinataireMail'] = $emailVars->listes->CDREST;
+//                                break;
+//                            case "QH":
+//                                $params3['destinataireMail'] = $emailVars->listes->CDREST;
+//                                break;
+//                            case "QI":
+//                                $params3['destinataireMail'] = $emailVars->listes->CDROUEST2;
+//                                break;
+//                            case "QK":
+//                                $params3['destinataireMail'] = $emailVars->listes->CDROUEST;
+//                                break;
+//                        }
+                    //$id_holon=$user_info['id_holon'];
+                if ($fonctioncreateur=="1" or $fonctioncreateur=="2" or $fonctioncreateur=="3") {
+                        $holonnord=array(18,19,20,21,22,23,32);
+                        $holonouest = array(8,9,10,14,15,16,17,31);
+                        $holonouest2 = array(36,37,38,39,41);
+                        $holonest = array(5,6,7,11,12,13,30,40);
+                        $holonIO = array(33);
+                        $holonexport = array(28,29);
+                        if(in_array($id_holon, $holonnord)){
+                            $params5['destinataireMail'] = $emailVars->listes->CDRNORD;
                         }
+                        elseif(in_array($id_holon, $holonouest)){
+                            $params5['destinataireMail'] = $emailVars->listes->CDROUEST;
+                        }
+                        elseif(in_array($id_holon, $holonouest2)){
+                            $params5['destinataireMail'] = $emailVars->listes->CDROUEST2;
+                        }
+                        elseif(in_array($id_holon, $holonest)){
+                            $params5['destinataireMail'] = $emailVars->listes->CDREST;
+                        }
+                        elseif(in_array($id_holon, $holonIO)){
+                            $params5['destinataireMail'] =$emailVars->listes->IO;
+                        }
+                        elseif(in_array($id_holon, $holonexport)){
+                            $params5['destinataireMail']=$emailVars->listes->export;
+                        }    
                         $params3['url'] = "http://{$_SERVER['SERVER_NAME']}/xprice/consult/numwp/{$numwp}";
 
                         $params3['corpsMail'] = "Bonjour,\n"
