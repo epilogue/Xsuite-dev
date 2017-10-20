@@ -111,6 +111,11 @@ $this->headScript()->appendFile('/js/controllers/xprice/afficher_masquer_validat
        </fieldset>
     </div>
     <div class="clear"></div>
+     <?php if(!empty($this->mail)) { ?>
+        <p class="decale">mail:<?php foreach ($this->mail as $maildistrib){ ?> <a href=" <?php echo $maildistrib['chemin_mail_xdistrib']; ?>" target="_blank"><?php echo $maildistrib['nom_mail_xdistrib']; ?></a><br><?php  }?>
+        </p>
+         <?php } ?>
+     <div class="clear"></div>
     <div id="concurrent" class="workplace">
         <fieldset  class="field">
             <legend>Concurrence</legend>

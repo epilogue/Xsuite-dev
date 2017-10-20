@@ -2781,11 +2781,16 @@ if($this->getRequest()->isPost()){
         $numwp = $this->getRequest()->getParam('numwp', null);
         $this->view->numwp = $numwp; 
         $nom_validation = 'dbd';
+       
         $infos_demande_xdistrib = new Application_Model_DbTable_Xdistrib();
         $info_demande_xdistrib = $infos_demande_xdistrib->getNumwp($numwp);
         $dateinit=$info_demande_xdistrib['date_demande_xdistrib'];
         $date = DateTime::createFromFormat('Y-m-d', $dateinit);
         $dateplop = $date->format('d/m/Y');
+         $tracking = $info_demande_xdistrib['tracking_number_demande_xdistrib'];
+        $mail= new Application_Model_DbTable_MailXdistrib();
+        $listemail = $mail->getmail($tracking);
+        $this->view->mail=$listemail;
         $this->view->dateplop=$dateplop;
         $numwp_dis=  substr($info_demande_xdistrib['numwp_distributeur'], 0, 6);
         $info_distrib=new Application_Model_DbTable_Distributeurs();
